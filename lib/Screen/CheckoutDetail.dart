@@ -523,7 +523,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                         height: 5.h,
                       ),
                       GestureDetector(
-                        onTap: selected1 == 2
+                        onTap:  selected1 == 0?() {buildErrorDialog(context, '', "choose your payment method");}:selected1 == 2
                             ? () {
                                 checkoutcodap();
                               }
