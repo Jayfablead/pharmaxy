@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:ecommerce/Modal/CheckOutModal.dart';
 import 'package:ecommerce/Modal/ChekOutDetailModal.dart';
 import 'package:ecommerce/Modal/PaypalModal.dart';
@@ -52,7 +53,6 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
 
     checkoutap();
     userselectaddap();
-
   }
 
   @override
@@ -523,122 +523,130 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                         height: 5.h,
                       ),
                       GestureDetector(
-                        onTap:  selected1 == 0?() {buildErrorDialog(context, '', "choose your payment method");}:selected1 == 2
+                        onTap: selected1 == 0
                             ? () {
-                                checkoutcodap();
+                                buildErrorDialog(
+                                    context, '', "choose your payment method");
                               }
-                            : () {
-                                double total = double.parse(
-                                    (viewcartmodal?.finalTotalWithTax)
-                                        .toString());
-                                String add = widget.page == "1"
-                                    ? (userselectaddmodal
-                                            ?.selectShippingAddress?.address)
-                                        .toString()
-                                    : widget.address.toString();
-                                String name = widget.page == "1"
-                                    ? (userselectaddmodal
-                                            ?.selectShippingAddress?.firstName)
-                                        .toString()
-                                    : widget.firstname.toString();
-                                String formattedNumber =
-                                    total.toStringAsFixed(2);
+                            : selected1 == 2
+                                ? () {
+                                    checkoutcodap();
+                                  }
+                                : () {
+                                    double total = double.parse(
+                                        (viewcartmodal?.finalTotalWithTax)
+                                            .toString());
+                                    String add = widget.page == "1"
+                                        ? (userselectaddmodal
+                                                ?.selectShippingAddress
+                                                ?.address)
+                                            .toString()
+                                        : widget.address.toString();
+                                    String name = widget.page == "1"
+                                        ? (userselectaddmodal
+                                                ?.selectShippingAddress
+                                                ?.firstName)
+                                            .toString()
+                                        : widget.firstname.toString();
+                                    String formattedNumber =
+                                        total.toStringAsFixed(2);
 
-                                print(total);
-                                print(formattedNumber);
+                                    print(total);
+                                    print(formattedNumber);
 
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => UsePaypal(
-                                          sandboxMode: true,
-                                          clientId:
-                                              "ATL1N-TdcwUidsaRFnpY8qX66_pHvRPNM8QoAGA2zJ9DdwoMyGTxr9DaGuq3LmUWT9uDqlDtaqW7V91s",
-                                          secretKey:
-                                              "ECwRQ-E4nkepD4xE79mTlIGiwbrsx5vuJu4ZA3Def84bFnxkKB8VynD8c5bik4zwHnY5VORGczAb4Q0q",
-                                          returnURL:
-                                              "https://samplesite.com/return",
-                                          cancelURL:
-                                              "https://samplesite.com/cancel",
-                                          transactions: [
-                                            {
-                                              "amount": {
-                                                "total": formattedNumber,
-                                                "currency": "USD",
-                                                "details": {
-                                                  "subtotal": formattedNumber,
-                                                  "shipping": '0',
-                                                  "shipping_discount": 0
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => UsePaypal(
+                                              sandboxMode: true,
+                                              clientId:
+                                                  "ATL1N-TdcwUidsaRFnpY8qX66_pHvRPNM8QoAGA2zJ9DdwoMyGTxr9DaGuq3LmUWT9uDqlDtaqW7V91s",
+                                              secretKey:
+                                                  "ECwRQ-E4nkepD4xE79mTlIGiwbrsx5vuJu4ZA3Def84bFnxkKB8VynD8c5bik4zwHnY5VORGczAb4Q0q",
+                                              returnURL:
+                                                  "https://samplesite.com/return",
+                                              cancelURL:
+                                                  "https://samplesite.com/cancel",
+                                              transactions: [
+                                                {
+                                                  "amount": {
+                                                    "total": formattedNumber,
+                                                    "currency": "USD",
+                                                    "details": {
+                                                      "subtotal":
+                                                          formattedNumber,
+                                                      "shipping": '0',
+                                                      "shipping_discount": 0
+                                                    }
+                                                  },
+                                                  "description":
+                                                      "The payment transaction description.",
+                                                  "item_list": {
+                                                    "items": [],
+                                                    "shipping_address": {
+                                                      "recipient_name": name,
+                                                      "line1": add,
+                                                      "line2": "",
+                                                      "city": "Austin",
+                                                      "country_code": "US",
+                                                      "postal_code": "73301",
+                                                      "phone": "+00000000",
+                                                      "state": "Texas"
+                                                    },
+                                                  }
                                                 }
+                                              ],
+                                              note:
+                                                  "Contact us for any questions on your order.",
+                                              onSuccess: (Map params) async {
+                                                EasyLoading.show(
+                                                    status:
+                                                        'Processing Your Payment ..',
+                                                    indicator:
+                                                        CircularProgressIndicator(
+                                                      backgroundColor:
+                                                          Color(0xfff7941d),
+                                                      color: Colors.white,
+                                                    ));
+                                                print(
+                                                    "onSuccess:- Uid: ${usermodal?.userId} , Add Id: ${widget.addid} , PaymenId: ${params['paymentId']} , type : paypal");
+                                                checkoutpaypalap(
+                                                    params['paymentId']);
                                               },
-                                              "description":
-                                                  "The payment transaction description.",
-                                              "item_list": {
-                                                "items": [],
-                                                "shipping_address": {
-                                                  "recipient_name": name,
-                                                  "line1": add,
-                                                  "line2": "",
-                                                  "city": "Austin",
-                                                  "country_code": "US",
-                                                  "postal_code": "73301",
-                                                  "phone": "+00000000",
-                                                  "state": "Texas"
-                                                },
-                                              }
-                                            }
-                                          ],
-                                          note:
-                                              "Contact us for any questions on your order.",
-                                          onSuccess: (Map params) async {
-                                            EasyLoading.show(
-                                                status:
-                                                    'Processing Your Payment ..',
-                                                indicator:
-                                                    CircularProgressIndicator(
-                                                  backgroundColor:
-                                                      Color(0xfff7941d),
-                                                  color: Colors.white,
-                                                ));
-                                            print(
-                                                "onSuccess:- Uid: ${usermodal?.userId} , Add Id: ${widget.addid} , PaymenId: ${params['paymentId']} , type : paypal");
-                                            checkoutpaypalap(
-                                                params['paymentId']);
-                                          },
-                                          onError: (error) {
-                                            EasyLoading.show(
-                                                status:
-                                                    'Processing Your Payment ..',
-                                                indicator:
-                                                    CircularProgressIndicator(
-                                                  backgroundColor:
-                                                      Color(0xfff7941d),
-                                                  color: Colors.white,
-                                                ));
-                                            checkoutpaypalap('');
-                                            print("onError: $error");
-                                            EasyLoading.showError(
-                                              "Payment Cancelled",
-                                            );
-                                          },
-                                          onCancel: (params) {
-                                            EasyLoading.show(
-                                                status:
-                                                    'Processing Your Payment ..',
-                                                indicator:
-                                                    CircularProgressIndicator(
-                                                  backgroundColor:
-                                                      Color(0xfff7941d),
-                                                  color: Colors.white,
-                                                ));
+                                              onError: (error) {
+                                                EasyLoading.show(
+                                                    status:
+                                                        'Processing Your Payment ..',
+                                                    indicator:
+                                                        CircularProgressIndicator(
+                                                      backgroundColor:
+                                                          Color(0xfff7941d),
+                                                      color: Colors.white,
+                                                    ));
+                                                checkoutpaypalap('');
+                                                print("onError: $error");
+                                                EasyLoading.showError(
+                                                  "Payment Cancelled",
+                                                );
+                                              },
+                                              onCancel: (params) {
+                                                EasyLoading.show(
+                                                    status:
+                                                        'Processing Your Payment ..',
+                                                    indicator:
+                                                        CircularProgressIndicator(
+                                                      backgroundColor:
+                                                          Color(0xfff7941d),
+                                                      color: Colors.white,
+                                                    ));
 
-                                            print('cancelled: $params');
-                                            EasyLoading.showError(
-                                              "Payment Cancelled",
-                                            );
-                                          }),
-                                    ));
-                              },
+                                                print('cancelled: $params');
+                                                EasyLoading.showError(
+                                                  "Payment Cancelled",
+                                                );
+                                              }),
+                                        ));
+                                  },
                         child: Container(
                             margin: EdgeInsets.only(right: 7.w, left: 7.w),
                             alignment: Alignment.center,
