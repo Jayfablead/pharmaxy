@@ -106,7 +106,7 @@ class _CartPageState extends State<CartPage> {
                             if (snapshot.hasData) {
                               return Column(
                                 children: [
-                                  SizedBox(height: 3.5.h),
+                                  SizedBox(height: 4.h),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
                                     child: Row(

@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
@@ -42,7 +43,7 @@ class _bottombarState extends State<bottombar> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: Colors.white),
-      height: 6.h,
+      height: Platform.isAndroid ? 6.h : 8.h,
       margin: EdgeInsets.only(
         right: 1.w,
         left: 1.w,
@@ -55,8 +56,10 @@ class _bottombarState extends State<bottombar> {
           GestureDetector(
             onTap: () {
               setState(() {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => HomePage(sel: 0,)));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => HomePage(
+                          sel: 0,
+                        )));
                 selected = 1;
               });
             },
@@ -190,14 +193,16 @@ class _bottombarState extends State<bottombar> {
                         MaterialPageRoute(builder: (context) => LoginPage2()));
                   },
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 1.h),
+                    padding: Platform.isAndroid
+                        ? EdgeInsets.only(bottom: 1.h)
+                        : EdgeInsets.only(bottom: 3.5.h),
                     child: Text(
                       "Login",
                       style: TextStyle(
                         color: Color(0xfff7941d),
                         fontFamily: 'task',
                         fontWeight: FontWeight.bold,
-                        fontSize: 17.sp,
+                        fontSize: 19.sp,
                       ),
                     ),
                   ))

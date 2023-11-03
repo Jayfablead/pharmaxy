@@ -70,7 +70,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 2.h,
+                                height: 3.h,
                               ),
                               Container(
                                 width: MediaQuery.of(context).size.width,

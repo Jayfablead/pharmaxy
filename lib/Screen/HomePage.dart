@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
@@ -29,7 +30,8 @@ import 'package:sizer/sizer.dart';
 
 class HomePage extends StatefulWidget {
   int? sel;
-   HomePage({super.key,required this.sel});
+
+  HomePage({super.key, required this.sel});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -179,50 +181,56 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
-                                  onPressed: () {
-                                    _scaffoldKey.currentState?.openDrawer();
-                                  },
-                                  icon: Icon(
-                                    Icons.menu,
-                                    size: 25.sp,
-                                  )),
+                                onPressed: () {
+                                  _scaffoldKey.currentState?.openDrawer();
+                                },
+                                icon: Icon(
+                                  Icons.menu,
+                                  size: 25.sp,
+                                ),
+                              ),
                               Row(
                                 children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      usermodal?.userId == "" ||
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 2.w),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        usermodal?.userId == "" ||
+                                                usermodal?.userId == null
+                                            ? Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      LoginPage2(),
+                                                ),
+                                              )
+                                            : Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfilePage(),
+                                                ),
+                                              );
+                                      },
+                                      child: usermodal?.userId == "" ||
                                               usermodal?.userId == null
-                                          ? Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      LoginPage2()))
-                                          : Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfilePage()));
-                                    },
-                                    child: usermodal?.userId == "" ||
-                                            usermodal?.userId == null
-                                        ? Text(
-                                            "Login",
-                                            style: TextStyle(
-                                              color: Color(0xfff7941d),
-                                              fontFamily: 'task',
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 17.sp,
-                                            ),
-                                          )
-                                        : Container(
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 1.w),
-                                            height: 12.2.w,
-                                            width: 12.2.w,
-                                            padding: EdgeInsets.all(1.w),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(90),
-                                              child: CachedNetworkImage(
-
+                                          ? Text(
+                                              "Login",
+                                              style: TextStyle(
+                                                color: Color(0xfff7941d),
+                                                fontFamily: 'task',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17.sp,
+                                              ),
+                                            )
+                                          : Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 1.w),
+                                              height: 12.2.w,
+                                              width: 12.2.w,
+                                              padding: EdgeInsets.all(1.w),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(90),
+                                                child: CachedNetworkImage(
                                                   imageUrl: profilemodal
                                                           ?.profileDetails
                                                           ?.profileimage ??
@@ -231,13 +239,18 @@ class _HomePageState extends State<HomePage> {
                                                   progressIndicatorBuilder:
                                                       (context, url,
                                                               progress) =>
-                                                          Center(child: CircularProgressIndicator()),
-                                                  errorWidget: (context, url,
-                                                          error) =>
-                                                      Icon(Icons
-                                                          .error_outline_rounded)),
+                                                          Center(
+                                                              child:
+                                                                  CircularProgressIndicator()),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Icon(
+                                                    Icons.error_outline_rounded,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -269,15 +282,16 @@ class _HomePageState extends State<HomePage> {
                                     builder: (context) => CategoryPage()));
                               },
                               child: Container(
-                                child: allcatmodal
-                                    ?.categories?.length==0 ?Text(""):Text(
-                                  "View All",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13.5.sp,
-                                      color: Color(0xfff7941d),
-                                      fontFamily: "task"),
-                                ),
+                                child: allcatmodal?.categories?.length == 0
+                                    ? Text("")
+                                    : Text(
+                                        "View All",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13.5.sp,
+                                            color: Color(0xfff7941d),
+                                            fontFamily: "task"),
+                                      ),
                               ),
                             ),
                           ],
@@ -286,124 +300,135 @@ class _HomePageState extends State<HomePage> {
                       SliverToBoxAdapter(
                         child: Container(
                           height: 17.h,
-                          child: allcatmodal
-                              ?.categories?.length==0 ?
-                           Center(
-                             child: Text("No Category Available",
-                               style: TextStyle(
-                                   fontSize: 15.sp,
-                                   fontFamily: 'task',
-                                   fontWeight: FontWeight.bold),),
-                           )
-                          : ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            padding: EdgeInsets.zero,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                child: Center(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            sel = index;
-                                            selected = allcatmodal
-                                                ?.categories?[index].categoryID
-                                                .toString();
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        SubCateGoryPage(
-                                                          catid: selected,
-                                                        )));
-                                          });
-                                          catwiceproductap();
-                                        },
-                                        child: Container(
-                                          height: 19.w,
-                                          width: 19.w,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-
-                                            color: sel == index
-                                                ? Colors.deepOrange.shade50
-                                                : Colors.grey.shade100,
-                                            border: Border.all(
-                                              width: 1,
-                                              color: sel == index
-                                                  ? Color(0xfff7941d)
-                                                  : Colors.grey,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                          ),
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 2.w),
-                                          child: CircleAvatar(
-                                            radius: 9.5.w,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                              BorderRadius.circular(150),
-                                             child: CachedNetworkImage(
-                                               height: 17.w,
-                                               width: 17.w,
-                                                imageUrl: allcatmodal
-                                                        ?.categories?[index]
-                                                        .catagoryimage ??
-                                                    '',
-                                                  fit: BoxFit.cover,
-                                                progressIndicatorBuilder: (context,
-                                                        url, progress) =>
-                                                    Center(child: CircularProgressIndicator()),
-                                                errorWidget: (context, url,
-                                                        error) =>
-                                                    Icon(Icons
-                                                        .error_outline_outlined),
+                          child: allcatmodal?.categories?.length == 0
+                              ? Center(
+                                  child: Text(
+                                    "No Category Available",
+                                    style: TextStyle(
+                                        fontSize: 15.sp,
+                                        fontFamily: 'task',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )
+                              : ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  padding: EdgeInsets.zero,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      child: Center(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  sel = index;
+                                                  selected = allcatmodal
+                                                      ?.categories?[index]
+                                                      .categoryID
+                                                      .toString();
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              SubCateGoryPage(
+                                                                catid: selected,
+                                                              )));
+                                                });
+                                                catwiceproductap();
+                                              },
+                                              child: Container(
+                                                height: 19.w,
+                                                width: 19.w,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                  color: sel == index
+                                                      ? Colors
+                                                          .deepOrange.shade50
+                                                      : Colors.grey.shade100,
+                                                  border: Border.all(
+                                                    width: 1,
+                                                    color: sel == index
+                                                        ? Color(0xfff7941d)
+                                                        : Colors.grey,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
+                                                ),
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal: 2.w),
+                                                child: CircleAvatar(
+                                                  radius: 9.5.w,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            150),
+                                                    child: CachedNetworkImage(
+                                                      height: 17.w,
+                                                      width: 17.w,
+                                                      imageUrl: allcatmodal
+                                                              ?.categories?[
+                                                                  index]
+                                                              .catagoryimage ??
+                                                          '',
+                                                      fit: BoxFit.cover,
+                                                      progressIndicatorBuilder:
+                                                          (context, url,
+                                                                  progress) =>
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Icon(Icons
+                                                              .error_outline_outlined),
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            SizedBox(
+                                              width: 16.w,
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                                allcatmodal?.categories?[index]
+                                                                .categoryName ==
+                                                            '' ||
+                                                        allcatmodal
+                                                                ?.categories?[
+                                                                    index]
+                                                                .categoryName ==
+                                                            null
+                                                    ? 'N/A'
+                                                    : allcatmodal
+                                                            ?.categories?[index]
+                                                            .categoryName ??
+                                                        '',
+                                                style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: "task",
+                                                  color: sel == index
+                                                      ? Color(0xfff7941d)
+                                                      : Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 1.h,
-                                      ),
-                                      SizedBox(
-                                        width: 16.w,
-                                        child: Text(
-                                          textAlign: TextAlign.center,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          allcatmodal?.categories?[index]
-                                                          .categoryName ==
-                                                      '' ||
-                                                  allcatmodal
-                                                          ?.categories?[index]
-                                                          .categoryName ==
-                                                      null
-                                              ? 'N/A'
-                                              : allcatmodal?.categories?[index]
-                                                      .categoryName ??
-                                                  '',
-                                          style: TextStyle(
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "task",
-                                            color: sel == index
-                                                ? Color(0xfff7941d)
-                                                : Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    );
+                                  },
+                                  itemCount: allcatmodal?.categories?.length,
                                 ),
-                              );
-                            },
-                            itemCount: allcatmodal?.categories?.length,
-                          ),
                         ),
                       ),
                       SliverToBoxAdapter(
@@ -412,17 +437,18 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       SliverToBoxAdapter(
-                        child:bestsellerproductmodal?.productData?.length ==
-                            0 ||
-                            bestsellerproductmodal
-                                ?.productData?.length ==
-                                null?Container(): Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            searchBox(),
-                          ],
-                        ),
+                        child: bestsellerproductmodal?.productData?.length ==
+                                    0 ||
+                                bestsellerproductmodal?.productData?.length ==
+                                    null
+                            ? Container()
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  searchBox(),
+                                ],
+                              ),
                       ),
                       SliverToBoxAdapter(
                         child: SizedBox(
@@ -497,7 +523,6 @@ class _HomePageState extends State<HomePage> {
                                                                     index]
                                                                 .imgData ??
                                                             '',
-
                                                     height: 11.5.h,
                                                     width: 30.w,
                                                     imageBuilder: (context,
@@ -510,7 +535,6 @@ class _HomePageState extends State<HomePage> {
                                                               FilterQuality
                                                                   .high,
                                                           image: imageProvider,
-
                                                         ),
                                                       ),
                                                     ),
@@ -784,7 +808,6 @@ class _HomePageState extends State<HomePage> {
 
                                       ),
                                 ),
-
                       name
                           ? SliverToBoxAdapter(child: Container())
                           : SliverToBoxAdapter(
@@ -817,16 +840,21 @@ class _HomePageState extends State<HomePage> {
                                                   )));
                                     },
                                     child: Container(
-                                      child: salesproductmodal?.productData?.length == 0 ||
-                                          salesproductmodal?.productData?.length ==
-                                              null?Text(""):Text(
-                                        "See More",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13.5.sp,
-                                            color: Color(0xfff7941d),
-                                            fontFamily: "task"),
-                                      ),
+                                      child: salesproductmodal
+                                                      ?.productData?.length ==
+                                                  0 ||
+                                              salesproductmodal
+                                                      ?.productData?.length ==
+                                                  null
+                                          ? Text("")
+                                          : Text(
+                                              "See More",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 13.5.sp,
+                                                  color: Color(0xfff7941d),
+                                                  fontFamily: "task"),
+                                            ),
                                     ),
                                   ),
                                 ],
@@ -925,7 +953,9 @@ class _HomePageState extends State<HomePage> {
                                                     .toString(),
                                                 progressIndicatorBuilder: (context,
                                                         url, progress) =>
-                                                    Center(child: CircularProgressIndicator()),
+                                                    Center(
+                                                        child:
+                                                            CircularProgressIndicator()),
                                                 errorWidget: (context, url,
                                                         error) =>
                                                     Icon(Icons
@@ -938,7 +968,6 @@ class _HomePageState extends State<HomePage> {
                                 }).toList(),
                               ),
                             ),
-
                       name
                           ? SliverToBoxAdapter(child: Container())
                           : SliverToBoxAdapter(
@@ -946,7 +975,6 @@ class _HomePageState extends State<HomePage> {
                                 height: 1.5.h,
                               ),
                             ),
-
                       name
                           ? SliverToBoxAdapter(child: Container())
                           : SliverToBoxAdapter(
@@ -972,18 +1000,21 @@ class _HomePageState extends State<HomePage> {
                                                   )));
                                     },
                                     child: Container(
-                                      child: bestsellerproductmodal?.productData?.length ==
-                                          0 ||
-                                          bestsellerproductmodal
-                                              ?.productData?.length ==
-                                              null?Text(""): Text(
-                                        "See More",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13.5.sp,
-                                            color: Color(0xfff7941d),
-                                            fontFamily: "task"),
-                                      ),
+                                      child: bestsellerproductmodal
+                                                      ?.productData?.length ==
+                                                  0 ||
+                                              bestsellerproductmodal
+                                                      ?.productData?.length ==
+                                                  null
+                                          ? Text("")
+                                          : Text(
+                                              "See More",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 13.5.sp,
+                                                  color: Color(0xfff7941d),
+                                                  fontFamily: "task"),
+                                            ),
                                     ),
                                   ),
                                 ],
@@ -1010,15 +1041,15 @@ class _HomePageState extends State<HomePage> {
                                           null
                                   ? SliverToBoxAdapter(
                                       child: Center(
-                                        child: Text(
+                                      child: Text(
                                         'No Products Available',
                                         style: TextStyle(
                                             fontWeight: FontWeight.normal,
                                             fontFamily: 'task',
                                             fontSize: 15.sp,
                                             color: Colors.black),
-                                    ),
-                                      ))
+                                      ),
+                                    ))
                                   : wait
                                       ? SliverToBoxAdapter(
                                           child: Center(
@@ -1101,7 +1132,6 @@ class _HomePageState extends State<HomePage> {
                                                                             .high,
                                                                     image:
                                                                         imageProvider,
-
                                                                   ),
                                                                 ),
                                                               ),
@@ -1385,7 +1415,6 @@ class _HomePageState extends State<HomePage> {
                                             // Replace
                                           ),
                                         ),
-
                       SliverToBoxAdapter(
                         child: SizedBox(
                           height: 1.h,
@@ -1427,7 +1456,6 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 )
                               : Container()),
-
                     ],
                   ),
                 ),

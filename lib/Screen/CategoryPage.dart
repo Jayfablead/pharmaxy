@@ -103,7 +103,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 : Column(
                     children: [
                       SizedBox(
-                        height: 2.h,
+                        height: 3.h,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
