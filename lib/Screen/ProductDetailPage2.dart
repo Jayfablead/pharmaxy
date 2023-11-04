@@ -561,8 +561,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                   width: 3.w,
                                                 ),
                                                 SizedBox(
-                                                  height: 12.h,
-                                                  width: 70.w,
+                                                     height: 12.h,
+                                                     width: 70.w,
                                                   child: ListView.builder(
                                                       scrollDirection:
                                                           Axis.horizontal,

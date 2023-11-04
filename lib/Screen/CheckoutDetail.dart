@@ -721,9 +721,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
               isLoading = false;
             });
           } else {
-            EasyLoading.showError(
-              "Payment Cancelled",
-            );
+
             setState(() {
               isLoading = false;
             });
