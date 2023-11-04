@@ -186,6 +186,7 @@ class _EditProfileState extends State<EditProfile> {
                             return null;
                           },
                           decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide: BorderSide(color: Colors.grey)),
@@ -253,6 +254,7 @@ class _EditProfileState extends State<EditProfile> {
                             return null;
                           },
                           decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide: BorderSide(color: Colors.grey)),
@@ -308,6 +310,7 @@ class _EditProfileState extends State<EditProfile> {
                       child: DropdownButtonFormField(
                         borderRadius: BorderRadius.circular(30),
                         decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -387,6 +390,7 @@ class _EditProfileState extends State<EditProfile> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(30),
                                       borderSide:
@@ -448,6 +452,7 @@ class _EditProfileState extends State<EditProfile> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(30),
                                       borderSide:

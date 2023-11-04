@@ -431,7 +431,7 @@ class _CartPageState extends State<CartPage> {
                                                                                     ),
                                                                                   ),
                                                                                   SizedBox(
-                                                                                    width: 2.w,
+                                                                                    width: 1.w,
                                                                                   ),
                                                                                   Text(
                                                                                     snapshot.data![index].initialPrice.toString(),
@@ -681,7 +681,7 @@ class _CartPageState extends State<CartPage> {
                                                             right: 3.w,
                                                           ),
                                                           child: Text(
-                                                            "₹ ${(cart.getTOtalPrice() * 0.10)}",
+                                                            "₹ ${(cart.getTOtalPrice() * 0.10).toStringAsFixed(2)}",
                                                             style: TextStyle(
                                                               fontFamily:
                                                                   'task',
@@ -1124,7 +1124,7 @@ class _CartPageState extends State<CartPage> {
                                                                           ),
                                                                           SizedBox(
                                                                             width:
-                                                                                2.w,
+                                                                                1.w,
                                                                           ),
                                                                           Text(
                                                                             (viewcartmodal?.cartDetails?[index].productPriceMain) == null

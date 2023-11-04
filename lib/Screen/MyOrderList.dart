@@ -38,7 +38,7 @@ class wish {
   wish(this.image, this.name, this.price, this.bestprice, this.detail);
 }
 
-int sel = 1;
+int sel = 0;
 
 List cate = [
   'All',
@@ -560,35 +560,36 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         )),
                                                                   ),
                                                                   SizedBox(
-                                                                    width: 4.w,
+                                                                    width: 2.5.w,
                                                                   ),
                                                                   Text(
+
                                                                     myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                                '' ||
-                                                                            myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                                null
+                                                                           '' ||
+                                                                           myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                          null
                                                                         ? 'N/A'
-                                                                        : myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                                'Order Cancelled'
+                                                                           :myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                            'Pending order cancelled' || myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                            'Order Cancelled'
                                                                             ? "Cancelled"
-                                                                            : myorderlistmodal?.cartDetails?[index].orderStatus ??
+                                                                            :myorderlistmodal?.cartDetails?[index].orderStatus ??
                                                                                 '',
-                                                                    style:
+                                                                        style:
                                                                         TextStyle(
-                                                                      fontSize:
+                                                                       fontSize:
                                                                           13.sp,
-                                                                      fontFamily:
+                                                                       fontFamily:
                                                                           'task',
-                                                                      fontWeight:
+                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
-                                                                      letterSpacing:
-                                                                          1,
-                                                                      color: myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                              'Order Cancelled'
+                                                                       color: myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                              'Pending order cancelled' || myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                           'Order Cancelled'
                                                                           ? Colors
                                                                               .red
-                                                                          : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending'
+                                                                          :myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending'
                                                                               ? Colors.deepOrange
                                                                               : Colors.green,
                                                                     ),

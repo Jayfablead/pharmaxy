@@ -526,7 +526,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                         onTap: selected1 == 0
                             ? () {
                                 buildErrorDialog(
-                                    context, '', "choose your payment method");
+                                    context, '', "Please choose your payment method");
                               }
                             : selected1 == 2
                                 ? () {
@@ -808,4 +808,6 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
       }
     });
   }
+
+
 }

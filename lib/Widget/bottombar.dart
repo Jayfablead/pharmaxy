@@ -50,7 +50,167 @@ class _bottombarState extends State<bottombar> {
       ),
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(left: 4.w, right: 4.w, top: 0.7.h),
-      child: Row(
+      child:          usermodal?.userId == "" || usermodal?.userId == null ?
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => HomePage(
+                      sel: 0,
+                    )));
+                selected = 1;
+              });
+            },
+            child: Column(
+              children: [
+                Icon(
+                  CupertinoIcons.home,
+                  size: 25.sp,
+                  color:
+                  selected == 1 ? Color(0xfff7941d) : Colors.grey.shade300,
+                ),
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                Container(
+                  height: 0.5.h,
+                  width: 4.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color:
+                    selected == 1 ? Color(0xfff7941d) : Colors.transparent,
+                  ),
+                ),
+
+                // Text("Home",
+                //   style: TextStyle(
+                //     fontSize: 13.sp,
+                //     fontWeight: FontWeight.normal,
+                //     fontFamily: "task",
+                //     color: selected == 1
+                //         ? Color(0xfff7941d)
+                //         :  Colors.grey.shade500,
+                //
+                //   ),
+                // ),
+              ],
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => CartPage()));
+                selected = 2;
+              });
+            },
+            child: Column(
+              children: [
+                Icon(
+                  CupertinoIcons.shopping_cart,
+                  size: 25.sp,
+                  color:
+                  selected == 2 ? Color(0xfff7941d) : Colors.grey.shade300,
+                ),
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                Container(
+                  height: 0.5.h,
+                  width: 4.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color:
+                    selected == 2 ? Color(0xfff7941d) : Colors.transparent,
+                  ),
+                ),
+
+                // Text("Shop",
+                //   style: TextStyle(
+                //     fontSize: 13.sp,
+                //     fontWeight: FontWeight.normal,
+                //     fontFamily: "task",
+                //     color: selected == 2
+                //         ? Color(0xfff7941d)
+                //         :  Colors.grey.shade500,
+                //
+                //   ),),
+              ],
+            ),
+          ),
+          GestureDetector(
+            onTap: () async {
+              setState(() {
+                usermodal?.userId == "" || usermodal?.userId == null
+                    ? Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => LoginPage2()))
+                    : Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => WishListPage()));
+                selected = 4;
+              });
+            },
+            child: Column(
+              children: [
+                Icon(
+                  CupertinoIcons.heart,
+                  size: 25.sp,
+                  color:
+                  selected == 4 ? Color(0xfff7941d) : Colors.grey.shade300,
+                ),
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                Container(
+                  height: 0.5.h,
+                  width: 4.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color:
+                    selected == 4 ? Color(0xfff7941d) : Colors.transparent,
+                  ),
+                ),
+
+                // Text("Favorite",
+                //   style: TextStyle(
+                //     fontSize: 13.sp,
+                //     fontWeight: FontWeight.normal,
+                //     fontFamily: "task",
+                //     color: selected == 4
+                //         ? Color(0xfff7941d)
+                //         :  Colors.grey.shade500,
+                //
+                //   ),
+                // ),
+              ],
+            ),
+          ),
+
+               GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => LoginPage2()));
+              },
+              child: Padding(
+                padding: Platform.isAndroid
+                    ? EdgeInsets.only(bottom: 1.h)
+                    : EdgeInsets.only(bottom: 3.5.h),
+                child: Text(
+                  "Login",
+                  style: TextStyle(
+                    color: Color(0xfff7941d),
+                    fontFamily: 'task',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19.sp,
+                  ),
+                ),
+              ))
+
+        ],
+      ):
+      Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
