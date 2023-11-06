@@ -19,7 +19,6 @@ import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
@@ -80,12 +79,29 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
       isLoading = true;
     });
     productdetailap();
+    setState(() {
+      isLoading = true;
+    });
     colorap();
+    setState(() {
+      isLoading = true;
+    });
     sizeap();
-    colorshowmodal?.variationData?.length != 0 &&
-            sizeshowmodal?.variationData?.length != 0
-        ? colormatchap()
-        : selectcolorap();
+    setState(() {
+      isLoading = true;
+    });
+    if (colorshowmodal?.variationData?.length != 0 &&
+        sizeshowmodal?.variationData?.length != 0) {
+      setState(() {
+        isLoading = true;
+      });
+      colormatchap();
+    } else {
+      setState(() {
+        isLoading = true;
+      });
+      selectcolorap();
+    }
   }
 
   @override
@@ -146,13 +162,12 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                         .toString()));
 
         buildErrorDialog(context, '', 'Your item is Added in Cart');
-
       }
     }
 
     return commanScreen(
       isLoading: isLoading,
-      scaffold: Scaffold(
+      scaffold: Scaffold( resizeToAvoidBottomInset: false,
         key: _scaffoldKey,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(),
@@ -229,7 +244,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                     '',
                                                 progressIndicatorBuilder: (context,
                                                         url, progress) =>
-                                                    CircularProgressIndicator(),
+                                                    Center(child: CircularProgressIndicator()),
                                                 errorWidget:
                                                     (context, url, error) =>
                                                         Image.asset(
@@ -486,7 +501,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                                       progressIndicatorBuilder: (context,
                                                                               url,
                                                                               progress) =>
-                                                                          CircularProgressIndicator(),
+                                                                          Center(child: CircularProgressIndicator()),
                                                                       errorWidget: (context,
                                                                               url,
                                                                               error) =>
@@ -561,8 +576,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                   width: 3.w,
                                                 ),
                                                 SizedBox(
-                                                     height: 12.h,
-                                                     width: 70.w,
+                                                  height: 12.h,
+                                                  width: 70.w,
                                                   child: ListView.builder(
                                                       scrollDirection:
                                                           Axis.horizontal,
@@ -861,22 +876,24 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.5.h),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 2.w, vertical: 0.5.h),
                       child: Container(
-                          height: 25.h,width: 90.w,
+                        height: 25.h,
+                        width: 90.w,
                         child: Center(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: CachedNetworkImage(
-                                height: 25.h,width: 90.w,
+                                height: 25.h,
+                                width: 90.w,
                                 fit: BoxFit.cover,
                                 imageUrl: productdetailmodal
                                         ?.productData?.allimage?[index] ??
                                     '',
                                 progressIndicatorBuilder:
                                     (context, url, progress) =>
-                                        CircularProgressIndicator(),
+                                        Center(child: CircularProgressIndicator()),
                                 errorWidget: (context, url, error) =>
                                     Image.asset('assets/deim.png')),
                           ),
@@ -1077,22 +1094,24 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.5.h),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 2.w, vertical: 0.5.h),
                       child: Container(
-                          height: 25.h,width: 90.w,
+                        height: 25.h,
+                        width: 90.w,
                         child: Center(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: CachedNetworkImage(
-                                height: 25.h,width: 90.w,
+                                height: 25.h,
+                                width: 90.w,
                                 imageUrl: selectcolormodal
                                         ?.variationData?.allimage?[index] ??
                                     '',
                                 fit: BoxFit.cover,
                                 progressIndicatorBuilder:
                                     (context, url, progress) =>
-                                        CircularProgressIndicator(),
+                                        Center(child: CircularProgressIndicator()),
                                 errorWidget: (context, url, error) =>
                                     Image.asset('assets/deim.png')),
                           ),
@@ -1145,18 +1164,20 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                           margin: EdgeInsets.symmetric(
                               horizontal: 2.w, vertical: 0.5.h),
                           child: Container(
-                              height: 25.h,width: 90.w,
+                            height: 25.h,
+                            width: 90.w,
                             child: Center(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: CachedNetworkImage(
-                                    height: 25.h,width: 90.w,
+                                    height: 25.h,
+                                    width: 90.w,
                                     imageUrl:
                                         'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png',
                                     fit: BoxFit.cover,
                                     progressIndicatorBuilder:
                                         (context, url, progress) =>
-                                            CircularProgressIndicator(),
+                                            Center(child: CircularProgressIndicator()),
                                     errorWidget: (context, url, error) =>
                                         Image.asset('assets/deim.png')),
                               ),
@@ -1183,7 +1204,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                         '',
                                     progressIndicatorBuilder:
                                         (context, url, progress) =>
-                                            CircularProgressIndicator(),
+                                            Center(child: CircularProgressIndicator()),
                                     errorWidget: (context, url, error) =>
                                         Image.asset('assets/deim.png')),
                               ),
