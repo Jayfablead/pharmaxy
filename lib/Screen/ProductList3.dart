@@ -397,7 +397,7 @@ class _ProductList3State extends State<ProductList3> {
                                                                 '₹' +
                                                                     (bestsellerproductmodal
                                                                             ?.productData?[index]
-                                                                            .saleProductPrice)
+                                                                            .productPrice)
                                                                         .toString(),
                                                                 style:
                                                                     TextStyle(
@@ -532,7 +532,7 @@ class _ProductList3State extends State<ProductList3> {
                                               : 4, // Replace with the number of grid items you want
                                     ),
                                   )
-                            : searchbestsaleModal?.productData?.length == 0 ||
+                            :searchbestsaleModal?.productData?.length == 0 ||
                                     searchbestsaleModal?.productData?.length ==
                                         null
                                 ? SliverToBoxAdapter(

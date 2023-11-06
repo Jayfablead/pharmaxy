@@ -459,7 +459,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                   return DropdownMenuItem<test2>(
                                     value: item,
                                     child: Text(
-                                      item.title,
+                                      item.title == '' ?selected2?.title ?? '':item.title,
                                       style: TextStyle(
                                           color: Colors.black),
                                     ),
@@ -679,7 +679,7 @@ class _editshippingadressState extends State<editshippingadress> {
                   userselectaddmodal?.selectShippingAddress?.country ?? '';
               selected1?.title =
                   userselectaddmodal?.selectShippingAddress?.state ?? '';
-              isLoading = false;
+               isLoading = false;
             });
           } else {
             setState(() {

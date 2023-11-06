@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return commanScreen(
       isLoading: isLoading,
-      scaffold: Scaffold(
+      scaffold: Scaffold( resizeToAvoidBottomInset: false,
         backgroundColor: bgcolor,
         key: _scaffoldKey,
         drawer: drawer1(),
