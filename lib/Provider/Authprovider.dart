@@ -55,6 +55,20 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
+  Future<http.Response> PaymethodApi() async {
+    const url = "$baseUrl/paymentgateway";
+    var responseJson;
+    final response = await http
+        .get(Uri.parse(url), headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
 
   Future<http.Response> profileupdateapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/updateProfile";

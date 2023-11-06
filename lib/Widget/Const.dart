@@ -26,6 +26,7 @@ import 'package:ecommerce/Modal/MainCatModal.dart';
 import 'package:ecommerce/Modal/MyOederDetailModal.dart';
 import 'package:ecommerce/Modal/MyOrderListModal.dart';
 import 'package:ecommerce/Modal/OrderCancelModal.dart';
+import 'package:ecommerce/Modal/PaymentMthodsModal.dart';
 import 'package:ecommerce/Modal/PaypalModal.dart';
 import 'package:ecommerce/Modal/PendingOrderModal.dart';
 import 'package:ecommerce/Modal/ProductDetailModal.dart';
@@ -105,6 +106,9 @@ CountryModal?countrymodal;
 StateModal?statemodal;
 CityModal?citymodal;
 ForgotModal?forgotmodal;
+PaymethodModal? paymethodmodal;
+
+
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());

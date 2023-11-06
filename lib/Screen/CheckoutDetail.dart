@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ecommerce/Modal/CheckOutModal.dart';
 import 'package:ecommerce/Modal/ChekOutDetailModal.dart';
+import 'package:ecommerce/Modal/PaymentMthodsModal.dart';
 import 'package:ecommerce/Modal/PaypalModal.dart';
 import 'package:ecommerce/Modal/UserSelectAddModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
@@ -50,9 +51,10 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    Paymethod();
     checkoutap();
     userselectaddap();
+    print(paymethodmodal?.data?.cod?.status);
   }
 
   @override
@@ -280,11 +282,20 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           MainAxisAlignment.center,
                                       children: [
                                         GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              selected1 = 1;
-                                            });
-                                          },
+                                          onTap: paymethodmodal
+                                                      ?.data?.paypal?.status ==
+                                                  false
+                                              ? () {
+                                                  buildErrorDialog(
+                                                      context,
+                                                      'Sorry',
+                                                      'Paypal is Not Available for this Product');
+                                                }
+                                              : () {
+                                                  setState(() {
+                                                    selected1 = 1;
+                                                  });
+                                                },
                                           child: Container(
                                             width: 80.w,
                                             padding: EdgeInsets.all(2.w),
@@ -333,14 +344,67 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         SizedBox(
                                           height: 2.h,
                                         ),
+
                                         Column(
                                           children: [
+                                            paymethodmodal
+                                                ?.data?.cod?.status ==
+                                                false
+                                                ?   GestureDetector(
+                                              onTap: () {
+                                                buildErrorDialog(
+                                                    context,
+                                                    'Sorry',
+                                                    'Cash on Delivery is Not Available for this Product');
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.all(2.w),
+                                                width: 80.w,
+                                                decoration: BoxDecoration(
+                                                  color:  Colors.grey
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      15.sp),
+                                                  border: Border.all(
+                                                    color: Colors.black12,
+                                                    // Border color
+                                                    width: 2.0, // Border width
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                                  children: [
+                                                    Image.asset(
+                                                      "assets/cod2.png",
+                                                      height: 5.h,
+                                                      width: 20.w,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5.w,
+                                                    ),
+                                                    Text("Cash On Delivery",
+                                                        style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 17.sp,
+                                                          fontFamily: 'match',
+                                                        )),
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                                :
                                             GestureDetector(
                                               onTap: () {
-                                                setState(() {
-                                                  selected1 = 2;
-                                                });
-                                              },
+                                                      print(
+                                                          paymethodmodal?.data?.cod?.status);
+                                                      setState(() {
+                                                        selected1 = 2;
+                                                      });
+                                                    },
                                               child: Container(
                                                 padding: EdgeInsets.all(2.w),
                                                 width: 80.w,
@@ -525,8 +589,8 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                       GestureDetector(
                         onTap: selected1 == 0
                             ? () {
-                                buildErrorDialog(
-                                    context, '', "Please choose your payment method");
+                                buildErrorDialog(context, '',
+                                    "Please choose your payment method");
                               }
                             : selected1 == 2
                                 ? () {
@@ -559,10 +623,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         MaterialPageRoute(
                                           builder: (context) => UsePaypal(
                                               sandboxMode: true,
-                                              clientId:
-                                                  "ATL1N-TdcwUidsaRFnpY8qX66_pHvRPNM8QoAGA2zJ9DdwoMyGTxr9DaGuq3LmUWT9uDqlDtaqW7V91s",
-                                              secretKey:
-                                                  "ECwRQ-E4nkepD4xE79mTlIGiwbrsx5vuJu4ZA3Def84bFnxkKB8VynD8c5bik4zwHnY5VORGczAb4Q0q",
+                                              clientId: paymethodmodal?.data
+                                                      ?.paypal?.clientID ??
+                                                  '',
+                                              secretKey: paymethodmodal?.data
+                                                      ?.paypal?.secretKey ??
+                                                  '',
                                               returnURL:
                                                   "https://samplesite.com/return",
                                               cancelURL:
@@ -721,7 +787,6 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
               isLoading = false;
             });
           } else {
-
             setState(() {
               isLoading = false;
             });
@@ -777,6 +842,32 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     });
   }
 
+  Paymethod() {
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().PaymethodApi().then((response) async {
+          paymethodmodal = PaymethodModal.fromJson(json.decode(response.body));
+          if (response.statusCode == 200 && paymethodmodal?.status == true) {
+
+            print(paymethodmodal?.data);
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
   userselectaddap() async {
     final Map<String, String> data = {};
     data['shipping_address_id'] = widget.addid.toString();
@@ -806,6 +897,4 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
       }
     });
   }
-
-
 }
