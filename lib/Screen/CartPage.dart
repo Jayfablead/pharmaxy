@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/Cartmodal.dart';
 import 'package:ecommerce/Modal/DisIncrementModal.dart';
@@ -44,7 +45,8 @@ class order {
   order(this.image, this.name, this.price, this.dec);
 }
 
-int? pricetag;
+int pricetag = 0;
+
 bool isLoading = true;
 int total = 0;
 List<order> cat = [
@@ -75,7 +77,6 @@ class _CartPageState extends State<CartPage> {
       isLoading = true;
     });
     alluseraddapi();
-
   }
 
   Future<void> _fetchCartItems() async {
@@ -115,7 +116,8 @@ class _CartPageState extends State<CartPage> {
                                       children: [
                                         IconButton(
                                             onPressed: () {
-                                             _scaffoldKey.currentState?.openDrawer();
+                                              _scaffoldKey.currentState
+                                                  ?.openDrawer();
                                             },
                                             icon: Icon(
                                               Icons.menu_rounded,
@@ -469,6 +471,7 @@ class _CartPageState extends State<CartPage> {
                                                                   Colors.grey,
                                                             ), // Icon to open the menu
                                                             onPressed: () {
+                                                              print(pricetag);
                                                               showBottomSheet(
                                                                 context:
                                                                     context,
@@ -535,7 +538,7 @@ class _CartPageState extends State<CartPage> {
                                                                                   GestureDetector(
                                                                                     onTap: () {
                                                                                       setState(() {
-                                                                                        cart.removeTotalPrice(pricetag!.toDouble());
+                                                                                        cart.removeTotalPrice(pricetag == 0 ? snapshot.data![index].initialPrice!.toDouble() : pricetag.toDouble());
                                                                                       });
                                                                                       databaseHelper.delete(
                                                                                         int.parse(snapshot.data![index].id.toString()),
