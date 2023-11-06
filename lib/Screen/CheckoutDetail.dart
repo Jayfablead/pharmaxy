@@ -215,11 +215,25 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                               width: 75.w,
                                               child: Text(
                                                 widget.page == "1"
-                                                    ? (userselectaddmodal
-                                                            ?.selectShippingAddress
-                                                            ?.address)
-                                                        .toString()
-                                                    : widget.address.toString(),
+                                                    ? userselectaddmodal
+                                                                    ?.selectShippingAddress
+                                                                    ?.address ==
+                                                                '' ||
+                                                            userselectaddmodal
+                                                                    ?.selectShippingAddress
+                                                                    ?.address ==
+                                                                null
+                                                        ? 'N/A'
+                                                        : (userselectaddmodal
+                                                                ?.selectShippingAddress
+                                                                ?.address)
+                                                            .toString()
+                                                    : widget.address == '' ||
+                                                            widget.address ==
+                                                                null
+                                                        ? 'N/A'
+                                                        : widget.address
+                                                            .toString(),
                                                 style: TextStyle(
                                                     fontSize: 15.sp,
                                                     color: Colors.black,
