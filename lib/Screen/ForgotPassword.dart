@@ -115,6 +115,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   GestureDetector(
                     onTap: () {
                       forgotap();
+
                     },
                     child: Container(
                         alignment: Alignment.center,
