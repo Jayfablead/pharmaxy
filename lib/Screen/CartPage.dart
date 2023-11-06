@@ -491,8 +491,8 @@ class _CartPageState extends State<CartPage> {
                                                                         // Customize the bottom sheet content here
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsets.symmetric(
-                                                                              horizontal: 5.w,
+                                                                            padding: EdgeInsets.symmetric(
+                                                                             horizontal: 5.w,
                                                                               vertical: 2.h),
                                                                           child:
                                                                               Column(

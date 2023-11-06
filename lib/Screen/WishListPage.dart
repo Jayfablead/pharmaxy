@@ -65,7 +65,7 @@ class _WishListPageState extends State<WishListPage> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 2.h,
+                        height: 3.h,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
@@ -145,7 +145,7 @@ class _WishListPageState extends State<WishListPage> {
                         ),
                       ),
                       Container(
-                        height: 90.h,
+                        height: 85.h,
                         child: userwishlIstmodal?.wishList?.length == null
                             ? Container(
                                 child: Center(
@@ -154,7 +154,7 @@ class _WishListPageState extends State<WishListPage> {
                                     style: TextStyle(
                                       fontSize: 20.sp,
                                       fontFamily: 'task',
-                                      fontWeight: FontWeight.normal,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),

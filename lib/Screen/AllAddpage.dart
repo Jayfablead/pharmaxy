@@ -360,7 +360,7 @@ class _AllAddpageState extends State<AllAddpage> {
                             ),
                           ),
                     SizedBox(
-                      height: 4.h,
+                      height: 2.h,
                     ),
                     GestureDetector(
                       onTap: () {

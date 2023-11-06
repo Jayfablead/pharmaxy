@@ -305,7 +305,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Text(
                                     "No Category Available",
                                     style: TextStyle(
-                                        fontSize: 15.sp,
+                                        fontSize: 18.sp,
                                         fontFamily: 'task',
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -470,7 +470,7 @@ class _HomePageState extends State<HomePage> {
                                         style: TextStyle(
                                             fontSize: 20.sp,
                                             fontFamily: 'task',
-                                            fontWeight: FontWeight.normal),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                   ),
@@ -880,7 +880,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Text(
                                           'No Products Available',
                                           style: TextStyle(
-                                              fontWeight: FontWeight.normal,
+                                              fontWeight: FontWeight.bold,
                                               fontFamily: 'task',
                                               fontSize: 15.sp,
                                               color: Colors.black),
@@ -1040,16 +1040,18 @@ class _HomePageState extends State<HomePage> {
                                               ?.productData?.length ==
                                           null
                                   ? SliverToBoxAdapter(
-                                      child: Center(
-                                      child: Text(
-                                        'No Products Available',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            fontFamily: 'task',
-                                            fontSize: 15.sp,
-                                            color: Colors.black),
-                                      ),
-                                    ))
+                          child: Container(height: 20.h,
+                            child: Center(
+                              child: Text(
+                                'No Products Available',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'task',
+                                    fontSize: 18.sp,
+                                    color: Colors.black),
+                              ),
+                            ),
+                          ))
                                   : wait
                                       ? SliverToBoxAdapter(
                                           child: Center(

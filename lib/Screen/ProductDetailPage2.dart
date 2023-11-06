@@ -857,18 +857,19 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
             pages = List.generate(
                 (productdetailmodal?.productData?.allimage?.length ?? 0),
                 (index) => Container(
-                      width: 80.w,
+                      width: 90.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                       ),
                       margin:
-                          EdgeInsets.symmetric(horizontal: 7.5.w, vertical: 4),
+                          EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.5.h),
                       child: Container(
-                        height: 280,
+                          height: 25.h,width: 90.w,
                         child: Center(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: CachedNetworkImage(
+                                height: 25.h,width: 90.w,
                                 fit: BoxFit.cover,
                                 imageUrl: productdetailmodal
                                         ?.productData?.allimage?[index] ??
@@ -1072,21 +1073,23 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
             pages = List.generate(
                 (selectcolormodal?.variationData?.allimage?.length ?? 0),
                 (index) => Container(
-                      width: 80.w,
+                      width: 90.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                       ),
                       margin:
-                          EdgeInsets.symmetric(horizontal: 7.5.w, vertical: 4),
+                          EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.5.h),
                       child: Container(
-                        height: 280,
+                          height: 25.h,width: 90.w,
                         child: Center(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: CachedNetworkImage(
+                                height: 25.h,width: 90.w,
                                 imageUrl: selectcolormodal
                                         ?.variationData?.allimage?[index] ??
                                     '',
+                                fit: BoxFit.cover,
                                 progressIndicatorBuilder:
                                     (context, url, progress) =>
                                         CircularProgressIndicator(),
@@ -1135,20 +1138,22 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                 ? List.generate(
                     1,
                     (index) => Container(
-                          width: 80.w,
+                          width: 90.w,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
                           ),
                           margin: EdgeInsets.symmetric(
-                              horizontal: 7.5.w, vertical: 4),
+                              horizontal: 2.w, vertical: 0.5.h),
                           child: Container(
-                            height: 280,
+                              height: 25.h,width: 90.w,
                             child: Center(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: CachedNetworkImage(
+                                    height: 25.h,width: 90.w,
                                     imageUrl:
                                         'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png',
+                                    fit: BoxFit.cover,
                                     progressIndicatorBuilder:
                                         (context, url, progress) =>
                                             CircularProgressIndicator(),
