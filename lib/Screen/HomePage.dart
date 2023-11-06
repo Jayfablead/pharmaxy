@@ -156,7 +156,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return commanScreen(
       isLoading: isLoading,
-      scaffold: Scaffold( resizeToAvoidBottomInset: false,
+      scaffold: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: bgcolor,
         key: _scaffoldKey,
         drawer: drawer1(),
@@ -662,7 +663,7 @@ class _HomePageState extends State<HomePage> {
                                                               (searchbestsaleModal
                                                                       ?.productData?[
                                                                           index]
-                                                                      .salePrice)
+                                                                      .saleProductPrice)
                                                                   .toString(),
                                                           style: TextStyle(
                                                             fontSize: 12.sp,
@@ -685,7 +686,7 @@ class _HomePageState extends State<HomePage> {
                                                                 (searchbestsaleModal
                                                                         ?.productData?[
                                                                             index]
-                                                                        .regularPrice)
+                                                                        .productPrice)
                                                                     .toString(),
                                                             style: TextStyle(
                                                               decoration:
@@ -1040,18 +1041,19 @@ class _HomePageState extends State<HomePage> {
                                               ?.productData?.length ==
                                           null
                                   ? SliverToBoxAdapter(
-                          child: Container(height: 20.h,
-                            child: Center(
-                              child: Text(
-                                'No Products Available',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'task',
-                                    fontSize: 18.sp,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ))
+                                      child: Container(
+                                      height: 20.h,
+                                      child: Center(
+                                        child: Text(
+                                          'No Products Available',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'task',
+                                              fontSize: 18.sp,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ))
                                   : wait
                                       ? SliverToBoxAdapter(
                                           child: Center(

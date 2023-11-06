@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 import 'package:ecommerce/Modal/UserModal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

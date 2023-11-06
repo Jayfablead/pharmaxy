@@ -1,5 +1,3 @@
-
-
 import 'package:connectivity/connectivity.dart';
 import 'package:ecommerce/Modal/AddCartModal.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
@@ -52,8 +50,6 @@ import 'package:ecommerce/Modal/UserWishLIstModal.dart';
 import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:flutter/material.dart';
 
-
-
 Color bgcolor = Colors.grey.shade100;
 
 const String baseUrl = 'https://ecomweb.fableadtechnolabs.com/api';
@@ -102,13 +98,11 @@ DeliveredOrderModal? deliveredordermodal;
 PendingOrderModal? pendingordermodal;
 OrderCancelModal? ordercancelmodal;
 PaypalModal? paypalmodal;
-CountryModal?countrymodal;
-StateModal?statemodal;
-CityModal?citymodal;
-ForgotModal?forgotmodal;
+CountryModal? countrymodal;
+StateModal? statemodal;
+CityModal? citymodal;
+ForgotModal? forgotmodal;
 PaymethodModal? paymethodmodal;
-
-
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());

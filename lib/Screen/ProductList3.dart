@@ -15,7 +15,6 @@ import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/bottombar.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
-
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -160,15 +159,18 @@ class _ProductList3State extends State<ProductList3> {
                                 height: 2.h,
                               ),
                               bestsellerproductmodal?.productData?.length ==
-                                  0 ||
-                                  bestsellerproductmodal
-                                      ?.productData?.length ==
-                                      null?Container():Row(mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  searchBox(),
-
-                                ],
-                              ),
+                                          0 ||
+                                      bestsellerproductmodal
+                                              ?.productData?.length ==
+                                          null
+                                  ? Container()
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        searchBox(),
+                                      ],
+                                    ),
                             ],
                           ),
                         ),
@@ -533,7 +535,7 @@ class _ProductList3State extends State<ProductList3> {
                                               : 4, // Replace with the number of grid items you want
                                     ),
                                   )
-                            :searchbestsaleModal?.productData?.length == 0 ||
+                            : searchbestsaleModal?.productData?.length == 0 ||
                                     searchbestsaleModal?.productData?.length ==
                                         null
                                 ? SliverToBoxAdapter(
@@ -725,7 +727,7 @@ class _ProductList3State extends State<ProductList3> {
                                                                   (searchbestsaleModal
                                                                           ?.productData?[
                                                                               index]
-                                                                          .salePrice)
+                                                                          .saleProductPrice)
                                                                       .toString(),
                                                               style: TextStyle(
                                                                 fontSize: 12.sp,
@@ -748,7 +750,7 @@ class _ProductList3State extends State<ProductList3> {
                                                                   (searchbestsaleModal
                                                                           ?.productData?[
                                                                               index]
-                                                                          .regularPrice)
+                                                                          .productPrice)
                                                                       .toString(),
                                                               style: TextStyle(
                                                                 decoration:

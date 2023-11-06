@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -18,7 +16,7 @@ class _PaypalThanksState extends State<PaypalThanks> {
   void initState() {
     // TODO: implement initState
     super.initState();
-print(widget.uid);
+    print(widget.uid);
   }
 
   @override
@@ -99,7 +97,8 @@ print(widget.uid);
                 ),
                 Text(
                   widget.uid.toString(),
-                  textAlign: TextAlign.start,maxLines: 3,
+                  textAlign: TextAlign.start,
+                  maxLines: 3,
                   style: TextStyle(
                       fontWeight: FontWeight.normal,
                       fontFamily: 'task',
@@ -113,8 +112,10 @@ print(widget.uid);
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => HomePage(sel: 0,)));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => HomePage(
+                          sel: 0,
+                        )));
               },
               child: Container(
                   margin: EdgeInsets.only(right: 7.w, left: 7.w),
@@ -137,6 +138,4 @@ print(widget.uid);
       ),
     );
   }
-
-
 }

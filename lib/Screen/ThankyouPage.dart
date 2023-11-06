@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:ecommerce/Modal/CheckOutModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
@@ -125,8 +126,10 @@ class _ThankyouPageState extends State<ThankyouPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => HomePage(sel: 0,)));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => HomePage(
+                        sel: 0,
+                      )));
             },
             child: Container(
                 margin: EdgeInsets.only(right: 7.w, left: 7.w),

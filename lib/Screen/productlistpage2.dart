@@ -157,14 +157,17 @@ class _ProductListPageState extends State<ProductListPage2> {
                                 height: 2.h,
                               ),
                               salesproductlistmodal?.productData?.length == 0 ||
-                                  salesproductlistmodal
-                                      ?.productData?.length ==
-                                      null?Container(): Row(mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  searchBox(),
-
-                                ],
-                              ),
+                                      salesproductlistmodal
+                                              ?.productData?.length ==
+                                          null
+                                  ? Container()
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        searchBox(),
+                                      ],
+                                    ),
                             ],
                           ),
                         ),
@@ -1101,7 +1104,6 @@ class _ProductListPageState extends State<ProductListPage2> {
           print(salelistserachmodal?.status);
           if (response.statusCode == 200 &&
               salelistserachmodal?.status == "success") {
-
             setState(() {
               isLoading = false;
             });

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:ecommerce/Modal/AddCartModal.dart';
-import 'package:ecommerce/Modal/ForgotModal.dart';
 import 'package:ecommerce/Modal/UserModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/ForgotPassword.dart';
@@ -34,6 +33,7 @@ bool visible1 = false;
 final _formKey = GlobalKey<FormState>();
 List<CartItem> carti = [];
 DatabaseHelper databaseHelper = DatabaseHelper();
+
 class _LoginPage2State extends State<LoginPage2> {
   @override
   void initState() {
@@ -223,7 +223,8 @@ class _LoginPage2State extends State<LoginPage2> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ForgotPassword()));
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ForgotPassword()));
                               },
                               child: Text(
                                 "Forgot Password?",
@@ -248,7 +249,6 @@ class _LoginPage2State extends State<LoginPage2> {
                           loginap();
                           setState(() {
                             carti = snapshot.data!;
-
                           });
                         },
                         child: Container(
@@ -308,7 +308,9 @@ class _LoginPage2State extends State<LoginPage2> {
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => HomePage(sel: 0,)));
+                              builder: (context) => HomePage(
+                                    sel: 0,
+                                  )));
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: 8.w),
@@ -378,21 +380,21 @@ class _LoginPage2State extends State<LoginPage2> {
             if (response.statusCode == 200 && usermodal?.status == "success") {
               _email.clear();
               _password.clear();
-print(carti.length);
+              print(carti.length);
               if (carti.length != 0) {
                 print('batli Bhareli');
                 for (int index = 0; index <= carti.length; index++) {
                   addcartap(index);
                 }
-              }
-              else{
+              } else {
                 print('batli Khali');
               }
 
-
               print('EE Thay Gyu Hooooo ! ^_^');
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => HomePage(sel: 0,)));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => HomePage(
+                        sel: 0,
+                      )));
               SaveDataLocal.saveLogInData(usermodal!);
               setState(() {});
             } else {

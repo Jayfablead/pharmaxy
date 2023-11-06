@@ -167,7 +167,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
 
     return commanScreen(
       isLoading: isLoading,
-      scaffold: Scaffold( resizeToAvoidBottomInset: false,
+      scaffold: Scaffold(
+        resizeToAvoidBottomInset: false,
         key: _scaffoldKey,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(),
@@ -244,7 +245,9 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                     '',
                                                 progressIndicatorBuilder: (context,
                                                         url, progress) =>
-                                                    Center(child: CircularProgressIndicator()),
+                                                    Center(
+                                                        child:
+                                                            CircularProgressIndicator()),
                                                 errorWidget:
                                                     (context, url, error) =>
                                                         Image.asset(
@@ -501,7 +504,9 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                                       progressIndicatorBuilder: (context,
                                                                               url,
                                                                               progress) =>
-                                                                          Center(child: CircularProgressIndicator()),
+                                                                          Center(
+                                                                              child:
+                                                                                  CircularProgressIndicator()),
                                                                       errorWidget: (context,
                                                                               url,
                                                                               error) =>
@@ -891,9 +896,9 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                 imageUrl: productdetailmodal
                                         ?.productData?.allimage?[index] ??
                                     '',
-                                progressIndicatorBuilder:
-                                    (context, url, progress) =>
-                                        Center(child: CircularProgressIndicator()),
+                                progressIndicatorBuilder: (context, url,
+                                        progress) =>
+                                    Center(child: CircularProgressIndicator()),
                                 errorWidget: (context, url, error) =>
                                     Image.asset('assets/deim.png')),
                           ),
@@ -1109,9 +1114,9 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                         ?.variationData?.allimage?[index] ??
                                     '',
                                 fit: BoxFit.cover,
-                                progressIndicatorBuilder:
-                                    (context, url, progress) =>
-                                        Center(child: CircularProgressIndicator()),
+                                progressIndicatorBuilder: (context, url,
+                                        progress) =>
+                                    Center(child: CircularProgressIndicator()),
                                 errorWidget: (context, url, error) =>
                                     Image.asset('assets/deim.png')),
                           ),
@@ -1176,8 +1181,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                         'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png',
                                     fit: BoxFit.cover,
                                     progressIndicatorBuilder:
-                                        (context, url, progress) =>
-                                            Center(child: CircularProgressIndicator()),
+                                        (context, url, progress) => Center(
+                                            child: CircularProgressIndicator()),
                                     errorWidget: (context, url, error) =>
                                         Image.asset('assets/deim.png')),
                               ),
@@ -1203,8 +1208,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                             ?.priceData?[0].allimage?[index] ??
                                         '',
                                     progressIndicatorBuilder:
-                                        (context, url, progress) =>
-                                            Center(child: CircularProgressIndicator()),
+                                        (context, url, progress) => Center(
+                                            child: CircularProgressIndicator()),
                                     errorWidget: (context, url, error) =>
                                         Image.asset('assets/deim.png')),
                               ),

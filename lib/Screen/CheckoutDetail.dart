@@ -282,174 +282,237 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        GestureDetector(
-                                          onTap: paymethodmodal
-                                                      ?.data?.paypal?.status ==
-                                                  false
-                                              ? () {
+                                        paymethodmodal?.data?.paypal?.status ==
+                                                false
+                                            ? GestureDetector(
+                                                onTap: () {
                                                   buildErrorDialog(
                                                       context,
                                                       'Sorry',
                                                       'Paypal is Not Available for this Product');
-                                                }
-                                              : () {
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.all(2.w),
+                                                  width: 80.w,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.2),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.sp),
+                                                    border: Border.all(
+                                                      color: Colors.black12,
+                                                      // Border color
+                                                      width:
+                                                          2.0, // Border width
+                                                    ),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Image.asset(
+                                                        "assets/paypal2.png",
+                                                        height: 5.h,
+                                                        width: 20.w,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 5.w,
+                                                      ),
+                                                      Text("Pay Using PayPal",
+                                                          style: TextStyle(
+                                                            color: Colors.grey,
+                                                            fontSize: 17.sp,
+                                                            fontFamily: 'match',
+                                                          )),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                            : GestureDetector(
+                                                onTap: () {
                                                   setState(() {
                                                     selected1 = 1;
                                                   });
                                                 },
-                                          child: Container(
-                                            width: 80.w,
-                                            padding: EdgeInsets.all(2.w),
-                                            decoration: BoxDecoration(
-                                              color: selected1 == 1
-                                                  ? Color(0xfff7941d)
-                                                      .withOpacity(0.06)
-                                                  : Colors.white
-                                                      .withOpacity(0.04),
-                                              borderRadius:
-                                                  BorderRadius.circular(15.sp),
-                                              border: Border.all(
-                                                color: selected1 == 1
-                                                    ? Color(0xfff7941d)
-                                                    : Colors.black12,
-                                                // Border color
-                                                width: 2.0, // Border width
-                                              ),
-                                            ),
-                                            child: Center(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/paypal.png",
-                                                    height: 5.h,
-                                                    width: 20.w,
+                                                child: Container(
+                                                  width: 80.w,
+                                                  padding: EdgeInsets.all(2.w),
+                                                  decoration: BoxDecoration(
+                                                    color: selected1 == 1
+                                                        ? Color(0xfff7941d)
+                                                            .withOpacity(0.06)
+                                                        : Colors.white
+                                                            .withOpacity(0.04),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.sp),
+                                                    border: Border.all(
+                                                      color: selected1 == 1
+                                                          ? Color(0xfff7941d)
+                                                          : Colors.black12,
+                                                      // Border color
+                                                      width:
+                                                          2.0, // Border width
+                                                    ),
                                                   ),
-                                                  SizedBox(
-                                                    width: 5.w,
+                                                  child: Center(
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Image.asset(
+                                                          "assets/paypal.png",
+                                                          height: 5.h,
+                                                          width: 20.w,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 5.w,
+                                                        ),
+                                                        Text("Pay Using PayPal",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 17.sp,
+                                                              fontFamily:
+                                                                  'task',
+                                                            )),
+                                                      ],
+                                                    ),
                                                   ),
-                                                  Text("Pay Using PayPal",
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 17.sp,
-                                                        fontFamily: 'task',
-                                                      )),
-                                                ],
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                        ),
                                         SizedBox(
                                           height: 2.h,
                                         ),
-
                                         Column(
                                           children: [
-                                            paymethodmodal
-                                                ?.data?.cod?.status ==
-                                                false
-                                                ?   GestureDetector(
-                                              onTap: () {
-                                                buildErrorDialog(
-                                                    context,
-                                                    'Sorry',
-                                                    'Cash on Delivery is Not Available for this Product');
-                                              },
-                                              child: Container(
-                                                padding: EdgeInsets.all(2.w),
-                                                width: 80.w,
-                                                decoration: BoxDecoration(
-                                                  color:  Colors.grey
-                                                      .withOpacity(0.2),
-                                                  borderRadius:
-                                                  BorderRadius.circular(
-                                                      15.sp),
-                                                  border: Border.all(
-                                                    color: Colors.black12,
-                                                    // Border color
-                                                    width: 2.0, // Border width
-                                                  ),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                                  children: [
-                                                    Image.asset(
-                                                      "assets/cod2.png",
-                                                      height: 5.h,
-                                                      width: 20.w,
+                                            paymethodmodal?.data?.cod?.status ==
+                                                    false
+                                                ? GestureDetector(
+                                                    onTap: () {
+                                                      buildErrorDialog(
+                                                          context,
+                                                          'Sorry',
+                                                          'Cash on Delivery is Not Available for this Product');
+                                                    },
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.all(2.w),
+                                                      width: 80.w,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.grey
+                                                            .withOpacity(0.2),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    15.sp),
+                                                        border: Border.all(
+                                                          color: Colors.black12,
+                                                          // Border color
+                                                          width:
+                                                              2.0, // Border width
+                                                        ),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Image.asset(
+                                                            "assets/cod2.png",
+                                                            height: 5.h,
+                                                            width: 20.w,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 5.w,
+                                                          ),
+                                                          Text(
+                                                              "Cash On Delivery",
+                                                              style: TextStyle(
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontSize: 17.sp,
+                                                                fontFamily:
+                                                                    'match',
+                                                              )),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    SizedBox(
-                                                      width: 5.w,
-                                                    ),
-                                                    Text("Cash On Delivery",
-                                                        style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontSize: 17.sp,
-                                                          fontFamily: 'match',
-                                                        )),
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                                :
-                                            GestureDetector(
-                                              onTap: () {
-                                                      print(
-                                                          paymethodmodal?.data?.cod?.status);
+                                                  )
+                                                : GestureDetector(
+                                                    onTap: () {
+                                                      print(paymethodmodal
+                                                          ?.data?.cod?.status);
                                                       setState(() {
                                                         selected1 = 2;
                                                       });
                                                     },
-                                              child: Container(
-                                                padding: EdgeInsets.all(2.w),
-                                                width: 80.w,
-                                                decoration: BoxDecoration(
-                                                  color: selected1 == 2
-                                                      ? Color(0xfff7941d)
-                                                          .withOpacity(0.06)
-                                                      : Colors.white
-                                                          .withOpacity(0.04),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.sp),
-                                                  border: Border.all(
-                                                    color: selected1 == 2
-                                                        ? Color(0xfff7941d)
-                                                        : Colors.black12,
-                                                    // Border color
-                                                    width: 2.0, // Border width
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.all(2.w),
+                                                      width: 80.w,
+                                                      decoration: BoxDecoration(
+                                                        color: selected1 == 2
+                                                            ? Color(0xfff7941d)
+                                                                .withOpacity(
+                                                                    0.06)
+                                                            : Colors.white
+                                                                .withOpacity(
+                                                                    0.04),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    15.sp),
+                                                        border: Border.all(
+                                                          color: selected1 == 2
+                                                              ? Color(
+                                                                  0xfff7941d)
+                                                              : Colors.black12,
+                                                          // Border color
+                                                          width:
+                                                              2.0, // Border width
+                                                        ),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Image.asset(
+                                                            "assets/cod1.png",
+                                                            height: 5.h,
+                                                            width: 20.w,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 5.w,
+                                                          ),
+                                                          Text(
+                                                              "Cash On Delivery",
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 17.sp,
+                                                                fontFamily:
+                                                                    'match',
+                                                              )),
+                                                        ],
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Image.asset(
-                                                      "assets/cod1.png",
-                                                      height: 5.h,
-                                                      width: 20.w,
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5.w,
-                                                    ),
-                                                    Text("Cash On Delivery",
-                                                        style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 17.sp,
-                                                          fontFamily: 'match',
-                                                        )),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
                                             SizedBox(
                                               height: 2.h,
                                             ),
@@ -850,7 +913,6 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
         authprovider().PaymethodApi().then((response) async {
           paymethodmodal = PaymethodModal.fromJson(json.decode(response.body));
           if (response.statusCode == 200 && paymethodmodal?.status == true) {
-
             print(paymethodmodal?.data);
             setState(() {
               isLoading = false;

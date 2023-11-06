@@ -183,42 +183,59 @@ class _WishListPageState extends State<WishListPage> {
                                             SizedBox(
                                               width: 2.w,
                                             ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(20)),
-                                                  color: Colors.grey.shade200),
-                                              child: Padding(
-                                                padding: EdgeInsets.all(2.0),
-                                                child: CachedNetworkImage(
-                                                  imageUrl: userwishlIstmodal
-                                                          ?.wishList?[index]
-                                                          .allImages?[0] ??
-                                                      "",
-                                                  fit: BoxFit.cover,
-                                                  height: 38.w,
-                                                  width: 34.w,
-                                                  imageBuilder: (context,
-                                                          imageProvider) =>
-                                                      Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                      image: DecorationImage(
-                                                        image: imageProvider,
-                                                        // fit: BoxFit.cover,
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ProductDetailPage2(
+                                                              productid: userwishlIstmodal
+                                                                      ?.wishList?[
+                                                                          index]
+                                                                      .productID ??
+                                                                  '',
+                                                            )));
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                20)),
+                                                    color:
+                                                        Colors.grey.shade200),
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(2.0),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: userwishlIstmodal
+                                                            ?.wishList?[index]
+                                                            .allImages?[0] ??
+                                                        "",
+                                                    fit: BoxFit.cover,
+                                                    height: 38.w,
+                                                    width: 34.w,
+                                                    imageBuilder: (context,
+                                                            imageProvider) =>
+                                                        Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                        image: DecorationImage(
+                                                          image: imageProvider,
+                                                          // fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
+                                                    placeholder: (context,
+                                                            url) =>
+                                                        Center(
+                                                            child:
+                                                                CircularProgressIndicator()),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            Icon(Icons.error),
                                                   ),
-                                                  placeholder: (context, url) =>
-                                                      Center(
-                                                          child:
-                                                              CircularProgressIndicator()),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          Icon(Icons.error),
                                                 ),
                                               ),
                                             ),

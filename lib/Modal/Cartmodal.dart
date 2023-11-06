@@ -19,10 +19,10 @@ class CartItem {
     required this.productPrice,
     required this.initialPrice,
     required this.productDescription,
-    required this. productId,
-    required this. VariationTblId,
-    required this. Color,
-    required this. Size,
+    required this.productId,
+    required this.VariationTblId,
+    required this.Color,
+    required this.Size,
   });
 
   Map<String, dynamic> toMap() {

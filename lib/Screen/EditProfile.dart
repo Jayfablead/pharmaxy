@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-
 import 'package:ecommerce/Modal/EditprofileModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
@@ -187,7 +186,8 @@ class _EditProfileState extends State<EditProfile> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 1.h, horizontal: 3.w),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide: BorderSide(color: Colors.grey)),
@@ -255,7 +255,8 @@ class _EditProfileState extends State<EditProfile> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 1.h, horizontal: 3.w),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide: BorderSide(color: Colors.grey)),
@@ -311,7 +312,8 @@ class _EditProfileState extends State<EditProfile> {
                       child: DropdownButtonFormField(
                         borderRadius: BorderRadius.circular(30),
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 1.h, horizontal: 3.w),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
@@ -391,7 +393,8 @@ class _EditProfileState extends State<EditProfile> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 1.h, horizontal: 3.w),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(30),
                                       borderSide:
@@ -453,7 +456,8 @@ class _EditProfileState extends State<EditProfile> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 3.w),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 1.h, horizontal: 3.w),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(30),
                                       borderSide:

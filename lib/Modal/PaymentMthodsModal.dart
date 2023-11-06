@@ -34,9 +34,9 @@ class Data {
         ? new BankTransfer.fromJson(json['bank_transfer'])
         : null;
     paypal =
-    json['paypal'] != null ? new Paypal.fromJson(json['paypal']) : null;
+        json['paypal'] != null ? new Paypal.fromJson(json['paypal']) : null;
     stripe =
-    json['stripe'] != null ? new Stripe.fromJson(json['stripe']) : null;
+        json['stripe'] != null ? new Stripe.fromJson(json['stripe']) : null;
     razorpay = json['razorpay'] != null
         ? new Razorpay.fromJson(json['razorpay'])
         : null;

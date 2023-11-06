@@ -116,7 +116,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   GestureDetector(
                     onTap: () {
                       forgotap();
-
                     },
                     child: Container(
                         alignment: Alignment.center,
@@ -163,7 +162,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ),
     );
   }
-  forgotap(){
+
+  forgotap() {
     if (_formKey.currentState!.validate()) {
       EasyLoading.show(status: 'Sending Email...');
       final Map<String, String> data = {};
@@ -172,16 +172,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       checkInternet().then((internet) async {
         print(internet);
         if (internet) {
-          authprovider().forgotapi(data).then(( response) async {
+          authprovider().forgotapi(data).then((response) async {
             forgotmodal = ForgotModal.fromJson(json.decode(response.body));
-            if (response.statusCode == 200 && forgotmodal?.status == "success") {
-
+            if (response.statusCode == 200 &&
+                forgotmodal?.status == "success") {
               _email.clear();
               print(forgotmodal?.status);
 
-              EasyLoading.showSuccess(' Please Check Your Email For Reset Password.!');
+              EasyLoading.showSuccess(
+                  ' Please Check Your Email For Reset Password.!');
               Timer(Duration(seconds: 2), () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginPage2()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => LoginPage2()));
               });
 
               setState(() {
@@ -190,13 +192,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             } else {
               EasyLoading.showError("Email Not Registered!!");
 
-
               // alert();
             }
           });
         } else {
           setState(() {
-
             // isLoading = false;
           });
           buildErrorDialog(context, '', "Internet Required");

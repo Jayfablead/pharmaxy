@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:ecommerce/Modal/Cartmodal.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -83,8 +82,6 @@ class DatabaseHelper {
     return await dbClimet.delete('CartItems', where: 'id=?', whereArgs: [id]);
   }
 
-
-
   Future<int> updateQuantityCartItems(CartItem item) async {
     var dbClimet = await db;
     return await dbClimet!.update(
@@ -94,6 +91,7 @@ class DatabaseHelper {
       whereArgs: [item.id],
     );
   }
+
   void deletecartTable() async {
     final database = await openDatabase('cart_database.db');
 

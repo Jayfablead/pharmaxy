@@ -168,17 +168,20 @@ class _ProductListPageState extends State<ProductListPage> {
                                 height: 2.h,
                               ),
                               allsubcatwiceproduct?.subcategoriesWiseProduct
-                                  ?.length ==
-                                  0 ||
-                                  allsubcatwiceproduct
-                                      ?.subcategoriesWiseProduct
-                                      ?.length ==
-                                      null?Container():Row(mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  searchBox(),
-
-                                ],
-                              ),
+                                              ?.length ==
+                                          0 ||
+                                      allsubcatwiceproduct
+                                              ?.subcategoriesWiseProduct
+                                              ?.length ==
+                                          null
+                                  ? Container()
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        searchBox(),
+                                      ],
+                                    ),
                             ],
                           ),
                         ),

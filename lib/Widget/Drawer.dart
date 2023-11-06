@@ -15,7 +15,6 @@ import 'package:ecommerce/Screen/WishListPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/sharedpreferance.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -842,16 +841,12 @@ class _drawer1State extends State<drawer1> {
                       InkWell(
                         onTap: () {
                           setState(() async {
-                            await SaveDataLocal
-                                .clearUserData();
-                            usermodal =
-                            await SaveDataLocal
-                                .getDataFromLocal();
+                            await SaveDataLocal.clearUserData();
+                            usermodal = await SaveDataLocal.getDataFromLocal();
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      LoginPage2(),
+                                  builder: (context) => LoginPage2(),
                                 ));
                           });
                           Navigator.of(context).pop();

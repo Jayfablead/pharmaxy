@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/CustomExpection.dart';
 import 'package:ecommerce/Widget/response.dart';
@@ -55,12 +56,11 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
+
   Future<http.Response> PaymethodApi() async {
     const url = "$baseUrl/paymentgateway";
     var responseJson;
-    final response = await http
-        .get(Uri.parse(url), headers: headers)
-        .timeout(
+    final response = await http.get(Uri.parse(url), headers: headers).timeout(
       const Duration(seconds: 30),
       onTimeout: () {
         throw const SocketException('Something went wrong');
@@ -480,7 +480,6 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
-
   Future<http.Response> cityapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/cities";
     var responseJson;
@@ -526,6 +525,7 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
+
   Future<http.Response> checkoutcodapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/checkout";
     var responseJson;
