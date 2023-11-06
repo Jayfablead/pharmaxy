@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:ecommerce/Modal/AddCartModal.dart';
+import 'package:ecommerce/Modal/ForgotModal.dart';
 import 'package:ecommerce/Modal/UserModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/ForgotPassword.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/SignupPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -219,7 +221,9 @@ class _LoginPage2State extends State<LoginPage2> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ForgotPassword()));
+                              },
                               child: Text(
                                 "Forgot Password?",
                                 style: TextStyle(

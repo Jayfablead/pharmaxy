@@ -20,6 +20,7 @@ import 'package:ecommerce/Modal/DeliveredOrderModal.dart';
 import 'package:ecommerce/Modal/DisIncrementModal.dart';
 import 'package:ecommerce/Modal/EditShippingAdd.dart';
 import 'package:ecommerce/Modal/EditprofileModal.dart';
+import 'package:ecommerce/Modal/ForgotModal.dart';
 import 'package:ecommerce/Modal/IncrementModal.dart';
 import 'package:ecommerce/Modal/MainCatModal.dart';
 import 'package:ecommerce/Modal/MyOederDetailModal.dart';
@@ -103,6 +104,7 @@ PaypalModal? paypalmodal;
 CountryModal?countrymodal;
 StateModal?statemodal;
 CityModal?citymodal;
+ForgotModal?forgotmodal;
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());
