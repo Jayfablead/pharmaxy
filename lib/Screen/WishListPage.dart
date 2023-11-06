@@ -346,40 +346,62 @@ class _WishListPageState extends State<WishListPage> {
                                                         padding:
                                                             EdgeInsets.only(
                                                                 left: 1.w),
-                                                        child: Row(
+                                                        child:
+                                                        Row(
                                                           children: [
                                                             Text(
-                                                              userwishlIstmodal
-                                                                              ?.wishList?[
-                                                                                  index]
-                                                                              .productPrice ==
-                                                                          "" ||
-                                                                      userwishlIstmodal
-                                                                              ?.wishList?[
-                                                                                  index]
-                                                                              .productPrice ==
-                                                                          null
-                                                                  ? "N/A"
-                                                                  : '₹' +
-                                                                      (userwishlIstmodal
-                                                                              ?.wishList?[index]
-                                                                              .productPrice)
-                                                                          .toString(),
+                                                              '₹' +
+                                                                  (userwishlIstmodal
+                                                                      ?.wishList?[
+                                                                  index]
+                                                                      .saleProductPrice)
+                                                                      .toString(),
                                                               style: TextStyle(
-                                                                fontSize: 13.sp,
+                                                                fontSize: 12.sp,
                                                                 fontFamily:
-                                                                    'task',
+                                                                'task',
                                                                 fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
+                                                                FontWeight
+                                                                    .bold,
                                                                 letterSpacing:
-                                                                    1,
+                                                                1,
                                                                 color: Colors
                                                                     .black,
                                                               ),
                                                             ),
                                                             SizedBox(
                                                               width: 0.5.w,
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                  top: 0.4
+                                                                      .h),
+                                                              child: Text(
+                                                                '₹' +
+                                                                    (userwishlIstmodal
+                                                                        ?.wishList?[
+                                                                    index]
+                                                                        .productPrice)
+                                                                        .toString(),
+                                                                style:
+                                                                TextStyle(
+                                                                  decoration:
+                                                                  TextDecoration
+                                                                      .lineThrough,
+                                                                  fontSize:
+                                                                  12.sp,
+                                                                  fontFamily:
+                                                                  'task',
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                                  letterSpacing:
+                                                                  1,
+                                                                  color: Colors
+                                                                      .black,
+                                                                ),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),

@@ -36,7 +36,7 @@ List<Sachen> data = [
 ];
 
 int selectindex1 = 1;
-int? selected;
+int selected = 1;
 
 class _bottombarState extends State<bottombar> {
   @override

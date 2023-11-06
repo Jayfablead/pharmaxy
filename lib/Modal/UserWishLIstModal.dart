@@ -40,6 +40,7 @@ class WishList {
   String? shippingID;
   String? productName;
   String? productPrice;
+  String? saleProductPrice;
   String? productCartDesc;
   String? productShortDesc;
   String? productLongDesc;
@@ -58,32 +59,33 @@ class WishList {
 
   WishList(
       {this.productID,
-      this.productSKU,
-      this.productType,
-      this.categoryID,
-      this.subCategoryID,
-      this.variationTypeID,
-      this.variationID,
-      this.brandID,
-      this.tagID,
-      this.shippingID,
-      this.productName,
-      this.productPrice,
-      this.productCartDesc,
-      this.productShortDesc,
-      this.productLongDesc,
-      this.productImage,
-      this.productStock,
-      this.productLowStock,
-      this.stockStatus,
-      this.productLive,
-      this.productWeight,
-      this.productDimensions,
-      this.productQuantity,
-      this.priceProduct,
-      this.createdAt,
-      this.updatedAt,
-      this.allImages});
+        this.productSKU,
+        this.productType,
+        this.categoryID,
+        this.subCategoryID,
+        this.variationTypeID,
+        this.variationID,
+        this.brandID,
+        this.tagID,
+        this.shippingID,
+        this.productName,
+        this.productPrice,
+        this.saleProductPrice,
+        this.productCartDesc,
+        this.productShortDesc,
+        this.productLongDesc,
+        this.productImage,
+        this.productStock,
+        this.productLowStock,
+        this.stockStatus,
+        this.productLive,
+        this.productWeight,
+        this.productDimensions,
+        this.productQuantity,
+        this.priceProduct,
+        this.createdAt,
+        this.updatedAt,
+        this.allImages});
 
   WishList.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];
@@ -98,6 +100,7 @@ class WishList {
     shippingID = json['ShippingID'];
     productName = json['ProductName'];
     productPrice = json['ProductPrice'];
+    saleProductPrice = json['Sale_ProductPrice'];
     productCartDesc = json['ProductCartDesc'];
     productShortDesc = json['ProductShortDesc'];
     productLongDesc = json['ProductLongDesc'];
@@ -129,6 +132,7 @@ class WishList {
     data['ShippingID'] = this.shippingID;
     data['ProductName'] = this.productName;
     data['ProductPrice'] = this.productPrice;
+    data['Sale_ProductPrice'] = this.saleProductPrice;
     data['ProductCartDesc'] = this.productCartDesc;
     data['ProductShortDesc'] = this.productShortDesc;
     data['ProductLongDesc'] = this.productLongDesc;
