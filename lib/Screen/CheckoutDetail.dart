@@ -692,8 +692,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                 checkoutpaypalap('');
                                                 print("onError: $error");
                                                 EasyLoading.showError(
-                                                  "Payment Cancelled",
+                                                  "Payment Error",
                                                 );
+                                                Navigator.pop(context);
                                               },
                                               onCancel: (params) {
                                                 EasyLoading.show(
