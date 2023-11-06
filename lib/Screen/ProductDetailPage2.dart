@@ -668,7 +668,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 3.h),
+                                SizedBox(height: 2.h),
+
                               ],
                             ),
                           ),
@@ -847,6 +848,13 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                           ),
                         ],
                       ),
+                      Text('Add Your Review',  style: TextStyle(
+                        fontSize: 15.sp,
+                        fontFamily: 'task',
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
+                        color:  Color(0xfff7941d),
+                      ),),
                     ],
                   ),
                 ),
