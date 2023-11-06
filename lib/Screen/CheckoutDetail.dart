@@ -62,6 +62,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey.shade50,
         body: SingleChildScrollView(
           child: isLoading

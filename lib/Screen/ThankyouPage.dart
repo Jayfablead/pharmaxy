@@ -28,6 +28,7 @@ class _ThankyouPageState extends State<ThankyouPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           SizedBox(

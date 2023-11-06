@@ -39,6 +39,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     return Form(
       key: _formKey,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Stack(
             children: [

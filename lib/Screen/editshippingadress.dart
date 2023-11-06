@@ -75,6 +75,7 @@ class _editshippingadressState extends State<editshippingadress> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: isLoading

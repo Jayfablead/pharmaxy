@@ -12,6 +12,7 @@ class _paypalState extends State<paypal> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: TextButton(
             onPressed: () => {

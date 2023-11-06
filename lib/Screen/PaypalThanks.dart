@@ -24,6 +24,7 @@ print(widget.uid);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [

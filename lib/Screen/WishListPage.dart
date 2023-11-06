@@ -54,6 +54,7 @@ class _WishListPageState extends State<WishListPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
+        resizeToAvoidBottomInset: false,
         key: _scaffoldKey,
         drawer: drawer1(),
         backgroundColor: bgcolor,
