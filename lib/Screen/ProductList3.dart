@@ -56,7 +56,7 @@ class _ProductList3State extends State<ProductList3> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        resizeToAvoidBottomInset: false,
+
         backgroundColor: bgcolor,
         key: _scaffoldKey,
         drawer: drawer1(),

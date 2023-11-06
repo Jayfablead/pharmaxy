@@ -40,7 +40,7 @@ class _AllAddpageState extends State<AllAddpage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        resizeToAvoidBottomInset: false,
+
         backgroundColor: Colors.grey.shade100,
         bottomNavigationBar: bottombar(),
         body: isLoading

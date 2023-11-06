@@ -168,7 +168,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        resizeToAvoidBottomInset: false,
+
         key: _scaffoldKey,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(),

@@ -79,7 +79,6 @@ class _AdressformState extends State<Adressform> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: isLoading

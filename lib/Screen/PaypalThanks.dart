@@ -22,7 +22,7 @@ class _PaypalThanksState extends State<PaypalThanks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+
       body: SingleChildScrollView(
         child: Column(
           children: [

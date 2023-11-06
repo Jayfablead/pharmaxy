@@ -27,7 +27,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Form(
       key: _formKey,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+
         body: SingleChildScrollView(
           child: Stack(
             children: [

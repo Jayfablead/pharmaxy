@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        resizeToAvoidBottomInset: false,
+
         backgroundColor: bgcolor,
         key: _scaffoldKey,
         drawer: drawer1(),

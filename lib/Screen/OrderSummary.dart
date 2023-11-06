@@ -86,7 +86,7 @@ class _OrderSummaryState extends State<OrderSummary> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        resizeToAvoidBottomInset: false,
+
         key: _scaffoldKey,
         drawer: drawer1(),
         backgroundColor: bgcolor,

@@ -651,16 +651,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                         height: 5.h,
                       ),
                       GestureDetector(
-                        onTap: selected1 == 0
+                        onTap: selected1 == 2
                             ? () {
-                                buildErrorDialog(context, '',
-                                    "Please choose your payment method");
+                                checkoutcodap();
                               }
-                            : selected1 == 2
+                            : selected1 == 1
                                 ? () {
-                                    checkoutcodap();
-                                  }
-                                : () {
                                     double total = double.parse(
                                         (viewcartmodal?.finalTotalWithTax)
                                             .toString());
@@ -777,7 +773,18 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                 );
                                               }),
                                         ));
-                                  },
+                                  }
+                                : paymethodmodal?.data?.cod?.status == false &&
+                                        paymethodmodal?.data?.paypal?.status ==
+                                            false
+                                    ? () {
+                                        buildErrorDialog(context, '',
+                                            "No payment method available at this time");
+                                      }
+                                    : () {
+                                        buildErrorDialog(context, '',
+                                            "Please choose your payment method");
+                                      },
                         child: Container(
                             margin: EdgeInsets.only(right: 7.w, left: 7.w),
                             alignment: Alignment.center,
