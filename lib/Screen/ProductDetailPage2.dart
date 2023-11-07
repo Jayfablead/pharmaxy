@@ -168,7 +168,6 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-
         key: _scaffoldKey,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(),
@@ -669,7 +668,6 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                   ),
                                 ),
                                 SizedBox(height: 2.h),
-
                               ],
                             ),
                           ),
@@ -848,13 +846,120 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                           ),
                         ],
                       ),
-                      Text('Add Your Review',  style: TextStyle(
-                        fontSize: 15.sp,
-                        fontFamily: 'task',
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1,
-                        color:  Color(0xfff7941d),
-                      ),),
+                      SizedBox(height: 1.h),
+                      Row(
+                        children: [
+                          SizedBox(width: 2.w),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              'Reviews :',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontFamily: 'task',
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1,
+                                color: Colors.black.withOpacity(0.7),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 1.h),
+                      Row(
+                        children: [
+                          SizedBox(width: 2.w),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              'Add Your Review',
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                fontFamily: 'task',
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1,
+                                color: Color(0xfff7941d),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 1.h),
+                      SizedBox(
+                        height: 35.h,
+                        child: ListView.builder(
+                          padding: EdgeInsets.zero,
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            return Container(margin: EdgeInsets.symmetric(vertical: 1.h),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        margin:
+                                            EdgeInsets.symmetric(horizontal: 1.w),
+                                        height: 16.w,
+                                        width: 16.w,
+                                        padding: EdgeInsets.all(1.w),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(90),
+                                          child: CachedNetworkImage(
+                                              fit: BoxFit.cover,
+                                              imageUrl: profilemodal?.profileDetails
+                                                      ?.profileimage ??
+                                                  '',
+                                              progressIndicatorBuilder: (context,
+                                                      url, progress) =>
+                                                  Center(
+                                                      child:
+                                                          CircularProgressIndicator()),
+                                              errorWidget: (context, url, error) =>
+                                                  Image.asset('assets/deim.png')),
+                                        ),
+                                      ),
+                                      Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('User ${index + 1}',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              fontFamily: 'task',
+                                              fontWeight: FontWeight.bold,
+                                              letterSpacing: 1,
+                                              color: Colors.black.withOpacity(0.7),
+                                            ),),
+                                          Row(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Icon(Icons.star,color: Colors.amber,),
+                                                  Icon(Icons.star,color: Colors.amber,),
+                                                  Icon(Icons.star,color: Colors.amber,),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+
+                                  Text(
+                                    'Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,',
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontFamily: 'task',
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1,
+                                      color: Color(0xff020202),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),

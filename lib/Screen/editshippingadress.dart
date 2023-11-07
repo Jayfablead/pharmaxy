@@ -162,7 +162,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                                 BorderRadius.circular(30),
                                             borderSide:
                                                 BorderSide(color: Colors.grey)),
-                                        hintText: 'Abc To ',
+                                        hintText: 'First Name',
                                         hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.6),
@@ -212,7 +212,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                         borderRadius: BorderRadius.circular(30),
                                         borderSide:
                                             BorderSide(color: Colors.grey)),
-                                    hintText: 'Abc To ',
+                                    hintText: 'Last Name',
                                     hintStyle: TextStyle(
                                         color: Colors.black.withOpacity(0.6),
                                         fontSize: 14.sp,
@@ -259,7 +259,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                         borderRadius: BorderRadius.circular(30),
                                         borderSide:
                                             BorderSide(color: Colors.grey)),
-                                    hintText: 'Abc To ',
+                                    hintText: 'Address 1',
                                     hintStyle: TextStyle(
                                         color: Colors.black.withOpacity(0.6),
                                         fontSize: 14.sp,
@@ -306,7 +306,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                         borderRadius: BorderRadius.circular(30),
                                         borderSide:
                                             BorderSide(color: Colors.grey)),
-                                    hintText: 'Abc To ',
+                                    hintText: 'Phone',
                                     hintStyle: TextStyle(
                                         color: Colors.black.withOpacity(0.6),
                                         fontSize: 14.sp,
