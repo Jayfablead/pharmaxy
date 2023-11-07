@@ -979,7 +979,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                     ],
                                   )
                             : sel == 2
-                                ? pendingordermodal?.cartDetails?.length == 0 ||
+                                ?pendingordermodal?.cartDetails?.length == 0 ||
                                         pendingordermodal
                                                 ?.cartDetails?.length ==
                                             null

@@ -14,6 +14,7 @@ import 'package:ecommerce/Modal/CityModal.dart';
 import 'package:ecommerce/Modal/ColorMatchModal.dart';
 import 'package:ecommerce/Modal/ColorShowModal.dart';
 import 'package:ecommerce/Modal/CountryModal.dart';
+import 'package:ecommerce/Modal/DeleteReviewModal.dart';
 import 'package:ecommerce/Modal/DeliveredOrderModal.dart';
 import 'package:ecommerce/Modal/DisIncrementModal.dart';
 import 'package:ecommerce/Modal/EditShippingAdd.dart';
@@ -48,6 +49,7 @@ import 'package:ecommerce/Modal/UserModal.dart';
 import 'package:ecommerce/Modal/UserSelectAddModal.dart';
 import 'package:ecommerce/Modal/UserWishLIstModal.dart';
 import 'package:ecommerce/Modal/ViewCartModal.dart';
+import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:flutter/material.dart';
 
 import '../Modal/addReviewModal.dart';
@@ -106,6 +108,8 @@ CityModal? citymodal;
 ForgotModal? forgotmodal;
 PaymethodModal? paymethodmodal;
 addReviewModal? addreview;
+ViewReviewModal?viewReviewmodal;
+DeleteReviewModal?deletereviewmodal;
 
 
 Future<bool> checkInternet() async {

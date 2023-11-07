@@ -7,11 +7,13 @@ import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/Cartmodal.dart';
 import 'package:ecommerce/Modal/ColorMatchModal.dart';
 import 'package:ecommerce/Modal/ColorShowModal.dart';
+import 'package:ecommerce/Modal/DeleteReviewModal.dart';
 import 'package:ecommerce/Modal/ProductDetailModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/SelectColorModal.dart';
 import 'package:ecommerce/Modal/SizeShowModal.dart';
+import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:ecommerce/Modal/addReviewModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
@@ -78,6 +80,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     setState(() {
       color = 0;
       selected = 0;
@@ -107,6 +110,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
       });
       selectcolorap();
     }
+    viewreviewap();
   }
 
   @override
@@ -414,8 +418,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.grey,
                                                 fontFamily: "task"),
-                                            trimCollapsedText: 'Show more',
-                                            trimExpandedText: 'Show less',
+                                            trimCollapsedText: ' Show more',
+                                            trimExpandedText: '  Show less',
                                             lessStyle: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontFamily: 'task',
@@ -901,10 +905,29 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                         ],
                       ),
                     ),
-                    SliverList.builder(
-                      itemCount: 5,
+                    viewReviewmodal?.reviewData?.length ==
+                        0 ||
+                        viewReviewmodal
+                            ?.reviewData?.length ==
+                            null
+                        ?SliverToBoxAdapter(
+                          child: Center(
+                      child: Container(
+                        margin: EdgeInsets.only(top: 3.h),
+                        child: Text(
+                          'No Review Available',
+                          style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'task',
+                              fontSize: 18.sp,
+                              color: Colors.black),
+                      ),),
+                    ),
+                        ): SliverList.builder(
+                      itemCount: viewReviewmodal
+                          ?.reviewData?.length,
                       itemBuilder: (context, index) {
-                        return Container(
+                        return  Container(
                           margin: EdgeInsets.symmetric(vertical: 1.h),
                           padding: EdgeInsets.symmetric(vertical: 0.5.h),
                           decoration: BoxDecoration(
@@ -913,6 +936,10 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                           child: Stack(
                             children: [
                               Column(
+                                mainAxisAlignment:
+                                MainAxisAlignment.start,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     children: [
@@ -927,9 +954,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                               BorderRadius.circular(90),
                                           child: CachedNetworkImage(
                                               fit: BoxFit.cover,
-                                              imageUrl: profilemodal
-                                                      ?.profileDetails
-                                                      ?.profileimage ??
+                                              imageUrl: viewReviewmodal
+                                                      ?.reviewData?[index].userProfile ??
                                                   '',
                                               progressIndicatorBuilder: (context,
                                                       url, progress) =>
@@ -956,7 +982,9 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                               SizedBox(
                                                 width: 70.w,
                                                 child: Text(
-                                                  'User ${index + 1}',
+                                                  viewReviewmodal
+                                                      ?.reviewData?[index].name ??
+                                                      '',
                                                   style: TextStyle(
                                                     fontSize: 12.sp,
                                                     fontFamily: 'task',
@@ -967,8 +995,9 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                   ),
                                                 ),
                                               ),
-                                              index == 0 ?InkWell(onTap: () {
-removeratingsheet();
+                                      usermodal?.userId == viewReviewmodal?.reviewData?[index].userId ?InkWell(onTap: (){
+                                         removeratingsheet( viewReviewmodal
+                                             ?.reviewData?[index].reviewId  ?? '');
                                               },
                                                 child: Icon(
                                                   CupertinoIcons.trash,
@@ -992,28 +1021,108 @@ removeratingsheet();
                                                   children: [
                                                     Row(
                                                       children: [
+                                                        viewReviewmodal
+                                                            ?.reviewData?[index].rating == '1'?
                                                         Icon(
-                                                          Icons.star,
-                                                          color: Colors.amber,
+                                                         Icons.star,
+                                                         color: Colors.amber,
                                                           size: 14.sp,
-                                                        ),
-                                                        Icon(
-                                                          Icons.star,
-                                                          color: Colors.amber,
-                                                          size: 14.sp,
-                                                        ),
-                                                        Icon(
-                                                          Icons.star,
-                                                          color: Colors.amber,
-                                                          size: 14.sp,
-                                                        ),
+                                                          ):viewReviewmodal
+                                                            ?.reviewData?[index].rating == '2'?
+                                                                 Row(
+                                                                   children: [
+                                                                     Icon(
+                                                                       Icons.star,
+                                                                       color: Colors.amber,
+                                                                       size: 14.sp,
+                                                                     ),
+                                                                     Icon(
+                                                                       Icons.star,
+                                                                       color: Colors.amber,
+                                                                       size: 14.sp,
+                                                                     )
+                                                                   ],
+                                                                 ):viewReviewmodal
+                                                            ?.reviewData?[index].rating == '3'? Row(
+                                                          children: [
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            ),
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            ),
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            )
+                                                          ],
+                                                        ):viewReviewmodal
+                                                            ?.reviewData?[index].rating == '4'? Row(
+                                                          children: [
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            ),
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            ),
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            ),
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            )
+                                                          ],
+                                                        ):Row(
+                                                          children: [
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            ),
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            ),
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            ),
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            ),
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                              size: 14.sp,
+                                                            )
+                                                          ],
+                                                        )
                                                       ],
                                                     ),
                                                     SizedBox(
                                                       width: 2.w,
                                                     ),
                                                     Text(
-                                                      '( 3 )',
+                                                     '( '+( viewReviewmodal
+                                                          ?.reviewData?[index].rating ??
+                                                          '')+' )',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontWeight:
@@ -1026,7 +1135,9 @@ removeratingsheet();
                                                   ],
                                                 ),
                                                 Text(
-                                                  '7-11-2023',
+                                                   viewReviewmodal
+                                                      ?.reviewData?[index].date ??
+                                                      '',
                                                   style: TextStyle(
                                                     fontFamily: 'task',
                                                     fontWeight: FontWeight.bold,
@@ -1045,10 +1156,11 @@ removeratingsheet();
                                   SizedBox(height: 0.5.h),
                                   Padding(
                                     padding:
-                                        EdgeInsets.symmetric(horizontal: 3.w),
+                                        EdgeInsets.symmetric(horizontal: 16.w),
                                     child: Text(
-                                      'Comment herr i am comment Review, Comment herr i am comment Review, Comment herr i am comment Review, Comment herr i am comment Review, Comment herr i am comment Review,',
-                                      style: TextStyle(
+                                      viewReviewmodal
+                                          ?.reviewData?[index].comments ??
+                                          '',      style: TextStyle(
                                         fontSize: 12.sp,
                                         fontFamily: 'task',
                                         fontWeight: FontWeight.w600,
@@ -1524,6 +1636,7 @@ removeratingsheet();
             addreview = addReviewModal.fromJson(json.decode(response.body));
             print(addcartmodal?.status);
             if (response.statusCode == 200 && addreview?.status == "success") {
+              viewreviewap();
               print('EE Review Add Thay Gyu Hooooo ! ^_^');
               Navigator.pop(context);
               setState(() {
@@ -1546,6 +1659,74 @@ removeratingsheet();
       });
     }
   }
+
+  viewreviewap() async {
+      final Map<String, String> data = {};
+      data['product_id'] = widget.productid.toString();
+      print(data);
+      checkInternet().then((internet) async {
+        if (internet) {
+          authprovider().viewreviewapi(data).then((response) async {
+            viewReviewmodal = ViewReviewModal.fromJson(json.decode(response.body));
+            print(addcartmodal?.status);
+            if (response.statusCode == 200 && viewReviewmodal?.status == "success") {
+              print('rrrrrrrrrrrrrrrrr');
+              setState(() {
+                isLoading = false;
+              });
+            } else {
+              setState(() {
+                isLoading = false;
+              });
+            }
+          });
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          buildErrorDialog(context, 'Error', "Internet Required");
+        }
+      });
+
+  }
+
+
+  deletereviewap(String rId) async {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    data['review_id'] =rId.toString();
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().deletereviewapi(data).then((response) async {
+          deletereviewmodal = DeleteReviewModal.fromJson(json.decode(response.body));
+          print(addcartmodal?.status);
+          if (response.statusCode == 200 && deletereviewmodal?.status == "success") {
+            print(viewReviewmodal?.reviewData?[0].reviewId);
+            viewreviewap();
+            print('EE Review delete Thay Gyu Hooooo ! ^_^');
+            Navigator.pop(context);
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+
+  }
+
+
+
 
   addreviewdialog() {
     setState(() {
@@ -1803,7 +1984,10 @@ removeratingsheet();
       },
     );
   }
-  removeratingsheet() {
+
+
+
+  removeratingsheet(String rID) {
     showModalBottomSheet(elevation: 00,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -1849,6 +2033,7 @@ removeratingsheet();
                             children: [
                               InkWell(
                                 onTap: () {
+                                  deletereviewap(rID.toString());
 
                                 },
                                 child: Container(
@@ -1916,4 +2101,9 @@ removeratingsheet();
       },
     );
   }
-}
+
+
+
+
+
+  }
