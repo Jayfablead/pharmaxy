@@ -967,7 +967,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                   ),
                                                 ),
                                               ),
-                                              InkWell(onTap: () {
+                                              index == 0 ?InkWell(onTap: () {
 removeratingsheet();
                                               },
                                                 child: Icon(
@@ -975,7 +975,7 @@ removeratingsheet();
                                                   color: Colors.red,
                                                   size: 15.sp,
                                                 ),
-                                              )
+                                              ):Container()
                                             ],
                                           ),
                                           SizedBox(height: 0.3.h),
@@ -1047,11 +1047,11 @@ removeratingsheet();
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 3.w),
                                     child: Text(
-                                      'Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,',
+                                      'Comment herr i am comment Review, Comment herr i am comment Review, Comment herr i am comment Review, Comment herr i am comment Review, Comment herr i am comment Review,',
                                       style: TextStyle(
                                         fontSize: 12.sp,
                                         fontFamily: 'task',
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                         letterSpacing: 1,
                                         color: Colors.black.withOpacity(0.75),
                                       ),
