@@ -172,7 +172,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
 
     return commanScreen(
       isLoading: isLoading,
-      scaffold: Scaffold(   backgroundColor: Colors.grey.shade100,
+      scaffold: Scaffold(
+        backgroundColor: Colors.grey.shade100,
         key: _scaffoldKey,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(),
@@ -562,7 +563,6 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                     ),
                                                   ],
                                                 ),
-
                                           sizeshowmodal?.variationData
                                                           ?.length ==
                                                       0 ||
@@ -571,7 +571,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                       null
                                               ? Container(
                                                   //-------***** Price and add cart button hight-------------********
-                                                  // height: 15.5.h
+                                                  // height: 0.h
                                                   )
                                               : Row(
                                                   crossAxisAlignment:
@@ -676,7 +676,8 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: 6.h),
+                                     colorshowmodal?.variationData?.length == 0 || colorshowmodal?.variationData?.length == null
+                                        ?SizedBox(height: 1.h,): SizedBox(height: 6.h),
                                   ],
                                 ),
                               ),
@@ -863,44 +864,40 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 1.h),
-                          Row(
-                            children: [
-                              SizedBox(width: 1.5.w),
-                              InkWell(
-                                onTap: () {
-                                  addreviewdialog();
-                                },
-                                child: Text(
-                                  'Add Your Review',
+                          SizedBox(height: 3.h),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 2.w),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Reviews :',
                                   style: TextStyle(
                                     fontSize: 15.sp,
                                     fontFamily: 'task',
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: 1,
-                                    color: Color(0xfff7941d),
+                                    color: Colors.black.withOpacity(0.7),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 1.h),
-                          Row(
-                            children: [
-                              SizedBox(width: 2.w),
-                              Text(
-                                'Reviews :',
-                                style: TextStyle(
-                                  fontSize: 15.sp,
-                                  fontFamily: 'task',
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1,
-                                  color: Colors.black.withOpacity(0.7),
+                                InkWell(
+                                  onTap: () {
+                                    addreviewdialog();
+                                  },
+                                  child: Text(
+                                    'Add Your Review',
+                                    style: TextStyle(
+                                      fontSize: 15.sp,
+                                      fontFamily: 'task',
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1,
+                                      color: Color(0xfff7941d),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-
                         ],
                       ),
                     ),
@@ -908,124 +905,161 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                       itemCount: 5,
                       itemBuilder: (context, index) {
                         return Container(
-                          margin: EdgeInsets.symmetric(vertical: 1.h),padding: EdgeInsets.symmetric(vertical: 0.5.h),
-                          decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(25)),
-                          child: Column(
+                          margin: EdgeInsets.symmetric(vertical: 1.h),
+                          padding: EdgeInsets.symmetric(vertical: 0.5.h),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(25)),
+                          child: Stack(
                             children: [
-                              Row(
+                              Column(
                                 children: [
-                                  Container(
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 1.w),
-                                    height: 14.w,
-                                    width: 14.w,
-                                    padding: EdgeInsets.all(1.w),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(90),
-                                      child: CachedNetworkImage(
-                                          fit: BoxFit.cover,
-                                          imageUrl: profilemodal?.profileDetails
-                                                  ?.profileimage ??
-                                              '',
-                                          progressIndicatorBuilder: (context,
-                                                  url, progress) =>
-                                              Center(
-                                                  child:
-                                                      CircularProgressIndicator()),
-                                          errorWidget: (context, url, error) =>
-                                              Image.asset('assets/deim.png')),
-                                    ),
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  Row(
                                     children: [
-                                      Text(
-                                        'User ${index + 1}',
-                                        style: TextStyle(
-                                          fontSize: 12.sp,
-                                          fontFamily: 'task',
-                                          fontWeight: FontWeight.bold,
-                                          letterSpacing: 1,
-                                          color: Colors.black.withOpacity(0.85),
+                                      Container(
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 1.w),
+                                        height: 14.w,
+                                        width: 14.w,
+                                        padding: EdgeInsets.all(1.w),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(90),
+                                          child: CachedNetworkImage(
+                                              fit: BoxFit.cover,
+                                              imageUrl: profilemodal
+                                                      ?.profileDetails
+                                                      ?.profileimage ??
+                                                  '',
+                                              progressIndicatorBuilder: (context,
+                                                      url, progress) =>
+                                                  Center(
+                                                      child:
+                                                          CircularProgressIndicator()),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Image.asset(
+                                                          'assets/deim.png')),
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 73.w,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.star,
-                                                      color: Colors.amber,
-                                                      size: 14.sp,
-                                                    ),
-                                                    Icon(
-                                                      Icons.star,
-                                                      color: Colors.amber,
-                                                      size: 14.sp,
-                                                    ),
-                                                    Icon(
-                                                      Icons.star,
-                                                      color: Colors.amber,
-                                                      size: 14.sp,
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  width: 2.w,
-                                                ),
-                                                Text(
-                                                  '( 3 )',
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(  mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                width: 70.w,
+                                                child: Text(
+                                                  'User ${index + 1}',
                                                   style: TextStyle(
+                                                    fontSize: 12.sp,
                                                     fontFamily: 'task',
                                                     fontWeight: FontWeight.bold,
                                                     letterSpacing: 1,
+                                                    color: Colors.black
+                                                        .withOpacity(0.85),
+                                                  ),
+                                                ),
+                                              ),
+                                              InkWell(onTap: () {
+removeratingsheet();
+                                              },
+                                                child: Icon(
+                                                  CupertinoIcons.trash,
+                                                  color: Colors.red,
+                                                  size: 15.sp,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(height: 0.3.h),
+                                          SizedBox(
+                                            width: 73.w,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.star,
+                                                          color: Colors.amber,
+                                                          size: 14.sp,
+                                                        ),
+                                                        Icon(
+                                                          Icons.star,
+                                                          color: Colors.amber,
+                                                          size: 14.sp,
+                                                        ),
+                                                        Icon(
+                                                          Icons.star,
+                                                          color: Colors.amber,
+                                                          size: 14.sp,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      width: 2.w,
+                                                    ),
+                                                    Text(
+                                                      '( 3 )',
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        letterSpacing: 1,
+                                                        color: Colors.black
+                                                            .withOpacity(0.7),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Text(
+                                                  '7-11-2023',
+                                                  style: TextStyle(
+                                                    fontFamily: 'task',
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 0.5,
                                                     color: Colors.black
                                                         .withOpacity(0.7),
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                            Text(
-                                              '1 day ago',
-                                              style: TextStyle(
-                                                fontFamily: 'task',
-                                                fontWeight: FontWeight.bold,
-                                                letterSpacing: 0.5,
-                                                color: Colors.black
-                                                    .withOpacity(0.7),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
+                                  SizedBox(height: 0.5.h),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 3.w),
+                                    child: Text(
+                                      'Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,',
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontFamily: 'task',
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 1,
+                                        color: Colors.black.withOpacity(0.75),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
-                              SizedBox(height: 0.5.h),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 3.w),
-                                child: Text(
-                                  'Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,',
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    fontFamily: 'task',
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1,
-                                    color: Colors.black.withOpacity(0.75),
-                                  ),
-                                ),
-                              ),
+
                             ],
                           ),
                         );
@@ -1762,9 +1796,122 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(CupertinoIcons.clear_circled_solid)))
+                      icon: Icon(CupertinoIcons.clear_circled)))
             ],
           ),
+        );
+      },
+    );
+  }
+  removeratingsheet() {
+    showModalBottomSheet(elevation: 00,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(15),
+          topLeft: Radius.circular(15),
+        ),
+      ),
+      context: context,
+      builder: (context) {
+        return Stack(
+          children: [
+            Container(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 3.h),
+                    Text(
+                      'Are You Sure You Want to Remove Your Review ?',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 15.sp,
+                          fontFamily: 'task',
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                          height: 0.17.h,
+                          letterSpacing: 1),
+                    ),
+                    SizedBox(height: 3.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 2.5.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                onTap: () {
+
+                                },
+                                child: Container(
+                                  width: 30.w,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.all(2.5.w),
+                                  decoration: BoxDecoration(
+                                      color: Color(0xfff7941d),
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Text(
+                                    'Yes',
+                                    style: TextStyle(
+                                        fontSize: 13.sp,
+                                        fontFamily: 'task',
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 1),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                 Navigator.pop(context);
+                                },
+                                child: Container(
+                                  width: 30.w,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.all(2.w),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Color(0xfff7941d),
+                                      ),
+                                      color: Color(0xfff4f4f4),
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Text(
+                                    'No',
+                                    style: TextStyle(
+                                        fontSize: 13.sp,
+                                        fontFamily: 'task',
+                                        color: Color(0xfff7941d),
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 1),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 2.h),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+                right: 0,
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(CupertinoIcons.clear_circled)))
+          ],
         );
       },
     );
