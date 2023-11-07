@@ -12,6 +12,7 @@ import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/SelectColorModal.dart';
 import 'package:ecommerce/Modal/SizeShowModal.dart';
+import 'package:ecommerce/Modal/addReviewModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
@@ -19,7 +20,9 @@ import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 import 'package:sizer/sizer.dart';
@@ -44,8 +47,10 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 int sel = 1;
 int color = 0;
-
+final _formKey = GlobalKey<FormState>();
 bool isLoading = true;
+TextEditingController _comment = TextEditingController();
+TextEditingController _rating = TextEditingController();
 
 final controller = PageController(viewportFraction: 0.8, keepPage: true);
 List pages = [];
@@ -167,801 +172,866 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
 
     return commanScreen(
       isLoading: isLoading,
-      scaffold: Scaffold(
+      scaffold: Scaffold(   backgroundColor: Colors.grey.shade100,
         key: _scaffoldKey,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(),
         body: isLoading
             ? Container()
             : Padding(
-                padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3.h),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                icon: Icon(
-                                  Icons.arrow_back_ios_rounded,
-                                  size: 25.sp,
-                                )),
-                            Text(
-                              "Product Detail Page",
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                fontFamily: "task",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Row(
+                padding: EdgeInsets.symmetric(horizontal: 2.w),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    usermodal?.userId == "" ||
-                                            usermodal?.userId == null
-                                        ? Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    LoginPage2()))
-                                        : Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ProfilePage()));
-                                  },
-                                  child: usermodal?.userId == "" ||
-                                          usermodal?.userId == null
-                                      ? Text(
-                                          "Login",
-                                          style: TextStyle(
-                                            color: Color(0xfff7941d),
-                                            fontFamily: 'task',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17.sp,
-                                          ),
-                                        )
-                                      : Container(
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 1.w),
-                                          height: 12.2.w,
-                                          width: 12.2.w,
-                                          padding: EdgeInsets.all(1.w),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(90),
-                                            child: CachedNetworkImage(
-                                                fit: BoxFit.cover,
-                                                imageUrl: profilemodal
-                                                        ?.profileDetails
-                                                        ?.profileimage ??
-                                                    '',
-                                                progressIndicatorBuilder: (context,
-                                                        url, progress) =>
-                                                    Center(
-                                                        child:
-                                                            CircularProgressIndicator()),
-                                                errorWidget:
-                                                    (context, url, error) =>
+                                IconButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back_ios_rounded,
+                                      size: 25.sp,
+                                    )),
+                                Text(
+                                  "Product Detail Page",
+                                  style: TextStyle(
+                                    fontSize: 18.sp,
+                                    fontFamily: "task",
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        usermodal?.userId == "" ||
+                                                usermodal?.userId == null
+                                            ? Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        LoginPage2()))
+                                            : Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ProfilePage()));
+                                      },
+                                      child: usermodal?.userId == "" ||
+                                              usermodal?.userId == null
+                                          ? Text(
+                                              "Login",
+                                              style: TextStyle(
+                                                color: Color(0xfff7941d),
+                                                fontFamily: 'task',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17.sp,
+                                              ),
+                                            )
+                                          : Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 1.w),
+                                              height: 12.2.w,
+                                              width: 12.2.w,
+                                              padding: EdgeInsets.all(1.w),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(90),
+                                                child: CachedNetworkImage(
+                                                    fit: BoxFit.cover,
+                                                    imageUrl: profilemodal
+                                                            ?.profileDetails
+                                                            ?.profileimage ??
+                                                        '',
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                progress) =>
+                                                            Center(
+                                                                child:
+                                                                    CircularProgressIndicator()),
+                                                    errorWidget: (context, url,
+                                                            error) =>
                                                         Image.asset(
                                                             'assets/deim.png')),
-                                          ),
-                                        ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Stack(
-                        children: [
-                          SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    SizedBox(height: 2.h),
-                                    SizedBox(
-                                      height: 230,
-                                      child: PageView.builder(
-                                        controller: controller,
-                                        itemCount: pages.length,
-                                        itemBuilder: (_, index) {
-                                          return pages[index % pages.length];
-                                        },
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 1.h,
-                                    ),
-                                    SmoothPageIndicator(
-                                      controller: controller,
-                                      count: pages.length,
-                                      effect: WormEffect(
-                                        dotColor: Colors.grey.shade100,
-                                        activeDotColor: Color(0xfff7941d),
-                                        dotHeight: 1.5.h,
-                                        dotWidth: 4.w,
-                                        type: WormType.thinUnderground,
-                                      ),
+                                              ),
+                                            ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 2.h,
+                              ],
+                            ),
+                          ),
+                          Stack(
+                            children: [
+                              SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        SizedBox(
+                                          height: 230,
+                                          child: PageView.builder(
+                                            controller: controller,
+                                            itemCount: pages.length,
+                                            itemBuilder: (_, index) {
+                                              return pages[
+                                                  index % pages.length];
+                                            },
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 1.h,
+                                        ),
+                                        SmoothPageIndicator(
+                                          controller: controller,
+                                          count: pages.length,
+                                          effect: WormEffect(
+                                            dotColor: Colors.grey.shade100,
+                                            activeDotColor: Color(0xfff7941d),
+                                            dotHeight: 1.5.h,
+                                            dotWidth: 4.w,
+                                            type: WormType.thinUnderground,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 2.5.w, vertical: 2.h),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                width: 57.w,
+                                                child: Text(
+                                                  productdetailmodal
+                                                                  ?.productData
+                                                                  ?.productName ==
+                                                              '' ||
+                                                          productdetailmodal
+                                                                  ?.productData
+                                                                  ?.productName ==
+                                                              null
+                                                      ? 'N/A'
+                                                      : productdetailmodal
+                                                              ?.productData
+                                                              ?.productName ??
+                                                          '',
+                                                  style: TextStyle(
+                                                    fontSize: 14.sp,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: "task",
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  usermodal?.userId == "" ||
+                                                          usermodal?.userId ==
+                                                              null
+                                                      ? Navigator.of(context)
+                                                          .push(MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  LoginPage2()))
+                                                      : productdetailmodal
+                                                                  ?.productData
+                                                                  ?.wishlist ==
+                                                              1
+                                                          ? removewishlistap(
+                                                              (productdetailmodal
+                                                                      ?.productData
+                                                                      ?.productID)
+                                                                  .toString())
+                                                          : addwishlistap(
+                                                              (productdetailmodal
+                                                                      ?.productData
+                                                                      ?.productID)
+                                                                  .toString());
+                                                },
+                                                child: Icon(
+                                                  productdetailmodal
+                                                              ?.productData
+                                                              ?.wishlist ==
+                                                          1
+                                                      ? Icons.favorite
+                                                      : Icons.favorite_outline,
+                                                  size: 25.sp,
+                                                  color: productdetailmodal
+                                                              ?.productData
+                                                              ?.wishlist ==
+                                                          1
+                                                      ? Colors.red
+                                                      : Colors.black,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 0.7.h,
+                                          ),
+                                          ReadMoreText(
+                                            productdetailmodal?.productData
+                                                            ?.productShortDesc ==
+                                                        '' ||
+                                                    productdetailmodal
+                                                            ?.productData
+                                                            ?.productShortDesc ==
+                                                        null
+                                                ? 'N/A'
+                                                : productdetailmodal
+                                                        ?.productData
+                                                        ?.productShortDesc ??
+                                                    '',
+                                            trimLines: 2,
+                                            colorClickableText: Colors.pink,
+                                            trimMode: TrimMode.Line,
+                                            style: TextStyle(
+                                                fontSize: 13.sp,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey,
+                                                fontFamily: "task"),
+                                            trimCollapsedText: 'Show more',
+                                            trimExpandedText: 'Show less',
+                                            lessStyle: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'task',
+                                                color: Color(
+                                                  0xfff7941d,
+                                                ),
+                                                fontSize: 12.sp),
+                                            moreStyle: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'task',
+                                                color: Color(0xfff7941d),
+                                                fontSize: 12.sp),
+                                          ),
+                                          SizedBox(
+                                            height: 2.h,
+                                          ),
+                                          colorshowmodal?.variationData
+                                                          ?.length ==
+                                                      0 ||
+                                                  colorshowmodal?.variationData
+                                                          ?.length ==
+                                                      null
+                                              ? Text(
+                                                  '',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontFamily: 'task',
+                                                      fontSize: 15.sp,
+                                                      color: Colors.black),
+                                                )
+                                              : Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 7.h,
+                                                      child: Center(
+                                                        child: Text(
+                                                          "Color :",
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  'task',
+                                                              fontSize: 15.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color: Colors
+                                                                  .black87),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 3.w,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 6.h,
+                                                      width: 70.w,
+                                                      child: ListView.builder(
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                          itemCount:
+                                                              colorshowmodal
+                                                                  ?.variationData
+                                                                  ?.length,
+                                                          itemBuilder:
+                                                              (context, index) {
+                                                            return Stack(
+                                                              children: [
+                                                                GestureDetector(
+                                                                  onTap: () {
+                                                                    setState(
+                                                                        () {
+                                                                      color =
+                                                                          index;
+                                                                    });
+                                                                    colorshowmodal?.variationData?.length !=
+                                                                                0 &&
+                                                                            sizeshowmodal?.variationData?.length !=
+                                                                                0
+                                                                        ? colormatchap()
+                                                                        : selectcolorap();
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    margin: EdgeInsets.symmetric(
+                                                                        horizontal:
+                                                                            1.w),
+                                                                    height:
+                                                                        13.w,
+                                                                    width: 13.w,
+                                                                    padding: EdgeInsets
+                                                                        .all(1
+                                                                            .w),
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              90),
+                                                                      child: CachedNetworkImage(
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                          imageUrl: colorshowmodal?.variationData?[index].varImg ??
+                                                                              '',
+                                                                          progressIndicatorBuilder: (context, url, progress) => Center(
+                                                                              child:
+                                                                                  CircularProgressIndicator()),
+                                                                          errorWidget: (context, url, error) =>
+                                                                              Image.asset('assets/deim.png')),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Container(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  margin: EdgeInsets
+                                                                      .symmetric(
+                                                                          horizontal:
+                                                                              1.w),
+                                                                  height: 13.w,
+                                                                  width: 13.w,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(1
+                                                                              .w),
+                                                                  child: color ==
+                                                                          index
+                                                                      ? Icon(
+                                                                          Icons
+                                                                              .check,
+                                                                          color:
+                                                                              Colors.white,
+                                                                          size:
+                                                                              20.sp,
+                                                                        )
+                                                                      : Icon(
+                                                                          null),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          }),
+                                                    ),
+                                                  ],
+                                                ),
+
+                                          sizeshowmodal?.variationData
+                                                          ?.length ==
+                                                      0 ||
+                                                  colorshowmodal?.variationData
+                                                          ?.length ==
+                                                      null
+                                              ? Container(
+                                                  //-------***** Price and add cart button hight-------------********
+                                                  // height: 15.5.h
+                                                  )
+                                              : Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 7.h,
+                                                      child: Center(
+                                                        child: Text(
+                                                          "Size :",
+                                                          style: TextStyle(
+                                                            fontFamily: 'task',
+                                                            fontSize: 15.sp,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color:
+                                                                Colors.black87,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 3.w,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5.h,
+                                                      width: 70.w,
+                                                      child: ListView.builder(
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          itemCount:
+                                                              sizeshowmodal
+                                                                  ?.variationData
+                                                                  ?.length,
+                                                          itemBuilder:
+                                                              (context, index) {
+                                                            return Row(
+                                                              children: [
+                                                                GestureDetector(
+                                                                  onTap: () {
+                                                                    setState(
+                                                                        () {
+                                                                      selcted =
+                                                                          index;
+                                                                    });
+
+                                                                    colorshowmodal?.variationData?.length !=
+                                                                                0 &&
+                                                                            sizeshowmodal?.variationData?.length !=
+                                                                                0
+                                                                        ? colormatchap()
+                                                                        : selectcolorap();
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    height:
+                                                                        11.w,
+                                                                    width: 11.w,
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    decoration: BoxDecoration(
+                                                                        border: Border.all(
+                                                                            width:
+                                                                                0.5,
+                                                                            color: Colors
+                                                                                .grey.shade100),
+                                                                        color: selcted ==
+                                                                                index
+                                                                            ? Color(
+                                                                                0xfff7941d)
+                                                                            : Colors
+                                                                                .grey.shade100,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10)),
+                                                                    margin: EdgeInsets.symmetric(
+                                                                        horizontal:
+                                                                            2.w),
+                                                                    child:
+                                                                        Center(
+                                                                      child: Text(
+                                                                          sizeshowmodal?.variationData?[index].variationName ??
+                                                                              "",
+                                                                          style: TextStyle(
+                                                                              fontSize: 12.5.sp,
+                                                                              color: selcted == index ? Colors.white : Colors.black,
+                                                                              fontFamily: 'task',
+                                                                              fontWeight: FontWeight.bold,
+                                                                              letterSpacing: 1)),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 0.5.h,
+                                                                ),
+                                                              ],
+                                                            );
+                                                          }),
+                                                    ),
+                                                  ],
+                                                ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 6.h),
+                                  ],
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 2.5.w, vertical: 2.h),
-                                  child: Column(
+                              ),
+                              Positioned(
+                                left: 3.w,
+                                bottom: 0.0,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 6.h,
+                                      width: 45.w,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.white),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                colorshowmodal?.variationData
+                                                                ?.length !=
+                                                            0 &&
+                                                        sizeshowmodal
+                                                                ?.variationData
+                                                                ?.length !=
+                                                            0
+                                                    ? colormatchmodal?.priceData
+                                                                ?.length ==
+                                                            0
+                                                        ? 'Out of stock'
+                                                        : '₹${(colormatchmodal?.priceData?[0].saleVariationPrice ?? '')}'
+                                                    : colorshowmodal?.variationData
+                                                                    ?.length ==
+                                                                0 &&
+                                                            sizeshowmodal
+                                                                    ?.variationData
+                                                                    ?.length ==
+                                                                0
+                                                        ? productdetailmodal
+                                                                        ?.productData
+                                                                        ?.saleProductPrice ==
+                                                                    '' ||
+                                                                productdetailmodal
+                                                                        ?.productData
+                                                                        ?.saleProductPrice ==
+                                                                    null
+                                                            ? "N/A"
+                                                            : '₹${productdetailmodal?.productData?.saleProductPrice ?? ''}'
+                                                        : selectcolormodal
+                                                                        ?.variationData
+                                                                        ?.saleVariationPrice ==
+                                                                    '' ||
+                                                                selectcolormodal
+                                                                        ?.variationData
+                                                                        ?.saleVariationPrice ==
+                                                                    null
+                                                            ? 'N/A'
+                                                            : "₹${selectcolormodal?.variationData?.saleVariationPrice ?? ''}",
+                                                style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  fontFamily: 'task',
+                                                  fontWeight: FontWeight.bold,
+                                                  letterSpacing: 1,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 0.5.w,
+                                              ),
+
+                                              //--------*******SALES PRICE********------
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 0.4.h),
+                                                child: Text(
+                                                  colorshowmodal?.variationData
+                                                                  ?.length !=
+                                                              0 &&
+                                                          sizeshowmodal
+                                                                  ?.variationData
+                                                                  ?.length !=
+                                                              0
+                                                      ? colormatchmodal
+                                                                  ?.priceData
+                                                                  ?.length ==
+                                                              0
+                                                          ? ''
+                                                          : '₹${(colormatchmodal?.priceData?[0].variationPrice ?? '')}'
+                                                      : colorshowmodal?.variationData
+                                                                      ?.length ==
+                                                                  0 &&
+                                                              sizeshowmodal
+                                                                      ?.variationData
+                                                                      ?.length ==
+                                                                  0
+                                                          ? productdetailmodal
+                                                                          ?.productData
+                                                                          ?.productPrice ==
+                                                                      '' ||
+                                                                  productdetailmodal
+                                                                          ?.productData
+                                                                          ?.productPrice ==
+                                                                      null
+                                                              ? ''
+                                                              : '₹${productdetailmodal?.productData?.productPrice ?? ''}'
+                                                          : selectcolormodal
+                                                                          ?.variationData
+                                                                          ?.variationPrice ==
+                                                                      '' ||
+                                                                  selectcolormodal
+                                                                          ?.variationData
+                                                                          ?.variationPrice ==
+                                                                      null
+                                                              ? ''
+                                                              : "₹${selectcolormodal?.variationData?.variationPrice ?? ''}",
+                                                  style: TextStyle(
+                                                    decoration: TextDecoration
+                                                        .lineThrough,
+                                                    decorationThickness: 2,
+                                                    decorationColor:
+                                                        Colors.black,
+                                                    fontSize: 12.sp,
+                                                    fontFamily: 'task',
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    letterSpacing: 1,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 8.w,
+                                    ),
+                                    colormatchmodal?.priceData?.length == 0 &&
+                                            sizeshowmodal
+                                                    ?.variationData?.length !=
+                                                0
+                                        ? Container()
+                                        : GestureDetector(
+                                            onTap: () {
+                                              print(usermodal?.userId);
+                                              usermodal?.userId == "" ||
+                                                      usermodal?.userId == null
+                                                  ? addoff()
+                                                  : addcartap();
+                                            },
+                                            child: Container(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                    alignment: Alignment.center,
+                                                    height: 6.h,
+                                                    width: 40.w,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30),
+                                                        color:
+                                                            Color(0xfff7941d)),
+                                                    child: Text(
+                                                      "Add To Cart",
+                                                      style: TextStyle(
+                                                          fontSize: 13.sp,
+                                                          color: Colors.white,
+                                                          fontFamily: "task"),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 1.h),
+                          Row(
+                            children: [
+                              SizedBox(width: 1.5.w),
+                              InkWell(
+                                onTap: () {
+                                  addreviewdialog();
+                                },
+                                child: Text(
+                                  'Add Your Review',
+                                  style: TextStyle(
+                                    fontSize: 15.sp,
+                                    fontFamily: 'task',
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1,
+                                    color: Color(0xfff7941d),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 1.h),
+                          Row(
+                            children: [
+                              SizedBox(width: 2.w),
+                              Text(
+                                'Reviews :',
+                                style: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontFamily: 'task',
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1,
+                                  color: Colors.black.withOpacity(0.7),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                        ],
+                      ),
+                    ),
+                    SliverList.builder(
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.symmetric(vertical: 1.h),padding: EdgeInsets.symmetric(vertical: 0.5.h),
+                          decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(25)),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 1.w),
+                                    height: 14.w,
+                                    width: 14.w,
+                                    padding: EdgeInsets.all(1.w),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(90),
+                                      child: CachedNetworkImage(
+                                          fit: BoxFit.cover,
+                                          imageUrl: profilemodal?.profileDetails
+                                                  ?.profileimage ??
+                                              '',
+                                          progressIndicatorBuilder: (context,
+                                                  url, progress) =>
+                                              Center(
+                                                  child:
+                                                      CircularProgressIndicator()),
+                                          errorWidget: (context, url, error) =>
+                                              Image.asset('assets/deim.png')),
+                                    ),
+                                  ),
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            width: 57.w,
-                                            child: Text(
-                                              productdetailmodal?.productData
-                                                              ?.productName ==
-                                                          '' ||
-                                                      productdetailmodal
-                                                              ?.productData
-                                                              ?.productName ==
-                                                          null
-                                                  ? 'N/A'
-                                                  : productdetailmodal
-                                                          ?.productData
-                                                          ?.productName ??
-                                                      '',
-                                              style: TextStyle(
-                                                fontSize: 14.sp,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: "task",
-                                              ),
-                                            ),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              usermodal?.userId == "" ||
-                                                      usermodal?.userId == null
-                                                  ? Navigator.of(context).push(
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              LoginPage2()))
-                                                  : productdetailmodal
-                                                              ?.productData
-                                                              ?.wishlist ==
-                                                          1
-                                                      ? removewishlistap(
-                                                          (productdetailmodal
-                                                                  ?.productData
-                                                                  ?.productID)
-                                                              .toString())
-                                                      : addwishlistap(
-                                                          (productdetailmodal
-                                                                  ?.productData
-                                                                  ?.productID)
-                                                              .toString());
-                                            },
-                                            child: Icon(
-                                              productdetailmodal?.productData
-                                                          ?.wishlist ==
-                                                      1
-                                                  ? Icons.favorite
-                                                  : Icons.favorite_outline,
-                                              size: 25.sp,
-                                              color: productdetailmodal
-                                                          ?.productData
-                                                          ?.wishlist ==
-                                                      1
-                                                  ? Colors.red
-                                                  : Colors.black,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 0.7.h,
-                                      ),
-                                      ReadMoreText(
-                                        productdetailmodal?.productData
-                                                        ?.productShortDesc ==
-                                                    '' ||
-                                                productdetailmodal?.productData
-                                                        ?.productShortDesc ==
-                                                    null
-                                            ? 'N/A'
-                                            : productdetailmodal?.productData
-                                                    ?.productShortDesc ??
-                                                '',
-                                        trimLines: 2,
-                                        colorClickableText: Colors.pink,
-                                        trimMode: TrimMode.Line,
+                                      Text(
+                                        'User ${index + 1}',
                                         style: TextStyle(
-                                            fontSize: 13.sp,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey,
-                                            fontFamily: "task"),
-                                        trimCollapsedText: 'Show more',
-                                        trimExpandedText: 'Show less',
-                                        lessStyle: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'task',
-                                            color: Color(
-                                              0xfff7941d,
-                                            ),
-                                            fontSize: 12.sp),
-                                        moreStyle: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'task',
-                                            color: Color(0xfff7941d),
-                                            fontSize: 12.sp),
+                                          fontSize: 12.sp,
+                                          fontFamily: 'task',
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1,
+                                          color: Colors.black.withOpacity(0.85),
+                                        ),
                                       ),
                                       SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      colorshowmodal?.variationData?.length ==
-                                                  0 ||
-                                              colorshowmodal
-                                                      ?.variationData?.length ==
-                                                  null
-                                          ? Text(
-                                              '',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.normal,
-                                                  fontFamily: 'task',
-                                                  fontSize: 15.sp,
-                                                  color: Colors.black),
-                                            )
-                                          : Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                        width: 73.w,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
-                                                SizedBox(
-                                                  height: 7.h,
-                                                  child: Center(
-                                                    child: Text(
-                                                      "Color :",
-                                                      style: TextStyle(
-                                                          fontFamily: 'task',
-                                                          fontSize: 15.sp,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color:
-                                                              Colors.black87),
+                                                Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.star,
+                                                      color: Colors.amber,
+                                                      size: 14.sp,
                                                     ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 3.w,
-                                                ),
-                                                SizedBox(
-                                                  height: 6.h,
-                                                  width: 70.w,
-                                                  child: ListView.builder(
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      padding: EdgeInsets.zero,
-                                                      itemCount: colorshowmodal
-                                                          ?.variationData
-                                                          ?.length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return Stack(
-                                                          children: [
-                                                            GestureDetector(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  color = index;
-                                                                });
-                                                                colorshowmodal?.variationData?.length !=
-                                                                            0 &&
-                                                                        sizeshowmodal?.variationData?.length !=
-                                                                            0
-                                                                    ? colormatchap()
-                                                                    : selectcolorap();
-                                                              },
-                                                              child: Container(
-                                                                margin: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            1.w),
-                                                                height: 13.w,
-                                                                width: 13.w,
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(1
-                                                                            .w),
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              90),
-                                                                  child: CachedNetworkImage(
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                      imageUrl:
-                                                                          colorshowmodal?.variationData?[index].varImg ??
-                                                                              '',
-                                                                      progressIndicatorBuilder: (context,
-                                                                              url,
-                                                                              progress) =>
-                                                                          Center(
-                                                                              child:
-                                                                                  CircularProgressIndicator()),
-                                                                      errorWidget: (context,
-                                                                              url,
-                                                                              error) =>
-                                                                          Image.asset(
-                                                                              'assets/deim.png')),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              margin: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          1.w),
-                                                              height: 13.w,
-                                                              width: 13.w,
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(1.w),
-                                                              child: color ==
-                                                                      index
-                                                                  ? Icon(
-                                                                      Icons
-                                                                          .check,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      size:
-                                                                          20.sp,
-                                                                    )
-                                                                  : Icon(null),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      }),
-                                                ),
-                                              ],
-                                            ),
-                                      SizedBox(
-                                        height: 0.5.h,
-                                      ),
-                                      sizeshowmodal?.variationData?.length ==
-                                                  0 ||
-                                              colorshowmodal
-                                                      ?.variationData?.length ==
-                                                  null
-                                          ? Container(
-                                              //-------***** Price and add cart button hight-------------********
-                                              // height: 15.5.h
-                                              )
-                                          : Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  height: 7.h,
-                                                  child: Center(
-                                                    child: Text(
-                                                      "Size :",
-                                                      style: TextStyle(
-                                                          fontFamily: 'task',
-                                                          fontSize: 15.sp,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color:
-                                                              Colors.black87),
+                                                    Icon(
+                                                      Icons.star,
+                                                      color: Colors.amber,
+                                                      size: 14.sp,
                                                     ),
-                                                  ),
+                                                    Icon(
+                                                      Icons.star,
+                                                      color: Colors.amber,
+                                                      size: 14.sp,
+                                                    ),
+                                                  ],
                                                 ),
                                                 SizedBox(
-                                                  width: 3.w,
+                                                  width: 2.w,
                                                 ),
-                                                SizedBox(
-                                                  height: 12.h,
-                                                  width: 70.w,
-                                                  child: ListView.builder(
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      padding: EdgeInsets.zero,
-                                                      itemCount: sizeshowmodal
-                                                          ?.variationData
-                                                          ?.length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return Row(
-                                                          children: [
-                                                            GestureDetector(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  selcted =
-                                                                      index;
-                                                                });
-
-                                                                colorshowmodal?.variationData?.length !=
-                                                                            0 &&
-                                                                        sizeshowmodal?.variationData?.length !=
-                                                                            0
-                                                                    ? colormatchap()
-                                                                    : selectcolorap();
-                                                              },
-                                                              child: Container(
-                                                                height: 11.w,
-                                                                width: 11.w,
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                decoration: BoxDecoration(
-                                                                    border: Border.all(
-                                                                        width:
-                                                                            0.5,
-                                                                        color: Colors
-                                                                            .grey
-                                                                            .shade100),
-                                                                    color: selcted ==
-                                                                            index
-                                                                        ? Color(
-                                                                            0xfff7941d)
-                                                                        : Colors
-                                                                            .grey
-                                                                            .shade100,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10)),
-                                                                margin: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            2.w),
-                                                                child: Center(
-                                                                  child: Text(
-                                                                      sizeshowmodal?.variationData?[index].variationName ??
-                                                                          "",
-                                                                      style: TextStyle(
-                                                                          fontSize: 12.5
-                                                                              .sp,
-                                                                          color: selcted == index
-                                                                              ? Colors
-                                                                                  .white
-                                                                              : Colors
-                                                                                  .black,
-                                                                          fontFamily:
-                                                                              'task',
-                                                                          fontWeight: FontWeight
-                                                                              .bold,
-                                                                          letterSpacing:
-                                                                              1)),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              height: 0.5.h,
-                                                            ),
-                                                          ],
-                                                        );
-                                                      }),
-                                                ),
-                                              ],
-                                            ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 2.h),
-                              ],
-                            ),
-                          ),
-                          Positioned(
-                            left: 3.w,
-                            bottom: 0.0,
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 6.h,
-                                  width: 45.w,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.white),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            colorshowmodal?.variationData
-                                                            ?.length !=
-                                                        0 &&
-                                                    sizeshowmodal?.variationData
-                                                            ?.length !=
-                                                        0
-                                                ? colormatchmodal?.priceData
-                                                            ?.length ==
-                                                        0
-                                                    ? 'Out of stock'
-                                                    : '₹${(colormatchmodal?.priceData?[0].saleVariationPrice ?? '')}'
-                                                : colorshowmodal?.variationData
-                                                                ?.length ==
-                                                            0 &&
-                                                        sizeshowmodal
-                                                                ?.variationData
-                                                                ?.length ==
-                                                            0
-                                                    ? productdetailmodal
-                                                                    ?.productData
-                                                                    ?.saleProductPrice ==
-                                                                '' ||
-                                                            productdetailmodal
-                                                                    ?.productData
-                                                                    ?.saleProductPrice ==
-                                                                null
-                                                        ? "N/A"
-                                                        : '₹${productdetailmodal?.productData?.saleProductPrice ?? ''}'
-                                                    : selectcolormodal
-                                                                    ?.variationData
-                                                                    ?.saleVariationPrice ==
-                                                                '' ||
-                                                            selectcolormodal
-                                                                    ?.variationData
-                                                                    ?.saleVariationPrice ==
-                                                                null
-                                                        ? 'N/A'
-                                                        : "₹${selectcolormodal?.variationData?.saleVariationPrice ?? ''}",
-                                            style: TextStyle(
-                                              fontSize: 18.sp,
-                                              fontFamily: 'task',
-                                              fontWeight: FontWeight.bold,
-                                              letterSpacing: 1,
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 0.5.w,
-                                          ),
-
-                                          //--------*******SALES PRICE********------
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(top: 0.4.h),
-                                            child: Text(
-                                              colorshowmodal?.variationData
-                                                              ?.length !=
-                                                          0 &&
-                                                      sizeshowmodal
-                                                              ?.variationData
-                                                              ?.length !=
-                                                          0
-                                                  ? colormatchmodal?.priceData
-                                                              ?.length ==
-                                                          0
-                                                      ? ''
-                                                      : '₹${(colormatchmodal?.priceData?[0].variationPrice ?? '')}'
-                                                  : colorshowmodal?.variationData
-                                                                  ?.length ==
-                                                              0 &&
-                                                          sizeshowmodal
-                                                                  ?.variationData
-                                                                  ?.length ==
-                                                              0
-                                                      ? productdetailmodal
-                                                                      ?.productData
-                                                                      ?.productPrice ==
-                                                                  '' ||
-                                                              productdetailmodal
-                                                                      ?.productData
-                                                                      ?.productPrice ==
-                                                                  null
-                                                          ? ''
-                                                          : '₹${productdetailmodal?.productData?.productPrice ?? ''}'
-                                                      : selectcolormodal
-                                                                      ?.variationData
-                                                                      ?.variationPrice ==
-                                                                  '' ||
-                                                              selectcolormodal
-                                                                      ?.variationData
-                                                                      ?.variationPrice ==
-                                                                  null
-                                                          ? ''
-                                                          : "₹${selectcolormodal?.variationData?.variationPrice ?? ''}",
-                                              style: TextStyle(
-                                                decoration:
-                                                    TextDecoration.lineThrough,
-                                                decorationThickness: 2,
-                                                decorationColor: Colors.black,
-                                                fontSize: 12.sp,
-                                                fontFamily: 'task',
-                                                fontWeight: FontWeight.normal,
-                                                letterSpacing: 1,
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8.w,
-                                ),
-                                colormatchmodal?.priceData?.length == 0 &&
-                                        sizeshowmodal?.variationData?.length !=
-                                            0
-                                    ? Container()
-                                    : GestureDetector(
-                                        onTap: () {
-                                          print(usermodal?.userId);
-                                          usermodal?.userId == "" ||
-                                                  usermodal?.userId == null
-                                              ? addoff()
-                                              : addcartap();
-                                        },
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                alignment: Alignment.center,
-                                                height: 6.h,
-                                                width: 40.w,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30),
-                                                    color: Color(0xfff7941d)),
-                                                child: Text(
-                                                  "Add To Cart",
+                                                Text(
+                                                  '( 3 )',
                                                   style: TextStyle(
-                                                      fontSize: 13.sp,
-                                                      color: Colors.white,
-                                                      fontFamily: "task"),
+                                                    fontFamily: 'task',
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 1,
+                                                    color: Colors.black
+                                                        .withOpacity(0.7),
+                                                  ),
                                                 ),
+                                              ],
+                                            ),
+                                            Text(
+                                              '1 day ago',
+                                              style: TextStyle(
+                                                fontFamily: 'task',
+                                                fontWeight: FontWeight.bold,
+                                                letterSpacing: 0.5,
+                                                color: Colors.black
+                                                    .withOpacity(0.7),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 1.h),
-                      Row(
-                        children: [
-                          SizedBox(width: 2.w),
-                          InkWell(
-                            onTap: () {},
-                            child: Text(
-                              'Reviews :',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontFamily: 'task',
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1,
-                                color: Colors.black.withOpacity(0.7),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 1.h),
-                      Row(
-                        children: [
-                          SizedBox(width: 2.w),
-                          InkWell(
-                            onTap: () {},
-                            child: Text(
-                              'Add Your Review',
-                              style: TextStyle(
-                                fontSize: 15.sp,
-                                fontFamily: 'task',
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1,
-                                color: Color(0xfff7941d),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 1.h),
-                      SizedBox(
-                        height: 35.h,
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          itemCount: 5,
-                          itemBuilder: (context, index) {
-                            return Container(margin: EdgeInsets.symmetric(vertical: 1.h),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin:
-                                            EdgeInsets.symmetric(horizontal: 1.w),
-                                        height: 16.w,
-                                        width: 16.w,
-                                        padding: EdgeInsets.all(1.w),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(90),
-                                          child: CachedNetworkImage(
-                                              fit: BoxFit.cover,
-                                              imageUrl: profilemodal?.profileDetails
-                                                      ?.profileimage ??
-                                                  '',
-                                              progressIndicatorBuilder: (context,
-                                                      url, progress) =>
-                                                  Center(
-                                                      child:
-                                                          CircularProgressIndicator()),
-                                              errorWidget: (context, url, error) =>
-                                                  Image.asset('assets/deim.png')),
-                                        ),
-                                      ),
-                                      Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text('User ${index + 1}',
-                                            style: TextStyle(
-                                              fontSize: 12.sp,
-                                              fontFamily: 'task',
-                                              fontWeight: FontWeight.bold,
-                                              letterSpacing: 1,
-                                              color: Colors.black.withOpacity(0.7),
-                                            ),),
-                                          Row(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Icon(Icons.star,color: Colors.amber,),
-                                                  Icon(Icons.star,color: Colors.amber,),
-                                                  Icon(Icons.star,color: Colors.amber,),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
                                       ),
                                     ],
-                                  ),
-
-                                  Text(
-                                    'Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,',
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontFamily: 'task',
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1,
-                                      color: Color(0xff020202),
-                                    ),
                                   ),
                                 ],
                               ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                              SizedBox(height: 0.5.h),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 3.w),
+                                child: Text(
+                                  'Comment herr i am comment Review,Comment herr i am comment Review,Comment herr i am comment Review,',
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontFamily: 'task',
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1,
+                                    color: Colors.black.withOpacity(0.75),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
       ),
@@ -1403,5 +1473,300 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
         buildErrorDialog(context, 'Error', "Internet Required");
       }
     });
+  }
+
+  addreviewap() async {
+    if (_formKey.currentState!.validate()) {
+      final Map<String, String> data = {};
+      data['userId'] = (usermodal?.userId).toString();
+      data['product_id'] = widget.productid.toString();
+      data['rating'] = _rating.text.trim().toString();
+      data['description'] = _comment.text.trim().toString();
+      print('Add Review');
+      print(data);
+      checkInternet().then((internet) async {
+        if (internet) {
+          authprovider().addReviewApi(data).then((response) async {
+            addreview = addReviewModal.fromJson(json.decode(response.body));
+            print(addcartmodal?.status);
+            if (response.statusCode == 200 && addreview?.status == "success") {
+              print('EE Review Add Thay Gyu Hooooo ! ^_^');
+              Navigator.pop(context);
+              setState(() {
+                _comment.clear();
+                _rating.clear();
+                // isLoading = false;
+              });
+            } else {
+              setState(() {
+                // isLoading = false;
+              });
+            }
+          });
+        } else {
+          setState(() {
+            // isLoading = false;
+          });
+          buildErrorDialog(context, 'Error', "Internet Required");
+        }
+      });
+    }
+  }
+
+  addreviewdialog() {
+    setState(() {
+      _comment.clear();
+      _rating.clear();
+    });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 00,
+          child: Stack(
+            children: [
+              Container(
+                  width: 80.w,
+                  child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 3.h, horizontal: 3.w),
+                      child: SingleChildScrollView(
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            // mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Center(
+                                child: Text(
+                                  'Add Your Review',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 17.sp,
+                                      fontFamily: 'task',
+                                      color: Color(0xfff7941d),
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1),
+                                ),
+                              ),
+                              SizedBox(height: 3.h),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 2.w),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          SizedBox(width: 1.w),
+                                          Icon(CupertinoIcons.info),
+                                          SizedBox(width: 2.w),
+                                          Column(
+                                            children: [
+                                              SizedBox(height: 0.5.h),
+                                              Text(
+                                                "Review",
+                                                style: TextStyle(
+                                                    color: Colors.black87,
+                                                    fontFamily: "task",
+                                                    fontSize: 15.sp,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 0.5.h),
+                                      TextFormField(
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Please Add Your Review";
+                                          }
+                                          return null;
+                                        },
+                                        keyboardType: TextInputType.text,
+                                        controller: _comment,
+                                        maxLines: 3,
+                                        decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          disabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          hintText: 'Add Your Review',
+                                          hintStyle: TextStyle(
+                                              color:
+                                                  Colors.black.withOpacity(0.5),
+                                              fontSize: 14.sp,
+                                              fontFamily: "task"),
+                                        ),
+                                      ),
+                                      SizedBox(height: 2.h),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(width: 1.w),
+                                          Icon(CupertinoIcons.star),
+                                          SizedBox(width: 2.w),
+                                          Column(
+                                            children: [
+                                              SizedBox(height: 0.5.h),
+                                              Text(
+                                                "Ratings",
+                                                style: TextStyle(
+                                                    color: Colors.black87,
+                                                    fontFamily: "task",
+                                                    fontSize: 15.sp,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 0.5.h),
+                                      TextFormField(
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Please Give Some Rating";
+                                          }
+                                          return null;
+                                        },
+                                        keyboardType: TextInputType.number,
+                                        controller: _rating,
+                                        onChanged: (value) {
+                                          if (int.parse(_rating.text) > 5) {
+                                            setState(() {
+                                              _rating.text = '';
+                                            });
+                                            Fluttertoast.showToast(
+                                                msg:
+                                                    "You Can't Give more than 5 Star Review",
+                                                toastLength: Toast.LENGTH_SHORT,
+                                                timeInSecForIosWeb: 1,
+                                                backgroundColor: Colors.white,
+                                                textColor: Color(0xfff7941d),
+                                                fontSize: 11.sp);
+                                            print('big');
+                                          } else {
+                                            print('small');
+                                          }
+                                        },
+                                        decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          disabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          hintText: 'Give Your Ratings',
+                                          hintStyle: TextStyle(
+                                              color:
+                                                  Colors.black.withOpacity(0.5),
+                                              fontSize: 14.sp,
+                                              fontFamily: "task"),
+                                        ),
+                                      ),
+                                    ]),
+                              ),
+                              SizedBox(height: 3.h),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      addreviewap();
+                                    },
+                                    child: Container(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            alignment: Alignment.center,
+                                            height: 6.h,
+                                            width: 40.w,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(30),
+                                                color: Color(0xfff7941d)),
+                                            child: Row(
+                                              children: [
+                                                IconButton(
+                                                    onPressed: () {},
+                                                    icon: Icon(
+                                                      CupertinoIcons.add,
+                                                      color: Colors.white,
+                                                    )),
+                                                Text(
+                                                  "Add Review",
+                                                  style: TextStyle(
+                                                      fontSize: 13.sp,
+                                                      color: Colors.white,
+                                                      fontFamily: "task"),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 2.h),
+                            ],
+                          ),
+                        ),
+                      ))),
+              Positioned(
+                  right: 0,
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(CupertinoIcons.clear_circled_solid)))
+            ],
+          ),
+        );
+      },
+    );
   }
 }

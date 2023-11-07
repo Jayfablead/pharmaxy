@@ -43,7 +43,7 @@ dependencies:
   http:
   shared_preferences:
   provider:
-
+  fluttertoast:
   connectivity:
   dio:
   flutter_spinkit:
