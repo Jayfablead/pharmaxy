@@ -49,7 +49,6 @@ class _LoginPage2State extends State<LoginPage2> {
     return Form(
       key: _formKey,
       child: Scaffold(
-
         body: SingleChildScrollView(
             child: FutureBuilder(
           future: cart.getdata(),
