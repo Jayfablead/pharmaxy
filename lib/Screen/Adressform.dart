@@ -368,7 +368,7 @@ setState(() {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "country",
+                                    "Country",
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
@@ -378,8 +378,9 @@ setState(() {
                                   Container(
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.sp),
-                                      color: Colors.white.withOpacity(0.15),
+                                      border: Border.all(width: 1,color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(50),
+
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5.0, vertical: 0.5.h),
@@ -436,9 +437,10 @@ setState(() {
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.sp),
-                                      color: Colors.white.withOpacity(0.15),
+                                    decoration:BoxDecoration(
+                                      border: Border.all(width: 1,color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(50),
+
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5.0, vertical: 0.5.h),
@@ -495,9 +497,10 @@ setState(() {
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.sp),
-                                      color: Colors.white.withOpacity(0.15),
+                                    decoration:BoxDecoration(
+                                      border: Border.all(width: 1,color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(50),
+
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5.0, vertical: 0.5.h),
