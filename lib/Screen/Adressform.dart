@@ -44,6 +44,7 @@ class test2 {
 }
 
 bool isLoading = true;
+bool back = false;
 String? countryValue;
 
 String? stateValue;
@@ -691,9 +692,15 @@ class _AdressformState extends State<Adressform> {
                 shippingaddmodal?.status == "success") {
               update(context, 'Address', 'Address Save Successfully',
                   callback: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => AllAddpage()));
-              });
+                    Navigator.pop(context);
+                    setState(() {
+                      back = true;
+                    });
+                    back
+                        ? Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => AllAddpage()))
+                        : null;
+                  });
               print('EE Thay Gyu Hooooo ! ^_^');
               setState(() {
                 isLoading = false;

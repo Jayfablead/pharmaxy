@@ -21,6 +21,7 @@ class EditProfile extends StatefulWidget {
 ImagePicker picker = ImagePicker();
 
 bool isLoading = true;
+bool back = false;
 
 String selected = 'male';
 
@@ -553,8 +554,14 @@ class _EditProfileState extends State<EditProfile> {
               editprofilemodal?.status == "success") {
             update(context, 'Profile', 'Profile Updated Successfully',
                 callback: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
+              Navigator.pop(context);
+              setState(() {
+                back = true;
+              });
+              back
+                  ? Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => ProfilePage()))
+                  : null;
             });
             setState(() {
               isLoading = false;

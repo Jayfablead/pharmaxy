@@ -14,7 +14,6 @@ import '../Provider/Authprovider.dart';
 import '../Widget/Const.dart';
 import '../Widget/buildErrorDialog.dart';
 import '../Widget/loder.dart';
-import 'Adressform.dart';
 import 'AllAddpage.dart';
 
 class editshippingadress extends StatefulWidget {
@@ -48,6 +47,7 @@ class test2 {
 }
 
 bool isLoading = true;
+bool back1 = true;
 String? address = "";
 test? selected;
 test1? selected1;
@@ -78,7 +78,6 @@ class _editshippingadressState extends State<editshippingadress> {
     shippingap();
     userselectaddap();
     contryap();
-
   }
 
   @override
@@ -104,8 +103,9 @@ class _editshippingadressState extends State<editshippingadress> {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                      builder: (context) => Adressform()));
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) => AllAddpage()));
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
@@ -735,8 +735,14 @@ class _editshippingadressState extends State<editshippingadress> {
             if (response.statusCode == 200 &&
                 editshippingadd?.status == "success") {
               update(context, '', 'Address Save Successfully', callback: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => AllAddpage()));
+                Navigator.pop(context);
+                setState(() {
+                  back1 = true;
+                });
+                back1
+                    ? Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => AllAddpage()))
+                    : null;
               });
               print('EE Thay Gyu Hooooo ! ^_^');
 

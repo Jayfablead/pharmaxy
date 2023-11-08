@@ -300,10 +300,11 @@ class _AllAddpageState extends State<AllAddpage> {
                                                             Navigator.of(
                                                                     context)
                                                                 .pop();
-                                                            Navigator.of(context).push(
-                                                                MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pushReplacement(
+                                                                    MaterialPageRoute(
+                                                                        builder: (context) =>
                                                                             editshippingadress(
                                                                               addid: alluseraddmodal?.allShippingAddress?[index].id,
                                                                             )));

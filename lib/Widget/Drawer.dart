@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
-import 'package:ecommerce/Screen/AllAddpage.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/ChangePassword.dart';
@@ -602,110 +601,6 @@ class _drawer1State extends State<drawer1> {
                                           width: 2.w,
                                         ),
                                         Text('WishList',
-                                            style: TextStyle(
-                                              fontSize: 17.sp,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: 'task',
-                                              color: Colors.black,
-                                            )),
-                                      ],
-                                    ),
-                                    Icon(
-                                      Icons.chevron_right_rounded,
-                                      color: Colors.black,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => AllAddpage(),
-                          ));
-                        },
-                        child: Container(
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 6.w,
-                              ),
-                              Container(
-                                width: 64.w,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.home,
-                                          size: 22.sp,
-                                          color: Color(0xfff7941d),
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        Text("Shipping Address",
-                                            style: TextStyle(
-                                              fontSize: 17.sp,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: 'task',
-                                              color: Colors.black,
-                                            )),
-                                      ],
-                                    ),
-                                    Icon(
-                                      Icons.chevron_right_rounded,
-                                      color: Colors.black,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => CategoryPage(),
-                          ));
-                        },
-                        child: Container(
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 6.w,
-                              ),
-                              Container(
-                                width: 64.w,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.category_rounded,
-                                          size: 22.sp,
-                                          color: Color(0xfff7941d),
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        Text("Categories",
                                             style: TextStyle(
                                               fontSize: 17.sp,
                                               fontWeight: FontWeight.w500,

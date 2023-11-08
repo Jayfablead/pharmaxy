@@ -588,7 +588,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                           ? Colors
                                                                               .red
                                                                           : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending'
-                                                                              ? Colors.deepOrange
+                                                                              ? Color(0xfff7941d)
                                                                               : Colors.green,
                                                                     ),
                                                                   ),
@@ -1294,11 +1294,11 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             "Pending",
                                                                             style:
                                                                                 TextStyle(
-                                                                              fontSize: 13.sp,
+                                                                                  fontSize: 13.sp,
                                                                               fontFamily: 'task',
                                                                               fontWeight: FontWeight.bold,
                                                                               letterSpacing: 1,
-                                                                              color: Colors.deepOrange,
+                                                                              color: Color(0xfff7941d),
                                                                             ),
                                                                           ),
                                                                           SizedBox(
