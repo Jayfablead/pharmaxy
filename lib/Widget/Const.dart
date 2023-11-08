@@ -108,9 +108,8 @@ CityModal? citymodal;
 ForgotModal? forgotmodal;
 PaymethodModal? paymethodmodal;
 addReviewModal? addreview;
-ViewReviewModal?viewReviewmodal;
-DeleteReviewModal?deletereviewmodal;
-
+ViewReviewModal? viewReviewmodal;
+DeleteReviewModal? deletereviewmodal;
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());

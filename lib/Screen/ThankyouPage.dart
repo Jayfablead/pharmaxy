@@ -29,7 +29,6 @@ class _ThankyouPageState extends State<ThankyouPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Column(
         children: [
           SizedBox(

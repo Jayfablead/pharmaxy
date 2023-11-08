@@ -93,7 +93,6 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-
         key: _scaffoldKey,
         drawer: drawer1(),
         backgroundColor: bgcolor,

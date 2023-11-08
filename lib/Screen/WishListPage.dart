@@ -54,7 +54,6 @@ class _WishListPageState extends State<WishListPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-
         key: _scaffoldKey,
         drawer: drawer1(),
         backgroundColor: bgcolor,
@@ -346,25 +345,24 @@ class _WishListPageState extends State<WishListPage> {
                                                         padding:
                                                             EdgeInsets.only(
                                                                 left: 1.w),
-                                                        child:
-                                                        Row(
+                                                        child: Row(
                                                           children: [
                                                             Text(
                                                               '₹' +
                                                                   (userwishlIstmodal
-                                                                      ?.wishList?[
-                                                                  index]
-                                                                      .saleProductPrice)
+                                                                          ?.wishList?[
+                                                                              index]
+                                                                          .saleProductPrice)
                                                                       .toString(),
                                                               style: TextStyle(
                                                                 fontSize: 12.sp,
                                                                 fontFamily:
-                                                                'task',
+                                                                    'task',
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .bold,
+                                                                    FontWeight
+                                                                        .bold,
                                                                 letterSpacing:
-                                                                1,
+                                                                    1,
                                                                 color: Colors
                                                                     .black,
                                                               ),
@@ -375,29 +373,28 @@ class _WishListPageState extends State<WishListPage> {
                                                             Padding(
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                  top: 0.4
-                                                                      .h),
+                                                                      top: 0.4
+                                                                          .h),
                                                               child: Text(
                                                                 '₹' +
                                                                     (userwishlIstmodal
-                                                                        ?.wishList?[
-                                                                    index]
-                                                                        .productPrice)
+                                                                            ?.wishList?[index]
+                                                                            .productPrice)
                                                                         .toString(),
                                                                 style:
-                                                                TextStyle(
+                                                                    TextStyle(
                                                                   decoration:
-                                                                  TextDecoration
-                                                                      .lineThrough,
+                                                                      TextDecoration
+                                                                          .lineThrough,
                                                                   fontSize:
-                                                                  12.sp,
+                                                                      12.sp,
                                                                   fontFamily:
-                                                                  'task',
+                                                                      'task',
                                                                   fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
+                                                                      FontWeight
+                                                                          .normal,
                                                                   letterSpacing:
-                                                                  1,
+                                                                      1,
                                                                   color: Colors
                                                                       .black,
                                                                 ),

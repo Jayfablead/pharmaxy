@@ -117,7 +117,6 @@ class _MyOrderListState extends State<MyOrderList> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-
         key: _scaffoldKey,
         drawer: drawer1(),
         backgroundColor: bgcolor,
@@ -979,7 +978,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                     ],
                                   )
                             : sel == 2
-                                ?pendingordermodal?.cartDetails?.length == 0 ||
+                                ? pendingordermodal?.cartDetails?.length == 0 ||
                                         pendingordermodal
                                                 ?.cartDetails?.length ==
                                             null

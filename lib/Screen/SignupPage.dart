@@ -33,7 +33,6 @@ class _SignupPageState extends State<SignupPage> {
     return Form(
       key: _formKey,
       child: Scaffold(
-
         body: SingleChildScrollView(
           child: Stack(
             children: [

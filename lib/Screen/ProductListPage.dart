@@ -65,7 +65,6 @@ class _ProductListPageState extends State<ProductListPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-
         backgroundColor: bgcolor,
         key: _scaffoldKey,
         drawer: drawer1(),

@@ -40,7 +40,6 @@ class _AllAddpageState extends State<AllAddpage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-
         backgroundColor: Colors.grey.shade100,
         bottomNavigationBar: bottombar(),
         body: isLoading
@@ -88,7 +87,7 @@ class _AllAddpageState extends State<AllAddpage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => Adressform()));
                       },
                       child: Container(

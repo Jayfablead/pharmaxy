@@ -34,7 +34,6 @@ class _ProductDetailPage3State extends State<ProductDetailPage3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       bottomNavigationBar: bottombar(),
       body: Stack(
         children: [

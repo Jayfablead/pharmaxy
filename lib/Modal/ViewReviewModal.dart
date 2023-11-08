@@ -36,13 +36,13 @@ class ReviewData {
 
   ReviewData(
       {this.reviewId,
-        this.name,
-        this.rating,
-        this.email,
-        this.comments,
-        this.userId,
-        this.date,
-        this.userProfile});
+      this.name,
+      this.rating,
+      this.email,
+      this.comments,
+      this.userId,
+      this.date,
+      this.userProfile});
 
   ReviewData.fromJson(Map<String, dynamic> json) {
     reviewId = json['review_id'];

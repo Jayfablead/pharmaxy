@@ -44,10 +44,14 @@ class test2 {
 }
 
 bool isLoading = true;
-String? countryValue ;
-String? stateValue    ;
-String? cityValue    ;
-String? address ;
+String? countryValue;
+
+String? stateValue;
+
+String? cityValue;
+
+String? address;
+
 test? selected;
 test1? selected1;
 
@@ -69,11 +73,11 @@ class _AdressformState extends State<Adressform> {
     // TODO: implement initState
     super.initState();
     print(widget.addid);
-setState(() {
-  countryValue = null;
-  cityValue = null;
-  stateValue = null;
-});
+    setState(() {
+      countryValue = null;
+      cityValue = null;
+      stateValue = null;
+    });
     contryap();
   }
 
@@ -100,7 +104,7 @@ setState(() {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  Navigator.of(context).pop();
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AllAddpage(),));
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
@@ -175,11 +179,11 @@ setState(() {
                                                   BorderRadius.circular(30),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
-                                          hintText: 'First Name',
+                                          hintText: 'Enter Your First Name',
                                           hintStyle: TextStyle(
                                               color:
-                                                  Colors.black.withOpacity(0.6),
-                                              fontSize: 14.sp,
+                                                  Colors.black.withOpacity(0.4),
+                                              fontSize: 13.sp,
                                               fontFamily: "task"),
                                         ),
                                       ),
@@ -235,10 +239,10 @@ setState(() {
                                               BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
-                                      hintText: 'Last Name ',
+                                      hintText: 'Enter Your Last Name ',
                                       hintStyle: TextStyle(
-                                          color: Colors.black.withOpacity(0.6),
-                                          fontSize: 14.sp,
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 13.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -254,7 +258,7 @@ setState(() {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Address 1",
+                                    "Address",
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
@@ -292,10 +296,10 @@ setState(() {
                                               BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
-                                      hintText: 'Address 1 ',
+                                      hintText: 'Enter Your Address ',
                                       hintStyle: TextStyle(
-                                          color: Colors.black.withOpacity(0.6),
-                                          fontSize: 14.sp,
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 13.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -349,10 +353,10 @@ setState(() {
                                               BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
-                                      hintText: 'Phone',
+                                      hintText: 'Enter Your Phone Number',
                                       hintStyle: TextStyle(
-                                          color: Colors.black.withOpacity(0.6),
-                                          fontSize: 14.sp,
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 13.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -378,37 +382,40 @@ setState(() {
                                   Container(
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                      border: Border.all(width: 1,color: Colors.grey),
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
                                       borderRadius: BorderRadius.circular(50),
-
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-                                       hint: Text('Select Country',
-                                       style: TextStyle(
-                                       color: Colors.black.withOpacity(0.6),
-                                          fontSize: 14.sp,
-                                          fontFamily: "task"),),
+                                        hint: Text(
+                                          'Select Country',
+                                          style: TextStyle(
+                                              color:
+                                                  Colors.black.withOpacity(0.4),
+                                              fontSize: 13.sp,
+                                              fontFamily: "task"),
+                                        ),
                                         // Not necessary for Option 1
                                         value: countryValue,
                                         onChanged: (newValue) {
                                           setState(() {
-
                                             countryValue = newValue.toString();
                                             print(countryValue);
                                             stateap(countryValue ?? '');
                                           });
                                         },
-                                        items: countrymodal?.countries?.map((location) {
+                                        items: countrymodal?.countries
+                                            ?.map((location) {
                                           return DropdownMenuItem(
                                             child: Text(
                                               location.countryName ?? '',
                                               style: TextStyle(
-                                                  color: Colors.grey.shade500,
-                                                  fontFamily: 'Meta1',
-                                                  fontSize: 12.sp),
+                                                  color: Colors.black87,
+                                                  fontFamily: 'task',
+                                                  fontSize: 14.sp),
                                             ),
                                             value: location.countryID,
                                           );
@@ -437,38 +444,41 @@ setState(() {
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    decoration:BoxDecoration(
-                                      border: Border.all(width: 1,color: Colors.grey),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
                                       borderRadius: BorderRadius.circular(50),
-
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-                                        hint: Text('Select State',
+                                        hint: Text(
+                                          'Select State',
                                           style: TextStyle(
-                                              color: Colors.black.withOpacity(0.6),
-                                              fontSize: 14.sp,
-                                              fontFamily: "task"),),
+                                              color:
+                                                  Colors.black.withOpacity(0.4),
+                                              fontSize: 13.sp,
+                                              fontFamily: "task"),
+                                        ),
                                         // Not necessary for Option 1
                                         value: stateValue,
                                         onChanged: (newValue) {
                                           setState(() {
-
                                             stateValue = newValue.toString();
                                             print(stateValue);
                                             cityap(stateValue ?? '');
                                           });
                                         },
-                                        items: statemodal?.states?.map((location) {
+                                        items:
+                                            statemodal?.states?.map((location) {
                                           return DropdownMenuItem(
                                             child: Text(
                                               location.stateName ?? '',
                                               style: TextStyle(
-                                                  color: Colors.grey.shade500,
-                                                  fontFamily: 'Meta1',
-                                                  fontSize: 12.sp),
+                                                  color: Colors.black87,
+                                                  fontFamily: 'task',
+                                                  fontSize: 14.sp),
                                             ),
                                             value: location.stateID,
                                           );
@@ -497,37 +507,40 @@ setState(() {
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    decoration:BoxDecoration(
-                                      border: Border.all(width: 1,color: Colors.grey),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
                                       borderRadius: BorderRadius.circular(50),
-
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-                                        hint: Text('Select City',
+                                        hint: Text(
+                                          'Select City',
                                           style: TextStyle(
-                                              color: Colors.black.withOpacity(0.6),
-                                              fontSize: 14.sp,
-                                              fontFamily: "task"),),
+                                              color:
+                                                  Colors.black.withOpacity(0.4),
+                                              fontSize: 13.sp,
+                                              fontFamily: "task"),
+                                        ),
                                         // Not necessary for Option 1
                                         value: cityValue,
                                         onChanged: (newValue) {
                                           setState(() {
-
                                             cityValue = newValue.toString();
                                             print(cityValue);
                                           });
                                         },
-                                        items: citymodal?.cities?.map((location) {
+                                        items:
+                                            citymodal?.cities?.map((location) {
                                           return DropdownMenuItem(
                                             child: Text(
                                               location.cityName ?? '',
                                               style: TextStyle(
-                                                  color: Colors.grey.shade500,
-                                                  fontFamily: 'Meta1',
-                                                  fontSize: 12.sp),
+                                                  color: Colors.black87,
+                                                  fontFamily: 'task',
+                                                  fontSize: 14.sp),
                                             ),
                                             value: location.cityID,
                                           );
@@ -590,10 +603,10 @@ setState(() {
                                               BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
-                                      hintText: '395004 ',
+                                      hintText: 'Enter Zip Code',
                                       hintStyle: TextStyle(
-                                          color: Colors.black.withOpacity(0.6),
-                                          fontSize: 14.sp,
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 13.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -607,8 +620,21 @@ setState(() {
                         ),
                         GestureDetector(
                           onTap: () {
-                            shippingap();
-                            print(selected?.title);
+                            if (_formKey.currentState!.validate()) {
+                              countryValue == null &&
+                                      cityValue == null &&
+                                      stateValue == null
+                                  ? buildErrorDialog(context, 'Field Error',
+                                      'Country, State & City Required')
+                                  : cityValue == null && stateValue == null
+                                      ? buildErrorDialog(context, 'Field Error',
+                                          'State & City Required')
+                                      : cityValue == null
+                                          ? buildErrorDialog(context,
+                                              'Field Error', 'City Required')
+                                          : shippingap();
+                              print(selected?.title);
+                            }
                           },
                           child: Row(
                             children: [
@@ -699,7 +725,6 @@ setState(() {
             print('country : ${countrymodal?.countries?.length}');
 
             setState(() {
-
               isLoading = false;
             });
           } else {
@@ -727,10 +752,7 @@ setState(() {
           statemodal = StateModal.fromJson(json.decode(response.body));
 
           if (response.statusCode == 200 && statemodal?.status == "success") {
-
-
             setState(() {
-
               isLoading = false;
             });
           } else {
@@ -758,10 +780,8 @@ setState(() {
           citymodal = CityModal.fromJson(json.decode(response.body));
           print(citymodal?.status);
           if (response.statusCode == 200 && citymodal?.status == "success") {
-
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
-
               isLoading = false;
             });
           } else {

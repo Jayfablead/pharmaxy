@@ -14,6 +14,7 @@ import '../Provider/Authprovider.dart';
 import '../Widget/Const.dart';
 import '../Widget/buildErrorDialog.dart';
 import '../Widget/loder.dart';
+import 'Adressform.dart';
 import 'AllAddpage.dart';
 
 class editshippingadress extends StatefulWidget {
@@ -60,9 +61,12 @@ class _editshippingadressState extends State<editshippingadress> {
   TextEditingController _ZipCode = TextEditingController();
   TextEditingController _phone = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String? countryValue ;
-  String? stateValue ;
-  String? cityValue ;
+  String? countryValue;
+
+  String? stateValue;
+
+  String? cityValue;
+
   List<test> items = [];
   List<test1> items1 = [];
   List<test2> items2 = [];
@@ -74,8 +78,7 @@ class _editshippingadressState extends State<editshippingadress> {
     shippingap();
     userselectaddap();
     contryap();
-    stateap(countryValue ?? '');
-    cityap(stateValue ?? '');
+
   }
 
   @override
@@ -85,7 +88,6 @@ class _editshippingadressState extends State<editshippingadress> {
       child: commanScreen(
         isLoading: isLoading,
         scaffold: Scaffold(
-
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: isLoading
@@ -102,7 +104,8 @@ class _editshippingadressState extends State<editshippingadress> {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                      builder: (context) => Adressform()));
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
@@ -135,7 +138,8 @@ class _editshippingadressState extends State<editshippingadress> {
                                 Container(
                                   width: 85.w,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "First Name",
@@ -159,28 +163,28 @@ class _editshippingadressState extends State<editshippingadress> {
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(30),
-                                              borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
                                           disabledBorder: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(30),
-                                              borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
                                           focusedBorder: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(30),
-                                              borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(30),
-                                              borderSide:
-                                                  BorderSide(color: Colors.grey)),
-                                          hintText: 'First Name',
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          hintText: 'Enter Your First Name',
                                           hintStyle: TextStyle(
                                               color:
-                                                  Colors.black.withOpacity(0.6),
-                                              fontSize: 14.sp,
+                                                  Colors.black.withOpacity(0.4),
+                                              fontSize: 13.sp,
                                               fontFamily: "task"),
                                         ),
                                       ),
@@ -217,25 +221,29 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(height: 1),
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
-                                      hintText: 'Last Name',
+                                      hintText: 'Enter Your Last Name',
                                       hintStyle: TextStyle(
-                                          color: Colors.black.withOpacity(0.6),
-                                          fontSize: 14.sp,
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 13.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -251,7 +259,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Address 1",
+                                    "Address",
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
@@ -270,25 +278,29 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(height: 1),
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
-                                          border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
-                                      hintText: 'Address 1',
+                                      hintText: 'Enter Your Address ',
                                       hintStyle: TextStyle(
-                                          color: Colors.black.withOpacity(0.6),
-                                          fontSize: 14.sp,
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 13.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -323,25 +335,29 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(height: 1),
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
-                                      hintText: 'Phone',
+                                      hintText: 'Enter Phone number',
                                       hintStyle: TextStyle(
-                                          color: Colors.black.withOpacity(0.6),
-                                          fontSize: 14.sp,
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 13.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -366,38 +382,41 @@ class _editshippingadressState extends State<editshippingadress> {
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    decoration:BoxDecoration(
-                                      border: Border.all(width: 1,color: Colors.grey),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
                                       borderRadius: BorderRadius.circular(50),
-
                                     ),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 5.0, vertical: 0.5.h),
+                                    padding: EdgeInsets.only(
+                                        top: 0.5.h, bottom: 0.5.h, right: 5.w),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-                                        hint: Text('Select Country',
+                                        hint: Text(
+                                          'Select Country',
                                           style: TextStyle(
-                                              color: Colors.black.withOpacity(0.6),
-                                              fontSize: 14.sp,
-                                              fontFamily: "task"),),
+                                              color:
+                                                  Colors.black.withOpacity(0.4),
+                                              fontSize: 13.sp,
+                                              fontFamily: "task"),
+                                        ),
                                         // Not necessary for Option 1
                                         value: countryValue,
                                         onChanged: (newValue) {
                                           setState(() {
-
                                             countryValue = newValue.toString();
                                             print(countryValue);
                                             stateap(countryValue ?? '');
                                           });
                                         },
-                                        items: countrymodal?.countries?.map((location) {
+                                        items: countrymodal?.countries
+                                            ?.map((location) {
                                           return DropdownMenuItem(
                                             child: Text(
                                               location.countryName ?? '',
                                               style: TextStyle(
-                                                  color: Colors.grey.shade500,
-                                                  fontFamily: 'Meta1',
-                                                  fontSize: 12.sp),
+                                                  color: Colors.black87,
+                                                  fontFamily: 'task',
+                                                  fontSize: 14.sp),
                                             ),
                                             value: location.countryID,
                                           );
@@ -426,38 +445,41 @@ class _editshippingadressState extends State<editshippingadress> {
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    decoration:BoxDecoration(
-                                      border: Border.all(width: 1,color: Colors.grey),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
                                       borderRadius: BorderRadius.circular(50),
-
                                     ),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 5.0, vertical: 0.5.h),
+                                    padding: EdgeInsets.only(
+                                        top: 0.5.h, bottom: 0.5.h, right: 5.w),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-                                        hint: Text('Select State',
+                                        hint: Text(
+                                          'Select State',
                                           style: TextStyle(
-                                              color: Colors.black.withOpacity(0.6),
-                                              fontSize: 14.sp,
-                                              fontFamily: "task"),),
+                                              color:
+                                                  Colors.black.withOpacity(0.4),
+                                              fontSize: 13.sp,
+                                              fontFamily: "task"),
+                                        ),
                                         // Not necessary for Option 1
                                         value: stateValue,
                                         onChanged: (newValue) {
                                           setState(() {
-
                                             stateValue = newValue.toString();
                                             print(stateValue);
                                             cityap(stateValue ?? '');
                                           });
                                         },
-                                        items: statemodal?.states?.map((location) {
+                                        items:
+                                            statemodal?.states?.map((location) {
                                           return DropdownMenuItem(
                                             child: Text(
                                               location.stateName ?? '',
                                               style: TextStyle(
-                                                  color: Colors.grey.shade500,
-                                                  fontFamily: 'Meta1',
-                                                  fontSize: 12.sp),
+                                                  color: Colors.black87,
+                                                  fontFamily: 'task',
+                                                  fontSize: 14.sp),
                                             ),
                                             value: location.stateID,
                                           );
@@ -487,36 +509,39 @@ class _editshippingadressState extends State<editshippingadress> {
                                   Container(
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                      border: Border.all(width: 1,color: Colors.grey),
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
                                       borderRadius: BorderRadius.circular(50),
-
                                     ),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 5.0, vertical: 0.5.h),
+                                    padding: EdgeInsets.only(
+                                        top: 0.5.h, bottom: 0.5.h, right: 5.w),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-                                        hint: Text('Select City',
+                                        hint: Text(
+                                          'Select City',
                                           style: TextStyle(
-                                              color: Colors.black.withOpacity(0.6),
-                                              fontSize: 14.sp,
-                                              fontFamily: "task"),),
+                                              color:
+                                                  Colors.black.withOpacity(0.4),
+                                              fontSize: 13.sp,
+                                              fontFamily: "task"),
+                                        ),
                                         // Not necessary for Option 1
                                         value: cityValue,
                                         onChanged: (newValue) {
                                           setState(() {
-
                                             cityValue = newValue.toString();
                                             print(cityValue);
                                           });
                                         },
-                                        items: citymodal?.cities?.map((location) {
+                                        items:
+                                            citymodal?.cities?.map((location) {
                                           return DropdownMenuItem(
                                             child: Text(
                                               location.cityName ?? '',
                                               style: TextStyle(
-                                                  color: Colors.grey.shade500,
-                                                  fontFamily: 'Meta1',
-                                                  fontSize: 12.sp),
+                                                  color: Colors.black87,
+                                                  fontFamily: 'task',
+                                                  fontSize: 14.sp),
                                             ),
                                             value: location.cityID,
                                           );
@@ -560,25 +585,29 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(height: 1),
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
-                                      hintText: '395004',
+                                      hintText: 'Enter Zip code',
                                       hintStyle: TextStyle(
-                                          color: Colors.black.withOpacity(0.6),
-                                          fontSize: 14.sp,
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 13.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -592,12 +621,26 @@ class _editshippingadressState extends State<editshippingadress> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            editshippingap();
+                            if (_formKey.currentState!.validate()) {
+                              countryValue == null &&
+                                      cityValue == null &&
+                                      stateValue == null
+                                  ? buildErrorDialog(context, 'Field Error',
+                                      'Country, State & City Required')
+                                  : cityValue == null && stateValue == null
+                                      ? buildErrorDialog(context, 'Field Error',
+                                          'State & City Required')
+                                      : cityValue == null
+                                          ? buildErrorDialog(context,
+                                              'Field Error', 'City Required')
+                                          : editshippingap();
+                            }
                           },
                           child: Row(
                             children: [
                               Container(
-                                  margin: EdgeInsets.only(right: 7.w, left: 7.w),
+                                  margin:
+                                      EdgeInsets.only(right: 7.w, left: 7.w),
                                   alignment: Alignment.center,
                                   height: 6.h,
                                   width: 80.w,
@@ -625,98 +668,98 @@ class _editshippingadressState extends State<editshippingadress> {
     );
   }
 
-   shippingap() async {
-     if (_formKey.currentState!.validate()) {
-       final Map<String, String> data = {};
-       data['userId'] = (usermodal?.userId).toString();
-       data['first_name'] = _firstname.text.toString();
-       data['last_name'] = _lastname.text.toString();
-       data['city'] = selected2?.title ?? "";
-       data['state'] = selected1?.title ?? "";
-       data['country'] = selected?.title ?? "";
-       data['zipcode'] = _ZipCode.text.toString();
-       data['address'] = _Address.text.toString();
-       data['phone'] = _phone.text.toString();
-       print(data);
-       checkInternet().then((internet) async {
-         if (internet) {
-           authprovider().shippingaddapi(data).then((response) async {
-             shippingaddmodal =
-                 ShippingAddModal.fromJson(json.decode(response.body));
-             print(shippingaddmodal?.status);
-             if (response.statusCode == 200 &&
-                 shippingaddmodal?.status == "success") {
-               update(context, 'Profile', 'Address Save Successfully',
-                   callback: () {
-                     Navigator.of(context).pushReplacement(
-                         MaterialPageRoute(builder: (context) => AllAddpage()));
-                   });
-               print('EE Thay Gyu Hooooo ! ^_^');
-               setState(() {
-                 isLoading = false;
-               });
-             } else {
-               setState(() {
-                 isLoading = false;
-               });
-             }
-           });
-         } else {
-           setState(() {
-             isLoading = false;
-           });
-           buildErrorDialog(context, 'Error', "Internet Required");
-         }
-       });
-     }
+  shippingap() async {
+    if (_formKey.currentState!.validate()) {
+      final Map<String, String> data = {};
+      data['userId'] = (usermodal?.userId).toString();
+      data['first_name'] = _firstname.text.toString();
+      data['last_name'] = _lastname.text.toString();
+      data['city'] = selected2?.title ?? "";
+      data['state'] = selected1?.title ?? "";
+      data['country'] = selected?.title ?? "";
+      data['zipcode'] = _ZipCode.text.toString();
+      data['address'] = _Address.text.toString();
+      data['phone'] = _phone.text.toString();
+      print(data);
+      checkInternet().then((internet) async {
+        if (internet) {
+          authprovider().shippingaddapi(data).then((response) async {
+            shippingaddmodal =
+                ShippingAddModal.fromJson(json.decode(response.body));
+            print(shippingaddmodal?.status);
+            if (response.statusCode == 200 &&
+                shippingaddmodal?.status == "success") {
+              update(context, 'Profile', 'Address Save Successfully',
+                  callback: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => AllAddpage()));
+              });
+              print('EE Thay Gyu Hooooo ! ^_^');
+              setState(() {
+                isLoading = false;
+              });
+            } else {
+              setState(() {
+                isLoading = false;
+              });
+            }
+          });
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          buildErrorDialog(context, 'Error', "Internet Required");
+        }
+      });
+    }
   }
 
-   editshippingap() async {
-     if (_formKey.currentState!.validate()) {
-       final Map<String, String> data = {};
-       data['first_name'] = _firstname.text.toString();
-       data['last_name'] = _lastname.text.toString();
-       data['city'] = cityValue ?? '';
-       data['state'] = stateValue ?? '';
-       data['country'] = countryValue ?? "";
-       data['zipcode'] = _ZipCode.text.toString();
-       data['address'] = _Address.text.toString();
-       data['phone'] = _phone.text.toString();
-       data['shipping_address_id'] = widget.addid.toString();
-       checkInternet().then((internet) async {
-         if (internet) {
-           authprovider().editshippingapi(data).then((response) async {
-             editshippingadd =
-                 EditShippingAdd.fromJson(json.decode(response.body));
-             print(editshippingadd?.status);
-             if (response.statusCode == 200 &&
-                 editshippingadd?.status == "success") {
-               update(context, '', 'Address Save Successfully', callback: () {
-                 Navigator.of(context).pushReplacement(
-                     MaterialPageRoute(builder: (context) => AllAddpage()));
-               });
-               print('EE Thay Gyu Hooooo ! ^_^');
+  editshippingap() async {
+    if (_formKey.currentState!.validate()) {
+      final Map<String, String> data = {};
+      data['first_name'] = _firstname.text.toString();
+      data['last_name'] = _lastname.text.toString();
+      data['city'] = cityValue ?? '';
+      data['state'] = stateValue ?? '';
+      data['country'] = countryValue ?? "";
+      data['zipcode'] = _ZipCode.text.toString();
+      data['address'] = _Address.text.toString();
+      data['phone'] = _phone.text.toString();
+      data['shipping_address_id'] = widget.addid.toString();
+      checkInternet().then((internet) async {
+        if (internet) {
+          authprovider().editshippingapi(data).then((response) async {
+            editshippingadd =
+                EditShippingAdd.fromJson(json.decode(response.body));
+            print(editshippingadd?.status);
+            if (response.statusCode == 200 &&
+                editshippingadd?.status == "success") {
+              update(context, '', 'Address Save Successfully', callback: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => AllAddpage()));
+              });
+              print('EE Thay Gyu Hooooo ! ^_^');
 
-               setState(() {
-                 isLoading = false;
-               });
-             } else {
-               setState(() {
-                 isLoading = false;
-               });
-             }
-           });
-         } else {
-           setState(() {
-             isLoading = false;
-           });
-           buildErrorDialog(context, 'Error', "Internet Required");
-         }
-       });
-     }
+              setState(() {
+                isLoading = false;
+              });
+            } else {
+              setState(() {
+                isLoading = false;
+              });
+            }
+          });
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          buildErrorDialog(context, 'Error', "Internet Required");
+        }
+      });
+    }
   }
 
-   userselectaddap() async {
+  userselectaddap() async {
     final Map<String, String> data = {};
     data['shipping_address_id'] = widget.addid.toString();
     print(data);
@@ -742,18 +785,27 @@ class _editshippingadressState extends State<editshippingadress> {
                   userselectaddmodal?.selectShippingAddress?.number ?? "";
               _ZipCode.text =
                   userselectaddmodal?.selectShippingAddress?.zipcode ?? "";
-              cityValue =
-                  userselectaddmodal?.selectShippingAddress?.city ?? '';
-              countryValue =
-                  userselectaddmodal?.selectShippingAddress?.country ?? '';
-              stateValue =
-                  userselectaddmodal?.selectShippingAddress?.state ?? '';
+              cityValue = userselectaddmodal?.selectShippingAddress?.city ==
+                          '' ||
+                      userselectaddmodal?.selectShippingAddress?.city == null
+                  ? null
+                  : userselectaddmodal?.selectShippingAddress?.city ?? '';
+              countryValue = userselectaddmodal
+                              ?.selectShippingAddress?.country ==
+                          '' ||
+                      userselectaddmodal?.selectShippingAddress?.country == null
+                  ? null
+                  : userselectaddmodal?.selectShippingAddress?.country ?? '';
+              stateValue = userselectaddmodal?.selectShippingAddress?.state ==
+                          '' ||
+                      userselectaddmodal?.selectShippingAddress?.state == null
+                  ? null
+                  : userselectaddmodal?.selectShippingAddress?.state ?? '';
               isLoading = false;
-              print('coutntry ${ countryValue}');
+              print('coutntry ${countryValue}');
               print(' state ${stateValue}');
               print('city ${cityValue}');
             });
-
           } else {
             setState(() {
               isLoading = false;
@@ -808,8 +860,6 @@ class _editshippingadressState extends State<editshippingadress> {
           statemodal = StateModal.fromJson(json.decode(response.body));
 
           if (response.statusCode == 200 && statemodal?.status == "success") {
-
-
             setState(() {
               cityap(stateValue ?? '');
               isLoading = false;
@@ -839,10 +889,8 @@ class _editshippingadressState extends State<editshippingadress> {
           citymodal = CityModal.fromJson(json.decode(response.body));
           print(citymodal?.status);
           if (response.statusCode == 200 && citymodal?.status == "success") {
-
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
-
               isLoading = false;
             });
           } else {

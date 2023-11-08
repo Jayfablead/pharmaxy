@@ -92,7 +92,6 @@ class _CartPageState extends State<CartPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-
         key: _scaffoldKey,
         drawer: drawer1(),
         backgroundColor: bgcolor,

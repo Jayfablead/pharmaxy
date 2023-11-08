@@ -296,6 +296,7 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
+
   Future<http.Response> addReviewApi(Map<String, String> bodyData) async {
     const url = "$baseUrl/add_review";
     var responseJson;
@@ -798,8 +799,6 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
-
-
   Future<http.Response> viewreviewapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/view_Review";
     var responseJson;
@@ -815,7 +814,6 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
-
   Future<http.Response> deletereviewapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/delete_review";
     var responseJson;
@@ -830,7 +828,4 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
-
-
-
 }

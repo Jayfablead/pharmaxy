@@ -12,7 +12,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

@@ -43,7 +43,6 @@ class _SpleshScreenState extends State<SpleshScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
