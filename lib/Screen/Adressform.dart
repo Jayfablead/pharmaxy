@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ecommerce/Modal/CityModal.dart';
 import 'package:ecommerce/Modal/CountryModal.dart';
 import 'package:ecommerce/Modal/ShippingAddModal.dart';
@@ -43,10 +44,10 @@ class test2 {
 }
 
 bool isLoading = true;
-String? countryValue = "";
-String? stateValue = "";
-String? cityValue = "";
-String? address = "";
+String? countryValue ;
+String? stateValue ;
+String? cityValue ;
+String? address ;
 test? selected;
 test1? selected1;
 
@@ -370,33 +371,36 @@ class _AdressformState extends State<Adressform> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
-                                    width: 85.w,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 3.w, vertical: 0.5.h),
+                                    width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
+                                      borderRadius: BorderRadius.circular(15.sp),
+                                      color: Colors.white.withOpacity(0.15),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
-                                      child: DropdownButton<test>(
-                                        hint: Text("Select Country"),
-                                        value: selected,
-                                        onChanged: (test? newValue) {
+                                      child: DropdownButton2(
+
+                                        // Not necessary for Option 1
+                                        value: countryValue,
+                                        onChanged: (newValue) {
                                           setState(() {
-                                            selected =
-                                                newValue; // Update the selectedItem
+
+                                            countryValue = newValue.toString();
+                                            print(countryValue);
+                                            stateap(countryValue ?? '');
                                           });
-                                          stateap();
                                         },
-                                        items: items.map((test item) {
-                                          return DropdownMenuItem<test>(
-                                            value: item,
+                                        items: countrymodal?.countries?.map((location) {
+                                          return DropdownMenuItem(
                                             child: Text(
-                                              item.title,
+                                              location.countryName ?? '',
                                               style: TextStyle(
-                                                  color: Colors.black),
+                                                  color: Colors.grey.shade500,
+                                                  fontFamily: 'Meta1',
+                                                  fontSize: 12.sp),
                                             ),
+                                            value: location.countryID,
                                           );
                                         }).toList(),
                                       ),
@@ -422,33 +426,36 @@ class _AdressformState extends State<Adressform> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
-                                    width: 85.w,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 3.w, vertical: 0.5.h),
+                                    width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
+                                      borderRadius: BorderRadius.circular(15.sp),
+                                      color: Colors.white.withOpacity(0.15),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
-                                      child: DropdownButton<test1>(
-                                        hint: Text("Select State"),
-                                        value: selected1,
-                                        onChanged: (test1? newValue) {
+                                      child: DropdownButton2(
+
+                                        // Not necessary for Option 1
+                                        value: stateValue,
+                                        onChanged: (newValue) {
                                           setState(() {
-                                            selected1 =
-                                                newValue; // Update the selectedItem
+
+                                            stateValue = newValue.toString();
+                                            print(stateValue);
+                                            cityap(stateValue ?? '');
                                           });
-                                          cityap();
                                         },
-                                        items: items1.map((test1 item) {
-                                          return DropdownMenuItem<test1>(
-                                            value: item,
+                                        items: statemodal?.states?.map((location) {
+                                          return DropdownMenuItem(
                                             child: Text(
-                                              item.title,
+                                              location.stateName ?? '',
                                               style: TextStyle(
-                                                  color: Colors.black),
+                                                  color: Colors.grey.shade500,
+                                                  fontFamily: 'Meta1',
+                                                  fontSize: 12.sp),
                                             ),
+                                            value: location.stateID,
                                           );
                                         }).toList(),
                                       ),
@@ -474,35 +481,35 @@ class _AdressformState extends State<Adressform> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
-                                    width: 85.w,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 3.w, vertical: 0.5.h),
+                                    width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
+                                      borderRadius: BorderRadius.circular(15.sp),
+                                      color: Colors.white.withOpacity(0.15),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
-                                      child: DropdownButton<test2>(
-                                        hint: Text("Select City"),
-                                        value: selected2,
-                                        onChanged: (test2? newValue) {
+                                      child: DropdownButton2(
+
+                                        // Not necessary for Option 1
+                                        value: cityValue,
+                                        onChanged: (newValue) {
                                           setState(() {
-                                            selected2 =
-                                                newValue; // Update the selectedItem
+
+                                            cityValue = newValue.toString();
+                                            print(cityValue);
                                           });
-                                          print(selected2?.title);
-                                          print(selected2?.id);
-                                          cityap();
                                         },
-                                        items: items2.map((test2 item) {
-                                          return DropdownMenuItem<test2>(
-                                            value: item,
+                                        items: citymodal?.cities?.map((location) {
+                                          return DropdownMenuItem(
                                             child: Text(
-                                              item.title,
+                                              location.cityName ?? '',
                                               style: TextStyle(
-                                                  color: Colors.black),
+                                                  color: Colors.grey.shade500,
+                                                  fontFamily: 'Meta1',
+                                                  fontSize: 12.sp),
                                             ),
+                                            value: location.cityID,
                                           );
                                         }).toList(),
                                       ),
@@ -621,9 +628,9 @@ class _AdressformState extends State<Adressform> {
       data['userId'] = (usermodal?.userId).toString();
       data['first_name'] = _firstname.text.toString();
       data['last_name'] = _lastname.text.toString();
-      data['city'] = selected2?.id ?? "";
-      data['state'] = selected1?.id ?? "";
-      data['country'] = selected?.id ?? "";
+      data['city'] = cityValue ?? "";
+      data['state'] = stateValue ?? "";
+      data['country'] = countryValue ?? "";
       data['zipcode'] = _ZipCode.text.toString();
       data['address'] = _Address.text.toString();
       data['phone'] = _phone.text.toString();
@@ -690,9 +697,9 @@ class _AdressformState extends State<Adressform> {
     });
   }
 
-  stateap() async {
+  stateap(String conId) async {
     final Map<String, String> data = {};
-    data['countryID'] = selected?.id ?? '';
+    data['countryID'] = conId;
     print(data);
     checkInternet().then((internet) async {
       if (internet) {
@@ -721,9 +728,9 @@ class _AdressformState extends State<Adressform> {
     });
   }
 
-  cityap() async {
+  cityap(String sId) async {
     final Map<String, String> data = {};
-    data['stateID'] = selected1?.id ?? '';
+    data['stateID'] = sId;
     print(data);
     checkInternet().then((internet) async {
       if (internet) {

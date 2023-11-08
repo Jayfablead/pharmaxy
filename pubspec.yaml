@@ -61,7 +61,7 @@ dependencies:
   sqflite:
   path:
   flutter_paypal:
-
+  dropdown_button2: ^2.3.9
 
 
 
