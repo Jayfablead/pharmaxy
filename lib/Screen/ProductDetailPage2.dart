@@ -680,8 +680,15 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                         ],
                                       ),
                                     ),
-                                     colorshowmodal?.variationData?.length == 0 || colorshowmodal?.variationData?.length == null
-                                        ?SizedBox(height: 1.h,): SizedBox(height: 6.h),
+                                    colorshowmodal?.variationData?.length ==
+                                                0 ||
+                                            colorshowmodal
+                                                    ?.variationData?.length ==
+                                                null
+                                        ? SizedBox(
+                                            height: 1.h,
+                                          )
+                                        : SizedBox(height: 6.h),
                                   ],
                                 ),
                               ),
@@ -886,7 +893,17 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    addreviewdialog();
+                                    usermodal?.userId == '' ||
+                                            usermodal?.userId == null
+                                        ? Fluttertoast.showToast(
+                                            msg:
+                                                "You Have to Login to Give Review",
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor: Colors.white,
+                                            textColor: Color(0xfff7941d),
+                                            fontSize: 11.sp)
+                                        : addreviewdialog();
                                   },
                                   child: Text(
                                     'Add Your Review',
@@ -905,278 +922,323 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                         ],
                       ),
                     ),
-                    viewReviewmodal?.reviewData?.length ==
-                        0 ||
-                        viewReviewmodal
-                            ?.reviewData?.length ==
-                            null
-                        ?SliverToBoxAdapter(
-                          child: Center(
-                      child: Container(
-                        margin: EdgeInsets.only(top: 3.h),
-                        child: Text(
-                          'No Review Available',
-                          style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontFamily: 'task',
-                              fontSize: 18.sp,
-                              color: Colors.black),
-                      ),),
-                    ),
-                        ): SliverList.builder(
-                      itemCount: viewReviewmodal
-                          ?.reviewData?.length,
-                      itemBuilder: (context, index) {
-                        return  Container(
-                          margin: EdgeInsets.symmetric(vertical: 1.h),
-                          padding: EdgeInsets.symmetric(vertical: 0.5.h),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(25)),
-                          child: Stack(
-                            children: [
-                              Column(
-                                mainAxisAlignment:
-                                MainAxisAlignment.start,
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 1.w),
-                                        height: 14.w,
-                                        width: 14.w,
-                                        padding: EdgeInsets.all(1.w),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(90),
-                                          child: CachedNetworkImage(
-                                              fit: BoxFit.cover,
-                                              imageUrl: viewReviewmodal
-                                                      ?.reviewData?[index].userProfile ??
-                                                  '',
-                                              progressIndicatorBuilder: (context,
-                                                      url, progress) =>
-                                                  Center(
-                                                      child:
-                                                          CircularProgressIndicator()),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Image.asset(
-                                                          'assets/deim.png')),
-                                        ),
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(  mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                width: 70.w,
-                                                child: Text(
-                                                  viewReviewmodal
-                                                      ?.reviewData?[index].name ??
-                                                      '',
-                                                  style: TextStyle(
-                                                    fontSize: 12.sp,
-                                                    fontFamily: 'task',
-                                                    fontWeight: FontWeight.bold,
-                                                    letterSpacing: 1,
-                                                    color: Colors.black
-                                                        .withOpacity(0.85),
-                                                  ),
-                                                ),
+                    viewReviewmodal?.reviewData?.length == 0 ||
+                            viewReviewmodal?.reviewData?.length == null
+                        ? SliverToBoxAdapter(
+                            child: Center(
+                              child: Container(
+                                margin: EdgeInsets.only(top: 3.h),
+                                child: Text(
+                                  'No Review Available',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontFamily: 'task',
+                                      fontSize: 18.sp,
+                                      color: Colors.black),
+                                ),
+                              ),
+                            ),
+                          )
+                        : SliverList.builder(
+                            itemCount: viewReviewmodal?.reviewData?.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(vertical: 1.h),
+                                padding: EdgeInsets.symmetric(vertical: 0.5.h),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(25)),
+                                child: Stack(
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 1.w),
+                                              height: 14.w,
+                                              width: 14.w,
+                                              padding: EdgeInsets.all(1.w),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(90),
+                                                child: CachedNetworkImage(
+                                                    fit: BoxFit.cover,
+                                                    imageUrl: viewReviewmodal
+                                                            ?.reviewData?[index]
+                                                            .userProfile ??
+                                                        '',
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                progress) =>
+                                                            Center(
+                                                                child:
+                                                                    CircularProgressIndicator()),
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        Image.asset(
+                                                            'assets/deim.png')),
                                               ),
-                                      usermodal?.userId == viewReviewmodal?.reviewData?[index].userId ?InkWell(onTap: (){
-                                         removeratingsheet( viewReviewmodal
-                                             ?.reviewData?[index].reviewId  ?? '');
-                                              },
-                                                child: Icon(
-                                                  CupertinoIcons.trash,
-                                                  color: Colors.red,
-                                                  size: 15.sp,
-                                                ),
-                                              ):Container()
-                                            ],
-                                          ),
-                                          SizedBox(height: 0.3.h),
-                                          SizedBox(
-                                            width: 73.w,
-                                            child: Row(
+                                            ),
+                                            Column(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Row(
-                                                      children: [
-                                                        viewReviewmodal
-                                                            ?.reviewData?[index].rating == '1'?
-                                                        Icon(
-                                                         Icons.star,
-                                                         color: Colors.amber,
-                                                          size: 14.sp,
-                                                          ):viewReviewmodal
-                                                            ?.reviewData?[index].rating == '2'?
-                                                                 Row(
-                                                                   children: [
-                                                                     Icon(
-                                                                       Icons.star,
-                                                                       color: Colors.amber,
-                                                                       size: 14.sp,
-                                                                     ),
-                                                                     Icon(
-                                                                       Icons.star,
-                                                                       color: Colors.amber,
-                                                                       size: 14.sp,
-                                                                     )
-                                                                   ],
-                                                                 ):viewReviewmodal
-                                                            ?.reviewData?[index].rating == '3'? Row(
-                                                          children: [
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            )
-                                                          ],
-                                                        ):viewReviewmodal
-                                                            ?.reviewData?[index].rating == '4'? Row(
-                                                          children: [
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            )
-                                                          ],
-                                                        ):Row(
-                                                          children: [
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            ),
-                                                            Icon(
-                                                              Icons.star,
-                                                              color: Colors.amber,
-                                                              size: 14.sp,
-                                                            )
-                                                          ],
-                                                        )
-                                                      ],
-                                                    ),
                                                     SizedBox(
-                                                      width: 2.w,
-                                                    ),
-                                                    Text(
-                                                     '( '+( viewReviewmodal
-                                                          ?.reviewData?[index].rating ??
-                                                          '')+' )',
-                                                      style: TextStyle(
-                                                        fontFamily: 'task',
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        letterSpacing: 1,
-                                                        color: Colors.black
-                                                            .withOpacity(0.7),
+                                                      width: 70.w,
+                                                      child: Text(
+                                                        viewReviewmodal
+                                                                ?.reviewData?[
+                                                                    index]
+                                                                .name ??
+                                                            '',
+                                                        style: TextStyle(
+                                                          fontSize: 12.sp,
+                                                          fontFamily: 'task',
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          letterSpacing: 1,
+                                                          color: Colors.black
+                                                              .withOpacity(
+                                                                  0.85),
+                                                        ),
                                                       ),
                                                     ),
+                                                    usermodal?.userId ==
+                                                            viewReviewmodal
+                                                                ?.reviewData?[
+                                                                    index]
+                                                                .userId
+                                                        ? InkWell(
+                                                            onTap: () {
+                                                              removeratingsheet(
+                                                                  viewReviewmodal
+                                                                          ?.reviewData?[
+                                                                              index]
+                                                                          .reviewId ??
+                                                                      '');
+                                                            },
+                                                            child: Icon(
+                                                              CupertinoIcons
+                                                                  .trash,
+                                                              color: Colors.red,
+                                                              size: 15.sp,
+                                                            ),
+                                                          )
+                                                        : Container()
                                                   ],
                                                 ),
-                                                Text(
-                                                   viewReviewmodal
-                                                      ?.reviewData?[index].date ??
-                                                      '',
-                                                  style: TextStyle(
-                                                    fontFamily: 'task',
-                                                    fontWeight: FontWeight.bold,
-                                                    letterSpacing: 0.5,
-                                                    color: Colors.black
-                                                        .withOpacity(0.7),
+                                                SizedBox(height: 0.3.h),
+                                                SizedBox(
+                                                  width: 73.w,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              viewReviewmodal
+                                                                          ?.reviewData?[
+                                                                              index]
+                                                                          .rating ==
+                                                                      '1'
+                                                                  ? Icon(
+                                                                      Icons
+                                                                          .star,
+                                                                      color: Colors
+                                                                          .amber,
+                                                                      size:
+                                                                          14.sp,
+                                                                    )
+                                                                  : viewReviewmodal
+                                                                              ?.reviewData?[
+                                                                                  index]
+                                                                              .rating ==
+                                                                          '2'
+                                                                      ? Row(
+                                                                          children: [
+                                                                            Icon(
+                                                                              Icons.star,
+                                                                              color: Colors.amber,
+                                                                              size: 14.sp,
+                                                                            ),
+                                                                            Icon(
+                                                                              Icons.star,
+                                                                              color: Colors.amber,
+                                                                              size: 14.sp,
+                                                                            )
+                                                                          ],
+                                                                        )
+                                                                      : viewReviewmodal?.reviewData?[index].rating ==
+                                                                              '3'
+                                                                          ? Row(
+                                                                              children: [
+                                                                                Icon(
+                                                                                  Icons.star,
+                                                                                  color: Colors.amber,
+                                                                                  size: 14.sp,
+                                                                                ),
+                                                                                Icon(
+                                                                                  Icons.star,
+                                                                                  color: Colors.amber,
+                                                                                  size: 14.sp,
+                                                                                ),
+                                                                                Icon(
+                                                                                  Icons.star,
+                                                                                  color: Colors.amber,
+                                                                                  size: 14.sp,
+                                                                                )
+                                                                              ],
+                                                                            )
+                                                                          : viewReviewmodal?.reviewData?[index].rating == '4'
+                                                                              ? Row(
+                                                                                  children: [
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    )
+                                                                                  ],
+                                                                                )
+                                                                              : Row(
+                                                                                  children: [
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    )
+                                                                                  ],
+                                                                                )
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            width: 2.w,
+                                                          ),
+                                                          Text(
+                                                            '( ' +
+                                                                (viewReviewmodal
+                                                                        ?.reviewData?[
+                                                                            index]
+                                                                        .rating ??
+                                                                    '') +
+                                                                ' )',
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  'task',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              letterSpacing: 1,
+                                                              color: Colors
+                                                                  .black
+                                                                  .withOpacity(
+                                                                      0.7),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Text(
+                                                        viewReviewmodal
+                                                                ?.reviewData?[
+                                                                    index]
+                                                                .date ??
+                                                            '',
+                                                        style: TextStyle(
+                                                          fontFamily: 'task',
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          letterSpacing: 0.5,
+                                                          color: Colors.black
+                                                              .withOpacity(0.7),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                               ],
                                             ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 0.5.h),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 16.w),
+                                          child: Text(
+                                            viewReviewmodal?.reviewData?[index]
+                                                    .comments ??
+                                                '',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              fontFamily: 'task',
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 1,
+                                              color: Colors.black
+                                                  .withOpacity(0.75),
+                                            ),
                                           ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 0.5.h),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 16.w),
-                                    child: Text(
-                                      viewReviewmodal
-                                          ?.reviewData?[index].comments ??
-                                          '',      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        fontFamily: 'task',
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 1,
-                                        color: Colors.black.withOpacity(0.75),
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-
-                            ],
+                                  ],
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
                   ],
                 ),
               ),
@@ -1637,6 +1699,13 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
             print(addcartmodal?.status);
             if (response.statusCode == 200 && addreview?.status == "success") {
               viewreviewap();
+              Fluttertoast.showToast(
+                  msg: "Review Added Successfully",
+                  toastLength: Toast.LENGTH_SHORT,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.white,
+                  textColor: Color(0xfff7941d),
+                  fontSize: 11.sp);
               print('EE Review Add Thay Gyu Hooooo ! ^_^');
               Navigator.pop(context);
               setState(() {
@@ -1661,49 +1730,58 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
   }
 
   viewreviewap() async {
-      final Map<String, String> data = {};
-      data['product_id'] = widget.productid.toString();
-      print(data);
-      checkInternet().then((internet) async {
-        if (internet) {
-          authprovider().viewreviewapi(data).then((response) async {
-            viewReviewmodal = ViewReviewModal.fromJson(json.decode(response.body));
-            print(addcartmodal?.status);
-            if (response.statusCode == 200 && viewReviewmodal?.status == "success") {
-              print('rrrrrrrrrrrrrrrrr');
-              setState(() {
-                isLoading = false;
-              });
-            } else {
-              setState(() {
-                isLoading = false;
-              });
-            }
-          });
-        } else {
-          setState(() {
-            isLoading = false;
-          });
-          buildErrorDialog(context, 'Error', "Internet Required");
-        }
-      });
-
+    final Map<String, String> data = {};
+    data['product_id'] = widget.productid.toString();
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().viewreviewapi(data).then((response) async {
+          viewReviewmodal =
+              ViewReviewModal.fromJson(json.decode(response.body));
+          print(addcartmodal?.status);
+          if (response.statusCode == 200 &&
+              viewReviewmodal?.status == "success") {
+            print('rrrrrrrrrrrrrrrrr');
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
   }
-
 
   deletereviewap(String rId) async {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
-    data['review_id'] =rId.toString();
+    data['review_id'] = rId.toString();
     print(data);
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().deletereviewapi(data).then((response) async {
-          deletereviewmodal = DeleteReviewModal.fromJson(json.decode(response.body));
+          deletereviewmodal =
+              DeleteReviewModal.fromJson(json.decode(response.body));
           print(addcartmodal?.status);
-          if (response.statusCode == 200 && deletereviewmodal?.status == "success") {
+          if (response.statusCode == 200 &&
+              deletereviewmodal?.status == "success") {
             print(viewReviewmodal?.reviewData?[0].reviewId);
             viewreviewap();
+            Fluttertoast.showToast(
+                msg: "Review Deleted Successfully",
+                toastLength: Toast.LENGTH_SHORT,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.white,
+                textColor: Color(0xfff7941d),
+                fontSize: 11.sp);
             print('EE Review delete Thay Gyu Hooooo ! ^_^');
             Navigator.pop(context);
             setState(() {
@@ -1722,11 +1800,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
         buildErrorDialog(context, 'Error', "Internet Required");
       }
     });
-
   }
-
-
-
 
   addreviewdialog() {
     setState(() {
@@ -1985,10 +2059,9 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
     );
   }
 
-
-
   removeratingsheet(String rID) {
-    showModalBottomSheet(elevation: 00,
+    showModalBottomSheet(
+      elevation: 00,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(15),
@@ -2034,7 +2107,6 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                               InkWell(
                                 onTap: () {
                                   deletereviewap(rID.toString());
-
                                 },
                                 child: Container(
                                   width: 30.w,
@@ -2056,7 +2128,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                               ),
                               InkWell(
                                 onTap: () {
-                                 Navigator.pop(context);
+                                  Navigator.pop(context);
                                 },
                                 child: Container(
                                   width: 30.w,
@@ -2101,9 +2173,4 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
       },
     );
   }
-
-
-
-
-
-  }
+}
