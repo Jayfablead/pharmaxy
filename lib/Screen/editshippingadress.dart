@@ -357,7 +357,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "country",
+                                    "Country",
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
@@ -374,7 +374,11 @@ class _editshippingadressState extends State<editshippingadress> {
                                         horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-
+                                        hint: Text('Select Country',
+                                          style: TextStyle(
+                                              color: Colors.black.withOpacity(0.6),
+                                              fontSize: 14.sp,
+                                              fontFamily: "task"),),
                                         // Not necessary for Option 1
                                         value: countryValue,
                                         onChanged: (newValue) {
@@ -429,7 +433,11 @@ class _editshippingadressState extends State<editshippingadress> {
                                         horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-
+                                        hint: Text('Select State',
+                                          style: TextStyle(
+                                              color: Colors.black.withOpacity(0.6),
+                                              fontSize: 14.sp,
+                                              fontFamily: "task"),),
                                         // Not necessary for Option 1
                                         value: stateValue,
                                         onChanged: (newValue) {
@@ -484,7 +492,11 @@ class _editshippingadressState extends State<editshippingadress> {
                                         horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-
+                                        hint: Text('Select City',
+                                          style: TextStyle(
+                                              color: Colors.black.withOpacity(0.6),
+                                              fontSize: 14.sp,
+                                              fontFamily: "task"),),
                                         // Not necessary for Option 1
                                         value: cityValue,
                                         onChanged: (newValue) {

@@ -69,7 +69,11 @@ class _AdressformState extends State<Adressform> {
     // TODO: implement initState
     super.initState();
     print(widget.addid);
-
+setState(() {
+  countryValue = null;
+  cityValue = null;
+  stateValue = null;
+});
     contryap();
   }
 
@@ -381,7 +385,11 @@ class _AdressformState extends State<Adressform> {
                                         horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-
+                                       hint: Text('Select Country',
+                                       style: TextStyle(
+                                       color: Colors.black.withOpacity(0.6),
+                                          fontSize: 14.sp,
+                                          fontFamily: "task"),),
                                         // Not necessary for Option 1
                                         value: countryValue,
                                         onChanged: (newValue) {
@@ -436,7 +444,11 @@ class _AdressformState extends State<Adressform> {
                                         horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-
+                                        hint: Text('Select State',
+                                          style: TextStyle(
+                                              color: Colors.black.withOpacity(0.6),
+                                              fontSize: 14.sp,
+                                              fontFamily: "task"),),
                                         // Not necessary for Option 1
                                         value: stateValue,
                                         onChanged: (newValue) {
@@ -491,7 +503,11 @@ class _AdressformState extends State<Adressform> {
                                         horizontal: 5.0, vertical: 0.5.h),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton2(
-
+                                        hint: Text('Select City',
+                                          style: TextStyle(
+                                              color: Colors.black.withOpacity(0.6),
+                                              fontSize: 14.sp,
+                                              fontFamily: "task"),),
                                         // Not necessary for Option 1
                                         value: cityValue,
                                         onChanged: (newValue) {
