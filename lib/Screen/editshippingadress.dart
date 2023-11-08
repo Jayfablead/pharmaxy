@@ -369,7 +369,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                         borderRadius: BorderRadius.circular(50)),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<test>(
-                                        hint: Text(userselectaddmodal?.selectShippingAddress?.country ?? ''),
+                                        hint: Text(''),
                                         value: selected,
                                         onChanged: (test? newValue) {
                                           setState(() {
@@ -420,7 +420,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                         borderRadius: BorderRadius.circular(50)),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<test1>(
-                                        hint: Text(userselectaddmodal?.selectShippingAddress?.state ?? ''),
+                                        hint: Text(''),
                                         value: selected1,
                                         onChanged: (test1? newValue) {
                                           setState(() {
@@ -471,7 +471,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                         borderRadius: BorderRadius.circular(50)),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<test2>(
-                                        hint: Text(userselectaddmodal?.selectShippingAddress?. city?? ''),
+                                        hint: Text(''),
                                         value: selected2,
                                         onChanged: (test2? newValue) {
                                           setState(() {
@@ -486,9 +486,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                           return DropdownMenuItem<test2>(
                                             value: item,
                                             child: Text(
-                                                  item.title == ''
-                                                  ? selected2?.title ?? ''
-                                                  : item.title,
+                                                  item.title,
                                                   style:
                                                   TextStyle(color: Colors.black),
                                             ),
@@ -719,9 +717,9 @@ class _editshippingadressState extends State<editshippingadress> {
               selected1?.title =
                   userselectaddmodal?.selectShippingAddress?.state ?? '';
               isLoading = false;
-              print('coutntry ${selected?.title}');
-              print(' state ${selected1?.title}');
-              print('city ${selected2?.title}');
+              print('coutntry ${ userselectaddmodal?.selectShippingAddress?.country ?? ''}');
+              print(' state ${ userselectaddmodal?.selectShippingAddress?.state ?? ''}');
+              print('city ${ userselectaddmodal?.selectShippingAddress?.city ?? ''}');
             });
           } else {
             setState(() {
@@ -747,15 +745,9 @@ class _editshippingadressState extends State<editshippingadress> {
           if (response.statusCode == 200 && countrymodal?.status == "success") {
             print("test");
             print(countrymodal?.countries?.length);
-            for (int i = 0;
-                i < int.parse((countrymodal?.countries?.length).toString());
-                i++) {
-              items.add(test(
-                  (countrymodal?.countries?[i].countryName).toString(),
-                  (countrymodal?.countries?[i].countryID).toString()));
-            }
+
             setState(() {
-              items;
+
               isLoading = false;
             });
           } else {
@@ -783,15 +775,9 @@ class _editshippingadressState extends State<editshippingadress> {
           statemodal = StateModal.fromJson(json.decode(response.body));
 
           if (response.statusCode == 200 && statemodal?.status == "success") {
-            for (int i = 0;
-                i < int.parse((statemodal?.states?.length).toString());
-                i++) {
-              items1.add(test1((statemodal?.states?[i].stateName).toString(),
-                  (statemodal?.states?[i].stateID).toString()));
-            }
+
             setState(() {
-              print(items1);
-              items1;
+
               isLoading = false;
             });
           } else {
@@ -819,15 +805,10 @@ class _editshippingadressState extends State<editshippingadress> {
           citymodal = CityModal.fromJson(json.decode(response.body));
           print(citymodal?.status);
           if (response.statusCode == 200 && citymodal?.status == "success") {
-            for (int i = 0;
-                i < int.parse((citymodal?.cities?.length).toString());
-                i++) {
-              items2.add(test2((citymodal?.cities?[i].cityName).toString(),
-                  (citymodal?.cities?[i].cityID).toString()));
-            }
+
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
-              items2;
+
               isLoading = false;
             });
           } else {

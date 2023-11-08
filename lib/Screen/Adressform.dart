@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:ecommerce/Modal/CityModal.dart';
 import 'package:ecommerce/Modal/CountryModal.dart';
-import 'package:ecommerce/Modal/EditShippingAdd.dart';
 import 'package:ecommerce/Modal/ShippingAddModal.dart';
 import 'package:ecommerce/Modal/StateModal.dart';
-import 'package:ecommerce/Modal/UserSelectAddModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/AllAddpage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -70,8 +68,6 @@ class _AdressformState extends State<Adressform> {
     // TODO: implement initState
     super.initState();
     print(widget.addid);
-    shippingap();
-    userselectaddap();
     contryap();
   }
 
@@ -131,7 +127,8 @@ class _AdressformState extends State<Adressform> {
                                 Container(
                                   width: 85.w,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "First Name",
@@ -155,23 +152,23 @@ class _AdressformState extends State<Adressform> {
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(30),
-                                              borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
                                           disabledBorder: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(30),
-                                              borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
                                           focusedBorder: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(30),
-                                              borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(30),
-                                              borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
                                           hintText: 'First Name',
                                           hintStyle: TextStyle(
                                               color:
@@ -213,19 +210,23 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(height: 1),
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Last Name ',
@@ -266,19 +267,23 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(height: 1),
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Address 1 ',
@@ -319,19 +324,23 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(height: 1),
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Phone',
@@ -367,7 +376,8 @@ class _AdressformState extends State<Adressform> {
                                     decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
                                         color: Colors.white,
-                                        borderRadius: BorderRadius.circular(50)),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<test>(
                                         hint: Text("Select Country"),
@@ -384,8 +394,8 @@ class _AdressformState extends State<Adressform> {
                                             value: item,
                                             child: Text(
                                               item.title,
-                                              style:
-                                                  TextStyle(color: Colors.black),
+                                              style: TextStyle(
+                                                  color: Colors.black),
                                             ),
                                           );
                                         }).toList(),
@@ -418,7 +428,8 @@ class _AdressformState extends State<Adressform> {
                                     decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
                                         color: Colors.white,
-                                        borderRadius: BorderRadius.circular(50)),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<test1>(
                                         hint: Text("Select State"),
@@ -435,8 +446,8 @@ class _AdressformState extends State<Adressform> {
                                             value: item,
                                             child: Text(
                                               item.title,
-                                              style:
-                                                  TextStyle(color: Colors.black),
+                                              style: TextStyle(
+                                                  color: Colors.black),
                                             ),
                                           );
                                         }).toList(),
@@ -469,7 +480,8 @@ class _AdressformState extends State<Adressform> {
                                     decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
                                         color: Colors.white,
-                                        borderRadius: BorderRadius.circular(50)),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<test2>(
                                         hint: Text("Select City"),
@@ -488,8 +500,8 @@ class _AdressformState extends State<Adressform> {
                                             value: item,
                                             child: Text(
                                               item.title,
-                                              style:
-                                                  TextStyle(color: Colors.black),
+                                              style: TextStyle(
+                                                  color: Colors.black),
                                             ),
                                           );
                                         }).toList(),
@@ -532,19 +544,23 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(height: 1),
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: '395004 ',
@@ -570,7 +586,8 @@ class _AdressformState extends State<Adressform> {
                           child: Row(
                             children: [
                               Container(
-                                  margin: EdgeInsets.only(right: 7.w, left: 7.w),
+                                  margin:
+                                      EdgeInsets.only(right: 7.w, left: 7.w),
                                   alignment: Alignment.center,
                                   height: 6.h,
                                   width: 80.w,
@@ -604,9 +621,9 @@ class _AdressformState extends State<Adressform> {
       data['userId'] = (usermodal?.userId).toString();
       data['first_name'] = _firstname.text.toString();
       data['last_name'] = _lastname.text.toString();
-      data['city'] = selected2?.title ?? "";
-      data['state'] = selected1?.title ?? "";
-      data['country'] = selected?.title ?? "";
+      data['city'] = selected2?.id ?? "";
+      data['state'] = selected1?.id ?? "";
+      data['country'] = selected?.id ?? "";
       data['zipcode'] = _ZipCode.text.toString();
       data['address'] = _Address.text.toString();
       data['phone'] = _phone.text.toString();
@@ -621,9 +638,9 @@ class _AdressformState extends State<Adressform> {
                 shippingaddmodal?.status == "success") {
               update(context, 'Address', 'Address Save Successfully',
                   callback: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => AllAddpage()));
-                  });
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => AllAddpage()));
+              });
               print('EE Thay Gyu Hooooo ! ^_^');
               setState(() {
                 isLoading = false;
@@ -644,94 +661,6 @@ class _AdressformState extends State<Adressform> {
     }
   }
 
-  userselectaddap() async {
-    final Map<String, String> data = {};
-    data['shipping_address_id'] = widget.addid.toString();
-    print(data);
-    checkInternet().then((internet) async {
-      if (internet) {
-        authprovider().userselectapi(data).then((response) async {
-          userselectaddmodal =
-              UserSelectAddModal.fromJson(json.decode(response.body));
-          print(userselectaddmodal?.status);
-          if (response.statusCode == 200 &&
-              userselectaddmodal?.status == "success") {
-            setState(() {
-              _firstname.text =
-                  userselectaddmodal?.selectShippingAddress?.firstName ?? "";
-              _lastname.text =
-                  userselectaddmodal?.selectShippingAddress?.lastName ?? "";
-              _Address.text =
-                  userselectaddmodal?.selectShippingAddress?.address ?? "";
-              _phone.text =
-                  userselectaddmodal?.selectShippingAddress?.number ?? "";
-              _ZipCode.text =
-                  userselectaddmodal?.selectShippingAddress?.zipcode ?? "";
-              cityValue = userselectaddmodal?.selectShippingAddress?.city ?? '';
-              countryValue =
-                  userselectaddmodal?.selectShippingAddress?.country ?? '';
-              stateValue =
-                  userselectaddmodal?.selectShippingAddress?.state ?? '';
-              isLoading = false;
-            });
-          } else {
-            setState(() {
-              isLoading = false;
-            });
-          }
-        });
-      } else {
-        setState(() {
-          isLoading = false;
-        });
-        buildErrorDialog(context, 'Error', "Internet Required");
-      }
-    });
-  }
-
-  editshippingap() async {
-
-    final Map<String, String> data = {};
-    data['first_name'] = _firstname.text.toString();
-    data['last_name'] = _lastname.text.toString();
-    data['city'] = selected2?.title ?? "";
-    data['state'] = selected1?.title ?? "";
-    data['country'] = selected?.title ?? "";
-    data['zipcode'] = _ZipCode.text.toString();
-    data['address'] = _Address.text.toString();
-    data['phone'] = _phone.text.toString();
-    data['shipping_address_id'] = widget.addid.toString();
-    checkInternet().then((internet) async {
-      if (internet) {
-        authprovider().editshippingapi(data).then((response) async {
-          editshippingadd =
-              EditShippingAdd.fromJson(json.decode(response.body));
-          print(editshippingadd?.status);
-          if (response.statusCode == 200 &&
-              editshippingadd?.status == "success") {
-            update(context, '', 'Address Save Successfully', callback: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => AllAddpage()));
-            });
-            print('EE Thay Gyu Hooooo ! ^_^');
-            setState(() {
-              isLoading = false;
-            });
-          } else {
-            setState(() {
-              isLoading = false;
-            });
-          }
-        });
-      } else {
-        setState(() {
-          isLoading = false;
-        });
-        buildErrorDialog(context, 'Error', "Internet Required");
-      }
-    });
-  }
-
   contryap() async {
     checkInternet().then((internet) async {
       if (internet) {
@@ -740,16 +669,10 @@ class _AdressformState extends State<Adressform> {
           print(countrymodal?.status);
           if (response.statusCode == 200 && countrymodal?.status == "success") {
             print("test");
-            print(countrymodal?.countries?.length);
-            for (int i = 0;
-                i < int.parse((countrymodal?.countries?.length).toString());
-                i++) {
-              items.add(test(
-                  (countrymodal?.countries?[i].countryName).toString(),
-                  (countrymodal?.countries?[i].countryID).toString()));
-            }
+            print('country : ${countrymodal?.countries?.length}');
+
             setState(() {
-              items;
+
               isLoading = false;
             });
           } else {
@@ -777,16 +700,10 @@ class _AdressformState extends State<Adressform> {
           statemodal = StateModal.fromJson(json.decode(response.body));
 
           if (response.statusCode == 200 && statemodal?.status == "success") {
-            for (int i = 0;
-                i < int.parse((statemodal?.states?.length).toString());
-                i++) {
-              items1.add(test1((statemodal?.states?[i].stateName).toString(),
-                  (statemodal?.states?[i].stateID).toString()));
-            }
+
 
             setState(() {
-              print(items1);
-              items1;
+
               isLoading = false;
             });
           } else {
@@ -814,15 +731,10 @@ class _AdressformState extends State<Adressform> {
           citymodal = CityModal.fromJson(json.decode(response.body));
           print(citymodal?.status);
           if (response.statusCode == 200 && citymodal?.status == "success") {
-            for (int i = 0;
-                i < int.parse((citymodal?.cities?.length).toString());
-                i++) {
-              items2.add(test2((citymodal?.cities?[i].cityName).toString(),
-                  (citymodal?.cities?[i].cityID).toString()));
-            }
+
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
-              items2;
+
               isLoading = false;
             });
           } else {
