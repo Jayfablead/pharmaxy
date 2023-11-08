@@ -74,6 +74,8 @@ class _editshippingadressState extends State<editshippingadress> {
     shippingap();
     userselectaddap();
     contryap();
+    stateap(countryValue ?? '');
+    cityap(stateValue ?? '');
   }
 
   @override
@@ -659,9 +661,9 @@ class _editshippingadressState extends State<editshippingadress> {
        final Map<String, String> data = {};
        data['first_name'] = _firstname.text.toString();
        data['last_name'] = _lastname.text.toString();
-       data['city'] = selected2?.title ?? "";
-       data['state'] = selected1?.title ?? "";
-       data['country'] = selected?.title ?? "";
+       data['city'] = cityValue ?? '';
+       data['state'] = stateValue ?? '';
+       data['country'] = countryValue ?? "";
        data['zipcode'] = _ZipCode.text.toString();
        data['address'] = _Address.text.toString();
        data['phone'] = _phone.text.toString();
@@ -711,6 +713,9 @@ class _editshippingadressState extends State<editshippingadress> {
           print(userselectaddmodal?.status);
           if (response.statusCode == 200 &&
               userselectaddmodal?.status == "success") {
+            contryap();
+            stateap(countryValue ?? '');
+            cityap(stateValue ?? '');
             setState(() {
               _firstname.text =
                   userselectaddmodal?.selectShippingAddress?.firstName ?? "";
@@ -722,17 +727,18 @@ class _editshippingadressState extends State<editshippingadress> {
                   userselectaddmodal?.selectShippingAddress?.number ?? "";
               _ZipCode.text =
                   userselectaddmodal?.selectShippingAddress?.zipcode ?? "";
-              selected2?.title =
+              cityValue =
                   userselectaddmodal?.selectShippingAddress?.city ?? '';
-              selected?.title =
+              countryValue =
                   userselectaddmodal?.selectShippingAddress?.country ?? '';
-              selected1?.title =
+              stateValue =
                   userselectaddmodal?.selectShippingAddress?.state ?? '';
               isLoading = false;
-              print('coutntry ${ userselectaddmodal?.selectShippingAddress?.country ?? ''}');
-              print(' state ${ userselectaddmodal?.selectShippingAddress?.state ?? ''}');
-              print('city ${ userselectaddmodal?.selectShippingAddress?.city ?? ''}');
+              print('coutntry ${ countryValue}');
+              print(' state ${stateValue}');
+              print('city ${cityValue}');
             });
+
           } else {
             setState(() {
               isLoading = false;
@@ -759,7 +765,7 @@ class _editshippingadressState extends State<editshippingadress> {
             print('country : ${countrymodal?.countries?.length}');
 
             setState(() {
-
+              stateap(countryValue ?? '');
               isLoading = false;
             });
           } else {
@@ -790,7 +796,7 @@ class _editshippingadressState extends State<editshippingadress> {
 
 
             setState(() {
-
+              cityap(stateValue ?? '');
               isLoading = false;
             });
           } else {

@@ -45,8 +45,8 @@ class test2 {
 
 bool isLoading = true;
 String? countryValue ;
-String? stateValue ;
-String? cityValue ;
+String? stateValue    ;
+String? cityValue    ;
 String? address ;
 test? selected;
 test1? selected1;
@@ -69,6 +69,7 @@ class _AdressformState extends State<Adressform> {
     // TODO: implement initState
     super.initState();
     print(widget.addid);
+
     contryap();
   }
 
