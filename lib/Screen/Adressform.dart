@@ -105,7 +105,11 @@ class _AdressformState extends State<Adressform> {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AllAddpage(),));
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => AllAddpage(),
+                                      ));
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
@@ -692,15 +696,15 @@ class _AdressformState extends State<Adressform> {
                 shippingaddmodal?.status == "success") {
               update(context, 'Address', 'Address Save Successfully',
                   callback: () {
-                    Navigator.pop(context);
-                    setState(() {
-                      back = true;
-                    });
-                    back
-                        ? Navigator.of(context).pushReplacement(
+                Navigator.pop(context);
+                setState(() {
+                  back = true;
+                });
+                back
+                    ? Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => AllAddpage()))
-                        : null;
-                  });
+                    : null;
+              });
               print('EE Thay Gyu Hooooo ! ^_^');
               setState(() {
                 isLoading = false;

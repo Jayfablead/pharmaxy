@@ -1283,7 +1283,6 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                             child: CachedNetworkImage(
                                 height: 25.h,
                                 width: 90.w,
-                                fit: BoxFit.cover,
                                 imageUrl: productdetailmodal
                                         ?.productData?.allimage?[index] ??
                                     '',

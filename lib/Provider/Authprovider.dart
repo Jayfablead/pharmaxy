@@ -541,6 +541,21 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
+  Future<http.Response> checkoutstripeapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/stripe_payment ";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
   Future<http.Response> checkoutcodapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/checkout";
     var responseJson;

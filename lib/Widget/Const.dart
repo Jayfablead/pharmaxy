@@ -52,6 +52,7 @@ import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:flutter/material.dart';
 
+import '../Modal/StripeModal.dart';
 import '../Modal/addReviewModal.dart';
 
 Color bgcolor = Colors.grey.shade100;
@@ -110,6 +111,7 @@ PaymethodModal? paymethodmodal;
 addReviewModal? addreview;
 ViewReviewModal? viewReviewmodal;
 DeleteReviewModal? deletereviewmodal;
+StripeModal? strpiepay;
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());

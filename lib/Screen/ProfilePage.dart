@@ -55,7 +55,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 SizedBox(
-                  height: 6.h,
+                  height: 5.h,
                 ),
                 SizedBox(
                   width: 90.w,
@@ -336,7 +336,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             Positioned(
-              top: 4.h,
+              top: 5.h,
               right: 88.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -354,7 +354,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             Positioned(
-              top: 4.4.h,
+              top: 6.h,
               right: 32.w,
               child: Text(
                 "My Profile",

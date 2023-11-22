@@ -4,8 +4,10 @@ import 'package:ecommerce/Modal/CheckOutModal.dart';
 import 'package:ecommerce/Modal/ChekOutDetailModal.dart';
 import 'package:ecommerce/Modal/PaymentMthodsModal.dart';
 import 'package:ecommerce/Modal/PaypalModal.dart';
+import 'package:ecommerce/Modal/StripeModal.dart';
 import 'package:ecommerce/Modal/UserSelectAddModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/AddCardPage.dart';
 import 'package:ecommerce/Screen/Adressform.dart';
 import 'package:ecommerce/Screen/AllAddpage.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
@@ -26,12 +28,23 @@ class CheckoutDetail extends StatefulWidget {
   String? addid;
   String? page;
 
+  String? name;
+  String? cvv;
+  String? em;
+  String? ey;
+  String? cn;
+
   CheckoutDetail(
       {super.key,
       this.page,
       this.address,
       this.firstname,
       this.lastname,
+      this.name,
+      this.cvv,
+      this.em,
+      this.ey,
+      this.cn,
       required this.addid});
 
   @override
@@ -40,7 +53,7 @@ class CheckoutDetail extends StatefulWidget {
 
 var selected = "i1";
 
-int selected1 = 0;
+int selectedpayment = 0;
 
 bool isLoading = true;
 
@@ -54,6 +67,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     Paymethod();
     checkoutap();
     userselectaddap();
+    print('Page : ${widget.page}');
+    print('Add Id : ${widget.addid}');
+    print('Add name : ${widget.firstname}');
+    print('Add name2 : ${widget.lastname}');
+    print('Address : ${widget.address}');
+    print(widget.name);
     print(paymethodmodal?.data?.cod?.status);
   }
 
@@ -77,7 +96,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 2.h,
+                        height: 3.h,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
@@ -283,7 +302,6 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                 ),
                                 Container(
                                   width: 110.w,
-                                  height: 23.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Colors.white),
@@ -349,14 +367,14 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                             : GestureDetector(
                                                 onTap: () {
                                                   setState(() {
-                                                    selected1 = 1;
+                                                    selectedpayment = 1;
                                                   });
                                                 },
                                                 child: Container(
                                                   width: 80.w,
                                                   padding: EdgeInsets.all(2.w),
                                                   decoration: BoxDecoration(
-                                                    color: selected1 == 1
+                                                    color: selectedpayment == 1
                                                         ? Color(0xfff7941d)
                                                             .withOpacity(0.06)
                                                         : Colors.white
@@ -365,7 +383,8 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                         BorderRadius.circular(
                                                             15.sp),
                                                     border: Border.all(
-                                                      color: selected1 == 1
+                                                      color: selectedpayment ==
+                                                              1
                                                           ? Color(0xfff7941d)
                                                           : Colors.black12,
                                                       // Border color
@@ -469,7 +488,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                       print(paymethodmodal
                                                           ?.data?.cod?.status);
                                                       setState(() {
-                                                        selected1 = 2;
+                                                        selectedpayment = 2;
                                                       });
                                                     },
                                                     child: Container(
@@ -477,7 +496,8 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                           EdgeInsets.all(2.w),
                                                       width: 80.w,
                                                       decoration: BoxDecoration(
-                                                        color: selected1 == 2
+                                                        color: selectedpayment ==
+                                                                2
                                                             ? Color(0xfff7941d)
                                                                 .withOpacity(
                                                                     0.06)
@@ -489,10 +509,13 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                                 .circular(
                                                                     15.sp),
                                                         border: Border.all(
-                                                          color: selected1 == 2
-                                                              ? Color(
-                                                                  0xfff7941d)
-                                                              : Colors.black12,
+                                                          color:
+                                                              selectedpayment ==
+                                                                      2
+                                                                  ? Color(
+                                                                      0xfff7941d)
+                                                                  : Colors
+                                                                      .black12,
                                                           // Border color
                                                           width:
                                                               2.0, // Border width
@@ -526,11 +549,119 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                         ],
                                                       ),
                                                     ),
-                                                  ),
+                                            ),
                                             SizedBox(
                                               height: 2.h,
                                             ),
                                           ],
+                                        ),
+                                        paymethodmodal?.data?.stripe?.status ==
+                                            false
+                                            ? GestureDetector(
+                                          onTap: () {
+                                            buildErrorDialog(
+                                                context,
+                                                'Sorry',
+                                                'Stripe is Not Available for this Product');
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(2.w),
+                                            width: 80.w,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey
+                                                  .withOpacity(0.2),
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  15.sp),
+                                              border: Border.all(
+                                                color: Colors.black12,
+                                                // Border color
+                                                width:
+                                                2.0, // Border width
+                                              ),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Image.asset(
+                                                  "assets/sglogo.png",
+                                                  height: 5.h,
+                                                  width: 15.w,
+                                                ),
+                                                SizedBox(
+                                                  width: 5.w,
+                                                ),
+                                                Text("Pay Using Stripe",
+                                                    style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 17.sp,
+                                                      fontFamily: 'match',
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                            : GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              selectedpayment = 3;
+                                            });
+                                          },
+                                          child: Container(
+                                            width: 80.w,
+                                            padding: EdgeInsets.all(2.w),
+                                            decoration: BoxDecoration(
+                                              color: selectedpayment == 3
+                                                  ? Color(0xfff7941d)
+                                                  .withOpacity(0.06)
+                                                  : Colors.white
+                                                  .withOpacity(0.04),
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  15.sp),
+                                              border: Border.all(
+                                                color: selectedpayment ==
+                                                    3
+                                                    ? Color(0xfff7941d)
+                                                    : Colors.black12,
+                                                // Border color
+                                                width:
+                                                2.0, // Border width
+                                              ),
+                                            ),
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .start,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .center,
+                                                children: [
+                                                  Image.asset(
+                                                    "assets/slogo.png",
+                                                    height: 5.h,
+                                                    width: 18.w,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5.w,
+                                                  ),
+                                                  Text("Pay Using Stirpe",
+                                                      style: TextStyle(
+                                                        color:
+                                                        Colors.black,
+                                                        fontSize: 17.sp,
+                                                        fontFamily:
+                                                        'task',
+                                                      )),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -665,140 +796,195 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                         height: 5.h,
                       ),
                       GestureDetector(
-                        onTap: selected1 == 2
+                        onTap: selectedpayment == 3
                             ? () {
-                                checkoutcodap();
-                              }
-                            : selected1 == 1
-                                ? () {
-                                    double total = double.parse(
-                                        (viewcartmodal?.finalTotalWithTax)
-                                            .toString());
-                                    String add = widget.page == "1"
-                                        ? (userselectaddmodal
-                                                ?.selectShippingAddress
-                                                ?.address)
-                                            .toString()
-                                        : widget.address.toString();
-                                    String name = widget.page == "1"
-                                        ? (userselectaddmodal
-                                                ?.selectShippingAddress
-                                                ?.firstName)
-                                            .toString()
-                                        : widget.firstname.toString();
-                                    String formattedNumber =
-                                        total.toStringAsFixed(2);
-
-                                    print(total);
-                                    print(formattedNumber);
-
-                                    Navigator.push(
+                                widget.name == '' ||
+                                        widget.name == null &&
+                                            widget.cvv == '' ||
+                                        widget.cvv == null && widget.em == '' ||
+                                        widget.em == null && widget.ey == '' ||
+                                        widget.ey == null && widget.cn == '' ||
+                                        widget.cn == null
+                                    ? Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => UsePaypal(
-                                              sandboxMode: true,
-                                              clientId: paymethodmodal?.data
-                                                      ?.paypal?.clientID ??
-                                                  '',
-                                              secretKey: paymethodmodal?.data
-                                                      ?.paypal?.secretKey ??
-                                                  '',
-                                              returnURL:
-                                                  "https://samplesite.com/return",
-                                              cancelURL:
-                                                  "https://samplesite.com/cancel",
-                                              transactions: [
-                                                {
-                                                  "amount": {
-                                                    "total": formattedNumber,
-                                                    "currency": "USD",
-                                                    "details": {
-                                                      "subtotal":
-                                                          formattedNumber,
-                                                      "shipping": '0',
-                                                      "shipping_discount": 0
-                                                    }
-                                                  },
-                                                  "description":
-                                                      "The payment transaction description.",
-                                                  "item_list": {
-                                                    "items": [],
-                                                    "shipping_address": {
-                                                      "recipient_name": name,
-                                                      "line1": add,
-                                                      "line2": "",
-                                                      "city": "Austin",
-                                                      "country_code": "US",
-                                                      "postal_code": "73301",
-                                                      "phone": "+00000000",
-                                                      "state": "Texas"
-                                                    },
-                                                  }
-                                                }
-                                              ],
-                                              note:
-                                                  "Contact us for any questions on your order.",
-                                              onSuccess: (Map params) async {
-                                                EasyLoading.show(
-                                                    status:
-                                                        'Processing Your Payment ..',
-                                                    indicator:
-                                                        CircularProgressIndicator(
-                                                      backgroundColor:
-                                                          Color(0xfff7941d),
-                                                      color: Colors.white,
-                                                    ));
-                                                print(
-                                                    "onSuccess:- Uid: ${usermodal?.userId} , Add Id: ${widget.addid} , PaymenId: ${params['paymentId']} , type : paypal");
-                                                checkoutpaypalap(
-                                                    params['paymentId']);
-                                              },
-                                              onError: (error) {
-                                                EasyLoading.show(
-                                                    status:
-                                                        'Processing Your Payment ..',
-                                                    indicator:
-                                                        CircularProgressIndicator(
-                                                      backgroundColor:
-                                                          Color(0xfff7941d),
-                                                      color: Colors.white,
-                                                    ));
-                                                checkoutpaypalap('');
-                                                print("onError: $error");
-                                                EasyLoading.showError(
-                                                  "Payment Error",
-                                                );
-                                                Navigator.pop(context);
-                                              },
-                                              onCancel: (params) {
-                                                EasyLoading.show(
-                                                    status:
-                                                        'Processing Your Payment ..',
-                                                    indicator:
-                                                        CircularProgressIndicator(
-                                                      backgroundColor:
-                                                          Color(0xfff7941d),
-                                                      color: Colors.white,
-                                                    ));
-
-                                                print('cancelled: $params');
-                                                EasyLoading.showError(
-                                                  "Payment Cancelled",
-                                                );
-                                              }),
-                                        ));
+                                          builder: (context) => AddCardPage(
+                                              addid: widget.addid,
+                                              firstname: widget.page == "1"
+                                                  ? (userselectaddmodal
+                                                          ?.selectShippingAddress
+                                                          ?.firstName)
+                                                      .toString()
+                                                  : widget.firstname.toString(),
+                                              address: widget.page == "1"
+                                                  ? userselectaddmodal
+                                                                  ?.selectShippingAddress
+                                                                  ?.address ==
+                                                              '' ||
+                                                          userselectaddmodal?.selectShippingAddress
+                                                                  ?.address ==
+                                                              null
+                                                      ? 'N/A'
+                                                      : (userselectaddmodal
+                                                              ?.selectShippingAddress
+                                                              ?.address)
+                                                          .toString()
+                                                  : widget.address == '' ||
+                                                          widget.address == null
+                                                      ? 'N/A'
+                                                      : widget.address
+                                                          .toString(),
+                                              lastname: widget.page == "1"
+                                                  ? (userselectaddmodal
+                                                          ?.selectShippingAddress
+                                                          ?.lastName)
+                                                      .toString()
+                                                  : widget.lastname.toString()),
+                                        ))
+                                    : checkoutStipeap();
+                              }
+                            : selectedpayment == 2
+                                ? () {
+                                    checkoutcodap();
                                   }
-                                : paymethodmodal?.data?.cod?.status == false &&
-                                        paymethodmodal?.data?.paypal?.status ==
-                                            false
+                                : selectedpayment == 1
                                     ? () {
-                                        buildErrorDialog(context, '',
-                                            "No payment method available at this time");
+                                        double total = double.parse(
+                                            (viewcartmodal?.finalTotalWithTax)
+                                                .toString());
+                                        String add = widget.page == "1"
+                                            ? (userselectaddmodal
+                                                    ?.selectShippingAddress
+                                                    ?.address)
+                                                .toString()
+                                            : widget.address.toString();
+                                        String name = widget.page == "1"
+                                            ? (userselectaddmodal
+                                                    ?.selectShippingAddress
+                                                    ?.firstName)
+                                                .toString()
+                                            : widget.firstname.toString();
+                                        String formattedNumber =
+                                            total.toStringAsFixed(2);
+
+                                        print(total);
+                                        print(formattedNumber);
+
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => UsePaypal(
+                                                  sandboxMode: true,
+                                                  clientId: paymethodmodal?.data
+                                                          ?.paypal?.clientID ??
+                                                      '',
+                                                  secretKey: paymethodmodal
+                                                          ?.data
+                                                          ?.paypal
+                                                          ?.secretKey ??
+                                                      '',
+                                                  returnURL:
+                                                      "https://samplesite.com/return",
+                                                  cancelURL:
+                                                      "https://samplesite.com/cancel",
+                                                  transactions: [
+                                                    {
+                                                      "amount": {
+                                                        "total":
+                                                            formattedNumber,
+                                                        "currency": "USD",
+                                                        "details": {
+                                                          "subtotal":
+                                                              formattedNumber,
+                                                          "shipping": '0',
+                                                          "shipping_discount": 0
+                                                        }
+                                                      },
+                                                      "description":
+                                                          "The payment transaction description.",
+                                                      "item_list": {
+                                                        "items": [],
+                                                        "shipping_address": {
+                                                          "recipient_name":
+                                                              name,
+                                                          "line1": add,
+                                                          "line2": "",
+                                                          "city": "Austin",
+                                                          "country_code": "US",
+                                                          "postal_code":
+                                                              "73301",
+                                                          "phone": "+00000000",
+                                                          "state": "Texas"
+                                                        },
+                                                      }
+                                                    }
+                                                  ],
+                                                  note:
+                                                      "Contact us for any questions on your order.",
+                                                  onSuccess:
+                                                      (Map params) async {
+                                                    EasyLoading.show(
+                                                        status:
+                                                            'Processing Your Payment ..',
+                                                        indicator:
+                                                            CircularProgressIndicator(
+                                                          backgroundColor:
+                                                              Color(0xfff7941d),
+                                                          color: Colors.white,
+                                                        ));
+                                                    print(
+                                                        "onSuccess:- Uid: ${usermodal?.userId} , Add Id: ${widget.addid} , PaymenId: ${params['paymentId']} , type : paypal");
+                                                    checkoutpaypalap(
+                                                        params['paymentId']);
+                                                  },
+                                                  onError: (error) {
+                                                    EasyLoading.show(
+                                                        status:
+                                                            'Processing Your Payment ..',
+                                                        indicator:
+                                                            CircularProgressIndicator(
+                                                          backgroundColor:
+                                                              Color(0xfff7941d),
+                                                          color: Colors.white,
+                                                        ));
+                                                    checkoutpaypalap('');
+                                                    print("onError: $error");
+                                                    EasyLoading.showError(
+                                                      "Payment Error",
+                                                    );
+                                                    Navigator.pop(context);
+                                                  },
+                                                  onCancel: (params) {
+                                                    EasyLoading.show(
+                                                        status:
+                                                            'Processing Your Payment ..',
+                                                        indicator:
+                                                            CircularProgressIndicator(
+                                                          backgroundColor:
+                                                              Color(0xfff7941d),
+                                                          color: Colors.white,
+                                                        ));
+
+                                                    print('cancelled: $params');
+                                                    EasyLoading.showError(
+                                                      "Payment Cancelled",
+                                                    );
+                                                  }),
+                                            ));
                                       }
-                                    : () {
-                                        buildErrorDialog(context, '',
-                                            "Please choose your payment method");
-                                      },
+                                    : paymethodmodal?.data?.cod?.status ==
+                                                false &&
+                                            paymethodmodal
+                                                    ?.data?.paypal?.status ==
+                                                false
+                                        ? () {
+                                            buildErrorDialog(context, '',
+                                                "No payment method available at this time");
+                                          }
+                                        : () {
+                                            buildErrorDialog(context, '',
+                                                "Please choose your payment method");
+                                          },
                         child: Container(
                             margin: EdgeInsets.only(right: 7.w, left: 7.w),
                             alignment: Alignment.center,
@@ -891,7 +1077,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
     data['paymentID'] = payId;
-    data['type'] = 'paypal';
+    data['type'] = selectedpayment == 3 ? 'stripe' : 'paypal';
     data['shipping_address_id'] = widget.addid.toString();
     print(data);
     checkInternet().then((internet) async {
@@ -920,6 +1106,57 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
           }
         });
       } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+  checkoutStipeap() {
+    EasyLoading.show(
+        status: 'Processing Your Payment ..',
+        indicator: CircularProgressIndicator(
+          backgroundColor: Color(0xfff7941d),
+          color: Colors.white,
+        ));
+    final Map<String, String> data = {};
+
+    data['number'] = widget.cn ?? '';
+    data['expiry_month'] = widget.em ?? '';
+    data['expiry_year'] = widget.ey ?? '';
+    data['cvv'] = widget.cvv ?? '';
+    data['name'] = widget.name ?? '';
+    data['amt'] = (viewcartmodal?.finalTotalWithTax).toString();
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().checkoutstripeapi(data).then((response) async {
+          strpiepay = StripeModal.fromJson(json.decode(response.body));
+          print(strpiepay?.status);
+          if (response.statusCode == 200 && strpiepay?.status == "success") {
+            print(strpiepay?.status);
+
+            setState(() {
+              String payid = strpiepay?.paymentID ?? '';
+              checkoutpaypalap(payid);
+              isLoading = false;
+            });
+          } else {
+            print(strpiepay?.message);
+            EasyLoading.showError(
+              strpiepay?.message ?? '',
+            );
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        EasyLoading.showError(
+          "Payment Error",
+        );
         setState(() {
           isLoading = false;
         });

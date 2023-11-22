@@ -1294,7 +1294,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             "Pending",
                                                                             style:
                                                                                 TextStyle(
-                                                                                  fontSize: 13.sp,
+                                                                              fontSize: 13.sp,
                                                                               fontFamily: 'task',
                                                                               fontWeight: FontWeight.bold,
                                                                               letterSpacing: 1,
