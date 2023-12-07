@@ -24,9 +24,14 @@ class Data {
   BankTransfer? bankTransfer;
   Paypal? paypal;
   Stripe? stripe;
-  Razorpay? razorpay;
+  RazorpayData? razorpayData;
 
-  Data({this.cod, this.bankTransfer, this.paypal, this.stripe, this.razorpay});
+  Data(
+      {this.cod,
+      this.bankTransfer,
+      this.paypal,
+      this.stripe,
+      this.razorpayData});
 
   Data.fromJson(Map<String, dynamic> json) {
     cod = json['cod'] != null ? new Cod.fromJson(json['cod']) : null;
@@ -37,8 +42,8 @@ class Data {
         json['paypal'] != null ? new Paypal.fromJson(json['paypal']) : null;
     stripe =
         json['stripe'] != null ? new Stripe.fromJson(json['stripe']) : null;
-    razorpay = json['razorpay'] != null
-        ? new Razorpay.fromJson(json['razorpay'])
+    razorpayData = json['razorpay_data'] != null
+        ? new RazorpayData.fromJson(json['razorpay_data'])
         : null;
   }
 
@@ -56,8 +61,8 @@ class Data {
     if (this.stripe != null) {
       data['stripe'] = this.stripe!.toJson();
     }
-    if (this.razorpay != null) {
-      data['razorpay'] = this.razorpay!.toJson();
+    if (this.razorpayData != null) {
+      data['razorpay_data'] = this.razorpayData!.toJson();
     }
     return data;
   }
@@ -112,13 +117,22 @@ class Paypal {
   bool? status;
   String? clientID;
   String? secretKey;
+  String? merchantEmail;
+  String? liveSts;
 
-  Paypal({this.status, this.clientID, this.secretKey});
+  Paypal(
+      {this.status,
+      this.clientID,
+      this.secretKey,
+      this.merchantEmail,
+      this.liveSts});
 
   Paypal.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     clientID = json['clientID'];
     secretKey = json['secret_key'];
+    merchantEmail = json['merchant_email'];
+    liveSts = json['live_sts'];
   }
 
   Map<String, dynamic> toJson() {
@@ -126,6 +140,8 @@ class Paypal {
     data['status'] = this.status;
     data['clientID'] = this.clientID;
     data['secret_key'] = this.secretKey;
+    data['merchant_email'] = this.merchantEmail;
+    data['live_sts'] = this.liveSts;
     return data;
   }
 }
@@ -152,14 +168,14 @@ class Stripe {
   }
 }
 
-class Razorpay {
+class RazorpayData {
   bool? status;
   String? keyId;
   String? keySecret;
 
-  Razorpay({this.status, this.keyId, this.keySecret});
+  RazorpayData({this.status, this.keyId, this.keySecret});
 
-  Razorpay.fromJson(Map<String, dynamic> json) {
+  RazorpayData.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     keyId = json['keyId'];
     keySecret = json['key_secret'];

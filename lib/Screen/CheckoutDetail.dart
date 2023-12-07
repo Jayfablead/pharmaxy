@@ -19,6 +19,8 @@ import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_paypal/flutter_paypal.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 class CheckoutDetail extends StatefulWidget {
@@ -51,13 +53,30 @@ class CheckoutDetail extends StatefulWidget {
   State<CheckoutDetail> createState() => _CheckoutDetailState();
 }
 
+Razorpay? _razorpay;
 var selected = "i1";
-
+String name = '';
+String name1 = '';
 int selectedpayment = 0;
 
 bool isLoading = true;
 
 List<String> genderOptions = ["Male", "Female"];
+
+void MakePayment(String fname, String lname) async {
+  var options = {
+    'key': paymethodmodal?.data?.razorpayData?.keyId ?? '',
+    'amount': double.parse((viewcartmodal?.finalTotalWithTax).toString()) * 100,
+    'name': '${fname} ${lname}',
+    'description': 'Fine T-Shirt',
+    'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'}
+  };
+  try {
+    _razorpay?.open(options);
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+}
 
 class _CheckoutDetailState extends State<CheckoutDetail> {
   @override
@@ -67,6 +86,39 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     Paymethod();
     checkoutap();
     userselectaddap();
+    void _handlePaymentSuccess(PaymentSuccessResponse response) {
+      Fluttertoast.showToast(
+          msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
+      checkoutpaypalap(response.paymentId ?? '');
+    }
+
+    void _handlePaymentError(PaymentFailureResponse response) {
+      Fluttertoast.showToast(
+          msg: "ERROR HERE:${response.code} - ${response.message}",
+          timeInSecForIosWeb: 4);
+    }
+
+    void _handlePaymentWallet(ExternalWalletResponse response) {
+      Fluttertoast.showToast(
+          msg: "EXTERNAL_WALLET IS:${response.walletName}",
+          timeInSecForIosWeb: 4);
+    }
+
+    _razorpay = Razorpay();
+    _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handlePaymentWallet);
+
+    setState(() {
+      selectedpayment = 0;
+      name = widget.page == "1"
+          ? (userselectaddmodal?.selectShippingAddress?.firstName).toString()
+          : widget.firstname.toString();
+      name1 = widget.page == "1"
+          ? (userselectaddmodal?.selectShippingAddress?.lastName).toString()
+          : widget.lastname.toString();
+    });
+
     print('Page : ${widget.page}');
     print('Add Id : ${widget.addid}');
     print('Add name : ${widget.firstname}');
@@ -106,9 +158,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                             IconButton(
                                 onPressed: () {
                                   Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => CartPage()));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CartPage(),
+                                    ),
+                                  );
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
@@ -549,120 +603,223 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                         ],
                                                       ),
                                                     ),
-                                            ),
+                                                  ),
                                             SizedBox(
                                               height: 2.h,
                                             ),
                                           ],
                                         ),
                                         paymethodmodal?.data?.stripe?.status ==
-                                            false
+                                                false
                                             ? GestureDetector(
-                                          onTap: () {
-                                            buildErrorDialog(
-                                                context,
-                                                'Sorry',
-                                                'Stripe is Not Available for this Product');
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.all(2.w),
-                                            width: 80.w,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey
-                                                  .withOpacity(0.2),
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  15.sp),
-                                              border: Border.all(
-                                                color: Colors.black12,
-                                                // Border color
-                                                width:
-                                                2.0, // Border width
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment
-                                                  .center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/sglogo.png",
-                                                  height: 5.h,
-                                                  width: 15.w,
+                                                onTap: () {
+                                                  buildErrorDialog(
+                                                      context,
+                                                      'Sorry',
+                                                      'Stripe is Not Available for this Product');
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.all(2.w),
+                                                  width: 80.w,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.2),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.sp),
+                                                    border: Border.all(
+                                                      color: Colors.black12,
+                                                      // Border color
+                                                      width:
+                                                          2.0, // Border width
+                                                    ),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Image.asset(
+                                                        "assets/sglogo.png",
+                                                        height: 5.h,
+                                                        width: 15.w,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 5.w,
+                                                      ),
+                                                      Text("Pay Using Stripe",
+                                                          style: TextStyle(
+                                                            color: Colors.grey,
+                                                            fontSize: 17.sp,
+                                                            fontFamily: 'match',
+                                                          )),
+                                                    ],
+                                                  ),
                                                 ),
-                                                SizedBox(
-                                                  width: 5.w,
-                                                ),
-                                                Text("Pay Using Stripe",
-                                                    style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 17.sp,
-                                                      fontFamily: 'match',
-                                                    )),
-                                              ],
-                                            ),
-                                          ),
-                                        )
+                                              )
                                             : GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              selectedpayment = 3;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 80.w,
-                                            padding: EdgeInsets.all(2.w),
-                                            decoration: BoxDecoration(
-                                              color: selectedpayment == 3
-                                                  ? Color(0xfff7941d)
-                                                  .withOpacity(0.06)
-                                                  : Colors.white
-                                                  .withOpacity(0.04),
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  15.sp),
-                                              border: Border.all(
-                                                color: selectedpayment ==
-                                                    3
-                                                    ? Color(0xfff7941d)
-                                                    : Colors.black12,
-                                                // Border color
-                                                width:
-                                                2.0, // Border width
-                                              ),
-                                            ),
-                                            child: Center(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .start,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment
-                                                    .center,
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/slogo.png",
-                                                    height: 5.h,
-                                                    width: 18.w,
+                                                onTap: () {
+                                                  setState(() {
+                                                    selectedpayment = 3;
+                                                  });
+                                                },
+                                                child: Container(
+                                                  width: 80.w,
+                                                  padding: EdgeInsets.all(2.w),
+                                                  decoration: BoxDecoration(
+                                                    color: selectedpayment == 3
+                                                        ? Color(0xfff7941d)
+                                                            .withOpacity(0.06)
+                                                        : Colors.white
+                                                            .withOpacity(0.04),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.sp),
+                                                    border: Border.all(
+                                                      color: selectedpayment ==
+                                                              3
+                                                          ? Color(0xfff7941d)
+                                                          : Colors.black12,
+                                                      // Border color
+                                                      width:
+                                                          2.0, // Border width
+                                                    ),
                                                   ),
-                                                  SizedBox(
-                                                    width: 5.w,
+                                                  child: Center(
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Image.asset(
+                                                          "assets/slogo.png",
+                                                          height: 5.h,
+                                                          width: 18.w,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 5.w,
+                                                        ),
+                                                        Text("Pay Using Stirpe",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 17.sp,
+                                                              fontFamily:
+                                                                  'task',
+                                                            )),
+                                                      ],
+                                                    ),
                                                   ),
-                                                  Text("Pay Using Stirpe",
-                                                      style: TextStyle(
-                                                        color:
-                                                        Colors.black,
-                                                        fontSize: 17.sp,
-                                                        fontFamily:
-                                                        'task',
-                                                      )),
-                                                ],
+                                                ),
                                               ),
-                                            ),
-                                          ),
+                                        SizedBox(
+                                          height: 2.h,
                                         ),
+                                        paymethodmodal?.data?.razorpayData
+                                                    ?.status ==
+                                                false
+                                            ? GestureDetector(
+                                                onTap: () {
+                                                  buildErrorDialog(
+                                                      context,
+                                                      'Sorry',
+                                                      'Razorpay is Not Available for this Product');
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.all(2.w),
+                                                  width: 80.w,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.2),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.sp),
+                                                    border: Border.all(
+                                                      color: Colors.black12,
+                                                      // Border color
+                                                      width:
+                                                          2.0, // Border width
+                                                    ),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Image.asset(
+                                                        "assets/razorpayoff.png",
+                                                        height: 5.h,
+                                                        width: 20.w,
+                                                      ),
+                                                      Text("Pay Using Razorpay",
+                                                          style: TextStyle(
+                                                            color: Colors.grey,
+                                                            fontSize: 17.sp,
+                                                            fontFamily: 'match',
+                                                          )),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  print(paymethodmodal?.data
+                                                      ?.razorpayData?.status);
+                                                  setState(() {
+                                                    selectedpayment = 4;
+                                                  });
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.all(2.w),
+                                                  width: 80.w,
+                                                  decoration: BoxDecoration(
+                                                    color: selectedpayment == 4
+                                                        ? Color(0xfff7941d)
+                                                            .withOpacity(0.06)
+                                                        : Colors.white
+                                                            .withOpacity(0.04),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.sp),
+                                                    border: Border.all(
+                                                      color: selectedpayment ==
+                                                              4
+                                                          ? Color(0xfff7941d)
+                                                          : Colors.black12,
+                                                      // Border color
+                                                      width:
+                                                          2.0, // Border width
+                                                    ),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Image.asset(
+                                                        "assets/razorpay.png",
+                                                        height: 5.h,
+                                                        width: 20.w,
+                                                      ),
+                                                      Text("Pay Using Razorpay",
+                                                          style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 17.sp,
+                                                            fontFamily: 'match',
+                                                          )),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
                                       ],
                                     ),
                                   ),
@@ -670,7 +827,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                               ],
                             ),
                             SizedBox(
-                              height: 1.h,
+                              height: 2.h,
                             ),
                             Container(
                               width: 95.w,
@@ -796,195 +953,232 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                         height: 5.h,
                       ),
                       GestureDetector(
-                        onTap: selectedpayment == 3
+                        onTap: selectedpayment == 4
                             ? () {
-                                widget.name == '' ||
-                                        widget.name == null &&
-                                            widget.cvv == '' ||
-                                        widget.cvv == null && widget.em == '' ||
-                                        widget.em == null && widget.ey == '' ||
-                                        widget.ey == null && widget.cn == '' ||
-                                        widget.cn == null
-                                    ? Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => AddCardPage(
-                                              addid: widget.addid,
-                                              firstname: widget.page == "1"
-                                                  ? (userselectaddmodal
-                                                          ?.selectShippingAddress
-                                                          ?.firstName)
-                                                      .toString()
-                                                  : widget.firstname.toString(),
-                                              address: widget.page == "1"
-                                                  ? userselectaddmodal
-                                                                  ?.selectShippingAddress
-                                                                  ?.address ==
-                                                              '' ||
-                                                          userselectaddmodal?.selectShippingAddress
-                                                                  ?.address ==
-                                                              null
-                                                      ? 'N/A'
-                                                      : (userselectaddmodal
-                                                              ?.selectShippingAddress
-                                                              ?.address)
-                                                          .toString()
-                                                  : widget.address == '' ||
-                                                          widget.address == null
-                                                      ? 'N/A'
-                                                      : widget.address
-                                                          .toString(),
-                                              lastname: widget.page == "1"
-                                                  ? (userselectaddmodal
-                                                          ?.selectShippingAddress
-                                                          ?.lastName)
-                                                      .toString()
-                                                  : widget.lastname.toString()),
-                                        ))
-                                    : checkoutStipeap();
+                                MakePayment(name, name1);
                               }
-                            : selectedpayment == 2
+                            : selectedpayment == 3
                                 ? () {
-                                    checkoutcodap();
-                                  }
-                                : selectedpayment == 1
-                                    ? () {
-                                        double total = double.parse(
-                                            (viewcartmodal?.finalTotalWithTax)
-                                                .toString());
-                                        String add = widget.page == "1"
-                                            ? (userselectaddmodal
-                                                    ?.selectShippingAddress
-                                                    ?.address)
-                                                .toString()
-                                            : widget.address.toString();
-                                        String name = widget.page == "1"
-                                            ? (userselectaddmodal
-                                                    ?.selectShippingAddress
-                                                    ?.firstName)
-                                                .toString()
-                                            : widget.firstname.toString();
-                                        String formattedNumber =
-                                            total.toStringAsFixed(2);
-
-                                        print(total);
-                                        print(formattedNumber);
-
-                                        Navigator.push(
+                                    widget.name == '' ||
+                                            widget.name == null &&
+                                                widget.cvv == '' ||
+                                            widget.cvv == null &&
+                                                widget.em == '' ||
+                                            widget.em == null &&
+                                                widget.ey == '' ||
+                                            widget.ey == null &&
+                                                widget.cn == '' ||
+                                            widget.cn == null
+                                        ? Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => UsePaypal(
-                                                  sandboxMode: true,
-                                                  clientId: paymethodmodal?.data
-                                                          ?.paypal?.clientID ??
-                                                      '',
-                                                  secretKey: paymethodmodal
-                                                          ?.data
-                                                          ?.paypal
-                                                          ?.secretKey ??
-                                                      '',
-                                                  returnURL:
-                                                      "https://samplesite.com/return",
-                                                  cancelURL:
-                                                      "https://samplesite.com/cancel",
-                                                  transactions: [
-                                                    {
-                                                      "amount": {
-                                                        "total":
-                                                            formattedNumber,
-                                                        "currency": "USD",
-                                                        "details": {
-                                                          "subtotal":
-                                                              formattedNumber,
-                                                          "shipping": '0',
-                                                          "shipping_discount": 0
-                                                        }
-                                                      },
-                                                      "description":
-                                                          "The payment transaction description.",
-                                                      "item_list": {
-                                                        "items": [],
-                                                        "shipping_address": {
-                                                          "recipient_name":
-                                                              name,
-                                                          "line1": add,
-                                                          "line2": "",
-                                                          "city": "Austin",
-                                                          "country_code": "US",
-                                                          "postal_code":
-                                                              "73301",
-                                                          "phone": "+00000000",
-                                                          "state": "Texas"
-                                                        },
-                                                      }
-                                                    }
-                                                  ],
-                                                  note:
-                                                      "Contact us for any questions on your order.",
-                                                  onSuccess:
-                                                      (Map params) async {
-                                                    EasyLoading.show(
-                                                        status:
-                                                            'Processing Your Payment ..',
-                                                        indicator:
-                                                            CircularProgressIndicator(
-                                                          backgroundColor:
-                                                              Color(0xfff7941d),
-                                                          color: Colors.white,
-                                                        ));
-                                                    print(
-                                                        "onSuccess:- Uid: ${usermodal?.userId} , Add Id: ${widget.addid} , PaymenId: ${params['paymentId']} , type : paypal");
-                                                    checkoutpaypalap(
-                                                        params['paymentId']);
-                                                  },
-                                                  onError: (error) {
-                                                    EasyLoading.show(
-                                                        status:
-                                                            'Processing Your Payment ..',
-                                                        indicator:
-                                                            CircularProgressIndicator(
-                                                          backgroundColor:
-                                                              Color(0xfff7941d),
-                                                          color: Colors.white,
-                                                        ));
-                                                    checkoutpaypalap('');
-                                                    print("onError: $error");
-                                                    EasyLoading.showError(
-                                                      "Payment Error",
-                                                    );
-                                                    Navigator.pop(context);
-                                                  },
-                                                  onCancel: (params) {
-                                                    EasyLoading.show(
-                                                        status:
-                                                            'Processing Your Payment ..',
-                                                        indicator:
-                                                            CircularProgressIndicator(
-                                                          backgroundColor:
-                                                              Color(0xfff7941d),
-                                                          color: Colors.white,
-                                                        ));
-
-                                                    print('cancelled: $params');
-                                                    EasyLoading.showError(
-                                                      "Payment Cancelled",
-                                                    );
-                                                  }),
-                                            ));
+                                              builder: (context) => AddCardPage(
+                                                  addid: widget.addid,
+                                                  firstname: widget.page == "1"
+                                                      ? (userselectaddmodal
+                                                              ?.selectShippingAddress
+                                                              ?.firstName)
+                                                          .toString()
+                                                      : widget.firstname
+                                                          .toString(),
+                                                  address: widget.page == "1"
+                                                      ? userselectaddmodal?.selectShippingAddress?.address == '' ||
+                                                              userselectaddmodal
+                                                                      ?.selectShippingAddress
+                                                                      ?.address ==
+                                                                  null
+                                                          ? 'N/A'
+                                                          : (userselectaddmodal
+                                                                  ?.selectShippingAddress
+                                                                  ?.address)
+                                                              .toString()
+                                                      : widget.address == '' ||
+                                                              widget.address ==
+                                                                  null
+                                                          ? 'N/A'
+                                                          : widget.address
+                                                              .toString(),
+                                                  lastname: widget.page == "1"
+                                                      ? (userselectaddmodal
+                                                              ?.selectShippingAddress
+                                                              ?.lastName)
+                                                          .toString()
+                                                      : widget.lastname.toString()),
+                                            ))
+                                        : checkoutStipeap();
+                                  }
+                                : selectedpayment == 2
+                                    ? () {
+                                        checkoutcodap();
                                       }
-                                    : paymethodmodal?.data?.cod?.status ==
-                                                false &&
-                                            paymethodmodal
-                                                    ?.data?.paypal?.status ==
-                                                false
+                                    : selectedpayment == 1
                                         ? () {
-                                            buildErrorDialog(context, '',
-                                                "No payment method available at this time");
+                                            double total = double.parse(
+                                                (viewcartmodal
+                                                        ?.finalTotalWithTax)
+                                                    .toString());
+                                            String formattedNumber =
+                                                total.toStringAsFixed(2);
+                                            String add = widget.page == "1"
+                                                ? (userselectaddmodal
+                                                        ?.selectShippingAddress
+                                                        ?.address)
+                                                    .toString()
+                                                : widget.address.toString();
+                                            String name = widget.page == "1"
+                                                ? (userselectaddmodal
+                                                        ?.selectShippingAddress
+                                                        ?.firstName)
+                                                    .toString()
+                                                : widget.firstname.toString();
+
+                                            print(total);
+                                            print(formattedNumber);
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      UsePaypal(
+                                                          sandboxMode: paymethodmodal
+                                                                      ?.data
+                                                                      ?.paypal
+                                                                      ?.liveSts ==
+                                                                  "1"
+                                                              ? false
+                                                              : true,
+                                                          clientId: paymethodmodal
+                                                                  ?.data
+                                                                  ?.paypal
+                                                                  ?.clientID ??
+                                                              '',
+                                                          secretKey: paymethodmodal
+                                                                  ?.data
+                                                                  ?.paypal
+                                                                  ?.secretKey ??
+                                                              '',
+                                                          returnURL:
+                                                              "https://samplesite.com/return",
+                                                          cancelURL:
+                                                              "https://samplesite.com/cancel",
+                                                          transactions: [
+                                                            {
+                                                              "amount": {
+                                                                "total":
+                                                                    formattedNumber,
+                                                                "currency":
+                                                                    "USD",
+                                                                "details": {
+                                                                  "subtotal":
+                                                                      formattedNumber,
+                                                                  "shipping":
+                                                                      '0',
+                                                                  "shipping_discount":
+                                                                      0
+                                                                }
+                                                              },
+                                                              "description":
+                                                                  "The payment transaction description.",
+                                                              "item_list": {
+                                                                "items": [],
+                                                                "shipping_address":
+                                                                    {
+                                                                  "recipient_name":
+                                                                      name,
+                                                                  "line1": add,
+                                                                  "line2": "",
+                                                                  "city":
+                                                                      "Austin",
+                                                                  "country_code":
+                                                                      "US",
+                                                                  "postal_code":
+                                                                      "73301",
+                                                                  "phone":
+                                                                      "+00000000",
+                                                                  "state":
+                                                                      "Texas"
+                                                                },
+                                                              }
+                                                            }
+                                                          ],
+                                                          note:
+                                                              "Contact us for any questions on your order.",
+                                                          onSuccess: (Map
+                                                              params) async {
+                                                            EasyLoading.show(
+                                                                status:
+                                                                    'Processing Your Payment ..',
+                                                                indicator:
+                                                                    CircularProgressIndicator(
+                                                                  backgroundColor:
+                                                                      Color(
+                                                                          0xfff7941d),
+                                                                  color: Colors
+                                                                      .white,
+                                                                ));
+                                                            print(
+                                                                "onSuccess:- Uid: ${usermodal?.userId} , Add Id: ${widget.addid} , PaymenId: ${params['paymentId']} , type : paypal");
+                                                            checkoutpaypalap(
+                                                                params[
+                                                                    'paymentId']);
+                                                          },
+                                                          onError: (error) {
+                                                            EasyLoading.show(
+                                                                status:
+                                                                    'Processing Your Payment ..',
+                                                                indicator:
+                                                                    CircularProgressIndicator(
+                                                                  backgroundColor:
+                                                                      Color(
+                                                                          0xfff7941d),
+                                                                  color: Colors
+                                                                      .white,
+                                                                ));
+                                                            checkoutpaypalap(
+                                                                '');
+                                                            print(
+                                                                "onError: $error");
+                                                            EasyLoading
+                                                                .showError(
+                                                              "Payment Error",
+                                                            );
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          onCancel: (params) {
+                                                            EasyLoading.show(
+                                                                status:
+                                                                    'Processing Your Payment ..',
+                                                                indicator:
+                                                                    CircularProgressIndicator(
+                                                                  backgroundColor:
+                                                                      Color(
+                                                                          0xfff7941d),
+                                                                  color: Colors
+                                                                      .white,
+                                                                ));
+
+                                                            print(
+                                                                'cancelled: $params');
+                                                            EasyLoading
+                                                                .showError(
+                                                              "Payment Cancelled",
+                                                            );
+                                                          }),
+                                                ));
                                           }
-                                        : () {
-                                            buildErrorDialog(context, '',
-                                                "Please choose your payment method");
-                                          },
+                                        : paymethodmodal?.data?.cod?.status ==
+                                                    false &&
+                                                paymethodmodal?.data?.paypal
+                                                        ?.status ==
+                                                    false
+                                            ? () {
+                                                buildErrorDialog(context, '',
+                                                    "No payment method available at this time");
+                                              }
+                                            : () {
+                                                buildErrorDialog(context, '',
+                                                    "Please choose your payment method");
+                                              },
                         child: Container(
                             margin: EdgeInsets.only(right: 7.w, left: 7.w),
                             alignment: Alignment.center,
@@ -1077,7 +1271,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
     data['paymentID'] = payId;
-    data['type'] = selectedpayment == 3 ? 'stripe' : 'paypal';
+    data['type'] = selectedpayment == 4
+        ? 'razorpay'
+        : selectedpayment == 3
+            ? 'stripe'
+            : 'paypal';
     data['shipping_address_id'] = widget.addid.toString();
     print(data);
     checkInternet().then((internet) async {
@@ -1122,7 +1320,6 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
           color: Colors.white,
         ));
     final Map<String, String> data = {};
-
     data['number'] = widget.cn ?? '';
     data['expiry_month'] = widget.em ?? '';
     data['expiry_year'] = widget.ey ?? '';
@@ -1137,7 +1334,6 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
           print(strpiepay?.status);
           if (response.statusCode == 200 && strpiepay?.status == "success") {
             print(strpiepay?.status);
-
             setState(() {
               String payid = strpiepay?.paymentID ?? '';
               checkoutpaypalap(payid);
