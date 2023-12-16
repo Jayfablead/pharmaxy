@@ -45,13 +45,10 @@ class productdetail2change extends StatefulWidget {
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 Map<String, String?> selectedValues = {};
-
 String selectedValuesString = selectedValues.values
     .map((value) => value ?? '0')
     .toList()
     .toString();
-
-
 
 
 
@@ -525,13 +522,10 @@ class _productdetail2changeState extends State<productdetail2change> {
                                                           if (selectedValue != null) {
                                                             print('Selected value for $key: $selectedValue');
                                                           } else {
-
-                                                              selectedValue = '0';
-
-
                                                             print('No value selected for $key');
                                                           }
                                                         }
+
                                                         // Update the selected value in the map
                                                       });
                                                     },
@@ -547,7 +541,6 @@ class _productdetail2changeState extends State<productdetail2change> {
                                                         [],
                                                   ),
                                                 ),
-
 
                                               ),
                                             ],
@@ -731,7 +724,7 @@ class _productdetail2changeState extends State<productdetail2change> {
                       ),
                       SizedBox(height: 1.h),
                       Text(
-                        selectedValues.values.toString(),
+                        selectedValues.values.toList().toString(),
 
                         style: TextStyle(fontSize: 18.sp),
                       ),
