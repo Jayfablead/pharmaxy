@@ -7,6 +7,7 @@ import 'package:ecommerce/Modal/UserWishLIstModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProductDetailPage2.dart';
+import 'package:ecommerce/Screen/Productdetail2change.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
@@ -187,7 +188,7 @@ class _WishListPageState extends State<WishListPage> {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            ProductDetailPage2(
+                                                            productdetail2change(
                                                               productid: userwishlIstmodal
                                                                       ?.wishList?[
                                                                           index]
@@ -546,7 +547,7 @@ class _WishListPageState extends State<WishListPage> {
                                                                 Navigator.of(
                                                                         context)
                                                                     .push(MaterialPageRoute(
-                                                                        builder: (context) => ProductDetailPage2(
+                                                                        builder: (context) => productdetail2change(
                                                                               productid: userwishlIstmodal?.wishList?[index].productID ?? '',
                                                                             )));
                                                               },

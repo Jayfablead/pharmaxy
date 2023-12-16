@@ -16,6 +16,7 @@ import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProductDetailPage2.dart';
 import 'package:ecommerce/Screen/ProductList3.dart';
+import 'package:ecommerce/Screen/Productdetail2change.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/SubCateGoryPage.dart';
 import 'package:ecommerce/Screen/productlistpage2.dart';
@@ -496,7 +497,7 @@ class _HomePageState extends State<HomePage> {
                                             Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        ProductDetailPage2(
+                                                        productdetail2change(
                                                           productid: bestsellerproductmodal
                                                                   ?.productData?[
                                                                       index]
@@ -715,7 +716,7 @@ class _HomePageState extends State<HomePage> {
                                                     Navigator.of(context).push(
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                ProductDetailPage2(
+                                                                productdetail2change(
                                                                   productid: searchbestsaleModal
                                                                           ?.productData?[
                                                                               index]
@@ -927,7 +928,7 @@ class _HomePageState extends State<HomePage> {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ProductDetailPage2(
+                                                      productdetail2change(
                                                         productid:
                                                             imagePath.productID,
                                                       )));
@@ -1080,7 +1081,7 @@ class _HomePageState extends State<HomePage> {
                                                       Navigator.of(context).push(
                                                           MaterialPageRoute(
                                                               builder: (context) =>
-                                                                  ProductDetailPage2(
+                                                                  productdetail2change(
                                                                     productid: bestsellerproductmodal
                                                                             ?.productData?[index]
                                                                             .productID ??
@@ -1319,7 +1320,7 @@ class _HomePageState extends State<HomePage> {
                                                               Navigator.of(context).push(
                                                                   MaterialPageRoute(
                                                                       builder: (context) =>
-                                                                          ProductDetailPage2(
+                                                                          productdetail2change(
                                                                             productid:
                                                                                 bestsellerproductmodal?.productData?[index].productID ?? '',
                                                                           )));

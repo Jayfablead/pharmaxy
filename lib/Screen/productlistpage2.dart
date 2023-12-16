@@ -9,6 +9,7 @@ import 'package:ecommerce/Modal/SalesProductListModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProductDetailPage2.dart';
+import 'package:ecommerce/Screen/Productdetail2change.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
@@ -216,7 +217,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            ProductDetailPage2(
+                                                            productdetail2change(
                                                               productid: salesproductlistmodal
                                                                       ?.productData?[
                                                                           index]
@@ -431,7 +432,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                             MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                        ProductDetailPage2(
+                                                                        productdetail2change(
                                                                           productid:
                                                                               salesproductlistmodal?.productData?[index].productID ?? '',
                                                                         )));
@@ -570,7 +571,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            ProductDetailPage2(
+                                                            productdetail2change(
                                                               productid: salelistserachmodal
                                                                       ?.productData?[
                                                                           index]
@@ -778,7 +779,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                             MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                        ProductDetailPage2(
+                                                                        productdetail2change(
                                                                           productid:
                                                                               salelistserachmodal?.productData?[index].productID ?? '',
                                                                         )));

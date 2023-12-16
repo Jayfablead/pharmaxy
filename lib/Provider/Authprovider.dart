@@ -400,6 +400,7 @@ class authprovider with ChangeNotifier {
       },
     );
     responseJson = responses(response);
+    print(responseJson);
     return responseJson;
   }
 
