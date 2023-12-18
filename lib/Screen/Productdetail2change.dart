@@ -75,8 +75,7 @@ final controller = PageController(viewportFraction: 0.8, keepPage: true);
 List pages = [];
 bool h = false;
 List sizername = ['XS', 'S', 'M', 'XL', 'L'];
-
-
+String? mdata;
 DatabaseHelper databaseHelper = DatabaseHelper();
 
 int selectedColorIndex = 0;
@@ -448,115 +447,113 @@ class _productdetail2changeState extends State<productdetail2change> {
                   SliverToBoxAdapter(
                     child: SizedBox(
                       height: 30.h,
-                      child: FutureBuilder<Map<String, dynamic>>(
-                        future: fetchData(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Text("${snapshot.error}");
-                          } else if (snapshot.hasData) {
-                            var PDATA = snapshot.data!['product_data'];
-                            var pname = PDATA['ProductName'];
-                            var kname = snapshot.data!['filter_variation_data'];
-                            var kname1 = snapshot.data!['filter_keys'];
-                            var l1;
-                            var data1;
-                            var lgt;
-                            return SizedBox(
-                              height: 10.h,
-                              child: ListView.builder(
-                                padding: EdgeInsets.zero,
-                                itemBuilder: (context, index) {
-                                  String l1 = kname1[index].toString();
-                                  print(l1);
-                                  lgt = kname1.length;
-                                  print('ln:   $lgt');
+                      child:FutureBuilder<Map<String, dynamic>>(
+                    future: fetchData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Text("${snapshot.error}");
+                      } else if (snapshot.hasData) {
+                        var PDATA = snapshot.data!['product_data'];
+                        var pname = PDATA['ProductName'];
+                        var kname = snapshot.data!['filter_variation_data'];
+                        var kname1 = snapshot.data!['filter_keys'];
+                        var l1;
+                        var data1;
+                        var lgt;
 
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 3.w, vertical: 1.h),
-                                    child: Container(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                        // Initialize selected values with a unique default value
+                        kname1.forEach((key) {
+                          selectedValues[key] ??= null;
+                        });
+
+                        return SizedBox(
+                          height: 10.h,
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            itemBuilder: (context, index) {
+                              String l1 = kname1[index].toString();
+                              mdata = l1;
+                              print('mdata :$mdata');
+                              lgt = kname1.length;
+                              print('ln:$lgt');
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
+                                child: Container(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                '$l1 : ',
-                                                style: TextStyle(
-                                                  color: Colors.black87,
-                                                  fontFamily: "task",
-                                                  fontSize: 15.sp,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              Container(
-                                                width: 52.w,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  color: Colors.white,
-                                                ),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 5.0,
-                                                    vertical: 0.5.h),
-                                                child:
-                                                DropdownButtonHideUnderline(
-                                                  child: DropdownButton<String>(
-                                                    hint: Text(
-                                                      'Select',
-                                                      style: TextStyle(
-                                                        color: Colors.black.withOpacity(0.4),
-                                                        fontSize: 13,
-                                                        fontFamily: "task",
-                                                      ),
-                                                    ),
-                                                    value: selectedValues[l1],
-                                                    onChanged: (String? newValue) {
-                                                      setState(() {
-                                                        selectedValues[l1] = newValue;
-                                                        for (String key in kname1) {
-                                                          String? selectedValue = selectedValues[key];
-                                                          if (selectedValue != null) {
-                                                            print('Selected value for $key: $selectedValue');
-                                                          } else {
-                                                            print('No value selected for $key');
-                                                          }
-                                                        }
-
-                                                        // Update the selected value in the map
-                                                      });
-                                                    },
-                                                    items: (kname[l1] as List<dynamic>?)
-                                                        ?.cast<Map<String, dynamic>>()
-                                                        .map<DropdownMenuItem<String>>(
-                                                            (Map<String, dynamic> value) {
-                                                          return DropdownMenuItem<String>(
-                                                            value: value['VariationID']?.toString() ?? '',
-                                                            child: Text(value['VariationName'].toString()),
-                                                          );
-                                                        }).toList() ??
-                                                        [],
+                                          Text(
+                                            '$l1 : ',
+                                            style: TextStyle(
+                                              color: Colors.black87,
+                                              fontFamily: "task",
+                                              fontSize: 15.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 52.w,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(20),
+                                              color: Colors.white,
+                                            ),
+                                            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 0.5.h),
+                                            child: DropdownButtonHideUnderline(
+                                              child: DropdownButton<String>(
+                                                hint: Text(
+                                                  'Select',
+                                                  style: TextStyle(
+                                                    color: Colors.black.withOpacity(0.4),
+                                                    fontSize: 13,
+                                                    fontFamily: "task",
                                                   ),
                                                 ),
-
+                                                value: selectedValues[l1],
+                                                onChanged: (String? newValue) {
+                                                  setState(() {
+                                                    selectedValues[l1] = newValue ?? '0';
+                                                    for (String key in kname1) {
+                                                      String? selectedValue = selectedValues[key];
+                                                      if (selectedValue != null) {
+                                                        print('Selected value for $key: $selectedValue');
+                                                      } else {
+                                                        print('No value selected for $key');
+                                                      }
+                                                    }
+                                                  });
+                                                },
+                                                items: (kname[l1] as List<dynamic>?)
+                                                    ?.cast<Map<String, dynamic>>()
+                                                    .map<DropdownMenuItem<String>>(
+                                                        (Map<String, dynamic> value) {
+                                                      return DropdownMenuItem<String>(
+                                                        value: value['VariationID']?.toString() ?? '',
+                                                        child: Text(value['VariationName'].toString()),
+                                                      );
+                                                    }).toList() ??
+                                                    [],
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  );
-                                },
-                                itemCount: kname1.length,
-                              ),
-                            );
-                          }
-                          return Center(child: CircularProgressIndicator());
-                        },
-                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                            itemCount: kname1.length,
+                          ),
+                        );
+                      }
+                      return Center(child: CircularProgressIndicator()
+                      );
+                    },
+                    ),
+
                     ),
                   ),
                   SliverToBoxAdapter(
@@ -727,6 +724,11 @@ class _productdetail2changeState extends State<productdetail2change> {
                         selectedValues.values.toList().toString(),
 
                         style: TextStyle(fontSize: 18.sp),
+                      ),SizedBox(height: 1.h),
+                      Text(
+                        // mdata.toString(),
+                        '',
+                        style: TextStyle(fontSize: 18.sp),
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 2.5.w),
@@ -789,7 +791,7 @@ class _productdetail2changeState extends State<productdetail2change> {
                             ),
                           ),
                         )
-                      : SliverList.builder(
+                      :SliverList.builder(
                           itemCount: viewReviewmodal?.reviewData?.length,
                           itemBuilder: (context, index) {
                             return Container(
@@ -1110,6 +1112,28 @@ class _productdetail2changeState extends State<productdetail2change> {
       throw Exception('Failed to load data');
     }
   }
+
+  // Future<Map<String, dynamic>> fetchData2() async {
+  //   final Map<String, String> datas = {};
+  //   datas['product_id'] = widget.productid.toString();
+  //   datas['varrtype[]'] = mdata.toString();
+  //   datas['varrval[]'] = selectedValues.toString();
+  //   final response = await http.post(
+  //       Uri.parse('https://ecomweb.fableadtechnolabs.com/show_variation1'),
+  //       body: datas,
+  //       headers: headers);
+  //   if (response.statusCode == 200) {
+  //     // If the server returns a 200 OK response, parse the JSON
+  //     return json.decode(response.body);
+  //   } else {
+  //     // If the server did not return a 200 OK response,
+  //     // throw an exception.
+  //     throw Exception('Failed to load data');
+  //   }
+  // }
+
+
+
 
   productdetailap() async {
     final Map<String, String> data = {};
@@ -2038,6 +2062,7 @@ class _productdetail2changeState extends State<productdetail2change> {
     );
   }
 }
+
 
 //   drop dwon
 
