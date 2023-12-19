@@ -45,10 +45,8 @@ class productdetail2change extends StatefulWidget {
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 Map<String, String?> selectedValues = {};
-String selectedValuesString = selectedValues.values
-    .map((value) => value ?? '0')
-    .toList()
-    .toString();
+var filter_keys;
+
 
 
 
@@ -447,7 +445,7 @@ class _productdetail2changeState extends State<productdetail2change> {
                   SliverToBoxAdapter(
                     child: SizedBox(
                       height: 30.h,
-                      child:FutureBuilder<Map<String, dynamic>>(
+                      child: FutureBuilder<Map<String, dynamic>>(
                     future: fetchData(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
@@ -460,23 +458,21 @@ class _productdetail2changeState extends State<productdetail2change> {
                         var l1;
                         var data1;
                         var lgt;
-
                         // Initialize selected values with a unique default value
                         kname1.forEach((key) {
                           selectedValues[key] ??= null;
                         });
-
                         return SizedBox(
                           height: 10.h,
                           child: ListView.builder(
-                            padding: EdgeInsets.zero,
-                            itemBuilder: (context, index) {
+                              padding: EdgeInsets.zero,
+                              itemBuilder: (context, index) {
                               String l1 = kname1[index].toString();
                               mdata = l1;
                               print('mdata :$mdata');
                               lgt = kname1.length;
                               print('ln:$lgt');
-                              return Padding(
+                              return  Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
                                 child: Container(
                                   child: Column(
@@ -487,7 +483,7 @@ class _productdetail2changeState extends State<productdetail2change> {
                                         children: [
                                           Text(
                                             '$l1 : ',
-                                            style: TextStyle(
+                                              style: TextStyle(
                                               color: Colors.black87,
                                               fontFamily: "task",
                                               fontSize: 15.sp,
@@ -503,35 +499,37 @@ class _productdetail2changeState extends State<productdetail2change> {
                                             padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 0.5.h),
                                             child: DropdownButtonHideUnderline(
                                               child: DropdownButton<String>(
-                                                hint: Text(
+                                                hint: Text (
                                                   'Select',
-                                                  style: TextStyle(
+                                                    style: TextStyle(
                                                     color: Colors.black.withOpacity(0.4),
                                                     fontSize: 13,
                                                     fontFamily: "task",
                                                   ),
                                                 ),
-                                                value: selectedValues[l1],
-                                                onChanged: (String? newValue) {
-                                                  setState(() {
-                                                    selectedValues[l1] = newValue ?? '0';
-                                                    for (String key in kname1) {
-                                                      String? selectedValue = selectedValues[key];
-                                                      if (selectedValue != null) {
-                                                        print('Selected value for $key: $selectedValue');
-                                                      } else {
-                                                        print('No value selected for $key');
-                                                      }
+                                                     value: selectedValues[l1],
+                                                      onChanged: (String? newValue) {
+                                                      setState(() {
+                                                      filter_keys = kname1.map((key) => selectedValues[key]).toList();
+                                                      print('Selected values of kname: $filter_keys');
+                                                      selectedValues[l1] = newValue ?? '0';
+                                                      for (String key in kname1) {
+                                                       String? selectedValue = selectedValues[key];
+                                                       if (selectedValue != null) {
+                                                         print('Selected value for $key: $selectedValue');
+                                                       } else {
+                                                         print('No value selected for $key');
+                                                       }
                                                     }
                                                   });
                                                 },
-                                                items: (kname[l1] as List<dynamic>?)
+                                                items:(kname[l1] as List<dynamic>?)
                                                     ?.cast<Map<String, dynamic>>()
                                                     .map<DropdownMenuItem<String>>(
                                                         (Map<String, dynamic> value) {
-                                                      return DropdownMenuItem<String>(
-                                                        value: value['VariationID']?.toString() ?? '',
-                                                        child: Text(value['VariationName'].toString()),
+                                                      return  DropdownMenuItem<String>(
+                                                          value: value['VariationID']?.toString() ?? '',
+                                                          child: Text(value['VariationName'].toString()),
                                                       );
                                                     }).toList() ??
                                                     [],
@@ -540,6 +538,7 @@ class _productdetail2changeState extends State<productdetail2change> {
                                           ),
                                         ],
                                       ),
+
                                     ],
                                   ),
                                 ),
@@ -553,7 +552,6 @@ class _productdetail2changeState extends State<productdetail2change> {
                       );
                     },
                     ),
-
                     ),
                   ),
                   SliverToBoxAdapter(
@@ -619,7 +617,6 @@ class _productdetail2changeState extends State<productdetail2change> {
                                     SizedBox(
                                       width: 0.5.w,
                                     ),
-
                                     //--------*******SALES PRICE********------
                                     Padding(
                                       padding: EdgeInsets.only(top: 0.4.h),
@@ -663,13 +660,13 @@ class _productdetail2changeState extends State<productdetail2change> {
                                         style: TextStyle(
                                           decoration:
                                               TextDecoration.lineThrough,
-                                          decorationThickness: 2,
-                                          decorationColor: Colors.black,
-                                          fontSize: 12.sp,
-                                          fontFamily: 'task',
-                                          fontWeight: FontWeight.normal,
-                                          letterSpacing: 1,
-                                          color: Colors.black,
+                                             decorationThickness: 2,
+                                             decorationColor: Colors.black,
+                                             fontSize: 12.sp,
+                                             fontFamily: 'task',
+                                             fontWeight: FontWeight.normal,
+                                             letterSpacing: 1,
+                                             color: Colors.black,
                                         ),
                                       ),
                                     ),
@@ -722,11 +719,10 @@ class _productdetail2changeState extends State<productdetail2change> {
                       SizedBox(height: 1.h),
                       Text(
                         selectedValues.values.toList().toString(),
-
                         style: TextStyle(fontSize: 18.sp),
                       ),SizedBox(height: 1.h),
                       Text(
-                        // mdata.toString(),
+                         // mdata.toString(),
                         '',
                         style: TextStyle(fontSize: 18.sp),
                       ),
@@ -737,7 +733,7 @@ class _productdetail2changeState extends State<productdetail2change> {
                           children: [
                             Text(
                               'Reviews :',
-                              style: TextStyle(
+                                style: TextStyle(
                                 fontSize: 15.sp,
                                 fontFamily: 'task',
                                 fontWeight: FontWeight.bold,
@@ -749,14 +745,14 @@ class _productdetail2changeState extends State<productdetail2change> {
                               onTap: () {
                                 usermodal?.userId == '' ||
                                         usermodal?.userId == null
-                                    ? Fluttertoast.showToast(
+                                    ?Fluttertoast.showToast(
                                         msg: "You Have to Login to Give Review",
                                         toastLength: Toast.LENGTH_SHORT,
                                         timeInSecForIosWeb: 1,
                                         backgroundColor: Colors.white,
                                         textColor: Color(0xfff7941d),
                                         fontSize: 11.sp)
-                                    : addreviewdialog();
+                                       :addreviewdialog();
                               },
                               child: Text(
                                 'Add Your Review',
@@ -857,11 +853,11 @@ class _productdetail2changeState extends State<productdetail2change> {
                                                                   index]
                                                               .name ??
                                                           '',
-                                                      style: TextStyle(
+                                                        style: TextStyle(
                                                         fontSize: 12.sp,
                                                         fontFamily: 'task',
                                                         fontWeight:
-                                                            FontWeight.bold,
+                                                        FontWeight.bold,
                                                         letterSpacing: 1,
                                                         color: Colors.black
                                                             .withOpacity(0.85),
@@ -946,7 +942,7 @@ class _productdetail2changeState extends State<productdetail2change> {
                                                                         ? Row(
                                                                             children: [
                                                                               Icon(
-                                                                                Icons.star,
+                                                                                   Icons.star,
                                                                                 color: Colors.amber,
                                                                                 size: 14.sp,
                                                                               ),
@@ -1016,7 +1012,7 @@ class _productdetail2changeState extends State<productdetail2change> {
                                                                                     size: 14.sp,
                                                                                   )
                                                                                 ],
-                                                                              )
+                                                                   )
                                                           ],
                                                         ),
                                                         SizedBox(
@@ -1065,6 +1061,8 @@ class _productdetail2changeState extends State<productdetail2change> {
                                         ],
                                       ),
                                       SizedBox(height: 0.5.h),
+
+
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 16.w),
@@ -1113,6 +1111,7 @@ class _productdetail2changeState extends State<productdetail2change> {
     }
   }
 
+
   // Future<Map<String, dynamic>> fetchData2() async {
   //   final Map<String, String> datas = {};
   //   datas['product_id'] = widget.productid.toString();
@@ -1131,8 +1130,6 @@ class _productdetail2changeState extends State<productdetail2change> {
   //     throw Exception('Failed to load data');
   //   }
   // }
-
-
 
 
   productdetailap() async {
@@ -2061,6 +2058,8 @@ class _productdetail2changeState extends State<productdetail2change> {
       },
     );
   }
+
+
 }
 
 
