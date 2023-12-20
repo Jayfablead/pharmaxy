@@ -52,7 +52,7 @@ final Completer<InAppWebViewController> _controller =
     Completer<InAppWebViewController>();
 int sel = 1;
 int color = 0;
-
+bool _load = true;
 final _formKey = GlobalKey<FormState>();
 bool isLoading = true;
 TextEditingController _comment = TextEditingController();
@@ -89,6 +89,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
       color = 0;
       selected = 0;
       isLoading = true;
+      _load = true;
     });
     productdetailap();
     setState(() {
@@ -115,6 +116,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
       selectcolorap();
     }
     viewreviewap();
+    print('init load : ${_load}');
     print('init : ${_webViewHeight}');
   }
 
@@ -450,22 +452,41 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                       ),
                     ),
                     SliverToBoxAdapter(
-                      child: Container(
-                        height: _webViewHeight, // Set the height dynamically
-                        child: InAppWebView(
-                          initialUrlRequest: URLRequest(
-                            url: Uri.parse(
-                                'https://ecomweb.fableadtechnolabs.com/design'), // replace with your URL
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: _webViewHeight,
+                            color: Colors.grey.shade100,
+                            // Set the height dynamically
+                            child: InAppWebView(
+                              initialUrlRequest: URLRequest(
+                                url: Uri.parse(
+                                    'https://ecomweb.fableadtechnolabs.com/design'), // replace with your URL
+                              ),
+                              onWebViewCreated:
+                                  (InAppWebViewController controller) {
+                                _controller.complete(controller);
+                              },
+                              onLoadStop:
+                                  (InAppWebViewController controller, Uri? url) {
+                                setState(() {
+                                  _load = false;
+                                  print('loading : ${_load}');
+                                });
+                                _updateWebViewHeight();
+
+                              },
+                            ),
                           ),
-                          onWebViewCreated:
-                              (InAppWebViewController controller) {
-                            _controller.complete(controller);
-                          },
-                          onLoadStop:
-                              (InAppWebViewController controller, Uri? url) {
-                            _updateWebViewHeight();
-                          },
-                        ),
+                         if(_load) Positioned.fill(
+                           child: Container(
+                              color: Colors.grey.shade100,
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                         ),
+                        ],
                       ),
                     ),
                     SliverToBoxAdapter(
@@ -1781,7 +1802,9 @@ class _productdetailwebviewState extends State<productdetailwebview> {
     // Update the state to trigger a rebuild with the new height
     setState(() {
       _webViewHeight = contentHeight;
+
       print('final : ${_webViewHeight}');
+
     });
   }
 }

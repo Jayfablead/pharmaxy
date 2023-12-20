@@ -21,6 +21,7 @@ import 'package:sizer/sizer.dart';
 import '../Databasehandler.dart';
 import '../Modal/AllUserAddModal.dart';
 import '../Provider/cartProvider.dart';
+import '../Widget/bottombar.dart';
 import 'LoginPage2.dart';
 
 class CartPage extends StatefulWidget {
@@ -92,6 +93,7 @@ class _CartPageState extends State<CartPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
+          bottomNavigationBar: bottombar(),
         key: _scaffoldKey,
         drawer: drawer1(),
         backgroundColor: bgcolor,
