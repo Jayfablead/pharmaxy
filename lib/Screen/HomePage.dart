@@ -16,6 +16,7 @@ import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProductDetailPage2.dart';
 import 'package:ecommerce/Screen/ProductList3.dart';
+import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/Productdetail2change.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/SubCateGoryPage.dart';
@@ -497,7 +498,7 @@ class _HomePageState extends State<HomePage> {
                                             Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        productdetail2change(
+                                                        productdetailwebview(
                                                           productid: bestsellerproductmodal
                                                                   ?.productData?[
                                                                       index]
@@ -716,7 +717,7 @@ class _HomePageState extends State<HomePage> {
                                                     Navigator.of(context).push(
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                productdetail2change(
+                                                                productdetailwebview(
                                                                   productid: searchbestsaleModal
                                                                           ?.productData?[
                                                                               index]
@@ -928,7 +929,7 @@ class _HomePageState extends State<HomePage> {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      productdetail2change(
+                                                      productdetailwebview(
                                                         productid:
                                                             imagePath.productID,
                                                       )));
@@ -1081,7 +1082,7 @@ class _HomePageState extends State<HomePage> {
                                                       Navigator.of(context).push(
                                                           MaterialPageRoute(
                                                               builder: (context) =>
-                                                                  productdetail2change(
+                                                                  productdetailwebview(
                                                                     productid: bestsellerproductmodal
                                                                             ?.productData?[index]
                                                                             .productID ??
@@ -1320,7 +1321,7 @@ class _HomePageState extends State<HomePage> {
                                                               Navigator.of(context).push(
                                                                   MaterialPageRoute(
                                                                       builder: (context) =>
-                                                                          productdetail2change(
+                                                                          productdetailwebview(
                                                                             productid:
                                                                                 bestsellerproductmodal?.productData?[index].productID ?? '',
                                                                           )));

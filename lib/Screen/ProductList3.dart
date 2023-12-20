@@ -9,6 +9,7 @@ import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProductDetailPage2.dart';
+import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/Productdetail2change.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -220,7 +221,7 @@ class _ProductList3State extends State<ProductList3> {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            productdetail2change(
+                                                            productdetailwebview(
                                                               productid: bestsellerproductmodal
                                                                       ?.productData?[
                                                                           index]
@@ -434,7 +435,7 @@ class _ProductList3State extends State<ProductList3> {
                                                             MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                        productdetail2change(
+                                                                        productdetailwebview(
                                                                           productid:
                                                                               bestsellerproductmodal?.productData?[index].productID ?? '',
                                                                         )));
@@ -573,7 +574,7 @@ class _ProductList3State extends State<ProductList3> {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            productdetail2change(
+                                                            productdetailwebview(
                                                               productid: searchbestsaleModal
                                                                       ?.productData?[
                                                                           index]
@@ -781,7 +782,7 @@ class _ProductList3State extends State<ProductList3> {
                                                             MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                        productdetail2change(
+                                                                        productdetailwebview(
                                                                           productid:
                                                                               searchbestsaleModal?.productData?[index].productID ?? '',
                                                                         )));
