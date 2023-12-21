@@ -48,6 +48,7 @@ class productdetailwebview extends StatefulWidget {
 }
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 final Completer<InAppWebViewController> _controller =
     Completer<InAppWebViewController>();
 int sel = 1;
@@ -57,7 +58,7 @@ final _formKey = GlobalKey<FormState>();
 bool isLoading = true;
 TextEditingController _comment = TextEditingController();
 TextEditingController _rating = TextEditingController();
-double _webViewHeight = 0.2;
+double _webViewHeight = 0.001;
 final controller = PageController(viewportFraction: 0.8, keepPage: true);
 List pages = [];
 bool h = false;
@@ -72,7 +73,7 @@ List<Color> colorList = [
 ];
 double webViewHeight = 0;
 DatabaseHelper databaseHelper = DatabaseHelper();
-
+late InAppWebViewController _webViewController;
 int selectedColorIndex = 0;
 
 int selcted = 0;
@@ -86,7 +87,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
     super.initState();
 
     setState(() {
-      _webViewHeight = 0.2;
+      _webViewHeight = 0.001;
       color = 0;
       selected = 0;
       isLoading = true;
@@ -119,6 +120,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
     viewreviewap();
     print('init load : ${_load}');
     print('init : ${_webViewHeight}');
+
   }
 
   @override
@@ -454,28 +456,45 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                     ),
 
                     SliverToBoxAdapter(
-                      child: Container(
-                        height: _webViewHeight,
-                        color: Colors.grey.shade100,
-                        child: InAppWebView(
-                          initialUrlRequest: URLRequest(
-                            url: Uri.parse(
-                                'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}'), // replace with your URL
-                          ),
-                          onWebViewCreated:
-                              (InAppWebViewController controller) {
-                            _controller.complete(controller);
-                          },
-                          onLoadStop:
-                              (InAppWebViewController controller, Uri? url) {
-                            setState(() {
-                              _load = false;
-                              print('loading : ${_load}');
-                            });
-                            _updateWebViewHeight();
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: _webViewHeight,
+                            color: Colors.grey.shade100,
+                            child: InAppWebView(initialOptions: InAppWebViewGroupOptions(
+                              crossPlatform: InAppWebViewOptions(
+                                transparentBackground: true,
+                              ),
+                            ),
+                              initialUrlRequest: URLRequest(
+                                url: Uri.parse(
+                                    'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}'), // replace with your URL
+                              ),
+                              onWebViewCreated: (InAppWebViewController controller) {
+                                _webViewController = controller;
+                                _updateWebViewHeight();
+                              },
+                              onLoadStart: (InAppWebViewController controller, Uri? url) {
+                                setState(() {
+                                  _load = true;
+                                });
+                              },
+                              onLoadStop:
+                                  (InAppWebViewController controller, Uri? url) {
+                                setState(() {
+                                  _load = false;
+                                  print('loading : ${_load}');
+                                });
+                                _updateWebViewHeight();
 
-                          },
-                        ),
+                              },
+                            ),
+                          ),
+                          if (_load)
+                            Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                        ],
                       ),
                     ),
                     SliverToBoxAdapter(
@@ -1781,21 +1800,22 @@ class _productdetailwebviewState extends State<productdetailwebview> {
 
   void _updateWebViewHeight() async {
     // Get the current content height of the InAppWebView
-    final double contentHeight = await _controller.future
-        .then((controller) => controller.evaluateJavascript(
-              source:
-                  'Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, document.documentElement.clientHeight, document.body.clientHeight);',
-            ))
-        .then((result) => double.parse(result.toString()));
+    dynamic result = await _webViewController.evaluateJavascript(
+      source: 'Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);',
+    );
+
+    // Convert the result to a double
+    double contentHeight = result is int ? result.toDouble() : result;
 
     // Update the state to trigger a rebuild with the new height
     setState(() {
       _webViewHeight = contentHeight;
 
-      print('final : ${_webViewHeight}');
-
+      print('final hgt : ${_webViewHeight}');
     });
   }
+
+
 
   void showAlertDialog(BuildContext context) {
     // set up the button
