@@ -451,6 +451,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                         ],
                       ),
                     ),
+
                     SliverToBoxAdapter(
                       child: Stack(
                         children: [
@@ -1807,4 +1808,44 @@ class _productdetailwebviewState extends State<productdetailwebview> {
 
     });
   }
+
+  void showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK", style: TextStyle(color: Colors.white)),
+      onPressed: () {
+        Navigator.pop(context); // Close the dialog
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      backgroundColor: Colors.black87,
+      content: Text(
+        "Your item is added in the cart",
+        style: TextStyle(color: Colors.white),
+      ),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+
+// Call this function whenever you want to show the dialog
+  void alert() {
+    // You need to provide the context when calling showAlertDialog
+    // For example, you can call it inside a build method like:
+    // showAlertDialog(context);
+  }
+
+
 }
