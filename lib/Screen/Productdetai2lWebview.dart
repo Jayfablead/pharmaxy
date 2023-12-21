@@ -451,43 +451,29 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                         ],
                       ),
                     ),
-
                     SliverToBoxAdapter(
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: _webViewHeight,
-                            color: Colors.grey.shade100,
-                            // Set the height dynamically
-                            child: InAppWebView(
-                              initialUrlRequest: URLRequest(
-                                url: Uri.parse(
-                                    'https://ecomweb.fableadtechnolabs.com/design'), // replace with your URL
-                              ),
-                              onWebViewCreated:
-                                  (InAppWebViewController controller) {
-                                _controller.complete(controller);
-                              },
-                              onLoadStop:
-                                  (InAppWebViewController controller, Uri? url) {
-                                setState(() {
-                                  _load = false;
-                                  print('loading : ${_load}');
-                                });
-                                _updateWebViewHeight();
-
-                              },
-                            ),
+                      child: Container(
+                        height: _webViewHeight,
+                        color: Colors.grey.shade100,
+                        child: InAppWebView(
+                          initialUrlRequest: URLRequest(
+                            url: Uri.parse(
+                                'https://ecomweb.fableadtechnolabs.com/design',), // replace with your URL
                           ),
-                         if(_load) Positioned.fill(
-                           child: Container(
-                              color: Colors.grey.shade100,
-                              child: Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                            ),
-                         ),
-                        ],
+                          onWebViewCreated:
+                              (InAppWebViewController controller) {
+                            _controller.complete(controller);
+                          },
+                          onLoadStop:
+                              (InAppWebViewController controller, Uri? url) {
+                            setState(() {
+                              _load = false;
+                              print('loading : ${_load}');
+                            });
+                            _updateWebViewHeight();
+
+                          },
+                        ),
                       ),
                     ),
                     SliverToBoxAdapter(
