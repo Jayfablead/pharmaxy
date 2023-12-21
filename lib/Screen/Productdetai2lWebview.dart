@@ -57,7 +57,7 @@ final _formKey = GlobalKey<FormState>();
 bool isLoading = true;
 TextEditingController _comment = TextEditingController();
 TextEditingController _rating = TextEditingController();
-double _webViewHeight = 100;
+double _webViewHeight = 0.2;
 final controller = PageController(viewportFraction: 0.8, keepPage: true);
 List pages = [];
 bool h = false;
@@ -86,6 +86,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
     super.initState();
 
     setState(() {
+      _webViewHeight = 0.2;
       color = 0;
       selected = 0;
       isLoading = true;
@@ -451,6 +452,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                         ],
                       ),
                     ),
+
                     SliverToBoxAdapter(
                       child: Container(
                         height: _webViewHeight,
@@ -458,7 +460,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                         child: InAppWebView(
                           initialUrlRequest: URLRequest(
                             url: Uri.parse(
-                                'https://ecomweb.fableadtechnolabs.com/design',), // replace with your URL
+                                'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}'), // replace with your URL
                           ),
                           onWebViewCreated:
                               (InAppWebViewController controller) {
@@ -467,7 +469,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                           onLoadStop:
                               (InAppWebViewController controller, Uri? url) {
                             setState(() {
-                              isLoading = false;
+                              _load = false;
                               print('loading : ${_load}');
                             });
                             _updateWebViewHeight();
@@ -900,11 +902,11 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                       ),
                     ));
             setState(() {
-              // isLoading = false;
+              isLoading = false;
             });
           } else {
             setState(() {
-              // isLoading = false;
+              isLoading = false;
             });
           }
         });
@@ -1346,17 +1348,17 @@ class _productdetailwebviewState extends State<productdetailwebview> {
               viewReviewmodal?.status == "success") {
             print('rrrrrrrrrrrrrrrrr');
             setState(() {
-              // isLoading = false;
+              isLoading = false;
             });
           } else {
             setState(() {
-              // isLoading = false;
+              isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          // isLoading = false;
+          isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -1388,17 +1390,17 @@ class _productdetailwebviewState extends State<productdetailwebview> {
             print('EE Review delete Thay Gyu Hooooo ! ^_^');
             Navigator.pop(context);
             setState(() {
-              // isLoading = false;
+              isLoading = false;
             });
           } else {
             setState(() {
-              // isLoading = false;
+              isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          // isLoading = false;
+          isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -1789,7 +1791,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
     // Update the state to trigger a rebuild with the new height
     setState(() {
       _webViewHeight = contentHeight;
-isLoading = false;
+
       print('final : ${_webViewHeight}');
 
     });
