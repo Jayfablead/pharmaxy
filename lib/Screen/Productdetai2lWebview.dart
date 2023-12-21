@@ -467,7 +467,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                           onLoadStop:
                               (InAppWebViewController controller, Uri? url) {
                             setState(() {
-                              _load = false;
+                              isLoading = false;
                               print('loading : ${_load}');
                             });
                             _updateWebViewHeight();
@@ -900,11 +900,11 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                       ),
                     ));
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           } else {
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           }
         });
@@ -1346,17 +1346,17 @@ class _productdetailwebviewState extends State<productdetailwebview> {
               viewReviewmodal?.status == "success") {
             print('rrrrrrrrrrrrrrrrr');
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           } else {
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
+          // isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -1388,17 +1388,17 @@ class _productdetailwebviewState extends State<productdetailwebview> {
             print('EE Review delete Thay Gyu Hooooo ! ^_^');
             Navigator.pop(context);
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           } else {
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
+          // isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -1789,7 +1789,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
     // Update the state to trigger a rebuild with the new height
     setState(() {
       _webViewHeight = contentHeight;
-
+isLoading = false;
       print('final : ${_webViewHeight}');
 
     });
