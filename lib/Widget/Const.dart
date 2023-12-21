@@ -52,6 +52,7 @@ import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:flutter/material.dart';
 
+import '../Modal/ProductDetail2Modal.dart';
 import '../Modal/StripeModal.dart';
 import '../Modal/addReviewModal.dart';
 
@@ -112,6 +113,9 @@ addReviewModal? addreview;
 ViewReviewModal? viewReviewmodal;
 DeleteReviewModal? deletereviewmodal;
 StripeModal? strpiepay;
+ProductDetail2Modal? productdetail2modal;
+
+
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());

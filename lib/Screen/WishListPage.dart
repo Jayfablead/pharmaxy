@@ -6,9 +6,8 @@ import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/UserWishLIstModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
-import 'package:ecommerce/Screen/ProductDetailPage2.dart';
+import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
-import 'package:ecommerce/Screen/Productdetail2change.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
@@ -186,16 +185,30 @@ class _WishListPageState extends State<WishListPage> {
                                             ),
                                             InkWell(
                                               onTap: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            productdetailwebview(
-                                                              productid: userwishlIstmodal
-                                                                      ?.wishList?[
-                                                                          index]
-                                                                      .productID ??
-                                                                  '',
-                                                            )));
+                                                userwishlIstmodal
+                                                            ?.wishList?[index]
+                                                            .productType ==
+                                                        '1'
+                                                    ? Navigator.of(context)
+                                                        .push(MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                productdetailnovartion(
+                                                                  productid: userwishlIstmodal
+                                                                          ?.wishList?[
+                                                                              index]
+                                                                          .productID ??
+                                                                      '',
+                                                                )))
+                                                    : Navigator.of(context)
+                                                        .push(MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                productdetailwebview(
+                                                                  productid: userwishlIstmodal
+                                                                          ?.wishList?[
+                                                                              index]
+                                                                          .productID ??
+                                                                      '',
+                                                                )));
                                               },
                                               child: Container(
                                                 decoration: BoxDecoration(
@@ -545,12 +558,23 @@ class _WishListPageState extends State<WishListPage> {
                                                             ),
                                                             GestureDetector(
                                                               onTap: () {
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .push(MaterialPageRoute(
-                                                                        builder: (context) => productdetailwebview(
-                                                                              productid: userwishlIstmodal?.wishList?[index].productID ?? '',
-                                                                            )));
+                                                                userwishlIstmodal
+                                                                            ?.wishList?[
+                                                                                index]
+                                                                            .productType ==
+                                                                        '1'
+                                                                    ? Navigator.of(context).push(
+                                                                        MaterialPageRoute(
+                                                                            builder: (context) =>
+                                                                                productdetailnovartion(
+                                                                                  productid: userwishlIstmodal?.wishList?[index].productID ?? '',
+                                                                                )))
+                                                                    : Navigator.of(
+                                                                            context)
+                                                                        .push(MaterialPageRoute(
+                                                                            builder: (context) => productdetailwebview(
+                                                                                  productid: userwishlIstmodal?.wishList?[index].productID ?? '',
+                                                                                )));
                                                               },
                                                               child: Container(
                                                                 alignment:

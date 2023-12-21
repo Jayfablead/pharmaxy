@@ -20,6 +20,8 @@ import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import 'ProductDetailnovartition.dart';
+
 class ProductList3 extends StatefulWidget {
   String? selid;
 
@@ -218,16 +220,26 @@ class _ProductList3State extends State<ProductList3> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                Navigator.of(context).push(
+                                                bestsellerproductmodal
+                                                    ?.productData?[index]
+                                                    .productType == '1'?Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            productdetailnovartion(
+                                                              productid: bestsellerproductmodal
+                                                                  ?.productData?[index]
+                                                                  .productID ??
+                                                                  '',
+                                                            ))): Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             productdetailwebview(
                                                               productid: bestsellerproductmodal
-                                                                      ?.productData?[
-                                                                          index]
-                                                                      .productID ??
+                                                                  ?.productData?[index]
+                                                                  .productID ??
                                                                   '',
                                                             )));
+
                                               },
                                               child: Card(
                                                 color: Colors.white,
@@ -431,20 +443,26 @@ class _ProductList3State extends State<ProductList3> {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {
-                                                        Navigator.of(context).push(
+                                                        bestsellerproductmodal
+                                                            ?.productData?[index]
+                                                            .productType == '1'?Navigator.of(context).push(
                                                             MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        productdetailwebview(
-                                                                          productid:
-                                                                              bestsellerproductmodal?.productData?[index].productID ?? '',
-                                                                        )));
-                                                        //ADD CART API
-                                                        // addtocartapi((allsubcatwiceproduct
-                                                        //     ?.subcategoriesWiseProduct?[
-                                                        // index]
-                                                        //     .productID ??
-                                                        //     ''));
+                                                                builder: (context) =>
+                                                                    productdetailnovartion(
+                                                                      productid: bestsellerproductmodal
+                                                                          ?.productData?[index]
+                                                                          .productID ??
+                                                                          '',
+                                                                    ))): Navigator.of(context).push(
+                                                            MaterialPageRoute(
+                                                                builder: (context) =>
+                                                                    productdetailwebview(
+                                                                      productid: bestsellerproductmodal
+                                                                          ?.productData?[index]
+                                                                          .productID ??
+                                                                          '',
+                                                                    )));
+
                                                       },
                                                       child: Container(
                                                         alignment:
@@ -571,16 +589,26 @@ class _ProductList3State extends State<ProductList3> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                Navigator.of(context).push(
+                                                searchbestsaleModal
+                                                    ?.productData?[index]
+                                                    .productType == '1'?Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            productdetailnovartion(
+                                                              productid: searchbestsaleModal
+                                                                  ?.productData?[index]
+                                                                  .productID ??
+                                                                  '',
+                                                            ))): Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             productdetailwebview(
                                                               productid: searchbestsaleModal
-                                                                      ?.productData?[
-                                                                          index]
-                                                                      .productID ??
+                                                                  ?.productData?[index]
+                                                                  .productID ??
                                                                   '',
                                                             )));
+
                                               },
                                               child: Card(
                                                 color: Colors.white,
@@ -778,14 +806,25 @@ class _ProductList3State extends State<ProductList3> {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {
-                                                        Navigator.of(context).push(
+                                                        searchbestsaleModal
+                                                            ?.productData?[index]
+                                                            .productType == '1'?Navigator.of(context).push(
                                                             MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        productdetailwebview(
-                                                                          productid:
-                                                                              searchbestsaleModal?.productData?[index].productID ?? '',
-                                                                        )));
+                                                                builder: (context) =>
+                                                                    productdetailnovartion(
+                                                                      productid: searchbestsaleModal
+                                                                          ?.productData?[index]
+                                                                          .productID ??
+                                                                          '',
+                                                                    ))): Navigator.of(context).push(
+                                                            MaterialPageRoute(
+                                                                builder: (context) =>
+                                                                    productdetailwebview(
+                                                                      productid: searchbestsaleModal
+                                                                          ?.productData?[index]
+                                                                          .productID ??
+                                                                          '',
+                                                                    )));
                                                         //ADD CART API
                                                         // addtocartapi((allsubcatwiceproduct
                                                         //     ?.subcategoriesWiseProduct?[

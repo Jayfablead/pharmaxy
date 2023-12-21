@@ -42,6 +42,21 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
+  Future<http.Response> productdetail2api(Map<String, String> bodyData) async {
+    const url = "$baseUrl/simple_product_details";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
   Future<http.Response> ViewProfile(Map<String, String> bodyData) async {
     const url = "$baseUrl/userProfile";
     var responseJson;

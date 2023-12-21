@@ -878,7 +878,7 @@ class _CartPageState extends State<CartPage> {
                                   child: Column(
                                     children: [
                                       Container(
-                                        height: 55.h,
+                                        height: 49.h,
                                         child: ListView.builder(
                                           padding: EdgeInsets.zero,
                                           itemCount: viewcartmodal

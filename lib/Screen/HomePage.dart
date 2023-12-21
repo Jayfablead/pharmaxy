@@ -14,10 +14,9 @@ import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
-import 'package:ecommerce/Screen/ProductDetailPage2.dart';
+import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
 import 'package:ecommerce/Screen/ProductList3.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
-import 'package:ecommerce/Screen/Productdetail2change.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/SubCateGoryPage.dart';
 import 'package:ecommerce/Screen/productlistpage2.dart';
@@ -495,16 +494,31 @@ class _HomePageState extends State<HomePage> {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-                                            Navigator.of(context).push(
+
+                                            searchbestsaleModal
+                                                ?.productData?[
+                                            index]
+                                                .productType ==
+                                                '1'
+                                                ? Navigator.push(context, MaterialPageRoute(
+                                                builder: (context) =>
+                                                    productdetailnovartion(
+                                                      productid: searchbestsaleModal
+                                                          ?.productData?[
+                                                      index]
+                                                          .productID ??
+                                                          '',
+                                                    )))
+                                                : Navigator.of(context).push(
                                                 MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        productdetailwebview(
-                                                          productid: bestsellerproductmodal
-                                                                  ?.productData?[
-                                                                      index]
-                                                                  .productID ??
-                                                              '',
-                                                        )));
+                                                        builder: (context) =>
+                                                            productdetailwebview(
+                                                              productid: searchbestsaleModal
+                                                                      ?.productData?[
+                                                                          index]
+                                                                      .productID ??
+                                                                  '',
+                                                            )));
                                           },
                                           child: Card(
                                             color: Colors.white,
@@ -714,14 +728,28 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () {
-                                                    Navigator.of(context).push(
+                                                    searchbestsaleModal
+                                                        ?.productData?[
+                                                    index]
+                                                        .productType ==
+                                                        '1'
+                                                        ? Navigator.push(context, MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            productdetailnovartion(
+                                                              productid: searchbestsaleModal
+                                                                  ?.productData?[
+                                                              index]
+                                                                  .productID ??
+                                                                  '',
+                                                            )))
+                                                        : Navigator.of(context).push(
                                                         MaterialPageRoute(
                                                             builder: (context) =>
                                                                 productdetailwebview(
                                                                   productid: searchbestsaleModal
-                                                                          ?.productData?[
-                                                                              index]
-                                                                          .productID ??
+                                                                      ?.productData?[
+                                                                  index]
+                                                                      .productID ??
                                                                       '',
                                                                 )));
                                                     //ADD CART API
@@ -1079,7 +1107,17 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   GestureDetector(
                                                     onTap: () {
-                                                      Navigator.of(context).push(
+                                                      bestsellerproductmodal
+                                                          ?.productData?[index]
+                                                          .productType == '1'?Navigator.of(context).push(
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  productdetailnovartion(
+                                                                    productid: bestsellerproductmodal
+                                                                        ?.productData?[index]
+                                                                        .productID ??
+                                                                        '',
+                                                                  ))): Navigator.of(context).push(
                                                           MaterialPageRoute(
                                                               builder: (context) =>
                                                                   productdetailwebview(
@@ -1318,12 +1356,24 @@ class _HomePageState extends State<HomePage> {
                                                           ),
                                                           GestureDetector(
                                                             onTap: () {
-                                                              Navigator.of(context).push(
+                                                              bestsellerproductmodal
+                                                                  ?.productData?[index]
+                                                                  .productType == '1'?Navigator.of(context).push(
+                                                                  MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          productdetailnovartion(
+                                                                            productid: bestsellerproductmodal
+                                                                                ?.productData?[index]
+                                                                                .productID ??
+                                                                                '',
+                                                                          ))): Navigator.of(context).push(
                                                                   MaterialPageRoute(
                                                                       builder: (context) =>
                                                                           productdetailwebview(
-                                                                            productid:
-                                                                                bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                                            productid: bestsellerproductmodal
+                                                                                ?.productData?[index]
+                                                                                .productID ??
+                                                                                '',
                                                                           )));
                                                             },
                                                             child: Container(
