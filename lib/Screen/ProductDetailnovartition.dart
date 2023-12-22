@@ -5,15 +5,10 @@ import 'package:ecommerce/Databasehandler.dart';
 import 'package:ecommerce/Modal/AddCartModal.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/Cartmodal.dart';
-import 'package:ecommerce/Modal/ColorMatchModal.dart';
-import 'package:ecommerce/Modal/ColorShowModal.dart';
 import 'package:ecommerce/Modal/DeleteReviewModal.dart';
 import 'package:ecommerce/Modal/ProductDetail2Modal.dart';
-import 'package:ecommerce/Modal/ProductDetailModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
-import 'package:ecommerce/Modal/SelectColorModal.dart';
-import 'package:ecommerce/Modal/SizeShowModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:ecommerce/Modal/addReviewModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
@@ -95,12 +90,10 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       setState(() {
         isLoading = true;
       });
-
     } else {
       setState(() {
         isLoading = true;
       });
-
     }
     viewreviewap();
   }
@@ -112,8 +105,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       print("notlog");
       CartItem item = CartItem(
         VariationTblId: colormatchmodal?.priceData?.length == 0 ||
-            colorshowmodal?.variationData?.length == 0 &&
-                sizeshowmodal?.variationData?.length == 0
+                colorshowmodal?.variationData?.length == 0 &&
+                    sizeshowmodal?.variationData?.length == 0
             ? '0'
             : colormatchmodal?.priceData?[0].variationMatchId ?? "",
         productId: widget.productid.toString(),
@@ -126,41 +119,41 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
         initialPrice: sizeshowmodal?.variationData?.length != 0
             ? double.parse(price.toString())
             : colorshowmodal?.variationData?.length == 0 &&
-            sizeshowmodal?.variationData?.length == 0
-            ? double.parse(
-            (productdetailmodal?.productData?.saleProductPrice)
-                .toString())
-            : double.parse(
-            (selectcolormodal?.variationData?.saleVariationPrice)
-                .toString()),
+                    sizeshowmodal?.variationData?.length == 0
+                ? double.parse(
+                    (productdetailmodal?.productData?.saleProductPrice)
+                        .toString())
+                : double.parse(
+                    (selectcolormodal?.variationData?.saleVariationPrice)
+                        .toString()),
         productName: productdetailmodal?.productData?.productName ?? "",
         productQuantity: 1,
         productImage: productdetailmodal?.productData?.allimage?[0] ?? "",
         productPrice: sizeshowmodal?.variationData?.length != 0
             ? double.parse(price.toString())
             : colorshowmodal?.variationData?.length == 0 &&
-            sizeshowmodal?.variationData?.length == 0
-            ? double.parse(
-            (productdetailmodal?.productData?.saleProductPrice)
-                .toString())
-            : double.parse(
-            (selectcolormodal?.variationData?.saleVariationPrice)
-                .toString()),
+                    sizeshowmodal?.variationData?.length == 0
+                ? double.parse(
+                    (productdetailmodal?.productData?.saleProductPrice)
+                        .toString())
+                : double.parse(
+                    (selectcolormodal?.variationData?.saleVariationPrice)
+                        .toString()),
         productDescription:
-        productdetailmodal?.productData?.productShortDesc ?? "",
+            productdetailmodal?.productData?.productShortDesc ?? "",
       );
       int result = await databaseHelper.insertCartItem(item);
       if (result != 0) {
         cartitm.addTotalPrice(sizeshowmodal?.variationData?.length != 0
             ? double.parse(price.toString())
             : colorshowmodal?.variationData?.length == 0 &&
-            sizeshowmodal?.variationData?.length == 0
-            ? double.parse(
-            (productdetailmodal?.productData?.saleProductPrice)
-                .toString())
-            : double.parse(
-            (selectcolormodal?.variationData?.saleVariationPrice)
-                .toString()));
+                    sizeshowmodal?.variationData?.length == 0
+                ? double.parse(
+                    (productdetailmodal?.productData?.saleProductPrice)
+                        .toString())
+                : double.parse(
+                    (selectcolormodal?.variationData?.saleVariationPrice)
+                        .toString()));
 
         buildErrorDialog(context, '', 'Your item is Added in Cart');
       }
@@ -176,731 +169,731 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
         body: isLoading
             ? Container()
             : Padding(
-          padding: EdgeInsets.symmetric(horizontal: 2.w),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                padding: EdgeInsets.symmetric(horizontal: 2.w),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Column(
                         children: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back_ios_rounded,
-                                size: 25.sp,
-                              )),
-                          Text(
-                            "Product Detail Page",
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              fontFamily: "task",
-                              fontWeight: FontWeight.bold,
-                            ),
+                          SizedBox(
+                            height: 5.h,
                           ),
-                          Row(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  usermodal?.userId == "" ||
-                                      usermodal?.userId == null
-                                      ? Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              LoginPage2()))
-                                      : Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ProfilePage()));
-                                },
-                                child: usermodal?.userId == "" ||
-                                    usermodal?.userId == null
-                                    ? Text(
-                                  "Login",
-                                  style: TextStyle(
-                                    color: Color(0xfff7941d),
-                                    fontFamily: 'task',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17.sp,
-                                  ),
-                                )
-                                    : Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: 1.w),
-                                  height: 12.2.w,
-                                  width: 12.2.w,
-                                  padding: EdgeInsets.all(1.w),
-                                  child: ClipRRect(
-                                    borderRadius:
-                                    BorderRadius.circular(90),
-                                    child: CachedNetworkImage(
-                                        fit: BoxFit.cover,
-                                        imageUrl: profilemodal
-                                            ?.profileDetails
-                                            ?.profileimage ??
-                                            '',
-                                        progressIndicatorBuilder:
-                                            (context, url,
-                                            progress) =>
-                                            Center(
-                                                child:
-                                                CircularProgressIndicator()),
-                                        errorWidget: (context, url,
-                                            error) =>
-                                            Image.asset(
-                                                'assets/deim.png')),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Stack(
-                      children: [
-                        SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment:  MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  SizedBox(
-                                    height: 230,
-                                    child: PageView.builder(
-                                      controller: controller,
-                                      itemCount: pages.length,
-                                      itemBuilder: (_, index) {
-                                        return pages [
-                                        index % pages.length];
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  SmoothPageIndicator(
-                                    controller: controller,
-                                    count: pages.length,
-                                    effect: WormEffect(
-                                      dotColor: Colors.grey.shade100,
-                                      activeDotColor: Color(0xfff7941d),
-                                      dotHeight: 1.5.h,
-                                      dotWidth: 4.w,
-                                      type: WormType.thinUnderground,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 2.h,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 2.5.w, vertical: 2.h),
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          width: 57.w,
-                                          child: Text(
-                                            productdetail2modal
-                                                ?.productData
-                                                ?.productName ==
-                                                '' ||
-                                                productdetail2modal
-                                                    ?.productData
-                                                    ?.productName ==
-                                                    null
-                                                ? 'N/A'
-                                                : productdetail2modal
-                                                ?.productData
-                                                ?.productName ??
-                                                '',
-                                            style: TextStyle(
-                                              fontSize: 14.sp,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: "task",
-                                            ),
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            usermodal?.userId == "" ||
-                                                usermodal?.userId ==
-                                                    null
-                                                ? Navigator.of(context)
-                                                .push(MaterialPageRoute(
-                                                builder: (context) =>
-                                                    LoginPage2()))
-                                                : productdetail2modal
-                                                ?.productData
-                                                ?.wishlist ==
-                                                1
-                                                ? removewishlistap(
-                                                (productdetail2modal
-                                                    ?.productData
-                                                    ?.productID)
-                                                    .toString())
-                                                : addwishlistap(
-                                                (productdetail2modal
-                                                    ?.productData
-                                                    ?.productID)
-                                                    .toString());
-                                          },
-                                          child: Icon(
-                                            productdetail2modal
-                                                ?.productData
-                                                ?.wishlist ==
-                                                1
-                                                ? Icons.favorite
-                                                : Icons.favorite_outline,
-                                            size: 25.sp,
-                                            color: productdetail2modal
-                                                ?.productData
-                                                ?.wishlist ==
-                                                1
-                                                ? Colors.red
-                                                : Colors.black,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 0.7.h,
-                                    ),
-                                    ReadMoreText(
-                                      productdetail2modal?.productData
-                                          ?.productShortDesc ==
-                                          '' ||
-                                          productdetail2modal
-                                              ?.productData
-                                              ?.productShortDesc ==
-                                              null
-                                          ? 'N/A'
-                                          : productdetail2modal
-                                          ?.productData
-                                          ?.productShortDesc ??
-                                          '',
-                                      trimLines: 2,
-                                      colorClickableText: Colors.pink,
-                                      trimMode: TrimMode.Line,
-                                      style: TextStyle(
-                                          fontSize: 13.sp,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey,
-                                          fontFamily: "task"),
-                                      trimCollapsedText: ' Show more',
-                                      trimExpandedText: '  Show less',
-                                      lessStyle: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'task',
-                                          color: Color(
-                                            0xfff7941d,
-                                          ),
-                                          fontSize: 12.sp),
-                                      moreStyle: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'task',
-                                          color: Color(0xfff7941d),
-                                          fontSize: 12.sp),
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              SizedBox(height: 6.h,)
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          left: 3.w,
-                          bottom: 0.0,
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 6.h,
-                                width: 45.w,
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(20),
-                                    color: Colors.white),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                '₹${productdetail2modal?.productData?.saleProductPrice ?? ''}',
-                                          style: TextStyle(
-                                            fontSize: 18.sp,
-                                            fontFamily: 'task',
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 1,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 0.5.w,
-                                        ),
-                                        //--------*******SALES PRICE********------
-                                        Padding(
-                                          padding:
-                                          EdgeInsets.only(top: 0.4.h),
-                                          child: Text(
-                                            '₹${productdetail2modal?.productData?.productPrice ?? ''}',
-                                            style: TextStyle(
-                                              decoration: TextDecoration
-                                                  .lineThrough,
-                                              decorationThickness: 2,
-                                              decorationColor:
-                                              Colors.black,
-                                              fontSize: 12.sp,
-                                              fontFamily: 'task',
-                                              fontWeight:
-                                              FontWeight.normal,
-                                              letterSpacing: 1,
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8.w,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  print(usermodal?.userId);
-                                  usermodal?.userId == "" ||
-                                      usermodal?.userId == null
-                                      ? addoff()
-                                      : addcartap();
-                                },
-                                child: Container(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.center,
-                                        height: 6.h,
-                                        width: 40.w,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius
-                                                .circular(30),
-                                            color:
-                                            Color(0xfff7941d)),
-                                        child: Text(
-                                          "Add To Cart",
-                                          style: TextStyle(
-                                              fontSize: 13.sp,
-                                              color: Colors.white,
-                                              fontFamily: "task"
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 3.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 2.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Reviews :',
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              fontFamily: 'task',
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1,
-                              color: Colors.black.withOpacity(0.7),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              usermodal?.userId == '' ||
-                                  usermodal?.userId == null
-                                  ? Fluttertoast.showToast(
-                                  msg:
-                                  "You Have to Login to Give Review",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.white,
-                                  textColor: Color(0xfff7941d),
-                                  fontSize: 11.sp)
-                                  : addreviewdialog();
-                            },
-                            child: Text(
-                              'Add Your Review',
-                              style: TextStyle(
-                                fontSize: 15.sp,
-                                fontFamily: 'task',
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1,
-                                color: Color(0xfff7941d),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              viewReviewmodal?.reviewData?.length == 0 ||
-                  viewReviewmodal?.reviewData?.length == null
-                  ? SliverToBoxAdapter(
-                child: Center(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 3.h),
-                    child: Text(
-                      'No Review Available',
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontFamily: 'task',
-                          fontSize: 18.sp,
-                          color: Colors.black),
-                    ),
-                  ),
-                ),
-              )
-                  : SliverList.builder(
-                itemCount: viewReviewmodal?.reviewData?.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 1.h),
-                    padding: EdgeInsets.symmetric(vertical: 0.5.h),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Stack(
-                      children: [
-                        Column(
-                          mainAxisAlignment:
-                          MainAxisAlignment.start,
-                          crossAxisAlignment:
-                          CrossAxisAlignment.start,
-                          children: [
-                            Row(
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: 1.w),
-                                  height: 14.w,
-                                  width: 14.w,
-                                  padding: EdgeInsets.all(1.w),
-                                  child: ClipRRect(
-                                    borderRadius:
-                                    BorderRadius.circular(90),
-                                    child: CachedNetworkImage(
-                                        fit: BoxFit.cover,
-                                        imageUrl: viewReviewmodal
-                                            ?.reviewData?[index]
-                                            .userProfile ??
-                                            '',
-                                        progressIndicatorBuilder:
-                                            (context, url,
-                                            progress) =>
-                                            Center(
-                                                child:
-                                                CircularProgressIndicator()),
-                                        errorWidget: (context, url,
-                                            error) =>
-                                            Image.asset(
-                                                'assets/deim.png')),
+                                IconButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back_ios_rounded,
+                                      size: 25.sp,
+                                    )),
+                                Text(
+                                  "Product Detail Page",
+                                  style: TextStyle(
+                                    fontSize: 18.sp,
+                                    fontFamily: "task",
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                                Row(
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment
-                                          .spaceBetween,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: 70.w,
-                                          child: Text(
-                                            viewReviewmodal
-                                                ?.reviewData?[
-                                            index]
-                                                .name ??
-                                                '',
-                                            style: TextStyle(
-                                              fontSize: 12.sp,
-                                              fontFamily: 'task',
-                                              fontWeight:
-                                              FontWeight.bold,
-                                              letterSpacing: 1,
-                                              color: Colors.black
-                                                  .withOpacity(
-                                                  0.85),
+                                    GestureDetector(
+                                      onTap: () {
+                                        usermodal?.userId == "" ||
+                                                usermodal?.userId == null
+                                            ? Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        LoginPage2()))
+                                            : Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ProfilePage()));
+                                      },
+                                      child: usermodal?.userId == "" ||
+                                              usermodal?.userId == null
+                                          ? Text(
+                                              "Login",
+                                              style: TextStyle(
+                                                color: Color(0xfff7941d),
+                                                fontFamily: 'task',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17.sp,
+                                              ),
+                                            )
+                                          : Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 1.w),
+                                              height: 12.2.w,
+                                              width: 12.2.w,
+                                              padding: EdgeInsets.all(1.w),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(90),
+                                                child: CachedNetworkImage(
+                                                    fit: BoxFit.cover,
+                                                    imageUrl: profilemodal
+                                                            ?.profileDetails
+                                                            ?.profileimage ??
+                                                        '',
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                progress) =>
+                                                            Center(
+                                                                child:
+                                                                    CircularProgressIndicator()),
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        Image.asset(
+                                                            'assets/deim.png')),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                        usermodal?.userId ==
-                                            viewReviewmodal
-                                                ?.reviewData?[
-                                            index]
-                                                .userId
-                                            ? InkWell(
-                                          onTap: () {
-                                            removeratingsheet(
-                                                viewReviewmodal
-                                                    ?.reviewData?[
-                                                index]
-                                                    .reviewId ??
-                                                    '');
-                                          },
-                                          child: Icon(
-                                            CupertinoIcons
-                                                .trash,
-                                            color: Colors.red,
-                                            size: 15.sp,
-                                          ),
-                                        )
-                                            : Container()
-                                      ],
-                                    ),
-                                    SizedBox(height: 0.3.h),
-                                    SizedBox(
-                                      width: 73.w,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment
-                                            .spaceBetween,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .center,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  viewReviewmodal
-                                                      ?.reviewData?[
-                                                  index]
-                                                      .rating ==
-                                                      '1'
-                                                      ? Icon(
-                                                    Icons
-                                                        .star,
-                                                    color: Colors
-                                                        .amber,
-                                                    size:
-                                                    14.sp,
-                                                  )
-                                                      : viewReviewmodal
-                                                      ?.reviewData?[
-                                                  index]
-                                                      .rating ==
-                                                      '2'
-                                                      ? Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      )
-                                                    ],
-                                                  )
-                                                      : viewReviewmodal?.reviewData?[index].rating ==
-                                                      '3'
-                                                      ? Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      )
-                                                    ],
-                                                  )
-                                                      : viewReviewmodal?.reviewData?[index].rating == '4'
-                                                      ? Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      )
-                                                    ],
-                                                  )
-                                                      : Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                        size: 14.sp,
-                                                      )
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                width: 2.w,
-                                              ),
-                                              Text(
-                                                '( ' +
-                                                    (viewReviewmodal
-                                                        ?.reviewData?[
-                                                    index]
-                                                        .rating ??
-                                                        '') +
-                                                    ' )',
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                  'task',
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold,
-                                                  letterSpacing: 1,
-                                                  color: Colors
-                                                      .black
-                                                      .withOpacity(
-                                                      0.7),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Text(
-                                            viewReviewmodal
-                                                ?.reviewData?[
-                                            index]
-                                                .date ??
-                                                '',
-                                            style: TextStyle(
-                                              fontFamily: 'task',
-                                              fontWeight:
-                                              FontWeight.bold,
-                                              letterSpacing: 0.5,
-                                              color: Colors.black
-                                                  .withOpacity(0.7),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
                                     ),
                                   ],
                                 ),
                               ],
                             ),
-                            SizedBox(height: 0.5.h),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16.w),
-                              child: Text(
-                                viewReviewmodal?.reviewData?[index]
-                                    .comments ??
-                                    '',
-                                style: TextStyle(
-                                  fontSize: 12.sp,
-                                  fontFamily: 'task',
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 1,
-                                  color: Colors.black
-                                      .withOpacity(0.75),
+                          ),
+                          Stack(
+                            children: [
+                              SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        SizedBox(
+                                          height: 230,
+                                          child: PageView.builder(
+                                            controller: controller,
+                                            itemCount: pages.length,
+                                            itemBuilder: (_, index) {
+                                              return pages[
+                                                  index % pages.length];
+                                            },
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 1.h,
+                                        ),
+                                        SmoothPageIndicator(
+                                          controller: controller,
+                                          count: pages.length,
+                                          effect: WormEffect(
+                                            dotColor: Colors.grey.shade100,
+                                            activeDotColor: Color(0xfff7941d),
+                                            dotHeight: 1.5.h,
+                                            dotWidth: 4.w,
+                                            type: WormType.thinUnderground,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 2.5.w, vertical: 2.h),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                width: 57.w,
+                                                child: Text(
+                                                  productdetail2modal
+                                                                  ?.productData
+                                                                  ?.productName ==
+                                                              '' ||
+                                                          productdetail2modal
+                                                                  ?.productData
+                                                                  ?.productName ==
+                                                              null
+                                                      ? 'N/A'
+                                                      : productdetail2modal
+                                                              ?.productData
+                                                              ?.productName ??
+                                                          '',
+                                                  style: TextStyle(
+                                                    fontSize: 14.sp,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: "task",
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  usermodal?.userId == "" ||
+                                                          usermodal?.userId ==
+                                                              null
+                                                      ? Navigator.of(context)
+                                                          .push(MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  LoginPage2()))
+                                                      : productdetail2modal
+                                                                  ?.productData
+                                                                  ?.wishlist ==
+                                                              1
+                                                          ? removewishlistap(
+                                                              (productdetail2modal
+                                                                      ?.productData
+                                                                      ?.productID)
+                                                                  .toString())
+                                                          : addwishlistap(
+                                                              (productdetail2modal
+                                                                      ?.productData
+                                                                      ?.productID)
+                                                                  .toString());
+                                                },
+                                                child: Icon(
+                                                  productdetail2modal
+                                                              ?.productData
+                                                              ?.wishlist ==
+                                                          1
+                                                      ? Icons.favorite
+                                                      : Icons.favorite_outline,
+                                                  size: 25.sp,
+                                                  color: productdetail2modal
+                                                              ?.productData
+                                                              ?.wishlist ==
+                                                          1
+                                                      ? Colors.red
+                                                      : Colors.black,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 0.7.h,
+                                          ),
+                                          ReadMoreText(
+                                            productdetail2modal?.productData
+                                                            ?.productShortDesc ==
+                                                        '' ||
+                                                    productdetail2modal
+                                                            ?.productData
+                                                            ?.productShortDesc ==
+                                                        null
+                                                ? 'N/A'
+                                                : productdetail2modal
+                                                        ?.productData
+                                                        ?.productShortDesc ??
+                                                    '',
+                                            trimLines: 2,
+                                            colorClickableText: Colors.pink,
+                                            trimMode: TrimMode.Line,
+                                            style: TextStyle(
+                                                fontSize: 13.sp,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey,
+                                                fontFamily: "task"),
+                                            trimCollapsedText: ' Show more',
+                                            trimExpandedText: '  Show less',
+                                            lessStyle: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'task',
+                                                color: Color(
+                                                  0xfff7941d,
+                                                ),
+                                                fontSize: 12.sp),
+                                            moreStyle: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'task',
+                                                color: Color(0xfff7941d),
+                                                fontSize: 12.sp),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 6.h,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                left: 3.w,
+                                bottom: 0.0,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 6.h,
+                                      width: 45.w,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.white),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                '₹${productdetail2modal?.productData?.saleProductPrice ?? ''}',
+                                                style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  fontFamily: 'task',
+                                                  fontWeight: FontWeight.bold,
+                                                  letterSpacing: 1,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 0.5.w,
+                                              ),
+                                              //--------*******SALES PRICE********------
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 0.4.h),
+                                                child: Text(
+                                                  '₹${productdetail2modal?.productData?.productPrice ?? ''}',
+                                                  style: TextStyle(
+                                                    decoration: TextDecoration
+                                                        .lineThrough,
+                                                    decorationThickness: 2,
+                                                    decorationColor:
+                                                        Colors.black,
+                                                    fontSize: 12.sp,
+                                                    fontFamily: 'task',
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    letterSpacing: 1,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 8.w,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        print(usermodal?.userId);
+                                        usermodal?.userId == "" ||
+                                                usermodal?.userId == null
+                                            ? addoff()
+                                            : addcartap();
+                                      },
+                                      child: Container(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              alignment: Alignment.center,
+                                              height: 6.h,
+                                              width: 40.w,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  color: Color(0xfff7941d)),
+                                              child: Text(
+                                                "Add To Cart",
+                                                style: TextStyle(
+                                                    fontSize: 15.sp,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 1,
+                                                    fontFamily: "task"),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 3.h),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 2.w),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Reviews :',
+                                  style: TextStyle(
+                                    fontSize: 15.sp,
+                                    fontFamily: 'task',
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1,
+                                    color: Colors.black.withOpacity(0.7),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    usermodal?.userId == '' ||
+                                            usermodal?.userId == null
+                                        ? Fluttertoast.showToast(
+                                            msg:
+                                                "You Have to Login to Give Review",
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor: Colors.white,
+                                            textColor: Color(0xfff7941d),
+                                            fontSize: 11.sp)
+                                        : addreviewdialog();
+                                  },
+                                  child: Text(
+                                    'Add Your Review',
+                                    style: TextStyle(
+                                      fontSize: 15.sp,
+                                      fontFamily: 'task',
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1,
+                                      color: Color(0xfff7941d),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    viewReviewmodal?.reviewData?.length == 0 ||
+                            viewReviewmodal?.reviewData?.length == null
+                        ? SliverToBoxAdapter(
+                            child: Center(
+                              child: Container(
+                                margin: EdgeInsets.only(top: 3.h),
+                                child: Text(
+                                  'No Review Available',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontFamily: 'task',
+                                      fontSize: 18.sp,
+                                      color: Colors.black),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                          )
+                        : SliverList.builder(
+                            itemCount: viewReviewmodal?.reviewData?.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(vertical: 1.h),
+                                padding: EdgeInsets.symmetric(vertical: 0.5.h),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(25)),
+                                child: Stack(
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 1.w),
+                                              height: 14.w,
+                                              width: 14.w,
+                                              padding: EdgeInsets.all(1.w),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(90),
+                                                child: CachedNetworkImage(
+                                                    fit: BoxFit.cover,
+                                                    imageUrl: viewReviewmodal
+                                                            ?.reviewData?[index]
+                                                            .userProfile ??
+                                                        '',
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                progress) =>
+                                                            Center(
+                                                                child:
+                                                                    CircularProgressIndicator()),
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        Image.asset(
+                                                            'assets/deim.png')),
+                                              ),
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: 70.w,
+                                                      child: Text(
+                                                        viewReviewmodal
+                                                                ?.reviewData?[
+                                                                    index]
+                                                                .name ??
+                                                            '',
+                                                        style: TextStyle(
+                                                          fontSize: 12.sp,
+                                                          fontFamily: 'task',
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          letterSpacing: 1,
+                                                          color: Colors.black
+                                                              .withOpacity(
+                                                                  0.85),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    usermodal?.userId ==
+                                                            viewReviewmodal
+                                                                ?.reviewData?[
+                                                                    index]
+                                                                .userId
+                                                        ? InkWell(
+                                                            onTap: () {
+                                                              removeratingsheet(
+                                                                  viewReviewmodal
+                                                                          ?.reviewData?[
+                                                                              index]
+                                                                          .reviewId ??
+                                                                      '');
+                                                            },
+                                                            child: Icon(
+                                                              CupertinoIcons
+                                                                  .trash,
+                                                              color: Colors.red,
+                                                              size: 15.sp,
+                                                            ),
+                                                          )
+                                                        : Container()
+                                                  ],
+                                                ),
+                                                SizedBox(height: 0.3.h),
+                                                SizedBox(
+                                                  width: 73.w,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              viewReviewmodal
+                                                                          ?.reviewData?[
+                                                                              index]
+                                                                          .rating ==
+                                                                      '1'
+                                                                  ? Icon(
+                                                                      Icons
+                                                                          .star,
+                                                                      color: Colors
+                                                                          .amber,
+                                                                      size:
+                                                                          14.sp,
+                                                                    )
+                                                                  : viewReviewmodal
+                                                                              ?.reviewData?[
+                                                                                  index]
+                                                                              .rating ==
+                                                                          '2'
+                                                                      ? Row(
+                                                                          children: [
+                                                                            Icon(
+                                                                              Icons.star,
+                                                                              color: Colors.amber,
+                                                                              size: 14.sp,
+                                                                            ),
+                                                                            Icon(
+                                                                              Icons.star,
+                                                                              color: Colors.amber,
+                                                                              size: 14.sp,
+                                                                            )
+                                                                          ],
+                                                                        )
+                                                                      : viewReviewmodal?.reviewData?[index].rating ==
+                                                                              '3'
+                                                                          ? Row(
+                                                                              children: [
+                                                                                Icon(
+                                                                                  Icons.star,
+                                                                                  color: Colors.amber,
+                                                                                  size: 14.sp,
+                                                                                ),
+                                                                                Icon(
+                                                                                  Icons.star,
+                                                                                  color: Colors.amber,
+                                                                                  size: 14.sp,
+                                                                                ),
+                                                                                Icon(
+                                                                                  Icons.star,
+                                                                                  color: Colors.amber,
+                                                                                  size: 14.sp,
+                                                                                )
+                                                                              ],
+                                                                            )
+                                                                          : viewReviewmodal?.reviewData?[index].rating == '4'
+                                                                              ? Row(
+                                                                                  children: [
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    )
+                                                                                  ],
+                                                                                )
+                                                                              : Row(
+                                                                                  children: [
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    ),
+                                                                                    Icon(
+                                                                                      Icons.star,
+                                                                                      color: Colors.amber,
+                                                                                      size: 14.sp,
+                                                                                    )
+                                                                                  ],
+                                                                                )
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            width: 2.w,
+                                                          ),
+                                                          Text(
+                                                            '( ' +
+                                                                (viewReviewmodal
+                                                                        ?.reviewData?[
+                                                                            index]
+                                                                        .rating ??
+                                                                    '') +
+                                                                ' )',
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  'task',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              letterSpacing: 1,
+                                                              color: Colors
+                                                                  .black
+                                                                  .withOpacity(
+                                                                      0.7),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Text(
+                                                        viewReviewmodal
+                                                                ?.reviewData?[
+                                                                    index]
+                                                                .date ??
+                                                            '',
+                                                        style: TextStyle(
+                                                          fontFamily: 'task',
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          letterSpacing: 0.5,
+                                                          color: Colors.black
+                                                              .withOpacity(0.7),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 0.5.h),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 16.w),
+                                          child: Text(
+                                            viewReviewmodal?.reviewData?[index]
+                                                    .comments ??
+                                                '',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              fontFamily: 'task',
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 1,
+                                              color: Colors.black
+                                                  .withOpacity(0.75),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
       ),
     );
   }
@@ -917,40 +910,36 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
           print(productdetail2modal?.status);
           if (response.statusCode == 200 &&
               productdetail2modal?.status == "success") {
-             pages = List.generate(
-                 (productdetail2modal?.productData?.allimage?.length ?? 0),
-                    (index) => Container(
-                   width: 90.w,
-                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  margin: EdgeInsets.symmetric(
-                      horizontal: 2.w, vertical: 0.5.h
-                  ),
-                  child: Container(
-                    height: 25.h,
-                    width: 90.w,
-                    child: Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: CachedNetworkImage(
-                            height: 25.h,
-                            width: 90.w,
-                            imageUrl: productdetail2modal
-                                ?.productData?.allimage?[index] ??
-                                '',
-                            progressIndicatorBuilder: (context, url,
-                                progress) =>
-                                Center(child: CircularProgressIndicator(
-                                )),
-                            errorWidget: (context, url, error) =>
-                                Image.asset('assets/deim.png')
+            pages = List.generate(
+                (productdetail2modal?.productData?.allimage?.length ?? 0),
+                (index) => Container(
+                      width: 90.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 2.w, vertical: 0.5.h),
+                      child: Container(
+                        height: 25.h,
+                        width: 90.w,
+                        child: Center(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: CachedNetworkImage(
+                                height: 25.h,
+                                width: 90.w,
+                                imageUrl: productdetail2modal
+                                        ?.productData?.allimage?[index] ??
+                                    '',
+                                progressIndicatorBuilder: (context, url,
+                                        progress) =>
+                                    Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) =>
+                                    Image.asset('assets/deim.png')),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                )
-             );
+                    ));
             setState(() {
               print(productdetailmodal?.status);
               isLoading = false;
@@ -969,8 +958,6 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       }
     });
   }
-
-
 
   viewap() {
     final Map<String, String> data = {};
@@ -1071,9 +1058,10 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     data['userId'] = (usermodal?.userId).toString();
     data['productID'] = widget.productid.toString();
     data['variation_tbl_id'] = "0";
-    data['product_color'] ="0";
+    data['product_color'] = "0";
     data['product_quantity'] = '1';
-    data['product_price'] = (productdetail2modal?.productData?.saleProductPrice).toString();
+    data['product_price'] =
+        (productdetail2modal?.productData?.saleProductPrice).toString();
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().addcartapi(data).then((response) async {
@@ -1081,7 +1069,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
           print(addcartmodal?.status);
           if (response.statusCode == 200 && addcartmodal?.status == "success") {
             productdetail2ap();
-            buildErrorDialog(context, '', "Your item is added in Cart");
+            _showDialog(context);
+
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
               // isLoading = false;
@@ -1240,7 +1229,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                   width: 80.w,
                   child: Padding(
                       padding:
-                      EdgeInsets.symmetric(vertical: 3.h, horizontal: 3.w),
+                          EdgeInsets.symmetric(vertical: 3.h, horizontal: 3.w),
                       child: SingleChildScrollView(
                         child: Form(
                           key: _formKey,
@@ -1266,7 +1255,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 padding: EdgeInsets.symmetric(horizontal: 2.w),
                                 child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
@@ -1283,7 +1272,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                     fontFamily: "task",
                                                     fontSize: 15.sp,
                                                     fontWeight:
-                                                    FontWeight.bold),
+                                                        FontWeight.bold),
                                               ),
                                             ],
                                           ),
@@ -1303,28 +1292,28 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius:
-                                              BorderRadius.circular(30),
+                                                  BorderRadius.circular(30),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           disabledBorder: OutlineInputBorder(
                                               borderRadius:
-                                              BorderRadius.circular(30),
+                                                  BorderRadius.circular(30),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           focusedBorder: OutlineInputBorder(
                                               borderRadius:
-                                              BorderRadius.circular(30),
+                                                  BorderRadius.circular(30),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           border: OutlineInputBorder(
                                               borderRadius:
-                                              BorderRadius.circular(30),
+                                                  BorderRadius.circular(30),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           hintText: 'Add Your Review',
                                           hintStyle: TextStyle(
                                               color:
-                                              Colors.black.withOpacity(0.5),
+                                                  Colors.black.withOpacity(0.5),
                                               fontSize: 14.sp,
                                               fontFamily: "task"),
                                         ),
@@ -1332,7 +1321,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                       SizedBox(height: 2.h),
                                       Row(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                            CrossAxisAlignment.center,
                                         children: [
                                           SizedBox(width: 1.w),
                                           Icon(CupertinoIcons.star),
@@ -1347,7 +1336,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                     fontFamily: "task",
                                                     fontSize: 15.sp,
                                                     fontWeight:
-                                                    FontWeight.bold),
+                                                        FontWeight.bold),
                                               ),
                                             ],
                                           ),
@@ -1370,7 +1359,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             });
                                             Fluttertoast.showToast(
                                                 msg:
-                                                "You Can't Give more than 5 Star Review",
+                                                    "You Can't Give more than 5 Star Review",
                                                 toastLength: Toast.LENGTH_SHORT,
                                                 timeInSecForIosWeb: 1,
                                                 backgroundColor: Colors.white,
@@ -1384,28 +1373,28 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius:
-                                              BorderRadius.circular(30),
+                                                  BorderRadius.circular(30),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           disabledBorder: OutlineInputBorder(
                                               borderRadius:
-                                              BorderRadius.circular(30),
+                                                  BorderRadius.circular(30),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           focusedBorder: OutlineInputBorder(
                                               borderRadius:
-                                              BorderRadius.circular(30),
+                                                  BorderRadius.circular(30),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           border: OutlineInputBorder(
                                               borderRadius:
-                                              BorderRadius.circular(30),
+                                                  BorderRadius.circular(30),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           hintText: 'Give Your Ratings',
                                           hintStyle: TextStyle(
                                               color:
-                                              Colors.black.withOpacity(0.5),
+                                                  Colors.black.withOpacity(0.5),
                                               fontSize: 14.sp,
                                               fontFamily: "task"),
                                         ),
@@ -1424,7 +1413,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                     child: Container(
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                            MainAxisAlignment.center,
                                         children: [
                                           Container(
                                             alignment: Alignment.center,
@@ -1432,7 +1421,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             width: 40.w,
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(30),
+                                                    BorderRadius.circular(30),
                                                 color: Color(0xfff7941d)),
                                             child: Row(
                                               children: [
@@ -1592,4 +1581,50 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     );
   }
 
+  void _showDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Color(0xff313131),
+          elevation: 00,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          content: Container(width: 150.w,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    Text("Your item is added in cart",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.5.sp,
+                            letterSpacing: 0.5)),
+                  ],
+                ),
+                SizedBox(height: 2.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('Ok',
+                          style: TextStyle(
+                          color: Colors.cyan,
+                          fontSize: 12.5.sp,
+                          letterSpacing: 0.5)),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
