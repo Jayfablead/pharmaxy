@@ -71,7 +71,7 @@ List<order> orderdetail = [
 ];
 
 bool isLoading = true;
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeyodsum = GlobalKey<ScaffoldState>();
 
 class _OrderSummaryState extends State<OrderSummary> {
   @override
@@ -86,7 +86,7 @@ class _OrderSummaryState extends State<OrderSummary> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        key: _scaffoldKey,
+        key: _scaffoldKeyodsum,
         drawer: drawer1(),
         backgroundColor: bgcolor,
         body: SingleChildScrollView(

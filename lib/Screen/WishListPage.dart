@@ -24,7 +24,8 @@ class WishListPage extends StatefulWidget {
   State<WishListPage> createState() => _WishListPageState();
 }
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeywishlist =
+    GlobalKey<ScaffoldState>();
 bool _isLoading = false;
 
 class wish {
@@ -55,7 +56,7 @@ class _WishListPageState extends State<WishListPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        key: _scaffoldKey,
+        key: _scaffoldKeywishlist,
         drawer: drawer1(),
         backgroundColor: bgcolor,
         body: SingleChildScrollView(
@@ -75,7 +76,8 @@ class _WishListPageState extends State<WishListPage> {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  _scaffoldKey.currentState?.openDrawer();
+                                  _scaffoldKeywishlist.currentState
+                                      ?.openDrawer();
                                 },
                                 icon: Icon(
                                   Icons.menu,

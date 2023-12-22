@@ -41,7 +41,7 @@ class productdetailnovartion extends StatefulWidget {
   State<productdetailnovartion> createState() => _productdetailnovartionState();
 }
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeynovar = GlobalKey<ScaffoldState>();
 
 int sel = 1;
 int color = 0;
@@ -163,7 +163,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: Colors.grey.shade100,
-        key: _scaffoldKey,
+        key: _scaffoldKeynovar,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(),
         body: isLoading
@@ -487,41 +487,82 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                     SizedBox(
                                       width: 8.w,
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        print(usermodal?.userId);
-                                        usermodal?.userId == "" ||
-                                                usermodal?.userId == null
-                                            ? addoff()
-                                            : addcartap();
-                                      },
-                                      child: Container(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              alignment: Alignment.center,
-                                              height: 6.h,
-                                              width: 40.w,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                  color: Color(0xfff7941d)),
-                                              child: Text(
-                                                "Add To Cart",
-                                                style: TextStyle(
-                                                    fontSize: 15.sp,
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                    letterSpacing: 1,
-                                                    fontFamily: "task"),
+                                    productdetail2modal
+                                                ?.productData?.cartlist ==
+                                            1
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              _showDialog(context,
+                                                  'Your item is already added in cart');
+                                            },
+                                            child: Container(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                    alignment: Alignment.center,
+                                                    height: 6.h,
+                                                    width: 40.w,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30),
+                                                        color:
+                                                            Color(0xff373737)),
+                                                    child: Text(
+                                                      "Added To Cart",
+                                                      style: TextStyle(
+                                                          fontSize: 15.sp,
+                                                          color: Colors.black54,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          letterSpacing: 1,
+                                                          fontFamily: "task"),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                          )
+                                        : GestureDetector(
+                                            onTap: () {
+                                              print(usermodal?.userId);
+                                              usermodal?.userId == "" ||
+                                                      usermodal?.userId == null
+                                                  ? addoff()
+                                                  : addcartap();
+                                            },
+                                            child: Container(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                    alignment: Alignment.center,
+                                                    height: 6.h,
+                                                    width: 40.w,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30),
+                                                        color:
+                                                            Color(0xfff7941d)),
+                                                    child: Text(
+                                                      "Add To Cart",
+                                                      style: TextStyle(
+                                                          fontSize: 15.sp,
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          letterSpacing: 1,
+                                                          fontFamily: "task"),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                   ],
                                 ),
                               ),
@@ -1069,7 +1110,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
           print(addcartmodal?.status);
           if (response.statusCode == 200 && addcartmodal?.status == "success") {
             productdetail2ap();
-            _showDialog(context);
+            _showDialog(context, "Your item is added in cart");
 
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
@@ -1581,7 +1622,10 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     );
   }
 
-  void _showDialog(BuildContext context) {
+  void _showDialog(
+    BuildContext context,
+    String txt,
+  ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1591,13 +1635,14 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
           ),
-          content: Container(width: 150.w,
+          content: Container(
+            width: 150.w,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   children: [
-                    Text("Your item is added in cart",
+                    Text(txt,
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 12.5.sp,
@@ -1614,9 +1659,9 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                       },
                       child: Text('Ok',
                           style: TextStyle(
-                          color: Colors.cyan,
-                          fontSize: 12.5.sp,
-                          letterSpacing: 0.5)),
+                              color: Colors.cyan,
+                              fontSize: 12.5.sp,
+                              letterSpacing: 0.5)),
                     ),
                   ],
                 ),

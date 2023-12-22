@@ -44,21 +44,21 @@ class ProductData {
 
   ProductData(
       {this.productID,
-        this.productType,
-        this.categoryID,
-        this.subCategoryID,
-        this.productName,
-        this.productShortDesc,
-        this.productLongDesc,
-        this.productImage,
-        this.productLive,
-        this.productPrice,
-        this.saleProductPrice,
-        this.productStock,
-        this.wishlist,
-        this.cartlist,
-        this.allimage,
-        this.singleProductPrice});
+      this.productType,
+      this.categoryID,
+      this.subCategoryID,
+      this.productName,
+      this.productShortDesc,
+      this.productLongDesc,
+      this.productImage,
+      this.productLive,
+      this.productPrice,
+      this.saleProductPrice,
+      this.productStock,
+      this.wishlist,
+      this.cartlist,
+      this.allimage,
+      this.singleProductPrice});
 
   ProductData.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];

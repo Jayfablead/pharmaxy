@@ -34,7 +34,7 @@ class CartPage extends StatefulWidget {
 int age = 1;
 int? newprice;
 int? taxprice;
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeycart = GlobalKey<ScaffoldState>();
 DatabaseHelper databaseHelper = DatabaseHelper();
 
 class order {
@@ -93,8 +93,8 @@ class _CartPageState extends State<CartPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-          bottomNavigationBar: bottombar(),
-        key: _scaffoldKey,
+        bottomNavigationBar: bottombar(),
+        key: _scaffoldKeycart,
         drawer: drawer1(),
         backgroundColor: bgcolor,
         body: isLoading
@@ -118,7 +118,7 @@ class _CartPageState extends State<CartPage> {
                                       children: [
                                         IconButton(
                                             onPressed: () {
-                                              _scaffoldKey.currentState
+                                              _scaffoldKeycart.currentState
                                                   ?.openDrawer();
                                             },
                                             icon: Icon(
@@ -807,7 +807,8 @@ class _CartPageState extends State<CartPage> {
                               children: [
                                 IconButton(
                                     onPressed: () {
-                                      _scaffoldKey.currentState?.openDrawer();
+                                      _scaffoldKeycart.currentState
+                                          ?.openDrawer();
                                     },
                                     icon: Icon(
                                       Icons.menu_rounded,

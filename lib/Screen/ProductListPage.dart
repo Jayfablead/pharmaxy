@@ -8,10 +8,8 @@ import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/SubCatSerchModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
-import 'package:ecommerce/Screen/ProductDetailPage2.dart';
 import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
-import 'package:ecommerce/Screen/Productdetail2change.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
@@ -35,7 +33,7 @@ class ProductListPage extends StatefulWidget {
 bool name = false;
 TextEditingController _serch = TextEditingController();
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeylist1 = GlobalKey<ScaffoldState>();
 bool _isLoading = false;
 
 bool isLoading = true;
@@ -69,7 +67,7 @@ class _ProductListPageState extends State<ProductListPage> {
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: bgcolor,
-        key: _scaffoldKey,
+        key: _scaffoldKeylist1,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(),
         body: isLoading
@@ -233,27 +231,36 @@ class _ProductListPageState extends State<ProductListPage> {
                                             GestureDetector(
                                               onTap: () {
                                                 allsubcatwiceproduct
-                                                    ?.subcategoriesWiseProduct?[
-                                                index]
-                                                    .productType == '1'?Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            productdetailnovartion(
-                                                              productid: allsubcatwiceproduct
-                                                                  ?.subcategoriesWiseProduct?[
-                                                              index]
-                                                                  .productID ??
-                                                                  '',
-                                                            ),),):  Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            productdetailwebview(
-                                                              productid: allsubcatwiceproduct
-                                                                      ?.subcategoriesWiseProduct?[
-                                                                          index]
-                                                                      .productID ??
-                                                                  '',
-                                                            ),),);
+                                                            ?.subcategoriesWiseProduct?[
+                                                                index]
+                                                            .productType ==
+                                                        '1'
+                                                    ? Navigator.of(context)
+                                                        .push(
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              productdetailnovartion(
+                                                            productid: allsubcatwiceproduct
+                                                                    ?.subcategoriesWiseProduct?[
+                                                                        index]
+                                                                    .productID ??
+                                                                '',
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : Navigator.of(context)
+                                                        .push(
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              productdetailwebview(
+                                                            productid: allsubcatwiceproduct
+                                                                    ?.subcategoriesWiseProduct?[
+                                                                        index]
+                                                                    .productID ??
+                                                                '',
+                                                          ),
+                                                        ),
+                                                      );
                                               },
                                               child: Card(
                                                 color: Colors.white,
@@ -457,27 +464,38 @@ class _ProductListPageState extends State<ProductListPage> {
                                                     GestureDetector(
                                                       onTap: () {
                                                         allsubcatwiceproduct
-                                                            ?.subcategoriesWiseProduct?[
-                                                        index]
-                                                            .productType == '1'?Navigator.of(context).push(
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                productdetailnovartion(
-                                                                  productid: allsubcatwiceproduct
-                                                                      ?.subcategoriesWiseProduct?[
-                                                                  index]
-                                                                      .productID ??
-                                                                      '',
-                                                                ),),):  Navigator.of(context).push(
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                productdetailwebview(
-                                                                  productid: allsubcatwiceproduct
-                                                                      ?.subcategoriesWiseProduct?[
-                                                                  index]
-                                                                      .productID ??
-                                                                      '',
-                                                                ),),);
+                                                                    ?.subcategoriesWiseProduct?[
+                                                                        index]
+                                                                    .productType ==
+                                                                '1'
+                                                            ? Navigator.of(
+                                                                    context)
+                                                                .push(
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          productdetailnovartion(
+                                                                    productid: allsubcatwiceproduct
+                                                                            ?.subcategoriesWiseProduct?[index]
+                                                                            .productID ??
+                                                                        '',
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            : Navigator.of(
+                                                                    context)
+                                                                .push(
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          productdetailwebview(
+                                                                    productid: allsubcatwiceproduct
+                                                                            ?.subcategoriesWiseProduct?[index]
+                                                                            .productID ??
+                                                                        '',
+                                                                  ),
+                                                                ),
+                                                              );
                                                         //ADD CART API
                                                         // addtocartapi((allsubcatwiceproduct
                                                         //     ?.subcategoriesWiseProduct?[
@@ -612,16 +630,37 @@ class _ProductListPageState extends State<ProductListPage> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            productdetailwebview(
-                                                              productid: subcatserchmodal
-                                                                      ?.searchResults?[
-                                                                          index]
-                                                                      .productID ??
-                                                                  '',
-                                                            )));
+                                                subcatserchmodal
+                                                            ?.searchResults?[
+                                                                index]
+                                                            .productType ==
+                                                        '1'
+                                                    ? Navigator.of(context)
+                                                        .push(
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              productdetailnovartion(
+                                                            productid: subcatserchmodal
+                                                                    ?.searchResults?[
+                                                                        index]
+                                                                    .productID ??
+                                                                '',
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : Navigator.of(context)
+                                                        .push(
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              productdetailwebview(
+                                                            productid: subcatserchmodal
+                                                                    ?.searchResults?[
+                                                                        index]
+                                                                    .productID ??
+                                                                '',
+                                                          ),
+                                                        ),
+                                                      );
                                               },
                                               child: Card(
                                                 color: Colors.white,
@@ -825,14 +864,39 @@ class _ProductListPageState extends State<ProductListPage> {
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {
-                                                        Navigator.of(context).push(
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        productdetailwebview(
-                                                                          productid:
-                                                                              subcatserchmodal?.searchResults?[index].productID ?? '',
-                                                                        )));
+                                                        subcatserchmodal
+                                                                    ?.searchResults?[
+                                                                        index]
+                                                                    .productType ==
+                                                                '1'
+                                                            ? Navigator.of(
+                                                                    context)
+                                                                .push(
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          productdetailnovartion(
+                                                                    productid: subcatserchmodal
+                                                                            ?.searchResults?[index]
+                                                                            .productID ??
+                                                                        '',
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            : Navigator.of(
+                                                                    context)
+                                                                .push(
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          productdetailwebview(
+                                                                    productid: subcatserchmodal
+                                                                            ?.searchResults?[index]
+                                                                            .productID ??
+                                                                        '',
+                                                                  ),
+                                                                ),
+                                                              );
                                                         //ADD CART API
                                                         // addtocartapi((allsubcatwiceproduct
                                                         //     ?.subcategoriesWiseProduct?[

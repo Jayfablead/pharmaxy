@@ -8,11 +8,11 @@ class ProductDetailModal {
 
   ProductDetailModal(
       {this.status,
-        this.message,
-        this.productData,
-        this.variationData,
-        this.filterVariationData,
-        this.filterKeys});
+      this.message,
+      this.productData,
+      this.variationData,
+      this.filterVariationData,
+      this.filterKeys});
 
   ProductDetailModal.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -70,20 +70,20 @@ class ProductData {
 
   ProductData(
       {this.productID,
-        this.productType,
-        this.categoryID,
-        this.subCategoryID,
-        this.productName,
-        this.productShortDesc,
-        this.productLongDesc,
-        this.productImage,
-        this.productLive,
-        this.productPrice,
-        this.saleProductPrice,
-        this.wishlist,
-        this.cartlist,
-        this.allimage,
-        this.singleProductPrice});
+      this.productType,
+      this.categoryID,
+      this.subCategoryID,
+      this.productName,
+      this.productShortDesc,
+      this.productLongDesc,
+      this.productImage,
+      this.productLive,
+      this.productPrice,
+      this.saleProductPrice,
+      this.wishlist,
+      this.cartlist,
+      this.allimage,
+      this.singleProductPrice});
 
   ProductData.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];
@@ -144,21 +144,21 @@ class VariationData {
 
   VariationData(
       {this.variationID,
-        this.productID,
-        this.variationTypeID,
-        this.variationName,
-        this.variationPrice,
-        this.saleVariationPrice,
-        this.variationStock,
-        this.defaultProduct,
-        this.productLive,
-        this.productVariationImage,
-        this.variationIsTaxable,
-        this.variationTaxClassId,
-        this.createdAt,
-        this.updatedAt,
-        this.singleProductPrice,
-        this.variationSubData});
+      this.productID,
+      this.variationTypeID,
+      this.variationName,
+      this.variationPrice,
+      this.saleVariationPrice,
+      this.variationStock,
+      this.defaultProduct,
+      this.productLive,
+      this.productVariationImage,
+      this.variationIsTaxable,
+      this.variationTaxClassId,
+      this.createdAt,
+      this.updatedAt,
+      this.singleProductPrice,
+      this.variationSubData});
 
   VariationData.fromJson(Map<String, dynamic> json) {
     variationID = json['VariationID'];
@@ -218,10 +218,10 @@ class VariationSubData {
 
   VariationSubData(
       {this.variationID,
-        this.variationTypeID,
-        this.variationName,
-        this.variationImage,
-        this.variationTypeName});
+      this.variationTypeID,
+      this.variationName,
+      this.variationImage,
+      this.variationTypeName});
 
   VariationSubData.fromJson(Map<String, dynamic> json) {
     variationID = json['VariationID'];
@@ -284,10 +284,10 @@ class Size {
 
   Size(
       {this.variationID,
-        this.variationTypeID,
-        this.variationName,
-        this.variationImage,
-        this.variationTypeName});
+      this.variationTypeID,
+      this.variationName,
+      this.variationImage,
+      this.variationTypeName});
 
   Size.fromJson(Map<String, dynamic> json) {
     variationID = json['VariationID'];
@@ -307,6 +307,7 @@ class Size {
     return data;
   }
 }
+
 class ColorData {
   String? variationID;
   String? variationTypeID;
@@ -316,10 +317,10 @@ class ColorData {
 
   ColorData(
       {this.variationID,
-        this.variationTypeID,
-        this.variationName,
-        this.variationImage,
-        this.variationTypeName});
+      this.variationTypeID,
+      this.variationName,
+      this.variationImage,
+      this.variationTypeName});
 
   ColorData.fromJson(Map<String, dynamic> json) {
     variationID = json['VariationID'];

@@ -115,8 +115,6 @@ DeleteReviewModal? deletereviewmodal;
 StripeModal? strpiepay;
 ProductDetail2Modal? productdetail2modal;
 
-
-
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());
   if (connectivityResult == ConnectivityResult.mobile) {

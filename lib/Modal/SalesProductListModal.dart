@@ -28,48 +28,52 @@ class SalesProductListModal {
 }
 
 class ProductData {
+  int? discount;
   String? productID;
   String? productName;
   String? productShortDesc;
-  int? discount;
   String? regularPrice;
   String? salePrice;
   String? variationId;
+  String? productType;
   String? imgData;
   int? wishlist;
 
   ProductData(
-      {this.productID,
+      {this.discount,
+      this.productID,
       this.productName,
       this.productShortDesc,
-      this.discount,
       this.regularPrice,
       this.salePrice,
       this.variationId,
+      this.productType,
       this.imgData,
       this.wishlist});
 
   ProductData.fromJson(Map<String, dynamic> json) {
+    discount = json['discount'];
     productID = json['ProductID'];
     productName = json['ProductName'];
     productShortDesc = json['ProductShortDesc'];
-    discount = json['discount'];
     regularPrice = json['regular_price'];
     salePrice = json['sale_price'];
     variationId = json['variation_id'];
+    productType = json['ProductType'];
     imgData = json['img_data'];
     wishlist = json['wishlist'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['discount'] = this.discount;
     data['ProductID'] = this.productID;
     data['ProductName'] = this.productName;
     data['ProductShortDesc'] = this.productShortDesc;
-    data['discount'] = this.discount;
     data['regular_price'] = this.regularPrice;
     data['sale_price'] = this.salePrice;
     data['variation_id'] = this.variationId;
+    data['ProductType'] = this.productType;
     data['img_data'] = this.imgData;
     data['wishlist'] = this.wishlist;
     return data;

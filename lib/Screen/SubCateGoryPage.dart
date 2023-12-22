@@ -26,7 +26,7 @@ class SubCateGoryPage extends StatefulWidget {
 
 bool isLoading = true;
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeysubcat = GlobalKey<ScaffoldState>();
 
 class book {
   String? image;
@@ -93,7 +93,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        key: _scaffoldKey,
+        key: _scaffoldKeysubcat,
         drawer: drawer1(),
         backgroundColor: bgcolor,
         bottomNavigationBar: bottombar(),

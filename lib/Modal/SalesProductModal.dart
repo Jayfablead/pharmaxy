@@ -29,13 +29,15 @@ class SalesProductModal {
 
 class ProductData {
   String? productID;
+  String? productType;
   int? discount;
   String? imgData;
 
-  ProductData({this.productID, this.discount, this.imgData});
+  ProductData({this.productID, this.productType, this.discount, this.imgData});
 
   ProductData.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];
+    productType = json['ProductType'];
     discount = json['discount'];
     imgData = json['img_data'];
   }
@@ -43,6 +45,7 @@ class ProductData {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['ProductID'] = this.productID;
+    data['ProductType'] = this.productType;
     data['discount'] = this.discount;
     data['img_data'] = this.imgData;
     return data;

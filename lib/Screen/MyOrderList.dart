@@ -26,7 +26,7 @@ class MyOrderList extends StatefulWidget {
 
 bool isLoading = true;
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeyodlt = GlobalKey<ScaffoldState>();
 
 class wish {
   String? image;
@@ -117,7 +117,7 @@ class _MyOrderListState extends State<MyOrderList> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        key: _scaffoldKey,
+        key: _scaffoldKeyodlt,
         drawer: drawer1(),
         backgroundColor: bgcolor,
         body: isLoading
@@ -138,7 +138,7 @@ class _MyOrderListState extends State<MyOrderList> {
                         children: [
                           IconButton(
                               onPressed: () {
-                                _scaffoldKey.currentState?.openDrawer();
+                                _scaffoldKeyodlt.currentState?.openDrawer();
                               },
                               icon: Icon(
                                 Icons.menu,

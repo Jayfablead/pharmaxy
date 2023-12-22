@@ -14,7 +14,7 @@ class MyOrderDetailPage extends StatefulWidget {
 }
 
 bool isLoading = true;
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeyordet = GlobalKey<ScaffoldState>();
 
 class order {
   String? image;
@@ -68,7 +68,7 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+      key: _scaffoldKeyordet,
       drawer: drawer1(),
       backgroundColor: bgcolor,
       body: SingleChildScrollView(
@@ -86,7 +86,7 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          _scaffoldKey.currentState?.openDrawer();
+                          _scaffoldKeyordet.currentState?.openDrawer();
                         },
                         icon: Icon(
                           Icons.menu,

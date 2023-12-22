@@ -22,7 +22,7 @@ class CategoryPage extends StatefulWidget {
   State<CategoryPage> createState() => _CategoryPageState();
 }
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeycate = GlobalKey<ScaffoldState>();
 
 class book {
   String? image;
@@ -91,7 +91,7 @@ class _CategoryPageState extends State<CategoryPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        key: _scaffoldKey,
+        key: _scaffoldKeycate,
         drawer: drawer1(),
         backgroundColor: bgcolor,
         bottomNavigationBar: bottombar(),
@@ -112,7 +112,7 @@ class _CategoryPageState extends State<CategoryPage> {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  _scaffoldKey.currentState?.openDrawer();
+                                  _scaffoldKeycate.currentState?.openDrawer();
                                 },
                                 icon: Icon(
                                   Icons.menu,

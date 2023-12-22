@@ -47,7 +47,7 @@ class productdetailwebview extends StatefulWidget {
   State<productdetailwebview> createState() => _productdetailwebviewState();
 }
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeyprdweb = GlobalKey<ScaffoldState>();
 
 final Completer<InAppWebViewController> _controller =
     Completer<InAppWebViewController>();
@@ -120,7 +120,6 @@ class _productdetailwebviewState extends State<productdetailwebview> {
     viewreviewap();
     print('init load : ${_load}');
     print('init : ${_webViewHeight}');
-
   }
 
   @override
@@ -188,7 +187,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: Colors.grey.shade100,
-        key: _scaffoldKey,
+        key: _scaffoldKeyprdweb,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(),
         body: isLoading
@@ -454,39 +453,40 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                         ],
                       ),
                     ),
-
                     SliverToBoxAdapter(
                       child: Stack(
                         children: [
                           Container(
                             height: _webViewHeight,
                             color: Colors.grey.shade100,
-                            child: InAppWebView(initialOptions: InAppWebViewGroupOptions(
-                              crossPlatform: InAppWebViewOptions(
-                                transparentBackground: true,
+                            child: InAppWebView(
+                              initialOptions: InAppWebViewGroupOptions(
+                                crossPlatform: InAppWebViewOptions(
+                                  transparentBackground: true,
+                                ),
                               ),
-                            ),
                               initialUrlRequest: URLRequest(
                                 url: Uri.parse(
                                     'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}'), // replace with your URL
                               ),
-                              onWebViewCreated: (InAppWebViewController controller) {
+                              onWebViewCreated:
+                                  (InAppWebViewController controller) {
                                 _webViewController = controller;
                                 _updateWebViewHeight();
                               },
-                              onLoadStart: (InAppWebViewController controller, Uri? url) {
+                              onLoadStart: (InAppWebViewController controller,
+                                  Uri? url) {
                                 setState(() {
                                   _load = true;
                                 });
                               },
-                              onLoadStop:
-                                  (InAppWebViewController controller, Uri? url) {
+                              onLoadStop: (InAppWebViewController controller,
+                                  Uri? url) {
                                 setState(() {
                                   _load = false;
                                   print('loading : ${_load}');
                                 });
                                 _updateWebViewHeight();
-
                               },
                             ),
                           ),
@@ -1801,7 +1801,8 @@ class _productdetailwebviewState extends State<productdetailwebview> {
   void _updateWebViewHeight() async {
     // Get the current content height of the InAppWebView
     dynamic result = await _webViewController.evaluateJavascript(
-      source: 'Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);',
+      source:
+          'Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);',
     );
 
     // Convert the result to a double
@@ -1814,8 +1815,6 @@ class _productdetailwebviewState extends State<productdetailwebview> {
       print('final hgt : ${_webViewHeight}');
     });
   }
-
-
 
   void showAlertDialog(BuildContext context) {
     // set up the button
@@ -1847,13 +1846,10 @@ class _productdetailwebviewState extends State<productdetailwebview> {
     );
   }
 
-
 // Call this function whenever you want to show the dialog
   void alert() {
     // You need to provide the context when calling showAlertDialog
     // For example, you can call it inside a build method like:
     // showAlertDialog(context);
   }
-
-
 }

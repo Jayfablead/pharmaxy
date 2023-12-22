@@ -130,7 +130,7 @@ List cate = [
   "https://www.pngall.com/wp-content/uploads/5/Baby-Toy-PNG-Free-Download.png",
 ];
 
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeyhome = GlobalKey<ScaffoldState>();
 
 int sel = -1;
 
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: bgcolor,
-        key: _scaffoldKey,
+        key: _scaffoldKeyhome,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(selected: sel),
         body: WillPopScope(
@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  _scaffoldKey.currentState?.openDrawer();
+                                  _scaffoldKeyhome.currentState?.openDrawer();
                                 },
                                 icon: Icon(
                                   Icons.menu,
@@ -494,23 +494,23 @@ class _HomePageState extends State<HomePage> {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-
                                             searchbestsaleModal
-                                                ?.productData?[
-                                            index]
-                                                .productType ==
-                                                '1'
-                                                ? Navigator.push(context, MaterialPageRoute(
-                                                builder: (context) =>
-                                                    productdetailnovartion(
-                                                      productid: searchbestsaleModal
-                                                          ?.productData?[
-                                                      index]
-                                                          .productID ??
-                                                          '',
-                                                    )))
+                                                        ?.productData?[index]
+                                                        .productType ==
+                                                    '1'
+                                                ? Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            productdetailnovartion(
+                                                              productid: searchbestsaleModal
+                                                                      ?.productData?[
+                                                                          index]
+                                                                      .productID ??
+                                                                  '',
+                                                            )))
                                                 : Navigator.of(context).push(
-                                                MaterialPageRoute(
+                                                    MaterialPageRoute(
                                                         builder: (context) =>
                                                             productdetailwebview(
                                                               productid: searchbestsaleModal
@@ -729,29 +729,27 @@ class _HomePageState extends State<HomePage> {
                                                 GestureDetector(
                                                   onTap: () {
                                                     searchbestsaleModal
-                                                        ?.productData?[
-                                                    index]
-                                                        .productType ==
-                                                        '1'
-                                                        ? Navigator.push(context, MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            productdetailnovartion(
-                                                              productid: searchbestsaleModal
-                                                                  ?.productData?[
-                                                              index]
-                                                                  .productID ??
-                                                                  '',
-                                                            )))
+                                                                ?.productData?[
+                                                                    index]
+                                                                .productType ==
+                                                            '1'
+                                                        ? Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        productdetailnovartion(
+                                                                          productid:
+                                                                              searchbestsaleModal?.productData?[index].productID ?? '',
+                                                                        )))
                                                         : Navigator.of(context).push(
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                productdetailwebview(
-                                                                  productid: searchbestsaleModal
-                                                                      ?.productData?[
-                                                                  index]
-                                                                      .productID ??
-                                                                      '',
-                                                                )));
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        productdetailwebview(
+                                                                          productid:
+                                                                              searchbestsaleModal?.productData?[index].productID ?? '',
+                                                                        )));
                                                     //ADD CART API
                                                     // addtocartapi((catwiceproductmodal
                                                     //     ?.categoriesWiseProduct?[
@@ -954,13 +952,21 @@ class _HomePageState extends State<HomePage> {
                                     builder: (BuildContext context) {
                                       return GestureDetector(
                                         onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      productdetailwebview(
-                                                        productid:
-                                                            imagePath.productID,
-                                                      )));
+                                          imagePath.productType == '1'
+                                              ? Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          productdetailnovartion(
+                                                            productid: imagePath
+                                                                .productID,
+                                                          )))
+                                              : Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          productdetailwebview(
+                                                            productid: imagePath
+                                                                .productID,
+                                                          )));
                                         },
                                         child: Container(
                                           width:
@@ -1108,24 +1114,26 @@ class _HomePageState extends State<HomePage> {
                                                   GestureDetector(
                                                     onTap: () {
                                                       bestsellerproductmodal
-                                                          ?.productData?[index]
-                                                          .productType == '1'?Navigator.of(context).push(
-                                                          MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  productdetailnovartion(
-                                                                    productid: bestsellerproductmodal
-                                                                        ?.productData?[index]
-                                                                        .productID ??
-                                                                        '',
-                                                                  ))): Navigator.of(context).push(
-                                                          MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  productdetailwebview(
-                                                                    productid: bestsellerproductmodal
-                                                                            ?.productData?[index]
-                                                                            .productID ??
-                                                                        '',
-                                                                  )));
+                                                                  ?.productData?[
+                                                                      index]
+                                                                  .productType ==
+                                                              '1'
+                                                          ? Navigator.of(context).push(
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          productdetailnovartion(
+                                                                            productid:
+                                                                                bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                                          )))
+                                                          : Navigator.of(context).push(
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          productdetailwebview(
+                                                                            productid:
+                                                                                bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                                          )));
                                                     },
                                                     child: Card(
                                                       color: Colors.white,
@@ -1357,24 +1365,22 @@ class _HomePageState extends State<HomePage> {
                                                           GestureDetector(
                                                             onTap: () {
                                                               bestsellerproductmodal
-                                                                  ?.productData?[index]
-                                                                  .productType == '1'?Navigator.of(context).push(
-                                                                  MaterialPageRoute(
-                                                                      builder: (context) =>
-                                                                          productdetailnovartion(
-                                                                            productid: bestsellerproductmodal
-                                                                                ?.productData?[index]
-                                                                                .productID ??
-                                                                                '',
-                                                                          ))): Navigator.of(context).push(
-                                                                  MaterialPageRoute(
-                                                                      builder: (context) =>
-                                                                          productdetailwebview(
-                                                                            productid: bestsellerproductmodal
-                                                                                ?.productData?[index]
-                                                                                .productID ??
-                                                                                '',
-                                                                          )));
+                                                                          ?.productData?[
+                                                                              index]
+                                                                          .productType ==
+                                                                      '1'
+                                                                  ? Navigator.of(context).push(
+                                                                      MaterialPageRoute(
+                                                                          builder: (context) =>
+                                                                              productdetailnovartion(
+                                                                                productid: bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                                              )))
+                                                                  : Navigator.of(
+                                                                          context)
+                                                                      .push(MaterialPageRoute(
+                                                                          builder: (context) => productdetailwebview(
+                                                                                productid: bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                                              )));
                                                             },
                                                             child: Container(
                                                               alignment:
