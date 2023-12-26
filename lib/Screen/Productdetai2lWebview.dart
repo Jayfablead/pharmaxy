@@ -79,7 +79,7 @@ int selectedColorIndex = 0;
 int selcted = 0;
 String? price;
 String? price1;
-
+String? _url;
 class _productdetailwebviewState extends State<productdetailwebview> {
   @override
   void initState() {
@@ -92,6 +92,8 @@ class _productdetailwebviewState extends State<productdetailwebview> {
       selected = 0;
       isLoading = true;
       _load = true;
+      _url =  'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}/${(usermodal?.userId).toString()}';
+      print('Url link : $_url');
     });
     productdetailap();
     setState(() {
@@ -467,7 +469,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                               ),
                               initialUrlRequest: URLRequest(
                                 url: Uri.parse(
-                                    'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}/${(usermodal?.userId).toString()}'), // replace with your URL
+                                  _url.toString() ), // replace with your URL
                               ),
                               onWebViewCreated:
                                   (InAppWebViewController controller) {
