@@ -549,7 +549,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                       ),
                     ),
                     viewReviewmodal?.reviewData?.length == 0 ||
-                        viewReviewmodal?.reviewData?.length == null
+                            viewReviewmodal?.reviewData?.length == null
                         ? SliverToBoxAdapter(
                             child: Center(
                               child: Container(
@@ -865,7 +865,11 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                               );
                             },
                           ),
-                    SliverToBoxAdapter(child: SizedBox(height: 5.h,),),
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 5.h,
+                      ),
+                    ),
                   ],
                 ),
               ),
