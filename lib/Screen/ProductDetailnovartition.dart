@@ -509,12 +509,12 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                             BorderRadius
                                                                 .circular(30),
                                                         color:
-                                                            Color(0xff373737)),
+                                                            Color(0xffbababa)),
                                                     child: Text(
                                                       "Added To Cart",
                                                       style: TextStyle(
-                                                          fontSize: 15.sp,
-                                                          color: Colors.black54,
+                                                          fontSize: 14.5.sp,
+                                                          color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           letterSpacing: 1,
@@ -620,7 +620,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                         ? SliverToBoxAdapter(
                             child: Center(
                               child: Container(
-                                margin: EdgeInsets.only(top: 3.h),
+                                margin: EdgeInsets.only(top: 5.h),
                                 child: Text(
                                   'No Review Available',
                                   style: TextStyle(

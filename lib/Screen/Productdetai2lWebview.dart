@@ -467,7 +467,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                               ),
                               initialUrlRequest: URLRequest(
                                 url: Uri.parse(
-                                    'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}'), // replace with your URL
+                                    'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}/${(usermodal?.userId).toString()}'), // replace with your URL
                               ),
                               onWebViewCreated:
                                   (InAppWebViewController controller) {
@@ -548,7 +548,8 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                         ),
                       ),
                     ),
-                    viewReviewmodal?.reviewData?.length == null
+                    viewReviewmodal?.reviewData?.length == 0 ||
+                        viewReviewmodal?.reviewData?.length == null
                         ? SliverToBoxAdapter(
                             child: Center(
                               child: Container(
@@ -864,6 +865,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                               );
                             },
                           ),
+                    SliverToBoxAdapter(child: SizedBox(height: 5.h,),),
                   ],
                 ),
               ),
