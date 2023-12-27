@@ -591,119 +591,6 @@ class _CartPageState extends State<CartPage> {
                                                   }),
                                             ),
                                             SizedBox(
-                                              height: 2.h,
-                                            ),
-                                            Container(
-                                              width: 93.w,
-                                              height: 12.h,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                color: Color(0xffffffff),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 1.h),
-                                                child: Column(
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            left: 3.w,
-                                                          ),
-                                                          child: Text(
-                                                            'Sub Total',
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'task',
-                                                                fontSize: 15.sp,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .black),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            right: 3.w,
-                                                          ),
-                                                          child: Text(
-                                                            '₹ ${cart.getTOtalPrice().toString()}',
-                                                            // '₹ ' +
-                                                            //     '${snapshot.data![0].productQuantity == 1 ? snapshot.data![0].productPrice.toString() : newprice.toString()}',
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  'task',
-                                                              fontSize: 15.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: 1.h,
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            left: 3.w,
-                                                          ),
-                                                          child: Text(
-                                                            'Tax(10%)',
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'task',
-                                                                fontSize: 15.sp,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .black),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            right: 3.w,
-                                                          ),
-                                                          child: Text(
-                                                            "₹ ${(cart.getTOtalPrice() * 0.10).toStringAsFixed(2)}",
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  'task',
-                                                              fontSize: 15.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
                                               height: 1.h,
                                             ),
                                             Container(
@@ -725,10 +612,12 @@ class _CartPageState extends State<CartPage> {
                                                       left: 3.w,
                                                     ),
                                                     child: Text(
-                                                      'Total Amount',
+                                                      'Sub Total Amount',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 17.sp,
+                                                        color: Colors
+                                                            .grey.shade800,
+                                                        fontSize: 15.sp,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -739,7 +628,7 @@ class _CartPageState extends State<CartPage> {
                                                       right: 3.w,
                                                     ),
                                                     child: Text(
-                                                      '₹ ${cart.getTOtalPrice() + (cart.getTOtalPrice() * 0.10)}',
+                                                      '₹ ${cart.getTOtalPrice().toString()}',
                                                       // '₹ ' +
                                                       //     '${snapshot.data![0].productQuantity == 1 ? snapshot.data![0].productPrice.toString() : newprice.toString()}',
                                                       style: TextStyle(
@@ -879,7 +768,7 @@ class _CartPageState extends State<CartPage> {
                                   child: Column(
                                     children: [
                                       Container(
-                                        height: 49.h,
+                                        height: 65.5.h,
                                         child: ListView.builder(
                                           padding: EdgeInsets.zero,
                                           itemCount: viewcartmodal
@@ -1007,35 +896,16 @@ class _CartPageState extends State<CartPage> {
                                                                             (viewcartmodal?.cartDetails?[index].productName) == null
                                                                                 ? "N/A"
                                                                                 : (viewcartmodal?.cartDetails?[index].productName).toString(),
+                                                                            maxLines:
+                                                                                2,
+                                                                            overflow:
+                                                                                TextOverflow.ellipsis,
                                                                             style: TextStyle(
                                                                                 color: Colors.black,
                                                                                 fontSize: 12.sp,
                                                                                 fontWeight: FontWeight.w600,
                                                                                 fontFamily: "task"),
                                                                           ),
-                                                                        ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        width:
-                                                                            50.w,
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.spaceBetween,
-                                                                          children: [
-                                                                            Container(
-                                                                              padding: EdgeInsets.only(left: 1.w),
-                                                                              child: Container(
-                                                                                width: 47.w,
-                                                                                child: Text(
-                                                                                  overflow: TextOverflow.ellipsis,
-                                                                                  maxLines: 2,
-                                                                                  (viewcartmodal?.cartDetails?[index].productLongDesc) == null ? "N/A" : (viewcartmodal?.cartDetails?[index].productLongDesc).toString(),
-                                                                                  style: TextStyle(color: Colors.black87, fontSize: 12.sp, fontWeight: FontWeight.normal, fontFamily: "task"),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
                                                                         ),
                                                                       ),
                                                                       SizedBox(
@@ -1298,120 +1168,12 @@ class _CartPageState extends State<CartPage> {
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 1.5.h,
-                                      ),
-                                      Container(
-                                        width: 93.w,
-                                        height: 12.h,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          color: Color(0xffffffff),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 1.h),
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      left: 3.w,
-                                                    ),
-                                                    child: Text(
-                                                      'Sub Total',
-                                                      style: TextStyle(
-                                                          fontFamily: 'task',
-                                                          fontSize: 15.sp,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      right: 3.w,
-                                                    ),
-                                                    child: Text(
-                                                      (viewcartmodal
-                                                                  ?.finalTotal) ==
-                                                              null
-                                                          ? "N/A"
-                                                          : '₹' +
-                                                              (viewcartmodal
-                                                                      ?.finalTotal)
-                                                                  .toString(),
-                                                      style: TextStyle(
-                                                        fontFamily: 'task',
-                                                        fontSize: 15.sp,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 1.h,
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      left: 3.w,
-                                                    ),
-                                                    child: Text(
-                                                      'Tax(10%)',
-                                                      style: TextStyle(
-                                                          fontFamily: 'task',
-                                                          fontSize: 15.sp,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      right: 3.w,
-                                                    ),
-                                                    child: Text(
-                                                      (viewcartmodal
-                                                                  ?.totalTax) ==
-                                                              null
-                                                          ? "N/A"
-                                                          : '₹' +
-                                                              (viewcartmodal
-                                                                      ?.totalTax)
-                                                                  .toString(),
-                                                      style: TextStyle(
-                                                        fontFamily: 'task',
-                                                        fontSize: 15.sp,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
                                         height: 1.h,
                                       ),
                                       Container(
                                         width: 93.w,
-                                        height: 8.h,
+                                        height: 7.h,
+                                        alignment: Alignment.center,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(15),
@@ -1427,10 +1189,11 @@ class _CartPageState extends State<CartPage> {
                                                 left: 3.w,
                                               ),
                                               child: Text(
-                                                'Total Amount',
+                                                'Sub Total Amount : ',
                                                 style: TextStyle(
                                                   fontFamily: 'task',
-                                                  fontSize: 17.sp,
+                                                  fontSize: 15.sp,
+                                                  color: Colors.grey.shade800,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
@@ -1446,7 +1209,7 @@ class _CartPageState extends State<CartPage> {
                                                     ? "N/A"
                                                     : '₹' +
                                                         (viewcartmodal
-                                                                ?.finalTotalWithTax)
+                                                                ?.finalTotal)
                                                             .toString(),
                                                 style: TextStyle(
                                                   fontFamily: 'task',
@@ -1459,7 +1222,7 @@ class _CartPageState extends State<CartPage> {
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 3.h,
+                                        height: 2.h,
                                       ),
                                       GestureDetector(
                                         onTap: () {
@@ -1495,7 +1258,7 @@ class _CartPageState extends State<CartPage> {
                                                     BorderRadius.circular(30),
                                                 color: Color(0xfff7941d)),
                                             child: Text(
-                                              "Check Out",
+                                              "Checkout",
                                               style: TextStyle(
                                                   fontSize: 17.sp,
                                                   color: Colors.white,

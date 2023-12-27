@@ -527,7 +527,7 @@ class authprovider with ChangeNotifier {
   }
 
   Future<http.Response> checkoutapi(Map<String, String> bodyData) async {
-    const url = "$baseUrl/checkout_details";
+    const url = "$baseUrl/checkout_de              tails";
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)

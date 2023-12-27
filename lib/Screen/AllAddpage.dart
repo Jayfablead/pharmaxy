@@ -32,6 +32,9 @@ class _AllAddpageState extends State<AllAddpage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    setState(() {
+      sell = 0;
+    });
     alluseraddapi();
   }
 
@@ -367,7 +370,7 @@ class _AllAddpageState extends State<AllAddpage> {
                     GestureDetector(
                       onTap: () {
                         print(alluseraddmodal?.allShippingAddress?[sell].id);
-                        Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => CheckoutDetail(
                                   address: alluseraddmodal
                                           ?.allShippingAddress?[sell].address ??

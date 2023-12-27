@@ -286,7 +286,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                           controller: controller,
                                           count: pages.length,
                                           effect: WormEffect(
-                                            dotColor: Colors.grey.shade100,
+                                            dotColor: Colors.grey.shade200,
                                             activeDotColor: Color(0xfff7941d),
                                             dotHeight: 1.5.h,
                                             dotWidth: 4.w,

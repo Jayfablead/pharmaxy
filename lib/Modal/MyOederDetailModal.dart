@@ -33,6 +33,7 @@ class OrderDetails {
   String? variationTableId;
   String? productColor;
   String? productSize;
+  List<VariationDetails>? variationDetails;
   String? createdAt;
   String? updatedAt;
   String? productName;
@@ -46,6 +47,9 @@ class OrderDetails {
   String? phoneno;
   String? address1;
   String? zipcode;
+  String? countryName;
+  String? stateName;
+  String? cityName;
 
   OrderDetails(
       {this.orderItemID,
@@ -56,6 +60,7 @@ class OrderDetails {
       this.variationTableId,
       this.productColor,
       this.productSize,
+      this.variationDetails,
       this.createdAt,
       this.updatedAt,
       this.productName,
@@ -68,7 +73,10 @@ class OrderDetails {
       this.lastname,
       this.phoneno,
       this.address1,
-      this.zipcode});
+      this.zipcode,
+      this.countryName,
+      this.stateName,
+      this.cityName});
 
   OrderDetails.fromJson(Map<String, dynamic> json) {
     orderItemID = json['OrderItemID'];
@@ -79,6 +87,12 @@ class OrderDetails {
     variationTableId = json['variation_table_id'];
     productColor = json['product_color'];
     productSize = json['product_size'];
+    if (json['variation_details'] != null) {
+      variationDetails = <VariationDetails>[];
+      json['variation_details'].forEach((v) {
+        variationDetails!.add(new VariationDetails.fromJson(v));
+      });
+    }
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
     productName = json['product_name'];
@@ -92,6 +106,9 @@ class OrderDetails {
     phoneno = json['phoneno'];
     address1 = json['address1'];
     zipcode = json['zipcode'];
+    countryName = json['country_name'];
+    stateName = json['state_name'];
+    cityName = json['city_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -104,6 +121,10 @@ class OrderDetails {
     data['variation_table_id'] = this.variationTableId;
     data['product_color'] = this.productColor;
     data['product_size'] = this.productSize;
+    if (this.variationDetails != null) {
+      data['variation_details'] =
+          this.variationDetails!.map((v) => v.toJson()).toList();
+    }
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     data['product_name'] = this.productName;
@@ -117,6 +138,46 @@ class OrderDetails {
     data['phoneno'] = this.phoneno;
     data['address1'] = this.address1;
     data['zipcode'] = this.zipcode;
+    data['country_name'] = this.countryName;
+    data['state_name'] = this.stateName;
+    data['city_name'] = this.cityName;
+    return data;
+  }
+}
+
+class VariationDetails {
+  String? variationsDetailsID;
+  String? variationID;
+  String? variationVlueID;
+  String? variationName;
+  String? variationTypeName;
+  String? variationTypeID;
+
+  VariationDetails(
+      {this.variationsDetailsID,
+      this.variationID,
+      this.variationVlueID,
+      this.variationName,
+      this.variationTypeName,
+      this.variationTypeID});
+
+  VariationDetails.fromJson(Map<String, dynamic> json) {
+    variationsDetailsID = json['VariationsDetailsID'];
+    variationID = json['VariationID'];
+    variationVlueID = json['VariationVlueID'];
+    variationName = json['VariationName'];
+    variationTypeName = json['VariationTypeName'];
+    variationTypeID = json['VariationTypeID'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['VariationsDetailsID'] = this.variationsDetailsID;
+    data['VariationID'] = this.variationID;
+    data['VariationVlueID'] = this.variationVlueID;
+    data['VariationName'] = this.variationName;
+    data['VariationTypeName'] = this.variationTypeName;
+    data['VariationTypeID'] = this.variationTypeID;
     return data;
   }
 }

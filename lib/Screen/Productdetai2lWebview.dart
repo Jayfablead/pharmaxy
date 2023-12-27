@@ -80,6 +80,7 @@ int selcted = 0;
 String? price;
 String? price1;
 String? _url;
+
 class _productdetailwebviewState extends State<productdetailwebview> {
   @override
   void initState() {
@@ -92,7 +93,8 @@ class _productdetailwebviewState extends State<productdetailwebview> {
       selected = 0;
       isLoading = true;
       _load = true;
-      _url =  'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}/${(usermodal?.userId).toString()}';
+      _url =
+          'https://ecomweb.fableadtechnolabs.com/design/${widget.productid.toString()}/${(usermodal?.userId).toString()}';
       print('Url link : $_url');
     });
     productdetailap();
@@ -312,7 +314,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                                           controller: controller,
                                           count: pages.length,
                                           effect: WormEffect(
-                                            dotColor: Colors.grey.shade100,
+                                            dotColor: Colors.grey.shade200,
                                             activeDotColor: Color(0xfff7941d),
                                             dotHeight: 1.5.h,
                                             dotWidth: 4.w,
@@ -469,7 +471,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                               ),
                               initialUrlRequest: URLRequest(
                                 url: Uri.parse(
-                                  _url.toString() ), // replace with your URL
+                                    _url.toString()), // replace with your URL
                               ),
                               onWebViewCreated:
                                   (InAppWebViewController controller) {
@@ -489,6 +491,10 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                                   print('loading : ${_load}');
                                 });
                                 _updateWebViewHeight();
+                                Timer.periodic(Duration(milliseconds: 100),
+                                    (timer) {
+                                  _updateWebViewHeight();
+                                });
                               },
                             ),
                           ),
