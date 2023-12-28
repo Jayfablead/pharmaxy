@@ -34,7 +34,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../Provider/cartProvider.dart';
 import '../Widget/bottombar.dart';
-
+late Timer timer;
 class productdetailwebview extends StatefulWidget {
   String? productid;
 
@@ -125,7 +125,13 @@ class _productdetailwebviewState extends State<productdetailwebview> {
     print('init load : ${_load}');
     print('init : ${_webViewHeight}');
   }
-
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    timer.cancel();
+    print("Timer stopped.");
+  }
   @override
   Widget build(BuildContext context) {
     final cartitm = Provider.of<CartProvider>(context);
@@ -212,6 +218,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                               children: [
                                 IconButton(
                                     onPressed: () {
+                                      timer.cancel();
                                       Navigator.of(context).pop();
                                     },
                                     icon: Icon(
@@ -491,7 +498,7 @@ class _productdetailwebviewState extends State<productdetailwebview> {
                                   print('loading : ${_load}');
                                 });
                                 _updateWebViewHeight();
-                                Timer.periodic(Duration(milliseconds: 100),
+                               timer = Timer.periodic(Duration(milliseconds: 100),
                                     (timer) {
                                   _updateWebViewHeight();
                                 });

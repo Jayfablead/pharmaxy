@@ -57,7 +57,7 @@ class _bottombarState extends State<bottombar> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => HomePage(
                                 sel: 0,
                               )));
@@ -104,7 +104,7 @@ class _bottombarState extends State<bottombar> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      Navigator.of(context).push(
+                      Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => CartPage()));
                       selected = 2;
                     });
@@ -149,9 +149,9 @@ class _bottombarState extends State<bottombar> {
                   onTap: () async {
                     setState(() {
                       usermodal?.userId == "" || usermodal?.userId == null
-                          ? Navigator.of(context).push(MaterialPageRoute(
+                          ? Navigator.of(context).pushReplacement(MaterialPageRoute(
                               builder: (context) => LoginPage2()))
-                          : Navigator.of(context).push(MaterialPageRoute(
+                          : Navigator.of(context).pushReplacement(MaterialPageRoute(
                               builder: (context) => WishListPage()));
                       selected = 4;
                     });
@@ -195,7 +195,7 @@ class _bottombarState extends State<bottombar> {
                 ),
                 GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => LoginPage2()));
                     },
                     child: Padding(
@@ -220,7 +220,7 @@ class _bottombarState extends State<bottombar> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => HomePage(
                                 sel: 0,
                               )));
@@ -267,7 +267,7 @@ class _bottombarState extends State<bottombar> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      Navigator.of(context).push(
+                      Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => CartPage()));
                       selected = 2;
                     });
@@ -312,9 +312,9 @@ class _bottombarState extends State<bottombar> {
                   onTap: () async {
                     setState(() {
                       usermodal?.userId == "" || usermodal?.userId == null
-                          ? Navigator.of(context).push(MaterialPageRoute(
+                          ? Navigator.of(context).pushReplacement(MaterialPageRoute(
                               builder: (context) => LoginPage2()))
-                          : Navigator.of(context).push(MaterialPageRoute(
+                          : Navigator.of(context).pushReplacement(MaterialPageRoute(
                               builder: (context) => WishListPage()));
                       selected = 4;
                     });
@@ -359,7 +359,7 @@ class _bottombarState extends State<bottombar> {
                 usermodal?.userId == "" || usermodal?.userId == null
                     ? GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(
                               builder: (context) => LoginPage2()));
                         },
                         child: Padding(
@@ -380,9 +380,9 @@ class _bottombarState extends State<bottombar> {
                         onTap: () async {
                           setState(() {
                             usermodal?.userId == "" || usermodal?.userId == null
-                                ? Navigator.of(context).push(MaterialPageRoute(
+                                ? Navigator.of(context).pushReplacement(MaterialPageRoute(
                                     builder: (context) => LoginPage2()))
-                                : Navigator.of(context).push(MaterialPageRoute(
+                                : Navigator.of(context).pushReplacement(MaterialPageRoute(
                                     builder: (context) => ProfilePage()));
                             selected = 5;
                           });

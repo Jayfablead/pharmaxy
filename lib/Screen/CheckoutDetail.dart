@@ -83,9 +83,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Paymethod();
-    checkoutap();
-    userselectaddap();
+
     void _handlePaymentSuccess(PaymentSuccessResponse response) {
       Fluttertoast.showToast(
           msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
@@ -124,8 +122,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     print('Add name : ${widget.firstname}');
     print('Add name2 : ${widget.lastname}');
     print('Address : ${widget.address}');
-    print(widget.name);
-    print(paymethodmodal?.data?.cod?.status);
+    Paymethod();
+    checkoutap();
+    userselectaddap();
   }
 
   @override
@@ -376,7 +375,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                   buildErrorDialog(
                                                       context,
                                                       'Sorry',
-                                                      'Paypal is Not Available for this Product');
+                                                      'Paypal is Not Available at this time');
                                                 },
                                                 child: Container(
                                                   padding: EdgeInsets.all(2.w),
@@ -489,7 +488,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                       buildErrorDialog(
                                                           context,
                                                           'Sorry',
-                                                          'Cash on Delivery is Not Available for this Product');
+                                                          'Cash on Delivery is Not Available at this time');
                                                     },
                                                     child: Container(
                                                       padding:
@@ -617,7 +616,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                   buildErrorDialog(
                                                       context,
                                                       'Sorry',
-                                                      'Stripe is Not Available for this Product');
+                                                      'Stripe is Not Available at this time');
                                                 },
                                                 child: Container(
                                                   padding: EdgeInsets.all(2.w),
@@ -729,7 +728,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                   buildErrorDialog(
                                                       context,
                                                       'Sorry',
-                                                      'Razorpay is Not Available for this Product');
+                                                      'Razorpay is Not Available at this time');
                                                 },
                                                 child: Container(
                                                   padding: EdgeInsets.all(2.w),
@@ -878,7 +877,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                   null
                                               ? "N/A"
                                               : '₹' +
-                                                  (viewcartmodal?.finalTotal)
+                                                  (chekoutdetailmodal?.finalTotal)
                                                       .toString(),
                                           style: TextStyle(
                                               fontFamily: 'task',
@@ -897,7 +896,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Tax(10%) : ',
+                                          'Tax : ',
                                           style: TextStyle(
                                             fontFamily: 'task',
                                             fontSize: 15.sp,
@@ -909,7 +908,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           (chekoutdetailmodal?.totalTax) == null
                                               ? "N/A"
                                               : '₹' +
-                                                  (viewcartmodal?.totalTax)
+                                                  (chekoutdetailmodal?.totalTax)
                                                       .toString(),
                                           style: TextStyle(
                                             fontFamily: 'task',
@@ -937,11 +936,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           ),
                                         ),
                                         Text(
-                                          (chekoutdetailmodal?.totalTax) == null
+                                          (chekoutdetailmodal?.shippingRate) == null || (chekoutdetailmodal?.shippingRate) == ''
                                               ? "N/A"
                                               : '₹' +
-                                                  (viewcartmodal?.totalTax)
-                                                      .toString(),
+                                                  (chekoutdetailmodal?.shippingRate).toString()
+                                                     ,
                                           style: TextStyle(
                                             fontFamily: 'task',
                                             fontSize: 15.sp,
@@ -983,11 +982,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                       ),
                                     ),
                                     Text(
-                                      (chekoutdetailmodal?.finalTotalWithTax) ==
+                                      (chekoutdetailmodal?.totalWithTaxShip) ==
                                               null
                                           ? "N/A"
                                           : '₹' +
-                                              (viewcartmodal?.finalTotalWithTax)
+                                              (chekoutdetailmodal?.totalWithTaxShip)
                                                   .toString(),
                                       style: TextStyle(
                                         fontFamily: 'task',
@@ -1092,8 +1091,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           : selectedpayment == 1
                                               ? () {
                                                   double total = double.parse(
-                                                      (viewcartmodal
-                                                              ?.finalTotalWithTax)
+                                                      (chekoutdetailmodal?.totalWithTaxShip)
                                                           .toString());
                                                   String formattedNumber =
                                                       total.toStringAsFixed(2);
@@ -1303,6 +1301,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
   checkoutap() {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
+    data['shipphing_id'] =widget.addid.toString();
     print(data);
     checkInternet().then((internet) async {
       if (internet) {

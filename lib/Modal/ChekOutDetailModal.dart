@@ -2,17 +2,21 @@ class ChekOutDetailModal {
   String? message;
   String? status;
   UserDetails? userDetails;
-  String? finalTotal;
-  String? totalTax;
-  String? finalTotalWithTax;
+  int? finalTotal;
+  int? totalTax;
+  int? finalTotalWithTax;
+  int? shippingRate;
+  int? totalWithTaxShip;
 
   ChekOutDetailModal(
       {this.message,
-      this.status,
-      this.userDetails,
-      this.finalTotal,
-      this.totalTax,
-      this.finalTotalWithTax});
+        this.status,
+        this.userDetails,
+        this.finalTotal,
+        this.totalTax,
+        this.finalTotalWithTax,
+        this.shippingRate,
+        this.totalWithTaxShip});
 
   ChekOutDetailModal.fromJson(Map<String, dynamic> json) {
     message = json['message'];
@@ -23,6 +27,8 @@ class ChekOutDetailModal {
     finalTotal = json['final_total'];
     totalTax = json['total_tax'];
     finalTotalWithTax = json['final_total_with_tax'];
+    shippingRate = json['shipping_rate'];
+    totalWithTaxShip = json['total_with_tax_ship'];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +41,8 @@ class ChekOutDetailModal {
     data['final_total'] = this.finalTotal;
     data['total_tax'] = this.totalTax;
     data['final_total_with_tax'] = this.finalTotalWithTax;
+    data['shipping_rate'] = this.shippingRate;
+    data['total_with_tax_ship'] = this.totalWithTaxShip;
     return data;
   }
 }
@@ -55,6 +63,7 @@ class UserDetails {
   String? userEmailVerified;
   String? userRegistrationDate;
   String? userVerificationCode;
+  String? forgotPassKey;
   String? userPhone;
   String? userCountry;
   String? userAddress;
@@ -64,26 +73,27 @@ class UserDetails {
 
   UserDetails(
       {this.userID,
-      this.userType,
-      this.userEmail,
-      this.userPassword,
-      this.userFirstName,
-      this.userLastName,
-      this.dOB,
-      this.userGander,
-      this.userProfile,
-      this.userCity,
-      this.userState,
-      this.userZip,
-      this.userEmailVerified,
-      this.userRegistrationDate,
-      this.userVerificationCode,
-      this.userPhone,
-      this.userCountry,
-      this.userAddress,
-      this.userAddress2,
-      this.createdAt,
-      this.updatedAt});
+        this.userType,
+        this.userEmail,
+        this.userPassword,
+        this.userFirstName,
+        this.userLastName,
+        this.dOB,
+        this.userGander,
+        this.userProfile,
+        this.userCity,
+        this.userState,
+        this.userZip,
+        this.userEmailVerified,
+        this.userRegistrationDate,
+        this.userVerificationCode,
+        this.forgotPassKey,
+        this.userPhone,
+        this.userCountry,
+        this.userAddress,
+        this.userAddress2,
+        this.createdAt,
+        this.updatedAt});
 
   UserDetails.fromJson(Map<String, dynamic> json) {
     userID = json['UserID'];
@@ -101,6 +111,7 @@ class UserDetails {
     userEmailVerified = json['UserEmailVerified'];
     userRegistrationDate = json['UserRegistrationDate'];
     userVerificationCode = json['UserVerificationCode'];
+    forgotPassKey = json['forgot_pass_key'];
     userPhone = json['UserPhone'];
     userCountry = json['UserCountry'];
     userAddress = json['UserAddress'];
@@ -126,6 +137,7 @@ class UserDetails {
     data['UserEmailVerified'] = this.userEmailVerified;
     data['UserRegistrationDate'] = this.userRegistrationDate;
     data['UserVerificationCode'] = this.userVerificationCode;
+    data['forgot_pass_key'] = this.forgotPassKey;
     data['UserPhone'] = this.userPhone;
     data['UserCountry'] = this.userCountry;
     data['UserAddress'] = this.userAddress;

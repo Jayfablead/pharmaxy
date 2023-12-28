@@ -55,9 +55,6 @@ dependencies:
   csc_picker:
   hive:
   path_provider:
-  firebase_core:
-  firebase_auth:
-  firebase_messaging:
   sqflite:
   path:
   flutter_paypal:
