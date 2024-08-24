@@ -859,4 +859,41 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
+
+
+
+//   test api
+
+  Future<http.Response> testcateapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/category";
+    var responseJson;
+    final response = await http
+        .get(
+      Uri.parse(url),
+    )
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+  Future<http.Response> bestsellerapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/best_selling_product";
+    var responseJson;
+    final response = await http
+        .post( Uri.parse(url),body: bodyData,headers: headers)
+        .timeout(
+        const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
 }

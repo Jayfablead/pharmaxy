@@ -14,6 +14,7 @@ import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -131,6 +132,7 @@ class _MyOrderListState extends State<MyOrderList> {
                     SizedBox(
                       height: 2.h,
                     ),
+                    // App bar
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: Row(
@@ -539,6 +541,39 @@ class _MyOrderListState extends State<MyOrderList> {
                                                               ),
                                                               Row(
                                                                 children: [
+                                                                  Text(
+                                                                    myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                        '' ||
+                                                                        myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                            null
+                                                                        ? 'N/A'
+                                                                        : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
+                                                                        myorderlistmodal?.cartDetails?[index].orderStatus == 'Order Cancelled'
+                                                                        ? "Cancelled"
+                                                                        : myorderlistmodal?.cartDetails?[index].orderStatus ?? '',
+                                                                    style:
+                                                                    TextStyle(
+                                                                      fontSize:
+                                                                      13.sp,
+                                                                      fontFamily:
+                                                                      'task',
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                      color: myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
+                                                                          myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                              'Order Cancelled'
+                                                                          ? Colors
+                                                                          .red
+                                                                          : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending'
+                                                                          ? Color(0xfff7941d)
+                                                                          : Colors.green,
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width:
+                                                                    2.5.w,
+                                                                  ),
                                                                   GestureDetector(
                                                                     onTap: () {
                                                                       Navigator.of(
@@ -549,47 +584,33 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                     child: Container(
                                                                         alignment: Alignment.center,
                                                                         height: 4.h,
-                                                                        width: 30.w,
-                                                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xfff7941d)),
-                                                                        child: Text(
-                                                                          "View Detail",
-                                                                          style: TextStyle(
-                                                                              fontSize: 13.sp,
-                                                                              color: Colors.white,
-                                                                              fontFamily: "task"),
-                                                                        )),
+                                                                        width: 13.w,
+                                                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
+                                                                        child: Icon(Icons.visibility,color: Color(0xfff7941d,),size: 27,)
+                                                                    ),
                                                                   ),
                                                                   SizedBox(
                                                                     width:
-                                                                        2.5.w,
+                                                                    2.5.w,
                                                                   ),
-                                                                  Text(
-                                                                    myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                                '' ||
-                                                                            myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                                null
-                                                                        ? 'N/A'
-                                                                        : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
-                                                                                myorderlistmodal?.cartDetails?[index].orderStatus == 'Order Cancelled'
-                                                                            ? "Cancelled"
-                                                                            : myorderlistmodal?.cartDetails?[index].orderStatus ?? '',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          13.sp,
-                                                                      fontFamily:
-                                                                          'task',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
-                                                                              myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                                  'Order Cancelled'
-                                                                          ? Colors
-                                                                              .red
-                                                                          : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending'
-                                                                              ? Color(0xfff7941d)
-                                                                              : Colors.green,
+                                                                  GestureDetector(
+                                                                    onTap: () {
+                                                                      // Navigator.of(
+                                                                      //     context)
+                                                                      //     .push(
+                                                                      //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                    },
+                                                                    child: Container(
+                                                                        alignment: Alignment.center,
+                                                                        height: 4.h,
+                                                                        width: 13.w,
+                                                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
+                                                                        child: Icon(
+                                                                          CupertinoIcons.chat_bubble_fill,
+                                                                          size: 17.sp,
+                                                                          color: Color(0xfff7941d),
+                                                                          //weight: 20,
+                                                                        )
                                                                     ),
                                                                   ),
                                                                   SizedBox(
@@ -915,6 +936,27 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                   ),
                                                                   Row(
                                                                     children: [
+                                                                      Text(
+                                                                        "Delivered",
+                                                                        style:
+                                                                        TextStyle(
+                                                                          fontSize:
+                                                                          13.sp,
+                                                                          fontFamily:
+                                                                          'task',
+                                                                          fontWeight:
+                                                                          FontWeight.bold,
+                                                                          letterSpacing:
+                                                                          1,
+                                                                          color: Colors
+                                                                              .green
+                                                                              .shade400,
+                                                                        ),
+                                                                      ),
+                                                                      SizedBox(
+                                                                        width:
+                                                                        4.w,
+                                                                      ),
                                                                       GestureDetector(
                                                                         onTap:
                                                                             () {
@@ -924,32 +966,31 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         child: Container(
                                                                             alignment: Alignment.center,
                                                                             height: 4.h,
-                                                                            width: 30.w,
+                                                                            width: 13.w,
                                                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xfff7941d)),
-                                                                            child: Text(
-                                                                              "View Detail",
-                                                                              style: TextStyle(fontSize: 13.sp, color: Colors.white, fontFamily: "task"),
-                                                                            )),
+                                                                            child: Icon(Icons.visibility,color: Colors.white,)
+                                                                        ),
                                                                       ),
                                                                       SizedBox(
                                                                         width:
-                                                                            4.w,
+                                                                        4.w,
                                                                       ),
-                                                                      Text(
-                                                                        "Delivered",
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontSize:
-                                                                              13.sp,
-                                                                          fontFamily:
-                                                                              'task',
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                          letterSpacing:
-                                                                              1,
-                                                                          color: Colors
-                                                                              .green
-                                                                              .shade400,
+                                                                      GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
+                                                                        },
+                                                                        child: Container(
+                                                                            alignment: Alignment.center,
+                                                                            height: 4.h,
+                                                                            width: 13.w,
+                                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xfff7941d)),
+                                                                            child:  Icon(
+                                                                              CupertinoIcons.chat_bubble_fill,
+                                                                              size: 17.sp,
+                                                                              color: Color(0xfff7941d),
+                                                                           )
                                                                         ),
                                                                       ),
                                                                       SizedBox(
@@ -1271,6 +1312,21 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                       ),
                                                                       Row(
                                                                         children: [
+                                                                          Text(
+                                                                            "Pending",
+                                                                            style:
+                                                                            TextStyle(
+                                                                              fontSize: 13.sp,
+                                                                              fontFamily: 'task',
+                                                                              fontWeight: FontWeight.bold,
+                                                                              letterSpacing: 1,
+                                                                              color: Color(0xfff7941d),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            width:
+                                                                            4.w,
+                                                                          ),
                                                                           GestureDetector(
                                                                             onTap:
                                                                                 () {
@@ -1279,26 +1335,32 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             child: Container(
                                                                                 alignment: Alignment.center,
                                                                                 height: 4.h,
-                                                                                width: 30.w,
-                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xfff7941d)),
-                                                                                child: Text(
-                                                                                  "View Detail",
-                                                                                  style: TextStyle(fontSize: 13.sp, color: Colors.white, fontFamily: "task"),
-                                                                                )),
+                                                                                width: 13.w,
+                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ),
+                                                                                child: Icon(Icons.visibility,color: Color(0xfff7941d),size: 27,)
+                                                                            ),
                                                                           ),
                                                                           SizedBox(
                                                                             width:
-                                                                                4.w,
+                                                                            2.5.w,
                                                                           ),
-                                                                          Text(
-                                                                            "Pending",
-                                                                            style:
-                                                                                TextStyle(
-                                                                              fontSize: 13.sp,
-                                                                              fontFamily: 'task',
-                                                                              fontWeight: FontWeight.bold,
-                                                                              letterSpacing: 1,
-                                                                              color: Color(0xfff7941d),
+                                                                          GestureDetector(
+                                                                            onTap: () {
+                                                                              // Navigator.of(
+                                                                              //     context)
+                                                                              //     .push(
+                                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                            },
+                                                                            child: Container(
+                                                                                alignment: Alignment.center,
+                                                                                height: 4.h,
+                                                                                width: 13.w,
+                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
+                                                                                child: Icon(
+                                                                                  CupertinoIcons.chat_bubble_fill,
+                                                                                  size: 17.sp,
+                                                                                  color: Color(0xfff7941d),
+                                                                                )
                                                                             ),
                                                                           ),
                                                                           SizedBox(
@@ -1618,6 +1680,21 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                       ),
                                                                       Row(
                                                                         children: [
+                                                                          Text(
+                                                                            "Cancelled",
+                                                                            style:
+                                                                            TextStyle(
+                                                                              fontSize: 13.sp,
+                                                                              fontFamily: 'task',
+                                                                              fontWeight: FontWeight.bold,
+                                                                              letterSpacing: 1,
+                                                                              color: Colors.red.shade400,
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            width:
+                                                                            4.w,
+                                                                          ),
                                                                           GestureDetector(
                                                                             onTap:
                                                                                 () {
@@ -1626,26 +1703,32 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             child: Container(
                                                                                 alignment: Alignment.center,
                                                                                 height: 4.h,
-                                                                                width: 30.w,
-                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xfff7941d)),
-                                                                                child: Text(
-                                                                                  "View Detail",
-                                                                                  style: TextStyle(fontSize: 13.sp, color: Colors.white, fontFamily: "task"),
-                                                                                )),
+                                                                                width: 13.w,
+                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ),
+                                                                                child: Icon(Icons.visibility,color: Color(0xfff7941d),size: 27,)
+                                                                            ),
                                                                           ),
                                                                           SizedBox(
                                                                             width:
-                                                                                4.w,
+                                                                            2.5.w,
                                                                           ),
-                                                                          Text(
-                                                                            "Cancelled",
-                                                                            style:
-                                                                                TextStyle(
-                                                                              fontSize: 13.sp,
-                                                                              fontFamily: 'task',
-                                                                              fontWeight: FontWeight.bold,
-                                                                              letterSpacing: 1,
-                                                                              color: Colors.red.shade400,
+                                                                          GestureDetector(
+                                                                            onTap: () {
+                                                                              // Navigator.of(
+                                                                              //     context)
+                                                                              //     .push(
+                                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                            },
+                                                                            child: Container(
+                                                                                alignment: Alignment.center,
+                                                                                height: 4.h,
+                                                                                width: 13.w,
+                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
+                                                                                child: Icon(
+                                                                                  CupertinoIcons.chat_bubble_fill,
+                                                                                  size: 17.sp,
+                                                                                  color: Color(0xfff7941d),
+                                                                                )
                                                                             ),
                                                                           ),
                                                                           SizedBox(

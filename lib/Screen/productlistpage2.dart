@@ -214,11 +214,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                salesproductlistmodal
-                                                            ?.productData?[
-                                                                index]
-                                                            .productType ==
-                                                        '1'
+                                                salesproductlistmodal?.productData?[index].productType == '1'
                                                     ? Navigator.of(context)
                                                         .push(MaterialPageRoute(
                                                             builder: (context) =>
@@ -940,10 +936,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                           _isLoading = !_isLoading;
                                         });
                                       },
-                                      child: (salesproductlistmodal
-                                                      ?.productData?.length ??
-                                                  0) <
-                                              5
+                                      child: (salesproductlistmodal?.productData?.length ?? 0) < 5
                                           ? Container()
                                           : Container(
                                               alignment: Alignment.center,

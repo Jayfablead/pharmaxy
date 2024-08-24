@@ -50,6 +50,9 @@ import 'package:ecommerce/Modal/UserSelectAddModal.dart';
 import 'package:ecommerce/Modal/UserWishLIstModal.dart';
 import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
+import 'package:ecommerce/Modal/bestsellerModel.dart';
+import 'package:ecommerce/Modal/cateModel.dart';
+import 'package:ecommerce/Screen/BestSelllerApi.dart';
 import 'package:flutter/material.dart';
 
 import '../Modal/ProductDetail2Modal.dart';
@@ -114,6 +117,9 @@ ViewReviewModal? viewReviewmodal;
 DeleteReviewModal? deletereviewmodal;
 StripeModal? strpiepay;
 ProductDetail2Modal? productdetail2modal;
+
+cateModel?catemodel;
+bestsellerModel?bestselllermodel;
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());

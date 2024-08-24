@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
@@ -31,9 +30,7 @@ import 'package:sizer/sizer.dart';
 
 class HomePage extends StatefulWidget {
   int? sel;
-
   HomePage({super.key, required this.sel});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -1746,7 +1743,7 @@ class _HomePageState extends State<HomePage> {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
     data['productID'] = value.toString();
-    print(data);
+    print("addwish"+ data.toString());
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().addtowishlistapi(data).then((response) async {

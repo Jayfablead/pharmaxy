@@ -3,12 +3,15 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/BestSelllerApi.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/ChangePassword.dart';
+import 'package:ecommerce/Screen/ChatScreen.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/MyOrderList.dart';
+import 'package:ecommerce/Screen/NewApi.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/WishListPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -130,7 +133,7 @@ class _drawer1State extends State<drawer1> {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        Text("Home Page",
+                                        Text("Home",
                                             style: TextStyle(
                                               fontSize: 17.sp,
                                               fontWeight: FontWeight.w500,
@@ -361,6 +364,7 @@ class _drawer1State extends State<drawer1> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // HOME
                       InkWell(
                         onTap: () {
                           Navigator.of(context).pop();
@@ -390,7 +394,7 @@ class _drawer1State extends State<drawer1> {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        Text("Home Page",
+                                        Text("Home",
                                             style: TextStyle(
                                               fontSize: 17.sp,
                                               fontWeight: FontWeight.w500,
@@ -410,6 +414,7 @@ class _drawer1State extends State<drawer1> {
                           ),
                         ),
                       ),
+                      // ORDER
                       SizedBox(
                         height: 2.h,
                       ),
@@ -515,6 +520,7 @@ class _drawer1State extends State<drawer1> {
                       //     ),
                       //   ),
                       // ),
+                      // PROFILE
                       SizedBox(
                         height: 2.h,
                       ),
@@ -568,6 +574,7 @@ class _drawer1State extends State<drawer1> {
                           ),
                         ),
                       ),
+                      // WISHLIST
                       SizedBox(
                         height: 2.h,
                       ),
@@ -620,6 +627,7 @@ class _drawer1State extends State<drawer1> {
                           ),
                         ),
                       ),
+                      // MY CART
                       SizedBox(
                         height: 2.h,
                       ),
@@ -674,6 +682,61 @@ class _drawer1State extends State<drawer1> {
                           ),
                         ),
                       ),
+                      // Chat
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatscreen(),
+                          ));
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 64.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.chat_bubble_fill,
+                                          size: 20.sp,
+                                          color: Color(0xfff7941d),
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Chat",
+                                          style: TextStyle(
+                                            fontSize: 17.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'task',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      // Change Password
                       SizedBox(
                         height: 2.h,
                       ),
@@ -727,6 +790,7 @@ class _drawer1State extends State<drawer1> {
                           ),
                         ),
                       ),
+                      // Logout
                       SizedBox(
                         height: 2.h,
                       ),
@@ -779,6 +843,114 @@ class _drawer1State extends State<drawer1> {
                                         ),
                                       ],
                                     ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      // test api
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => newapi(),
+                          ));
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 64.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.lock_rotation_open,
+                                          size: 25.sp,
+                                          color: Color(0xfff7941d),
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Test Api",
+                                          style: TextStyle(
+                                            fontSize: 17.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'task',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      // best seller
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Bestselllerapi(),
+                          ));
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 64.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.lock_rotation_open,
+                                          size: 25.sp,
+                                          color: Color(0xfff7941d),
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Best Seller",
+                                          style: TextStyle(
+                                            fontSize: 17.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'task',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.black,
+                                    )
                                   ],
                                 ),
                               ),

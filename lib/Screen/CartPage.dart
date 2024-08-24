@@ -1344,7 +1344,7 @@ class _CartPageState extends State<CartPage> {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
     data['cart_tbl_id'] = value.toString();
-    print(data);
+    print("cart incre $data");
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().incrementapi(data).then((response) async {
@@ -1353,7 +1353,7 @@ class _CartPageState extends State<CartPage> {
           if (response.statusCode == 200 &&
               incrementmodal?.status == "success") {
             ViewCartApi();
-            print('ADDD');
+            print('ADD');
             setState(() {
               isLoading = false;
             });
@@ -1376,7 +1376,7 @@ class _CartPageState extends State<CartPage> {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
     data['cart_tbl_id'] = value.toString();
-    print(data);
+    print("cart decre ${data}");
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().disincrementapi(data).then((response) async {

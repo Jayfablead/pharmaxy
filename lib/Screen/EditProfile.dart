@@ -505,7 +505,7 @@ class _EditProfileState extends State<EditProfile> {
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30.0)),
-                            primary: Color(0xfff7941d)),
+                            backgroundColor: Color(0xfff7941d)),
                         child: Text(
                           "Save",
                           style: TextStyle(

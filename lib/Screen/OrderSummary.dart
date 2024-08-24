@@ -4,12 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/MyOederDetailModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/ChatScreen.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -60,6 +62,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                       SizedBox(
                         height: 2.h,
                       ),
+                      // App Bar
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Row(
@@ -159,17 +162,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                             fontSize: 15.sp,
                                             color: Colors.black45),
                                       ),
-                                      Text(
-                                        myoederdetailmodal?.orderDetails
-                                                        ?.orderNumber ==
-                                                    '' ||
-                                                myoederdetailmodal?.orderDetails
-                                                        ?.orderNumber ==
-                                                    null
-                                            ? 'N/A'
-                                            : myoederdetailmodal?.orderDetails
-                                                    ?.orderNumber ??
-                                                '',
+                                      Text(myoederdetailmodal?.orderDetails?.orderNumber == '' || myoederdetailmodal?.orderDetails?.orderNumber == null ? 'N/A'
+                                            : myoederdetailmodal?.orderDetails?.orderNumber ?? '',
                                         style: TextStyle(
                                             fontWeight: FontWeight.normal,
                                             fontFamily: 'task',
@@ -506,6 +500,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                           SizedBox(
                             height: 0.5.h,
                           ),
+
+                          // payment method
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 2.w),
                             child: Column(
@@ -612,10 +608,54 @@ class _OrderSummaryState extends State<OrderSummary> {
                                         ),
                                       ),
                                     ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                    myoederdetailmodal?.orderDetails?.orderStatus =='Completed' ?SizedBox(): InkWell(
+                                      onTap: () {
+                                        AlertDialog alertDialog = AlertDialog(
+                                          title: Text("Cancel order",style: TextStyle(
+                                              fontFamily: "task"
+                                          ),),
+                                          content: Text("Are you sure want cancel this order?",style: TextStyle(
+                                              fontFamily: "task"
+                                          ),),
+                                          backgroundColor: Colors.grey.shade100,
+                                          // contentPadding: EdgeInsets.all(10.0),
+                                          actions: [
+                                            ElevatedButton(onPressed: (){
+
+                                            }, child: Text("Yes")),
+                                            ElevatedButton(onPressed: (){
+                                              Navigator.of(context).pop();
+                                            }, child: Text("No")),
+                                          ],
+                                        );
+                                        showDialog(context: context, builder: (context){
+                                          return alertDialog;
+                                        });
+                                      },
+                                      child: Card(
+                                        elevation: 2.0,
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.circular(10.0)
+                                          ),
+                                          height: 50,
+                                          child: Center(child: Text("Cancel",style: TextStyle(
+                                              fontSize: 16,
+                                              //color: Colors.red,
+                                              fontWeight: FontWeight.bold
+                                          ),)),
+                                        ),
+                                      ),
+                                    )
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 1.h,
+                                  height: 2.h,
                                 ),
                                 myoederdetailmodal?.orderDetails?.orderStatus ==
                                         'Order Cancelled'
@@ -732,6 +772,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                 ),
                                                               ],
                                                             ),
+
                                                           ],
                                                         ),
                                                       ],
@@ -802,9 +843,6 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                     ),
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  height: 2.h,
-                                                ),
 
                                                 // Column(
                                                 //   children: [
@@ -857,6 +895,46 @@ class _OrderSummaryState extends State<OrderSummary> {
                                             ),
                                           ),
                               ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          // Chat with us
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 2.w),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (context) => Chatscreen(),)
+                                );
+                              },
+                              child: Card(
+                                elevation: 2,
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFFFFFF),
+                                      borderRadius: BorderRadius.circular(8.0)
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    // crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        CupertinoIcons.chat_bubble_2,
+                                        size: 25.sp,
+                                        // color: Color(0xfff7941d),
+                                      ),
+                                      SizedBox(width: 5.0,),
+                                      Text("Chats with us",style: TextStyle(
+                                        fontWeight: FontWeight.bold
+                                      ),)
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ],
