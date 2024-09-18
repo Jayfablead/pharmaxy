@@ -233,7 +233,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                           ? Text(
                                               "Login",
                                               style: TextStyle(
-                                                color: Color(0xfff7941d),
+                                                color: Color(0xff0061b0),
                                                 fontFamily: 'task',
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 17.sp,
@@ -302,7 +302,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                           count: pages.length,
                                           effect: WormEffect(
                                             dotColor: Colors.grey.shade100,
-                                            activeDotColor: Color(0xfff7941d),
+                                            activeDotColor: Color(0xff0061b0),
                                             dotHeight: 1.5.h,
                                             dotWidth: 4.w,
                                             type: WormType.thinUnderground,
@@ -423,14 +423,12 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                             lessStyle: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontFamily: 'task',
-                                                color: Color(
-                                                  0xfff7941d,
-                                                ),
+                                                color: Color(0xff0061b0),
                                                 fontSize: 12.sp),
                                             moreStyle: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontFamily: 'task',
-                                                color: Color(0xfff7941d),
+                                                color: Color(0xff0061b0),
                                                 fontSize: 12.sp),
                                           ),
                                           SizedBox(
@@ -645,8 +643,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                                                 .grey.shade100),
                                                                         color: selcted ==
                                                                                 index
-                                                                            ? Color(
-                                                                                0xfff7941d)
+                                                                            ? Color(0xff0061b0)
                                                                             : Colors
                                                                                 .grey.shade100,
                                                                         borderRadius:
@@ -856,8 +853,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(30),
-                                                        color:
-                                                            Color(0xfff7941d)),
+                                                        color: Color(0xff0061b0)),
                                                     child: Text(
                                                       "Add To Cart",
                                                       style: TextStyle(
@@ -901,7 +897,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                             toastLength: Toast.LENGTH_SHORT,
                                             timeInSecForIosWeb: 1,
                                             backgroundColor: Colors.white,
-                                            textColor: Color(0xfff7941d),
+                                            textColor: Color(0xff0061b0),
                                             fontSize: 11.sp)
                                         : addreviewdialog();
                                   },
@@ -912,7 +908,7 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                       fontFamily: 'task',
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 1,
-                                      color: Color(0xfff7941d),
+                                      color: Color(0xff0061b0),
                                     ),
                                   ),
                                 ),

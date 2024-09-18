@@ -149,7 +149,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                       ? Text(
                                           "Login",
                                           style: TextStyle(
-                                            color: Color(0xfff7941d),
+                                            color: Color(0xff0061b0),
                                             fontFamily: 'task',
                                             fontWeight: FontWeight.bold,
                                             fontSize: 17.sp,
@@ -390,8 +390,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                                       borderRadius:
                                                                           BorderRadius.circular(
                                                                               30),
-                                                                      color: Color(
-                                                                          0xfff7941d)),
+                                                                      color: Color(0xff0061b0)),
                                                                   child: Text(
                                                                     "View Products",
                                                                     style:

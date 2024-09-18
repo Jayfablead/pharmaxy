@@ -116,7 +116,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                               ? Text(
                                                   "Login",
                                                   style: TextStyle(
-                                                    color: Color(0xfff7941d),
+                                                    color: Color(0xff0061b0),
                                                     fontFamily: 'task',
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 17.sp,
@@ -475,8 +475,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                                 BorderRadius
                                                                     .circular(
                                                                         30),
-                                                            color: Color(
-                                                                0xfff7941d)),
+                                                            color: Color(0xff0061b0)),
                                                         child: Text(
                                                           "View Product",
                                                           style: TextStyle(
@@ -848,8 +847,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                                 BorderRadius
                                                                     .circular(
                                                                         30),
-                                                            color: Color(
-                                                                0xfff7941d)),
+                                                            color: Color(0xff0061b0)),
                                                         child: Text(
                                                           "View Product",
                                                           style: TextStyle(
@@ -945,7 +943,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(30),
-                                                  color: Color(0xfff7941d)),
+                                                  color: Color(0xff0061b0)),
                                               child: Text(
                                                 _isLoading
                                                     ? "View Less.."

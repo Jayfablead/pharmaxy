@@ -403,8 +403,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                       borderRadius:
                                                                           BorderRadius.circular(
                                                                               30),
-                                                                      color: Color(
-                                                                          0xfff7941d)),
+                                                                      color: Color(0xff0061b0)),
                                                                   child: Text(
                                                                     "View Sub Category",
                                                                     style:

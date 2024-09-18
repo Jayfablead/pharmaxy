@@ -218,7 +218,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                           ? Text(
                                               "Login",
                                               style: TextStyle(
-                                                color: Color(0xfff7941d),
+                                                color: Color(0xff0061b0),
                                                 fontFamily: 'task',
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 17.sp,
@@ -287,7 +287,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                           count: pages.length,
                                           effect: WormEffect(
                                             dotColor: Colors.grey.shade200,
-                                            activeDotColor: Color(0xfff7941d),
+                                            activeDotColor: Color(0xff0061b0),
                                             dotHeight: 1.5.h,
                                             dotWidth: 4.w,
                                             type: WormType.thinUnderground,
@@ -408,14 +408,12 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             lessStyle: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontFamily: 'task',
-                                                color: Color(
-                                                  0xfff7941d,
-                                                ),
+                                                color: Color(0xff0061b0),
                                                 fontSize: 12.sp),
                                             moreStyle: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontFamily: 'task',
-                                                color: Color(0xfff7941d),
+                                                color: Color(0xff0061b0),
                                                 fontSize: 12.sp),
                                           ),
                                         ],
@@ -547,7 +545,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                             BorderRadius
                                                                 .circular(30),
                                                         color:
-                                                            Color(0xfff7941d)),
+                                                            Color(0xff0061b0)),
                                                     child: Text(
                                                       "Add To Cart",
                                                       style: TextStyle(
@@ -594,7 +592,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             toastLength: Toast.LENGTH_SHORT,
                                             timeInSecForIosWeb: 1,
                                             backgroundColor: Colors.white,
-                                            textColor: Color(0xfff7941d),
+                                            textColor: Color(0xff0061b0),
                                             fontSize: 11.sp)
                                         : addreviewdialog();
                                   },
@@ -605,7 +603,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                       fontFamily: 'task',
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 1,
-                                      color: Color(0xfff7941d),
+                                      color: Color(0xff0061b0),
                                     ),
                                   ),
                                 ),
@@ -1152,7 +1150,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                   toastLength: Toast.LENGTH_SHORT,
                   timeInSecForIosWeb: 1,
                   backgroundColor: Colors.white,
-                  textColor: Color(0xfff7941d),
+                  textColor: Color(0xff0061b0),
                   fontSize: 11.sp);
               print('EE Review Add Thay Gyu Hooooo ! ^_^');
               Navigator.pop(context);
@@ -1228,7 +1226,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                 toastLength: Toast.LENGTH_SHORT,
                 timeInSecForIosWeb: 1,
                 backgroundColor: Colors.white,
-                textColor: Color(0xfff7941d),
+                textColor: Color(0xff0061b0),
                 fontSize: 11.sp);
             print('EE Review delete Thay Gyu Hooooo ! ^_^');
             Navigator.pop(context);
@@ -1286,7 +1284,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                   style: TextStyle(
                                       fontSize: 17.sp,
                                       fontFamily: 'task',
-                                      color: Color(0xfff7941d),
+                                      color: Color(0xff0061b0),
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 1),
                                 ),
@@ -1404,7 +1402,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                 toastLength: Toast.LENGTH_SHORT,
                                                 timeInSecForIosWeb: 1,
                                                 backgroundColor: Colors.white,
-                                                textColor: Color(0xfff7941d),
+                                                textColor: Color(0xff0061b0),
                                                 fontSize: 11.sp);
                                             print('big');
                                           } else {
@@ -1463,7 +1461,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(30),
-                                                color: Color(0xfff7941d)),
+                                                color: Color(0xff0061b0)),
                                             child: Row(
                                               children: [
                                                 IconButton(
@@ -1561,7 +1559,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                   alignment: Alignment.center,
                                   padding: EdgeInsets.all(2.5.w),
                                   decoration: BoxDecoration(
-                                      color: Color(0xfff7941d),
+                                      color: Color(0xff0061b0),
                                       borderRadius: BorderRadius.circular(25)),
                                   child: Text(
                                     'Yes',
@@ -1584,7 +1582,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                   padding: EdgeInsets.all(2.w),
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                        color: Color(0xfff7941d),
+                                        color: Color(0xff0061b0),
                                       ),
                                       color: Color(0xfff4f4f4),
                                       borderRadius: BorderRadius.circular(25)),
@@ -1593,7 +1591,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                     style: TextStyle(
                                         fontSize: 13.sp,
                                         fontFamily: 'task',
-                                        color: Color(0xfff7941d),
+                                        color: Color(0xff0061b0),
                                         fontWeight: FontWeight.bold,
                                         letterSpacing: 1),
                                   ),

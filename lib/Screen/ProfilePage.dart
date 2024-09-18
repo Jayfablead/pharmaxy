@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.only(bottomLeft: Radius.circular(100)),
-                    color: Color(0xfff7941d),
+                    color:Color(0xff0061b0),
                   ),
                   height: 37.h,
                   width: double.infinity,
@@ -216,7 +216,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 6.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Color(0xfff7941d)),
+                        color: Color(0xff0061b0)),
                     child: Text(
                       "Edit Profile",
                       style: TextStyle(
@@ -232,7 +232,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Positioned(
               top: 15.h,
-              right: 5.w,
+              right: 4.w,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 child: Row(
@@ -268,7 +268,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     SizedBox(
                       width: 3.w,
                     ),
-                    SizedBox(
+                    Container(
                       width: 200,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -289,7 +289,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             ?.profileDetails?.userFirstName ??
                                         '',
                                 style: TextStyle(
-                                    fontSize: 18.sp,
+                                    fontSize: 19.sp,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "task",
                                     color: Colors.white),
@@ -308,24 +308,27 @@ class _ProfilePageState extends State<ProfilePage> {
                                             ?.profileDetails?.userLastName ??
                                         '',
                                 style: TextStyle(
-                                    fontSize: 18.sp,
+                                    fontSize: 19.sp,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "task",
                                     color: Colors.white),
                               ),
                             ],
                           ),
-                          Text(
-                            profilemodal?.profileDetails?.userEmail == '' ||
-                                    profilemodal?.profileDetails?.userEmail ==
-                                        null
-                                ? 'N/A'
-                                : profilemodal?.profileDetails?.userEmail ?? '',
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.normal,
-                              fontFamily: "task",
-                              color: Colors.white,
+                          Padding(
+                            padding:  EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              profilemodal?.profileDetails?.userEmail == '' ||
+                                      profilemodal?.profileDetails?.userEmail ==
+                                          null
+                                  ? 'N/A'
+                                  : profilemodal?.profileDetails?.userEmail ?? '',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: "task",
+                                color: Colors.white,
+                              ),
                             ),
                           )
                         ],

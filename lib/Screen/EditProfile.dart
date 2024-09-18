@@ -62,7 +62,7 @@ class _EditProfileState extends State<EditProfile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 4.h,
+              height: 5.h,
             ),
             Container(
               width: MediaQuery.of(context).size.width,
@@ -75,7 +75,7 @@ class _EditProfileState extends State<EditProfile> {
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_new_outlined,
-                        size: 25.sp,
+                        size: 23.sp,
                       )),
                   Text(
                     "Edit Profile",
@@ -130,7 +130,7 @@ class _EditProfileState extends State<EditProfile> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           border: Border.all(width: 1, color: Colors.white),
-                          color: Color(0xfff7941d),
+                          color: Color(0xff0061b0),
                         ),
                         child: Icon(
                           Icons.add_a_photo_sharp,
@@ -505,7 +505,7 @@ class _EditProfileState extends State<EditProfile> {
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30.0)),
-                            backgroundColor: Color(0xfff7941d)),
+                            backgroundColor: Color(0xff0061b0)),
                         child: Text(
                           "Save",
                           style: TextStyle(

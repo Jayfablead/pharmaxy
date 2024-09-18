@@ -320,7 +320,7 @@ class _HomePageState extends State<HomePage> {
 
                       SliverToBoxAdapter(
                         child: Container(
-                          height: 150,
+                          height: 160,
                           width: double.infinity,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
@@ -403,7 +403,7 @@ class _HomePageState extends State<HomePage> {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => CategoryPage()));
-                              },
+                               },
                               child: Container(
                                 child: allcatmodal?.categories?.length == 0
                                     ? Text("")
@@ -424,10 +424,7 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           height: 17.h,
                           child: allcatmodal?.categories?.length == 0
-                              ? Center(
-                                  child: Text(
-                                    "No Category Available",
-                                    style: TextStyle(
+                              ? Center(child: Text("No Category Available", style: TextStyle(
                                         fontSize: 18.sp,
                                         fontFamily: 'task',
                                         fontWeight: FontWeight.bold),
@@ -1235,11 +1232,7 @@ class _HomePageState extends State<HomePage> {
                                                                   top: 0.5.h),
                                                           child: Text(
                                                             '₹' +
-                                                                (searchbestsaleModal
-                                                                        ?.productData?[
-                                                                            index]
-                                                                        .productPrice)
-                                                                    .toString(),
+                                                                (searchbestsaleModal?.productData?[index].productPrice).toString(),
                                                             style: TextStyle(
                                                               decoration:
                                                                   TextDecoration
@@ -1299,11 +1292,8 @@ class _HomePageState extends State<HomePage> {
                                                     height: 4.h,
                                                     width: 32.w,
                                                     decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(30),
-                                                        color:
-                                                           AppColors.primary),
+                                                        borderRadius: BorderRadius.circular(30),
+                                                        color: Color(0xfff7941d)),
                                                     child: Text(
                                                       "View Product",
                                                       style: TextStyle(

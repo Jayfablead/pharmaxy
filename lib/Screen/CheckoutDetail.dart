@@ -270,7 +270,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                     fontSize: 16.sp,
                                                     fontWeight:
                                                         FontWeight.normal,
-                                                    color: Color(0xfff7941d),
+                                                    color: Color(0xff0061b0),
                                                     fontFamily: "task"),
                                               ),
                                             ),
@@ -322,8 +322,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                               builder: (context) =>
                                                                   AllAddpage()));
                                                 },
-                                                child: Icon(
-                                                    Icons.arrow_forward_ios))
+                                                child: Icon(Icons.arrow_forward_ios,size: 20.sp,))
                                           ],
                                         ),
                                       ],
@@ -873,12 +872,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           ),
                                         ),
                                         Text(
-                                          (chekoutdetailmodal?.finalTotal) ==
-                                                  null
+                                          chekoutdetailmodal?.finalTotal == null||chekoutdetailmodal?.finalTotal == ""
                                               ? "N/A"
-                                              : '₹' +
-                                                  (chekoutdetailmodal?.finalTotal)
-                                                      .toString(),
+                                              : '₹' + (chekoutdetailmodal?.finalTotal).toString(),
                                           style: TextStyle(
                                               fontFamily: 'task',
                                               fontSize: 15.sp,
@@ -905,7 +901,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           ),
                                         ),
                                         Text(
-                                          (chekoutdetailmodal?.totalTax) == null
+                                          chekoutdetailmodal?.totalTax == null||chekoutdetailmodal?.totalTax == ""
                                               ? "N/A"
                                               : '₹' +
                                                   (chekoutdetailmodal?.totalTax)
@@ -938,8 +934,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         Text(
                                           (chekoutdetailmodal?.shippingRate) == null || (chekoutdetailmodal?.shippingRate) == ''
                                               ? "N/A"
-                                              : '₹' +
-                                                  (chekoutdetailmodal?.shippingRate).toString()
+                                              : '₹' + (chekoutdetailmodal?.shippingRate).toString()
                                                      ,
                                           style: TextStyle(
                                             fontFamily: 'task',
@@ -1004,11 +999,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                       SizedBox(
                         height: 3.h,
                       ),
-                      userselectaddmodal?.selectShippingAddress?.address ==
-                                  '' ||
-                              userselectaddmodal
-                                      ?.selectShippingAddress?.address ==
-                                  null ||
+                      userselectaddmodal?.selectShippingAddress?.address == '' || userselectaddmodal?.selectShippingAddress?.address == null ||
                               widget.address == '' ||
                               widget.address == null
                           ? GestureDetector(
@@ -1280,7 +1271,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   height: 6.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
-                                      color: Color(0xfff7941d)),
+                                      color: Color(0xff0061b0)),
                                   child: Text(
                                     "Pay Now",
                                     style: TextStyle(
@@ -1301,15 +1292,13 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
   checkoutap() {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
-    data['shipphing_id'] =widget.addid.toString();
+    data['shipphing_id'] = widget.addid.toString();
     print(data);
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().checkoutapi(data).then((response) async {
-          chekoutdetailmodal =
-              ChekOutDetailModal.fromJson(json.decode(response.body));
-          if (response.statusCode == 200 &&
-              chekoutdetailmodal?.status == "success") {
+          chekoutdetailmodal = ChekOutDetailModal.fromJson(json.decode(response.body));
+          if (response.statusCode == 200 && chekoutdetailmodal?.status == "success") {
             setState(() {
               isLoading = false;
             });
@@ -1389,7 +1378,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                 ),
               ),
             );
-            print(checkoutmodal?.status);
+            print('Status:${checkoutmodal?.status}');
             setState(() {
               isLoading = false;
             });
@@ -1484,7 +1473,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
 
   userselectaddap() async {
     final Map<String, String> data = {};
-    data['shipping_address_id'] = widget.addid.toString();
+    data['shipping_address_id']= widget.addid.toString();
     print(data);
     checkInternet().then((internet) async {
       if (internet) {
@@ -1492,8 +1481,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
           userselectaddmodal =
               UserSelectAddModal.fromJson(json.decode(response.body));
           print(userselectaddmodal?.status);
-          if (response.statusCode == 200 &&
-              userselectaddmodal?.status == "success") {
+          if (response.statusCode == 200 && userselectaddmodal?.status == "success") {
             setState(() {
               isLoading = false;
             });

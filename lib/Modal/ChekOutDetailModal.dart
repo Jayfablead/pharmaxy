@@ -3,10 +3,10 @@ class ChekOutDetailModal {
   String? status;
   UserDetails? userDetails;
   int? finalTotal;
-  int? totalTax;
-  int? finalTotalWithTax;
+  double? totalTax;
+  double? finalTotalWithTax;
   int? shippingRate;
-  int? totalWithTaxShip;
+  double? totalWithTaxShip;
 
   ChekOutDetailModal(
       {this.message,

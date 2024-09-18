@@ -98,7 +98,7 @@ class _AdressformState extends State<Adressform> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                         SizedBox(
-                          height: 4.h,
+                          height: 5.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,7 +113,7 @@ class _AdressformState extends State<Adressform> {
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
-                                  size: 25.sp,
+                                  size: 23.sp,
                                 )),
                             Text(
                               "Shipping Address",
@@ -651,7 +651,7 @@ class _AdressformState extends State<Adressform> {
                                   width: 80.w,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
-                                      color: Color(0xfff7941d)),
+                                      color: Color(0xff0061b0)),
                                   child: Text(
                                     "Save Address",
                                     style: TextStyle(

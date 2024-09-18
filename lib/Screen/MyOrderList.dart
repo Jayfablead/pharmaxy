@@ -7,6 +7,7 @@ import 'package:ecommerce/Modal/OrderCancelModal.dart';
 import 'package:ecommerce/Modal/PendingOrderModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/ChatScreen.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/OrderSummary.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
@@ -174,7 +175,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                     ? Text(
                                         "Login",
                                         style: TextStyle(
-                                          color: Color(0xfff7941d),
+                                          color: Color(0xff0061b0),
                                           fontFamily: 'task',
                                           fontWeight: FontWeight.bold,
                                           fontSize: 17.sp,
@@ -239,7 +240,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                         border: Border.all(
                                             width: 0.5, color: Colors.grey),
                                         color: sel == index
-                                            ? Color(0xfff7941d)
+                                            ? Color(0xff0061b0)
                                             : Colors.white,
                                         borderRadius:
                                             BorderRadius.circular(20)),
@@ -355,6 +356,10 @@ class _MyOrderListState extends State<MyOrderList> {
                                                 MaterialPageRoute(
                                                     builder: (context) =>
                                                         OrderSummary(
+                                                          stuts: myorderlistmodal
+                                                              ?.cartDetails?[
+                                                          index]
+                                                              .orderStatus,
                                                             iteamid: myorderlistmodal
                                                                 ?.cartDetails?[
                                                                     index]
@@ -586,7 +591,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         height: 4.h,
                                                                         width: 13.w,
                                                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                                                                        child: Icon(Icons.visibility,color: Color(0xfff7941d,),size: 27,)
+                                                                        child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 27,)
                                                                     ),
                                                                   ),
                                                                   SizedBox(
@@ -605,11 +610,20 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         height: 4.h,
                                                                         width: 13.w,
                                                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                                                                        child: Icon(
-                                                                          CupertinoIcons.chat_bubble_fill,
-                                                                          size: 17.sp,
-                                                                          color: Color(0xfff7941d),
-                                                                          //weight: 20,
+                                                                        child: InkWell(
+                                                                          onTap: () {
+                                                                            Navigator.of(context).push(
+                                                                              MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                                orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                              ),)
+                                                                            );
+                                                                          },
+                                                                          child: Icon(
+                                                                            CupertinoIcons.chat_bubble_fill,
+                                                                            size: 17.sp,
+                                                                            color: Color(0xff0061b0),
+                                                                            //weight: 20,
+                                                                          ),
                                                                         )
                                                                     ),
                                                                   ),
@@ -967,8 +981,8 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             alignment: Alignment.center,
                                                                             height: 4.h,
                                                                             width: 13.w,
-                                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xfff7941d)),
-                                                                            child: Icon(Icons.visibility,color: Colors.white,)
+                                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white),
+                                                                            child: Icon(Icons.visibility, color: Color(0xff0061b0),)
                                                                         ),
                                                                       ),
                                                                       SizedBox(
@@ -978,18 +992,22 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                       GestureDetector(
                                                                         onTap:
                                                                             () {
-                                                                          Navigator.of(context)
-                                                                              .push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
+                                                                          Navigator.of(context).push(
+                                                                            MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                              orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                            ),)
+                                                                          );
+                                                                         // Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
                                                                         },
                                                                         child: Container(
                                                                             alignment: Alignment.center,
                                                                             height: 4.h,
                                                                             width: 13.w,
-                                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xfff7941d)),
+                                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
                                                                             child:  Icon(
                                                                               CupertinoIcons.chat_bubble_fill,
                                                                               size: 17.sp,
-                                                                              color: Color(0xfff7941d),
+                                                                              color: Color(0xff0061b0),
                                                                            )
                                                                         ),
                                                                       ),
@@ -1337,7 +1355,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 height: 4.h,
                                                                                 width: 13.w,
                                                                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ),
-                                                                                child: Icon(Icons.visibility,color: Color(0xfff7941d),size: 27,)
+                                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 27,)
                                                                             ),
                                                                           ),
                                                                           SizedBox(
@@ -1346,6 +1364,11 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                           ),
                                                                           GestureDetector(
                                                                             onTap: () {
+                                                                              Navigator.of(context).push(
+                                                                                MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                                  orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                                ),)
+                                                                              );
                                                                               // Navigator.of(
                                                                               //     context)
                                                                               //     .push(
@@ -1359,7 +1382,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 child: Icon(
                                                                                   CupertinoIcons.chat_bubble_fill,
                                                                                   size: 17.sp,
-                                                                                  color: Color(0xfff7941d),
+                                                                                  color: Color(0xff0061b0),
                                                                                 )
                                                                             ),
                                                                           ),
@@ -1705,7 +1728,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 height: 4.h,
                                                                                 width: 13.w,
                                                                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ),
-                                                                                child: Icon(Icons.visibility,color: Color(0xfff7941d),size: 27,)
+                                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 27,)
                                                                             ),
                                                                           ),
                                                                           SizedBox(
@@ -1714,6 +1737,11 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                           ),
                                                                           GestureDetector(
                                                                             onTap: () {
+                                                                              Navigator.of(context).push(
+                                                                                MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                                  orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                                ),)
+                                                                              );
                                                                               // Navigator.of(
                                                                               //     context)
                                                                               //     .push(
@@ -1727,7 +1755,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 child: Icon(
                                                                                   CupertinoIcons.chat_bubble_fill,
                                                                                   size: 17.sp,
-                                                                                  color: Color(0xfff7941d),
+                                                                                  color: Color(0xff0061b0),
                                                                                 )
                                                                             ),
                                                                           ),

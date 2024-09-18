@@ -8,6 +8,7 @@ import 'package:ecommerce/Modal/AllUserAddModal.dart';
 import 'package:ecommerce/Modal/BestSellerProductModal.dart';
 import 'package:ecommerce/Modal/CatWiceProductModal.dart';
 import 'package:ecommerce/Modal/ChangePasswordModal.dart';
+import 'package:ecommerce/Modal/ChatModel.dart';
 import 'package:ecommerce/Modal/CheckOutModal.dart';
 import 'package:ecommerce/Modal/ChekOutDetailModal.dart';
 import 'package:ecommerce/Modal/CityModal.dart';
@@ -39,6 +40,7 @@ import 'package:ecommerce/Modal/SalesProductModal.dart';
 import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Modal/SearchModal.dart';
 import 'package:ecommerce/Modal/SelectColorModal.dart';
+import 'package:ecommerce/Modal/SendmsgModel.dart';
 import 'package:ecommerce/Modal/ShippingAddModal.dart';
 import 'package:ecommerce/Modal/SignupModal.dart';
 import 'package:ecommerce/Modal/SizeShowModal.dart';
@@ -52,7 +54,7 @@ import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:ecommerce/Modal/bestsellerModel.dart';
 import 'package:ecommerce/Modal/cateModel.dart';
-import 'package:ecommerce/Screen/BestSelllerApi.dart';
+
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -128,9 +130,10 @@ ViewReviewModal? viewReviewmodal;
 DeleteReviewModal? deletereviewmodal;
 StripeModal? strpiepay;
 ProductDetail2Modal? productdetail2modal;
-
 cateModel?catemodel;
 bestsellerModel?bestselllermodel;
+ChatModel? chatviewmodal;
+SendMessage?sendmessagesmodal;
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());

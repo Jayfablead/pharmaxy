@@ -44,7 +44,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     child: Padding(
                       padding: EdgeInsets.only(right: 9.w, bottom: 2.h),
                       child: Text(
-                        "ForGot Password",
+                        "Forgot Password",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'task',
@@ -155,6 +155,32 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ),
                     ],
                   )),
+              Positioned(
+                  top: 6.h,
+                  left: 5.w,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 10.w,
+                          width: 10.w,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.white),
+                          child: Icon(Icons.arrow_back,
+                              size: 20.sp, color: Color(0xfff7941d)),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (context) => LoginPage2(),)
+                          );
+                        },
+                      ),
+                    ],
+                  )),
             ],
           ),
         ),
@@ -173,13 +199,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         if (internet) {
           authprovider().forgotapi(data).then((response) async {
             forgotmodal = ForgotModal.fromJson(json.decode(response.body));
-            if (response.statusCode == 200 &&
-                forgotmodal?.status == "success") {
+            if (response.statusCode == 200 && forgotmodal?.status == "success") {
               _email.clear();
               print(forgotmodal?.status);
 
-              EasyLoading.showSuccess(
-                  ' Please Check Your Email For Reset Password.!');
+              EasyLoading.showSuccess(' Please Check Your Email For Reset Password.!');
               Timer(Duration(seconds: 2), () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => LoginPage2()));

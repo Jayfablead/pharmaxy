@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+
 
 import 'package:ecommerce/Modal/SignupModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
@@ -6,6 +8,7 @@ import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 class SignupPage extends StatefulWidget {
@@ -43,7 +46,7 @@ class _SignupPageState extends State<SignupPage> {
                     decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.only(bottomLeft: Radius.circular(100)),
-                      color: Color(0xfff7941d),
+                      color: Color(0xff0061b0),
                     ),
                     height: 37.h,
                     width: double.infinity,
@@ -229,6 +232,9 @@ class _SignupPageState extends State<SignupPage> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Please Enter The Phone";
+                              }
+                              else if (value.length != 10){
+                                return "Please enter Valid Phone Number";
                               }
                               return null;
                             },
@@ -416,7 +422,7 @@ class _SignupPageState extends State<SignupPage> {
                         width: 75.w,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Color(0xfff7941d)),
+                            color: Color(0xff0061b0)),
                         child: Text(
                           "Register",
                           style: TextStyle(
@@ -445,7 +451,33 @@ class _SignupPageState extends State<SignupPage> {
                             borderRadius: BorderRadius.circular(100),
                             color: Colors.white),
                         child: Icon(Icons.person,
-                            size: 45.sp, color: Color(0xfff7941d)),
+                            size: 45.sp, color: Color(0xff0061b0)),
+                      ),
+                    ],
+                  )),
+              Positioned(
+                  top: 6.h,
+                  left: 5.w,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 10.w,
+                          width: 10.w,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.white),
+                          child: Icon(Icons.arrow_back,
+                              size: 20.sp, color: Color(0xff0061b0)),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => LoginPage2(),)
+                          );
+                        },
                       ),
                     ],
                   )),
@@ -470,8 +502,13 @@ class _SignupPageState extends State<SignupPage> {
           if (internet) {
             authprovider().signupapi(data).then((response) async {
               signupmodal = SignupModal.fromJson(json.decode(response.body));
-              if (response.statusCode == 200 &&
-                  signupmodal?.status == "success") {
+              if (response.statusCode == 200 && signupmodal?.status == "success") {
+                buildErrorDialog(context, 'success', signupmodal?.message ?? "");
+                Timer(Duration(seconds: 3),(){
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => LoginPage2()));
+                });
+
                 firstname.clear();
                 lastname.clear();
                 email.clear();
@@ -479,8 +516,7 @@ class _SignupPageState extends State<SignupPage> {
                 phone.clear();
 
                 print('EE Thay Gyu Hooooo ! ^_^');
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => LoginPage2()));
+
                 setState(() {
                   // isLoading = false;
                 });

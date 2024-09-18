@@ -156,6 +156,7 @@ class _CartPageState extends State<CartPage> {
                                       ],
                                     ),
                                   ),
+                                  //SizedBox(height: 1.h),
                                   snapshot.data!.length == 0 ||
                                           snapshot.data!.length == null
                                       ? Container(
@@ -357,7 +358,7 @@ class _CartPageState extends State<CartPage> {
                                                                                               width: 7.5.w,
                                                                                               decoration: BoxDecoration(
                                                                                                 borderRadius: BorderRadius.circular(15),
-                                                                                                color: Color(0xfff7941d),
+                                                                                                color: Color(0xff0061b0),
                                                                                               ),
                                                                                               child: Icon(
                                                                                                 Icons.remove,
@@ -423,7 +424,7 @@ class _CartPageState extends State<CartPage> {
                                                                                               width: 7.5.w,
                                                                                               decoration: BoxDecoration(
                                                                                                 borderRadius: BorderRadius.circular(25),
-                                                                                                color: Color(0xfff7941d),
+                                                                                                color: Color(0xff0061b0),
                                                                                               ),
                                                                                               child: Icon(
                                                                                                 Icons.add,
@@ -944,7 +945,7 @@ class _CartPageState extends State<CartPage> {
                                                                                       width: 7.5.w,
                                                                                       decoration: BoxDecoration(
                                                                                         borderRadius: BorderRadius.circular(15),
-                                                                                        color: Color(0xfff7941d),
+                                                                                        color: Color(0xff0061b0),
                                                                                       ),
                                                                                       child: Icon(
                                                                                         Icons.remove,
@@ -987,7 +988,7 @@ class _CartPageState extends State<CartPage> {
                                                                                       width: 7.5.w,
                                                                                       decoration: BoxDecoration(
                                                                                         borderRadius: BorderRadius.circular(25),
-                                                                                        color: Color(0xfff7941d),
+                                                                                        color: Color(0xff0061b0),
                                                                                       ),
                                                                                       child: Icon(
                                                                                         Icons.add,
@@ -1203,10 +1204,7 @@ class _CartPageState extends State<CartPage> {
                                                 right: 3.w,
                                               ),
                                               child: Text(
-                                                (viewcartmodal
-                                                            ?.finalTotalWithTax) ==
-                                                        null
-                                                    ? "N/A"
+                                                (viewcartmodal?.finalTotalWithTax) == null ? "N/A"
                                                     : '₹' +
                                                         (viewcartmodal
                                                                 ?.finalTotal)
@@ -1256,7 +1254,7 @@ class _CartPageState extends State<CartPage> {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(30),
-                                                color: Color(0xfff7941d)),
+                                                color: Color(0xff0061b0)),
                                             child: Text(
                                               "Checkout",
                                               style: TextStyle(

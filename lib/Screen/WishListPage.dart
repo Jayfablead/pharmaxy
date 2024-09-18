@@ -551,7 +551,7 @@ class _WishListPageState extends State<WishListPage> {
                                                                 child: Icon(
                                                                   CupertinoIcons
                                                                       .delete,
-                                                                  size: 18.sp,
+                                                                  size: 18.sp,color: Colors.red,
                                                                 ),
                                                               ),
                                                             ),
@@ -588,8 +588,7 @@ class _WishListPageState extends State<WishListPage> {
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             30),
-                                                                    color: Color(
-                                                                        0xfff7941d)),
+                                                                    color: Color(0xff0061b0)),
                                                                 child: Text(
                                                                   "View Detail",
                                                                   style: TextStyle(

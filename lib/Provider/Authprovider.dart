@@ -194,8 +194,7 @@ class authprovider with ChangeNotifier {
   Future<http.Response> catwiceproductapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/category_wice_product";
     var responseJson;
-    final response = await http
-        .post(Uri.parse(url), body: bodyData, headers: headers)
+    final response = await http.post(Uri.parse(url), body: bodyData, headers: headers)
         .timeout(
       const Duration(seconds: 30),
       onTimeout: () {
@@ -546,8 +545,7 @@ class authprovider with ChangeNotifier {
     const url = "$baseUrl/success_paypal";
     var responseJson;
     final response = await http
-        .post(Uri.parse(url), body: bodyData, headers: headers)
-        .timeout(
+        .post(Uri.parse(url), body: bodyData, headers: headers).timeout(
       const Duration(seconds: 30),
       onTimeout: () {
         throw const SocketException('Something went wrong');
@@ -895,5 +893,33 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
-
+  Future<http.Response> Chatapi( userId, adminID, orderId) async {
+    String url = "${baseUrl}/fullChat/${userId}/${adminID}/${orderId}";
+    var responseJson;
+    final response = await http.get( Uri.parse(url)).timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+  Future<http.Response> sendmessgesapi(userid,adminid ,orderid, Map<String, String> bodyData) async {
+    String url = 'https://ecomweb.fableadtechnolabs.com/api/sendMessage/${userid}/${adminid}/${orderid}';
+    print(url);
+    print("sdfdsfdsfds${url}");
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 60),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    print(response.body);
+    return responseJson;
+  }
 }

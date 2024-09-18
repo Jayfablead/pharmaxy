@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'dart:convert';
-
 import 'package:ecommerce/Modal/AddCartModal.dart';
 import 'package:ecommerce/Modal/UserModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
@@ -10,6 +10,7 @@ import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/sharedpreferance.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -63,7 +64,7 @@ class _LoginPage2State extends State<LoginPage2> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(100)),
-                          color: Color(0xfff7941d),
+                          color: Color(0xff0061b0),
                         ),
                         height: 37.h,
                         width: double.infinity,
@@ -228,7 +229,7 @@ class _LoginPage2State extends State<LoginPage2> {
                               child: Text(
                                 "Forgot Password?",
                                 style: TextStyle(
-                                    color: Color(0xfff7941d),
+                                    color: Color(0xff0061b0),
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "task",
                                     fontSize: 15.sp),
@@ -256,7 +257,7 @@ class _LoginPage2State extends State<LoginPage2> {
                             width: 75.w,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
-                                color: Color(0xfff7941d)),
+                                color: Color(0xff0061b0)),
                             child: Text(
                               "Login",
                               style: TextStyle(
@@ -295,7 +296,7 @@ class _LoginPage2State extends State<LoginPage2> {
                                 fontSize: 14.sp,
                                 fontFamily: 'task',
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xfff7941d),
+                                color: Color(0xff0061b0),
                               ),
                             ),
                           ),
@@ -322,7 +323,7 @@ class _LoginPage2State extends State<LoginPage2> {
                                   width: 30.w,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
-                                      color: Color(0xfff7941d)),
+                                      color: Color(0xff0061b0)),
                                   child: Text(
                                     "Skip..",
                                     style: TextStyle(
@@ -351,7 +352,7 @@ class _LoginPage2State extends State<LoginPage2> {
                                 borderRadius: BorderRadius.circular(100),
                                 color: Colors.white),
                             child: Icon(Icons.person,
-                                size: 45.sp, color: Color(0xfff7941d)),
+                                size: 45.sp, color: Color(0xff0061b0)),
                           ),
                         ],
                       )),
@@ -380,6 +381,11 @@ class _LoginPage2State extends State<LoginPage2> {
               _email.clear();
               _password.clear();
               print(carti.length);
+              buildErrorDialog(context, 'Success', usermodal?.message ?? "");
+              Timer(Duration(seconds: 3),(){
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => HomePage(sel: 0,)));
+              });
               if (carti.length != 0) {
                 print('batli Bhareli');
                 for (int index = 0; index <= carti.length; index++) {
@@ -390,10 +396,7 @@ class _LoginPage2State extends State<LoginPage2> {
               }
 
               print('EE Thay Gyu Hooooo ! ^_^');
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => HomePage(
-                        sel: 0,
-                      )));
+
               SaveDataLocal.saveLogInData(usermodal!);
               setState(() {});
             } else {

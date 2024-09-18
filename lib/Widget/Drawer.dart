@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
-import 'package:ecommerce/Screen/BestSelllerApi.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/ChangePassword.dart';
@@ -11,7 +10,6 @@ import 'package:ecommerce/Screen/ChatScreen.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/MyOrderList.dart';
-import 'package:ecommerce/Screen/NewApi.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/WishListPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -307,43 +305,61 @@ class _drawer1State extends State<drawer1> {
                               SizedBox(
                                 height: 0.5.h,
                               ),
-                              Text(
-                                profilemodal?.profileDetails?.userFirstName ==
-                                            '' ||
-                                        profilemodal?.profileDetails
-                                                ?.userFirstName ==
-                                            null
-                                    ? 'N/A'
-                                    : profilemodal
-                                            ?.profileDetails?.userFirstName ??
-                                        '',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20.sp,
-                                    letterSpacing: 0.5,
-                                    fontFamily: 'task',
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(
-                                width: 33.w,
-                                child: Text(
-                                    profilemodal?.profileDetails?.userEmail ==
-                                                '' ||
-                                            profilemodal?.profileDetails
-                                                    ?.userEmail ==
-                                                null
+                              Row(
+                                children: [
+                                  Text(
+                                    profilemodal?.profileDetails?.userFirstName == '' || profilemodal?.profileDetails?.userFirstName == null
                                         ? 'N/A'
                                         : profilemodal
-                                                ?.profileDetails?.userEmail ??
+                                                ?.profileDetails?.userFirstName ??
                                             '',
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                        // color: primary,
+                                        color: Colors.black,
+                                        fontSize: 20.sp,
+                                        letterSpacing: 0.5,
                                         fontFamily: 'task',
-                                        fontSize: 15.sp,
-                                        letterSpacing: 1,
-                                        fontWeight: FontWeight.w600)),
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(
+                                    width: 1.w,
+                                  ),
+                                  Text(
+                                    profilemodal?.profileDetails?.userLastName == '' || profilemodal?.profileDetails?.userLastName == null
+                                        ? 'N/A'
+                                        : profilemodal
+                                        ?.profileDetails?.userLastName ??
+                                        '',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20.sp,
+                                        letterSpacing: 0.5,
+                                        fontFamily: 'task',
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 50.w,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text(
+                                      profilemodal?.profileDetails?.userEmail ==
+                                                  '' ||
+                                              profilemodal?.profileDetails
+                                                      ?.userEmail ==
+                                                  null
+                                          ? 'N/A'
+                                          : profilemodal
+                                                  ?.profileDetails?.userEmail ??
+                                              '',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          // color: primary,
+                                          fontFamily: 'task',
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w600)),
+                                ),
                               ),
                             ],
                           ),
@@ -687,11 +703,11 @@ class _drawer1State extends State<drawer1> {
                         height: 2.h,
                       ),
                       InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Chatscreen(),
-                          ));
-                        },
+                        // onTap: () {
+                        //   Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (context) => Chatscreen(),
+                        //   ));
+                        // },
                         child: Container(
                           child: Row(
                             children: [
@@ -843,114 +859,6 @@ class _drawer1State extends State<drawer1> {
                                         ),
                                       ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      // test api
-                      SizedBox(
-                        height: 3.h,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => newapi(),
-                          ));
-                        },
-                        child: Container(
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 6.w,
-                              ),
-                              Container(
-                                width: 64.w,
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          CupertinoIcons.lock_rotation_open,
-                                          size: 25.sp,
-                                          color: Color(0xfff7941d),
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        Text(
-                                          "Test Api",
-                                          style: TextStyle(
-                                            fontSize: 17.sp,
-                                            fontWeight: FontWeight.w500,
-                                            fontFamily: 'task',
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Icon(
-                                      Icons.chevron_right_rounded,
-                                      color: Colors.black,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      // best seller
-                      SizedBox(
-                        height: 3.h,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Bestselllerapi(),
-                          ));
-                        },
-                        child: Container(
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 6.w,
-                              ),
-                              Container(
-                                width: 64.w,
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          CupertinoIcons.lock_rotation_open,
-                                          size: 25.sp,
-                                          color: Color(0xfff7941d),
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        Text(
-                                          "Best Seller",
-                                          style: TextStyle(
-                                            fontSize: 17.sp,
-                                            fontWeight: FontWeight.w500,
-                                            fontFamily: 'task',
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Icon(
-                                      Icons.chevron_right_rounded,
-                                      color: Colors.black,
-                                    )
                                   ],
                                 ),
                               ),

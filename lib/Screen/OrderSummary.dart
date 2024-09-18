@@ -1,11 +1,12 @@
 import 'dart:convert';
-
+import 'package:ecommerce/Modal/OrderCancelModal.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/MyOederDetailModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/ChatScreen.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
+import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
@@ -17,8 +18,9 @@ import 'package:sizer/sizer.dart';
 
 class OrderSummary extends StatefulWidget {
   String? iteamid;
+  String? stuts;
 
-  OrderSummary({super.key, this.iteamid});
+  OrderSummary({super.key, this.iteamid,this.stuts});
 
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
@@ -41,7 +43,16 @@ class _OrderSummaryState extends State<OrderSummary> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    setState(() {
+      isLoading = true;
+    });
     myorderdetailap();
+    ordercancelledap();
+    print("myoederdetailmodal?.orderDetails ?.orderStatus${myoederdetailmodal
+        ?.orderDetails
+        ?.orderStatus}");
+
+
   }
 
   @override
@@ -104,7 +115,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                       ? Text(
                                           "Login",
                                           style: TextStyle(
-                                            color: Color(0xfff7941d),
+                                            color: Color(0xff0061b0),
                                             fontFamily: 'task',
                                             fontWeight: FontWeight.bold,
                                             fontSize: 17.sp,
@@ -366,7 +377,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                 child: Row(
                                                   children: [
                                                     Text(
-                                                      'price : ',
+                                                      'Price : ',
                                                       style: TextStyle(
                                                         fontSize: 15.sp,
                                                         fontFamily: 'task',
@@ -413,7 +424,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                 child: Row(
                                                   children: [
                                                     Text(
-                                                      'status : ',
+                                                      'Status : ',
                                                       style: TextStyle(
                                                         fontSize: 15.sp,
                                                         fontFamily: 'task',
@@ -424,8 +435,14 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                             .grey.shade800,
                                                       ),
                                                     ),
-                                                    Text(
+                                                    myoederdetailmodal
+                                                        ?.orderDetails
+                                                        ?.orderStatus == 'Order Cancelled'?Text("Cancelled",style:TextStyle(color: Colors.red, fontSize: 15.sp,
+                                                      fontFamily: 'task',
+                                                      fontWeight:
+                                                      FontWeight.bold,) ,) :Text(
                                                       myoederdetailmodal
+
                                                                       ?.orderDetails
                                                                       ?.orderStatus ==
                                                                   '' ||
@@ -436,14 +453,14 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                           ? 'N/A'
                                                           : myoederdetailmodal
                                                                   ?.orderDetails
-                                                                  ?.orderStatus ??
-                                                              '',
+                                                                  ?.orderStatus ?? '',
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow.ellipsis,
                                                       style: TextStyle(
                                                         fontSize: 15.sp,
                                                         fontFamily: 'task',
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        letterSpacing: 1,
                                                         color: myoederdetailmodal
                                                                     ?.orderDetails
                                                                     ?.orderStatus ==
@@ -456,8 +473,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                 ? Colors.green
                                                                 : myoederdetailmodal
                                                                             ?.orderDetails
-                                                                            ?.orderStatus ==
-                                                                        'Cancelled'
+                                                                            ?.orderStatus == 'Order Cancelled'
                                                                     ? Colors.red
                                                                     : Colors
                                                                         .black,
@@ -611,11 +627,11 @@ class _OrderSummaryState extends State<OrderSummary> {
                                     SizedBox(
                                       height: 2.h,
                                     ),
-                                    myoederdetailmodal?.orderDetails?.orderStatus =='Completed' ?SizedBox(): InkWell(
+                                    if (myoederdetailmodal?.orderDetails?.orderStatus =='Completed'||myoederdetailmodal?.orderDetails?.orderStatus =='Order Cancelled') SizedBox() else InkWell(
                                       onTap: () {
                                         AlertDialog alertDialog = AlertDialog(
                                           title: Text("Cancel order",style: TextStyle(
-                                              fontFamily: "task"
+                                              fontFamily: "task",
                                           ),),
                                           content: Text("Are you sure want cancel this order?",style: TextStyle(
                                               fontFamily: "task"
@@ -623,12 +639,26 @@ class _OrderSummaryState extends State<OrderSummary> {
                                           backgroundColor: Colors.grey.shade100,
                                           // contentPadding: EdgeInsets.all(10.0),
                                           actions: [
-                                            ElevatedButton(onPressed: (){
-
-                                            }, child: Text("Yes")),
-                                            ElevatedButton(onPressed: (){
-                                              Navigator.of(context).pop();
-                                            }, child: Text("No")),
+                                           ElevatedButton(
+                                               onPressed: (){
+                                                 ordercancelledap();
+                                               },
+                                               child: Text("Yes"),
+                                             style: ElevatedButton.styleFrom(
+                                               backgroundColor: Color(0xff0061b0),
+                                               foregroundColor: Colors.white
+                                             ),
+                                           ),
+                                            ElevatedButton(
+                                              onPressed: (){
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text("No"),
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor: Color(0xff0061b0),
+                                                  foregroundColor: Colors.white
+                                              ),
+                                            ),
                                           ],
                                         );
                                         showDialog(context: context, builder: (context){
@@ -640,12 +670,13 @@ class _OrderSummaryState extends State<OrderSummary> {
                                         child: Container(
                                           width: MediaQuery.of(context).size.width,
                                           decoration: BoxDecoration(
-                                              color: Colors.white,
+                                              color: Color(0xff0061b0),
                                               borderRadius: BorderRadius.circular(10.0)
                                           ),
                                           height: 50,
                                           child: Center(child: Text("Cancel",style: TextStyle(
                                               fontSize: 16,
+                                              color: Colors.white,
                                               //color: Colors.red,
                                               fontWeight: FontWeight.bold
                                           ),)),
@@ -906,7 +937,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                             child: InkWell(
                               onTap: () {
                                 Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (context) => Chatscreen(),)
+                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                     orderId: myoederdetailmodal?.orderDetails?.orderID ?? '',
+                                  ),)
                                 );
                               },
                               child: Card(
@@ -915,7 +948,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                   width: MediaQuery.of(context).size.width,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      color: Color(0xffFFFFFF),
+                                      color: Color(0xff0061b0),
                                       borderRadius: BorderRadius.circular(8.0)
                                   ),
                                   child: Row(
@@ -925,11 +958,13 @@ class _OrderSummaryState extends State<OrderSummary> {
                                       Icon(
                                         CupertinoIcons.chat_bubble_2,
                                         size: 25.sp,
+                                        color: Colors.white,
                                         // color: Color(0xfff7941d),
                                       ),
                                       SizedBox(width: 5.0,),
                                       Text("Chats with us",style: TextStyle(
-                                        fontWeight: FontWeight.bold
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white
                                       ),)
                                     ],
                                   ),
@@ -977,7 +1012,34 @@ class _OrderSummaryState extends State<OrderSummary> {
       }
     });
   }
-
+  ordercancelledap() async {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().cancelorderapi(data).then((response) async {
+          ordercancelmodal =
+              OrderCancelModal.fromJson(json.decode(response.body));
+          print(ordercancelmodal?.status);
+          if (response.statusCode == 200 && ordercancelmodal?.status == "success") {
+            print('EE Thay Gyu Hooooo !^_^! ');
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
   viewap() {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();

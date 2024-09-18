@@ -107,7 +107,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                 width: 8.w,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25),
-                                  color: Color(0xfff7941d),
+                                  color: Color(0xff0061b0),
                                 ),
                                 child: Center(
                                     child: Icon(
@@ -198,7 +198,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                                     : Icons
                                                         .check_box_outline_blank,
                                                 color: sell == index
-                                                    ? Color(0xfff7941d)
+                                                    ? Color(0xff0061b0)
                                                     : Colors.black,
                                                 size: 22.sp,
                                               ),
@@ -289,7 +289,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                           color: Colors.deepOrange.shade50,
                                           icon: Icon(
                                             Icons.more_vert,
-                                            color: Color(0xfff7941d),
+                                            color: Color(0xff0061b0),
                                             size: 20.sp,
                                           ),
                                           // add this line
@@ -403,7 +403,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                   width: 80.w,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
-                                      color: Color(0xfff7941d)),
+                                      color: Color(0xff0061b0)),
                                   child: Text(
                                     "Confirm",
                                     style: TextStyle(
