@@ -51,6 +51,7 @@ import 'package:ecommerce/Modal/UserWishLIstModal.dart';
 import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../Modal/ProductDetail2Modal.dart';
 import '../Modal/StripeModal.dart';
@@ -58,7 +59,17 @@ import '../Modal/addReviewModal.dart';
 
 Color bgcolor = Colors.grey.shade100;
 
-const String baseUrl = 'https://ecomweb.fableadtechnolabs.com/api';
+
+
+class AppColors {
+  static const Color primary = Color(0xff0061b0);
+  static const Color btnColor = Color(0xffE49B52);
+  static const Color btnColorSecondary = Color(0xff31ad89);
+  static const Color btnColorThird = Color(0xff3190ad);
+}
+
+// const String baseUrl = 'https://ecomweb.fableadtechnolabs.com/api';
+const String baseUrl = 'https://pharmato.fableadtechnolabs.com/api/';
 
 SignupModal? signupmodal;
 UserModal? usermodal;
@@ -123,4 +134,87 @@ Future<bool> checkInternet() async {
     return true;
   }
   return false;
+}
+
+
+InputDecoration inputDecoration({
+  required String hintText,
+  Icon? icon,
+  IconButton? ico,
+  Color? cr,
+}) {
+  return InputDecoration(
+    contentPadding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
+    suffixIcon: ico,
+    hintText: hintText,
+    prefixIcon: icon,
+    errorStyle: TextStyle(
+      fontFamily: 'task',
+      color: Colors.red,
+      fontWeight: FontWeight.normal,
+      fontSize: 11.sp,
+      letterSpacing: 1,
+    ),
+    hintStyle: TextStyle(
+        fontFamily: 'task',
+        color:cr,
+        fontWeight: FontWeight.normal,
+        fontSize: 15.sp,
+        letterSpacing: 1),
+    fillColor: Color(0x59bbbbbb),
+    filled: true,
+    disabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.pink.withOpacity(0.1), width: 1),
+      //ram
+      borderRadius: BorderRadius.circular(30),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.red, width: 1), //ram
+      borderRadius: BorderRadius.circular(30),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(30),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.red, width: 1), //ram
+      borderRadius: BorderRadius.circular(30),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.pink.withOpacity(0.1), width: 1),
+      //ram
+      borderRadius: BorderRadius.circular(30),
+    ),
+    border: OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(30),
+    ),
+  );
+}
+
+// ******************* Custom Search Field
+TextField searchfield({
+  required TextEditingController controller,
+  required ValueChanged<String> onChanged,
+  required String hint,
+  Color? clrs,
+}) {
+  return TextField(
+    onChanged: onChanged,
+    controller: controller,
+    style: TextStyle(
+        fontFamily:'task',
+        color: clrs,
+        fontWeight: FontWeight.bold,
+        fontSize: 12.5.sp,
+        letterSpacing: 1.5),
+    decoration: inputDecoration(
+      hintText: hint.toString(),
+      icon: Icon(
+        Icons.search,
+        color: clrs,
+        size: 22.sp,
+      ),
+    ),
+  );
 }
