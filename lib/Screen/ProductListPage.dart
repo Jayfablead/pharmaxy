@@ -364,36 +364,36 @@ class _ProductListPageState extends State<ProductListPage> {
                                                         ],
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                        horizontal: 1.5.w,
-                                                      ),
-                                                      child: SizedBox(
-                                                        width: 35.w,
-                                                        child: Text(
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 2,
-                                                          allsubcatwiceproduct
-                                                                  ?.subcategoriesWiseProduct?[
-                                                                      index]
-                                                                  .productShortDesc ??
-                                                              '',
-                                                          style: TextStyle(
-                                                            fontSize: 12.sp,
-                                                            fontFamily: 'task',
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            letterSpacing: 1,
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding:
+                                                    //       EdgeInsets.symmetric(
+                                                    //     horizontal: 1.5.w,
+                                                    //   ),
+                                                    //   child: SizedBox(
+                                                    //     width: 35.w,
+                                                    //     child: Text(
+                                                    //       textAlign:
+                                                    //           TextAlign.center,
+                                                    //       overflow: TextOverflow
+                                                    //           .ellipsis,
+                                                    //       maxLines: 2,
+                                                    //       allsubcatwiceproduct
+                                                    //               ?.subcategoriesWiseProduct?[
+                                                    //                   index]
+                                                    //               .productShortDesc ??
+                                                    //           '',
+                                                    //       style: TextStyle(
+                                                    //         fontSize: 12.sp,
+                                                    //         fontFamily: 'task',
+                                                    //         fontWeight:
+                                                    //             FontWeight
+                                                    //                 .normal,
+                                                    //         letterSpacing: 1,
+                                                    //         color: Colors.black,
+                                                    //       ),
+                                                    //     ),
+                                                    //   ),
+                                                    // ),
                                                     Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
