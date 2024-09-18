@@ -140,7 +140,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     allcatap();
     viewap();
     salesproductap();
@@ -178,6 +177,7 @@ class _HomePageState extends State<HomePage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              // Menu Icon
                               IconButton(
                                 onPressed: () {
                                   _scaffoldKeyhome.currentState?.openDrawer();
@@ -187,67 +187,77 @@ class _HomePageState extends State<HomePage> {
                                   size: 25.sp,
                                 ),
                               ),
+
+                              // Image between Menu and Cart
+                              Image.asset(
+                                'assets/my.png',  // Replace with your image path
+                                height: 10.w,  // Adjust as needed
+                                width: 30.w,   // Adjust as needed
+                              ),
+
+                              // Cart Icon and Profile
                               Row(
                                 children: [
+                                  // Cart Icon
+                                  IconButton(
+                                    onPressed: () {
+
+                                    },
+                                    icon: Icon(
+                                      Icons.shopping_cart,
+                                      color: AppColors.primary,
+                                      size: 25.sp,
+                                    ),
+                                  ),
+
+                                  // User Login/Profile
                                   Padding(
                                     padding: EdgeInsets.only(right: 2.w),
                                     child: GestureDetector(
                                       onTap: () {
-                                        usermodal?.userId == "" ||
-                                                usermodal?.userId == null
+                                        usermodal?.userId == "" || usermodal?.userId == null
                                             ? Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      LoginPage2(),
-                                                ),
-                                              )
+                                          MaterialPageRoute(
+                                            builder: (context) => LoginPage2(),
+                                          ),
+                                        )
                                             : Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfilePage(),
-                                                ),
-                                              );
+                                          MaterialPageRoute(
+                                            builder: (context) => ProfilePage(),
+                                          ),
+                                        );
                                       },
-                                      child: usermodal?.userId == "" ||
-                                              usermodal?.userId == null
+                                      child: usermodal?.userId == "" || usermodal?.userId == null
                                           ? Text(
-                                              "Login",
-                                              style: TextStyle(
-                                                color: Color(0xfff7941d),
-                                                fontFamily: 'task',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 17.sp,
-                                              ),
-                                            )
+                                        "Login",
+                                        style: TextStyle(
+                                          color: AppColors.primary,
+                                          fontFamily: 'task',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17.sp,
+                                        ),
+                                      )
                                           : Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 1.w),
-                                              height: 12.2.w,
-                                              width: 12.2.w,
-                                              padding: EdgeInsets.all(1.w),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(90),
-                                                child: CachedNetworkImage(
-                                                  imageUrl: profilemodal
-                                                          ?.profileDetails
-                                                          ?.profileimage ??
-                                                      '',
-                                                  fit: BoxFit.cover,
-                                                  progressIndicatorBuilder:
-                                                      (context, url,
-                                                              progress) =>
-                                                          Center(
-                                                              child:
-                                                                  CircularProgressIndicator()),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          Icon(
-                                                    Icons.error_outline_rounded,
-                                                  ),
-                                                ),
-                                              ),
+                                        margin: EdgeInsets.symmetric(horizontal: 1.w),
+                                        height: 12.2.w,
+                                        width: 12.2.w,
+                                        padding: EdgeInsets.all(1.w),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(90),
+                                          child: CachedNetworkImage(
+                                            imageUrl:
+                                            profilemodal?.profileDetails?.profileimage ??
+                                                '',
+                                            fit: BoxFit.cover,
+                                            progressIndicatorBuilder:
+                                                (context, url, progress) =>
+                                                Center(child: CircularProgressIndicator()),
+                                            errorWidget: (context, url, error) => Icon(
+                                              Icons.error_outline_rounded,
                                             ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -256,6 +266,121 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
+
+
+
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 1.h,
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: bestsellerproductmodal?.productData?.length ==
+                            0 ||
+                            bestsellerproductmodal?.productData?.length ==
+                                null
+                            ? Container()
+                            : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            searchBox(),
+                          ],
+                        ),
+                      ),
+
+
+
+                      SliverToBoxAdapter(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Offers',
+                              style: TextStyle(
+                                  fontSize: 17.sp,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'task'
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'View All',
+                                style: TextStyle(
+                                    color:AppColors.primary,
+                                    fontFamily: 'task',
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      SliverToBoxAdapter(
+                        child: Container(
+                          height: 150,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColors.primary
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(6.0),
+                                child: Image.network(
+                                  'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
+                                  // Replace with your banner image link
+                                  fit: BoxFit.cover,
+                                  width: 130,
+                                  height: 130,
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Genuine medicines delivered home",
+                                      style: TextStyle(fontSize: 14.5.sp,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'task',
+                                          color: Colors.white),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      "GET UP TO",
+                                      style: TextStyle(fontSize: 14.5.sp,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'task',
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      "22% OFF",
+                                      style: TextStyle(fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'task',
+                                          color: Colors.white),
+                                    ),
+                                    Text(
+                                      "on your first order",
+                                      style: TextStyle(fontSize: 14.5.sp,
+                                          fontWeight: FontWeight.bold,
+                                       fontFamily: 'task',
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+
                       SliverToBoxAdapter(
                         child: SizedBox(
                           height: 1.h,
@@ -267,7 +392,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             SizedBox(
                               child: Text(
-                                "Select Category",
+                                "Shop By Category ",
                                 style: TextStyle(
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.bold,
@@ -287,7 +412,7 @@ class _HomePageState extends State<HomePage> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 13.5.sp,
-                                            color: Color(0xfff7941d),
+                                            color:AppColors.primary,
                                             fontFamily: "task"),
                                       ),
                               ),
@@ -429,30 +554,445 @@ class _HomePageState extends State<HomePage> {
                                 ),
                         ),
                       ),
+
+                      SliverToBoxAdapter(
+                        child: Padding(
+                            padding:  EdgeInsets.all(3.0), // Adjust padding for the entire row
+                            child: Container(
+                              color: CupertinoColors.white,
+                              height: 150,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(1.0),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      width: 150, // Adjust the width for smaller containers
+                                      height: 130, // Adjust the height for smaller containers
+                                      decoration: BoxDecoration(
+                                        color: Colors.white, // Background color
+                                        borderRadius: BorderRadius.circular(12), // Rounded corners
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 8, // Shadow blur radius
+                                            spreadRadius: 1, // Shadow spread radius
+                                          ),
+                                        ],
+                                        border: Border.all(
+                                          color: Colors.grey.shade300, // Border color
+                                          width: 1, // Border width
+                                        ),
+                                      ),
+                                      child: Center(
+                                        // Centers the entire content inside the container
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          // Center items vertically
+                                          children: [
+                                            Image.network(
+                                              'https://static.vecteezy.com/system/resources/previews/021/193/217/non_2x/prescription-icon-medical-assets-3d-rendering-png.png', // Replace with the image URL
+                                              height: 85, // Adjust the image size
+                                            ),
+                                            SizedBox(height: 8),
+                                            Padding(
+                                              padding:  EdgeInsets.only(left: 5.w),
+                                              child: SizedBox(
+                                                width: 60.w,
+                                                child: Text(
+                                                  overflow: TextOverflow.ellipsis,
+                                                  maxLines: 2,
+                                                  'Request Prescription',
+                                                  style: TextStyle(
+                                                      fontSize: 14, // Adjust the font size
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: 'task'
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(height: 5),
+                                            // Text(
+                                            //   'UPTO 24%* OFF',
+                                            //   style: TextStyle(
+                                            //     color: Colors.redAccent,
+                                            //     fontSize: 12, // Adjust the font size
+                                            //   ),
+                                            // ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 1.w,
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.all(1.0),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      width: 150, // Adjust the width for smaller containers
+                                      height: 150, // Adjust the height for smaller containers
+                                      decoration: BoxDecoration(
+                                        color: Colors.white, // Background color
+                                        borderRadius: BorderRadius.circular(12), // Rounded corners
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 8, // Shadow blur radius
+                                            spreadRadius: 1, // Shadow spread radius
+                                          ),
+                                        ],
+                                        border: Border.all(
+                                          color: Colors.grey.shade300, // Border color
+                                          width: 1, // Border width
+                                        ),
+                                      ),
+                                      child: Center(
+                                        // Centers the entire content inside the container
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          // Center items vertically
+                                          children: [
+                                            Image.network(
+                                              'https://uat.onehealthassist.com/assets/image/pharmacy_offer1.png', // Replace with the image URL
+                                              height: 75, // Adjust the image size
+                                            ),
+                                            SizedBox(height: 8),
+                                            Padding(
+                                              padding:  EdgeInsets.only(left: 5.w),
+                                              child: SizedBox(
+                                                width: 60.w,
+                                                child: Text(
+                                                  overflow: TextOverflow.ellipsis,
+                                                  maxLines: 2,
+                                                  'Order Medicine',
+                                                  style: TextStyle(
+                                                      fontSize: 14, // Adjust the font size
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: 'task'
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(height: 5),
+                                            // Text(
+                                            //   'UPTO 24%* OFF',
+                                            //   style: TextStyle(
+                                            //     color: Colors.redAccent,
+                                            //     fontSize: 12, // Adjust the font size
+                                            //   ),
+                                            // ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 1.w,
+                                  ),
+
+                                  Padding(
+                                    padding:  EdgeInsets.all(1.0),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      width: 150, // Adjust the width for smaller containers
+                                      height: 150, // Adjust the height for smaller containers
+                                      decoration: BoxDecoration(
+                                        color: Colors.white, // Background color
+                                        borderRadius: BorderRadius.circular(12), // Rounded corners
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 8, // Shadow blur radius
+                                            spreadRadius: 1, // Shadow spread radius
+                                          ),
+                                        ],
+                                        border: Border.all(
+                                          color: Colors.grey.shade300, // Border color
+                                          width: 1, // Border width
+                                        ),
+                                      ),
+                                      child: Center(
+                                        // Centers the entire content inside the container
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          // Center items vertically
+                                          children: [
+                                            Image.network(
+                                              'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Doctor_with_Nurse_Cartoon.svg/800px-Doctor_with_Nurse_Cartoon.svg.png', // Replace with the image URL
+                                              height: 75, // Adjust the image size
+                                            ),
+                                            SizedBox(height: 8),
+                                            Padding(
+                                              padding:  EdgeInsets.only(left: 5.w),
+                                              child: SizedBox(
+                                                width: 60.w,
+                                                child: Text(
+                                                  overflow: TextOverflow.ellipsis,
+                                                  maxLines: 2,
+                                                  'Request Doctors',
+                                                  style: TextStyle(
+                                                      fontSize: 14, // Adjust the font size
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: 'task'
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(height: 5),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ]
+                                ,),
+                            )
+                        ),
+                      ),
                       SliverToBoxAdapter(
                         child: SizedBox(
                           height: 1.h,
                         ),
                       ),
+
                       SliverToBoxAdapter(
-                        child: bestsellerproductmodal?.productData?.length ==
-                                    0 ||
-                                bestsellerproductmodal?.productData?.length ==
-                                    null
-                            ? Container()
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  searchBox(),
-                                ],
+                        child: Container(
+                          height: 10.h,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.white, // Button background color
+                            borderRadius: BorderRadius.circular(10),),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 40,
+                                width: 40.w,// Height of the button
+                                decoration: BoxDecoration(
+                                  color: Colors.white, // Button background color
+                                  borderRadius: BorderRadius.circular(10), // Rounded corners
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 5,
+                                      spreadRadius: 2,
+                                    ),
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.call, color: AppColors.primary, size: 24), // Button icon
+                                    SizedBox(width: 8),
+                                    Text(
+                                      "Call Us",
+                                      style: TextStyle(
+                                          color:AppColors.primary,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          fontFamily: 'task'
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: SizedBox(
-                          height: 2.h,
+                              Container(
+                                height: 40,
+                                width: 40.w,// Height of the button
+                                decoration: BoxDecoration(
+                                  color: Colors.white, // Button background color
+                                  borderRadius: BorderRadius.circular(10), // Rounded corners
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 5,
+                                      spreadRadius: 2,
+                                    ),
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.network("https://cdn-icons-png.flaticon.com/512/2111/2111774.png",width: 20,height: 20,color: Colors.green,),
+                                    // Icon(Icons.facebook_sharp,color:AppColors.primary, size: 24), // Button icon
+                                    SizedBox(width: 8),
+                                    Text(
+                                      "Whatsapp",
+                                      style: TextStyle(
+                                          color:Colors.green,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          fontFamily: 'task'
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
+
+                      SliverToBoxAdapter(
+                          child: SizedBox(
+                            height: 1.h,
+                          ),
+                        ),
+
+                      SliverToBoxAdapter(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              child: Text(
+                                "Featured Brands",
+                                style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "task"),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => CategoryPage()));
+                              },
+                              child: Container(
+                                child: allcatmodal?.categories?.length == 0
+                                    ? Text("")
+                                    : Text(
+                                  "View All",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.5.sp,
+                                      color:AppColors.primary,
+                                      fontFamily: "task"),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Container(
+                          height: 15.h,
+                          child: allcatmodal?.categories?.length == 0
+                              ? Center(
+                            child: Text(
+                              "No Category Available",
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                fontFamily: 'task',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                              : ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            padding: EdgeInsets.zero,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                child: Center(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            sel = index;
+                                            selected = allcatmodal?.categories?[index]
+                                                .categoryID
+                                                .toString();
+                                            Navigator.of(context).push(MaterialPageRoute(
+                                                builder: (context) => SubCateGoryPage(
+                                                  catid: selected,
+                                                )));
+                                          });
+                                          catwiceproductap();
+                                        },
+                                        child: Container(
+                                          height: 19.w,
+                                          width: 19.w,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: sel == index
+                                                ? Colors.deepOrange.shade50
+                                                : Colors.grey.shade100,
+                                            border: Border.all(
+                                              width: 1,
+                                              color: sel == index
+                                                  ? Color(0xfff7941d)
+                                                  : Colors.grey,
+                                            ),
+                                            borderRadius: BorderRadius.circular(10), // More rounded corners
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(10), // Same rounded corners for the image
+                                            child: CachedNetworkImage(
+                                              height: 19.w,
+                                              width: 19.w,
+                                              imageUrl: allcatmodal?.categories?[index]
+                                                  .catagoryimage ??
+                                                  '',
+                                              fit: BoxFit.cover,
+                                              progressIndicatorBuilder:
+                                                  (context, url, progress) =>
+                                                  Center(child: CircularProgressIndicator()),
+                                              errorWidget: (context, url, error) =>
+                                                  Icon(Icons.error_outline_outlined),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      SizedBox(
+                                        width: 16.w,
+                                        child: Text(
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          allcatmodal?.categories?[index].categoryName == '' ||
+                                              allcatmodal?.categories?[index]
+                                                  .categoryName ==
+                                                  null
+                                              ? 'N/A'
+                                              : allcatmodal?.categories?[index].categoryName ??
+                                              '',
+                                          style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: "task",
+                                            color: sel == index
+                                                ? Color(0xfff7941d)
+                                                : Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                            itemCount: allcatmodal?.categories?.length,
+                          ),
+                        ),
+                      ),
+
+
+
+
                       _serch.text == ''
                           ? SliverToBoxAdapter()
                           : searchbestsaleModal?.productData?.length == 0 ||
@@ -757,13 +1297,13 @@ class _HomePageState extends State<HomePage> {
                                                   child: Container(
                                                     alignment: Alignment.center,
                                                     height: 4.h,
-                                                    width: 30.w,
+                                                    width: 32.w,
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(30),
                                                         color:
-                                                            Color(0xfff7941d)),
+                                                           AppColors.primary),
                                                     child: Text(
                                                       "View Product",
                                                       style: TextStyle(
@@ -840,167 +1380,7 @@ class _HomePageState extends State<HomePage> {
                                 height: 1.5.h,
                               ),
                             ),
-                      name
-                          ? SliverToBoxAdapter(child: Container())
-                          : SliverToBoxAdapter(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Sales",
-                                    style: TextStyle(
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "task"),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ProductListPage2(
-                                                    allcatid:
-                                                        selected.toString(),
-                                                  )));
-                                    },
-                                    child: Container(
-                                      child: salesproductmodal
-                                                      ?.productData?.length ==
-                                                  0 ||
-                                              salesproductmodal
-                                                      ?.productData?.length ==
-                                                  null
-                                          ? Text("")
-                                          : Text(
-                                              "See More",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 13.5.sp,
-                                                  color: Color(0xfff7941d),
-                                                  fontFamily: "task"),
-                                            ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                      name
-                          ? SliverToBoxAdapter(child: Container())
-                          : wait
-                              ? SliverToBoxAdapter(
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      height: 2.h,
-                                      width: 2.h,
-                                      child: CircularProgressIndicator()),
-                                )
-                              : salesproductmodal?.productData?.length == 0 ||
-                                      salesproductmodal?.productData?.length ==
-                                          null
-                                  ? SliverToBoxAdapter(
-                                      child: Padding(
-                                      padding: EdgeInsets.only(top: 1.h),
-                                      child: Center(
-                                        child: Text(
-                                          'No Products Available',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'task',
-                                              fontSize: 15.sp,
-                                              color: Colors.black),
-                                        ),
-                                      ),
-                                    ))
-                                  : wait
-                                      ? SliverToBoxAdapter(
-                                          child: Center(
-                                              child:
-                                                  CircularProgressIndicator()),
-                                        )
-                                      : SliverToBoxAdapter(
-                                          child: SizedBox(
-                                            height: 1.5.h,
-                                          ),
-                                        ),
-                      name
-                          ? SliverToBoxAdapter(child: Container())
-                          : SliverToBoxAdapter(
-                              child: CarouselSlider(
-                                options: CarouselOptions(
-                                  height:
-                                      salesproductmodal?.productData?.length ==
-                                                  0 ||
-                                              salesproductmodal
-                                                      ?.productData?.length ==
-                                                  null
-                                          ? 7
-                                          : 200.0, // Make it full screen
-                                  enableInfiniteScroll:
-                                      true, // Loop back to the beginning
-                                  enlargeCenterPage:
-                                      true, // Enlarge the center image
-                                  autoPlay:
-                                      true, // Automatically play the carousel
-                                ),
-                                items: (salesproductmodal?.productData ?? [])
-                                    .map((imagePath) {
-                                  return Builder(
-                                    builder: (BuildContext context) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          imagePath.productType == '1'
-                                              ? Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          productdetailnovartion(
-                                                            productid: imagePath
-                                                                .productID,
-                                                          )))
-                                              : Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          productdetailwebview(
-                                                            productid: imagePath
-                                                                .productID,
-                                                          )));
-                                        },
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 5.0),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            border: Border.all(
-                                                width: 0.5,
-                                                color: Colors.black54),
-                                            color: Colors.transparent,
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            child: CachedNetworkImage(
-                                                imageUrl: imagePath.imgData
-                                                    .toString(),
-                                                progressIndicatorBuilder: (context,
-                                                        url, progress) =>
-                                                    Center(
-                                                        child:
-                                                            CircularProgressIndicator()),
-                                                errorWidget: (context, url,
-                                                        error) =>
-                                                    Icon(Icons
-                                                        .error_outline_rounded)),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }).toList(),
-                              ),
-                            ),
+
                       name
                           ? SliverToBoxAdapter(child: Container())
                           : SliverToBoxAdapter(
@@ -1016,7 +1396,7 @@ class _HomePageState extends State<HomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Best Seller",
+                                    "Top Selling Products",
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.bold,
@@ -1041,11 +1421,11 @@ class _HomePageState extends State<HomePage> {
                                                   null
                                           ? Text("")
                                           : Text(
-                                              "See More",
+                                              "View All",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 13.5.sp,
-                                                  color: Color(0xfff7941d),
+                                                  color:AppColors.primary,
                                                   fontFamily: "task"),
                                             ),
                                     ),
@@ -1384,14 +1764,14 @@ class _HomePageState extends State<HomePage> {
                                                                   Alignment
                                                                       .center,
                                                               height: 4.h,
-                                                              width: 30.w,
+                                                              width: 32.w,
                                                               decoration: BoxDecoration(
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
                                                                               30),
-                                                                  color: Color(
-                                                                      0xfff7941d)),
+                                                                  color: AppColors.primary
+                                                              ),
                                                               child: Text(
                                                                 "View Product",
                                                                 style: TextStyle(
@@ -1497,11 +1877,12 @@ class _HomePageState extends State<HomePage> {
                                           : Container(
                                               alignment: Alignment.center,
                                               height: 4.h,
-                                              width: 30.w,
+                                              width: 32.w,
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(30),
-                                                  color: Color(0xfff7941d)),
+                                                  color: AppColors.primary
+                                              ),
                                               child: Text(
                                                 _isLoading
                                                     ? "View Less.."
@@ -1514,6 +1895,80 @@ class _HomePageState extends State<HomePage> {
                                   ],
                                 )
                               : Container()),
+
+                      SliverToBoxAdapter(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Blogs',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'task'
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'View All',
+                                style: TextStyle(
+                                    color:AppColors.primary,
+                                    fontFamily: 'task',
+                                  fontSize: 13.5.sp,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Card(
+                          child: Padding(
+                            padding:  EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 100,
+                                  width: double.infinity,
+                                  child: ClipRRect(
+                                    borderRadius:
+                                    BorderRadius
+                                        .only(topLeft:Radius.circular(10),topRight: Radius.circular(10)),
+                                    child:
+                                    CachedNetworkImage(
+                                      fit: BoxFit.cover,
+                                      imageUrl:
+                                      "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg",
+                                      progressIndicatorBuilder:
+                                          (context, url,
+                                          progress) =>
+                                          Center(
+                                              child:
+                                              CircularProgressIndicator()),
+                                      errorWidget:
+                                          (context, url,
+                                          error) =>
+                                          Image.asset(
+                                            "",
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 2.h,
+                                ),
+                                Text('Jain janolive syrup Horlicks junior stage 1 refill pack...',style: TextStyle(
+                                    fontFamily: 'task',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold
+                                ),)
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -1524,7 +1979,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget searchBox() {
     return Container(
-      width: 88.w,
+      width: 92.w,
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.12),
@@ -1561,7 +2016,7 @@ class _HomePageState extends State<HomePage> {
             minWidth: 25,
           ),
           border: InputBorder.none,
-          hintText: 'Search Products',
+          hintText: 'Search  For Medicines',
           hintStyle: TextStyle(color: Colors.black, fontFamily: 'task'),
         ),
       ),

@@ -70,7 +70,7 @@ class _bottombarState extends State<bottombar> {
                         CupertinoIcons.home,
                         size: 25.sp,
                         color: selected == 1
-                            ? Color(0xfff7941d)
+                            ? AppColors.primary
                             : Colors.grey.shade300,
                       ),
                       SizedBox(
@@ -82,7 +82,7 @@ class _bottombarState extends State<bottombar> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: selected == 1
-                              ? Color(0xfff7941d)
+                              ? AppColors.primary
                               : Colors.transparent,
                         ),
                       ),
@@ -93,7 +93,7 @@ class _bottombarState extends State<bottombar> {
                       //     fontWeight: FontWeight.normal,
                       //     fontFamily: "task",
                       //     color: selected == 1
-                      //         ? Color(0xfff7941d)
+                      //         ? AppColors.primary
                       //         :  Colors.grey.shade500,
                       //
                       //   ),
@@ -115,7 +115,7 @@ class _bottombarState extends State<bottombar> {
                         CupertinoIcons.shopping_cart,
                         size: 25.sp,
                         color: selected == 2
-                            ? Color(0xfff7941d)
+                            ? AppColors.primary
                             : Colors.grey.shade300,
                       ),
                       SizedBox(
@@ -127,7 +127,7 @@ class _bottombarState extends State<bottombar> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: selected == 2
-                              ? Color(0xfff7941d)
+                              ? AppColors.primary
                               : Colors.transparent,
                         ),
                       ),
@@ -138,7 +138,7 @@ class _bottombarState extends State<bottombar> {
                       //     fontWeight: FontWeight.normal,
                       //     fontFamily: "task",
                       //     color: selected == 2
-                      //         ? Color(0xfff7941d)
+                      //         ? AppColors.primary
                       //         :  Colors.grey.shade500,
                       //
                       //   ),),
@@ -162,7 +162,7 @@ class _bottombarState extends State<bottombar> {
                         CupertinoIcons.heart,
                         size: 25.sp,
                         color: selected == 4
-                            ? Color(0xfff7941d)
+                            ? AppColors.primary
                             : Colors.grey.shade300,
                       ),
                       SizedBox(
@@ -174,7 +174,7 @@ class _bottombarState extends State<bottombar> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: selected == 4
-                              ? Color(0xfff7941d)
+                              ? AppColors.primary
                               : Colors.transparent,
                         ),
                       ),
@@ -185,7 +185,7 @@ class _bottombarState extends State<bottombar> {
                       //     fontWeight: FontWeight.normal,
                       //     fontFamily: "task",
                       //     color: selected == 4
-                      //         ? Color(0xfff7941d)
+                      //         ? AppColors.primary
                       //         :  Colors.grey.shade500,
                       //
                       //   ),
@@ -205,7 +205,7 @@ class _bottombarState extends State<bottombar> {
                       child: Text(
                         "Login",
                         style: TextStyle(
-                          color: Color(0xfff7941d),
+                          color: AppColors.primary,
                           fontFamily: 'task',
                           fontWeight: FontWeight.bold,
                           fontSize: 19.sp,
@@ -233,7 +233,7 @@ class _bottombarState extends State<bottombar> {
                         CupertinoIcons.home,
                         size: 25.sp,
                         color: selected == 1
-                            ? Color(0xfff7941d)
+                            ? AppColors.primary
                             : Colors.grey.shade300,
                       ),
                       SizedBox(
@@ -245,7 +245,7 @@ class _bottombarState extends State<bottombar> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: selected == 1
-                              ? Color(0xfff7941d)
+                              ? AppColors.primary
                               : Colors.transparent,
                         ),
                       ),
@@ -256,7 +256,7 @@ class _bottombarState extends State<bottombar> {
                       //     fontWeight: FontWeight.normal,
                       //     fontFamily: "task",
                       //     color: selected == 1
-                      //         ? Color(0xfff7941d)
+                      //         ? AppColors.primary
                       //         :  Colors.grey.shade500,
                       //
                       //   ),
@@ -278,7 +278,7 @@ class _bottombarState extends State<bottombar> {
                         CupertinoIcons.shopping_cart,
                         size: 25.sp,
                         color: selected == 2
-                            ? Color(0xfff7941d)
+                            ? AppColors.primary
                             : Colors.grey.shade300,
                       ),
                       SizedBox(
@@ -290,7 +290,7 @@ class _bottombarState extends State<bottombar> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: selected == 2
-                              ? Color(0xfff7941d)
+                              ? AppColors.primary
                               : Colors.transparent,
                         ),
                       ),
@@ -301,7 +301,7 @@ class _bottombarState extends State<bottombar> {
                       //     fontWeight: FontWeight.normal,
                       //     fontFamily: "task",
                       //     color: selected == 2
-                      //         ? Color(0xfff7941d)
+                      //         ? AppColors.primary
                       //         :  Colors.grey.shade500,
                       //
                       //   ),),
@@ -325,7 +325,7 @@ class _bottombarState extends State<bottombar> {
                         CupertinoIcons.heart,
                         size: 25.sp,
                         color: selected == 4
-                            ? Color(0xfff7941d)
+                            ? AppColors.primary
                             : Colors.grey.shade300,
                       ),
                       SizedBox(
@@ -337,7 +337,7 @@ class _bottombarState extends State<bottombar> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: selected == 4
-                              ? Color(0xfff7941d)
+                              ? AppColors.primary
                               : Colors.transparent,
                         ),
                       ),
@@ -348,7 +348,7 @@ class _bottombarState extends State<bottombar> {
                       //     fontWeight: FontWeight.normal,
                       //     fontFamily: "task",
                       //     color: selected == 4
-                      //         ? Color(0xfff7941d)
+                      //         ? AppColors.primary
                       //         :  Colors.grey.shade500,
                       //
                       //   ),
@@ -369,7 +369,7 @@ class _bottombarState extends State<bottombar> {
                           child: Text(
                             "Login",
                             style: TextStyle(
-                              color: Color(0xfff7941d),
+                              color: AppColors.primary,
                               fontFamily: 'task',
                               fontWeight: FontWeight.bold,
                               fontSize: 19.sp,
@@ -394,7 +394,7 @@ class _bottombarState extends State<bottombar> {
                               CupertinoIcons.person,
                               size: 25.sp,
                               color: selected == 5
-                                  ? Color(0xfff7941d)
+                                  ? AppColors.primary
                                   : Colors.grey.shade300,
                             ),
                             SizedBox(
@@ -406,7 +406,7 @@ class _bottombarState extends State<bottombar> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
                                 color: selected == 5
-                                    ? Color(0xfff7941d)
+                                    ? AppColors.primary
                                     : Colors.transparent,
                               ),
                             ),
@@ -514,7 +514,7 @@ class _bottombarState extends State<bottombar> {
                                                             BorderRadius
                                                                 .circular(30),
                                                         color:
-                                                            Color(0xfff7941d)),
+                                                            AppColors.primary),
                                                     child: Text(
                                                       "Logout",
                                                       style: TextStyle(
