@@ -1257,7 +1257,7 @@ class _CartPageState extends State<CartPage> {
                                             child: Text(
                                               "Checkout",
                                               style: TextStyle(
-                                                  fontSize: 15.sp,
+                                                  fontSize: 14.sp,
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "task"),

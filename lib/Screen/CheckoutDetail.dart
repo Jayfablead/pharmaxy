@@ -1275,7 +1275,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   child: Text(
                                     "Pay Now",
                                     style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),
