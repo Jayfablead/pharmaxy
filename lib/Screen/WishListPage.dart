@@ -86,7 +86,7 @@ class _WishListPageState extends State<WishListPage> {
                             Text(
                               "Wish List",
                               style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 18.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -301,7 +301,7 @@ class _WishListPageState extends State<WishListPage> {
                                                                         ?.wishList?[
                                                                             index]
                                                                         .productName ??
-                                                                    "",
+                                                                    "",maxLines: 2,
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .black,

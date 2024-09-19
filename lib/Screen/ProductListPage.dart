@@ -16,6 +16,7 @@ import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/bottombar.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -96,12 +97,12 @@ class _ProductListPageState extends State<ProductListPage> {
                                         },
                                         icon: Icon(
                                           Icons.arrow_back_ios_new_rounded,
-                                          size: 25.sp,
+                                          size: 20.sp,
                                         )),
                                     Text(
                                       "Product List",
                                       style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 18.sp,
                                         fontFamily: "task",
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -162,6 +163,57 @@ class _ProductListPageState extends State<ProductListPage> {
                                       ],
                                     ),
                                   ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 2.h,
+                              ),
+                              // filter and Sort
+                              Padding(
+                                padding:  EdgeInsets.symmetric(horizontal: 2.w),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  alignment: Alignment.center,
+                                  height: 50.0,
+                                  decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(10.0),
+                                    color: Colors.grey.shade100,
+                                    border: Border.all(color: Colors.grey)
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: 30.0,),
+                                      Icon(
+                                        CupertinoIcons.sort_down,
+                                        size: 20.sp,
+                                        color: Color(0xff0061b0),
+                                      ),
+                                      SizedBox(width: 20.0,),
+                                      Text("Sort By",style:TextStyle(
+                                        fontFamily: "task",
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xff0061b0)
+                                      )),
+                                      SizedBox(width: 20.0,),
+                                      VerticalDivider(
+                                        color: Colors.grey.withOpacity(0.5),  // Change the color of the divider
+                                        thickness: 2,         // Thickness of the divider
+                                        width: 20,            // The width that the divider takes (not its thickness)
+                                        indent: 10,           // Spacing from the top
+                                        endIndent: 10,        // Spacing from the bottom
+                                      ),
+                                      SizedBox(width: 20.0,),
+                                      Icon(Icons.filter_alt_sharp,size: 20.sp,color: Color(0xff0061b0)),
+                                      SizedBox(width: 20.0,),
+                                      Text("Filter By",style:TextStyle(
+                                        fontFamily: "task",
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xff0061b0),
+                                      )),
+                                    ],
+                                  ),
                                 ),
                               ),
                               SizedBox(
@@ -1046,11 +1098,11 @@ class _ProductListPageState extends State<ProductListPage> {
 
   Widget searchBox() {
     return Container(
-      width: 81.w,
+      width: 90.w,
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.12),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(
         controller: _serch,
@@ -1072,7 +1124,7 @@ class _ProductListPageState extends State<ProductListPage> {
           ),
           border: InputBorder.none,
           hintText: 'Search Products',
-          hintStyle: TextStyle(color: Colors.black, fontFamily: 'task'),
+          hintStyle: TextStyle(color: Colors.black, fontFamily: 'task',fontSize: 11.0),
         ),
       ),
     );

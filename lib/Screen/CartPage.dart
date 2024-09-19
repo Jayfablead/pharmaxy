@@ -113,8 +113,7 @@ class _CartPageState extends State<CartPage> {
                                   Container(
                                     width: MediaQuery.of(context).size.width,
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         IconButton(
                                             onPressed: () {
@@ -123,12 +122,12 @@ class _CartPageState extends State<CartPage> {
                                             },
                                             icon: Icon(
                                               Icons.menu_rounded,
-                                              size: 25.sp,
+                                              size: 22.sp,
                                             )),
                                         Text(
                                           "My Cart",
                                           style: TextStyle(
-                                            fontSize: 20.sp,
+                                            fontSize: 13,
                                             fontFamily: "task",
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -146,7 +145,7 @@ class _CartPageState extends State<CartPage> {
                                               child: Text(
                                                 "Login",
                                                 style: TextStyle(
-                                                  color: Color(0xfff7941d),
+                                                  color: Color(0xff0061b0),
                                                   fontFamily: 'task',
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 17.sp,

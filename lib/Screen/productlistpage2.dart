@@ -16,6 +16,7 @@ import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/bottombar.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -152,6 +153,57 @@ class _ProductListPageState extends State<ProductListPage2> {
                                       ],
                                     ),
                                   ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 2.h,
+                              ),
+                              // sort & Filter
+                              Padding(
+                                padding:  EdgeInsets.symmetric(horizontal: 2.w),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  alignment: Alignment.center,
+                                  height: 50.0,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Colors.grey.shade100,
+                                      border: Border.all(color: Colors.grey)
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: 30.0,),
+                                      Icon(
+                                        CupertinoIcons.sort_down,
+                                        size: 20.sp,
+                                        color: Color(0xff0061b0),
+                                      ),
+                                      SizedBox(width: 20.0,),
+                                      Text("Sort By",style:TextStyle(
+                                          fontFamily: "task",
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xff0061b0)
+                                      )),
+                                      SizedBox(width: 20.0,),
+                                      VerticalDivider(
+                                        color: Colors.grey.withOpacity(0.5),  // Change the color of the divider
+                                        thickness: 2,         // Thickness of the divider
+                                        width: 20,            // The width that the divider takes (not its thickness)
+                                        indent: 10,           // Spacing from the top
+                                        endIndent: 10,        // Spacing from the bottom
+                                      ),
+                                      SizedBox(width: 20.0,),
+                                      Icon(Icons.filter_alt_sharp,size: 20.sp,color: Color(0xff0061b0)),
+                                      SizedBox(width: 20.0,),
+                                      Text("Filter By",style:TextStyle(
+                                        fontFamily: "task",
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xff0061b0),
+                                      )),
+                                    ],
+                                  ),
                                 ),
                               ),
                               SizedBox(
@@ -340,36 +392,36 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                         ],
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                        horizontal: 1.5.w,
-                                                      ),
-                                                      child: SizedBox(
-                                                        width: 35.w,
-                                                        child: Text(
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 2,
-                                                          salesproductlistmodal
-                                                                  ?.productData?[
-                                                                      index]
-                                                                  .productShortDesc ??
-                                                              '',
-                                                          style: TextStyle(
-                                                            fontSize: 12.sp,
-                                                            fontFamily: 'task',
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            letterSpacing: 1,
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding:
+                                                    //       EdgeInsets.symmetric(
+                                                    //     horizontal: 1.5.w,
+                                                    //   ),
+                                                    //   child: SizedBox(
+                                                    //     width: 35.w,
+                                                    //     child: Text(
+                                                    //       textAlign:
+                                                    //           TextAlign.center,
+                                                    //       overflow: TextOverflow
+                                                    //           .ellipsis,
+                                                    //       maxLines: 2,
+                                                    //       salesproductlistmodal
+                                                    //               ?.productData?[
+                                                    //                   index]
+                                                    //               .productShortDesc ??
+                                                    //           '',
+                                                    //       style: TextStyle(
+                                                    //         fontSize: 12.sp,
+                                                    //         fontFamily: 'task',
+                                                    //         fontWeight:
+                                                    //             FontWeight
+                                                    //                 .normal,
+                                                    //         letterSpacing: 1,
+                                                    //         color: Colors.black,
+                                                    //       ),
+                                                    //     ),
+                                                    //   ),
+                                                    // ),
                                                     Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment

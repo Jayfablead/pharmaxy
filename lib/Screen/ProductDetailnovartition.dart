@@ -188,12 +188,12 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                     },
                                     icon: Icon(
                                       Icons.arrow_back_ios_rounded,
-                                      size: 25.sp,
+                                      size: 20.sp,
                                     )),
                                 Text(
                                   "Product Detail Page",
                                   style: TextStyle(
-                                    fontSize: 18.sp,
+                                    fontSize: 17.sp,
                                     fontFamily: "task",
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -330,7 +330,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                               ?.productName ??
                                                           '',
                                                   style: TextStyle(
-                                                    fontSize: 14.sp,
+                                                    fontSize: 12.sp,
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
                                                     fontFamily: "task",
@@ -368,7 +368,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                           1
                                                       ? Icons.favorite
                                                       : Icons.favorite_outline,
-                                                  size: 25.sp,
+                                                  size: 22.sp,
                                                   color: productdetail2modal
                                                               ?.productData
                                                               ?.wishlist ==
@@ -399,7 +399,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             colorClickableText: Colors.pink,
                                             trimMode: TrimMode.Line,
                                             style: TextStyle(
-                                                fontSize: 13.sp,
+                                                fontSize: 11.sp,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.grey,
                                                 fontFamily: "task"),
@@ -431,7 +431,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 child: Row(
                                   children: [
                                     Container(
-                                      height: 6.h,
+                                      height: 5.h,
                                       width: 45.w,
                                       decoration: BoxDecoration(
                                           borderRadius:
@@ -446,7 +446,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                               Text(
                                                 '₹${productdetail2modal?.productData?.saleProductPrice ?? ''}',
                                                 style: TextStyle(
-                                                  fontSize: 18.sp,
+                                                  fontSize: 15.sp,
                                                   fontFamily: 'task',
                                                   fontWeight: FontWeight.bold,
                                                   letterSpacing: 1,
@@ -468,7 +468,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                     decorationThickness: 2,
                                                     decorationColor:
                                                         Colors.black,
-                                                    fontSize: 12.sp,
+                                                    fontSize: 11.sp,
                                                     fontFamily: 'task',
                                                     fontWeight:
                                                         FontWeight.normal,
@@ -491,7 +491,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                         ? GestureDetector(
                                             onTap: () {
                                               _showDialog(context,
-                                                  'Your item is already added in cart');
+                                                  'Your item is already add in cart');
                                             },
                                             child: Container(
                                               child: Row(
@@ -500,7 +500,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                 children: [
                                                   Container(
                                                     alignment: Alignment.center,
-                                                    height: 6.h,
+                                                    height: 5.h,
                                                     width: 40.w,
                                                     decoration: BoxDecoration(
                                                         borderRadius:
@@ -511,7 +511,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                     child: Text(
                                                       "Added To Cart",
                                                       style: TextStyle(
-                                                          fontSize: 14.5.sp,
+                                                          fontSize: 12.sp,
                                                           color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -538,7 +538,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                 children: [
                                                   Container(
                                                     alignment: Alignment.center,
-                                                    height: 6.h,
+                                                    height: 5.h,
                                                     width: 40.w,
                                                     decoration: BoxDecoration(
                                                         borderRadius:
@@ -569,13 +569,88 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                           SizedBox(height: 3.h),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 2.w),
+                            child: Container(
+                              height: 100,
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Colors.blue.shade50),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    child: Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                      size: 10.sp,
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff0061b0),
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    height: 20.0,
+                                    width: 20.0,
+                                  ),
+                                  // SizedBox(width: 20.w,),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      Text(
+                                        "Get ₹ 10.37 additional pharmato",
+                                        style: TextStyle(
+                                          fontSize: 12.sp,
+                                          fontFamily: "task",
+                                        ),
+                                      ),
+                                      Text(
+                                        "Credit with PLUS",
+                                        style: TextStyle(
+                                          fontSize: 12.sp,
+                                          fontFamily: "task",
+                                        ),
+                                      ),
+                                      Text(
+                                        'Enrol now & enjoy FREE delivery',
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontFamily: "task",
+                                            color: Color(0xff0061b0)),
+                                      ),
+                                      Text(
+                                        'on your order',
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontFamily: "task",
+                                            color: Color(0xff0061b0)),
+                                      ),
+                                    ],
+                                  ),
+                                  //SizedBox(width: 30.w,),
+                                  Icon(
+                                    Icons.arrow_forward_ios_outlined,
+                                    size: 15.sp,
+                                    color: Color(0xff0061b0),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 3.h),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 2.w),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   'Reviews :',
                                   style: TextStyle(
-                                    fontSize: 15.sp,
+                                    fontSize: 13.sp,
                                     fontFamily: 'task',
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: 1,
@@ -599,7 +674,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                   child: Text(
                                     'Add Your Review',
                                     style: TextStyle(
-                                      fontSize: 15.sp,
+                                      fontSize: 13.sp,
                                       fontFamily: 'task',
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 1,
@@ -610,9 +685,11 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                               ],
                             ),
                           ),
+                          SizedBox(height: 1.h),
                         ],
                       ),
                     ),
+
                     viewReviewmodal?.reviewData?.length == 0 ||
                             viewReviewmodal?.reviewData?.length == null
                         ? SliverToBoxAdapter(
@@ -634,11 +711,12 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                             itemCount: viewReviewmodal?.reviewData?.length,
                             itemBuilder: (context, index) {
                               return Container(
-                                margin: EdgeInsets.symmetric(vertical: 1.h),
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 1.h, horizontal: 1.w),
                                 padding: EdgeInsets.symmetric(vertical: 0.5.h),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(25)),
+                                    borderRadius: BorderRadius.circular(12)),
                                 child: Stack(
                                   children: [
                                     Column(
@@ -923,13 +1001,57 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             ),
                                           ),
                                         ),
+                                        SizedBox(height: 2.h),
                                       ],
                                     ),
+                                    // Row(
+                                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Text("Similar Product",style: TextStyle(
+                                    //       fontSize: 15.sp,
+                                    //       fontFamily: 'task',
+                                    //       fontWeight: FontWeight.bold,
+                                    //       color: Colors.black.withOpacity(0.7),
+                                    //     ) ,),
+                                    //     Text("View All",style: TextStyle(
+                                    //       fontSize: 12.sp,
+                                    //       fontFamily: 'task',
+                                    //       fontWeight: FontWeight.bold,
+                                    //       color: Color(0xff0061b0),
+                                    //     ) ,)
+                                    //   ],
+                                    // ),
                                   ],
                                 ),
                               );
                             },
                           ),
+                    SliverToBoxAdapter(child: SizedBox(height: 1.h,)),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: 2.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Similar Product",style: TextStyle(
+                              fontSize: 13.sp,
+                              fontFamily: 'task',
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1,
+                              color: Colors.black.withOpacity(0.7),
+                            ),),
+                            Text("View All",style: TextStyle(
+                              fontSize: 13.sp,
+                              fontFamily: 'task',
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1,
+                              color: Color(0xff0061b0),
+                            ),)
+
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -165,12 +165,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
-                                  size: 25.sp,
+                                  size: 20.sp,
                                 )),
                             Text(
                               "Checkout",
                               style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 18.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -190,12 +190,13 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                         child: Text(
                           "Shipping Address",
                           style: TextStyle(
-                            fontSize: 20.sp,
+                            fontSize: 16.sp,
                             fontFamily: "task",
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
+                      SizedBox(height: 1.h,),
                       Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: 2.w, vertical: 1.h),
@@ -233,7 +234,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                       : widget.firstname
                                                           .toString(),
                                                   style: TextStyle(
-                                                      fontSize: 16.sp,
+                                                      fontSize: 14.sp,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontFamily: "task"),
@@ -250,7 +251,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                       : widget.lastname
                                                           .toString(),
                                                   style: TextStyle(
-                                                      fontSize: 16.sp,
+                                                      fontSize: 14.sp,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontFamily: "task"),
@@ -267,7 +268,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                               child: Text(
                                                 "Add New",
                                                 style: TextStyle(
-                                                    fontSize: 16.sp,
+                                                    fontSize: 14.sp,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                     color: Color(0xff0061b0),
@@ -307,7 +308,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                         : widget.address
                                                             .toString(),
                                                 style: TextStyle(
-                                                    fontSize: 15.sp,
+                                                    fontSize: 14.sp,
                                                     color: Colors.black,
                                                     fontWeight:
                                                         FontWeight.normal,
@@ -322,7 +323,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                               builder: (context) =>
                                                                   AllAddpage()));
                                                 },
-                                                child: Icon(Icons.arrow_forward_ios,size: 20.sp,))
+                                                child: Icon(Icons.arrow_forward_ios,size: 17.sp,))
                                           ],
                                         ),
                                       ],
@@ -335,7 +336,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  height: 1.h,
+                                  height: 2.h,
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -343,7 +344,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                     Text(
                                       "Payment Methods",
                                       style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 16.sp,
                                         fontFamily: "task",
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -353,476 +354,476 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                 SizedBox(
                                   height: 1.80.h,
                                 ),
-                                Container(
-                                  width: 110.w,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 2.w),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        paymethodmodal?.data?.paypal?.status ==
-                                                false
-                                            ? GestureDetector(
-                                                onTap: () {
-                                                  buildErrorDialog(
-                                                      context,
-                                                      'Sorry',
-                                                      'Paypal is Not Available at this time');
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.all(2.w),
-                                                  width: 80.w,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.2),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15.sp),
-                                                    border: Border.all(
-                                                      color: Colors.black12,
-                                                      // Border color
-                                                      width:
-                                                          2.0, // Border width
-                                                    ),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Image.asset(
-                                                        "assets/paypal2.png",
-                                                        height: 5.h,
-                                                        width: 20.w,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 5.w,
-                                                      ),
-                                                      Text("Pay Using PayPal",
-                                                          style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 17.sp,
-                                                            fontFamily: 'match',
-                                                          )),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                            : GestureDetector(
-                                                onTap: () {
-                                                  setState(() {
-                                                    selectedpayment = 1;
-                                                  });
-                                                },
-                                                child: Container(
-                                                  width: 80.w,
-                                                  padding: EdgeInsets.all(2.w),
-                                                  decoration: BoxDecoration(
-                                                    color: selectedpayment == 1
-                                                        ? Color(0xfff7941d)
-                                                            .withOpacity(0.06)
-                                                        : Colors.white
-                                                            .withOpacity(0.04),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15.sp),
-                                                    border: Border.all(
-                                                      color: selectedpayment ==
-                                                              1
-                                                          ? Color(0xfff7941d)
-                                                          : Colors.black12,
-                                                      // Border color
-                                                      width:
-                                                          2.0, // Border width
-                                                    ),
-                                                  ),
-                                                  child: Center(
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Image.asset(
-                                                          "assets/paypal.png",
-                                                          height: 5.h,
-                                                          width: 20.w,
-                                                        ),
-                                                        SizedBox(
-                                                          width: 5.w,
-                                                        ),
-                                                        Text("Pay Using PayPal",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 17.sp,
-                                                              fontFamily:
-                                                                  'task',
-                                                            )),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                        SizedBox(
-                                          height: 2.h,
-                                        ),
-                                        Column(
-                                          children: [
-                                            paymethodmodal?.data?.cod?.status ==
-                                                    false
-                                                ? GestureDetector(
-                                                    onTap: () {
-                                                      buildErrorDialog(
-                                                          context,
-                                                          'Sorry',
-                                                          'Cash on Delivery is Not Available at this time');
-                                                    },
-                                                    child: Container(
-                                                      padding:
-                                                          EdgeInsets.all(2.w),
-                                                      width: 80.w,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.grey
-                                                            .withOpacity(0.2),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    15.sp),
-                                                        border: Border.all(
-                                                          color: Colors.black12,
-                                                          // Border color
-                                                          width:
-                                                              2.0, // Border width
-                                                        ),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Image.asset(
-                                                            "assets/cod2.png",
-                                                            height: 5.h,
-                                                            width: 20.w,
-                                                          ),
-                                                          SizedBox(
-                                                            width: 5.w,
-                                                          ),
-                                                          Text(
-                                                              "Cash On Delivery",
-                                                              style: TextStyle(
-                                                                color:
-                                                                    Colors.grey,
-                                                                fontSize: 17.sp,
-                                                                fontFamily:
-                                                                    'match',
-                                                              )),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  )
-                                                : GestureDetector(
-                                                    onTap: () {
-                                                      print(paymethodmodal
-                                                          ?.data?.cod?.status);
-                                                      setState(() {
-                                                        selectedpayment = 2;
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      padding:
-                                                          EdgeInsets.all(2.w),
-                                                      width: 80.w,
-                                                      decoration: BoxDecoration(
-                                                        color: selectedpayment ==
-                                                                2
-                                                            ? Color(0xfff7941d)
-                                                                .withOpacity(
-                                                                    0.06)
-                                                            : Colors.white
-                                                                .withOpacity(
-                                                                    0.04),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    15.sp),
-                                                        border: Border.all(
-                                                          color:
-                                                              selectedpayment ==
-                                                                      2
-                                                                  ? Color(
-                                                                      0xfff7941d)
-                                                                  : Colors
-                                                                      .black12,
-                                                          // Border color
-                                                          width:
-                                                              2.0, // Border width
-                                                        ),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Image.asset(
-                                                            "assets/cod1.png",
-                                                            height: 5.h,
-                                                            width: 20.w,
-                                                          ),
-                                                          SizedBox(
-                                                            width: 5.w,
-                                                          ),
-                                                          Text(
-                                                              "Cash On Delivery",
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 17.sp,
-                                                                fontFamily:
-                                                                    'match',
-                                                              )),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                            SizedBox(
-                                              height: 2.h,
-                                            ),
-                                          ],
-                                        ),
-                                        paymethodmodal?.data?.stripe?.status ==
-                                                false
-                                            ? GestureDetector(
-                                                onTap: () {
-                                                  buildErrorDialog(
-                                                      context,
-                                                      'Sorry',
-                                                      'Stripe is Not Available at this time');
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.all(2.w),
-                                                  width: 80.w,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.2),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15.sp),
-                                                    border: Border.all(
-                                                      color: Colors.black12,
-                                                      // Border color
-                                                      width:
-                                                          2.0, // Border width
-                                                    ),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Image.asset(
-                                                        "assets/sglogo.png",
-                                                        height: 5.h,
-                                                        width: 15.w,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 5.w,
-                                                      ),
-                                                      Text("Pay Using Stripe",
-                                                          style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 17.sp,
-                                                            fontFamily: 'match',
-                                                          )),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                            : GestureDetector(
-                                                onTap: () {
-                                                  setState(() {
-                                                    selectedpayment = 3;
-                                                  });
-                                                },
-                                                child: Container(
-                                                  width: 80.w,
-                                                  padding: EdgeInsets.all(2.w),
-                                                  decoration: BoxDecoration(
-                                                    color: selectedpayment == 3
-                                                        ? Color(0xfff7941d)
-                                                            .withOpacity(0.06)
-                                                        : Colors.white
-                                                            .withOpacity(0.04),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15.sp),
-                                                    border: Border.all(
-                                                      color: selectedpayment ==
-                                                              3
-                                                          ? Color(0xfff7941d)
-                                                          : Colors.black12,
-                                                      // Border color
-                                                      width:
-                                                          2.0, // Border width
-                                                    ),
-                                                  ),
-                                                  child: Center(
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Image.asset(
-                                                          "assets/slogo.png",
-                                                          height: 5.h,
-                                                          width: 18.w,
-                                                        ),
-                                                        SizedBox(
-                                                          width: 5.w,
-                                                        ),
-                                                        Text("Pay Using Stirpe",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 17.sp,
-                                                              fontFamily:
-                                                                  'task',
-                                                            )),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                        SizedBox(
-                                          height: 2.h,
-                                        ),
-                                        paymethodmodal?.data?.razorpayData
-                                                    ?.status ==
-                                                false
-                                            ? GestureDetector(
-                                                onTap: () {
-                                                  buildErrorDialog(
-                                                      context,
-                                                      'Sorry',
-                                                      'Razorpay is Not Available at this time');
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.all(2.w),
-                                                  width: 80.w,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.2),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15.sp),
-                                                    border: Border.all(
-                                                      color: Colors.black12,
-                                                      // Border color
-                                                      width:
-                                                          2.0, // Border width
-                                                    ),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Image.asset(
-                                                        "assets/razorpayoff.png",
-                                                        height: 5.h,
-                                                        width: 20.w,
-                                                      ),
-                                                      Text("Pay Using Razorpay",
-                                                          style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 17.sp,
-                                                            fontFamily: 'match',
-                                                          )),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                            : GestureDetector(
-                                                onTap: () {
-                                                  print(paymethodmodal?.data
-                                                      ?.razorpayData?.status);
-                                                  setState(() {
-                                                    selectedpayment = 4;
-                                                  });
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.all(2.w),
-                                                  width: 80.w,
-                                                  decoration: BoxDecoration(
-                                                    color: selectedpayment == 4
-                                                        ? Color(0xfff7941d)
-                                                            .withOpacity(0.06)
-                                                        : Colors.white
-                                                            .withOpacity(0.04),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15.sp),
-                                                    border: Border.all(
-                                                      color: selectedpayment ==
-                                                              4
-                                                          ? Color(0xfff7941d)
-                                                          : Colors.black12,
-                                                      // Border color
-                                                      width:
-                                                          2.0, // Border width
-                                                    ),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Image.asset(
-                                                        "assets/razorpay.png",
-                                                        height: 5.h,
-                                                        width: 20.w,
-                                                      ),
-                                                      Text("Pay Using Razorpay",
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 17.sp,
-                                                            fontFamily: 'match',
-                                                          )),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                // Container(
+                                //   width: 110.w,
+                                //   decoration: BoxDecoration(
+                                //       borderRadius: BorderRadius.circular(10),
+                                //       color: Colors.white),
+                                //   child: Padding(
+                                //     padding:
+                                //         EdgeInsets.symmetric(horizontal: 2.w),
+                                //     child: Column(
+                                //       crossAxisAlignment:
+                                //           CrossAxisAlignment.center,
+                                //       mainAxisAlignment:
+                                //           MainAxisAlignment.center,
+                                //       children: [
+                                //         paymethodmodal?.data?.paypal?.status ==
+                                //                 false
+                                //             ? GestureDetector(
+                                //                 onTap: () {
+                                //                   buildErrorDialog(
+                                //                       context,
+                                //                       'Sorry',
+                                //                       'Paypal is Not Available at this time');
+                                //                 },
+                                //                 child: Container(
+                                //                   padding: EdgeInsets.all(2.w),
+                                //                   width: 80.w,
+                                //                   decoration: BoxDecoration(
+                                //                     color: Colors.grey
+                                //                         .withOpacity(0.2),
+                                //                     borderRadius:
+                                //                         BorderRadius.circular(
+                                //                             15.sp),
+                                //                     border: Border.all(
+                                //                       color: Colors.black12,
+                                //                       // Border color
+                                //                       width:
+                                //                           2.0, // Border width
+                                //                     ),
+                                //                   ),
+                                //                   child: Row(
+                                //                     mainAxisAlignment:
+                                //                         MainAxisAlignment.start,
+                                //                     crossAxisAlignment:
+                                //                         CrossAxisAlignment
+                                //                             .center,
+                                //                     children: [
+                                //                       Image.asset(
+                                //                         "assets/paypal2.png",
+                                //                         height: 5.h,
+                                //                         width: 20.w,
+                                //                       ),
+                                //                       SizedBox(
+                                //                         width: 5.w,
+                                //                       ),
+                                //                       Text("Pay Using PayPal",
+                                //                           style: TextStyle(
+                                //                             color: Colors.grey,
+                                //                             fontSize: 17.sp,
+                                //                             fontFamily: 'match',
+                                //                           )),
+                                //                     ],
+                                //                   ),
+                                //                 ),
+                                //               )
+                                //             : GestureDetector(
+                                //                 onTap: () {
+                                //                   setState(() {
+                                //                     selectedpayment = 1;
+                                //                   });
+                                //                 },
+                                //                 child: Container(
+                                //                   width: 80.w,
+                                //                   padding: EdgeInsets.all(2.w),
+                                //                   decoration: BoxDecoration(
+                                //                     color: selectedpayment == 1
+                                //                         ? Color(0xfff7941d)
+                                //                             .withOpacity(0.06)
+                                //                         : Colors.white
+                                //                             .withOpacity(0.04),
+                                //                     borderRadius:
+                                //                         BorderRadius.circular(
+                                //                             15.sp),
+                                //                     border: Border.all(
+                                //                       color: selectedpayment ==
+                                //                               1
+                                //                           ? Color(0xfff7941d)
+                                //                           : Colors.black12,
+                                //                       // Border color
+                                //                       width:
+                                //                           2.0, // Border width
+                                //                     ),
+                                //                   ),
+                                //                   child: Center(
+                                //                     child: Row(
+                                //                       mainAxisAlignment:
+                                //                           MainAxisAlignment
+                                //                               .start,
+                                //                       crossAxisAlignment:
+                                //                           CrossAxisAlignment
+                                //                               .center,
+                                //                       children: [
+                                //                         Image.asset(
+                                //                           "assets/paypal.png",
+                                //                           height: 5.h,
+                                //                           width: 20.w,
+                                //                         ),
+                                //                         SizedBox(
+                                //                           width: 5.w,
+                                //                         ),
+                                //                         Text("Pay Using PayPal",
+                                //                             style: TextStyle(
+                                //                               color:
+                                //                                   Colors.black,
+                                //                               fontSize: 17.sp,
+                                //                               fontFamily:
+                                //                                   'task',
+                                //                             )),
+                                //                       ],
+                                //                     ),
+                                //                   ),
+                                //                 ),
+                                //               ),
+                                //         SizedBox(
+                                //           height: 2.h,
+                                //         ),
+                                //         Column(
+                                //           children: [
+                                //             paymethodmodal?.data?.cod?.status ==
+                                //                     false
+                                //                 ? GestureDetector(
+                                //                     onTap: () {
+                                //                       buildErrorDialog(
+                                //                           context,
+                                //                           'Sorry',
+                                //                           'Cash on Delivery is Not Available at this time');
+                                //                     },
+                                //                     child: Container(
+                                //                       padding:
+                                //                           EdgeInsets.all(2.w),
+                                //                       width: 80.w,
+                                //                       decoration: BoxDecoration(
+                                //                         color: Colors.grey
+                                //                             .withOpacity(0.2),
+                                //                         borderRadius:
+                                //                             BorderRadius
+                                //                                 .circular(
+                                //                                     15.sp),
+                                //                         border: Border.all(
+                                //                           color: Colors.black12,
+                                //                           // Border color
+                                //                           width:
+                                //                               2.0, // Border width
+                                //                         ),
+                                //                       ),
+                                //                       child: Row(
+                                //                         mainAxisAlignment:
+                                //                             MainAxisAlignment
+                                //                                 .start,
+                                //                         crossAxisAlignment:
+                                //                             CrossAxisAlignment
+                                //                                 .center,
+                                //                         children: [
+                                //                           Image.asset(
+                                //                             "assets/cod2.png",
+                                //                             height: 5.h,
+                                //                             width: 20.w,
+                                //                           ),
+                                //                           SizedBox(
+                                //                             width: 5.w,
+                                //                           ),
+                                //                           Text(
+                                //                               "Cash On Delivery",
+                                //                               style: TextStyle(
+                                //                                 color:
+                                //                                     Colors.grey,
+                                //                                 fontSize: 17.sp,
+                                //                                 fontFamily:
+                                //                                     'match',
+                                //                               )),
+                                //                         ],
+                                //                       ),
+                                //                     ),
+                                //                   )
+                                //                 : GestureDetector(
+                                //                     onTap: () {
+                                //                       print(paymethodmodal
+                                //                           ?.data?.cod?.status);
+                                //                       setState(() {
+                                //                         selectedpayment = 2;
+                                //                       });
+                                //                     },
+                                //                     child: Container(
+                                //                       padding:
+                                //                           EdgeInsets.all(2.w),
+                                //                       width: 80.w,
+                                //                       decoration: BoxDecoration(
+                                //                         color: selectedpayment ==
+                                //                                 2
+                                //                             ? Color(0xfff7941d)
+                                //                                 .withOpacity(
+                                //                                     0.06)
+                                //                             : Colors.white
+                                //                                 .withOpacity(
+                                //                                     0.04),
+                                //                         borderRadius:
+                                //                             BorderRadius
+                                //                                 .circular(
+                                //                                     15.sp),
+                                //                         border: Border.all(
+                                //                           color:
+                                //                               selectedpayment ==
+                                //                                       2
+                                //                                   ? Color(
+                                //                                       0xfff7941d)
+                                //                                   : Colors
+                                //                                       .black12,
+                                //                           // Border color
+                                //                           width:
+                                //                               2.0, // Border width
+                                //                         ),
+                                //                       ),
+                                //                       child: Row(
+                                //                         mainAxisAlignment:
+                                //                             MainAxisAlignment
+                                //                                 .start,
+                                //                         crossAxisAlignment:
+                                //                             CrossAxisAlignment
+                                //                                 .center,
+                                //                         children: [
+                                //                           Image.asset(
+                                //                             "assets/cod1.png",
+                                //                             height: 5.h,
+                                //                             width: 20.w,
+                                //                           ),
+                                //                           SizedBox(
+                                //                             width: 5.w,
+                                //                           ),
+                                //                           Text(
+                                //                               "Cash On Delivery",
+                                //                               style: TextStyle(
+                                //                                 color: Colors
+                                //                                     .black,
+                                //                                 fontSize: 17.sp,
+                                //                                 fontFamily:
+                                //                                     'match',
+                                //                               )),
+                                //                         ],
+                                //                       ),
+                                //                     ),
+                                //                   ),
+                                //             SizedBox(
+                                //               height: 2.h,
+                                //             ),
+                                //           ],
+                                //         ),
+                                //         paymethodmodal?.data?.stripe?.status ==
+                                //                 false
+                                //             ? GestureDetector(
+                                //                 onTap: () {
+                                //                   buildErrorDialog(
+                                //                       context,
+                                //                       'Sorry',
+                                //                       'Stripe is Not Available at this time');
+                                //                 },
+                                //                 child: Container(
+                                //                   padding: EdgeInsets.all(2.w),
+                                //                   width: 80.w,
+                                //                   decoration: BoxDecoration(
+                                //                     color: Colors.grey
+                                //                         .withOpacity(0.2),
+                                //                     borderRadius:
+                                //                         BorderRadius.circular(
+                                //                             15.sp),
+                                //                     border: Border.all(
+                                //                       color: Colors.black12,
+                                //                       // Border color
+                                //                       width:
+                                //                           2.0, // Border width
+                                //                     ),
+                                //                   ),
+                                //                   child: Row(
+                                //                     mainAxisAlignment:
+                                //                         MainAxisAlignment.start,
+                                //                     crossAxisAlignment:
+                                //                         CrossAxisAlignment
+                                //                             .center,
+                                //                     children: [
+                                //                       Image.asset(
+                                //                         "assets/sglogo.png",
+                                //                         height: 5.h,
+                                //                         width: 15.w,
+                                //                       ),
+                                //                       SizedBox(
+                                //                         width: 5.w,
+                                //                       ),
+                                //                       Text("Pay Using Stripe",
+                                //                           style: TextStyle(
+                                //                             color: Colors.grey,
+                                //                             fontSize: 17.sp,
+                                //                             fontFamily: 'match',
+                                //                           )),
+                                //                     ],
+                                //                   ),
+                                //                 ),
+                                //               )
+                                //             : GestureDetector(
+                                //                 onTap: () {
+                                //                   setState(() {
+                                //                     selectedpayment = 3;
+                                //                   });
+                                //                 },
+                                //                 child: Container(
+                                //                   width: 80.w,
+                                //                   padding: EdgeInsets.all(2.w),
+                                //                   decoration: BoxDecoration(
+                                //                     color: selectedpayment == 3
+                                //                         ? Color(0xfff7941d)
+                                //                             .withOpacity(0.06)
+                                //                         : Colors.white
+                                //                             .withOpacity(0.04),
+                                //                     borderRadius:
+                                //                         BorderRadius.circular(
+                                //                             15.sp),
+                                //                     border: Border.all(
+                                //                       color: selectedpayment ==
+                                //                               3
+                                //                           ? Color(0xfff7941d)
+                                //                           : Colors.black12,
+                                //                       // Border color
+                                //                       width:
+                                //                           2.0, // Border width
+                                //                     ),
+                                //                   ),
+                                //                   child: Center(
+                                //                     child: Row(
+                                //                       mainAxisAlignment:
+                                //                           MainAxisAlignment
+                                //                               .start,
+                                //                       crossAxisAlignment:
+                                //                           CrossAxisAlignment
+                                //                               .center,
+                                //                       children: [
+                                //                         Image.asset(
+                                //                           "assets/slogo.png",
+                                //                           height: 5.h,
+                                //                           width: 18.w,
+                                //                         ),
+                                //                         SizedBox(
+                                //                           width: 5.w,
+                                //                         ),
+                                //                         Text("Pay Using Stirpe",
+                                //                             style: TextStyle(
+                                //                               color:
+                                //                                   Colors.black,
+                                //                               fontSize: 17.sp,
+                                //                               fontFamily:
+                                //                                   'task',
+                                //                             )),
+                                //                       ],
+                                //                     ),
+                                //                   ),
+                                //                 ),
+                                //               ),
+                                //         SizedBox(
+                                //           height: 2.h,
+                                //         ),
+                                //         paymethodmodal?.data?.razorpayData
+                                //                     ?.status ==
+                                //                 false
+                                //             ? GestureDetector(
+                                //                 onTap: () {
+                                //                   buildErrorDialog(
+                                //                       context,
+                                //                       'Sorry',
+                                //                       'Razorpay is Not Available at this time');
+                                //                 },
+                                //                 child: Container(
+                                //                   padding: EdgeInsets.all(2.w),
+                                //                   width: 80.w,
+                                //                   decoration: BoxDecoration(
+                                //                     color: Colors.grey
+                                //                         .withOpacity(0.2),
+                                //                     borderRadius:
+                                //                         BorderRadius.circular(
+                                //                             15.sp),
+                                //                     border: Border.all(
+                                //                       color: Colors.black12,
+                                //                       // Border color
+                                //                       width:
+                                //                           2.0, // Border width
+                                //                     ),
+                                //                   ),
+                                //                   child: Row(
+                                //                     mainAxisAlignment:
+                                //                         MainAxisAlignment.start,
+                                //                     crossAxisAlignment:
+                                //                         CrossAxisAlignment
+                                //                             .center,
+                                //                     children: [
+                                //                       Image.asset(
+                                //                         "assets/razorpayoff.png",
+                                //                         height: 5.h,
+                                //                         width: 20.w,
+                                //                       ),
+                                //                       Text("Pay Using Razorpay",
+                                //                           style: TextStyle(
+                                //                             color: Colors.grey,
+                                //                             fontSize: 17.sp,
+                                //                             fontFamily: 'match',
+                                //                           )),
+                                //                     ],
+                                //                   ),
+                                //                 ),
+                                //               )
+                                //             : GestureDetector(
+                                //                 onTap: () {
+                                //                   print(paymethodmodal?.data
+                                //                       ?.razorpayData?.status);
+                                //                   setState(() {
+                                //                     selectedpayment = 4;
+                                //                   });
+                                //                 },
+                                //                 child: Container(
+                                //                   padding: EdgeInsets.all(2.w),
+                                //                   width: 80.w,
+                                //                   decoration: BoxDecoration(
+                                //                     color: selectedpayment == 4
+                                //                         ? Color(0xfff7941d)
+                                //                             .withOpacity(0.06)
+                                //                         : Colors.white
+                                //                             .withOpacity(0.04),
+                                //                     borderRadius:
+                                //                         BorderRadius.circular(
+                                //                             15.sp),
+                                //                     border: Border.all(
+                                //                       color: selectedpayment ==
+                                //                               4
+                                //                           ? Color(0xfff7941d)
+                                //                           : Colors.black12,
+                                //                       // Border color
+                                //                       width:
+                                //                           2.0, // Border width
+                                //                     ),
+                                //                   ),
+                                //                   child: Row(
+                                //                     mainAxisAlignment:
+                                //                         MainAxisAlignment.start,
+                                //                     crossAxisAlignment:
+                                //                         CrossAxisAlignment
+                                //                             .center,
+                                //                     children: [
+                                //                       Image.asset(
+                                //                         "assets/razorpay.png",
+                                //                         height: 5.h,
+                                //                         width: 20.w,
+                                //                       ),
+                                //                       Text("Pay Using Razorpay",
+                                //                           style: TextStyle(
+                                //                             color: Colors.black,
+                                //                             fontSize: 17.sp,
+                                //                             fontFamily: 'match',
+                                //                           )),
+                                //                     ],
+                                //                   ),
+                                //                 ),
+                                //               ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                             SizedBox(
@@ -834,7 +835,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                 Text(
                                   "Amount",
                                   style: TextStyle(
-                                    fontSize: 20.sp,
+                                    fontSize: 16.sp,
                                     fontFamily: "task",
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -866,7 +867,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           'Sub Total : ',
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 15.sp,
+                                            fontSize: 14.sp,
                                             color: Colors.grey.shade800,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -877,7 +878,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                               : '₹' + (chekoutdetailmodal?.finalTotal).toString(),
                                           style: TextStyle(
                                               fontFamily: 'task',
-                                              fontSize: 15.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.normal,
                                               color: Colors.black),
                                         ),
@@ -895,7 +896,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           'Tax : ',
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 15.sp,
+                                            fontSize: 14.sp,
                                             color: Colors.grey.shade800,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -908,7 +909,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                       .toString(),
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 15.sp,
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.normal,
                                           ),
                                         ),
@@ -926,7 +927,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           'Shipping Fees : ',
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 15.sp,
+                                            fontSize: 14.sp,
                                             color: Colors.grey.shade800,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -938,7 +939,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                      ,
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 15.sp,
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.normal,
                                           ),
                                         ),
@@ -971,7 +972,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                       'Total Amount : ',
                                       style: TextStyle(
                                         fontFamily: 'task',
-                                        fontSize: 17.sp,
+                                        fontSize: 15.sp,
                                         color: Colors.grey.shade800,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -985,8 +986,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                   .toString(),
                                       style: TextStyle(
                                         fontFamily: 'task',
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14.sp,
                                       ),
                                     ),
                                   ],
@@ -1014,11 +1014,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   height: 6.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
-                                      color: Color(0xfff7941d)),
+                                      color: Color(0xff0061b0)),
                                   child: Text(
                                     "Pay Now",
                                     style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 16.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),

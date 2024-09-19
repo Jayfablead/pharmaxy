@@ -63,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(
                         Icons.people,
-                        size: 27,
+                        size: 24,
                         color: Colors.black.withOpacity(0.6),
                       ),
                       SizedBox(
@@ -78,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               "Gender",
                               style: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 22,
+                                  fontSize: 18,
                                   fontFamily: "task"),
                             ),
                             Text(
@@ -92,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               style: TextStyle(
                                   color: Colors.black87,
                                   fontFamily: "task",
-                                  fontSize: 24),
+                                  fontSize: 16),
                             ),
                             Divider(
                               endIndent: 10,
@@ -113,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(
                         Icons.phone,
-                        size: 27,
+                        size: 24,
                         color: Colors.black.withOpacity(0.4),
                       ),
                       SizedBox(
@@ -127,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text("Phone",
                                 style: TextStyle(
                                     color: Colors.black.withOpacity(0.6),
-                                    fontSize: 22,
+                                    fontSize: 18,
                                     fontFamily: "task")),
                             Text(
                               profilemodal?.profileDetails?.userPhone == '' ||
@@ -139,7 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               style: TextStyle(
                                   color: Colors.black87,
                                   fontFamily: "task",
-                                  fontSize: 23),
+                                  fontSize: 16),
                             ),
                             Divider(
                               endIndent: 10,
@@ -160,7 +160,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(
                         Icons.location_on,
-                        size: 27,
+                        size: 24,
                         color: Colors.black.withOpacity(0.4),
                       ),
                       SizedBox(
@@ -175,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               "Address",
                               style: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 22,
+                                  fontSize: 18,
                                   fontFamily: "task"),
                             ),
                             Text(
@@ -189,7 +189,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               style: TextStyle(
                                   color: Colors.black87,
                                   fontFamily: "task",
-                                  fontSize: 24),
+                                  fontSize: 16),
                             ),
                             Divider(
                               endIndent: 10,
@@ -220,7 +220,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Text(
                       "Edit Profile",
                       style: TextStyle(
-                        fontSize: 20.5.sp,
+                        fontSize: 15.0.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontFamily: "task",
@@ -351,7 +351,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       icon: Icon(
                         Icons.arrow_back_ios_new_outlined,
                         color: Colors.white,
-                        size: 25.sp,
+                        size: 20.sp,
                       )),
                 ],
               ),
@@ -364,7 +364,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: 'task',
-                  fontSize: 22.sp,
+                  fontSize: 18.sp,
                   color: Colors.white,
                 ),
               ),

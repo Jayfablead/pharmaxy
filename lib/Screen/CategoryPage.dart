@@ -409,7 +409,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
-                                                                          14.sp,
+                                                                          12.sp,
                                                                       color: Colors
                                                                           .white,
                                                                       fontFamily:

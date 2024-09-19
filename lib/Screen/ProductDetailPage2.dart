@@ -203,12 +203,12 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                     },
                                     icon: Icon(
                                       Icons.arrow_back_ios_rounded,
-                                      size: 25.sp,
+                                      size: 22.sp,
                                     )),
                                 Text(
                                   "Product Detail Page",
                                   style: TextStyle(
-                                    fontSize: 18.sp,
+                                    fontSize: 17.sp,
                                     fontFamily: "task",
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -870,6 +870,61 @@ class _ProductDetailPage2State extends State<ProductDetailPage2> {
                                 ),
                               ),
                             ],
+                          ),
+                          SizedBox(height: 3.h),
+                          // offer
+                          Padding(
+                            padding:  EdgeInsets.symmetric(horizontal: 2.w),
+                            child: Container(
+                              height: 100,
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Colors.blue.shade50
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    child: Icon(Icons.add,color: Colors.white,size: 10.sp,),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff0061b0),
+                                        borderRadius: BorderRadius.circular(10.0)
+                                    ),
+                                    height: 20.0,
+                                    width: 20.0,
+                                  ),
+                                  // SizedBox(width: 20.w,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(height: 1.h,),
+                                      Text("Get ₹ 10.37 additional pharmato",style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontFamily: "task",
+                                      ),),
+                                      Text("Credit with PLUS",style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontFamily: "task",
+                                      ),),
+                                      Text('Enrol now & enjoy FREE delivery',style: TextStyle(
+                                          fontSize: 12.sp,
+                                          fontFamily: "task",
+                                          color: Color(0xff0061b0)
+                                      ),),
+                                      Text('on your order',style: TextStyle(
+                                          fontSize: 12.sp,
+                                          fontFamily: "task",
+                                          color: Color(0xff0061b0)
+                                      ),),
+                                    ],
+                                  ),
+                                  //SizedBox(width: 30.w,),
+                                  Icon(Icons.arrow_forward_ios_outlined,size: 15.sp,color: Color(0xff0061b0),)
+                                ],
+                              ),
+                            ),
                           ),
                           SizedBox(height: 3.h),
                           Padding(
