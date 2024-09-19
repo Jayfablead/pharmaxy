@@ -1,6 +1,7 @@
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Provider/cartProvider.dart';
 import 'package:ecommerce/Screen/SpleshScreen.dart';
+import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -32,8 +33,8 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primaryColor: Colors.orange,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
+            primaryColor: AppColors.primary,
+            colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff0061b0)),
             useMaterial3: true,
           ),
           home: SpleshScreen(),

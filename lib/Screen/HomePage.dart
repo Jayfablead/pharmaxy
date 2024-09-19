@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/AllCatModal.dart';
 import 'package:ecommerce/Modal/BestSellerProductModal.dart';
@@ -18,7 +18,6 @@ import 'package:ecommerce/Screen/ProductList3.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/SubCateGoryPage.dart';
-import 'package:ecommerce/Screen/productlistpage2.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/bottombar.dart';
@@ -26,11 +25,14 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatefulWidget {
   int? sel;
+
   HomePage({super.key, required this.sel});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -51,30 +53,7 @@ class book {
 }
 
 List<book> mobile = [
-  book(
-      'https://www.transparentpng.com/thumb/mobile/mobile-samsung-phone-background-png-6.png',
-      "vivo v27 New ",
-      "24,500",
-      "24,200",
-      "Vivo T2 Pro 5G is teased to feature power and the "),
-  book(
-      'https://www.transparentpng.com/thumb/mobile/mobile-samsung-phone-background-png-6.png',
-      "vivo v27 New ",
-      "24,500",
-      "24,200",
-      "Vivo T2 Pro 5G is teased to feature power and the volume buttons on its right edge."),
-  book(
-      'https://www.transparentpng.com/thumb/mobile/mobile-samsung-phone-background-png-6.png',
-      "vivo v27 New",
-      "24,500",
-      "24,200",
-      "Vivo T2 Pro 5G is teased to feature power and the volume buttons on its right edge."),
-  book(
-      'https://www.transparentpng.com/thumb/mobile/mobile-samsung-phone-background-png-6.png',
-      "vivo v27 New",
-      "24,500",
-      "24,200",
-      "Vivo T2 Pro 5G is teased to feature power and the volume buttons on its right edge."),
+
 ];
 
 List<book> mobile1 = [
@@ -112,12 +91,54 @@ List booka = [
   "Toys",
 ];
 
-final List<String> imageList = [
-  "https://image01-in.oneplus.net/india-oneplus-statics-file/epb/202304/03/LxsGBcytXOcDJ0CD.png?x-amz-process=image/format,webp/quality,Q_80",
-  "https://image01-in.oneplus.net/india-oneplus-statics-file/epb/202304/03/LxsGBcytXOcDJ0CD.png?x-amz-process=image/format,webp/quality,Q_80",
-  "https://image01-in.oneplus.net/india-oneplus-statics-file/epb/202304/03/LxsGBcytXOcDJ0CD.png?x-amz-process=image/format,webp/quality,Q_80",
-  "https://image01-in.oneplus.net/india-oneplus-statics-file/epb/202304/03/LxsGBcytXOcDJ0CD.png?x-amz-process=image/format,webp/quality,Q_80",
+final List<Map<String, String>> items = [
+  {
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjRLhFZkqWgKOsfMxVDLGFtD2dYkwmXcAuww&s",
+    "title": "Besides these, it can also be used to treat",
+  },
+  {
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Dz8pJPPA7SOLo6CdZ6cYurBSCfv7Zfec0_olKfcJAFXJa6FcGUo23ozEN6LnMpmIE5Y&usqp=CAU",
+    "title": "treatment and prevention from conditions also be used ",
+  },
+  {
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo0otowdFgoXyYHmoWllJh4lik5fcWTORhjT420QQ5DP0LqlcwalO-79_PYqXzL30X-dU&usqp=CAU",
+    "title": "tropical pulmonary eosinophilia and loiasis.",
+  },
+  {
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5lpByDf_7fRd4ZkgtfyIwM7sgknVKfpI9Ag&s",
+    "title": "Besides these, it can also be used to treat conditions like",
+  },
 ];
+
+
+final List<Map<String, String>> items1 = [
+  {
+    "imageUrl": "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
+    "title": "Cipla",
+    "price": "Besides these, it can also be used to treat",
+    "saleprice": "Besides these, it can also be used to treat",
+  },
+  {
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ZcLFjbUN5p8163Gz60m-y5I5Z9ad_1wfRg&s",
+    "title": "Paracetamol",
+    "price": "Besides these, it can also be used to treat",
+    "saleprice": "Besides these, it can also be used to treat",
+  },
+  {
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCBLPbWLCWusF0c8oNM88u5SmUPxc1sRmcA&s",
+    "title": "Codine Syp",
+    "price": "Besides these, it can also be used to treat",
+    "saleprice": "Besides these, it can also be used to treat",
+  },
+  {
+    "imageUrl": "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
+    "title": "Antibiotic",
+    "price": "Besides these, it can also be used to treat",
+    "saleprice": "Besides these, it can also be used to treat",
+  },
+
+];
+
 
 List cate = [
   "https://www.pngmart.com/files/15/Apple-iPhone-11-PNG-Background-Image.png",
@@ -190,9 +211,9 @@ class _HomePageState extends State<HomePage> {
 
                               // Image between Menu and Cart
                               Image.asset(
-                                'assets/my.png',  // Replace with your image path
-                                height: 10.w,  // Adjust as needed
-                                width: 30.w,   // Adjust as needed
+                                'assets/my.png', // Replace with your image path
+                                height: 10.w, // Adjust as needed
+                                width: 30.w, // Adjust as needed
                               ),
 
                               // Cart Icon and Profile
@@ -200,9 +221,7 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   // Cart Icon
                                   IconButton(
-                                    onPressed: () {
-
-                                    },
+                                    onPressed: () {},
                                     icon: Icon(
                                       Icons.shopping_cart,
                                       color: AppColors.primary,
@@ -215,49 +234,61 @@ class _HomePageState extends State<HomePage> {
                                     padding: EdgeInsets.only(right: 2.w),
                                     child: GestureDetector(
                                       onTap: () {
-                                        usermodal?.userId == "" || usermodal?.userId == null
+                                        usermodal?.userId == "" ||
+                                                usermodal?.userId == null
                                             ? Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) => LoginPage2(),
-                                          ),
-                                        )
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      LoginPage2(),
+                                                ),
+                                              )
                                             : Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) => ProfilePage(),
-                                          ),
-                                        );
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfilePage(),
+                                                ),
+                                              );
                                       },
-                                      child: usermodal?.userId == "" || usermodal?.userId == null
+                                      child: usermodal?.userId == "" ||
+                                              usermodal?.userId == null
                                           ? Text(
-                                        "Login",
-                                        style: TextStyle(
-                                          color: AppColors.primary,
-                                          fontFamily: 'task',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 17.sp,
-                                        ),
-                                      )
+                                              "Login",
+                                              style: TextStyle(
+                                                color: AppColors.primary,
+                                                fontFamily: 'task',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17.sp,
+                                              ),
+                                            )
                                           : Container(
-                                        margin: EdgeInsets.symmetric(horizontal: 1.w),
-                                        height: 12.2.w,
-                                        width: 12.2.w,
-                                        padding: EdgeInsets.all(1.w),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(90),
-                                          child: CachedNetworkImage(
-                                            imageUrl:
-                                            profilemodal?.profileDetails?.profileimage ??
-                                                '',
-                                            fit: BoxFit.cover,
-                                            progressIndicatorBuilder:
-                                                (context, url, progress) =>
-                                                Center(child: CircularProgressIndicator()),
-                                            errorWidget: (context, url, error) => Icon(
-                                              Icons.error_outline_rounded,
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 1.w),
+                                              height: 12.2.w,
+                                              width: 12.2.w,
+                                              padding: EdgeInsets.all(1.w),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(90),
+                                                child: CachedNetworkImage(
+                                                  imageUrl: profilemodal
+                                                          ?.profileDetails
+                                                          ?.profileimage ??
+                                                      '',
+                                                  fit: BoxFit.cover,
+                                                  progressIndicatorBuilder:
+                                                      (context, url,
+                                                              progress) =>
+                                                          Center(
+                                                              child:
+                                                                  CircularProgressIndicator()),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Icon(
+                                                    Icons.error_outline_rounded,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ),
                                     ),
                                   ),
                                 ],
@@ -267,13 +298,12 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
 
-
-
                       SliverToBoxAdapter(
                         child: SizedBox(
                           height: 1.h,
                         ),
                       ),
+
                       SliverToBoxAdapter(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -317,14 +347,81 @@ class _HomePageState extends State<HomePage> {
                       //   ),
                       // ),
 
+                      // SliverToBoxAdapter(
+                      //   child: CarouselSlider(
+                      //     options: CarouselOptions(
+                      //       enlargeFactor: double.minPositive,
+                      //       height: 13.h,
+                      //       enableInfiniteScroll: true,
+                      //       enlargeCenterPage: true,
+                      //       autoPlay: true,
+                      //     ),
+                      //     items: [
+                      //       // Manually inserted image
+                      //       Builder(
+                      //         builder: (BuildContext context) {
+                      //           return GestureDetector(
+                      //             onTap: () {
+                      //               // Define the action when the manually added image is tapped
+                      //             },
+                      //             child: Container(
+                      //               width: MediaQuery.of(context).size.width,
+                      //               margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      //               decoration: BoxDecoration(
+                      //                 borderRadius: BorderRadius.circular(15),
+                      //                 border: Border.all(width: 0.5, color: Colors.black),
+                      //                 color:Colors.blue.shade300,
+                      //               ),
+                      //               child: ClipRRect(
+                      //                 borderRadius: BorderRadius.circular(15),
+                      //                 child: Image.network(
+                      //                   'https://www.pngplay.com/wp-content/uploads/8/Special-offer-Deal-PNG-Clipart-Background.png',  // Manually added image from assets
+                      //                   fit: BoxFit.cover,
+                      //                   color: Colors.white,
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //           );
+                      //         },
+                      //       ),
+                      //       // Add more manually inserted images if needed
+                      //       Builder(
+                      //         builder: (BuildContext context) {
+                      //           return GestureDetector(
+                      //             onTap: () {
+                      //               // Another action for the second manually added image
+                      //             },
+                      //             child: Container(
+                      //               width: MediaQuery.of(context).size.width,
+                      //               margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      //               decoration: BoxDecoration(
+                      //                 borderRadius: BorderRadius.circular(15),
+                      //                 border: Border.all(width: 0.5, color: Colors.black),
+                      //                 color:Colors.blue.shade300,
+                      //               ),
+                      //               child: ClipRRect(
+                      //                 borderRadius: BorderRadius.circular(15),
+                      //                 child: Image.network(
+                      //                   'https://www.pngplay.com/wp-content/uploads/8/Special-offer-Deal-PNG-Clipart-Background.png',  // Another manually added image
+                      //                   fit: BoxFit.cover,
+                      //                   color: Colors.white,
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //           );
+                      //         },
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       SliverToBoxAdapter(
                         child: Container(
+                          alignment: Alignment.center,
                           height: 140,
-                          width: double.infinity,
+                          // width: 150,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: AppColors.primary
-                          ),
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.primary),
                           child: Row(
                             children: [
                               Padding(
@@ -343,33 +440,58 @@ class _HomePageState extends State<HomePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Genuine medicines delivered home",
-                                      style: TextStyle(fontSize:11.sp,
+                                      "FLAT 24% OFF",
+                                      style: TextStyle(
+                                          fontSize: 10.5.sp,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'task',
                                           color: Colors.white),
                                     ),
-
-                                    // Text(
-                                    //   "GET UP TO",
-                                    //   style: TextStyle(fontSize: 10.sp,
-                                    //       fontWeight: FontWeight.bold,
-                                    //       fontFamily: 'task',
-                                    //       color: Colors.white),
-                                    // ),
-                                    Text(
-                                      "22% OFF",
-                                      style: TextStyle(fontSize: 11.sp,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'task',
-                                          color: Colors.white),
+                                    SizedBox(
+                                      height: 1.h,
                                     ),
                                     Text(
                                       "on your first order",
-                                      style: TextStyle(fontSize: 11.sp,
+                                      style: TextStyle(
+                                          fontSize: 11.sp,
                                           fontWeight: FontWeight.bold,
-                                       fontFamily: 'task',
+                                          fontFamily: 'task',
                                           color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      height: 1.5.h,
+                                    ),
+                                    Container(
+                                      height: 3.5.h,
+                                      width: 38.w, // Height of the button
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        // Button background color
+                                        borderRadius: BorderRadius.circular(10),
+                                        // Rounded corners
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 5,
+                                            spreadRadius: 2,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          // Button icon
+                                          Text(
+                                            "Code : 45GHUYRV",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 11.sp,
+                                                fontFamily: 'task'),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -378,7 +500,6 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-
 
                       // SliverToBoxAdapter(
                       //   child: Row(
@@ -415,13 +536,538 @@ class _HomePageState extends State<HomePage> {
                       //   ),
                       // ),
                       SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 2.h,
+                        ),
+                      ),
+
+                      SliverToBoxAdapter(
+                        child: Padding(
+                            padding: EdgeInsets.all(3.0),
+                            // Adjust padding for the entire row
+                            child: Container(
+                              // color: CupertinoColors.white,
+                              height: 124,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Card(
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 110,
+                                                child: Text(
+                                                  'Order Medicine',
+                                                  style: TextStyle(
+                                                      fontSize: 11.sp,
+                                                      // Adjust the font size
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ),
+                                              Image.network(
+                                                'https://4vector.com/i/free-vector-prescription-medicine-clip-art_119936_prescription-medicine-clip-art/Prescription_Medicine_clip_art_hight.png',
+                                                width: 70,
+                                                height: 70,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          width: 200,
+                                          alignment: Alignment.centerLeft,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(10),
+                                                  bottomRight:
+                                                      Radius.circular(10)),
+                                              color: Colors.red.shade50),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 15),
+                                            child: Text(
+                                              'UPTO 24% OFF',
+                                              style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontSize: 10.sp,
+                                                  fontFamily: 'task'),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 1.w,
+                                  ),
+                                  Card(
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 110,
+                                                child: Text(
+                                                  'Request Prescription',
+                                                  style: TextStyle(
+                                                      fontSize: 11.sp,
+                                                      // Adjust the font size
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ),
+                                              Image.network(
+                                                'https://static.vecteezy.com/system/resources/previews/021/193/217/non_2x/prescription-icon-medical-assets-3d-rendering-png.png',
+                                                width: 70,
+                                                height: 70,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          width: 200,
+                                          alignment: Alignment.centerLeft,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(10),
+                                                  bottomRight:
+                                                      Radius.circular(10)),
+                                              color: Colors.red.shade50),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 15),
+                                            child: Text(
+                                              'UPTO 24% OFF',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 1.w,
+                                  ),
+                                  Card(
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 110,
+                                                child: Text(
+                                                  'Request Doctors',
+                                                  style: TextStyle(
+                                                      fontSize: 11.sp,
+                                                      // Adjust the font size
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ),
+                                              Image.network(
+                                                'https://static.vecteezy.com/system/resources/previews/036/485/041/original/3d-doctor-character-talking-on-phone-call-suitable-for-medical-content-free-png.png',
+                                                width: 70,
+                                                height: 70,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          width: 200,
+                                          alignment: Alignment.centerLeft,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(10),
+                                                  bottomRight:
+                                                      Radius.circular(10)),
+                                              color: Colors.red.shade50),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 15),
+                                            child: Text(
+                                              'UPTO 24% OFF',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ),
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 0.h,
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 2.h,
+                        ),
+                      ),
+
+                      SliverToBoxAdapter(
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Divider(
+                                color: Colors.grey, // Divider color
+                                thickness: 1,
+                                indent: 10, // Divider thickness
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                "OR YOU CAN ORDER VIA",
+                                style:
+                                    TextStyle(color: Colors.grey), // Text style
+                              ),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Colors.grey, // Divider color
+                                thickness: 1,
+                                endIndent: 10, // Divider thickness
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 2.h,
+                        ),
+                      ),
+
+                      SliverToBoxAdapter(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              height: 40,
+                              width: 43.w, // Height of the button
+                              decoration: BoxDecoration(
+                                color: Colors.white, // Button background color
+                                borderRadius: BorderRadius.circular(
+                                    10), // Rounded corners
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.call,
+                                      color: AppColors.primary, size: 24),
+                                  // Button icon
+                                  SizedBox(width: 8),
+                                  Text(
+                                    "Call Us",
+                                    style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12.sp,
+                                        fontFamily: 'task'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 40,
+                              width: 43.w, // Height of the button
+                              decoration: BoxDecoration(
+                                color: Colors.white, // Button background color
+                                borderRadius: BorderRadius.circular(
+                                    10), // Rounded corners
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.network(
+                                    "https://cdn-icons-png.flaticon.com/512/2111/2111774.png",
+                                    width: 20,
+                                    height: 20,
+                                    color: Colors.green,
+                                  ),
+                                  // Icon(Icons.facebook_sharp,color:AppColors.primary, size: 24), // Button icon
+                                  SizedBox(width: 8),
+                                  Text(
+                                    "Whatsapp",
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12.sp,
+                                        fontFamily: 'task'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 2.h,
+                        ),
+                      ),
+
+                      SliverToBoxAdapter(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              child: Text(
+                                "Shop By Category",
+                                style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "task"),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => CategoryPage()));
+                              },
+                              child: Container(
+                                child: allcatmodal?.categories?.length == 0
+                                    ? Text("")
+                                    : Text(
+                                        "View All",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 10.sp,
+                                            color: AppColors.primary,
+                                            fontFamily: "task"),
+                                      ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 1.h,
+                        ),
+                      ),
+
+                      SliverToBoxAdapter(
                         child: Container(
-                          height: 17.h,
+                          height: 40.h,
                           child: allcatmodal?.categories?.length == 0
-                              ? Center(child: Text("No Category Available", style: TextStyle(
-                                        fontSize: 18.sp,
-                                        fontFamily: 'task',
-                                        fontWeight: FontWeight.bold),
+                              ? Center(
+                                  child: Text(
+                                    "No Category Available",
+                                    style: TextStyle(
+                                      fontSize: 18.sp,
+                                      fontFamily: 'task',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
+                              : GridView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  padding: EdgeInsets.zero,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4, // 4 items per row
+                                    mainAxisSpacing:
+                                        1.0, // spacing between rows
+                                    crossAxisSpacing:
+                                        1.0, // spacing between items in a row
+                                    childAspectRatio: 0.6 /
+                                        1, // adjust based on desired item aspect ratio
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      child: Center(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  sel = index;
+                                                  selected = allcatmodal
+                                                      ?.categories?[index]
+                                                      .categoryID
+                                                      .toString();
+                                                  Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          SubCateGoryPage(
+                                                        catid: selected,
+                                                      ),
+                                                    ),
+                                                  );
+                                                });
+                                                catwiceproductap();
+                                              },
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey.shade100,
+                                                  border: Border.all(
+                                                    width: 1,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal: 2.w),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: CachedNetworkImage(
+                                                    height: 18.w,
+                                                    width: 18.w,
+                                                    imageUrl: allcatmodal
+                                                            ?.categories?[index]
+                                                            .catagoryimage ??
+                                                        '',
+                                                    fit: BoxFit.cover,
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                progress) =>
+                                                            Center(
+                                                                child:
+                                                                    CircularProgressIndicator()),
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        Icon(Icons
+                                                            .error_outline_outlined),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            SizedBox(
+                                              width: 16.w,
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                allcatmodal?.categories?[index]
+                                                                .categoryName ==
+                                                            '' ||
+                                                        allcatmodal
+                                                                ?.categories?[
+                                                                    index]
+                                                                .categoryName ==
+                                                            null
+                                                    ? 'N/A'
+                                                    : allcatmodal
+                                                            ?.categories?[index]
+                                                            .categoryName ??
+                                                        '',
+                                                style: TextStyle(
+                                                  fontSize: 11.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: "task",
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  itemCount: allcatmodal?.categories?.length,
+                                ),
+                        ),
+                      ),
+
+                      SliverToBoxAdapter(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              child: Text(
+                                "Featured Brands",
+                                style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "task"),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => CategoryPage()));
+                              },
+                              child: Container(
+                                child: allcatmodal?.categories?.length == 0
+                                    ? Text("")
+                                    : Text(
+                                        "View All",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 10.sp,
+                                            color: AppColors.primary,
+                                            fontFamily: "task"),
+                                      ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 1.h,
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Container(
+                          height: 15.h,
+                          child: allcatmodal?.categories?.length == 0
+                              ? Center(
+                                  child: Text(
+                                    "No Brands Available",
+                                    style: TextStyle(
+                                      fontSize: 18.sp,
+                                      fontFamily: 'task',
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 )
                               : ListView.builder(
@@ -429,6 +1075,8 @@ class _HomePageState extends State<HomePage> {
                                   padding: EdgeInsets.zero,
                                   itemBuilder: (context, index) {
                                     return Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 2.w),
                                       child: Center(
                                         child: Column(
                                           crossAxisAlignment:
@@ -458,48 +1106,37 @@ class _HomePageState extends State<HomePage> {
                                                 width: 19.w,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
-                                                  color: sel == index
-                                                      ? Colors
-                                                          .deepOrange.shade50
-                                                      : Colors.grey.shade100,
+                                                  color: Colors.grey.shade100,
                                                   border: Border.all(
                                                     width: 1,
-                                                    color: sel == index
-                                                        ? Color(0xfff7941d)
-                                                        : Colors.grey,
+                                                    color: Colors.grey,
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          100),
+                                                          10), // More rounded corners
                                                 ),
-                                                margin: EdgeInsets.symmetric(
-                                                    horizontal: 2.w),
-                                                child: CircleAvatar(
-                                                  radius: 9.5.w,
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            150),
-                                                    child: CachedNetworkImage(
-                                                      height: 17.w,
-                                                      width: 17.w,
-                                                      imageUrl: allcatmodal
-                                                              ?.categories?[
-                                                                  index]
-                                                              .catagoryimage ??
-                                                          '',
-                                                      fit: BoxFit.cover,
-                                                      progressIndicatorBuilder:
-                                                          (context, url,
-                                                                  progress) =>
-                                                              Center(
-                                                                  child:
-                                                                      CircularProgressIndicator()),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          Icon(Icons
-                                                              .error_outline_outlined),
-                                                    ),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  // Same rounded corners for the image
+                                                  child: CachedNetworkImage(
+                                                    height: 19.w,
+                                                    width: 19.w,
+                                                    imageUrl: allcatmodal
+                                                            ?.categories?[index]
+                                                            .catagoryimage ??
+                                                        '',
+                                                    fit: BoxFit.cover,
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                progress) =>
+                                                            Center(
+                                                                child:
+                                                                    CircularProgressIndicator()),
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        Icon(Icons
+                                                            .error_outline_outlined),
                                                   ),
                                                 ),
                                               ),
@@ -530,9 +1167,7 @@ class _HomePageState extends State<HomePage> {
                                                   fontSize: 11.sp,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "task",
-                                                  color: sel == index
-                                                      ? Color(0xfff7941d)
-                                                      : Colors.black,
+                                                  color: Colors.black,
                                                 ),
                                               ),
                                             ),
@@ -545,449 +1180,6 @@ class _HomePageState extends State<HomePage> {
                                 ),
                         ),
                       ),
-
-                      SliverToBoxAdapter(
-                        child: Padding(
-                            padding:  EdgeInsets.all(3.0), // Adjust padding for the entire row
-                            child: Container(
-                              color: CupertinoColors.white,
-                              height: 150,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: 140, // Adjust the width for smaller containers
-                                      // height: 110, // Adjust the height for smaller containers
-                                      decoration: BoxDecoration(
-                                        color: Colors.white, // Background color
-                                        borderRadius: BorderRadius.circular(12), // Rounded corners
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black12,
-                                            blurRadius: 8, // Shadow blur radius
-                                            spreadRadius: 1, // Shadow spread radius
-                                          ),
-                                        ],
-                                        border: Border.all(
-                                          color: Colors.grey.shade300, // Border color
-                                          width: 1, // Border width
-                                        ),
-                                      ),
-                                      child: Center(
-                                        // Centers the entire content inside the container
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          // Center items vertically
-                                          children: [
-                                            Image.network(
-                                              'https://static.vecteezy.com/system/resources/previews/021/193/217/non_2x/prescription-icon-medical-assets-3d-rendering-png.png', // Replace with the image URL
-                                              height: 85, // Adjust the image size
-                                            ),
-                                            SizedBox(height: 8),
-                                            Padding(
-                                              padding:  EdgeInsets.only(left: 8.w),
-                                              child: SizedBox(
-                                                width: 60.w,
-                                                child: Text(
-                                                  overflow: TextOverflow.ellipsis,
-                                                  maxLines: 2,
-                                                  'Request Prescription',
-                                                  style: TextStyle(
-                                                      fontSize: 11.sp, // Adjust the font size
-                                                      fontWeight: FontWeight.bold,
-                                                      fontFamily: 'task'
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(height: 5),
-                                            // Text(
-                                            //   'UPTO 24%* OFF',
-                                            //   style: TextStyle(
-                                            //     color: Colors.redAccent,
-                                            //     fontSize: 12, // Adjust the font size
-                                            //   ),
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 1.w,
-                                  ),
-
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: 140, // Adjust the width for smaller containers
-                                      height: 150, // Adjust the height for smaller containers
-                                      decoration: BoxDecoration(
-                                        color: Colors.white, // Background color
-                                        borderRadius: BorderRadius.circular(12), // Rounded corners
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black12,
-                                            blurRadius: 8, // Shadow blur radius
-                                            spreadRadius: 1, // Shadow spread radius
-                                          ),
-                                        ],
-                                        border: Border.all(
-                                          color: Colors.grey.shade300, // Border color
-                                          width: 1, // Border width
-                                        ),
-                                      ),
-                                      child: Center(
-                                        // Centers the entire content inside the container
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          // Center items vertically
-                                          children: [
-                                            Image.network(
-                                              'https://uat.onehealthassist.com/assets/image/pharmacy_offer1.png', // Replace with the image URL
-                                              height: 75, // Adjust the image size
-                                            ),
-                                            SizedBox(height: 8),
-                                            Padding(
-                                              padding:  EdgeInsets.only(left: 4.w),
-                                              child: SizedBox(
-                                                width: 60.w,
-                                                child: Text(
-                                                  overflow: TextOverflow.ellipsis,
-                                                  maxLines: 2,
-                                                  'Order Medicine',
-                                                  style: TextStyle(
-                                                      fontSize: 11.sp, // Adjust the font size
-                                                      fontWeight: FontWeight.bold,
-                                                      fontFamily: 'task'
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(height: 5),
-                                            // Text(
-                                            //   'UPTO 24%* OFF',
-                                            //   style: TextStyle(
-                                            //     color: Colors.redAccent,
-                                            //     fontSize: 12, // Adjust the font size
-                                            //   ),
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 1.w,
-                                  ),
-
-                                  Padding(
-                                    padding:  EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: 140, // Adjust the width for smaller containers
-                                      height: 150, // Adjust the height for smaller containers
-                                      decoration: BoxDecoration(
-                                        color: Colors.white, // Background color
-                                        borderRadius: BorderRadius.circular(12), // Rounded corners
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black12,
-                                            blurRadius: 8, // Shadow blur radius
-                                            spreadRadius: 1, // Shadow spread radius
-                                          ),
-                                        ],
-                                        border: Border.all(
-                                          color: Colors.grey.shade300, // Border color
-                                          width: 1, // Border width
-                                        ),
-                                      ),
-                                      child: Center(
-                                        // Centers the entire content inside the container
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          // Center items vertically
-                                          children: [
-                                            Image.network(
-                                              'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Doctor_with_Nurse_Cartoon.svg/800px-Doctor_with_Nurse_Cartoon.svg.png', // Replace with the image URL
-                                              height: 75, // Adjust the image size
-                                            ),
-                                            SizedBox(height: 8),
-                                            Padding(
-                                              padding:  EdgeInsets.only(left: 10.w),
-                                              child: SizedBox(
-                                                width: 60.w,
-                                                child: Text(
-                                                  overflow: TextOverflow.ellipsis,
-                                                  maxLines: 2,
-                                                  'Request Doctors',
-                                                  style: TextStyle(
-                                                      fontSize: 11.sp, // Adjust the font size
-                                                      fontWeight: FontWeight.bold,
-                                                      fontFamily: 'task'
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(height: 5),
-
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ]
-                                ,),
-                            )
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: SizedBox(
-                          height: 1.h,
-                        ),
-                      ),
-
-                      SliverToBoxAdapter(
-                        child: Container(
-                          height: 10.h,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.white, // Button background color
-                            borderRadius: BorderRadius.circular(10),),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Container(
-                                height: 40,
-                                width: 40.w,// Height of the button
-                                decoration: BoxDecoration(
-                                  color: Colors.white, // Button background color
-                                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black12,
-                                      blurRadius: 5,
-                                      spreadRadius: 2,
-                                    ),
-                                  ],
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.call, color: AppColors.primary, size: 24), // Button icon
-                                    SizedBox(width: 8),
-                                    Text(
-                                      "Call Us",
-                                      style: TextStyle(
-                                          color:AppColors.primary,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12.sp,
-                                          fontFamily: 'task'
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height: 40,
-                                width: 40.w,// Height of the button
-                                decoration: BoxDecoration(
-                                  color: Colors.white, // Button background color
-                                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black12,
-                                      blurRadius: 5,
-                                      spreadRadius: 2,
-                                    ),
-                                  ],
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.network("https://cdn-icons-png.flaticon.com/512/2111/2111774.png",width: 20,height: 20,color: Colors.green,),
-                                    // Icon(Icons.facebook_sharp,color:AppColors.primary, size: 24), // Button icon
-                                    SizedBox(width: 8),
-                                    Text(
-                                      "Whatsapp",
-                                      style: TextStyle(
-                                          color:Colors.green,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12.sp,
-                                          fontFamily: 'task'
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      SliverToBoxAdapter(
-                          child: SizedBox(
-                            height: 2.h,
-                          ),
-                        ),
-
-                      SliverToBoxAdapter(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              child: Text(
-                                "Featured Brands",
-                                style: TextStyle(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "task"),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => CategoryPage()));
-                              },
-                              child: Container(
-                                child: allcatmodal?.categories?.length == 0
-                                    ? Text("")
-                                    : Text(
-                                  "View All",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12.sp,
-                                      color:AppColors.primary,
-                                      fontFamily: "task"),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: SizedBox(
-                          height: 1.h,
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Container(
-                          height: 15.h,
-                          child: allcatmodal?.categories?.length == 0
-                              ? Center(
-                            child: Text(
-                              "No Category Available",
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                fontFamily: 'task',
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          )
-                              : ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            padding: EdgeInsets.zero,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                child: Center(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            sel = index;
-                                            selected = allcatmodal?.categories?[index]
-                                                .categoryID
-                                                .toString();
-                                            Navigator.of(context).push(MaterialPageRoute(
-                                                builder: (context) => SubCateGoryPage(
-                                                  catid: selected,
-                                                )));
-                                          });
-                                          catwiceproductap();
-                                        },
-                                        child: Container(
-                                          height: 19.w,
-                                          width: 19.w,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: sel == index
-                                                ? Colors.deepOrange.shade50
-                                                : Colors.grey.shade100,
-                                            border: Border.all(
-                                              width: 1,
-                                              color: sel == index
-                                                  ? Color(0xfff7941d)
-                                                  : Colors.grey,
-                                            ),
-                                            borderRadius: BorderRadius.circular(10), // More rounded corners
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(10), // Same rounded corners for the image
-                                            child: CachedNetworkImage(
-                                              height: 19.w,
-                                              width: 19.w,
-                                              imageUrl: allcatmodal?.categories?[index]
-                                                  .catagoryimage ??
-                                                  '',
-                                              fit: BoxFit.cover,
-                                              progressIndicatorBuilder:
-                                                  (context, url, progress) =>
-                                                  Center(child: CircularProgressIndicator()),
-                                              errorWidget: (context, url, error) =>
-                                                  Icon(Icons.error_outline_outlined),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 1.h,
-                                      ),
-                                      SizedBox(
-                                        width: 16.w,
-                                        child: Text(
-                                          textAlign: TextAlign.center,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          allcatmodal?.categories?[index].categoryName == '' ||
-                                              allcatmodal?.categories?[index]
-                                                  .categoryName ==
-                                                  null
-                                              ? 'N/A'
-                                              : allcatmodal?.categories?[index].categoryName ??
-                                              '',
-                                          style: TextStyle(
-                                            fontSize: 11.sp,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "task",
-                                            color: sel == index
-                                                ? Color(0xfff7941d)
-                                                : Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                            itemCount: allcatmodal?.categories?.length,
-                          ),
-                        ),
-                      ),
-
-
-
 
                       _serch.text == ''
                           ? SliverToBoxAdapter()
@@ -1231,7 +1423,11 @@ class _HomePageState extends State<HomePage> {
                                                                   top: 0.5.h),
                                                           child: Text(
                                                             '₹' +
-                                                                (searchbestsaleModal?.productData?[index].productPrice).toString(),
+                                                                (searchbestsaleModal
+                                                                        ?.productData?[
+                                                                            index]
+                                                                        .productPrice)
+                                                                    .toString(),
                                                             style: TextStyle(
                                                               decoration:
                                                                   TextDecoration
@@ -1291,8 +1487,11 @@ class _HomePageState extends State<HomePage> {
                                                     height: 4.h,
                                                     width: 32.w,
                                                     decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(30),
-                                                        color: Color(0xfff7941d)),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30),
+                                                        color:
+                                                            Color(0xfff7941d)),
                                                     child: Text(
                                                       "View Product",
                                                       style: TextStyle(
@@ -1374,7 +1573,7 @@ class _HomePageState extends State<HomePage> {
                           ? SliverToBoxAdapter(child: Container())
                           : SliverToBoxAdapter(
                               child: SizedBox(
-                                height: 1.5.h,
+                                height: 1.h,
                               ),
                             ),
                       name
@@ -1387,7 +1586,7 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Top Selling Products",
                                     style: TextStyle(
-                                      fontSize: 13.sp,
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "task",
                                     ),
@@ -1413,8 +1612,8 @@ class _HomePageState extends State<HomePage> {
                                               "View All",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 12.sp,
-                                                  color:AppColors.primary,
+                                                  fontSize: 10.sp,
+                                                  color: AppColors.primary,
                                                   fontFamily: "task"),
                                             ),
                                     ),
@@ -1426,7 +1625,7 @@ class _HomePageState extends State<HomePage> {
                           ? SliverToBoxAdapter(child: Container())
                           : SliverToBoxAdapter(
                               child: SizedBox(
-                                height: 1.h,
+                                height: 2.h,
                               ),
                             ),
                       name
@@ -1465,13 +1664,13 @@ class _HomePageState extends State<HomePage> {
                                           gridDelegate:
                                               SliverGridDelegateWithMaxCrossAxisExtent(
                                                   maxCrossAxisExtent:
-                                                      200, // Adjust as needed
+                                                      180, // Adjust as needed
                                                   mainAxisSpacing:
-                                                      10.0, // Adjust as needed
+                                                      8.0, // Adjust as needed
                                                   crossAxisSpacing:
-                                                      10.0, // Adjust as needed
-                                                  childAspectRatio: 6.5 /
-                                                      11 // Adjust as needed
+                                                      8, // Adjust as needed
+                                                  childAspectRatio: 3.5 /
+                                                      5 // Adjust as needed
                                                   ),
                                           delegate: SliverChildBuilderDelegate(
                                             (BuildContext context, int index) {
@@ -1511,29 +1710,27 @@ class _HomePageState extends State<HomePage> {
                                                             CrossAxisAlignment
                                                                 .center,
                                                         children: [
-                                                          SizedBox(
-                                                            height: 2.h,
-                                                          ),
                                                           Container(
                                                             child:
                                                                 CachedNetworkImage(
-                                                              imageUrl: bestsellerproductmodal
-                                                                              ?.productData?[
-                                                                                  index]
-                                                                              .imgData ==
-                                                                          '' ||
-                                                                      bestsellerproductmodal
-                                                                              ?.productData?[
-                                                                                  index]
-                                                                              .imgData ==
-                                                                          null
-                                                                  ? 'N/A'
-                                                                  : bestsellerproductmodal
-                                                                          ?.productData?[
-                                                                              index]
-                                                                          .imgData ??
-                                                                      '',
-                                                              height: 11.5.h,
+                                                              imageUrl:
+                                                                  // bestsellerproductmodal
+                                                                  //                 ?.productData?[
+                                                                  //                     index]
+                                                                  //                 .imgData ==
+                                                                  //             '' ||
+                                                                  //         bestsellerproductmodal
+                                                                  //                 ?.productData?[
+                                                                  //                     index]
+                                                                  //                 .imgData ==
+                                                                  //             null
+                                                                  //     ? 'N/A'
+                                                                  //     : bestsellerproductmodal
+                                                                  //             ?.productData?[
+                                                                  //                 index]
+                                                                  //             .imgData ??
+                                                              items1[index]['imageUrl']!,
+                                                              height: 12.h,
                                                               width: 30.w,
                                                               imageBuilder:
                                                                   (context,
@@ -1567,98 +1764,90 @@ class _HomePageState extends State<HomePage> {
                                                           SizedBox(
                                                             height: 1.h,
                                                           ),
-                                                          Padding(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        1.w),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Column(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    SizedBox(
-                                                                      width:
-                                                                          30.w,
-                                                                      child:
-                                                                          Text(
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                        maxLines:
-                                                                            1,
-                                                                        bestsellerproductmodal?.productData?[index].productName == "" || bestsellerproductmodal?.productData?[index].productName == null
-                                                                            ? "N/A"
-                                                                            : bestsellerproductmodal?.productData?[index].productName ??
-                                                                                '',
-                                                                        style: TextStyle(
-                                                                            fontSize: 12.5
-                                                                                .sp,
-                                                                            fontFamily:
-                                                                                'task',
-                                                                            fontWeight: FontWeight
-                                                                                .bold,
-                                                                            letterSpacing:
-                                                                                1,
-                                                                            color:
-                                                                                Colors.black),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                              horizontal: 1.5.w,
-                                                            ),
-                                                            child: SizedBox(
-                                                              width: 35.w,
-                                                              child: Text(
-                                                                textAlign:
-                                                                    TextAlign
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
                                                                         .center,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                maxLines: 2,
-                                                                bestsellerproductmodal?.productData?[index].productShortDesc ==
-                                                                            "" ||
-                                                                        bestsellerproductmodal?.productData?[index].productShortDesc ==
-                                                                            null
-                                                                    ? "N/A"
-                                                                    : bestsellerproductmodal
-                                                                            ?.productData?[index]
-                                                                            .productShortDesc ??
-                                                                        '',
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize:
-                                                                      12.sp,
-                                                                  fontFamily:
-                                                                      'task',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  letterSpacing:
-                                                                      1,
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  SizedBox(
+                                                                    width: 30.w,
+                                                                    child: Text(
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                      maxLines:
+                                                                          1,
+                                                                      // bestsellerproductmodal?.productData?[index].productName == "" || bestsellerproductmodal?.productData?[index].productName == null
+                                                                      //     ? "N/A"
+                                                                      //     : bestsellerproductmodal?.productData?[index].productName ??
+                                                                      //         '',
+
+                                                                      items1[index]['title']!,
+                                                                      style: TextStyle(
+                                                                          fontSize: 10
+                                                                              .sp,
+                                                                          fontFamily:
+                                                                              'task',
+                                                                          fontWeight: FontWeight
+                                                                              .bold,
+                                                                          letterSpacing:
+                                                                              1,
+                                                                          color:
+                                                                              Colors.black),
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
-                                                            ),
+                                                            ],
                                                           ),
+                                                          // SizedBox(
+                                                          //   width: 35.w,
+                                                          //   child: Text(
+                                                          //     textAlign:
+                                                          //         TextAlign
+                                                          //             .center,
+                                                          //     overflow:
+                                                          //         TextOverflow
+                                                          //             .ellipsis,
+                                                          //     maxLines: 2,
+                                                          //     // bestsellerproductmodal?.productData?[index].productShortDesc ==
+                                                          //     //             "" ||
+                                                          //     //         bestsellerproductmodal?.productData?[index].productShortDesc ==
+                                                          //     //             null
+                                                          //     //     ? "N/A"
+                                                          //     //     : bestsellerproductmodal
+                                                          //     //             ?.productData?[index]
+                                                          //     //             .productShortDesc ??
+                                                          //     //         '',
+                                                          //             "",
+                                                          //     // "This Is The Antibiotic Product And Body",
+                                                          //     style:
+                                                          //         TextStyle(
+                                                          //       fontSize:
+                                                          //           12.sp,
+                                                          //       fontFamily:
+                                                          //           'task',
+                                                          //       fontWeight:
+                                                          //           FontWeight
+                                                          //               .normal,
+                                                          //       letterSpacing:
+                                                          //           1,
+                                                          //       color: Colors
+                                                          //           .black,
+                                                          //     ),
+                                                          //   ),
+                                                          // ),
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -1667,17 +1856,18 @@ class _HomePageState extends State<HomePage> {
                                                               Row(
                                                                 children: [
                                                                   Text(
-                                                                    bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                                "" ||
-                                                                            bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                                null
-                                                                        ? "N/A"
-                                                                        : '₹' +
-                                                                            (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
+                                                                    // bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                                    //             "" ||
+                                                                    //         bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                                    //             null
+                                                                    //     ? "N/A"
+                                                                    //     : '₹' +
+                                                                    //         (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
+                                                                    "\$500",
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
-                                                                          12.sp,
+                                                                          11.sp,
                                                                       fontFamily:
                                                                           'task',
                                                                       fontWeight:
@@ -1698,18 +1888,19 @@ class _HomePageState extends State<HomePage> {
                                                                         top: 0.4
                                                                             .h),
                                                                     child: Text(
-                                                                      bestsellerproductmodal?.productData?[index].productPrice == "" ||
-                                                                              bestsellerproductmodal?.productData?[index].productPrice ==
-                                                                                  null
-                                                                          ? "N/A"
-                                                                          : '₹' +
-                                                                              (bestsellerproductmodal?.productData?[index].productPrice).toString(),
+                                                                      // bestsellerproductmodal?.productData?[index].productPrice == "" ||
+                                                                      //         bestsellerproductmodal?.productData?[index].productPrice ==
+                                                                      //             null
+                                                                      //     ? "N/A"
+                                                                      //     : '₹' +
+                                                                      //         (bestsellerproductmodal?.productData?[index].productPrice).toString(),
+                                                                     "\$580",
                                                                       style:
                                                                           TextStyle(
                                                                         decoration:
                                                                             TextDecoration.lineThrough,
                                                                         fontSize:
-                                                                            12.sp,
+                                                                            11.sp,
                                                                         fontFamily:
                                                                             'task',
                                                                         fontWeight:
@@ -1730,23 +1921,23 @@ class _HomePageState extends State<HomePage> {
                                                           ),
                                                           GestureDetector(
                                                             onTap: () {
-                                                              bestsellerproductmodal
-                                                                          ?.productData?[
-                                                                              index]
-                                                                          .productType ==
-                                                                      '1'
-                                                                  ? Navigator.of(context).push(
-                                                                      MaterialPageRoute(
-                                                                          builder: (context) =>
-                                                                              productdetailnovartion(
-                                                                                productid: bestsellerproductmodal?.productData?[index].productID ?? '',
-                                                                              )))
-                                                                  : Navigator.of(
-                                                                          context)
-                                                                      .push(MaterialPageRoute(
-                                                                          builder: (context) => productdetailwebview(
-                                                                                productid: bestsellerproductmodal?.productData?[index].productID ?? '',
-                                                                              )));
+                                                              // bestsellerproductmodal
+                                                              //             ?.productData?[
+                                                              //                 index]
+                                                              //             .productType ==
+                                                              //         '1'
+                                                              //     ? Navigator.of(context).push(
+                                                              //         MaterialPageRoute(
+                                                              //             builder: (context) =>
+                                                              //                 productdetailnovartion(
+                                                              //                   productid: bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                              //                 )))
+                                                              //     : Navigator.of(
+                                                              //             context)
+                                                              //         .push(MaterialPageRoute(
+                                                              //             builder: (context) => productdetailwebview(
+                                                              //                   productid: bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                              //                 )));
                                                             },
                                                             child: Container(
                                                               alignment:
@@ -1758,14 +1949,14 @@ class _HomePageState extends State<HomePage> {
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                              30),
-                                                                  color: AppColors.primary
-                                                              ),
+                                                                              10),
+                                                                  color: AppColors
+                                                                      .primary),
                                                               child: Text(
                                                                 "View Product",
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                        12.sp,
+                                                                        11.sp,
                                                                     color: Colors
                                                                         .white),
                                                               ),
@@ -1807,38 +1998,28 @@ class _HomePageState extends State<HomePage> {
                                                                       .toString());
                                                         },
                                                         child: Icon(
-                                                          bestsellerproductmodal
-                                                                      ?.productData?[
-                                                                          index]
-                                                                      .wishlist ==
-                                                                  1
-                                                              ? Icons.favorite
-                                                              : Icons
-                                                                  .favorite_outline,
+                                                          Icons
+                                                              .favorite_outline,
                                                           size: 20.sp,
-                                                          color: bestsellerproductmodal
-                                                                      ?.productData?[
-                                                                          index]
-                                                                      .wishlist ==
-                                                                  1
-                                                              ? Colors.red
-                                                              : Colors.black,
+                                                          color: Colors.black,
                                                         ),
                                                       )),
                                                 ],
                                               );
                                             },
-                                            childCount: _isLoading
-                                                ? bestsellerproductmodal
-                                                    ?.productData?.length
-                                                : (bestsellerproductmodal
-                                                                ?.productData
-                                                                ?.length ??
-                                                            0) <
-                                                        5
-                                                    ? bestsellerproductmodal
-                                                        ?.productData?.length
-                                                    : 4,
+                                            childCount: items1.length,
+
+                                            // _isLoading
+                                            //     ? bestsellerproductmodal
+                                            //         ?.productData?.length
+                                            //     : (bestsellerproductmodal
+                                            //                     ?.productData
+                                            //                     ?.length ??
+                                            //                 0) <
+                                            //             5
+                                            //         ? bestsellerproductmodal
+                                            //             ?.productData?.length
+                                            //         : 4,
                                             // Replace
                                           ),
                                         ),
@@ -1869,9 +2050,8 @@ class _HomePageState extends State<HomePage> {
                                               width: 32.w,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(30),
-                                                  color: AppColors.primary
-                                              ),
+                                                      BorderRadius.circular(10),
+                                                  color: AppColors.primary),
                                               child: Text(
                                                 _isLoading
                                                     ? "View Less.."
@@ -1892,72 +2072,80 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               'Blogs',
                               style: TextStyle(
-                                  fontSize: 13.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'task'
-                              ),
+                                  fontFamily: 'task'),
                             ),
                             TextButton(
                               onPressed: () {},
                               child: Text(
                                 'View All',
                                 style: TextStyle(
-                                    color:AppColors.primary,
+                                    color: AppColors.primary,
                                     fontFamily: 'task',
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.bold
-                                ),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],
                         ),
                       ),
+
                       SliverToBoxAdapter(
-                        child: Card(
-                          child: Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: double.infinity,
-                                  child: ClipRRect(
-                                    borderRadius:
-                                    BorderRadius
-                                        .only(topLeft:Radius.circular(10),topRight: Radius.circular(10)),
-                                    child:
-                                    CachedNetworkImage(
-                                      fit: BoxFit.cover,
-                                      imageUrl:
-                                      "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg",
-                                      progressIndicatorBuilder:
-                                          (context, url,
-                                          progress) =>
-                                          Center(
-                                              child:
-                                              CircularProgressIndicator()),
-                                      errorWidget:
-                                          (context, url,
-                                          error) =>
-                                          Image.asset(
-                                            "",
-                                          ),
+                        child: SizedBox(
+                          height: 21.h,
+                          width: 60.w,
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: items.length,  // Change to use dynamic list length
+                            itemBuilder: (context, index) {
+                              return Card(
+                                color: Colors.blue.shade50,
+                                elevation: 0,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 12.5.h,
+                                      width: 60.w,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                        ),
+                                        child: CachedNetworkImage(
+                                          fit: BoxFit.cover,
+                                          imageUrl: items[index]['imageUrl']!,
+                                          width: 50.w,
+                                          height: 7.h,
+                                          progressIndicatorBuilder: (context, url, progress) =>
+                                              Center(child: CircularProgressIndicator()),
+                                          errorWidget: (context, url, error) => Image.asset(""),
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      width: 60.w,
+                                      child: Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text(
+                                          items[index]['title']!,
+                                          style: TextStyle(
+                                            fontFamily: 'task',
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  height: 2.h,
-                                ),
-                                Text('Jain janolive syrup Horlicks junior stage 1 refill pack...',style: TextStyle(
-                                    fontFamily: 'task',
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold
-                                ),)
-                              ],
-                            ),
+                              );
+                            },
                           ),
                         ),
-                      ),
+                      )
+
                     ],
                   ),
                 ),
@@ -1972,7 +2160,7 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.12),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(
         controller: _serch,
@@ -2006,7 +2194,8 @@ class _HomePageState extends State<HomePage> {
           ),
           border: InputBorder.none,
           hintText: 'Search  For Medicines',
-          hintStyle: TextStyle(color: Colors.black, fontFamily: 'task'),
+          hintStyle: TextStyle(
+              color: Colors.black, fontFamily: 'task', fontSize: 12.sp),
         ),
       ),
     );
@@ -2187,7 +2376,7 @@ class _HomePageState extends State<HomePage> {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
     data['productID'] = value.toString();
-    print("addwish"+ data.toString());
+    print("addwish" + data.toString());
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().addtowishlistapi(data).then((response) async {
