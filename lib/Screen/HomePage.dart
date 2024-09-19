@@ -275,12 +275,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       SliverToBoxAdapter(
-                        child: bestsellerproductmodal?.productData?.length ==
-                            0 ||
-                            bestsellerproductmodal?.productData?.length ==
-                                null
-                            ? Container()
-                            : Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -289,38 +284,42 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
 
-
-
                       SliverToBoxAdapter(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Offers',
-                              style: TextStyle(
-                                  fontSize: 17.sp,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'task'
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                'View All',
-                                style: TextStyle(
-                                    color:AppColors.primary,
-                                    fontFamily: 'task',
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                          ],
+                        child: SizedBox(
+                          height: 2.h,
                         ),
                       ),
 
+                      // SliverToBoxAdapter(
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       Text(
+                      //         'Offers',
+                      //         style: TextStyle(
+                      //             fontSize: 17.sp,
+                      //             fontWeight: FontWeight.bold,
+                      //             fontFamily: 'task'
+                      //         ),
+                      //       ),
+                      //       TextButton(
+                      //         onPressed: () {},
+                      //         child: Text(
+                      //           'View All',
+                      //           style: TextStyle(
+                      //               color:AppColors.primary,
+                      //               fontFamily: 'task',
+                      //             fontWeight: FontWeight.bold
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+
                       SliverToBoxAdapter(
                         child: Container(
-                          height: 160,
+                          height: 140,
                           width: double.infinity,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
@@ -334,8 +333,8 @@ class _HomePageState extends State<HomePage> {
                                   'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
                                   // Replace with your banner image link
                                   fit: BoxFit.cover,
-                                  width: 130,
-                                  height: 130,
+                                  width: 110,
+                                  height: 110,
                                 ),
                               ),
                               Expanded(
@@ -345,29 +344,29 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     Text(
                                       "Genuine medicines delivered home",
-                                      style: TextStyle(fontSize: 14.5.sp,
+                                      style: TextStyle(fontSize:11.sp,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'task',
                                           color: Colors.white),
                                     ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      "GET UP TO",
-                                      style: TextStyle(fontSize: 14.5.sp,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'task',
-                                          color: Colors.white),
-                                    ),
+
+                                    // Text(
+                                    //   "GET UP TO",
+                                    //   style: TextStyle(fontSize: 10.sp,
+                                    //       fontWeight: FontWeight.bold,
+                                    //       fontFamily: 'task',
+                                    //       color: Colors.white),
+                                    // ),
                                     Text(
                                       "22% OFF",
-                                      style: TextStyle(fontSize: 18.sp,
+                                      style: TextStyle(fontSize: 11.sp,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'task',
                                           color: Colors.white),
                                     ),
                                     Text(
                                       "on your first order",
-                                      style: TextStyle(fontSize: 14.5.sp,
+                                      style: TextStyle(fontSize: 11.sp,
                                           fontWeight: FontWeight.bold,
                                        fontFamily: 'task',
                                           color: Colors.white),
@@ -381,45 +380,40 @@ class _HomePageState extends State<HomePage> {
                       ),
 
 
-                      SliverToBoxAdapter(
-                        child: SizedBox(
-                          height: 1.h,
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              child: Text(
-                                "Shop By Category ",
-                                style: TextStyle(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "task"),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => CategoryPage()));
-                               },
-                              child: Container(
-                                child: allcatmodal?.categories?.length == 0
-                                    ? Text("")
-                                    : Text(
-                                        "View All",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13.5.sp,
-                                            color:AppColors.primary,
-                                            fontFamily: "task"),
-                                      ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      // SliverToBoxAdapter(
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       SizedBox(
+                      //         child: Text(
+                      //           "Shop By Category ",
+                      //           style: TextStyle(
+                      //               fontSize: 16.sp,
+                      //               fontWeight: FontWeight.bold,
+                      //               fontFamily: "task"),
+                      //         ),
+                      //       ),
+                      //       GestureDetector(
+                      //         onTap: () {
+                      //           Navigator.of(context).push(MaterialPageRoute(
+                      //               builder: (context) => CategoryPage()));
+                      //          },
+                      //         child: Container(
+                      //           child: allcatmodal?.categories?.length == 0
+                      //               ? Text("")
+                      //               : Text(
+                      //                   "View All",
+                      //                   style: TextStyle(
+                      //                       fontWeight: FontWeight.bold,
+                      //                       fontSize: 13.5.sp,
+                      //                       color:AppColors.primary,
+                      //                       fontFamily: "task"),
+                      //                 ),
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       SliverToBoxAdapter(
                         child: Container(
                           height: 17.h,
@@ -533,7 +527,7 @@ class _HomePageState extends State<HomePage> {
                                                             .categoryName ??
                                                         '',
                                                 style: TextStyle(
-                                                  fontSize: 12.sp,
+                                                  fontSize: 11.sp,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "task",
                                                   color: sel == index
@@ -565,8 +559,8 @@ class _HomePageState extends State<HomePage> {
                                     padding: const EdgeInsets.all(1.0),
                                     child: Container(
                                       alignment: Alignment.center,
-                                      width: 150, // Adjust the width for smaller containers
-                                      height: 130, // Adjust the height for smaller containers
+                                      width: 140, // Adjust the width for smaller containers
+                                      // height: 110, // Adjust the height for smaller containers
                                       decoration: BoxDecoration(
                                         color: Colors.white, // Background color
                                         borderRadius: BorderRadius.circular(12), // Rounded corners
@@ -595,7 +589,7 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             SizedBox(height: 8),
                                             Padding(
-                                              padding:  EdgeInsets.only(left: 5.w),
+                                              padding:  EdgeInsets.only(left: 8.w),
                                               child: SizedBox(
                                                 width: 60.w,
                                                 child: Text(
@@ -603,7 +597,7 @@ class _HomePageState extends State<HomePage> {
                                                   maxLines: 2,
                                                   'Request Prescription',
                                                   style: TextStyle(
-                                                      fontSize: 14, // Adjust the font size
+                                                      fontSize: 11.sp, // Adjust the font size
                                                       fontWeight: FontWeight.bold,
                                                       fontFamily: 'task'
                                                   ),
@@ -631,7 +625,7 @@ class _HomePageState extends State<HomePage> {
                                     padding: const EdgeInsets.all(1.0),
                                     child: Container(
                                       alignment: Alignment.center,
-                                      width: 150, // Adjust the width for smaller containers
+                                      width: 140, // Adjust the width for smaller containers
                                       height: 150, // Adjust the height for smaller containers
                                       decoration: BoxDecoration(
                                         color: Colors.white, // Background color
@@ -661,7 +655,7 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             SizedBox(height: 8),
                                             Padding(
-                                              padding:  EdgeInsets.only(left: 5.w),
+                                              padding:  EdgeInsets.only(left: 4.w),
                                               child: SizedBox(
                                                 width: 60.w,
                                                 child: Text(
@@ -669,7 +663,7 @@ class _HomePageState extends State<HomePage> {
                                                   maxLines: 2,
                                                   'Order Medicine',
                                                   style: TextStyle(
-                                                      fontSize: 14, // Adjust the font size
+                                                      fontSize: 11.sp, // Adjust the font size
                                                       fontWeight: FontWeight.bold,
                                                       fontFamily: 'task'
                                                   ),
@@ -697,7 +691,7 @@ class _HomePageState extends State<HomePage> {
                                     padding:  EdgeInsets.all(1.0),
                                     child: Container(
                                       alignment: Alignment.center,
-                                      width: 150, // Adjust the width for smaller containers
+                                      width: 140, // Adjust the width for smaller containers
                                       height: 150, // Adjust the height for smaller containers
                                       decoration: BoxDecoration(
                                         color: Colors.white, // Background color
@@ -727,7 +721,7 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             SizedBox(height: 8),
                                             Padding(
-                                              padding:  EdgeInsets.only(left: 5.w),
+                                              padding:  EdgeInsets.only(left: 10.w),
                                               child: SizedBox(
                                                 width: 60.w,
                                                 child: Text(
@@ -735,7 +729,7 @@ class _HomePageState extends State<HomePage> {
                                                   maxLines: 2,
                                                   'Request Doctors',
                                                   style: TextStyle(
-                                                      fontSize: 14, // Adjust the font size
+                                                      fontSize: 11.sp, // Adjust the font size
                                                       fontWeight: FontWeight.bold,
                                                       fontFamily: 'task'
                                                   ),
@@ -794,7 +788,7 @@ class _HomePageState extends State<HomePage> {
                                       style: TextStyle(
                                           color:AppColors.primary,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 16,
+                                          fontSize: 12.sp,
                                           fontFamily: 'task'
                                       ),
                                     ),
@@ -826,7 +820,7 @@ class _HomePageState extends State<HomePage> {
                                       style: TextStyle(
                                           color:Colors.green,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 16,
+                                          fontSize: 12.sp,
                                           fontFamily: 'task'
                                       ),
                                     ),
@@ -840,7 +834,7 @@ class _HomePageState extends State<HomePage> {
 
                       SliverToBoxAdapter(
                           child: SizedBox(
-                            height: 1.h,
+                            height: 2.h,
                           ),
                         ),
 
@@ -852,7 +846,7 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 "Featured Brands",
                                 style: TextStyle(
-                                    fontSize: 16.sp,
+                                    fontSize: 13.sp,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "task"),
                               ),
@@ -869,13 +863,18 @@ class _HomePageState extends State<HomePage> {
                                   "View All",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 13.5.sp,
+                                      fontSize: 12.sp,
                                       color:AppColors.primary,
                                       fontFamily: "task"),
                                 ),
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 1.h,
                         ),
                       ),
                       SliverToBoxAdapter(
@@ -968,7 +967,7 @@ class _HomePageState extends State<HomePage> {
                                               : allcatmodal?.categories?[index].categoryName ??
                                               '',
                                           style: TextStyle(
-                                            fontSize: 12.sp,
+                                            fontSize: 11.sp,
                                             fontWeight: FontWeight.bold,
                                             fontFamily: "task",
                                             color: sel == index
@@ -1388,7 +1387,7 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Top Selling Products",
                                     style: TextStyle(
-                                      fontSize: 16.sp,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "task",
                                     ),
@@ -1414,7 +1413,7 @@ class _HomePageState extends State<HomePage> {
                                               "View All",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 13.5.sp,
+                                                  fontSize: 12.sp,
                                                   color:AppColors.primary,
                                                   fontFamily: "task"),
                                             ),
@@ -1451,7 +1450,7 @@ class _HomePageState extends State<HomePage> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontFamily: 'task',
-                                              fontSize: 18.sp,
+                                              fontSize: 13.5.sp,
                                               color: Colors.black),
                                         ),
                                       ),
@@ -1893,7 +1892,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               'Blogs',
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 13.sp,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'task'
                               ),
@@ -1905,7 +1904,7 @@ class _HomePageState extends State<HomePage> {
                                 style: TextStyle(
                                     color:AppColors.primary,
                                     fontFamily: 'task',
-                                  fontSize: 13.5.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.bold
                                 ),
                               ),

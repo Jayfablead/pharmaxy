@@ -113,7 +113,10 @@ flutter:
   fonts:
     - family: task
       fonts:
-        - asset: assets/fonts/WoodfordBournePRO-Regular.otf
+        - asset: assets/fonts/Montserrat-Regular.ttf
+    - family: bold
+      fonts:
+        - asset: assets/fonts/Montserrat-Medium.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
