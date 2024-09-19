@@ -124,7 +124,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                             Text(
                               "Sub Categories",
                               style: TextStyle(
-                                fontSize: 18.sp,
+                                fontSize: 16.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),

@@ -86,7 +86,7 @@ class _WishListPageState extends State<WishListPage> {
                             Text(
                               "Wish List",
                               style: TextStyle(
-                                fontSize: 18.sp,
+                                fontSize: 16.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -345,7 +345,7 @@ class _WishListPageState extends State<WishListPage> {
                                                                         .productShortDesc ??
                                                                     '',
                                                             style: TextStyle(
-                                                              fontSize: 12.sp,
+                                                              fontSize: 11.sp,
                                                               fontFamily:
                                                                   'task',
                                                               fontWeight:

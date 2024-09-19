@@ -165,12 +165,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
-                                  size: 20.sp,
+                                  size: 18.sp,
                                 )),
                             Text(
                               "Checkout",
                               style: TextStyle(
-                                fontSize: 18.sp,
+                                fontSize: 16.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -190,7 +190,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                         child: Text(
                           "Shipping Address",
                           style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 13.sp,
                             fontFamily: "task",
                             fontWeight: FontWeight.bold,
                           ),
@@ -234,7 +234,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                       : widget.firstname
                                                           .toString(),
                                                   style: TextStyle(
-                                                      fontSize: 14.sp,
+                                                      fontSize: 12.sp,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontFamily: "task"),
@@ -251,7 +251,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                       : widget.lastname
                                                           .toString(),
                                                   style: TextStyle(
-                                                      fontSize: 14.sp,
+                                                      fontSize: 12.sp,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontFamily: "task"),
@@ -268,7 +268,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                               child: Text(
                                                 "Add New",
                                                 style: TextStyle(
-                                                    fontSize: 14.sp,
+                                                    fontSize: 12.sp,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                     color: Color(0xff0061b0),
@@ -323,7 +323,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                               builder: (context) =>
                                                                   AllAddpage()));
                                                 },
-                                                child: Icon(Icons.arrow_forward_ios,size: 17.sp,))
+                                                child: Icon(Icons.arrow_forward_ios,size: 15.sp,))
                                           ],
                                         ),
                                       ],
@@ -344,7 +344,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                     Text(
                                       "Payment Methods",
                                       style: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 13.sp,
                                         fontFamily: "task",
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -835,7 +835,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                 Text(
                                   "Amount",
                                   style: TextStyle(
-                                    fontSize: 16.sp,
+                                    fontSize: 13.sp,
                                     fontFamily: "task",
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -867,7 +867,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           'Sub Total : ',
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 14.sp,
+                                            fontSize: 12.sp,
                                             color: Colors.grey.shade800,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -878,7 +878,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                               : '₹' + (chekoutdetailmodal?.finalTotal).toString(),
                                           style: TextStyle(
                                               fontFamily: 'task',
-                                              fontSize: 14.sp,
+                                              fontSize: 12.sp,
                                               fontWeight: FontWeight.normal,
                                               color: Colors.black),
                                         ),
@@ -896,7 +896,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           'Tax : ',
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 14.sp,
+                                            fontSize: 12.sp,
                                             color: Colors.grey.shade800,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -909,7 +909,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                       .toString(),
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 14.sp,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.normal,
                                           ),
                                         ),
@@ -927,7 +927,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           'Shipping Fees : ',
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 14.sp,
+                                            fontSize: 12.sp,
                                             color: Colors.grey.shade800,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -939,7 +939,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                      ,
                                           style: TextStyle(
                                             fontFamily: 'task',
-                                            fontSize: 14.sp,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.normal,
                                           ),
                                         ),
@@ -972,7 +972,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                       'Total Amount : ',
                                       style: TextStyle(
                                         fontFamily: 'task',
-                                        fontSize: 15.sp,
+                                        fontSize: 12.sp,
                                         color: Colors.grey.shade800,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -986,7 +986,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                   .toString(),
                                       style: TextStyle(
                                         fontFamily: 'task',
-                                        fontSize: 14.sp,
+                                        fontSize: 12.sp,
                                       ),
                                     ),
                                   ],
@@ -1018,7 +1018,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   child: Text(
                                     "Pay Now",
                                     style: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),

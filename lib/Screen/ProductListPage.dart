@@ -102,7 +102,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                     Text(
                                       "Product List",
                                       style: TextStyle(
-                                        fontSize: 18.sp,
+                                        fontSize: 16.sp,
                                         fontFamily: "task",
                                         fontWeight: FontWeight.bold,
                                       ),
