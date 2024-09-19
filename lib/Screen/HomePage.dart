@@ -2271,7 +2271,7 @@ class _HomePageState extends State<HomePage> {
             content: Text(
               '! Are You Sure? \n You Want to Quit !',
               style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.normal,
                   fontFamily: 'task'),
             ),
@@ -2280,7 +2280,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                     'Yes',
                     style: TextStyle(
-                      fontSize: 16.sp,
+                      fontSize: 15.sp,
                       fontFamily: 'task',
                       fontWeight: FontWeight.bold,
                       color: Color(0xffff0000),
@@ -2293,7 +2293,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                     'No',
                     style: TextStyle(
-                      fontSize: 16.sp,
+                      fontSize: 15.sp,
                       color: Colors.blue,
                       fontFamily: 'task',
                       fontWeight: FontWeight.bold,

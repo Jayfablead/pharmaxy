@@ -75,12 +75,12 @@ class _EditProfileState extends State<EditProfile> {
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_new_outlined,
-                        size: 23.sp,
+                        size: 17.sp,
                       )),
                   Text(
                     "Edit Profile",
                     style: TextStyle(
-                      fontSize: 20.sp,
+                      fontSize: 16.sp,
                       fontFamily: "task",
                       fontWeight: FontWeight.bold,
                     ),
@@ -174,7 +174,7 @@ class _EditProfileState extends State<EditProfile> {
                           style: TextStyle(
                               color: Colors.black87,
                               fontFamily: "task",
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.bold),
                         ),
                         TextFormField(
@@ -243,7 +243,7 @@ class _EditProfileState extends State<EditProfile> {
                           style: TextStyle(
                               color: Colors.black87,
                               fontFamily: "task",
-                              fontSize: 15.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.bold),
                         ),
                         TextFormField(
@@ -297,7 +297,7 @@ class _EditProfileState extends State<EditProfile> {
                       style: TextStyle(
                           color: Colors.black87,
                           fontFamily: "task",
-                          fontSize: 15.sp,
+                          fontSize: 13.sp,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -380,7 +380,7 @@ class _EditProfileState extends State<EditProfile> {
                                 style: TextStyle(
                                     color: Colors.black87,
                                     fontFamily: "task",
-                                    fontSize: 15.sp,
+                                    fontSize: 13.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                               TextFormField(
@@ -444,7 +444,7 @@ class _EditProfileState extends State<EditProfile> {
                                 style: TextStyle(
                                     color: Colors.black87,
                                     fontFamily: "task",
-                                    fontSize: 15.sp,
+                                    fontSize: 13.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                               TextFormField(

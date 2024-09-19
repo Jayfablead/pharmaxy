@@ -27,7 +27,7 @@ Widget spinKit = Container(
     gradient: LinearGradient(
       begin: Alignment(-1.0, 1.0),
       end: Alignment(1.0, -1.0),
-      colors: [Color(0xfff7941d), Color(0xfff7941d)],
+      colors: [Color(0xff0061b0), Color(0xff0061b0)],
     ),
     // color: buttonColor,
   ),

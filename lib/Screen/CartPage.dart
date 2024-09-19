@@ -127,7 +127,7 @@ class _CartPageState extends State<CartPage> {
                                         Text(
                                           "My Cart",
                                           style: TextStyle(
-                                            fontSize: 13,
+                                            fontSize: 16.sp,
                                             fontFamily: "task",
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -706,7 +706,7 @@ class _CartPageState extends State<CartPage> {
                                 Text(
                                   "My Cart",
                                   style: TextStyle(
-                                    fontSize: 20.sp,
+                                    fontSize: 16.sp,
                                     fontFamily: "task",
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -1008,7 +1008,7 @@ class _CartPageState extends State<CartPage> {
                                                                                 : '₹' + (viewcartmodal?.cartDetails?[index].productPriceMain).toString(),
                                                                             style:
                                                                                 TextStyle(
-                                                                              fontSize: 15.sp,
+                                                                              fontSize: 14.sp,
                                                                               fontFamily: 'task',
                                                                               fontWeight: FontWeight.normal,
                                                                               letterSpacing: 1,
@@ -1123,7 +1123,7 @@ class _CartPageState extends State<CartPage> {
                                                                                 alignment: Alignment.center,
                                                                                 height: 5.h,
                                                                                 width: 35.w,
-                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xfff7941d)),
+                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xff0061b0)),
                                                                                 child: Text(
                                                                                   "Remove",
                                                                                   style: TextStyle(fontSize: 13.sp, color: Colors.white, fontFamily: "task"),
@@ -1192,7 +1192,7 @@ class _CartPageState extends State<CartPage> {
                                                 'Sub Total Amount : ',
                                                 style: TextStyle(
                                                   fontFamily: 'task',
-                                                  fontSize: 15.sp,
+                                                  fontSize: 13.sp,
                                                   color: Colors.grey.shade800,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -1210,7 +1210,7 @@ class _CartPageState extends State<CartPage> {
                                                             .toString(),
                                                 style: TextStyle(
                                                   fontFamily: 'task',
-                                                  fontSize: 15.sp,
+                                                  fontSize: 13.sp,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
@@ -1257,7 +1257,7 @@ class _CartPageState extends State<CartPage> {
                                             child: Text(
                                               "Checkout",
                                               style: TextStyle(
-                                                  fontSize: 17.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "task"),

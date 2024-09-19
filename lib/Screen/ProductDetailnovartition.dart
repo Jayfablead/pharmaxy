@@ -13,6 +13,7 @@ import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:ecommerce/Modal/addReviewModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
+import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
@@ -61,6 +62,35 @@ int selectedColorIndex = 0;
 int selcted = 0;
 String? price;
 String? price1;
+
+
+final List<Map<String, String>> items1 = [
+  {
+    "imageUrl": "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
+    "title": "Cipla",
+    "price": "Besides these, it can also be used to treat",
+    "saleprice": "Besides these, it can also be used to treat",
+  },
+  {
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ZcLFjbUN5p8163Gz60m-y5I5Z9ad_1wfRg&s",
+    "title": "Paracetamol",
+    "price": "Besides these, it can also be used to treat",
+    "saleprice": "Besides these, it can also be used to treat",
+  },
+  {
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCBLPbWLCWusF0c8oNM88u5SmUPxc1sRmcA&s",
+    "title": "Codine Syp",
+    "price": "Besides these, it can also be used to treat",
+    "saleprice": "Besides these, it can also be used to treat",
+  },
+  {
+    "imageUrl": "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
+    "title": "Antibiotic",
+    "price": "Besides these, it can also be used to treat",
+    "saleprice": "Besides these, it can also be used to treat",
+  },
+
+];
 
 class _productdetailnovartionState extends State<productdetailnovartion> {
   @override
@@ -193,7 +223,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 Text(
                                   "Product Detail Page",
                                   style: TextStyle(
-                                    fontSize: 17.sp,
+                                    fontSize: 13.sp,
                                     fontFamily: "task",
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -446,7 +476,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                               Text(
                                                 '₹${productdetail2modal?.productData?.saleProductPrice ?? ''}',
                                                 style: TextStyle(
-                                                  fontSize: 15.sp,
+                                                  fontSize: 13.sp,
                                                   fontFamily: 'task',
                                                   fontWeight: FontWeight.bold,
                                                   letterSpacing: 1,
@@ -511,7 +541,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                     child: Text(
                                                       "Added To Cart",
                                                       style: TextStyle(
-                                                          fontSize: 12.sp,
+                                                          fontSize: 11.sp,
                                                           color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -674,7 +704,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                   child: Text(
                                     'Add Your Review',
                                     style: TextStyle(
-                                      fontSize: 13.sp,
+                                      fontSize: 11.sp,
                                       fontFamily: 'task',
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 1,
@@ -1027,6 +1057,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                             },
                           ),
                     SliverToBoxAdapter(child: SizedBox(height: 1.h,)),
+
                     SliverToBoxAdapter(
                       child: Padding(
                         padding:  EdgeInsets.symmetric(horizontal: 2.w),
@@ -1041,7 +1072,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                               color: Colors.black.withOpacity(0.7),
                             ),),
                             Text("View All",style: TextStyle(
-                              fontSize: 13.sp,
+                              fontSize: 11.sp,
                               fontFamily: 'task',
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1,
@@ -1050,6 +1081,372 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
 
                           ],
                         ),
+                      ),
+                    ),
+
+                    SliverToBoxAdapter(child: SizedBox(height: 1.h,)),
+
+                    SliverGrid(
+                      gridDelegate:
+                      SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent:
+                          180, // Adjust as needed
+                          mainAxisSpacing:
+                          8.0, // Adjust as needed
+                          crossAxisSpacing:
+                          8, // Adjust as needed
+                          childAspectRatio: 3.5 /
+                              5 // Adjust as needed
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) {
+                          return Stack(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  bestsellerproductmodal
+                                      ?.productData?[
+                                  index]
+                                      .productType ==
+                                      '1'
+                                      ? Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder:
+                                              (context) =>
+                                              productdetailnovartion(
+                                                productid:
+                                                bestsellerproductmodal?.productData?[index].productID ?? '',
+                                              )))
+                                      : Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder:
+                                              (context) =>
+                                              productdetailwebview(
+                                                productid:
+                                                bestsellerproductmodal?.productData?[index].productID ?? '',
+                                              )));
+                                },
+                                child: Card(
+                                  color: Colors.white,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment
+                                        .center,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment
+                                        .center,
+                                    children: [
+                                      Container(
+                                        child:
+                                        CachedNetworkImage(
+                                          imageUrl:
+                                          // bestsellerproductmodal
+                                          //                 ?.productData?[
+                                          //                     index]
+                                          //                 .imgData ==
+                                          //             '' ||
+                                          //         bestsellerproductmodal
+                                          //                 ?.productData?[
+                                          //                     index]
+                                          //                 .imgData ==
+                                          //             null
+                                          //     ? 'N/A'
+                                          //     : bestsellerproductmodal
+                                          //             ?.productData?[
+                                          //                 index]
+                                          //             .imgData ??
+                                          items1[index]['imageUrl']!,
+                                          height: 12.h,
+                                          width: 30.w,
+                                          imageBuilder:
+                                              (context,
+                                              imageProvider) =>
+                                              Container(
+                                                decoration:
+                                                BoxDecoration(
+                                                  // borderRadius: BorderRadius.circular(10),
+                                                  image:
+                                                  DecorationImage(
+                                                    filterQuality:
+                                                    FilterQuality
+                                                        .high,
+                                                    image:
+                                                    imageProvider,
+                                                  ),
+                                                ),
+                                              ),
+                                          placeholder: (context,
+                                              url) =>
+                                              Center(
+                                                  child:
+                                                  CircularProgressIndicator()),
+                                          errorWidget: (context,
+                                              url,
+                                              error) =>
+                                              Icon(Icons
+                                                  .error),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment
+                                            .center,
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment
+                                                .center,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment
+                                                .center,
+                                            children: [
+                                              SizedBox(
+                                                width: 30.w,
+                                                child: Text(
+                                                  textAlign:
+                                                  TextAlign
+                                                      .center,
+                                                  overflow:
+                                                  TextOverflow
+                                                      .ellipsis,
+                                                  maxLines:
+                                                  1,
+                                                  // bestsellerproductmodal?.productData?[index].productName == "" || bestsellerproductmodal?.productData?[index].productName == null
+                                                  //     ? "N/A"
+                                                  //     : bestsellerproductmodal?.productData?[index].productName ??
+                                                  //         '',
+
+                                                  items1[index]['title']!,
+                                                  style: TextStyle(
+                                                      fontSize: 10
+                                                          .sp,
+                                                      fontFamily:
+                                                      'task',
+                                                      fontWeight: FontWeight
+                                                          .bold,
+                                                      letterSpacing:
+                                                      1,
+                                                      color:
+                                                      Colors.black),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      // SizedBox(
+                                      //   width: 35.w,
+                                      //   child: Text(
+                                      //     textAlign:
+                                      //         TextAlign
+                                      //             .center,
+                                      //     overflow:
+                                      //         TextOverflow
+                                      //             .ellipsis,
+                                      //     maxLines: 2,
+                                      //     // bestsellerproductmodal?.productData?[index].productShortDesc ==
+                                      //     //             "" ||
+                                      //     //         bestsellerproductmodal?.productData?[index].productShortDesc ==
+                                      //     //             null
+                                      //     //     ? "N/A"
+                                      //     //     : bestsellerproductmodal
+                                      //     //             ?.productData?[index]
+                                      //     //             .productShortDesc ??
+                                      //     //         '',
+                                      //             "",
+                                      //     // "This Is The Antibiotic Product And Body",
+                                      //     style:
+                                      //         TextStyle(
+                                      //       fontSize:
+                                      //           12.sp,
+                                      //       fontFamily:
+                                      //           'task',
+                                      //       fontWeight:
+                                      //           FontWeight
+                                      //               .normal,
+                                      //       letterSpacing:
+                                      //           1,
+                                      //       color: Colors
+                                      //           .black,
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment
+                                            .center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                // bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                //             "" ||
+                                                //         bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                //             null
+                                                //     ? "N/A"
+                                                //     : '₹' +
+                                                //         (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
+                                                "\$500",
+                                                style:
+                                                TextStyle(
+                                                  fontSize:
+                                                  11.sp,
+                                                  fontFamily:
+                                                  'task',
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  letterSpacing:
+                                                  1,
+                                                  color: Colors
+                                                      .black,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width:
+                                                0.5.w,
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 0.4
+                                                        .h),
+                                                child: Text(
+                                                  // bestsellerproductmodal?.productData?[index].productPrice == "" ||
+                                                  //         bestsellerproductmodal?.productData?[index].productPrice ==
+                                                  //             null
+                                                  //     ? "N/A"
+                                                  //     : '₹' +
+                                                  //         (bestsellerproductmodal?.productData?[index].productPrice).toString(),
+                                                  "\$580",
+                                                  style:
+                                                  TextStyle(
+                                                    decoration:
+                                                    TextDecoration.lineThrough,
+                                                    fontSize:
+                                                    11.sp,
+                                                    fontFamily:
+                                                    'task',
+                                                    fontWeight:
+                                                    FontWeight.normal,
+                                                    letterSpacing:
+                                                    1,
+                                                    color: Colors
+                                                        .black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          // bestsellerproductmodal
+                                          //             ?.productData?[
+                                          //                 index]
+                                          //             .productType ==
+                                          //         '1'
+                                          //     ? Navigator.of(context).push(
+                                          //         MaterialPageRoute(
+                                          //             builder: (context) =>
+                                          //                 productdetailnovartion(
+                                          //                   productid: bestsellerproductmodal?.productData?[index].productID ?? '',
+                                          //                 )))
+                                          //     : Navigator.of(
+                                          //             context)
+                                          //         .push(MaterialPageRoute(
+                                          //             builder: (context) => productdetailwebview(
+                                          //                   productid: bestsellerproductmodal?.productData?[index].productID ?? '',
+                                          //                 )));
+                                        },
+                                        child: Container(
+                                          alignment:
+                                          Alignment
+                                              .center,
+                                          height: 4.h,
+                                          width: 32.w,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius
+                                                  .circular(
+                                                  10),
+                                              color: AppColors
+                                                  .primary),
+                                          child: Text(
+                                            "View Product",
+                                            style: TextStyle(
+                                                fontSize:
+                                                11.sp,
+                                                color: Colors
+                                                    .white),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                  left: 37.w,
+                                  top: 1.h,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      usermodal?.userId ==
+                                          "" ||
+                                          usermodal?.userId ==
+                                              null
+                                          ? Navigator.of(
+                                          context)
+                                          .push(MaterialPageRoute(
+                                          builder:
+                                              (context) =>
+                                              LoginPage2()))
+                                          : bestsellerproductmodal
+                                          ?.productData?[
+                                      index]
+                                          .wishlist ==
+                                          1
+                                          ? removewishlistap((bestsellerproductmodal
+                                          ?.productData?[
+                                      index]
+                                          .productID)
+                                          .toString())
+                                          : addwishlistap((bestsellerproductmodal
+                                          ?.productData?[
+                                      index]
+                                          .productID)
+                                          .toString());
+                                    },
+                                    child: Icon(
+                                      Icons
+                                          .favorite_outline,
+                                      size: 20.sp,
+                                      color: Colors.black,
+                                    ),
+                                  )),
+                            ],
+                          );
+                        },
+                        childCount: items1.length,
+
+                        // _isLoading
+                        //     ? bestsellerproductmodal
+                        //         ?.productData?.length
+                        //     : (bestsellerproductmodal
+                        //                     ?.productData
+                        //                     ?.length ??
+                        //                 0) <
+                        //             5
+                        //         ? bestsellerproductmodal
+                        //             ?.productData?.length
+                        //         : 4,
+                        // Replace
                       ),
                     ),
                   ],

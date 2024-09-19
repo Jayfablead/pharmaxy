@@ -125,15 +125,15 @@ class _drawer1State extends State<drawer1> {
                                       children: [
                                         Icon(
                                           CupertinoIcons.home,
-                                          size: 22.sp,
-                                          color: Color(0xfff7941d),
+                                          size: 19.sp,
+                                          color: AppColors.primary,
                                         ),
                                         SizedBox(
                                           width: 2.w,
                                         ),
                                         Text("Home",
                                             style: TextStyle(
-                                              fontSize: 17.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
                                               fontFamily: 'task',
                                               color: Colors.black,
@@ -177,15 +177,15 @@ class _drawer1State extends State<drawer1> {
                                       children: [
                                         Icon(
                                           Icons.category_rounded,
-                                          size: 22.sp,
-                                          color: Color(0xfff7941d),
+                                          size: 14.sp,
+                                          color: AppColors.primary,
                                         ),
                                         SizedBox(
                                           width: 2.w,
                                         ),
                                         Text("Categories",
                                             style: TextStyle(
-                                              fontSize: 17.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
                                               fontFamily: 'task',
                                               color: Colors.black,
@@ -230,7 +230,7 @@ class _drawer1State extends State<drawer1> {
                       //                   Icon(
                       //                     CupertinoIcons.cart,
                       //                     size: 25.sp,
-                      //                     color: Color(0xfff7941d),
+                      //                     color: AppColors.primary,
                       //                   ),
                       //                   SizedBox(
                       //                     width: 2.w,
@@ -296,7 +296,7 @@ class _drawer1State extends State<drawer1> {
                           //     backgroundImage: NetworkImage(
                           //         "https://icdn.football-espana.net/wp-content/uploads/2022/06/Neymar-Junior2.jpeg")),
                           SizedBox(
-                            width: 4.w,
+                            width: 2.w,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,41 +305,44 @@ class _drawer1State extends State<drawer1> {
                               SizedBox(
                                 height: 0.5.h,
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    profilemodal?.profileDetails?.userFirstName == '' || profilemodal?.profileDetails?.userFirstName == null
-                                        ? 'N/A'
-                                        : profilemodal
-                                                ?.profileDetails?.userFirstName ??
-                                            '',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20.sp,
-                                        letterSpacing: 0.5,
-                                        fontFamily: 'task',
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  SizedBox(
-                                    width: 1.w,
-                                  ),
-                                  Text(
-                                    profilemodal?.profileDetails?.userLastName == '' || profilemodal?.profileDetails?.userLastName == null
-                                        ? 'N/A'
-                                        : profilemodal
-                                        ?.profileDetails?.userLastName ??
-                                        '',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20.sp,
-                                        letterSpacing: 0.5,
-                                        fontFamily: 'task',
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ],
+                              Padding(
+                                padding:  EdgeInsets.only(left: 2.w),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      profilemodal?.profileDetails?.userFirstName == '' || profilemodal?.profileDetails?.userFirstName == null
+                                          ? 'N/A'
+                                          : profilemodal
+                                                  ?.profileDetails?.userFirstName ??
+                                              '',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 13.sp,
+                                          letterSpacing: 0.5,
+                                          fontFamily: 'task',
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    SizedBox(
+                                      width: 1.w,
+                                    ),
+                                    Text(
+                                      profilemodal?.profileDetails?.userLastName == '' || profilemodal?.profileDetails?.userLastName == null
+                                          ? 'N/A'
+                                          : profilemodal
+                                          ?.profileDetails?.userLastName ??
+                                          '',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 13.sp,
+                                          letterSpacing: 0.5,
+                                          fontFamily: 'task',
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
                               ),
                               SizedBox(
-                                width: 50.w,
+                                width: 40.w,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
@@ -357,7 +360,7 @@ class _drawer1State extends State<drawer1> {
                                       style: TextStyle(
                                           // color: primary,
                                           fontFamily: 'task',
-                                          fontSize: 15.sp,
+                                          fontSize: 13.sp,
                                           fontWeight: FontWeight.w600)),
                                 ),
                               ),
@@ -404,15 +407,15 @@ class _drawer1State extends State<drawer1> {
                                       children: [
                                         Icon(
                                           CupertinoIcons.home,
-                                          size: 22.sp,
-                                          color: Color(0xfff7941d),
+                                          size: 19.sp,
+                                          color: AppColors.primary,
                                         ),
                                         SizedBox(
                                           width: 2.w,
                                         ),
                                         Text("Home",
                                             style: TextStyle(
-                                              fontSize: 17.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
                                               fontFamily: 'task',
                                               color: Colors.black,
@@ -457,15 +460,15 @@ class _drawer1State extends State<drawer1> {
                                       children: [
                                         Icon(
                                           CupertinoIcons.option,
-                                          size: 22.sp,
-                                          color: Color(0xfff7941d),
+                                          size: 19.sp,
+                                          color: AppColors.primary,
                                         ),
                                         SizedBox(
                                           width: 2.w,
                                         ),
                                         Text("My Orders",
                                             style: TextStyle(
-                                              fontSize: 17.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
                                               fontFamily: 'task',
                                               color: Colors.black,
@@ -508,8 +511,8 @@ class _drawer1State extends State<drawer1> {
                       //                 children: [
                       //                   Icon(
                       //                     Icons.payment_sharp,
-                      //                     size: 22.sp,
-                      //                     color: Color(0xfff7941d),
+                      //                     size: 19.sp,
+                      //                     color: AppColors.primary,
                       //                   ),
                       //                   SizedBox(
                       //                     width: 2.w,
@@ -562,8 +565,8 @@ class _drawer1State extends State<drawer1> {
                                       children: [
                                         Icon(
                                           Icons.person_outline_rounded,
-                                          size: 22.sp,
-                                          color: Color(0xfff7941d),
+                                          size: 19.sp,
+                                          color: AppColors.primary,
                                         ),
                                         SizedBox(
                                           width: 2.w,
@@ -571,7 +574,7 @@ class _drawer1State extends State<drawer1> {
                                         Text(
                                           "Profile",
                                           style: TextStyle(
-                                            fontSize: 17.sp,
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.w500,
                                             fontFamily: 'task',
                                             color: Colors.black,
@@ -617,15 +620,15 @@ class _drawer1State extends State<drawer1> {
                                       children: [
                                         Icon(
                                           Icons.favorite,
-                                          size: 22.sp,
-                                          color: Color(0xfff7941d),
+                                          size: 19.sp,
+                                          color: AppColors.primary,
                                         ),
                                         SizedBox(
                                           width: 2.w,
                                         ),
                                         Text('WishList',
                                             style: TextStyle(
-                                              fontSize: 17.sp,
+                                              fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
                                               fontFamily: 'task',
                                               color: Colors.black,
@@ -671,7 +674,7 @@ class _drawer1State extends State<drawer1> {
                                         Icon(
                                           CupertinoIcons.cart,
                                           size: 25.sp,
-                                          color: Color(0xfff7941d),
+                                          color: AppColors.primary,
                                         ),
                                         SizedBox(
                                           width: 2.w,
@@ -679,7 +682,7 @@ class _drawer1State extends State<drawer1> {
                                         Text(
                                           "My Cart",
                                           style: TextStyle(
-                                            fontSize: 17.sp,
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.w500,
                                             fontFamily: 'task',
                                             color: Colors.black,
@@ -725,7 +728,7 @@ class _drawer1State extends State<drawer1> {
                                         Icon(
                                           CupertinoIcons.chat_bubble_fill,
                                           size: 20.sp,
-                                          color: Color(0xfff7941d),
+                                          color: AppColors.primary,
                                         ),
                                         SizedBox(
                                           width: 2.w,
@@ -733,7 +736,7 @@ class _drawer1State extends State<drawer1> {
                                         Text(
                                           "Chat",
                                           style: TextStyle(
-                                            fontSize: 17.sp,
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.w500,
                                             fontFamily: 'task',
                                             color: Colors.black,
@@ -779,7 +782,7 @@ class _drawer1State extends State<drawer1> {
                                         Icon(
                                           CupertinoIcons.lock_rotation_open,
                                           size: 25.sp,
-                                          color: Color(0xfff7941d),
+                                          color: AppColors.primary,
                                         ),
                                         SizedBox(
                                           width: 2.w,
@@ -787,7 +790,7 @@ class _drawer1State extends State<drawer1> {
                                         Text(
                                           "Change Password",
                                           style: TextStyle(
-                                            fontSize: 17.sp,
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.w500,
                                             fontFamily: 'task',
                                             color: Colors.black,
@@ -851,7 +854,7 @@ class _drawer1State extends State<drawer1> {
                                         Text(
                                           "Logout",
                                           style: TextStyle(
-                                            fontSize: 21.sp,
+                                            fontSize: 15.sp,
                                             fontWeight: FontWeight.w500,
                                             fontFamily: 'task',
                                             color: Colors.red,

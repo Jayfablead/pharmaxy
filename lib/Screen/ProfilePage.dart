@@ -239,8 +239,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: 25.5.w,
-                      height: 25.5.w,
+                      width: 23.w,
+                      height: 23.5.w,
                       decoration: BoxDecoration(
                           border: Border.all(width: 4, color: Colors.white),
                           borderRadius: BorderRadius.circular(100),
@@ -276,44 +276,47 @@ class _ProfilePageState extends State<ProfilePage> {
                           SizedBox(
                             height: 1.h,
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                profilemodal?.profileDetails?.userFirstName ==
-                                            '' ||
-                                        profilemodal?.profileDetails
-                                                ?.userFirstName ==
-                                            null
-                                    ? 'N/A'
-                                    : profilemodal
-                                            ?.profileDetails?.userFirstName ??
-                                        '',
-                                style: TextStyle(
-                                    fontSize: 19.sp,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "task",
-                                    color: Colors.white),
-                              ),
-                              SizedBox(
-                                width: 2.w,
-                              ),
-                              Text(
-                                profilemodal?.profileDetails?.userLastName ==
-                                            '' ||
-                                        profilemodal?.profileDetails
-                                                ?.userLastName ==
-                                            null
-                                    ? 'N/A'
-                                    : profilemodal
-                                            ?.profileDetails?.userLastName ??
-                                        '',
-                                style: TextStyle(
-                                    fontSize: 19.sp,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "task",
-                                    color: Colors.white),
-                              ),
-                            ],
+                          Padding(
+                            padding:  EdgeInsets.only(left: 2.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  profilemodal?.profileDetails?.userFirstName ==
+                                              '' ||
+                                          profilemodal?.profileDetails
+                                                  ?.userFirstName ==
+                                              null
+                                      ? 'N/A'
+                                      : profilemodal
+                                              ?.profileDetails?.userFirstName ??
+                                          '',
+                                  style: TextStyle(
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "task",
+                                      color: Colors.white),
+                                ),
+                                SizedBox(
+                                  width: 2.w,
+                                ),
+                                Text(
+                                  profilemodal?.profileDetails?.userLastName ==
+                                              '' ||
+                                          profilemodal?.profileDetails
+                                                  ?.userLastName ==
+                                              null
+                                      ? 'N/A'
+                                      : profilemodal
+                                              ?.profileDetails?.userLastName ??
+                                          '',
+                                  style: TextStyle(
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "task",
+                                      color: Colors.white),
+                                ),
+                              ],
+                            ),
                           ),
                           Padding(
                             padding:  EdgeInsets.only(left: 8.0),
@@ -324,7 +327,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ? 'N/A'
                                   : profilemodal?.profileDetails?.userEmail ?? '',
                               style: TextStyle(
-                                fontSize: 16.sp,
+                                fontSize: 13.sp,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: "task",
                                 color: Colors.white,
@@ -358,13 +361,13 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Positioned(
               top: 6.h,
-              right: 32.w,
+              right: 38.w,
               child: Text(
                 "My Profile",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: 'task',
-                  fontSize: 18.sp,
+                  fontSize: 16.sp,
                   color: Colors.white,
                 ),
               ),
