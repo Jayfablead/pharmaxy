@@ -178,7 +178,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.normal,
                                             fontFamily: 'task',
-                                            fontSize: 15.sp,
+                                            fontSize: 13.sp,
                                             color: Colors.grey),
                                       ),
                                     ],

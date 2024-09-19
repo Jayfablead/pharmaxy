@@ -448,7 +448,7 @@ class _bottombarState extends State<bottombar> {
                                               Text(
                                                 "Are You Sure Want To Logout ?",
                                                 style: TextStyle(
-                                                    fontSize: 15.sp,
+                                                    fontSize: 13.sp,
                                                     fontFamily: 'task'),
                                               ),
                                             ],

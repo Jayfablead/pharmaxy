@@ -155,7 +155,7 @@ class _WishListPageState extends State<WishListPage> {
                                   child: Text(
                                     "No Products Available",
                                     style: TextStyle(
-                                      fontSize: 20.sp,
+                                      fontSize: 16.sp,
                                       fontFamily: 'task',
                                       fontWeight: FontWeight.bold,
                                     ),

@@ -75,7 +75,7 @@ class _LoginPage2State extends State<LoginPage2> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'task',
-                                fontSize: 30.sp,
+                                fontSize: 22.sp,
                                 color: Colors.white),
                           ),
                         ),
@@ -132,7 +132,7 @@ class _LoginPage2State extends State<LoginPage2> {
                                   hintText: 'Email',
                                   hintStyle: TextStyle(
                                       color: Colors.black.withOpacity(0.6),
-                                      fontSize: 14.sp,
+                                      fontSize: 12.sp,
                                       fontFamily: "task"),
                                 ),
                               ),
@@ -205,7 +205,7 @@ class _LoginPage2State extends State<LoginPage2> {
                                   hintText: 'Password',
                                   hintStyle: TextStyle(
                                       color: Colors.black.withOpacity(0.6),
-                                      fontSize: 14.sp,
+                                      fontSize: 12.sp,
                                       fontFamily: "task"),
                                 ),
                               ),
@@ -232,7 +232,7 @@ class _LoginPage2State extends State<LoginPage2> {
                                     color: Color(0xff0061b0),
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "task",
-                                    fontSize: 15.sp),
+                                    fontSize: 13.sp),
                               ),
                             ),
                           ],
@@ -261,7 +261,7 @@ class _LoginPage2State extends State<LoginPage2> {
                             child: Text(
                               "Login",
                               style: TextStyle(
-                                  fontSize: 23.5.sp,
+                                  fontSize: 14.sp,
                                   color: Colors.white,
                                   fontFamily: "task"),
                             )),
@@ -327,7 +327,7 @@ class _LoginPage2State extends State<LoginPage2> {
                                   child: Text(
                                     "Skip..",
                                     style: TextStyle(
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         color: Colors.white,
                                         fontFamily: "task"),
                                   )),
@@ -346,13 +346,13 @@ class _LoginPage2State extends State<LoginPage2> {
                         children: [
                           Container(
                             alignment: Alignment.center,
-                            height: 30.w,
-                            width: 30.w,
+                            height: 25.w,
+                            width: 25.w,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
                                 color: Colors.white),
                             child: Icon(Icons.person,
-                                size: 45.sp, color: Color(0xff0061b0)),
+                                size: 30.sp, color: Color(0xff0061b0)),
                           ),
                         ],
                       )),

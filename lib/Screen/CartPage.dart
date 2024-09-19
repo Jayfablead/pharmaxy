@@ -167,7 +167,7 @@ class _CartPageState extends State<CartPage> {
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
                                               fontFamily: 'task',
-                                              fontSize: 20.sp,
+                                              fontSize: 16.sp,
                                             ),
                                           ))
                                       : Column(
@@ -515,7 +515,7 @@ class _CartPageState extends State<CartPage> {
                                                                               ),
                                                                               Text(
                                                                                 "Are You Sure to delete this product from Cart?",
-                                                                                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14.sp, fontFamily: 'task'),
+                                                                                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13.sp, fontFamily: 'task'),
                                                                               ),
                                                                               SizedBox(
                                                                                 height: 2.h,

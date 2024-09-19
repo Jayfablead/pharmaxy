@@ -195,7 +195,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'task',
-                                      fontSize: 12.sp,
+                                      fontSize: 16.sp,
                                       color: Colors.black),
                                 ),
                               ))

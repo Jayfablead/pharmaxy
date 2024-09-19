@@ -152,7 +152,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                             color: Color(0xff0061b0),
                                             fontFamily: 'task',
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 17.sp,
+                                            fontSize: 14.sp,
                                           ),
                                         )
                                       : Container(

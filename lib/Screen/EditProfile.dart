@@ -510,7 +510,7 @@ class _EditProfileState extends State<EditProfile> {
                           "Save",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 17.sp,
+                              fontSize: 14.sp,
                               fontFamily: "task"),
                         ),
                       ),
