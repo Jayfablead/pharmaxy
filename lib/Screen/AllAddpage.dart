@@ -67,13 +67,13 @@ class _AllAddpageState extends State<AllAddpage> {
                             },
                             icon: Icon(
                               Icons.arrow_back_ios_new_outlined,
-                              size: 25.sp,
+                              size: 18.sp,
                             ),
                           ),
                           Text(
                             "Address",
                             style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 16.sp,
                               fontFamily: "task",
                               fontWeight: FontWeight.bold,
                             ),
@@ -103,8 +103,8 @@ class _AllAddpageState extends State<AllAddpage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                                height: 8.w,
-                                width: 8.w,
+                                height: 7.w,
+                                width: 7.w,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25),
                                   color: Color(0xff0061b0),
@@ -112,11 +112,11 @@ class _AllAddpageState extends State<AllAddpage> {
                                 child: Center(
                                     child: Icon(
                                   Icons.add,
-                                  size: 20.sp,
+                                  size: 15.sp,
                                   color: Colors.white,
                                 ))),
                             SizedBox(
-                              width: 1.w,
+                              width: 2.w,
                             ),
                             GestureDetector(
                               onTap: () {
@@ -131,7 +131,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                   textAlign: TextAlign.center,
                                   "Add New Address",
                                   style: TextStyle(
-                                    fontSize: 14.sp,
+                                    fontSize: 12.sp,
                                     fontFamily: 'task',
                                     fontWeight: FontWeight.normal,
                                     color: Colors.black,
@@ -227,7 +227,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                                                 .firstName ??
                                                             "",
                                                         style: TextStyle(
-                                                            fontSize: 16.sp,
+                                                            fontSize: 13.sp,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                             fontFamily: "task"),
@@ -242,7 +242,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                                                 .lastName ??
                                                             "",
                                                         style: TextStyle(
-                                                            fontSize: 16.sp,
+                                                            fontSize: 13.sp,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                             fontFamily: "task"),
@@ -263,7 +263,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                                                   .address ??
                                                               "",
                                                           style: TextStyle(
-                                                              fontSize: 15.sp,
+                                                              fontSize: 12.sp,
                                                               color:
                                                                   Colors.black,
                                                               fontWeight:
@@ -290,7 +290,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                           icon: Icon(
                                             Icons.more_vert,
                                             color: Color(0xff0061b0),
-                                            size: 20.sp,
+                                            size: 18.sp,
                                           ),
                                           // add this line
                                           itemBuilder: (_) =>
@@ -317,7 +317,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.black,
-                                                              fontSize: 15.sp,
+                                                              fontSize: 12.sp,
                                                               fontFamily:
                                                                   'task',
                                                             ),
@@ -344,7 +344,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.black,
-                                                              fontSize: 15.sp,
+                                                              fontSize: 12.sp,
                                                               fontFamily:
                                                                   'task',
                                                             ),
@@ -407,7 +407,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                   child: Text(
                                     "Confirm",
                                     style: TextStyle(
-                                        fontSize: 17.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),

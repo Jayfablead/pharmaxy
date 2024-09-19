@@ -113,12 +113,12 @@ class _AdressformState extends State<Adressform> {
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
-                                  size: 23.sp,
+                                  size: 18.sp,
                                 )),
                             Text(
                               "Shipping Address",
                               style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 16.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -150,9 +150,10 @@ class _AdressformState extends State<Adressform> {
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
-                                            fontSize: 15.sp,
+                                            fontSize: 13.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
+
                                       TextFormField(
                                         validator: (value) {
                                           if (value!.isEmpty) {
@@ -188,7 +189,7 @@ class _AdressformState extends State<Adressform> {
                                           hintStyle: TextStyle(
                                               color:
                                                   Colors.black.withOpacity(0.4),
-                                              fontSize: 13.sp,
+                                              fontSize: 11.sp,
                                               fontFamily: "task"),
                                         ),
                                       ),
@@ -210,7 +211,7 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -247,7 +248,7 @@ class _AdressformState extends State<Adressform> {
                                       hintText: 'Enter Your Last Name ',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
-                                          fontSize: 13.sp,
+                                          fontSize: 11.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -267,7 +268,7 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -304,7 +305,7 @@ class _AdressformState extends State<Adressform> {
                                       hintText: 'Enter Your Address ',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
-                                          fontSize: 13.sp,
+                                          fontSize: 11.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -324,7 +325,7 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -361,7 +362,7 @@ class _AdressformState extends State<Adressform> {
                                       hintText: 'Enter Your Phone Number',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
-                                          fontSize: 13.sp,
+                                          fontSize: 11.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -381,7 +382,7 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
@@ -400,7 +401,7 @@ class _AdressformState extends State<Adressform> {
                                           style: TextStyle(
                                               color:
                                                   Colors.black.withOpacity(0.4),
-                                              fontSize: 13.sp,
+                                              fontSize: 11.sp,
                                               fontFamily: "task"),
                                         ),
                                         // Not necessary for Option 1
@@ -444,7 +445,7 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
@@ -463,7 +464,7 @@ class _AdressformState extends State<Adressform> {
                                           style: TextStyle(
                                               color:
                                                   Colors.black.withOpacity(0.4),
-                                              fontSize: 13.sp,
+                                              fontSize: 11.sp,
                                               fontFamily: "task"),
                                         ),
                                         // Not necessary for Option 1
@@ -507,7 +508,7 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
@@ -526,7 +527,7 @@ class _AdressformState extends State<Adressform> {
                                           style: TextStyle(
                                               color:
                                                   Colors.black.withOpacity(0.4),
-                                              fontSize: 13.sp,
+                                              fontSize: 11.sp,
                                               fontFamily: "task"),
                                         ),
                                         // Not necessary for Option 1
@@ -574,7 +575,7 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -611,7 +612,7 @@ class _AdressformState extends State<Adressform> {
                                       hintText: 'Enter Zip Code',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
-                                          fontSize: 13.sp,
+                                          fontSize: 11.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -655,7 +656,7 @@ class _AdressformState extends State<Adressform> {
                                   child: Text(
                                     "Save Address",
                                     style: TextStyle(
-                                        fontSize: 17.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),

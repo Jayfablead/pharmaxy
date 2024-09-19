@@ -109,12 +109,12 @@ class _editshippingadressState extends State<editshippingadress> {
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
-                                  size: 25.sp,
+                                  size: 18.sp,
                                 )),
                             Text(
                               "Edit Address",
                               style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 16.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -146,7 +146,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
-                                            fontSize: 15.sp,
+                                            fontSize: 13.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       TextFormField(
@@ -206,7 +206,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -263,7 +263,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -320,7 +320,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -377,7 +377,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
@@ -440,7 +440,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
@@ -503,7 +503,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
@@ -570,7 +570,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -646,11 +646,11 @@ class _editshippingadressState extends State<editshippingadress> {
                                   width: 80.w,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
-                                      color: Color(0xfff7941d)),
+                                      color: Color(0xff0061b0)),
                                   child: Text(
                                     "Save Address",
                                     style: TextStyle(
-                                        fontSize: 17.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),
