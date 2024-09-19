@@ -85,12 +85,12 @@ class _OrderSummaryState extends State<OrderSummary> {
                                 },
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_outlined,
-                                  size: 25.sp,
+                                  size: 17.sp,
                                 )),
                             Text(
                               "OrderDetail",
                               style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 14.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -170,7 +170,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontFamily: 'task',
-                                            fontSize: 15.sp,
+                                            fontSize: 12.sp,
                                             color: Colors.black45),
                                       ),
                                       Text(myoederdetailmodal?.orderDetails?.orderNumber == '' || myoederdetailmodal?.orderDetails?.orderNumber == null ? 'N/A'
@@ -281,7 +281,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                             '',
                                                     style: TextStyle(
                                                         color: Colors.black,
-                                                        fontSize: 14.sp,
+                                                        fontSize: 11.sp,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontFamily: "task"),
@@ -326,7 +326,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                     .toString() +
                                                                 ' : ',
                                                         style: TextStyle(
-                                                          fontSize: 15.sp,
+                                                          fontSize: 12.sp,
                                                           fontFamily: 'task',
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -356,7 +356,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                     .variationName)
                                                                 .toString(),
                                                         style: TextStyle(
-                                                          fontSize: 15.sp,
+                                                          fontSize: 12.sp,
                                                           fontFamily: 'task',
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -379,7 +379,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                     Text(
                                                       'Price : ',
                                                       style: TextStyle(
-                                                        fontSize: 15.sp,
+                                                        fontSize: 12.sp,
                                                         fontFamily: 'task',
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -404,7 +404,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                       ?.price)
                                                                   .toString(),
                                                       style: TextStyle(
-                                                        fontSize: 15.sp,
+                                                        fontSize: 12.sp,
                                                         fontFamily: 'task',
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -426,7 +426,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                     Text(
                                                       'Status : ',
                                                       style: TextStyle(
-                                                        fontSize: 15.sp,
+                                                        fontSize: 12.sp,
                                                         fontFamily: 'task',
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -457,7 +457,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                       maxLines: 1,
                                                       overflow: TextOverflow.ellipsis,
                                                       style: TextStyle(
-                                                        fontSize: 15.sp,
+                                                        fontSize: 12.sp,
                                                         fontFamily: 'task',
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -507,7 +507,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                             child: Text(
                               "Shipping Address",
                               style: TextStyle(
-                                fontSize: 15.sp,
+                                fontSize: 12.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -562,7 +562,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                     ?.firstname ??
                                                                 '',
                                                         style: TextStyle(
-                                                            fontSize: 15.sp,
+                                                            fontSize: 12.sp,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                             fontFamily: "task"),
@@ -585,7 +585,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                     ?.lastname ??
                                                                 '',
                                                         style: TextStyle(
-                                                            fontSize: 15.sp,
+                                                            fontSize: 12.sp,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                             fontFamily: "task"),
@@ -619,7 +619,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                 ],
                                               ),
                                             ),
-                                            Icon(Icons.arrow_forward_ios)
+                                            Icon(Icons.arrow_forward_ios,size: 14.sp,)
                                           ],
                                         ),
                                       ),
@@ -675,7 +675,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                           ),
                                           height: 50,
                                           child: Center(child: Text("Cancel",style: TextStyle(
-                                              fontSize: 16,
+                                              fontSize: 12.sp,
                                               color: Colors.white,
                                               //color: Colors.red,
                                               fontWeight: FontWeight.bold
@@ -696,7 +696,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                         child: Text(
                                           "Payment Method",
                                           style: TextStyle(
-                                            fontSize: 15.sp,
+                                            fontSize: 12.sp,
                                             fontFamily: "task",
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -708,9 +708,12 @@ class _OrderSummaryState extends State<OrderSummary> {
                                 myoederdetailmodal?.orderDetails?.payment ==
                                         'cod'
                                     ? Container(
+                                  alignment: Alignment.center,
+                                  height: 12.5.h,
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
+
                                             color: Colors.white),
                                         child:
                                             myoederdetailmodal?.orderDetails
@@ -720,8 +723,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                 : Padding(
                                                     padding:
                                                         EdgeInsets.symmetric(
-                                                            horizontal: 3.w,
-                                                            vertical: 2.h),
+                                                            horizontal: 5.w,
+                                                            vertical: 1.h,
+                                                           ),
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -747,6 +751,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                         .all(2
                                                                             .w),
                                                                     width: 80.w,
+                                                                    height: 7.h,
                                                                     decoration:
                                                                         BoxDecoration(
                                                                       color: Colors
@@ -791,7 +796,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                             style:
                                                                                 TextStyle(
                                                                               color: Colors.black,
-                                                                              fontSize: 17.sp,
+                                                                              fontSize: 14.sp,
                                                                               fontFamily: 'match',
                                                                             )),
                                                                       ],
@@ -964,7 +969,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                       SizedBox(width: 5.0,),
                                       Text("Chats with us",style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.white
+                                        color: Colors.white,
+                                        fontSize: 11.sp,
                                       ),)
                                     ],
                                   ),

@@ -152,7 +152,7 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontFamily: 'task',
-                                    fontSize: 15.sp,
+                                    fontSize: 12.sp,
                                     color: Colors.grey),
                               ),
                             ],
@@ -314,7 +314,7 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
                     child: Text(
                       "Shipping Address",
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 12.sp,
                         fontFamily: "task",
                         fontWeight: FontWeight.bold,
                       ),

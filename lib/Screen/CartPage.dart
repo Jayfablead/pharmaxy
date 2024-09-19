@@ -617,7 +617,7 @@ class _CartPageState extends State<CartPage> {
                                                         fontFamily: 'task',
                                                         color: Colors
                                                             .grey.shade800,
-                                                        fontSize: 15.sp,
+                                                        fontSize: 13.sp,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -1192,7 +1192,7 @@ class _CartPageState extends State<CartPage> {
                                                 'Sub Total Amount : ',
                                                 style: TextStyle(
                                                   fontFamily: 'task',
-                                                  fontSize: 13.sp,
+                                                  fontSize: 12.sp,
                                                   color: Colors.grey.shade800,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -1210,7 +1210,7 @@ class _CartPageState extends State<CartPage> {
                                                             .toString(),
                                                 style: TextStyle(
                                                   fontFamily: 'task',
-                                                  fontSize: 13.sp,
+                                                  fontSize: 12.sp,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
@@ -1221,47 +1221,85 @@ class _CartPageState extends State<CartPage> {
                                       SizedBox(
                                         height: 2.h,
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      CheckoutDetail(
-                                                        addid: alluseraddmodal
-                                                            ?.allShippingAddress?[
-                                                                0]
-                                                            .id,
-                                                        firstname: alluseraddmodal
-                                                            ?.allShippingAddress?[
-                                                                0]
-                                                            .firstName,
-                                                        lastname: alluseraddmodal
-                                                            ?.allShippingAddress?[
-                                                                0]
-                                                            .lastName,
-                                                        address: alluseraddmodal
-                                                            ?.allShippingAddress?[
-                                                                0]
-                                                            .address,
-                                                      )));
-                                        },
-                                        child: Container(
-                                            margin: EdgeInsets.only(
-                                                right: 7.w, left: 7.w),
-                                            alignment: Alignment.center,
-                                            height: 6.h,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+
+
+                                            },
+                                            child:   Container(
+                                              height: 6.h,
+                                              width: 40.w,// Height of the button
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(30),
+                                                  color: Color(0xff0061b0)),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(Icons.call,
+                                                      color:Colors.white, size: 24),
+                                                  // Button icon
+                                                  SizedBox(width: 8),
+                                                  Text(
+                                                    "Call Us",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 12.sp,
+                                                        fontFamily: 'task'),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          CheckoutDetail(
+                                                            addid: alluseraddmodal
+                                                                ?.allShippingAddress?[
+                                                            0]
+                                                                .id,
+                                                            firstname: alluseraddmodal
+                                                                ?.allShippingAddress?[
+                                                            0]
+                                                                .firstName,
+                                                            lastname: alluseraddmodal
+                                                                ?.allShippingAddress?[
+                                                            0]
+                                                                .lastName,
+                                                            address: alluseraddmodal
+                                                                ?.allShippingAddress?[
+                                                            0]
+                                                                .address,
+                                                          )));
+                                            },
+                                            child: Container(
+
+                                                alignment: Alignment.center,
+                                                height: 6.h,
+                                                width: 40.w,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
                                                     BorderRadius.circular(30),
-                                                color: Color(0xff0061b0)),
-                                            child: Text(
-                                              "Checkout",
-                                              style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: "task"),
-                                            )),
+                                                    color: Color(0xff0061b0)),
+                                                child: Text(
+                                                  "Checkout",
+                                                  style: TextStyle(
+                                                      fontSize: 14.sp,
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: "task"),
+                                                )),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),

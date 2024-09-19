@@ -118,13 +118,13 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                               },
                               icon: Icon(
                                 Icons.arrow_back_ios_new_outlined,
-                                size: 20.sp,
+                                size: 16.sp,
                               ),
                             ),
                             Text(
                               "Sub Categories",
                               style: TextStyle(
-                                fontSize: 16.sp,
+                                fontSize: 14.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -195,7 +195,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'task',
-                                      fontSize: 15.sp,
+                                      fontSize: 12.sp,
                                       color: Colors.black),
                                 ),
                               ))
@@ -327,7 +327,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                                     color: Colors
                                                                         .black,
                                                                     fontSize:
-                                                                        12.sp,
+                                                                        11.sp,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600,
@@ -385,7 +385,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                                       Alignment
                                                                           .center,
                                                                   height: 4.h,
-                                                                  width: 35.w,
+                                                                  width: 34.w,
                                                                   decoration: BoxDecoration(
                                                                       borderRadius:
                                                                           BorderRadius.circular(
@@ -396,7 +396,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
-                                                                          12.sp,
+                                                                          11.sp,
                                                                       color: Colors
                                                                           .white,
                                                                       fontFamily:

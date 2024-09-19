@@ -68,7 +68,7 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.home,
-                        size: 25.sp,
+                        size: 20.sp,
                         color: selected == 1
                             ? AppColors.primary
                             : Colors.grey.shade300,
@@ -113,7 +113,7 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.shopping_cart,
-                        size: 25.sp,
+                        size: 20.sp,
                         color: selected == 2
                             ? AppColors.primary
                             : Colors.grey.shade300,
@@ -160,7 +160,7 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.heart,
-                        size: 25.sp,
+                        size: 20.sp,
                         color: selected == 4
                             ? AppColors.primary
                             : Colors.grey.shade300,
@@ -231,7 +231,7 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.home,
-                        size: 25.sp,
+                        size: 20.sp,
                         color: selected == 1
                             ? AppColors.primary
                             : Colors.grey.shade300,
@@ -276,7 +276,7 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.shopping_cart,
-                        size: 25.sp,
+                        size: 20.sp,
                         color: selected == 2
                             ? AppColors.primary
                             : Colors.grey.shade300,
@@ -323,7 +323,7 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.heart,
-                        size: 25.sp,
+                        size: 20.sp,
                         color: selected == 4
                             ? AppColors.primary
                             : Colors.grey.shade300,
@@ -392,7 +392,7 @@ class _bottombarState extends State<bottombar> {
                           children: [
                             Icon(
                               CupertinoIcons.person,
-                              size: 25.sp,
+                              size: 20.sp,
                               color: selected == 5
                                   ? AppColors.primary
                                   : Colors.grey.shade300,
@@ -564,7 +564,7 @@ class _bottombarState extends State<bottombar> {
                             Icon(
                               Icons.logout,
                               color: Colors.red.shade400,
-                              size: 23.sp,
+                              size: 20.sp,
                             ),
                             SizedBox(
                               height: 0.5.h,

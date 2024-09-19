@@ -81,12 +81,12 @@ class _WishListPageState extends State<WishListPage> {
                                 },
                                 icon: Icon(
                                   Icons.menu,
-                                  size: 25.sp,
+                                  size: 20.sp,
                                 )),
                             Text(
-                              "Wish List",
+                              "WishList",
                               style: TextStyle(
-                                fontSize: 16.sp,
+                                fontSize: 13.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -218,8 +218,7 @@ class _WishListPageState extends State<WishListPage> {
                                                         BorderRadius.all(
                                                             Radius.circular(
                                                                 20)),
-                                                    color:
-                                                        Colors.grey.shade200),
+                                                    ),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(2.0),
                                                   child: CachedNetworkImage(
@@ -305,7 +304,7 @@ class _WishListPageState extends State<WishListPage> {
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .black,
-                                                                fontSize: 12.sp,
+                                                                fontSize: 11.sp,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -372,7 +371,7 @@ class _WishListPageState extends State<WishListPage> {
                                                                           .saleProductPrice)
                                                                       .toString(),
                                                               style: TextStyle(
-                                                                fontSize: 12.sp,
+                                                                fontSize: 11.sp,
                                                                 fontFamily:
                                                                     'task',
                                                                 fontWeight:
@@ -404,7 +403,7 @@ class _WishListPageState extends State<WishListPage> {
                                                                       TextDecoration
                                                                           .lineThrough,
                                                                   fontSize:
-                                                                      12.sp,
+                                                                      11.sp,
                                                                   fontFamily:
                                                                       'task',
                                                                   fontWeight:
@@ -446,8 +445,10 @@ class _WishListPageState extends State<WishListPage> {
                                                                   border: Border.all(
                                                                       width:
                                                                           0.5,
-                                                                      color: Colors
-                                                                          .grey)),
+                                                                      // color: Colors
+                                                                      //     .grey
+                                                                  )
+                                                              ),
                                                               child:
                                                                   GestureDetector(
                                                                 onTap: () {
@@ -593,7 +594,7 @@ class _WishListPageState extends State<WishListPage> {
                                                                   "View Detail",
                                                                   style: TextStyle(
                                                                       fontSize:
-                                                                          13.sp,
+                                                                          11.sp,
                                                                       color: Colors
                                                                           .white,
                                                                       fontFamily:

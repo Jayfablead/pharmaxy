@@ -121,7 +121,7 @@ class _CategoryPageState extends State<CategoryPage> {
                             Text(
                               "Categories",
                               style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 14.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -195,12 +195,12 @@ class _CategoryPageState extends State<CategoryPage> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'task',
-                                      fontSize: 15.sp,
+                                      fontSize: 12.sp,
                                       color: Colors.black),
                                 ),
                               ))
                           : Container(
-                              height: 82.h,
+                              height: 80.h,
                               child: ListView.builder(
                                 padding: EdgeInsets.only(top: 1.h),
                                 itemCount: maincatmodal?.categories?.length,
@@ -252,8 +252,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                                               .catagoryimage ??
                                                           '',
                                                       fit: BoxFit.cover,
-                                                      height: 33.w,
-                                                      width: 33.w,
+                                                      height: 30.w,
+                                                      width: 30.w,
                                                       imageBuilder: (context,
                                                               imageProvider) =>
                                                           Container(
@@ -398,7 +398,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                       Alignment
                                                                           .center,
                                                                   height: 4.5.h,
-                                                                  width: 45.w,
+                                                                  width: 43.w,
                                                                   decoration: BoxDecoration(
                                                                       borderRadius:
                                                                           BorderRadius.circular(
@@ -409,7 +409,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
-                                                                          12.sp,
+                                                                          11.sp,
                                                                       color: Colors
                                                                           .white,
                                                                       fontFamily:

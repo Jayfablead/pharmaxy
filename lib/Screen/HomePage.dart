@@ -113,25 +113,25 @@ final List<Map<String, String>> items = [
 
 final List<Map<String, String>> items1 = [
   {
-    "imageUrl": "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
+    "imageUrl": "https://pngimg.com/d/pills_PNG16510.png",
     "title": "Cipla",
     "price": "Besides these, it can also be used to treat",
     "saleprice": "Besides these, it can also be used to treat",
   },
   {
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ZcLFjbUN5p8163Gz60m-y5I5Z9ad_1wfRg&s",
+    "imageUrl": "https://pngimg.com/d/pills_PNG16510.png",
     "title": "Paracetamol",
     "price": "Besides these, it can also be used to treat",
     "saleprice": "Besides these, it can also be used to treat",
   },
   {
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCBLPbWLCWusF0c8oNM88u5SmUPxc1sRmcA&s",
+    "imageUrl": "https://premmedical.in/wp-content/uploads/2022/12/Himalaya-Immusante-Tablet-20s.png",
     "title": "Codine Syp",
     "price": "Besides these, it can also be used to treat",
     "saleprice": "Besides these, it can also be used to treat",
   },
   {
-    "imageUrl": "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
+    "imageUrl": "https://premmedical.in/wp-content/uploads/2022/12/Himalaya-Immusante-Tablet-20s.png",
     "title": "Antibiotic",
     "price": "Besides these, it can also be used to treat",
     "saleprice": "Besides these, it can also be used to treat",
@@ -422,81 +422,84 @@ class _HomePageState extends State<HomePage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: AppColors.primary),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(6.0),
-                                child: Image.network(
+                          child: Padding(
+                            padding:  EdgeInsets.symmetric(horizontal: 7.w),
+                            child: Row(
+                              children: [
+                                Image.network(
                                   'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
                                   // Replace with your banner image link
                                   fit: BoxFit.cover,
                                   width: 110,
                                   height: 110,
                                 ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "FLAT 24% OFF",
-                                      style: TextStyle(
-                                          fontSize: 10.5.sp,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'task',
-                                          color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      height: 1.h,
-                                    ),
-                                    Text(
-                                      "on your first order",
-                                      style: TextStyle(
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'task',
-                                          color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      height: 1.5.h,
-                                    ),
-                                    Container(
-                                      height: 3.5.h,
-                                      width: 38.w, // Height of the button
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        // Button background color
-                                        borderRadius: BorderRadius.circular(10),
-                                        // Rounded corners
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black12,
-                                            blurRadius: 5,
-                                            spreadRadius: 2,
-                                          ),
-                                        ],
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          // Button icon
-                                          Text(
-                                            "Code : 45GHUYRV",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 11.sp,
-                                                fontFamily: 'task'),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                SizedBox(
+                                  width: 5.w,
                                 ),
-                              ),
-                            ],
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "FLAT 24% OFF",
+                                        style: TextStyle(
+                                            fontSize: 10.5.sp,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'task',
+                                            color: Colors.white),
+                                      ),
+                                      SizedBox(
+                                        height: 2.h,
+                                      ),
+                                      Text(
+                                        "on your first order",
+                                        style: TextStyle(
+                                            fontSize: 11.sp,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'task',
+                                            color: Colors.white),
+                                      ),
+                                      SizedBox(
+                                        height: 2.h,
+                                      ),
+                                      Container(
+                                        height: 3.h,
+                                        width: 38.w, // Height of the button
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          // Button background color
+                                          borderRadius: BorderRadius.circular(10),
+                                          // Rounded corners
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black12,
+                                              blurRadius: 5,
+                                              spreadRadius: 2,
+                                            ),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            // Button icon
+                                            Text(
+                                              "Code : 45GHUYRV",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 9.5.sp,
+                                                  fontFamily: 'task'),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -601,7 +604,7 @@ class _HomePageState extends State<HomePage> {
                                               'UPTO 24% OFF',
                                               style: TextStyle(
                                                   color: Colors.red,
-                                                  fontSize: 10.sp,
+                                                  fontSize: 9.sp,
                                                   fontFamily: 'task'),
                                             ),
                                           ),
@@ -660,8 +663,10 @@ class _HomePageState extends State<HomePage> {
                                                 const EdgeInsets.only(left: 15),
                                             child: Text(
                                               'UPTO 24% OFF',
-                                              style:
-                                                  TextStyle(color: Colors.red),
+                                              style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontSize: 9.sp,
+                                                  fontFamily: 'task'),
                                             ),
                                           ),
                                         )
@@ -719,8 +724,10 @@ class _HomePageState extends State<HomePage> {
                                                 const EdgeInsets.only(left: 15),
                                             child: Text(
                                               'UPTO 24% OFF',
-                                              style:
-                                                  TextStyle(color: Colors.red),
+                                              style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontSize: 9.sp,
+                                                  fontFamily: 'task'),
                                             ),
                                           ),
                                         )
@@ -754,11 +761,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
+                                   EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
                                 "OR YOU CAN ORDER VIA",
                                 style:
-                                    TextStyle(color: Colors.grey), // Text style
+                                    TextStyle(color: Colors.grey,fontFamily: 'task',fontSize: 9.5.sp), // Text style
                               ),
                             ),
                             Expanded(
@@ -842,7 +849,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 2.h,
+                          height: 3.h,
                         ),
                       ),
 
@@ -882,13 +889,18 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 3.h,
+                          height: 2.h,
                         ),
                       ),
 
                       SliverToBoxAdapter(
                         child: Container(
-                          height: 40.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                          ),
+
+                          height: 38.h,
                           child: allcatmodal?.categories?.length == 0
                               ? Center(
                                   child: Text(
@@ -1016,6 +1028,11 @@ class _HomePageState extends State<HomePage> {
                                 ),
                         ),
                       ),
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 3.h,
+                        ),
+                      ),
 
                       SliverToBoxAdapter(
                         child: Row(
@@ -1058,6 +1075,11 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SliverToBoxAdapter(
                         child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                          ),
+
                           height: 15.h,
                           child: allcatmodal?.categories?.length == 0
                               ? Center(

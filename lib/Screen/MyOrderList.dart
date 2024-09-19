@@ -145,12 +145,12 @@ class _MyOrderListState extends State<MyOrderList> {
                               },
                               icon: Icon(
                                 Icons.menu,
-                                size: 25.sp,
+                                size: 20.sp,
                               )),
                           Text(
                             "Orders",
                             style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 16.sp,
                               fontFamily: "task",
                               fontWeight: FontWeight.bold,
                             ),
@@ -234,7 +234,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                   child: Container(
                                     height: 5.h,
                                     padding: EdgeInsets.symmetric(
-                                        vertical: 1.h, horizontal: 8.w),
+                                        vertical: 1.h, horizontal: 7.w),
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         border: Border.all(
@@ -248,7 +248,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                         EdgeInsets.symmetric(horizontal: 2.w),
                                     child: Text(cate[index],
                                         style: TextStyle(
-                                            fontSize: 12.5.sp,
+                                            fontSize: 11.sp,
                                             color: sel == index
                                                 ? Colors.white
                                                 : Colors.black,
@@ -278,7 +278,8 @@ class _MyOrderListState extends State<MyOrderList> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'task',
-                                      fontSize: 20.sp,
+                                      fontSize: 11
+                                          .sp,
                                       color: Colors.black),
                                 ),
                               )
@@ -388,8 +389,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                               BorderRadius.all(
                                                             Radius.circular(20),
                                                           ),
-                                                          color: Colors
-                                                              .grey.shade200),
+                                                          ),
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsets.all(3.0),
@@ -400,7 +400,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                       index]
                                                                   .imgData ??
                                                               '',
-                                                          height: 30.w,
+                                                          height: 27.w,
                                                           width: 27.w,
                                                           imageBuilder: (context,
                                                                   imageProvider) =>
@@ -480,7 +480,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 .ellipsis,
                                                                         color: Colors
                                                                             .black,
-                                                                        fontSize: 12
+                                                                        fontSize: 11
                                                                             .sp,
                                                                         fontWeight:
                                                                             FontWeight
@@ -526,7 +526,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
-                                                                            13.sp,
+                                                                            12.sp,
                                                                         fontFamily:
                                                                             'task',
                                                                         fontWeight:
@@ -559,7 +559,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                     style:
                                                                     TextStyle(
                                                                       fontSize:
-                                                                      13.sp,
+                                                                      12.sp,
                                                                       fontFamily:
                                                                       'task',
                                                                       fontWeight:
@@ -591,7 +591,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         height: 4.h,
                                                                         width: 13.w,
                                                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                                                                        child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 27,)
+                                                                        child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 12.sp,)
                                                                     ),
                                                                   ),
                                                                   SizedBox(
@@ -620,7 +620,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                           },
                                                                           child: Icon(
                                                                             CupertinoIcons.chat_bubble_fill,
-                                                                            size: 17.sp,
+                                                                            size: 12.sp,
                                                                             color: Color(0xff0061b0),
                                                                             //weight: 20,
                                                                           ),
@@ -663,7 +663,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                       style: TextStyle(
                                           fontFamily: "task",
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 20.sp,
+                                          fontSize: 11.sp,
                                           color: Colors.black),
                                     ))
                                 : Column(
@@ -929,7 +929,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                           style:
                                                                               TextStyle(
                                                                             fontSize:
-                                                                                13.sp,
+                                                                                12.sp,
                                                                             fontFamily:
                                                                                 'task',
                                                                             fontWeight:
@@ -955,7 +955,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         style:
                                                                         TextStyle(
                                                                           fontSize:
-                                                                          13.sp,
+                                                                          12.sp,
                                                                           fontFamily:
                                                                           'task',
                                                                           fontWeight:
@@ -1006,7 +1006,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
                                                                             child:  Icon(
                                                                               CupertinoIcons.chat_bubble_fill,
-                                                                              size: 17.sp,
+                                                                              size: 14.sp,
                                                                               color: Color(0xff0061b0),
                                                                            )
                                                                         ),
@@ -1049,7 +1049,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                           style: TextStyle(
                                               fontFamily: "task",
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 20.sp,
+                                              fontSize: 11.sp,
                                               color: Colors.black),
                                         ))
                                     : Column(
@@ -1313,7 +1313,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             Text(
                                                                               pendingordermodal?.cartDetails?[index].singleProductPrice == "" || pendingordermodal?.cartDetails?[index].singleProductPrice == null ? "N/A" : '₹' + (pendingordermodal?.cartDetails?[index].singleProductPrice).toString(),
                                                                               style: TextStyle(
-                                                                                fontSize: 13.sp,
+                                                                                fontSize: 12.sp,
                                                                                 fontFamily: 'task',
                                                                                 fontWeight: FontWeight.bold,
                                                                                 letterSpacing: 1,
@@ -1334,7 +1334,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             "Pending",
                                                                             style:
                                                                             TextStyle(
-                                                                              fontSize: 13.sp,
+                                                                              fontSize: 12.sp,
                                                                               fontFamily: 'task',
                                                                               fontWeight: FontWeight.bold,
                                                                               letterSpacing: 1,
@@ -1355,7 +1355,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 height: 4.h,
                                                                                 width: 13.w,
                                                                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ),
-                                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 27,)
+                                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 12.sp,)
                                                                             ),
                                                                           ),
                                                                           SizedBox(
@@ -1381,7 +1381,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
                                                                                 child: Icon(
                                                                                   CupertinoIcons.chat_bubble_fill,
-                                                                                  size: 17.sp,
+                                                                                  size: 12.sp,
                                                                                   color: Color(0xff0061b0),
                                                                                 )
                                                                             ),
@@ -1422,7 +1422,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                           style: TextStyle(
                                               fontFamily: "task",
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 20.sp,
+                                              fontSize: 11.sp,
                                               color: Colors.black),
                                         ))
                                     : Column(
@@ -1686,7 +1686,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             Text(
                                                                               ordercancelmodal?.cartDetails?[index].singleProductPrice == "" || ordercancelmodal?.cartDetails?[index].singleProductPrice == null ? "N/A" : '₹' + (ordercancelmodal?.cartDetails?[index].singleProductPrice).toString(),
                                                                               style: TextStyle(
-                                                                                fontSize: 13.sp,
+                                                                                fontSize: 12.sp,
                                                                                 fontFamily: 'task',
                                                                                 fontWeight: FontWeight.bold,
                                                                                 letterSpacing: 1,
@@ -1707,7 +1707,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             "Cancelled",
                                                                             style:
                                                                             TextStyle(
-                                                                              fontSize: 13.sp,
+                                                                              fontSize: 12.sp,
                                                                               fontFamily: 'task',
                                                                               fontWeight: FontWeight.bold,
                                                                               letterSpacing: 1,
@@ -1754,7 +1754,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
                                                                                 child: Icon(
                                                                                   CupertinoIcons.chat_bubble_fill,
-                                                                                  size: 17.sp,
+                                                                                  size: 12.sp,
                                                                                   color: Color(0xff0061b0),
                                                                                 )
                                                                             ),

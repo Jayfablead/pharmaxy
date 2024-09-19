@@ -97,12 +97,12 @@ class _ProductListPageState extends State<ProductListPage> {
                                         },
                                         icon: Icon(
                                           Icons.arrow_back_ios_new_rounded,
-                                          size: 20.sp,
+                                          size: 16.sp,
                                         )),
                                     Text(
                                       "Product List",
                                       style: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 13.sp,
                                         fontFamily: "task",
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -191,7 +191,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                       SizedBox(width: 20.0,),
                                       Text("Sort By",style:TextStyle(
                                         fontFamily: "task",
-                                        fontSize: 15.0,
+                                        fontSize: 11.sp,
                                         fontWeight: FontWeight.w600,
                                         color: Color(0xff0061b0)
                                       )),
@@ -208,7 +208,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                       SizedBox(width: 20.0,),
                                       Text("Filter By",style:TextStyle(
                                         fontFamily: "task",
-                                        fontSize: 15.0,
+                                        fontSize: 11.sp,
                                         fontWeight: FontWeight.w600,
                                         color: Color(0xff0061b0),
                                       )),
@@ -259,7 +259,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontFamily: 'task',
-                                          fontSize: 22.sp,
+                                          fontSize: 16.sp,
                                         ),
                                       )),
                                     ),
@@ -398,7 +398,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                       '',
                                                                   style: TextStyle(
                                                                       fontSize:
-                                                                          12.5
+                                                                        11
                                                                               .sp,
                                                                       fontFamily:
                                                                           'task',
@@ -461,7 +461,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                           .saleProductPrice)
                                                                       .toString(),
                                                               style: TextStyle(
-                                                                fontSize: 12.sp,
+                                                                fontSize: 11.sp,
                                                                 fontFamily:
                                                                     'task',
                                                                 fontWeight:
@@ -493,7 +493,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                       TextDecoration
                                                                           .lineThrough,
                                                                   fontSize:
-                                                                      12.sp,
+                                                                      11.sp,
                                                                   fontFamily:
                                                                       'task',
                                                                   fontWeight:
@@ -559,7 +559,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                         alignment:
                                                             Alignment.center,
                                                         height: 4.h,
-                                                        width: 30.w,
+                                                        width: 32.w,
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 BorderRadius
@@ -569,9 +569,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                         child: Text(
                                                           "View Product",
                                                           style: TextStyle(
-                                                              fontSize: 12.sp,
+                                                              fontSize: 11.sp,
                                                               color:
-                                                                  Colors.white),
+                                                                  Colors.white,fontFamily: 'task'),
                                                         ),
                                                       ),
                                                     ),
@@ -645,397 +645,401 @@ class _ProductListPageState extends State<ProductListPage> {
                                                   ?.length
                                               : 4, // Replace with the number of grid items you want
                                     ),
-                                  )
-                            : subcatserchmodal?.searchResults?.length == 0 ||
-                                    subcatserchmodal?.searchResults?.length ==
-                                        null
-                                ? SliverToBoxAdapter(
-                                    child: Container(
-                                      height: 70.h,
-                                      child: Center(
-                                          child: Text(
-                                        'No Products Available',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontFamily: 'task',
-                                          fontSize: 22.sp,
-                                        ),
-                                      )),
-                                    ),
-                                  )
-                                : SliverGrid(
-                                    gridDelegate:
-                                        SliverGridDelegateWithMaxCrossAxisExtent(
-                                            maxCrossAxisExtent:
-                                                200, // Adjust as needed
-                                            mainAxisSpacing:
-                                                10.0, // Adjust as needed
-                                            crossAxisSpacing:
-                                                10.0, // Adjust as needed
-                                            childAspectRatio:
-                                                6.5 / 11 // Adjust as needed
-                                            ),
-                                    delegate: SliverChildBuilderDelegate(
-                                      (BuildContext context, int index) {
-                                        return Stack(
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                subcatserchmodal
-                                                            ?.searchResults?[
-                                                                index]
-                                                            .productType ==
-                                                        '1'
-                                                    ? Navigator.of(context)
-                                                        .push(
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              productdetailnovartion(
-                                                            productid: subcatserchmodal
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .productID ??
-                                                                '',
-                                                          ),
-                                                        ),
-                                                      )
-                                                    : Navigator.of(context)
-                                                        .push(
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              productdetailwebview(
-                                                            productid: subcatserchmodal
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .productID ??
-                                                                '',
-                                                          ),
-                                                        ),
-                                                      );
-                                              },
-                                              child: Card(
-                                                color: Colors.white,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: 2.h,
-                                                    ),
-                                                    Container(
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: subcatserchmodal
-                                                                ?.searchResults?[
-                                                                    index]
-                                                                .allImages ??
-                                                            '',
-                                                        fit: BoxFit.cover,
-                                                        height: 11.5.h,
-                                                        width: 30.w,
-                                                        imageBuilder: (context,
-                                                                imageProvider) =>
-                                                            Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            // borderRadius: BorderRadius.circular(10),
-                                                            image:
-                                                                DecorationImage(
-                                                              filterQuality:
-                                                                  FilterQuality
-                                                                      .high,
-                                                              image:
-                                                                  imageProvider,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            Center(
-                                                                child:
-                                                                    CircularProgressIndicator()),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Icon(Icons.error),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 1.h,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 1.w),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              SizedBox(
-                                                                width: 30.w,
-                                                                child: Text(
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  maxLines: 1,
-                                                                  subcatserchmodal
-                                                                          ?.searchResults?[
-                                                                              index]
-                                                                          .productName ??
-                                                                      '',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          12.5
-                                                                              .sp,
-                                                                      fontFamily:
-                                                                          'task',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      letterSpacing:
-                                                                          1,
-                                                                      color: Colors
-                                                                          .black),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                        horizontal: 1.5.w,
-                                                      ),
-                                                      child: SizedBox(
-                                                        width: 35.w,
-                                                        child: Text(
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 2,
-                                                          subcatserchmodal
-                                                                  ?.searchResults?[
-                                                                      index]
-                                                                  .productShortDesc ??
-                                                              '',
-                                                          style: TextStyle(
-                                                            fontSize: 12.sp,
-                                                            fontFamily: 'task',
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            letterSpacing: 1,
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              '₹' +
-                                                                  (subcatserchmodal
-                                                                          ?.searchResults?[
-                                                                              index]
-                                                                          .saleProductPrice)
-                                                                      .toString(),
-                                                              style: TextStyle(
-                                                                fontSize: 12.sp,
-                                                                fontFamily:
-                                                                    'task',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                letterSpacing:
-                                                                    1,
-                                                                color: Colors
-                                                                    .black,
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 0.5.w,
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      top: 0.5
-                                                                          .h),
-                                                              child: Text(
-                                                                '₹' +
-                                                                    (subcatserchmodal
-                                                                            ?.searchResults?[index]
-                                                                            .productPrice)
-                                                                        .toString(),
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .lineThrough,
-                                                                  fontSize:
-                                                                      12.sp,
-                                                                  fontFamily:
-                                                                      'task',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  letterSpacing:
-                                                                      1,
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: 1.h,
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        subcatserchmodal
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .productType ==
-                                                                '1'
-                                                            ? Navigator.of(
-                                                                    context)
-                                                                .push(
-                                                                MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          productdetailnovartion(
-                                                                    productid: subcatserchmodal
-                                                                            ?.searchResults?[index]
-                                                                            .productID ??
-                                                                        '',
-                                                                  ),
-                                                                ),
-                                                              )
-                                                            : Navigator.of(
-                                                                    context)
-                                                                .push(
-                                                                MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          productdetailwebview(
-                                                                    productid: subcatserchmodal
-                                                                            ?.searchResults?[index]
-                                                                            .productID ??
-                                                                        '',
-                                                                  ),
-                                                                ),
-                                                              );
-                                                        //ADD CART API
-                                                        // addtocartapi((allsubcatwiceproduct
-                                                        //     ?.subcategoriesWiseProduct?[
-                                                        // index]
-                                                        //     .productID ??
-                                                        //     ''));
-                                                      },
-                                                      child: Container(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        height: 4.h,
-                                                        width: 30.w,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        30),
-                                                            color: Color(0xff0061b0)),
-                                                        child: Text(
-                                                          "View Product",
-                                                          style: TextStyle(
-                                                              fontSize: 12.sp,
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                                left: 37.w,
-                                                top: 1.h,
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    usermodal?.userId == "" ||
-                                                            usermodal?.userId ==
-                                                                null
-                                                        ? Navigator.of(context)
-                                                            .push(MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        LoginPage2()))
-                                                        : subcatserchmodal
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .wishlist ==
-                                                                1
-                                                            ? removewishlistap(
-                                                                (subcatserchmodal
-                                                                        ?.searchResults?[
-                                                                            index]
-                                                                        .productID)
-                                                                    .toString())
-                                                            : addwishlistap(
-                                                                (subcatserchmodal
-                                                                        ?.searchResults?[
-                                                                            index]
-                                                                        .productID)
-                                                                    .toString());
-                                                  },
-                                                  child: Icon(
-                                                    subcatserchmodal
-                                                                ?.searchResults?[
-                                                                    index]
-                                                                .wishlist ==
-                                                            1
-                                                        ? Icons.favorite
-                                                        : Icons
-                                                            .favorite_outline,
-                                                    size: 20.sp,
-                                                    color: subcatserchmodal
-                                                                ?.searchResults?[
-                                                                    index]
-                                                                .wishlist ==
-                                                            1
-                                                        ? Colors.red
-                                                        : Colors.black,
-                                                  ),
-                                                )),
-                                          ],
-                                        );
-                                      },
-                                      childCount: subcatserchmodal
-                                          ?.searchResults?.length,
-                                    ),
-                                  ),
+                                  ):Container(),
+
+
+
+                        //
+                        // subcatserchmodal?.searchResults?.length == 0 ||
+                        //             subcatserchmodal?.searchResults?.length ==
+                        //                 null
+                        //         ? SliverToBoxAdapter(
+                        //             child: Container(
+                        //               height: 70.h,
+                        //               child: Center(
+                        //                   child: Text(
+                        //                 'No Products Available',
+                        //                 style: TextStyle(
+                        //                   fontWeight: FontWeight.normal,
+                        //                   fontFamily: 'task',
+                        //                   fontSize: 22.sp,
+                        //                 ),
+                        //               )),
+                        //             ),
+                        //           )
+                        //         : SliverGrid(
+                        //             gridDelegate:
+                        //                 SliverGridDelegateWithMaxCrossAxisExtent(
+                        //                     maxCrossAxisExtent:
+                        //                         200, // Adjust as needed
+                        //                     mainAxisSpacing:
+                        //                         10.0, // Adjust as needed
+                        //                     crossAxisSpacing:
+                        //                         10.0, // Adjust as needed
+                        //                     childAspectRatio:
+                        //                         6.5 / 11 // Adjust as needed
+                        //                     ),
+                        //             delegate: SliverChildBuilderDelegate(
+                        //               (BuildContext context, int index) {
+                        //                 return Stack(
+                        //                   children: [
+                        //                     GestureDetector(
+                        //                       onTap: () {
+                        //                         subcatserchmodal
+                        //                                     ?.searchResults?[
+                        //                                         index]
+                        //                                     .productType ==
+                        //                                 '1'
+                        //                             ? Navigator.of(context)
+                        //                                 .push(
+                        //                                 MaterialPageRoute(
+                        //                                   builder: (context) =>
+                        //                                       productdetailnovartion(
+                        //                                     productid: subcatserchmodal
+                        //                                             ?.searchResults?[
+                        //                                                 index]
+                        //                                             .productID ??
+                        //                                         '',
+                        //                                   ),
+                        //                                 ),
+                        //                               )
+                        //                             : Navigator.of(context)
+                        //                                 .push(
+                        //                                 MaterialPageRoute(
+                        //                                   builder: (context) =>
+                        //                                       productdetailwebview(
+                        //                                     productid: subcatserchmodal
+                        //                                             ?.searchResults?[
+                        //                                                 index]
+                        //                                             .productID ??
+                        //                                         '',
+                        //                                   ),
+                        //                                 ),
+                        //                               );
+                        //                       },
+                        //                       child: Card(
+                        //                         color: Colors.white,
+                        //                         child: Column(
+                        //                           mainAxisAlignment:
+                        //                               MainAxisAlignment.center,
+                        //                           crossAxisAlignment:
+                        //                               CrossAxisAlignment.center,
+                        //                           children: [
+                        //                             SizedBox(
+                        //                               height: 2.h,
+                        //                             ),
+                        //                             Container(
+                        //                               child: CachedNetworkImage(
+                        //                                 imageUrl: subcatserchmodal
+                        //                                         ?.searchResults?[
+                        //                                             index]
+                        //                                         .allImages ??
+                        //                                     '',
+                        //                                 fit: BoxFit.cover,
+                        //                                 height: 11.5.h,
+                        //                                 width: 30.w,
+                        //                                 imageBuilder: (context,
+                        //                                         imageProvider) =>
+                        //                                     Container(
+                        //                                   decoration:
+                        //                                       BoxDecoration(
+                        //                                     // borderRadius: BorderRadius.circular(10),
+                        //                                     image:
+                        //                                         DecorationImage(
+                        //                                       filterQuality:
+                        //                                           FilterQuality
+                        //                                               .high,
+                        //                                       image:
+                        //                                           imageProvider,
+                        //                                       fit: BoxFit.cover,
+                        //                                     ),
+                        //                                   ),
+                        //                                 ),
+                        //                                 placeholder: (context,
+                        //                                         url) =>
+                        //                                     Center(
+                        //                                         child:
+                        //                                             CircularProgressIndicator()),
+                        //                                 errorWidget: (context,
+                        //                                         url, error) =>
+                        //                                     Icon(Icons.error),
+                        //                               ),
+                        //                             ),
+                        //                             SizedBox(
+                        //                               height: 1.h,
+                        //                             ),
+                        //                             Padding(
+                        //                               padding:
+                        //                                   EdgeInsets.symmetric(
+                        //                                       horizontal: 1.w),
+                        //                               child: Row(
+                        //                                 mainAxisAlignment:
+                        //                                     MainAxisAlignment
+                        //                                         .center,
+                        //                                 children: [
+                        //                                   Column(
+                        //                                     mainAxisAlignment:
+                        //                                         MainAxisAlignment
+                        //                                             .center,
+                        //                                     crossAxisAlignment:
+                        //                                         CrossAxisAlignment
+                        //                                             .center,
+                        //                                     children: [
+                        //                                       SizedBox(
+                        //                                         width: 30.w,
+                        //                                         child: Text(
+                        //                                           textAlign:
+                        //                                               TextAlign
+                        //                                                   .center,
+                        //                                           overflow:
+                        //                                               TextOverflow
+                        //                                                   .ellipsis,
+                        //                                           maxLines: 1,
+                        //                                           subcatserchmodal
+                        //                                                   ?.searchResults?[
+                        //                                                       index]
+                        //                                                   .productName ??
+                        //                                               '',
+                        //                                           style: TextStyle(
+                        //                                               fontSize:
+                        //                                                   12.5
+                        //                                                       .sp,
+                        //                                               fontFamily:
+                        //                                                   'task',
+                        //                                               fontWeight:
+                        //                                                   FontWeight
+                        //                                                       .bold,
+                        //                                               letterSpacing:
+                        //                                                   1,
+                        //                                               color: Colors
+                        //                                                   .black),
+                        //                                         ),
+                        //                                       ),
+                        //                                     ],
+                        //                                   ),
+                        //                                 ],
+                        //                               ),
+                        //                             ),
+                        //                             Padding(
+                        //                               padding:
+                        //                                   EdgeInsets.symmetric(
+                        //                                 horizontal: 1.5.w,
+                        //                               ),
+                        //                               child: SizedBox(
+                        //                                 width: 35.w,
+                        //                                 child: Text(
+                        //                                   textAlign:
+                        //                                       TextAlign.center,
+                        //                                   overflow: TextOverflow
+                        //                                       .ellipsis,
+                        //                                   maxLines: 2,
+                        //                                   subcatserchmodal
+                        //                                           ?.searchResults?[
+                        //                                               index]
+                        //                                           .productShortDesc ??
+                        //                                       '',
+                        //                                   style: TextStyle(
+                        //                                     fontSize: 11.sp,
+                        //                                     fontFamily: 'task',
+                        //                                     fontWeight:
+                        //                                         FontWeight
+                        //                                             .normal,
+                        //                                     letterSpacing: 1,
+                        //                                     color: Colors.black,
+                        //                                   ),
+                        //                                 ),
+                        //                               ),
+                        //                             ),
+                        //                             Row(
+                        //                               mainAxisAlignment:
+                        //                                   MainAxisAlignment
+                        //                                       .center,
+                        //                               children: [
+                        //                                 Row(
+                        //                                   children: [
+                        //                                     Text(
+                        //                                       '₹' +
+                        //                                           (subcatserchmodal
+                        //                                                   ?.searchResults?[
+                        //                                                       index]
+                        //                                                   .saleProductPrice)
+                        //                                               .toString(),
+                        //                                       style: TextStyle(
+                        //                                         fontSize: 12.sp,
+                        //                                         fontFamily:
+                        //                                             'task',
+                        //                                         fontWeight:
+                        //                                             FontWeight
+                        //                                                 .bold,
+                        //                                         letterSpacing:
+                        //                                             1,
+                        //                                         color: Colors
+                        //                                             .black,
+                        //                                       ),
+                        //                                     ),
+                        //                                     SizedBox(
+                        //                                       width: 0.5.w,
+                        //                                     ),
+                        //                                     Padding(
+                        //                                       padding: EdgeInsets
+                        //                                           .only(
+                        //                                               top: 0.5
+                        //                                                   .h),
+                        //                                       child: Text(
+                        //                                         '₹' +
+                        //                                             (subcatserchmodal
+                        //                                                     ?.searchResults?[index]
+                        //                                                     .productPrice)
+                        //                                                 .toString(),
+                        //                                         style:
+                        //                                             TextStyle(
+                        //                                           decoration:
+                        //                                               TextDecoration
+                        //                                                   .lineThrough,
+                        //                                           fontSize:
+                        //                                               12.sp,
+                        //                                           fontFamily:
+                        //                                               'task',
+                        //                                           fontWeight:
+                        //                                               FontWeight
+                        //                                                   .bold,
+                        //                                           letterSpacing:
+                        //                                               1,
+                        //                                           color: Colors
+                        //                                               .black,
+                        //                                         ),
+                        //                                       ),
+                        //                                     ),
+                        //                                   ],
+                        //                                 ),
+                        //                               ],
+                        //                             ),
+                        //                             SizedBox(
+                        //                               height: 1.h,
+                        //                             ),
+                        //                             GestureDetector(
+                        //                               onTap: () {
+                        //                                 subcatserchmodal
+                        //                                             ?.searchResults?[
+                        //                                                 index]
+                        //                                             .productType ==
+                        //                                         '1'
+                        //                                     ? Navigator.of(
+                        //                                             context)
+                        //                                         .push(
+                        //                                         MaterialPageRoute(
+                        //                                           builder:
+                        //                                               (context) =>
+                        //                                                   productdetailnovartion(
+                        //                                             productid: subcatserchmodal
+                        //                                                     ?.searchResults?[index]
+                        //                                                     .productID ??
+                        //                                                 '',
+                        //                                           ),
+                        //                                         ),
+                        //                                       )
+                        //                                     : Navigator.of(
+                        //                                             context)
+                        //                                         .push(
+                        //                                         MaterialPageRoute(
+                        //                                           builder:
+                        //                                               (context) =>
+                        //                                                   productdetailwebview(
+                        //                                             productid: subcatserchmodal
+                        //                                                     ?.searchResults?[index]
+                        //                                                     .productID ??
+                        //                                                 '',
+                        //                                           ),
+                        //                                         ),
+                        //                                       );
+                        //                                 //ADD CART API
+                        //                                 // addtocartapi((allsubcatwiceproduct
+                        //                                 //     ?.subcategoriesWiseProduct?[
+                        //                                 // index]
+                        //                                 //     .productID ??
+                        //                                 //     ''));
+                        //                               },
+                        //                               child: Container(
+                        //                                 alignment:
+                        //                                     Alignment.center,
+                        //                                 height: 4.h,
+                        //                                 width: 30.w,
+                        //                                 decoration: BoxDecoration(
+                        //                                     borderRadius:
+                        //                                         BorderRadius
+                        //                                             .circular(
+                        //                                                 30),
+                        //                                     color: Color(0xff0061b0)),
+                        //                                 child: Text(
+                        //                                   "View Product",
+                        //                                   style: TextStyle(
+                        //                                       fontSize: 12.sp,
+                        //                                       color:
+                        //                                           Colors.white),
+                        //                                 ),
+                        //                               ),
+                        //                             ),
+                        //                           ],
+                        //                         ),
+                        //                       ),
+                        //                     ),
+                        //                     Positioned(
+                        //                         left: 37.w,
+                        //                         top: 1.h,
+                        //                         child: GestureDetector(
+                        //                           onTap: () {
+                        //                             usermodal?.userId == "" ||
+                        //                                     usermodal?.userId ==
+                        //                                         null
+                        //                                 ? Navigator.of(context)
+                        //                                     .push(MaterialPageRoute(
+                        //                                         builder:
+                        //                                             (context) =>
+                        //                                                 LoginPage2()))
+                        //                                 : subcatserchmodal
+                        //                                             ?.searchResults?[
+                        //                                                 index]
+                        //                                             .wishlist ==
+                        //                                         1
+                        //                                     ? removewishlistap(
+                        //                                         (subcatserchmodal
+                        //                                                 ?.searchResults?[
+                        //                                                     index]
+                        //                                                 .productID)
+                        //                                             .toString())
+                        //                                     : addwishlistap(
+                        //                                         (subcatserchmodal
+                        //                                                 ?.searchResults?[
+                        //                                                     index]
+                        //                                                 .productID)
+                        //                                             .toString());
+                        //                           },
+                        //                           child: Icon(
+                        //                             subcatserchmodal
+                        //                                         ?.searchResults?[
+                        //                                             index]
+                        //                                         .wishlist ==
+                        //                                     1
+                        //                                 ? Icons.favorite
+                        //                                 : Icons
+                        //                                     .favorite_outline,
+                        //                             size: 20.sp,
+                        //                             color: subcatserchmodal
+                        //                                         ?.searchResults?[
+                        //                                             index]
+                        //                                         .wishlist ==
+                        //                                     1
+                        //                                 ? Colors.red
+                        //                                 : Colors.black,
+                        //                           ),
+                        //                         )),
+                        //                   ],
+                        //                 );
+                        //               },
+                        //               childCount: subcatserchmodal
+                        //                   ?.searchResults?.length,
+                        //             ),
+                        //           ),
                         SliverToBoxAdapter(
                           child: SizedBox(
                             height: 1.h,
@@ -1108,7 +1112,7 @@ class _ProductListPageState extends State<ProductListPage> {
         controller: _serch,
         onTap: () {},
         onChanged: (value) {
-          subcatserchap(_serch.text);
+          // subcatserchap(_serch.text);
         },
         style: TextStyle(color: Colors.black, fontFamily: 'task'),
         decoration: InputDecoration(
