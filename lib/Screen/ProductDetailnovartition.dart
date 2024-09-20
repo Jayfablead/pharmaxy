@@ -579,7 +579,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                     child: Text(
                                                       "Add To Cart",
                                                       style: TextStyle(
-                                                          fontSize: 15.sp,
+                                                          fontSize: 11.5.sp,
                                                           color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -680,7 +680,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 Text(
                                   'Reviews :',
                                   style: TextStyle(
-                                    fontSize: 13.sp,
+                                    fontSize: 12.sp,
                                     fontFamily: 'task',
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: 1,
@@ -731,7 +731,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.normal,
                                       fontFamily: 'task',
-                                      fontSize: 18.sp,
+                                      fontSize: 12.sp,
                                       color: Colors.black),
                                 ),
                               ),
@@ -1056,7 +1056,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                               );
                             },
                           ),
-                    SliverToBoxAdapter(child: SizedBox(height: 1.h,)),
+                    SliverToBoxAdapter(child: SizedBox(height: 3.h,)),
 
                     SliverToBoxAdapter(
                       child: Padding(
@@ -1785,7 +1785,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                   'Add Your Review',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      fontSize: 17.sp,
+                                      fontSize: 12.sp,
                                       fontFamily: 'task',
                                       color: Color(0xff0061b0),
                                       fontWeight: FontWeight.bold,
@@ -1798,11 +1798,15 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
                                           SizedBox(width: 1.w),
-                                          Icon(CupertinoIcons.info),
+                                          Padding(
+                                            padding:  EdgeInsets.only(top: 0.5.h),
+                                            child: Icon(CupertinoIcons.info,size: 13.sp,),
+                                          ),
                                           SizedBox(width: 2.w),
                                           Column(
                                             children: [
@@ -1812,7 +1816,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                 style: TextStyle(
                                                     color: Colors.black87,
                                                     fontFamily: "task",
-                                                    fontSize: 15.sp,
+                                                    fontSize: 11.sp,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -1856,7 +1860,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                           hintStyle: TextStyle(
                                               color:
                                                   Colors.black.withOpacity(0.5),
-                                              fontSize: 14.sp,
+                                              fontSize: 12.sp,
                                               fontFamily: "task"),
                                         ),
                                       ),
@@ -1866,7 +1870,10 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             CrossAxisAlignment.center,
                                         children: [
                                           SizedBox(width: 1.w),
-                                          Icon(CupertinoIcons.star),
+                                          Padding(
+                                            padding:  EdgeInsets.only(top: 0.5.h),
+                                            child: Icon(CupertinoIcons.star,size: 13.sp,),
+                                          ),
                                           SizedBox(width: 2.w),
                                           Column(
                                             children: [
@@ -1876,7 +1883,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                 style: TextStyle(
                                                     color: Colors.black87,
                                                     fontFamily: "task",
-                                                    fontSize: 15.sp,
+                                                    fontSize: 12.sp,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -1937,7 +1944,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                           hintStyle: TextStyle(
                                               color:
                                                   Colors.black.withOpacity(0.5),
-                                              fontSize: 14.sp,
+                                              fontSize: 12.sp,
                                               fontFamily: "task"),
                                         ),
                                       ),
@@ -1959,8 +1966,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                         children: [
                                           Container(
                                             alignment: Alignment.center,
-                                            height: 6.h,
-                                            width: 40.w,
+                                            height: 5.5.h,
+                                            width: 43.w,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(30),
@@ -1972,11 +1979,12 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                     icon: Icon(
                                                       CupertinoIcons.add,
                                                       color: Colors.white,
+                                                      size: 11.sp,
                                                     )),
                                                 Text(
                                                   "Add Review",
                                                   style: TextStyle(
-                                                      fontSize: 13.sp,
+                                                      fontSize: 12.sp,
                                                       color: Colors.white,
                                                       fontFamily: "task"),
                                                 ),
@@ -2173,4 +2181,5 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       },
     );
   }
+
 }

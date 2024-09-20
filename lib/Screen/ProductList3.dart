@@ -94,7 +94,7 @@ class _ProductList3State extends State<ProductList3> {
                                     Text(
                                       "Product List",
                                       style: TextStyle(
-                                        fontSize: 18.sp,
+                                        fontSize: 13.sp,
                                         fontFamily: "task",
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -247,7 +247,7 @@ class _ProductList3State extends State<ProductList3> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontFamily: 'task',
-                                          fontSize: 22.sp,
+                                          fontSize: 15.sp,
                                         ),
                                       )),
                                     ),
@@ -381,7 +381,7 @@ class _ProductList3State extends State<ProductList3> {
                                                                       '',
                                                                   style: TextStyle(
                                                                       fontSize:
-                                                                          12.5
+                                                                          11
                                                                               .sp,
                                                                       fontFamily:
                                                                           'task',
@@ -444,7 +444,7 @@ class _ProductList3State extends State<ProductList3> {
                                                                           .saleProductPrice)
                                                                       .toString(),
                                                               style: TextStyle(
-                                                                fontSize: 12.sp,
+                                                                fontSize: 11.sp,
                                                                 fontFamily:
                                                                     'task',
                                                                 fontWeight:
@@ -476,7 +476,7 @@ class _ProductList3State extends State<ProductList3> {
                                                                       TextDecoration
                                                                           .lineThrough,
                                                                   fontSize:
-                                                                      12.sp,
+                                                                      11.sp,
                                                                   fontFamily:
                                                                       'task',
                                                                   fontWeight:
@@ -522,7 +522,7 @@ class _ProductList3State extends State<ProductList3> {
                                                         alignment:
                                                             Alignment.center,
                                                         height: 4.h,
-                                                        width: 30.w,
+                                                        width: 32.w,
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 BorderRadius
@@ -532,7 +532,7 @@ class _ProductList3State extends State<ProductList3> {
                                                         child: Text(
                                                           "View Product",
                                                           style: TextStyle(
-                                                              fontSize: 12.sp,
+                                                              fontSize: 11.sp,
                                                               color:
                                                                   Colors.white),
                                                         ),
@@ -1085,7 +1085,7 @@ class _ProductList3State extends State<ProductList3> {
           prefixIcon: Icon(
             Icons.search,
             color: Colors.black,
-            size: 20,
+            size: 13.sp,
           ),
           prefixIconConstraints: BoxConstraints(
             maxHeight: 20,
@@ -1093,7 +1093,7 @@ class _ProductList3State extends State<ProductList3> {
           ),
           border: InputBorder.none,
           hintText: 'Search Products',
-          hintStyle: TextStyle(color: Colors.black, fontFamily: 'task'),
+          hintStyle: TextStyle(color: Colors.black, fontFamily: 'task',fontSize: 12.sp),
         ),
       ),
     );

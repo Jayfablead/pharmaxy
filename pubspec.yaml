@@ -62,6 +62,7 @@ dependencies:
   razorpay_flutter:
   html:
   flutter_inappwebview:
+  get:
 
 
 
