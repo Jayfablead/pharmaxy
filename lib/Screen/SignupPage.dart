@@ -57,7 +57,7 @@ class _SignupPageState extends State<SignupPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'task',
-                            fontSize: 30.sp,
+                            fontSize: 20.sp,
                             color: Colors.white),
                       ),
                     ),
@@ -103,7 +103,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintText: 'FirstName',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -152,7 +152,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintText: 'LastName',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -208,7 +208,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintText: 'Email',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -260,7 +260,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintText: 'Phone',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -329,7 +329,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintText: 'Password',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -398,7 +398,7 @@ class _SignupPageState extends State<SignupPage> {
                               hintText: 'Confirm Password',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -426,7 +426,7 @@ class _SignupPageState extends State<SignupPage> {
                         child: Text(
                           "Register",
                           style: TextStyle(
-                              fontSize: 23.5.sp,
+                              fontSize: 14.sp,
                               color: Colors.white,
                               fontFamily: "task"),
                         )),
@@ -445,13 +445,13 @@ class _SignupPageState extends State<SignupPage> {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        height: 30.w,
-                        width: 30.w,
+                        height: 25.w,
+                        width: 25.w,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
                             color: Colors.white),
                         child: Icon(Icons.person,
-                            size: 45.sp, color: Color(0xff0061b0)),
+                            size: 30.sp, color: Color(0xff0061b0)),
                       ),
                     ],
                   )),
@@ -471,7 +471,7 @@ class _SignupPageState extends State<SignupPage> {
                               borderRadius: BorderRadius.circular(100),
                               color: Colors.white),
                           child: Icon(Icons.arrow_back,
-                              size: 20.sp, color: Color(0xff0061b0)),
+                              size: 15.sp, color: Color(0xff0061b0)),
                         ),
                         onTap: () {
                           Navigator.of(context).pushReplacement(

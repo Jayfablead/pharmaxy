@@ -37,7 +37,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.only(bottomLeft: Radius.circular(100)),
-                      color: Color(0xfff7941d),
+                      color: Color(0xff0061b0),
                     ),
                     height: 37.h,
                     width: double.infinity,
@@ -48,7 +48,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'task',
-                            fontSize: 25.sp,
+                            fontSize: 20.sp,
                             color: Colors.white),
                       ),
                     ),
@@ -101,7 +101,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               hintText: 'Email',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -122,11 +122,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         width: 75.w,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Color(0xfff7941d)),
+                            color: Color(0xff0061b0)),
                         child: Text(
                           "Send",
                           style: TextStyle(
-                              fontSize: 23.5.sp,
+                              fontSize: 14.sp,
                               color: Colors.white,
                               fontFamily: "task"),
                         )),
@@ -145,13 +145,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        height: 30.w,
-                        width: 30.w,
+                        height: 25.w,
+                        width: 25.w,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
                             color: Colors.white),
                         child: Icon(Icons.person,
-                            size: 45.sp, color: Color(0xfff7941d)),
+                            size: 30.sp, color: Color(0xff0061b0)),
                       ),
                     ],
                   )),
@@ -171,7 +171,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               borderRadius: BorderRadius.circular(100),
                               color: Colors.white),
                           child: Icon(Icons.arrow_back,
-                              size: 20.sp, color: Color(0xfff7941d)),
+                              size: 15.sp, color: Color(0xff0061b0)),
                         ),
                         onTap: () {
                           Navigator.of(context).pushReplacement(

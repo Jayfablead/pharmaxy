@@ -146,10 +146,10 @@ class _CategoryPageState extends State<CategoryPage> {
                                       ? Text(
                                           "Login",
                                           style: TextStyle(
-                                            color: Color(0xfff7941d),
+                                            color: Color(0xff0061b0),
                                             fontFamily: 'task',
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 17.sp,
+                                            fontSize: 14.sp,
                                           ),
                                         )
                                       : Container(

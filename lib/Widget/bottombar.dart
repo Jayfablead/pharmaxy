@@ -372,7 +372,7 @@ class _bottombarState extends State<bottombar> {
                               color: AppColors.primary,
                               fontFamily: 'task',
                               fontWeight: FontWeight.bold,
-                              fontSize: 19.sp,
+                              fontSize: 14.sp,
                             ),
                           ),
                         ))

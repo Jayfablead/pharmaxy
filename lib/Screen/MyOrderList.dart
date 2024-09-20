@@ -178,7 +178,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                           color: Color(0xff0061b0),
                                           fontFamily: 'task',
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 17.sp,
+                                          fontSize: 14.sp,
                                         ),
                                       )
                                     : Container(
@@ -619,7 +619,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                           },
                                                                           child: Icon(
                                                                             CupertinoIcons.chat_bubble_fill,
-                                                                            size: 15.sp,
+                                                                            size: 13.sp,
                                                                             color: Color(0xff0061b0),
                                                                             //weight: 20,
                                                                           ),
@@ -1005,7 +1005,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
                                                                             child:  Icon(
                                                                               CupertinoIcons.chat_bubble_fill,
-                                                                              size: 15.sp,
+                                                                              size: 13.sp,
                                                                               color: Color(0xff0061b0),
                                                                            )
                                                                         ),
@@ -1380,7 +1380,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
                                                                                 child: Icon(
                                                                                   CupertinoIcons.chat_bubble_fill,
-                                                                                  size: 15.sp,
+                                                                                  size: 13.sp,
                                                                                   color: Color(0xff0061b0),
                                                                                 )
                                                                             ),
@@ -1753,7 +1753,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
                                                                                 child: Icon(
                                                                                   CupertinoIcons.chat_bubble_fill,
-                                                                                  size: 15.sp,
+                                                                                  size: 13.sp,
                                                                                   color: Color(0xff0061b0),
                                                                                 )
                                                                             ),

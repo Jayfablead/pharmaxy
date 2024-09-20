@@ -50,7 +50,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.only(bottomLeft: Radius.circular(100)),
-                      color: Color(0xfff7941d),
+                      color: Color(0xff0061b0),
                     ),
                     height: 37.h,
                     width: double.infinity,
@@ -61,7 +61,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'task',
-                            fontSize: 23.sp,
+                            fontSize:20.sp,
                             color: Colors.white),
                       ),
                     ),
@@ -126,7 +126,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               hintText: 'Old Password',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -194,7 +194,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               hintText: 'New Password',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -262,7 +262,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               hintText: 'Confirm Password ',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontFamily: "task"),
                             ),
                           ),
@@ -286,11 +286,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                         width: 75.w,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Color(0xfff7941d)),
+                            color: Color(0xff0061b0)),
                         child: Text(
                           "Change Password",
                           style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 14.sp,
                               color: Colors.white,
                               fontFamily: "task"),
                         )),
@@ -306,13 +306,39 @@ class _ChangePasswordState extends State<ChangePassword> {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        height: 30.w,
-                        width: 30.w,
+                        height: 25.w,
+                        width: 25.w,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
                             color: Colors.white),
                         child: Icon(Icons.person,
-                            size: 45.sp, color: Color(0xfff7941d)),
+                            size: 30.sp, color: Color(0xff0061b0)),
+                      ),
+                    ],
+                  )),
+              Positioned(
+                  top: 6.h,
+                  left: 5.w,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 10.w,
+                          width: 10.w,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.white),
+                          child: Icon(Icons.arrow_back,
+                              size: 15.sp, color: Color(0xff0061b0)),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (context) => LoginPage2(),)
+                          );
+                        },
                       ),
                     ],
                   )),

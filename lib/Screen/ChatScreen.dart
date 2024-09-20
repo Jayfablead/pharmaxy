@@ -69,7 +69,7 @@ class _ChatscreenState extends State<Chatscreen> {
         title: Row(
           children: [
             CircleAvatar(
-              backgroundColor: Colors.orange.shade700,
+              backgroundColor: Color(0xff0061b0),
               child: Icon(Icons.person_outline,color: Colors.white,),
             ),
             SizedBox(width: 10.0,),
@@ -119,7 +119,7 @@ class _ChatscreenState extends State<Chatscreen> {
                               padding: EdgeInsets.all(5.0),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
-                                color: Colors.orange.shade100
+                                color: Colors.blue.shade50
                               ),
                               child: chatviewmodal?.data?.livechat?[index].msgType == "1"?
                               Text(
@@ -1113,8 +1113,8 @@ class _ChatscreenState extends State<Chatscreen> {
                         },
                         icon: Icon(
                           Icons.camera_alt,
-                          size: 20.sp,
-                          color: Colors.black,
+                          size: 15.sp,
+                          color: Color(0xff0061b0),
                         )),
                     Text(
                       "Camera",
@@ -1142,8 +1142,8 @@ class _ChatscreenState extends State<Chatscreen> {
                         },
                         icon: Icon(
                           Icons.browse_gallery,
-                          size: 20.sp,
-                          color: Colors.black,
+                          size: 15.sp,
+                          color: Color(0xff0061b0),
                         )),
                     Text(
                       "Gallery",

@@ -75,7 +75,7 @@ class _LoginPage2State extends State<LoginPage2> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'task',
-                                fontSize: 22.sp,
+                                fontSize: 20.sp,
                                 color: Colors.white),
                           ),
                         ),
