@@ -257,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                                                 color: AppColors.primary,
                                                 fontFamily: 'task',
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 17.sp,
+                                                fontSize: 12.sp,
                                               ),
                                             )
                                           : Container(
@@ -861,7 +861,7 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 "Shop By Category",
                                 style: TextStyle(
-                                    fontSize: 12.sp,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "task"),
                               ),
@@ -1012,7 +1012,7 @@ class _HomePageState extends State<HomePage> {
                                                             .categoryName ??
                                                         '',
                                                 style: TextStyle(
-                                                  fontSize: 11.sp,
+                                                  fontSize: 10.sp,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "task",
                                                   color: Colors.black,
@@ -1042,7 +1042,7 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 "Featured Brands",
                                 style: TextStyle(
-                                    fontSize: 12.sp,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "task"),
                               ),
@@ -1186,7 +1186,7 @@ class _HomePageState extends State<HomePage> {
                                                             .categoryName ??
                                                         '',
                                                 style: TextStyle(
-                                                  fontSize: 11.sp,
+                                                  fontSize: 10.sp,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "task",
                                                   color: Colors.black,
@@ -1215,10 +1215,11 @@ class _HomePageState extends State<HomePage> {
                                     child: Center(
                                       child: Text(
                                         "No Products Available",
-                                        style: TextStyle(
+                                            style: TextStyle(
                                             fontSize: 20.sp,
                                             fontFamily: 'task',
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold
+                                            ),
                                       ),
                                     ),
                                   ),
@@ -1511,7 +1512,7 @@ class _HomePageState extends State<HomePage> {
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(30),
+                                                                .circular(10),
                                                         color:
                                                             Color(0xfff7941d)),
                                                     child: Text(
@@ -1700,27 +1701,15 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   GestureDetector(
                                                     onTap: () {
-                                                      bestsellerproductmodal
-                                                                  ?.productData?[
-                                                                      index]
-                                                                  .productType ==
-                                                              '1'
-                                                          ? Navigator.of(context).push(
+                                            Navigator.of(context).push(
                                                               MaterialPageRoute(
                                                                   builder:
                                                                       (context) =>
                                                                           productdetailnovartion(
                                                                             productid:
                                                                                 bestsellerproductmodal?.productData?[index].productID ?? '',
-                                                                          )))
-                                                          : Navigator.of(context).push(
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          productdetailwebview(
-                                                                            productid:
-                                                                                bestsellerproductmodal?.productData?[index].productID ?? '',
                                                                           )));
+
                                                     },
                                                     child: Card(
                                                       color: Colors.white,
@@ -1943,23 +1932,15 @@ class _HomePageState extends State<HomePage> {
                                                           ),
                                                           GestureDetector(
                                                             onTap: () {
-                                                              // bestsellerproductmodal
-                                                              //             ?.productData?[
-                                                              //                 index]
-                                                              //             .productType ==
-                                                              //         '1'
-                                                              //     ? Navigator.of(context).push(
-                                                              //         MaterialPageRoute(
-                                                              //             builder: (context) =>
-                                                              //                 productdetailnovartion(
-                                                              //                   productid: bestsellerproductmodal?.productData?[index].productID ?? '',
-                                                              //                 )))
-                                                              //     : Navigator.of(
-                                                              //             context)
-                                                              //         .push(MaterialPageRoute(
-                                                              //             builder: (context) => productdetailwebview(
-                                                              //                   productid: bestsellerproductmodal?.productData?[index].productID ?? '',
-                                                              //                 )));
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(
+                                                                      builder:
+                                                                          (context) =>
+                                                                          productdetailnovartion(
+                                                                            productid:
+                                                                            bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                                          )));
+
                                                             },
                                                             child: Container(
                                                               alignment:

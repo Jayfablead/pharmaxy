@@ -243,7 +243,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                             ? Color(0xff0061b0)
                                             : Colors.white,
                                         borderRadius:
-                                            BorderRadius.circular(20)),
+                                            BorderRadius.circular(10)),
                                     margin:
                                         EdgeInsets.symmetric(horizontal: 2.w),
                                     child: Text(cate[index],
@@ -366,282 +366,289 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                 .orderitemid)));
                                           },
                                           child: Card(
-                                            color: Color(0xffffffff),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      width: 2.w,
-                                                    ),
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                            Radius.circular(20),
-                                                          ),
-                                                          ),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsets.all(3.0),
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          imageUrl: myorderlistmodal
-                                                                  ?.cartDetails?[
-                                                                      index]
-                                                                  .imgData ??
-                                                              '',
-                                                          height: 27.w,
-                                                          width: 27.w,
-                                                          imageBuilder: (context,
-                                                                  imageProvider) =>
-                                                              Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                25,
-                                                              ),
-                                                              image:
-                                                                  DecorationImage(
+
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10),
+                                                color: Colors.white
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.center,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: 2.w,
+                                                      ),
+                                                      Container(
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                              Radius.circular(10),
+                                                            ),
+                                                            ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsets.symmetric(horizontal: 1.w),
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl: myorderlistmodal
+                                                                    ?.cartDetails?[
+                                                                        index]
+                                                                    .imgData ??
+                                                                '',
+                                                            height: 25.w,
+                                                            width: 25.w,
+                                                            imageBuilder: (context,
+                                                                    imageProvider) =>
+                                                                Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                  25,
+                                                                ),
                                                                 image:
-                                                                    imageProvider,
-                                                                // fit: BoxFit.cover,
+                                                                    DecorationImage(
+                                                                  image:
+                                                                      imageProvider,
+                                                                  // fit: BoxFit.cover,
+                                                                ),
                                                               ),
                                                             ),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                Center(
+                                                                    child:
+                                                                        CircularProgressIndicator()),
+                                                            errorWidget: (context,
+                                                                    url, error) =>
+                                                                Icon(Icons.error),
                                                           ),
-                                                          placeholder: (context,
-                                                                  url) =>
-                                                              Center(
-                                                                  child:
-                                                                      CircularProgressIndicator()),
-                                                          errorWidget: (context,
-                                                                  url, error) =>
-                                                              Icon(Icons.error),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 1.w,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 1.h,
-                                                              horizontal: 1.w),
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          SizedBox(
-                                                            height: 2.h,
-                                                          ),
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        left: 1
-                                                                            .w),
-                                                                child: SizedBox(
-                                                                  width: 55.w,
-                                                                  child: Text(
-                                                                    maxLines: 1,
-                                                                    myorderlistmodal?.cartDetails?[index].productName ==
-                                                                                '' ||
-                                                                            myorderlistmodal?.cartDetails?[index].productName ==
-                                                                                null
-                                                                        ? 'N/A'
-                                                                        : myorderlistmodal?.cartDetails?[index].productName ??
-                                                                            '',
-                                                                    style: TextStyle(
-                                                                        overflow:
-                                                                            TextOverflow
-                                                                                .ellipsis,
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize: 11
-                                                                            .sp,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w600,
-                                                                        fontFamily:
-                                                                            "task"),
+                                                      SizedBox(
+                                                        width: 1.w,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.symmetric(
+                                                                vertical: 1.h,
+                                                                horizontal: 1.w),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 2.h,
+                                                            ),
+                                                            Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          left: 1
+                                                                              .w),
+                                                                  child: SizedBox(
+                                                                    width: 55.w,
+                                                                    child: Text(
+                                                                      maxLines: 1,
+                                                                      myorderlistmodal?.cartDetails?[index].productName ==
+                                                                                  '' ||
+                                                                              myorderlistmodal?.cartDetails?[index].productName ==
+                                                                                  null
+                                                                          ? 'N/A'
+                                                                          : myorderlistmodal?.cartDetails?[index].productName ??
+                                                                              '',
+                                                                      style: TextStyle(
+                                                                          overflow:
+                                                                              TextOverflow
+                                                                                  .ellipsis,
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontSize: 10
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight
+                                                                                  .w600,
+                                                                          fontFamily:
+                                                                              "task"),
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              SizedBox(
-                                                                height: 0.2.h,
-                                                              ),
-                                                              // Padding(
-                                                              //   padding: EdgeInsets.only(left: 1.w),
-                                                              //   child: Text(
-                                                              //     "Delivered On 10 Sep",
-                                                              //     style: TextStyle(
-                                                              //       fontSize: 13.sp,
-                                                              //       fontFamily: 'task',
-                                                              //       fontWeight: FontWeight.normal,
-                                                              //       letterSpacing: 1,
-                                                              //       color: Colors.black,
-                                                              //     ),
-                                                              //   ),
-                                                              // ),
-                                                              SizedBox(
-                                                                height: 0.2.h,
-                                                              ),
-                                                              Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        left: 1
-                                                                            .w),
-                                                                child: Row(
+                                                                SizedBox(
+                                                                  height: 0.2.h,
+                                                                ),
+                                                                // Padding(
+                                                                //   padding: EdgeInsets.only(left: 1.w),
+                                                                //   child: Text(
+                                                                //     "Delivered On 10 Sep",
+                                                                //     style: TextStyle(
+                                                                //       fontSize: 13.sp,
+                                                                //       fontFamily: 'task',
+                                                                //       fontWeight: FontWeight.normal,
+                                                                //       letterSpacing: 1,
+                                                                //       color: Colors.black,
+                                                                //     ),
+                                                                //   ),
+                                                                // ),
+                                                                SizedBox(
+                                                                  height: 0.2.h,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          left: 1
+                                                                              .w),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        myorderlistmodal?.cartDetails?[index].singleProductPrice == "" ||
+                                                                                myorderlistmodal?.cartDetails?[index].singleProductPrice ==
+                                                                                    null
+                                                                            ? "N/A"
+                                                                            : '₹' +
+                                                                                (myorderlistmodal?.cartDetails?[index].singleProductPrice).toString(),
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              12.sp,
+                                                                          fontFamily:
+                                                                              'task',
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          letterSpacing:
+                                                                              1,
+                                                                          color: Colors
+                                                                              .black,
+                                                                        ),
+                                                                      ),
+                                                                      //
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 0.5.h,
+                                                                ),
+                                                                Row(
                                                                   children: [
                                                                     Text(
-                                                                      myorderlistmodal?.cartDetails?[index].singleProductPrice == "" ||
-                                                                              myorderlistmodal?.cartDetails?[index].singleProductPrice ==
-                                                                                  null
-                                                                          ? "N/A"
-                                                                          : '₹' +
-                                                                              (myorderlistmodal?.cartDetails?[index].singleProductPrice).toString(),
+                                                                      myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                          '' ||
+                                                                          myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                              null
+                                                                          ? 'N/A'
+                                                                          : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
+                                                                          myorderlistmodal?.cartDetails?[index].orderStatus == 'Order Cancelled'
+                                                                          ? "Cancelled"
+                                                                          : myorderlistmodal?.cartDetails?[index].orderStatus ?? '',
                                                                       style:
-                                                                          TextStyle(
+                                                                      TextStyle(
                                                                         fontSize:
-                                                                            12.sp,
+                                                                        12.sp,
                                                                         fontFamily:
-                                                                            'task',
+                                                                        'task',
                                                                         fontWeight:
-                                                                            FontWeight.bold,
-                                                                        letterSpacing:
-                                                                            1,
-                                                                        color: Colors
-                                                                            .black,
+                                                                        FontWeight
+                                                                            .bold,
+                                                                        color: myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
+                                                                            myorderlistmodal?.cartDetails?[index].orderStatus ==
+                                                                                'Order Cancelled'
+                                                                            ? Colors
+                                                                            .red
+                                                                            : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending'
+                                                                            ? Color(0xfff7941d)
+                                                                            : Colors.green,
                                                                       ),
                                                                     ),
-                                                                    //
+                                                                    SizedBox(
+                                                                      width:
+                                                                      2.5.w,
+                                                                    ),
+                                                                    GestureDetector(
+                                                                      onTap: () {
+                                                                        Navigator.of(
+                                                                                context)
+                                                                            .push(
+                                                                                MaterialPageRoute(builder: (context) => OrderSummary(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                      },
+                                                                      child: Container(
+                                                                          alignment: Alignment.center,
+                                                                        padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 0.5.h),
+                                                                          width: 11.w,
+                                                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white,border: Border.all(width: 0.5,color: AppColors.primary)),
+
+                                                                          child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                      width:
+                                                                      2.5.w,
+                                                                    ),
+                                                                    GestureDetector(
+                                                                      onTap: () {
+                                                                        // Navigator.of(
+                                                                        //     context)
+                                                                        //     .push(
+                                                                        //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                      },
+                                                                      child: Container(
+                                                                          alignment: Alignment.center,
+                                                                         padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 0.6.h),
+                                                                          width: 11.w,
+                                                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white,border: Border.all(width: 0.5,color: AppColors.primary)),
+                                                                          child: InkWell(
+                                                                            onTap: () {
+                                                                              Navigator.of(context).push(
+                                                                                MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                                  orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                                ),)
+                                                                              );
+                                                                            },
+                                                                            child: Icon(
+                                                                              CupertinoIcons.chat_bubble_fill,
+                                                                              size: 13.sp,
+                                                                              color: Color(0xff0061b0),
+                                                                              //weight: 20,
+                                                                            ),
+                                                                          )
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                      width: 4.w,
+                                                                    ),
                                                                   ],
                                                                 ),
-                                                              ),
-                                                              SizedBox(
-                                                                height: 0.5.h,
-                                                              ),
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                        '' ||
-                                                                        myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                            null
-                                                                        ? 'N/A'
-                                                                        : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
-                                                                        myorderlistmodal?.cartDetails?[index].orderStatus == 'Order Cancelled'
-                                                                        ? "Cancelled"
-                                                                        : myorderlistmodal?.cartDetails?[index].orderStatus ?? '',
-                                                                    style:
-                                                                    TextStyle(
-                                                                      fontSize:
-                                                                      12.sp,
-                                                                      fontFamily:
-                                                                      'task',
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                      color: myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
-                                                                          myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                              'Order Cancelled'
-                                                                          ? Colors
-                                                                          .red
-                                                                          : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending'
-                                                                          ? Color(0xfff7941d)
-                                                                          : Colors.green,
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width:
-                                                                    2.5.w,
-                                                                  ),
-                                                                  GestureDetector(
-                                                                    onTap: () {
-                                                                      Navigator.of(
-                                                                              context)
-                                                                          .push(
-                                                                              MaterialPageRoute(builder: (context) => OrderSummary(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                                    },
-                                                                    child: Container(
-                                                                        alignment: Alignment.center,
-                                                                        height: 4.h,
-                                                                        width: 13.w,
-                                                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                                                                        child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width:
-                                                                    2.5.w,
-                                                                  ),
-                                                                  GestureDetector(
-                                                                    onTap: () {
-                                                                      // Navigator.of(
-                                                                      //     context)
-                                                                      //     .push(
-                                                                      //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                                    },
-                                                                    child: Container(
-                                                                        alignment: Alignment.center,
-                                                                        height: 4.h,
-                                                                        width: 13.w,
-                                                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                                                                        child: InkWell(
-                                                                          onTap: () {
-                                                                            Navigator.of(context).push(
-                                                                              MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                                orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
-                                                                              ),)
-                                                                            );
-                                                                          },
-                                                                          child: Icon(
-                                                                            CupertinoIcons.chat_bubble_fill,
-                                                                            size: 13.sp,
-                                                                            color: Color(0xff0061b0),
-                                                                            //weight: 20,
-                                                                          ),
-                                                                        )
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: 4.w,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(
-                                                            height: 1.h,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              height: 1.h,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         );
@@ -662,7 +669,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                       style: TextStyle(
                                           fontFamily: "task",
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 16.sp,
+                                          fontSize: 13.sp,
                                           color: Colors.black),
                                     ))
                                 : Column(
@@ -765,268 +772,275 @@ class _MyOrderListState extends State<MyOrderList> {
                                               },
                                               child: Card(
                                                 color: Color(0xffffffff),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        SizedBox(
-                                                          width: 2.w,
-                                                        ),
-                                                        Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .all(
-                                                                    Radius
-                                                                        .circular(
-                                                                            20),
-                                                                  ),
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .shade200),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    3.0),
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              imageUrl: myorderlistmodal
-                                                                      ?.cartDetails?[
-                                                                          index]
-                                                                      .imgData ??
-                                                                  '',
-                                                              height: 30.w,
-                                                              width: 27.w,
-                                                              imageBuilder:
-                                                                  (context,
-                                                                          imageProvider) =>
-                                                                      Container(
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(10),
+                                                      color: Colors.white
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.center,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          SizedBox(
+                                                            width: 2.w,
+                                                          ),
+                                                          Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .all(
+                                                                      Radius
                                                                           .circular(
-                                                                    25,
-                                                                  ),
-                                                                  image:
-                                                                      DecorationImage(
+                                                                              20),
+                                                                    ),
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade200),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsets.all(
+                                                                      3.0),
+                                                              child:
+                                                                  CachedNetworkImage(
+                                                                imageUrl: myorderlistmodal
+                                                                        ?.cartDetails?[
+                                                                            index]
+                                                                        .imgData ??
+                                                                    '',
+                                                                height: 30.w,
+                                                                width: 27.w,
+                                                                imageBuilder:
+                                                                    (context,
+                                                                            imageProvider) =>
+                                                                        Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                      25,
+                                                                    ),
                                                                     image:
-                                                                        imageProvider,
-                                                                    // fit: BoxFit.cover,
+                                                                        DecorationImage(
+                                                                      image:
+                                                                          imageProvider,
+                                                                      // fit: BoxFit.cover,
+                                                                    ),
                                                                   ),
                                                                 ),
+                                                                placeholder: (context,
+                                                                        url) =>
+                                                                    Center(
+                                                                        child:
+                                                                            CircularProgressIndicator()),
+                                                                errorWidget: (context,
+                                                                        url,
+                                                                        error) =>
+                                                                    Icon(Icons
+                                                                        .error),
                                                               ),
-                                                              placeholder: (context,
-                                                                      url) =>
-                                                                  Center(
-                                                                      child:
-                                                                          CircularProgressIndicator()),
-                                                              errorWidget: (context,
-                                                                      url,
-                                                                      error) =>
-                                                                  Icon(Icons
-                                                                      .error),
                                                             ),
                                                           ),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 1.w,
-                                                        ),
-                                                        Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical: 1.h,
-                                                                  horizontal:
-                                                                      1.w),
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              SizedBox(
-                                                                height: 2.h,
-                                                              ),
-                                                              Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsets.only(
-                                                                        left: 1
-                                                                            .w),
-                                                                    child:
-                                                                        SizedBox(
-                                                                      width:
-                                                                          55.w,
+                                                          SizedBox(
+                                                            width: 1.w,
+                                                          ),
+                                                          Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    vertical: 1.h,
+                                                                    horizontal:
+                                                                        1.w),
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: 2.h,
+                                                                ),
+                                                                Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsets.only(
+                                                                          left: 1
+                                                                              .w),
                                                                       child:
-                                                                          Text(
-                                                                        maxLines:
-                                                                            1,
-                                                                        deliveredordermodal?.cartDetails?[index].productName == '' || deliveredordermodal?.cartDetails?[index].productName == null
-                                                                            ? 'N/A'
-                                                                            : deliveredordermodal?.cartDetails?[index].productName ??
-                                                                                '',
-                                                                        style: TextStyle(
-                                                                            overflow:
-                                                                                TextOverflow.ellipsis,
-                                                                            color: Colors.black,
-                                                                            fontSize: 12.sp,
-                                                                            fontWeight: FontWeight.w600,
-                                                                            fontFamily: "task"),
+                                                                          SizedBox(
+                                                                        width:
+                                                                            55.w,
+                                                                        child:
+                                                                            Text(
+                                                                          maxLines:
+                                                                              1,
+                                                                          deliveredordermodal?.cartDetails?[index].productName == '' || deliveredordermodal?.cartDetails?[index].productName == null
+                                                                              ? 'N/A'
+                                                                              : deliveredordermodal?.cartDetails?[index].productName ??
+                                                                                  '',
+                                                                          style: TextStyle(
+                                                                              overflow:
+                                                                                  TextOverflow.ellipsis,
+                                                                              color: Colors.black,
+                                                                              fontSize: 11.sp,
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontFamily: "task"),
+                                                                        ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height:
-                                                                        0.2.h,
-                                                                  ),
-                                                                  // Padding(
-                                                                  //   padding: EdgeInsets.only(left: 1.w),
-                                                                  //   child: Text(
-                                                                  //     "Delivered On 10 Sep",
-                                                                  //     style: TextStyle(
-                                                                  //       fontSize: 13.sp,
-                                                                  //       fontFamily: 'task',
-                                                                  //       fontWeight: FontWeight.normal,
-                                                                  //       letterSpacing: 1,
-                                                                  //       color: Colors.black,
-                                                                  //     ),
-                                                                  //   ),
-                                                                  // ),
-                                                                  SizedBox(
-                                                                    height:
-                                                                        0.2.h,
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsets.only(
-                                                                        left: 1
-                                                                            .w),
-                                                                    child: Row(
+                                                                    SizedBox(
+                                                                      height:
+                                                                          0.2.h,
+                                                                    ),
+                                                                    // Padding(
+                                                                    //   padding: EdgeInsets.only(left: 1.w),
+                                                                    //   child: Text(
+                                                                    //     "Delivered On 10 Sep",
+                                                                    //     style: TextStyle(
+                                                                    //       fontSize: 13.sp,
+                                                                    //       fontFamily: 'task',
+                                                                    //       fontWeight: FontWeight.normal,
+                                                                    //       letterSpacing: 1,
+                                                                    //       color: Colors.black,
+                                                                    //     ),
+                                                                    //   ),
+                                                                    // ),
+                                                                    SizedBox(
+                                                                      height:
+                                                                          0.2.h,
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsets.only(
+                                                                          left: 1
+                                                                              .w),
+                                                                      child: Row(
+                                                                        children: [
+                                                                          Text(
+                                                                            deliveredordermodal?.cartDetails?[index].singleProductPrice == "" || deliveredordermodal?.cartDetails?[index].singleProductPrice == null
+                                                                                ? "N/A"
+                                                                                : '₹' + (deliveredordermodal?.cartDetails?[index].singleProductPrice).toString(),
+                                                                            style:
+                                                                                TextStyle(
+                                                                              fontSize:
+                                                                                  12.sp,
+                                                                              fontFamily:
+                                                                                  'task',
+                                                                              fontWeight:
+                                                                                  FontWeight.bold,
+                                                                              letterSpacing:
+                                                                                  1,
+                                                                              color:
+                                                                                  Colors.black,
+                                                                            ),
+                                                                          ),
+                                                                          //
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height:
+                                                                          0.5.h,
+                                                                    ),
+                                                                    Row(
                                                                       children: [
                                                                         Text(
-                                                                          deliveredordermodal?.cartDetails?[index].singleProductPrice == "" || deliveredordermodal?.cartDetails?[index].singleProductPrice == null
-                                                                              ? "N/A"
-                                                                              : '₹' + (deliveredordermodal?.cartDetails?[index].singleProductPrice).toString(),
+                                                                          "Delivered",
                                                                           style:
-                                                                              TextStyle(
+                                                                          TextStyle(
                                                                             fontSize:
-                                                                                12.sp,
+                                                                            12.sp,
                                                                             fontFamily:
-                                                                                'task',
+                                                                            'task',
                                                                             fontWeight:
-                                                                                FontWeight.bold,
+                                                                            FontWeight.bold,
                                                                             letterSpacing:
-                                                                                1,
-                                                                            color:
-                                                                                Colors.black,
+                                                                            1,
+                                                                            color: Colors
+                                                                                .green
+                                                                                .shade400,
                                                                           ),
                                                                         ),
-                                                                        //
+                                                                        SizedBox(
+                                                                          width:
+                                                                          4.w,
+                                                                        ),
+                                                                        GestureDetector(
+                                                                          onTap:
+                                                                              () {
+                                                                            Navigator.of(context)
+                                                                                .push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
+                                                                          },
+                                                                          child: Container(
+                                                                              alignment: Alignment.center,
+                                                                            padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 1.h),
+                                                                              width: 13.w,
+                                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white,border: Border.all(width: 0.5,color: AppColors.primary
+                                                                              )),
+                                                                              child: Icon(Icons.visibility, color: Color(0xff0061b0),size: 15.sp,)
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          width:
+                                                                          4.w,
+                                                                        ),
+                                                                        GestureDetector(
+                                                                          onTap:
+                                                                              () {
+                                                                            Navigator.of(context).push(
+                                                                              MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                                orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                              ),)
+                                                                            );
+                                                                           // Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
+                                                                          },
+                                                                          child: Container(
+                                                                              alignment: Alignment.center,
+                                                                              height: 4.h,
+                                                                              width: 13.w,
+                                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
+                                                                              child:  Icon(
+                                                                                CupertinoIcons.chat_bubble_fill,
+                                                                                size: 13.sp,
+                                                                                color: Color(0xff0061b0),
+                                                                             )
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          width:
+                                                                              4.w,
+                                                                        ),
                                                                       ],
                                                                     ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height:
-                                                                        0.5.h,
-                                                                  ),
-                                                                  Row(
-                                                                    children: [
-                                                                      Text(
-                                                                        "Delivered",
-                                                                        style:
-                                                                        TextStyle(
-                                                                          fontSize:
-                                                                          12.sp,
-                                                                          fontFamily:
-                                                                          'task',
-                                                                          fontWeight:
-                                                                          FontWeight.bold,
-                                                                          letterSpacing:
-                                                                          1,
-                                                                          color: Colors
-                                                                              .green
-                                                                              .shade400,
-                                                                        ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        width:
-                                                                        4.w,
-                                                                      ),
-                                                                      GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          Navigator.of(context)
-                                                                              .push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
-                                                                        },
-                                                                        child: Container(
-                                                                            alignment: Alignment.center,
-                                                                            height: 4.h,
-                                                                            width: 13.w,
-                                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white),
-                                                                            child: Icon(Icons.visibility, color: Color(0xff0061b0),size: 15.sp,)
-                                                                        ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        width:
-                                                                        4.w,
-                                                                      ),
-                                                                      GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          Navigator.of(context).push(
-                                                                            MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                              orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
-                                                                            ),)
-                                                                          );
-                                                                         // Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
-                                                                        },
-                                                                        child: Container(
-                                                                            alignment: Alignment.center,
-                                                                            height: 4.h,
-                                                                            width: 13.w,
-                                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                                                                            child:  Icon(
-                                                                              CupertinoIcons.chat_bubble_fill,
-                                                                              size: 13.sp,
-                                                                              color: Color(0xff0061b0),
-                                                                           )
-                                                                        ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        width:
-                                                                            4.w,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              SizedBox(
-                                                                height: 1.h,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ],
+                                                                  ],
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 1.h,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             );
@@ -1048,7 +1062,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                           style: TextStyle(
                                               fontFamily: "task",
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 16.sp,
+                                              fontSize: 13.sp,
                                               color: Colors.black),
                                         ))
                                     : Column(
@@ -1152,256 +1166,267 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                     .orderitemid)));
                                                   },
                                                   child: Card(
-                                                    color: Color(0xffffffff),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            SizedBox(
-                                                              width: 2.w,
-                                                            ),
-                                                            Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .all(
-                                                                        Radius.circular(
-                                                                            20),
-                                                                      ),
-                                                                      color: Colors
-                                                                          .grey
-                                                                          .shade200),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            3.0),
-                                                                child:
-                                                                    CachedNetworkImage(
-                                                                  imageUrl: pendingordermodal
-                                                                          ?.cartDetails?[
-                                                                              index]
-                                                                          .imgData ??
-                                                                      '',
-                                                                  height: 30.w,
-                                                                  width: 27.w,
-                                                                  imageBuilder:
-                                                                      (context,
-                                                                              imageProvider) =>
-                                                                          Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                        25,
-                                                                      ),
-                                                                      image:
-                                                                          DecorationImage(
-                                                                        image:
-                                                                            imageProvider,
-                                                                        // fit: BoxFit.cover,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  placeholder: (context,
-                                                                          url) =>
-                                                                      Center(
-                                                                          child:
-                                                                              CircularProgressIndicator()),
-                                                                  errorWidget: (context,
-                                                                          url,
-                                                                          error) =>
-                                                                      Icon(Icons
-                                                                          .error),
-                                                                ),
+
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          color: Colors.white
+                                                      ),
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              SizedBox(
+                                                                width: 2.w,
                                                               ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 1.w,
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      vertical:
-                                                                          1.h,
-                                                                      horizontal:
-                                                                          1.w),
-                                                              child: Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: 2.h,
-                                                                  ),
-                                                                  Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding:
-                                                                            EdgeInsets.only(left: 1.w),
-                                                                        child:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              55.w,
-                                                                          child:
-                                                                              Text(
-                                                                            maxLines:
-                                                                                1,
-                                                                            pendingordermodal?.cartDetails?[index].productName == '' || pendingordermodal?.cartDetails?[index].productName == null
-                                                                                ? 'N/A'
-                                                                                : pendingordermodal?.cartDetails?[index].productName ?? '',
-                                                                            style: TextStyle(
-                                                                                overflow: TextOverflow.ellipsis,
-                                                                                color: Colors.black,
-                                                                                fontSize: 12.sp,
-                                                                                fontWeight: FontWeight.w600,
-                                                                                fontFamily: "task"),
-                                                                          ),
+                                                              Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius
+                                                                                .all(
+                                                                          Radius.circular(
+                                                                              20),
+                                                                        ),
+                                                                        // color: Colors
+                                                                        //     .grey
+                                                                        //     .shade200
+                                                                    ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              3.0),
+                                                                  child:
+                                                                      CachedNetworkImage(
+                                                                    imageUrl: pendingordermodal
+                                                                            ?.cartDetails?[
+                                                                                index]
+                                                                            .imgData ??
+                                                                        '',
+                                                                    height: 25.w,
+                                                                    width: 25.w,
+                                                                    imageBuilder:
+                                                                        (context,
+                                                                                imageProvider) =>
+                                                                            Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius
+                                                                                .circular(
+                                                                          25,
+                                                                        ),
+                                                                        image:
+                                                                            DecorationImage(
+                                                                          image:
+                                                                              imageProvider,
+                                                                          // fit: BoxFit.cover,
                                                                         ),
                                                                       ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            0.2.h,
-                                                                      ),
-                                                                      // Padding(
-                                                                      //   padding: EdgeInsets.only(left: 1.w),
-                                                                      //   child: Text(
-                                                                      //     "Delivered On 10 Sep",
-                                                                      //     style: TextStyle(
-                                                                      //       fontSize: 13.sp,
-                                                                      //       fontFamily: 'task',
-                                                                      //       fontWeight: FontWeight.normal,
-                                                                      //       letterSpacing: 1,
-                                                                      //       color: Colors.black,
-                                                                      //     ),
-                                                                      //   ),
-                                                                      // ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            0.2.h,
-                                                                      ),
-                                                                      Padding(
-                                                                        padding:
-                                                                            EdgeInsets.only(left: 1.w),
-                                                                        child:
-                                                                            Row(
+                                                                    ),
+                                                                    placeholder: (context,
+                                                                            url) =>
+                                                                        Center(
+                                                                            child:
+                                                                                CircularProgressIndicator()),
+                                                                    errorWidget: (context,
+                                                                            url,
+                                                                            error) =>
+                                                                        Icon(Icons
+                                                                            .error),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                width: 1.w,
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        vertical:
+                                                                            1.h,
+                                                                        horizontal:
+                                                                            1.w),
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height: 2.h,
+                                                                    ),
+                                                                    Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding:
+                                                                              EdgeInsets.only(left: 1.w),
+                                                                          child:
+                                                                              SizedBox(
+                                                                            width:
+                                                                                55.w,
+                                                                            child:
+                                                                                Text(
+                                                                              maxLines:
+                                                                                  1,
+                                                                              pendingordermodal?.cartDetails?[index].productName == '' || pendingordermodal?.cartDetails?[index].productName == null
+                                                                                  ? 'N/A'
+                                                                                  : pendingordermodal?.cartDetails?[index].productName ?? '',
+                                                                              style: TextStyle(
+                                                                                  overflow: TextOverflow.ellipsis,
+                                                                                  color: Colors.black,
+                                                                                  fontSize: 11.sp,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontFamily: "task"),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          height:
+                                                                              0.2.h,
+                                                                        ),
+                                                                        // Padding(
+                                                                        //   padding: EdgeInsets.only(left: 1.w),
+                                                                        //   child: Text(
+                                                                        //     "Delivered On 10 Sep",
+                                                                        //     style: TextStyle(
+                                                                        //       fontSize: 13.sp,
+                                                                        //       fontFamily: 'task',
+                                                                        //       fontWeight: FontWeight.normal,
+                                                                        //       letterSpacing: 1,
+                                                                        //       color: Colors.black,
+                                                                        //     ),
+                                                                        //   ),
+                                                                        // ),
+                                                                        SizedBox(
+                                                                          height:
+                                                                              0.2.h,
+                                                                        ),
+                                                                        Padding(
+                                                                          padding:
+                                                                              EdgeInsets.only(left: 1.w),
+                                                                          child:
+                                                                              Row(
+                                                                            children: [
+                                                                              Text(
+                                                                                pendingordermodal?.cartDetails?[index].singleProductPrice == "" || pendingordermodal?.cartDetails?[index].singleProductPrice == null ? "N/A" : '₹' + (pendingordermodal?.cartDetails?[index].singleProductPrice).toString(),
+                                                                                style: TextStyle(
+                                                                                  fontSize: 12.sp,
+                                                                                  fontFamily: 'task',
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  letterSpacing: 1,
+                                                                                  color: Colors.black,
+                                                                                ),
+                                                                              ),
+                                                                              //
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          height:
+                                                                              0.5.h,
+                                                                        ),
+                                                                        Row(
                                                                           children: [
                                                                             Text(
-                                                                              pendingordermodal?.cartDetails?[index].singleProductPrice == "" || pendingordermodal?.cartDetails?[index].singleProductPrice == null ? "N/A" : '₹' + (pendingordermodal?.cartDetails?[index].singleProductPrice).toString(),
-                                                                              style: TextStyle(
-                                                                                fontSize: 12.sp,
+                                                                              "Pending",
+                                                                              style:
+                                                                              TextStyle(
+                                                                                fontSize: 11.sp,
                                                                                 fontFamily: 'task',
                                                                                 fontWeight: FontWeight.bold,
                                                                                 letterSpacing: 1,
-                                                                                color: Colors.black,
+                                                                                color: Color(0xfff7941d),
                                                                               ),
                                                                             ),
-                                                                            //
+                                                                            SizedBox(
+                                                                              width:
+                                                                              4.w,
+                                                                            ),
+                                                                            GestureDetector(
+                                                                              onTap:
+                                                                                  () {
+                                                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: pendingordermodal?.cartDetails?[index].orderitemid)));
+                                                                              },
+                                                                              child: Container(
+                                                                                  alignment: Alignment.center,
+                                                                                 padding: EdgeInsets.symmetric(
+                                                                                   horizontal: 1.w,vertical: 0.5.h
+                                                                                 ),
+                                                                                  width: 13.w,
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                                  child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              width:
+                                                                              2.5.w,
+                                                                            ),
+                                                                            GestureDetector(
+                                                                              onTap: () {
+                                                                                Navigator.of(context).push(
+                                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                                    orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                                  ),)
+                                                                                );
+                                                                                // Navigator.of(
+                                                                                //     context)
+                                                                                //     .push(
+                                                                                //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                              },
+                                                                              child: Container(
+                                                                                  alignment: Alignment.center,
+                                                                                  padding: EdgeInsets.symmetric(
+                                                                                      horizontal: 1.w,vertical: 0.8.h
+                                                                                  ),
+                                                                                  width: 13.w,
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                                  child: Icon(
+                                                                                    CupertinoIcons.chat_bubble_fill,
+                                                                                    size: 13.sp,
+                                                                                    color: Color(0xff0061b0),
+                                                                                  )
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              width:
+                                                                                  4.w,
+                                                                            ),
                                                                           ],
                                                                         ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            0.5.h,
-                                                                      ),
-                                                                      Row(
-                                                                        children: [
-                                                                          Text(
-                                                                            "Pending",
-                                                                            style:
-                                                                            TextStyle(
-                                                                              fontSize: 12.sp,
-                                                                              fontFamily: 'task',
-                                                                              fontWeight: FontWeight.bold,
-                                                                              letterSpacing: 1,
-                                                                              color: Color(0xfff7941d),
-                                                                            ),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            width:
-                                                                            4.w,
-                                                                          ),
-                                                                          GestureDetector(
-                                                                            onTap:
-                                                                                () {
-                                                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: pendingordermodal?.cartDetails?[index].orderitemid)));
-                                                                            },
-                                                                            child: Container(
-                                                                                alignment: Alignment.center,
-                                                                                height: 4.h,
-                                                                                width: 13.w,
-                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ),
-                                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
-                                                                            ),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            width:
-                                                                            2.5.w,
-                                                                          ),
-                                                                          GestureDetector(
-                                                                            onTap: () {
-                                                                              Navigator.of(context).push(
-                                                                                MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                                  orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
-                                                                                ),)
-                                                                              );
-                                                                              // Navigator.of(
-                                                                              //     context)
-                                                                              //     .push(
-                                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                                            },
-                                                                            child: Container(
-                                                                                alignment: Alignment.center,
-                                                                                height: 4.h,
-                                                                                width: 13.w,
-                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                                                                                child: Icon(
-                                                                                  CupertinoIcons.chat_bubble_fill,
-                                                                                  size: 13.sp,
-                                                                                  color: Color(0xff0061b0),
-                                                                                )
-                                                                            ),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            width:
-                                                                                4.w,
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 1.h,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ],
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 1.h,
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -1421,7 +1446,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                           style: TextStyle(
                                               fontFamily: "task",
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 16.sp,
+                                              fontSize: 13.sp,
                                               color: Colors.black),
                                         ))
                                     : Column(
@@ -1526,255 +1551,262 @@ class _MyOrderListState extends State<MyOrderList> {
                                                   },
                                                   child: Card(
                                                     color: Color(0xffffffff),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            SizedBox(
-                                                              width: 2.w,
-                                                            ),
-                                                            Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .all(
-                                                                        Radius.circular(
-                                                                            20),
-                                                                      ),
-                                                                      color: Colors
-                                                                          .grey
-                                                                          .shade200),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            3.0),
-                                                                child:
-                                                                    CachedNetworkImage(
-                                                                  imageUrl: ordercancelmodal
-                                                                          ?.cartDetails?[
-                                                                              index]
-                                                                          .imgData ??
-                                                                      '',
-                                                                  height: 30.w,
-                                                                  width: 27.w,
-                                                                  imageBuilder:
-                                                                      (context,
-                                                                              imageProvider) =>
-                                                                          Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                        25,
-                                                                      ),
-                                                                      image:
-                                                                          DecorationImage(
-                                                                        image:
-                                                                            imageProvider,
-                                                                        // fit: BoxFit.cover,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  placeholder: (context,
-                                                                          url) =>
-                                                                      Center(
-                                                                          child:
-                                                                              CircularProgressIndicator()),
-                                                                  errorWidget: (context,
-                                                                          url,
-                                                                          error) =>
-                                                                      Icon(Icons
-                                                                          .error),
-                                                                ),
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                        color: Colors.white
+                                                      ),
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              SizedBox(
+                                                                width: 2.w,
                                                               ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 1.w,
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      vertical:
-                                                                          1.h,
-                                                                      horizontal:
-                                                                          1.w),
-                                                              child: Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: 2.h,
-                                                                  ),
-                                                                  Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding:
-                                                                            EdgeInsets.only(left: 1.w),
-                                                                        child:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              55.w,
-                                                                          child:
-                                                                              Text(
-                                                                            maxLines:
-                                                                                1,
-                                                                            ordercancelmodal?.cartDetails?[index].productName == '' || ordercancelmodal?.cartDetails?[index].productName == null
-                                                                                ? 'N/A'
-                                                                                : ordercancelmodal?.cartDetails?[index].productName ?? '',
-                                                                            style: TextStyle(
-                                                                                overflow: TextOverflow.ellipsis,
-                                                                                color: Colors.black,
-                                                                                fontSize: 12.sp,
-                                                                                fontWeight: FontWeight.w600,
-                                                                                fontFamily: "task"),
-                                                                          ),
+                                                              Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius
+                                                                                .all(
+                                                                          Radius.circular(
+                                                                              20),
+                                                                        ),
+                                                                        // color: Colors
+                                                                        //     .grey
+                                                                        //     .shade200
+                                                                    ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              3.0),
+                                                                  child:
+                                                                      CachedNetworkImage(
+                                                                    imageUrl: ordercancelmodal
+                                                                            ?.cartDetails?[
+                                                                                index]
+                                                                            .imgData ??
+                                                                        '',
+                                                                    height: 25.w,
+                                                                    width: 25.w,
+                                                                    imageBuilder:
+                                                                        (context,
+                                                                                imageProvider) =>
+                                                                            Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius
+                                                                                .circular(
+                                                                          25,
+                                                                        ),
+                                                                        image:
+                                                                            DecorationImage(
+                                                                          image:
+                                                                              imageProvider,
+                                                                          // fit: BoxFit.cover,
                                                                         ),
                                                                       ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            0.2.h,
-                                                                      ),
-                                                                      // Padding(
-                                                                      //   padding: EdgeInsets.only(left: 1.w),
-                                                                      //   child: Text(
-                                                                      //     "Delivered On 10 Sep",
-                                                                      //     style: TextStyle(
-                                                                      //       fontSize: 13.sp,
-                                                                      //       fontFamily: 'task',
-                                                                      //       fontWeight: FontWeight.normal,
-                                                                      //       letterSpacing: 1,
-                                                                      //       color: Colors.black,
-                                                                      //     ),
-                                                                      //   ),
-                                                                      // ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            0.2.h,
-                                                                      ),
-                                                                      Padding(
-                                                                        padding:
-                                                                            EdgeInsets.only(left: 1.w),
-                                                                        child:
-                                                                            Row(
+                                                                    ),
+                                                                    placeholder: (context,
+                                                                            url) =>
+                                                                        Center(
+                                                                            child:
+                                                                                CircularProgressIndicator()),
+                                                                    errorWidget: (context,
+                                                                            url,
+                                                                            error) =>
+                                                                        Icon(Icons
+                                                                            .error),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                width: 1.w,
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        vertical:
+                                                                            1.h,
+                                                                        horizontal:
+                                                                            1.w),
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height: 2.h,
+                                                                    ),
+                                                                    Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding:
+                                                                              EdgeInsets.only(left: 1.w),
+                                                                          child:
+                                                                              SizedBox(
+                                                                            width:
+                                                                                55.w,
+                                                                            child:
+                                                                                Text(
+                                                                              maxLines:
+                                                                                  1,
+                                                                              ordercancelmodal?.cartDetails?[index].productName == '' || ordercancelmodal?.cartDetails?[index].productName == null
+                                                                                  ? 'N/A'
+                                                                                  : ordercancelmodal?.cartDetails?[index].productName ?? '',
+                                                                              style: TextStyle(
+                                                                                  overflow: TextOverflow.ellipsis,
+                                                                                  color: Colors.black,
+                                                                                  fontSize: 11.sp,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontFamily: "task"),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          height:
+                                                                              0.2.h,
+                                                                        ),
+                                                                        // Padding(
+                                                                        //   padding: EdgeInsets.only(left: 1.w),
+                                                                        //   child: Text(
+                                                                        //     "Delivered On 10 Sep",
+                                                                        //     style: TextStyle(
+                                                                        //       fontSize: 13.sp,
+                                                                        //       fontFamily: 'task',
+                                                                        //       fontWeight: FontWeight.normal,
+                                                                        //       letterSpacing: 1,
+                                                                        //       color: Colors.black,
+                                                                        //     ),
+                                                                        //   ),
+                                                                        // ),
+                                                                        SizedBox(
+                                                                          height:
+                                                                              0.2.h,
+                                                                        ),
+                                                                        Padding(
+                                                                          padding:
+                                                                              EdgeInsets.only(left: 1.w),
+                                                                          child:
+                                                                              Row(
+                                                                            children: [
+                                                                              Text(
+                                                                                ordercancelmodal?.cartDetails?[index].singleProductPrice == "" || ordercancelmodal?.cartDetails?[index].singleProductPrice == null ? "N/A" : '₹' + (ordercancelmodal?.cartDetails?[index].singleProductPrice).toString(),
+                                                                                style: TextStyle(
+                                                                                  fontSize: 12.sp,
+                                                                                  fontFamily: 'task',
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  letterSpacing: 1,
+                                                                                  color: Colors.black,
+                                                                                ),
+                                                                              ),
+                                                                              //
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          height:
+                                                                              0.5.h,
+                                                                        ),
+                                                                        Row(
                                                                           children: [
                                                                             Text(
-                                                                              ordercancelmodal?.cartDetails?[index].singleProductPrice == "" || ordercancelmodal?.cartDetails?[index].singleProductPrice == null ? "N/A" : '₹' + (ordercancelmodal?.cartDetails?[index].singleProductPrice).toString(),
-                                                                              style: TextStyle(
-                                                                                fontSize: 12.sp,
+                                                                              "Cancelled",
+                                                                              style:
+                                                                              TextStyle(
+                                                                                fontSize: 11.sp,
                                                                                 fontFamily: 'task',
                                                                                 fontWeight: FontWeight.bold,
                                                                                 letterSpacing: 1,
-                                                                                color: Colors.black,
+                                                                                color: Colors.red.shade400,
                                                                               ),
                                                                             ),
-                                                                            //
+                                                                            SizedBox(
+                                                                              width:
+                                                                              4.w,
+                                                                            ),
+                                                                            GestureDetector(
+                                                                              onTap:
+                                                                                  () {
+                                                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: ordercancelmodal?.cartDetails?[index].orderitemid)));
+                                                                              },
+                                                                              child: Container(
+                                                                                  alignment: Alignment.center,
+                                                                                 padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 1.h),
+                                                                                  width: 13.w,
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ,border: Border.all(width: 0.5,color: AppColors.primary)),
+                                                                                  child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              width:
+                                                                              2.5.w,
+                                                                            ),
+                                                                            GestureDetector(
+                                                                              onTap: () {
+                                                                                Navigator.of(context).push(
+                                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                                    orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                                  ),)
+                                                                                );
+                                                                                // Navigator.of(
+                                                                                //     context)
+                                                                                //     .push(
+                                                                                //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                              },
+                                                                              child: Container(
+                                                                                  alignment: Alignment.center,
+                                                                               padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 0.8.h),
+                                                                                  width: 13.w,
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ,border: Border.all(width: 0.5,color: AppColors.primary)),
+                                                                                  child: Icon(
+                                                                                    CupertinoIcons.chat_bubble_fill,
+                                                                                    size: 13.sp,
+                                                                                    color: Color(0xff0061b0),
+                                                                                  )
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              width:
+                                                                                  4.w,
+                                                                            ),
                                                                           ],
                                                                         ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            0.5.h,
-                                                                      ),
-                                                                      Row(
-                                                                        children: [
-                                                                          Text(
-                                                                            "Cancelled",
-                                                                            style:
-                                                                            TextStyle(
-                                                                              fontSize: 12.sp,
-                                                                              fontFamily: 'task',
-                                                                              fontWeight: FontWeight.bold,
-                                                                              letterSpacing: 1,
-                                                                              color: Colors.red.shade400,
-                                                                            ),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            width:
-                                                                            4.w,
-                                                                          ),
-                                                                          GestureDetector(
-                                                                            onTap:
-                                                                                () {
-                                                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: ordercancelmodal?.cartDetails?[index].orderitemid)));
-                                                                            },
-                                                                            child: Container(
-                                                                                alignment: Alignment.center,
-                                                                                height: 4.h,
-                                                                                width: 13.w,
-                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ),
-                                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
-                                                                            ),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            width:
-                                                                            2.5.w,
-                                                                          ),
-                                                                          GestureDetector(
-                                                                            onTap: () {
-                                                                              Navigator.of(context).push(
-                                                                                MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                                  orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
-                                                                                ),)
-                                                                              );
-                                                                              // Navigator.of(
-                                                                              //     context)
-                                                                              //     .push(
-                                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                                            },
-                                                                            child: Container(
-                                                                                alignment: Alignment.center,
-                                                                                height: 4.h,
-                                                                                width: 13.w,
-                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                                                                                child: Icon(
-                                                                                  CupertinoIcons.chat_bubble_fill,
-                                                                                  size: 13.sp,
-                                                                                  color: Color(0xff0061b0),
-                                                                                )
-                                                                            ),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            width:
-                                                                                4.w,
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 1.h,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ],
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 1.h,
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 );

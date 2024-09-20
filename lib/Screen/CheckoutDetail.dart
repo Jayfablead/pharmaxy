@@ -1018,12 +1018,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   alignment: Alignment.center,
                                   height: 6.h,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       color: Color(0xff0061b0)),
                                   child: Text(
                                     "Pay Now",
                                     style: TextStyle(
-                                        fontSize: 14.sp,
+                                        fontSize: 12.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),
@@ -1275,12 +1275,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   alignment: Alignment.center,
                                   height: 6.h,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       color: Color(0xff0061b0)),
                                   child: Text(
                                     "Pay Now",
                                     style: TextStyle(
-                                        fontSize: 14.sp,
+                                        fontSize: 12.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),

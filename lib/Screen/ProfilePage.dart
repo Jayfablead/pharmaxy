@@ -215,12 +215,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     alignment: Alignment.center,
                     height: 6.h,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(10),
                         color: Color(0xff0061b0)),
                     child: Text(
                       "Edit Profile",
                       style: TextStyle(
-                        fontSize: 15.0.sp,
+                        fontSize: 12.0.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontFamily: "task",
@@ -367,7 +367,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: 'task',
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
                   color: Colors.white,
                 ),
               ),

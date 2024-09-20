@@ -527,7 +527,7 @@ class _ProductList3State extends State<ProductList3> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        30),
+                                                                        10),
                                                             color: Color(0xff0061b0)),
                                                         child: Text(
                                                           "View Product",
@@ -899,7 +899,7 @@ class _ProductList3State extends State<ProductList3> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        30),
+                                                                        10),
                                                             color: Color(0xff0061b0)),
                                                         child: Text(
                                                           "View Product",

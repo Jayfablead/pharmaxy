@@ -114,7 +114,7 @@ class _WishListPageState extends State<WishListPage> {
                                             color: Color(0xff0061b0),
                                             fontFamily: 'task',
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14.sp,
+                                            fontSize: 12.sp,
                                           ),
                                         )
                                       : Container(
@@ -155,7 +155,7 @@ class _WishListPageState extends State<WishListPage> {
                                   child: Text(
                                     "No Products Available",
                                     style: TextStyle(
-                                      fontSize: 16.sp,
+                                      fontSize: 15.sp,
                                       fontFamily: 'task',
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -169,453 +169,448 @@ class _WishListPageState extends State<WishListPage> {
                                 itemBuilder: (BuildContext context, int index) {
                                   // Build each item in the grid
                                   return Card(
-                                    color: Colors.white,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            SizedBox(
-                                              width: 2.w,
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                userwishlIstmodal
-                                                            ?.wishList?[index]
-                                                            .productType ==
-                                                        '1'
-                                                    ? Navigator.of(context)
-                                                        .push(MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                productdetailnovartion(
-                                                                  productid: userwishlIstmodal
-                                                                          ?.wishList?[
-                                                                              index]
-                                                                          .productID ??
-                                                                      '',
-                                                                )))
-                                                    : Navigator.of(context)
-                                                        .push(MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                productdetailwebview(
-                                                                  productid: userwishlIstmodal
-                                                                          ?.wishList?[
-                                                                              index]
-                                                                          .productID ??
-                                                                      '',
-                                                                )));
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                20)),
-                                                    ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(2.0),
-                                                  child: CachedNetworkImage(
-                                                    imageUrl: userwishlIstmodal
-                                                            ?.wishList?[index]
-                                                            .allImages?[0] ??
-                                                        "",
-                                                    fit: BoxFit.cover,
-                                                    height: 38.w,
-                                                    width: 34.w,
-                                                    imageBuilder: (context,
-                                                            imageProvider) =>
-                                                        Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                        image: DecorationImage(
-                                                          image: imageProvider,
-                                                          // fit: BoxFit.cover,
+
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white,
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                width: 2.w,
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                              Navigator.of(context)
+                                                          .push(MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  productdetailnovartion(
+                                                                    productid: userwishlIstmodal
+                                                                            ?.wishList?[
+                                                                                index]
+                                                                            .productID ??
+                                                                        '',
+                                                                  )));
+
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  20)),
+                                                      ),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.all(2.0),
+                                                    child: CachedNetworkImage(
+                                                      imageUrl: userwishlIstmodal
+                                                              ?.wishList?[index]
+                                                              .allImages?[0] ??
+                                                          "",
+                                                      fit: BoxFit.cover,
+                                                      height: 29.w,
+                                                      width: 29.w,
+                                                      imageBuilder: (context,
+                                                              imageProvider) =>
+                                                          Container(
+                                                        decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(25),
+                                                          image: DecorationImage(
+                                                            image: imageProvider,
+                                                            // fit: BoxFit.cover,
+                                                          ),
                                                         ),
                                                       ),
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          Center(
+                                                              child:
+                                                                  CircularProgressIndicator()),
+                                                      errorWidget:
+                                                          (context, url, error) =>
+                                                              Icon(Icons.error),
                                                     ),
-                                                    placeholder: (context,
-                                                            url) =>
-                                                        Center(
-                                                            child:
-                                                                CircularProgressIndicator()),
-                                                    errorWidget:
-                                                        (context, url, error) =>
-                                                            Icon(Icons.error),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              width: 3.w,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 1.h,
-                                                  horizontal: 1.w),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  SizedBox(
-                                                    height: 2.h,
-                                                  ),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 1.w),
-                                                        child: SizedBox(
-                                                          width: 47.w,
-                                                          child: Text(
-                                                            userwishlIstmodal
-                                                                            ?.wishList?[
-                                                                                index]
-                                                                            .productName ==
-                                                                        "" ||
-                                                                    userwishlIstmodal
-                                                                            ?.wishList?[
-                                                                                index]
-                                                                            .productName ==
-                                                                        null
-                                                                ? "N/A"
-                                                                : userwishlIstmodal
-                                                                        ?.wishList?[
-                                                                            index]
-                                                                        .productName ??
-                                                                    "",maxLines: 2,
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 11.sp,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontFamily:
-                                                                    "task"),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                          horizontal: 1.w,
-                                                        ),
-                                                        child: SizedBox(
-                                                          width: 40.w,
-                                                          child: Text(
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            maxLines: 2,
-                                                            userwishlIstmodal
-                                                                            ?.wishList?[
-                                                                                index]
-                                                                            .productShortDesc ==
-                                                                        "" ||
-                                                                    userwishlIstmodal
-                                                                            ?.wishList?[
-                                                                                index]
-                                                                            .productShortDesc ==
-                                                                        null
-                                                                ? "N/A"
-                                                                : userwishlIstmodal
-                                                                        ?.wishList?[
-                                                                            index]
-                                                                        .productShortDesc ??
-                                                                    '',
-                                                            style: TextStyle(
-                                                              fontSize: 11.sp,
-                                                              fontFamily:
-                                                                  'task',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              letterSpacing: 1,
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 1.w),
-                                                        child: Row(
-                                                          children: [
-                                                            Text(
-                                                              '₹' +
-                                                                  (userwishlIstmodal
+                                              SizedBox(
+                                                width: 3.w,
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 1.h,
+                                                    horizontal: 1.w),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 2.h,
+                                                    ),
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 1.w),
+                                                          child: SizedBox(
+                                                            width: 47.w,
+                                                            child: Text(
+                                                              userwishlIstmodal
+                                                                              ?.wishList?[
+                                                                                  index]
+                                                                              .productName ==
+                                                                          "" ||
+                                                                      userwishlIstmodal
+                                                                              ?.wishList?[
+                                                                                  index]
+                                                                              .productName ==
+                                                                          null
+                                                                  ? "N/A"
+                                                                  : userwishlIstmodal
                                                                           ?.wishList?[
                                                                               index]
-                                                                          .saleProductPrice)
-                                                                      .toString(),
+                                                                          .productName ??
+                                                                      "",maxLines: 2,
                                                               style: TextStyle(
-                                                                fontSize: 11.sp,
-                                                                fontFamily:
-                                                                    'task',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                letterSpacing:
-                                                                    1,
-                                                                color: Colors
-                                                                    .black,
-                                                              ),
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 11.sp,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      "task"),
                                                             ),
-                                                            SizedBox(
-                                                              width: 0.5.w,
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      top: 0.4
-                                                                          .h),
-                                                              child: Text(
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 0.5.h),
+                                                        // Padding(
+                                                        //   padding: EdgeInsets
+                                                        //       .symmetric(
+                                                        //     horizontal: 1.w,
+                                                        //   ),
+                                                        //   child: SizedBox(
+                                                        //     width: 40.w,
+                                                        //     child: Text(
+                                                        //       textAlign:
+                                                        //           TextAlign.start,
+                                                        //       overflow:
+                                                        //           TextOverflow
+                                                        //               .ellipsis,
+                                                        //       maxLines: 2,
+                                                        //       userwishlIstmodal
+                                                        //                       ?.wishList?[
+                                                        //                           index]
+                                                        //                       .productShortDesc ==
+                                                        //                   "" ||
+                                                        //               userwishlIstmodal
+                                                        //                       ?.wishList?[
+                                                        //                           index]
+                                                        //                       .productShortDesc ==
+                                                        //                   null
+                                                        //           ? "N/A"
+                                                        //           : userwishlIstmodal
+                                                        //                   ?.wishList?[
+                                                        //                       index]
+                                                        //                   .productShortDesc ??
+                                                        //               '',
+                                                        //       style: TextStyle(
+                                                        //         fontSize: 11.sp,
+                                                        //         fontFamily:
+                                                        //             'task',
+                                                        //         fontWeight:
+                                                        //             FontWeight
+                                                        //                 .normal,
+                                                        //         letterSpacing: 1,
+                                                        //         color:
+                                                        //             Colors.black,
+                                                        //       ),
+                                                        //     ),
+                                                        //   ),
+                                                        // ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 1.w),
+                                                          child: Row(
+                                                            children: [
+                                                              Text(
                                                                 '₹' +
                                                                     (userwishlIstmodal
-                                                                            ?.wishList?[index]
-                                                                            .productPrice)
+                                                                            ?.wishList?[
+                                                                                index]
+                                                                            .saleProductPrice)
                                                                         .toString(),
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .lineThrough,
-                                                                  fontSize:
-                                                                      11.sp,
+                                                                style: TextStyle(
+                                                                  fontSize: 11.sp,
                                                                   fontFamily:
                                                                       'task',
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .normal,
+                                                                          .bold,
                                                                   letterSpacing:
                                                                       1,
                                                                   color: Colors
                                                                       .black,
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 1.h),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 1.w),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceAround,
-                                                          children: [
-                                                            Container(
-                                                              height: 3.7.h,
-                                                              width: 9.w,
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              decoration: BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                  color: Colors
-                                                                      .white70,
-                                                                  border: Border.all(
-                                                                      width:
-                                                                          0.5,
-                                                                      // color: Colors
-                                                                      //     .grey
-                                                                  )
+                                                              SizedBox(
+                                                                width: 0.5.w,
                                                               ),
-                                                              child:
-                                                                  GestureDetector(
-                                                                onTap: () {
-                                                                  showBottomSheet(
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) {
-                                                                      return Stack(
-                                                                        children: [
-                                                                          Container(
-                                                                            decoration:
-                                                                                BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white),
-                                                                            height:
-                                                                                23.h,
-                                                                            width:
-                                                                                double.infinity,
-                                                                            // Customize the bottom sheet content here
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
-                                                                              child: Column(
-                                                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                mainAxisSize: MainAxisSize.min,
-                                                                                children: [
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Text(
-                                                                                        "Remove From Wishlist?",
-                                                                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.sp, fontFamily: 'task'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                  Text(
-                                                                                    "Are You Sure to delete this product from wishlist?",
-                                                                                    style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14.sp, fontFamily: 'task'),
-                                                                                  ),
-                                                                                  SizedBox(
-                                                                                    height: 2.h,
-                                                                                  ),
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                                    children: [
-                                                                                      GestureDetector(
-                                                                                        onTap: () {
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                        child: Container(
-                                                                                            alignment: Alignment.center,
-                                                                                            height: 5.h,
-                                                                                            width: 35.w,
-                                                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white70, border: Border.all(width: 0.5, color: Colors.grey)),
-                                                                                            child: Text(
-                                                                                              "Cancel",
-                                                                                              style: TextStyle(fontSize: 13.sp, color: Colors.black, fontFamily: "task", fontWeight: FontWeight.bold),
-                                                                                            )),
-                                                                                      ),
-                                                                                      GestureDetector(
-                                                                                        onTap: () {
-                                                                                          removewishlistap((userwishlIstmodal?.wishList?[index].productID).toString());
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                        child: Container(
-                                                                                            alignment: Alignment.center,
-                                                                                            height: 5.h,
-                                                                                            width: 35.w,
-                                                                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xfff7941d)),
-                                                                                            child: Text(
-                                                                                              "Remove",
-                                                                                              style: TextStyle(fontSize: 13.sp, color: Colors.white, fontFamily: "task"),
-                                                                                            )),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                  // Add more options as needed
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          Positioned(
-                                                                            right:
-                                                                                1.w,
-                                                                            child: IconButton(
-                                                                                icon: Icon(
-                                                                                  Icons.highlight_remove,
-                                                                                  size: 25.sp,
-                                                                                  color: Colors.grey,
-                                                                                ),
-                                                                                // Icon to open the menu
-                                                                                onPressed: () {
-                                                                                  Navigator.of(context).pop();
-                                                                                } // We set onPressed to null to disable the button
-                                                                                ),
-                                                                          ),
-                                                                        ],
-                                                                      );
-                                                                    },
-                                                                  );
-                                                                },
-                                                                child: Icon(
-                                                                  CupertinoIcons
-                                                                      .delete,
-                                                                  size: 18.sp,color: Colors.red,
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 0.4
+                                                                            .h),
+                                                                child: Text(
+                                                                  '₹' +
+                                                                      (userwishlIstmodal
+                                                                              ?.wishList?[index]
+                                                                              .productPrice)
+                                                                          .toString(),
+                                                                  style:
+                                                                      TextStyle(
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .lineThrough,
+                                                                    fontSize:
+                                                                        11.sp,
+                                                                    fontFamily:
+                                                                        'task',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    letterSpacing:
+                                                                        1,
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 2.w,
-                                                            ),
-                                                            GestureDetector(
-                                                              onTap: () {
-                                                                userwishlIstmodal
-                                                                            ?.wishList?[
-                                                                                index]
-                                                                            .productType ==
-                                                                        '1'
-                                                                    ? Navigator.of(context).push(
-                                                                        MaterialPageRoute(
-                                                                            builder: (context) =>
-                                                                                productdetailnovartion(
-                                                                                  productid: userwishlIstmodal?.wishList?[index].productID ?? '',
-                                                                                )))
-                                                                    : Navigator.of(
-                                                                            context)
-                                                                        .push(MaterialPageRoute(
-                                                                            builder: (context) => productdetailwebview(
-                                                                                  productid: userwishlIstmodal?.wishList?[index].productID ?? '',
-                                                                                )));
-                                                              },
-                                                              child: Container(
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 1.h),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 1.w),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceAround,
+                                                            children: [
+                                                              Container(
+                                                                height: 3.7.h,
+                                                                width: 9.w,
                                                                 alignment:
                                                                     Alignment
                                                                         .center,
-                                                                height: 4.h,
-                                                                width: 34.w,
                                                                 decoration: BoxDecoration(
                                                                     borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            30),
-                                                                    color: Color(0xff0061b0)),
-                                                                child: Text(
-                                                                  "View Detail",
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          11.sp,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontFamily:
-                                                                          "task"),
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5),
+                                                                    color: Colors
+                                                                        .white70,
+                                                                    border: Border.all(
+                                                                        width:
+                                                                            0.5,
+                                                                        color: AppColors.primary
+                                                                        // color: Colors
+                                                                        //     .grey
+                                                                    )
+                                                                ),
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () {
+                                                                    showBottomSheet(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return Stack(
+                                                                          children: [
+                                                                            Container(
+                                                                              decoration:
+                                                                                  BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white),
+                                                                              height:
+                                                                                  23.h,
+                                                                              width:
+                                                                                  double.infinity,
+                                                                              // Customize the bottom sheet content here
+                                                                              child:
+                                                                                  Padding(
+                                                                                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
+                                                                                child: Column(
+                                                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  mainAxisSize: MainAxisSize.min,
+                                                                                  children: [
+                                                                                    Row(
+                                                                                      children: [
+                                                                                        Text(
+                                                                                          "Remove From Wishlist?",
+                                                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp, fontFamily: 'task'),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                    Text(
+                                                                                      "Are You Sure to delete this product from wishlist?",
+                                                                                      style: TextStyle(fontWeight: FontWeight.normal, fontSize: 12.sp, fontFamily: 'task'),
+                                                                                    ),
+                                                                                    SizedBox(
+                                                                                      height: 2.h,
+                                                                                    ),
+                                                                                    Row(
+                                                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                                      children: [
+                                                                                        GestureDetector(
+                                                                                          onTap: () {
+                                                                                            Navigator.of(context).pop();
+                                                                                          },
+                                                                                          child: Container(
+                                                                                              alignment: Alignment.center,
+                                                                                              height: 5.h,
+                                                                                              width: 35.w,
+                                                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white70, border: Border.all(width: 0.5, color: Colors.grey)),
+                                                                                              child: Text(
+                                                                                                "Cancel",
+                                                                                                style: TextStyle(fontSize: 13.sp, color: Colors.black, fontFamily: "task", fontWeight: FontWeight.bold),
+                                                                                              )),
+                                                                                        ),
+                                                                                        GestureDetector(
+                                                                                          onTap: () {
+                                                                                            removewishlistap((userwishlIstmodal?.wishList?[index].productID).toString());
+                                                                                            Navigator.of(context).pop();
+                                                                                          },
+                                                                                          child: Container(
+                                                                                              alignment: Alignment.center,
+                                                                                              height: 5.h,
+                                                                                              width: 35.w,
+                                                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Color(0xff0061b0)),
+                                                                                              child: Text(
+                                                                                                "Remove",
+                                                                                                style: TextStyle(fontSize: 13.sp, color: Colors.white, fontFamily: "task"),
+                                                                                              )),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                    // Add more options as needed
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            Positioned(
+                                                                              right:
+                                                                                  1.w,
+                                                                              child: IconButton(
+                                                                                  icon: Icon(
+                                                                                    Icons.highlight_remove,
+                                                                                    size: 25.sp,
+                                                                                    color: Colors.grey,
+                                                                                  ),
+                                                                                  // Icon to open the menu
+                                                                                  onPressed: () {
+                                                                                    Navigator.of(context).pop();
+                                                                                  } // We set onPressed to null to disable the button
+                                                                                  ),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                  },
+                                                                  child: Icon(
+                                                                    CupertinoIcons
+                                                                        .delete,
+                                                                    size: 18.sp,color: Colors.red,
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                              SizedBox(
+                                                                width: 2.w,
+                                                              ),
+                                                              GestureDetector(
+                                                                onTap: () {
+                                                                  userwishlIstmodal
+                                                                              ?.wishList?[
+                                                                                  index]
+                                                                              .productType ==
+                                                                          '1'
+                                                                      ? Navigator.of(context).push(
+                                                                          MaterialPageRoute(
+                                                                              builder: (context) =>
+                                                                                  productdetailnovartion(
+                                                                                    productid: userwishlIstmodal?.wishList?[index].productID ?? '',
+                                                                                  )))
+                                                                      : Navigator.of(
+                                                                              context)
+                                                                          .push(MaterialPageRoute(
+                                                                              builder: (context) => productdetailwebview(
+                                                                                    productid: userwishlIstmodal?.wishList?[index].productID ?? '',
+                                                                                  )));
+                                                                },
+                                                                child: Container(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  height: 4.h,
+                                                                  width: 34.w,
+                                                                  decoration: BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10),
+                                                                      color: Color(0xff0061b0)),
+                                                                  child: Text(
+                                                                    "View Detail",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            11.sp,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontFamily:
+                                                                            "task"),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 3.h,
-                                                  ),
-                                                ],
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 3.h,
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },

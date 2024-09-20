@@ -73,7 +73,7 @@ class _AllAddpageState extends State<AllAddpage> {
                           Text(
                             "Address",
                             style: TextStyle(
-                              fontSize: 16.sp,
+                              fontSize: 13.sp,
                               fontFamily: "task",
                               fontWeight: FontWeight.bold,
                             ),
@@ -97,7 +97,7 @@ class _AllAddpageState extends State<AllAddpage> {
                         height: 6.h,
                         width: 50.w,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(10),
                             color: Colors.white),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +106,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                 height: 7.w,
                                 width: 7.w,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   color: Color(0xff0061b0),
                                 ),
                                 child: Center(
@@ -168,6 +168,7 @@ class _AllAddpageState extends State<AllAddpage> {
                                   children: [
                                     Card(
                                       elevation: 00,
+                                      color: Colors.white,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(8)),
@@ -402,12 +403,12 @@ class _AllAddpageState extends State<AllAddpage> {
                                   height: 6.h,
                                   width: 80.w,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       color: Color(0xff0061b0)),
                                   child: Text(
                                     "Confirm",
                                     style: TextStyle(
-                                        fontSize: 14.sp,
+                                        fontSize: 13.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),

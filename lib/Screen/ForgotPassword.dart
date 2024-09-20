@@ -48,7 +48,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'task',
-                            fontSize: 20.sp,
+                            fontSize: 15.sp,
                             color: Colors.white),
                       ),
                     ),
@@ -87,16 +87,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'Email',
                               hintStyle: TextStyle(
@@ -121,7 +121,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         height: 6.h,
                         width: 75.w,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(10),
                             color: Color(0xff0061b0)),
                         child: Text(
                           "Send",

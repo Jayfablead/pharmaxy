@@ -222,31 +222,33 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                   )));
                                     },
                                     child: Card(
-                                        color: Color(0xffffffff),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  width: 2.w,
-                                                ),
-                                                Container(
-                                                  // decoration: BoxDecoration(
-                                                  //     borderRadius: BorderRadius.all(Radius.circular(20)
-                                                  //     ),
-                                                  //     color: Colors.grey.shade200
-                                                  // ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.all(3.0),
+                                        // color: Color(0xffffffff),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Colors.white
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 2.w,
+                                                  ),
+                                                  Container(
+                                                    // decoration: BoxDecoration(
+                                                    //     borderRadius: BorderRadius.all(Radius.circular(20)
+                                                    //     ),
+                                                    //     color: Colors.grey.shade200
+                                                    // ),
                                                     child: CachedNetworkImage(
                                                       imageUrl: subcatmodal
                                                               ?.subCategories?[
@@ -281,143 +283,147 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                           Icon(Icons.error),
                                                     ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  width: 2.w,
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 1.h,
-                                                      horizontal: 1.w),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      SizedBox(
-                                                        height: 2.h,
-                                                      ),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 1.w),
-                                                            child: SizedBox(
-                                                              width: 45.w,
-                                                              child: Text(
-                                                                subcatmodal?.subCategories?[index].subCategory ==
-                                                                            '' ||
-                                                                        subcatmodal?.subCategories?[index].subCategory ==
-                                                                            null
-                                                                    ? 'N/A'
-                                                                    : subcatmodal
-                                                                            ?.subCategories?[index]
-                                                                            .subCategory ??
-                                                                        '',maxLines: 3,
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontSize:
-                                                                        11.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontFamily:
-                                                                        "task"),
+                                                  SizedBox(
+                                                    width: 2.w,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.symmetric(
+                                                        vertical: 1.h,
+                                                        horizontal: 1.w),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        SizedBox(
+                                                          height: 2.h,
+                                                        ),
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsets.only(
+                                                                      left: 1.w),
+                                                              child: SizedBox(
+                                                                width: 40.w,
+                                                                child: Text(
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+
+                                                                  subcatmodal?.subCategories?[index].subCategory ==
+                                                                              '' ||
+                                                                          subcatmodal?.subCategories?[index].subCategory ==
+                                                                              null
+                                                                      ? 'N/A'
+                                                                      : subcatmodal
+                                                                              ?.subCategories?[index]
+                                                                              .subCategory ??
+                                                                          '',maxLines: 2,
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          10.sp,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      fontFamily:
+                                                                          "task"),
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
 
-                                                          // SizedBox(
-                                                          //   width: 50.w,
-                                                          //   child: Row(
-                                                          //     mainAxisAlignment:
-                                                          //     MainAxisAlignment.spaceBetween,
-                                                          //     children: [
-                                                          //       Container(
-                                                          //         padding:
-                                                          //         EdgeInsets.only(left: 1.w),
-                                                          //         child: Container(
-                                                          //           width: 47.w,
-                                                          //           child: Text(
-                                                          //             overflow:
-                                                          //             TextOverflow.ellipsis,
-                                                          //             maxLines: 2,
-                                                          //             cat[index].dec ?? "",
-                                                          //             style: TextStyle(
-                                                          //                 color: Colors.black26,
-                                                          //                 fontSize: 12.sp,
-                                                          //                 fontWeight:
-                                                          //                 FontWeight.w600,
-                                                          //                 fontFamily: "task"),
-                                                          //           ),
-                                                          //         ),
-                                                          //       ),
-                                                          //     ],
-                                                          //   ),
-                                                          // ),
+                                                            // SizedBox(
+                                                            //   width: 50.w,
+                                                            //   child: Row(
+                                                            //     mainAxisAlignment:
+                                                            //     MainAxisAlignment.spaceBetween,
+                                                            //     children: [
+                                                            //       Container(
+                                                            //         padding:
+                                                            //         EdgeInsets.only(left: 1.w),
+                                                            //         child: Container(
+                                                            //           width: 47.w,
+                                                            //           child: Text(
+                                                            //             overflow:
+                                                            //             TextOverflow.ellipsis,
+                                                            //             maxLines: 2,
+                                                            //             cat[index].dec ?? "",
+                                                            //             style: TextStyle(
+                                                            //                 color: Colors.black26,
+                                                            //                 fontSize: 12.sp,
+                                                            //                 fontWeight:
+                                                            //                 FontWeight.w600,
+                                                            //                 fontFamily: "task"),
+                                                            //           ),
+                                                            //         ),
+                                                            //       ),
+                                                            //     ],
+                                                            //   ),
+                                                            // ),
 
-                                                          SizedBox(height: 1.h),
-                                                          Row(
-                                                            children: [
-                                                              GestureDetector(
-                                                                onTap: () {
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .push(MaterialPageRoute(
-                                                                          builder: (context) => ProductListPage(
-                                                                                catid: widget.catid,
-                                                                                subcatid: subcatmodal?.subCategories?[index].subCategoryId ?? '',
-                                                                              )));
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  height: 4.h,
-                                                                  width: 34.w,
-                                                                  decoration: BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              30),
-                                                                      color: Color(0xff0061b0)),
-                                                                  child: Text(
-                                                                    "View Products",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          11.sp,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontFamily:
-                                                                          "task",
+                                                            SizedBox(height: 1.h),
+                                                            Row(
+                                                              children: [
+                                                                GestureDetector(
+                                                                  onTap: () {
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .push(MaterialPageRoute(
+                                                                            builder: (context) => ProductListPage(
+                                                                                  catid: widget.catid,
+                                                                                  subcatid: subcatmodal?.subCategories?[index].subCategoryId ?? '',
+                                                                                )));
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    height: 4.h,
+                                                                    width: 34.w,
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                10),
+                                                                        color: Color(0xff0061b0)),
+                                                                    child: Text(
+                                                                      "View Products",
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            10.sp,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontFamily:
+                                                                            "task",
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 3.h,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ],
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                          height: 3.h,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         )),
                                   );
                                 },

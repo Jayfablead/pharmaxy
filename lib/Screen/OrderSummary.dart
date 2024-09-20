@@ -189,6 +189,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 2.h,)
+                      ,
                       Container(
                         child: Card(
                             elevation: 00,
@@ -209,7 +211,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(20)),
-                                          color: Colors.grey.shade200),
+                                         ),
                                       child: Padding(
                                         padding: EdgeInsets.all(3.0),
                                         child: CachedNetworkImage(
@@ -217,8 +219,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   ?.orderDetails?.imgData ??
                                               '',
                                           fit: BoxFit.cover,
-                                          height: 31.w,
-                                          width: 31.w,
+                                          height: 25.w,
+                                          width: 25.w,
                                           imageBuilder:
                                               (context, imageProvider) =>
                                                   Container(
@@ -457,7 +459,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                       maxLines: 1,
                                                       overflow: TextOverflow.ellipsis,
                                                       style: TextStyle(
-                                                        fontSize: 12.sp,
+                                                        fontSize: 11.sp,
                                                         fontFamily: 'task',
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -514,7 +516,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                             ),
                           ),
                           SizedBox(
-                            height: 0.5.h,
+                            height: 1.h,
                           ),
 
                           // payment method

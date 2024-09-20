@@ -526,7 +526,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        30),
+                                                                        10),
                                                             color: Color(0xff0061b0)),
                                                         child: Text(
                                                           "View Product",
@@ -898,7 +898,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        30),
+                                                                        10),
                                                             color: Color(0xff0061b0)),
                                                         child: Text(
                                                           "View Product",

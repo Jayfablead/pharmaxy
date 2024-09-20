@@ -220,75 +220,76 @@ class _CategoryPageState extends State<CategoryPage> {
                                                   )));
                                     },
                                     child: Card(
-                                        color: Color(0xffffffff),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  width: 2.w,
-                                                ),
-                                                Container(
-                                                  // decoration: BoxDecoration(
-                                                  //   borderRadius: BorderRadius.all(Radius.circular(20)
-                                                  //    ),
-                                                  //   color: Colors.grey.shade200
-                                                  // ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.all(3.0),
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: maincatmodal
-                                                              ?.categories?[
-                                                                  index]
-                                                              .catagoryimage ??
-                                                          '',
-                                                      fit: BoxFit.cover,
-                                                      height: 30.w,
-                                                      width: 30.w,
-                                                      imageBuilder: (context,
-                                                              imageProvider) =>
-                                                          Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(25),
-                                                          image:
-                                                              DecorationImage(
+                                        // color: Colors.white,
+                                        child: Container(
+
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Colors.white,
+                                          ),
+
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 2.w,
+                                                  ),
+                                                  Container(
+                                                    // decoration: BoxDecoration(
+                                                    //   borderRadius: BorderRadius.all(Radius.circular(20)
+                                                    //    ),
+                                                    //   color: Colors.grey.shade200
+                                                    // ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(horizontal: 1.w),
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: maincatmodal
+                                                                ?.categories?[
+                                                                    index]
+                                                                .catagoryimage ??
+                                                            '',
+                                                        fit: BoxFit.cover,
+                                                        height: 25.w,
+                                                        width: 25.w,
+                                                        imageBuilder: (context,
+                                                                imageProvider) =>
+                                                            Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(25),
                                                             image:
-                                                                imageProvider,
-                                                            fit: BoxFit.cover,
+                                                                DecorationImage(
+                                                              image:
+                                                                  imageProvider,
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
                                                         ),
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            Center(
+                                                                child:
+                                                                    CircularProgressIndicator()),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Icon(Icons.error),
                                                       ),
-                                                      placeholder: (context,
-                                                              url) =>
-                                                          Center(
-                                                              child:
-                                                                  CircularProgressIndicator()),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          Icon(Icons.error),
                                                     ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  width: 3.w,
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 1.h,
-                                                      horizontal: 1.w),
-                                                  child: Column(
+
+                                                  Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
                                                     crossAxisAlignment:
@@ -326,7 +327,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                     color: Colors
                                                                         .black,
                                                                     fontSize:
-                                                                        12.sp,
+                                                                        11.sp,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600,
@@ -355,7 +356,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                           TextOverflow
                                                                               .ellipsis,
                                                                       maxLines:
-                                                                          2,
+                                                                          1,
                                                                       maincatmodal?.categories?[index].categoryDesc == "" ||
                                                                               maincatmodal?.categories?[index].categoryDesc ==
                                                                                   null
@@ -364,11 +365,11 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                               '',
                                                                       style: TextStyle(
                                                                           color: Colors
-                                                                              .black26,
-                                                                          fontSize: 12
+                                                                              .black,
+                                                                          fontSize: 11
                                                                               .sp,
                                                                           fontWeight: FontWeight
-                                                                              .w600,
+                                                                              .normal,
                                                                           fontFamily:
                                                                               "task"),
                                                                     ),
@@ -377,7 +378,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                               ],
                                                             ),
                                                           ),
-                                                          SizedBox(height: 2.h),
+                                                          SizedBox(height: 1.h),
                                                           Row(
                                                             children: [
                                                               SizedBox(
@@ -426,11 +427,11 @@ class _CategoryPageState extends State<CategoryPage> {
                                                         height: 3.h,
                                                       ),
                                                     ],
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ],
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         )),
                                   );
                                 },

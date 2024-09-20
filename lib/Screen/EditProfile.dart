@@ -80,7 +80,7 @@ class _EditProfileState extends State<EditProfile> {
                   Text(
                     "Edit Profile",
                     style: TextStyle(
-                      fontSize: 16.sp,
+                      fontSize: 13.sp,
                       fontFamily: "task",
                       fontWeight: FontWeight.bold,
                     ),
@@ -142,7 +142,7 @@ class _EditProfileState extends State<EditProfile> {
               ],
             ),
             SizedBox(
-              height: 3.5.h,
+              height: 2.h,
             ),
             SizedBox(
               width: 90.w,
@@ -174,9 +174,13 @@ class _EditProfileState extends State<EditProfile> {
                           style: TextStyle(
                               color: Colors.black87,
                               fontFamily: "task",
-                              fontSize: 13.sp,
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold),
                         ),
+                        SizedBox(
+                          height: 0.5.h,
+                        )
+                        ,
                         TextFormField(
                           controller: firstname,
                           validator: (value) {
@@ -187,23 +191,23 @@ class _EditProfileState extends State<EditProfile> {
                           },
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
-                                vertical: 1.h, horizontal: 3.w),
+                             horizontal: 2.w),
                             enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(color: Colors.grey)),
                             disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(color: Colors.grey)),
                             focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(color: Colors.grey)),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(color: Colors.grey)),
                             hintText: 'Name',
                             hintStyle: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
-                                fontSize: 16.sp,
+                                fontSize: 10.sp,
                                 fontFamily: "task"),
                           ),
                         ),
@@ -227,6 +231,9 @@ class _EditProfileState extends State<EditProfile> {
               ),
             ),
             SizedBox(
+              height: 1.h,
+            ),
+            SizedBox(
               width: 90.w,
               child: Row(
                 children: [
@@ -243,8 +250,11 @@ class _EditProfileState extends State<EditProfile> {
                           style: TextStyle(
                               color: Colors.black87,
                               fontFamily: "task",
-                              fontSize: 13.sp,
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 0.5.h,
                         ),
                         TextFormField(
                           controller: lastname,
@@ -256,15 +266,15 @@ class _EditProfileState extends State<EditProfile> {
                           },
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
-                                vertical: 1.h, horizontal: 3.w),
+                              horizontal: 3.w),
                             enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(color: Colors.grey)),
                             disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(color: Colors.grey)),
                             focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(color: Colors.grey)),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
@@ -272,7 +282,7 @@ class _EditProfileState extends State<EditProfile> {
                             hintText: 'Name',
                             hintStyle: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
-                                fontSize: 16.sp,
+                                fontSize: 11.sp,
                                 fontFamily: "task"),
                           ),
                         ),
@@ -297,12 +307,12 @@ class _EditProfileState extends State<EditProfile> {
                       style: TextStyle(
                           color: Colors.black87,
                           fontFamily: "task",
-                          fontSize: 13.sp,
+                          fontSize: 11.sp,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                   SizedBox(
-                    width: 3.w,
+                    height: 0.5.h,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 2.w),
@@ -316,26 +326,29 @@ class _EditProfileState extends State<EditProfile> {
                               vertical: 1.h, horizontal: 3.w),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(30),
+                                Radius.circular(10),
                               ),
                               borderSide: BorderSide(color: Colors.grey)),
                           disabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(30.0),
+                                Radius.circular(10),
                               ),
                               borderSide: BorderSide(color: Colors.grey)),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(30.0),
+                                Radius.circular(10),
                               ),
                               borderSide: BorderSide(color: Colors.grey)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(30.0),
+                                Radius.circular(10),
                               ),
                               borderSide: BorderSide(color: Colors.grey)),
                           // filled: true,
                           hintStyle: TextStyle(
+                            fontSize: 11.sp,
+                              fontFamily: 'task',
+                              color: Colors.black
                               // color: Colors.grey[800]
                               ),
                         ),
@@ -380,8 +393,11 @@ class _EditProfileState extends State<EditProfile> {
                                 style: TextStyle(
                                     color: Colors.black87,
                                     fontFamily: "task",
-                                    fontSize: 13.sp,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 0.5.h,
                               ),
                               TextFormField(
                                 controller: phone,
@@ -396,25 +412,25 @@ class _EditProfileState extends State<EditProfile> {
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 1.h, horizontal: 3.w),
                                   enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   hintText: 'Phone',
                                   hintStyle: TextStyle(
                                       color: Colors.black.withOpacity(0.6),
-                                      fontSize: 16.sp,
+                                      fontSize: 11.sp,
                                       fontFamily: "task"),
                                 ),
                               ),
@@ -444,9 +460,10 @@ class _EditProfileState extends State<EditProfile> {
                                 style: TextStyle(
                                     color: Colors.black87,
                                     fontFamily: "task",
-                                    fontSize: 13.sp,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.bold),
                               ),
+                              SizedBox(height: 0.5.h,),
                               TextFormField(
                                 controller: add,
                                 validator: (value) {
@@ -459,25 +476,25 @@ class _EditProfileState extends State<EditProfile> {
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 1.h, horizontal: 3.w),
                                   enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   hintText: 'Address',
                                   hintStyle: TextStyle(
                                       color: Colors.black.withOpacity(0.6),
-                                      fontSize: 16.sp,
+                                      fontSize: 11.sp,
                                       fontFamily: "task"),
                                 ),
                               ),
@@ -504,7 +521,7 @@ class _EditProfileState extends State<EditProfile> {
                         },
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0)),
+                                borderRadius: BorderRadius.circular(10)),
                             backgroundColor: Color(0xff0061b0)),
                         child: Text(
                           "Save",

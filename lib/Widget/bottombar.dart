@@ -28,7 +28,7 @@ class Sachen {
 }
 
 List<Sachen> data = [
-  Sachen("Home "),
+  Sachen("Home"),
   Sachen("Shop"),
   Sachen("Bag"),
   Sachen("favorite"),
@@ -43,13 +43,13 @@ class _bottombarState extends State<bottombar> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: Colors.white),
-      height: Platform.isAndroid ? 6.h : 8.h,
+      height: Platform.isAndroid ? 7.h : 8.h,
       margin: EdgeInsets.only(
         right: 1.w,
         left: 1.w,
       ),
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.only(left: 4.w, right: 4.w, top: 0.7.h),
+      padding: EdgeInsets.only(left: 4.w, right: 4.w, top: 2.h),
       child: usermodal?.userId == "" || usermodal?.userId == null
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,10 +68,10 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.home,
-                        size: 20.sp,
+                        size: 22.sp,
                         color: selected == 1
                             ? AppColors.primary
-                            : Colors.grey.shade300,
+                            : Colors.black
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -113,10 +113,10 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.shopping_cart,
-                        size: 20.sp,
+                        size: 22.sp,
                         color: selected == 2
                             ? AppColors.primary
-                            : Colors.grey.shade300,
+                            : Colors.black
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -160,10 +160,10 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.heart,
-                        size: 20.sp,
+                        size: 22.sp,
                         color: selected == 4
                             ? AppColors.primary
-                            : Colors.grey.shade300,
+                            : Colors.black
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -208,7 +208,7 @@ class _bottombarState extends State<bottombar> {
                           color: AppColors.primary,
                           fontFamily: 'task',
                           fontWeight: FontWeight.bold,
-                          fontSize: 19.sp,
+                          fontSize: 14.sp,
                         ),
                       ),
                     ))
@@ -231,10 +231,10 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.home,
-                        size: 20.sp,
+                        size: 22.sp,
                         color: selected == 1
                             ? AppColors.primary
-                            : Colors.grey.shade300,
+                            : Colors.black
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -276,10 +276,10 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.shopping_cart,
-                        size: 20.sp,
+                        size: 22.sp,
                         color: selected == 2
                             ? AppColors.primary
-                            : Colors.grey.shade300,
+                            : Colors.black
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -323,10 +323,10 @@ class _bottombarState extends State<bottombar> {
                     children: [
                       Icon(
                         CupertinoIcons.heart,
-                        size: 20.sp,
+                        size: 22.sp,
                         color: selected == 4
                             ? AppColors.primary
-                            : Colors.grey.shade300,
+                            : Colors.black
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -392,10 +392,10 @@ class _bottombarState extends State<bottombar> {
                           children: [
                             Icon(
                               CupertinoIcons.person,
-                              size: 20.sp,
+                              size: 22.sp,
                               color: selected == 5
                                   ? AppColors.primary
-                                  : Colors.grey.shade300,
+                                  : Colors.black
                             ),
                             SizedBox(
                               height: 0.5.h,
@@ -564,7 +564,7 @@ class _bottombarState extends State<bottombar> {
                             Icon(
                               Icons.logout,
                               color: Colors.red.shade400,
-                              size: 20.sp,
+                              size: 22.sp,
                             ),
                             SizedBox(
                               height: 0.5.h,

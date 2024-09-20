@@ -118,7 +118,7 @@ class _AdressformState extends State<Adressform> {
                             Text(
                               "Shipping Address",
                               style: TextStyle(
-                                fontSize: 16.sp,
+                                fontSize: 13.sp,
                                 fontFamily: "task",
                                 fontWeight: FontWeight.bold,
                               ),
@@ -150,8 +150,11 @@ class _AdressformState extends State<Adressform> {
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
-                                            fontSize: 13.sp,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height: 1.h,
                                       ),
 
                                       TextFormField(
@@ -167,22 +170,22 @@ class _AdressformState extends State<Adressform> {
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(10),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           disabledBorder: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(10),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           focusedBorder: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(10),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           border: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(10),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           hintText: 'Enter Your First Name',
@@ -211,8 +214,11 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
                                   ),
                                   TextFormField(
                                     validator: (value) {
@@ -227,22 +233,22 @@ class _AdressformState extends State<Adressform> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your Last Name ',
@@ -268,8 +274,11 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
                                   ),
                                   TextFormField(
                                     validator: (value) {
@@ -284,28 +293,28 @@ class _AdressformState extends State<Adressform> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your Address ',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
-                                          fontSize: 11.sp,
+                                          fontSize: 12.sp,
                                           fontFamily: "task"),
                                     ),
                                   ),
@@ -325,8 +334,11 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 11.sp,
                                         fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
                                   ),
                                   TextFormField(
                                     validator: (value) {
@@ -341,22 +353,22 @@ class _AdressformState extends State<Adressform> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your Phone Number',
@@ -382,15 +394,18 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 1, color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(50),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5.0, vertical: 0.5.h),
@@ -448,12 +463,15 @@ class _AdressformState extends State<Adressform> {
                                         fontSize: 13.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 1, color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(50),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5.0, vertical: 0.5.h),
@@ -508,15 +526,18 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
                                   ),
                                   Container(
                                     width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 1, color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(50),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5.0, vertical: 0.5.h),
@@ -575,8 +596,11 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
                                   ),
                                   TextFormField(
                                     validator: (value) {
@@ -591,22 +615,22 @@ class _AdressformState extends State<Adressform> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Zip Code',

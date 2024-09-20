@@ -112,16 +112,16 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'Old Password',
                               hintStyle: TextStyle(
@@ -180,16 +180,16 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'New Password',
                               hintStyle: TextStyle(
@@ -248,16 +248,16 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'Confirm Password ',
                               hintStyle: TextStyle(
@@ -285,7 +285,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         height: 6.h,
                         width: 75.w,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(10),
                             color: Color(0xff0061b0)),
                         child: Text(
                           "Change Password",

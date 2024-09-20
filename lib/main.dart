@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primaryColor: AppColors.primary,
-            colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff0061b0)),
+            // primaryColor: AppColors.primary,
+            // colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff0061b0)),
             useMaterial3: true,
           ),
           home: SpleshScreen(),
