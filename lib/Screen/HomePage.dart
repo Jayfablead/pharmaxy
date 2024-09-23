@@ -2124,7 +2124,6 @@ class _HomePageState extends State<HomePage> {
                                   child: Column(
                                     children: [
                                       Container(
-                                        height: 12.5.h,
                                         width: 60.w,
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.only(

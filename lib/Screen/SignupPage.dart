@@ -281,20 +281,11 @@ class _SignupPageState extends State<SignupPage> {
                         Container(
                           width: 85.w,
                           child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Please Enter The Phone";
-                              }
-                              else if (value.length != 10){
-                                return "Please enter Valid Phone Number";
-                              }
-                              return null;
-                            },
                             controller: phone,
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
                               prefixIcon: Icon(
-                                Icons.phone_android_rounded,
+                                Icons.abc_sharp,
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
@@ -309,7 +300,7 @@ class _SignupPageState extends State<SignupPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
-                              hintText: 'Refer By Admin',
+                              hintText: 'Referred by admin (Optional)',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
                                   fontSize: 12.sp,

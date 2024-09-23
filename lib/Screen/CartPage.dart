@@ -672,7 +672,7 @@ class _CartPageState extends State<CartPage> {
                                                     child: Text(
                                                       "Login to Checkout",
                                                       style: TextStyle(
-                                                          fontSize: 13.sp,
+                                                          fontSize: 15.sp,
                                                           color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.bold,

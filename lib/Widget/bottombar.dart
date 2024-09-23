@@ -76,7 +76,7 @@ class _bottombarState extends State<bottombar> {
                       Text(
                         "Home",
                         style: TextStyle(
-                          fontSize: 8.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
                           color: selected == 1 ? AppColors.primary : Colors.black,
@@ -130,7 +130,7 @@ class _bottombarState extends State<bottombar> {
                       Text(
                         "Cart",
                         style: TextStyle(
-                          fontSize: 8.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
                           color: selected == 2 ? AppColors.primary : Colors.black,
@@ -186,7 +186,7 @@ class _bottombarState extends State<bottombar> {
                       Text(
                         "WishList",
                         style: TextStyle(
-                          fontSize: 8.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
                           color: selected == 4? AppColors.primary : Colors.black,
@@ -264,10 +264,10 @@ class _bottombarState extends State<bottombar> {
                       Text(
                         "Home",
                         style: TextStyle(
-                          fontSize: 8.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
-                          color: selected == 1 ? AppColors.primary : Colors.grey.shade500,
+                          color: selected == 1 ? AppColors.primary : Colors.black,
                         ),
                       ),
                       SizedBox(
@@ -363,7 +363,7 @@ class _bottombarState extends State<bottombar> {
                       Text(
                         "WishList",
                         style: TextStyle(
-                          fontSize: 8.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
                           color: selected == 4 ? AppColors.primary : Colors.black,
@@ -622,7 +622,7 @@ class _bottombarState extends State<bottombar> {
                                 fontSize: 9.sp,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "task",
-                                color: selected == 5 ? AppColors.primary : Colors.black,
+                                color: selected == 5 ? AppColors.primary : Colors.red,
                               ),
                             ),
                             SizedBox(

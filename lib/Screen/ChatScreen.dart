@@ -154,11 +154,11 @@ class _ChatscreenState extends State<Chatscreen> {
           Row(
             children: [
               Expanded(child:Container(
-                height: 7.h,
+                height: 6.h,
                 width: MediaQuery.of(context).size.width,
                 margin: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(11.0),
+                    borderRadius: BorderRadius.circular(10.0),
                     color: Colors.grey.shade100,
                     border: Border.all(color: Colors.grey)
                 ),
@@ -203,13 +203,14 @@ class _ChatscreenState extends State<Chatscreen> {
                       backgroundColor:
                       AppColors.primary,
                       textColor: Colors.white,
-                      fontSize: 10.sp
+                      fontSize: 11.sp
                   );
                 }
                 else{
                   SendMessages();
                 }
-              }, icon: Icon(Icons.send,color: AppColors.primary,)),
+              }, icon: Icon(Icons.send,color: AppColors.primary,size: 25.sp,)
+              ),
             ],
           ),
         ],
@@ -660,8 +661,6 @@ class _ChatscreenState extends State<Chatscreen> {
 
     );
   }
-
-
   selectfile() {
     AlertDialog alert = AlertDialog(
       elevation: 0,
@@ -807,6 +806,4 @@ class _ChatscreenState extends State<Chatscreen> {
       }
     });
   }
-
-
 }
