@@ -1,0 +1,493 @@
+
+import 'package:ecommerce/Screen/RequestDoctorForm.dart';
+import 'package:ecommerce/Widget/Const.dart';
+import 'package:ecommerce/Widget/loder.dart';
+import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
+import 'package:intl/intl.dart';
+class Requestdoctorform2 extends StatefulWidget {
+  const Requestdoctorform2({super.key});
+
+  @override
+  State<Requestdoctorform2> createState() => _Requestdoctorform2State();
+}
+
+class _Requestdoctorform2State extends State<Requestdoctorform2> {
+  final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+  TextEditingController _ZipCode = TextEditingController();
+  TextEditingController _city = TextEditingController();
+  TextEditingController _state = TextEditingController();
+  TextEditingController _date = TextEditingController();
+  String selected = 'please select';
+  @override
+  Widget build(BuildContext context) {
+    return  Form(
+        key: _formKey,
+        child: commanScreen(
+          isLoading: isLoading,
+          scaffold: Scaffold(
+            backgroundColor: Colors.white,
+            body: SingleChildScrollView(
+              child: isLoading
+                  ? Container()
+                  : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    // app bar
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Requestdoctorform(),
+                                  ));
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new_outlined,
+                              size: 18.sp,
+                            )),
+                        Text(
+                          "Request Appointment",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontFamily: "task",
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        IconButton(onPressed: () {}, icon: Icon(null)),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text('1',style: TextStyle(
+                          fontSize: 16.sp,
+                          fontFamily: "task",
+                          fontWeight: FontWeight.bold,
+                        ),),
+                        Container(
+                          height: 0.7.h,
+                          width: 18.w,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.grey),
+                        ),
+                        Container(
+                          height: 0.7.h,
+                          width: 18.w,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.grey),
+                        ),
+                        Container(
+                          height: 0.7.h,
+                          width: 18.w,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: AppColors.primary),
+                        ),
+                        Container(
+                          height: 0.7.h,
+                          width: 18.w,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: AppColors.primary),
+                        ),
+                        Text('2',style: TextStyle(
+                          fontSize: 16.sp,
+                          fontFamily: "task",
+                          fontWeight: FontWeight.bold,
+                        ),),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 2.5.h,
+                          ),
+                          Container(
+                            width: 85.w,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Gender",
+                                  style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: "task",
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 0.5.h,),
+                                Container(
+                                  height: 8.h,
+                                  width: 85.w,
+                                  child: DropdownButtonFormField(
+                                    borderRadius: BorderRadius.circular(30),
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 1.h, horizontal: 3.w),
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.grey)),
+                                      disabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.grey)),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.grey)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.grey)),
+                                      // filled: true,
+                                      hintStyle: TextStyle(
+                                        // color: Colors.grey[800]
+                                      ),
+                                    ),
+                                    value: selected,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        selected = val!;
+                                      });
+                                    },
+                                    items: [
+                                      DropdownMenuItem<String>(
+                                        child: Text("Please Select"),
+                                        value: "please select",
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        child: Text("Male"),
+                                        value: "male",
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        child: Text("Female"),
+                                        value: "female",
+                                      )
+                                    ],
+                                    // Initialize this variable with the selected value.
+                                  ),
+                                ),
+                                // SizedBox(height: 2.5.h,),
+                                Container(
+                                  width: 85.w,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "State",
+                                        style: TextStyle(
+                                            color: Colors.black87,
+                                            fontFamily: "task",
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 0.5.h,),
+                                      TextFormField(
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Please Enter Statte";
+                                          }
+                                          return null;
+                                        },
+                                        keyboardType: TextInputType.text,
+                                        controller: _state,
+                                        style: TextStyle(height: 1),
+                                        decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          disabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          hintText: 'Enter State',
+                                          hintStyle: TextStyle(
+                                              color: Colors.black.withOpacity(0.4),
+                                              fontSize: 11.sp,
+                                              fontFamily: "task"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 2.5.h,),
+                                Container(
+                                  width: 85.w,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "City",
+                                        style: TextStyle(
+                                            color: Colors.black87,
+                                            fontFamily: "task",
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 0.5.h,),
+                                      TextFormField(
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Please Enter City";
+                                          }
+                                          return null;
+                                        },
+                                        keyboardType: TextInputType.text,
+                                        controller: _city,
+                                        style: TextStyle(height: 1),
+                                        decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          disabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          hintText: 'Enter City',
+                                          hintStyle: TextStyle(
+                                              color: Colors.black.withOpacity(0.4),
+                                              fontSize: 11.sp,
+                                              fontFamily: "task"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 2.5.h,),
+                                Container(
+                                  width: 85.w,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Zip Code(PostalCode)",
+                                        style: TextStyle(
+                                            color: Colors.black87,
+                                            fontFamily: "task",
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 0.5.h,),
+                                      TextFormField(
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Please Enter The Zip Code";
+                                          }
+                                          return null;
+                                        },
+                                        keyboardType: TextInputType.number,
+                                        controller: _ZipCode,
+                                        style: TextStyle(height: 1),
+                                        decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          disabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          hintText: 'Enter Zip Code',
+                                          hintStyle: TextStyle(
+                                              color: Colors.black.withOpacity(0.4),
+                                              fontSize: 11.sp,
+                                              fontFamily: "task"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 2.5.h,),
+                                Container(
+                                  width: 85.w,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Select Appointment Date",
+                                        style: TextStyle(
+                                            color: Colors.black87,
+                                            fontFamily: "task",
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 0.5.h,),
+                                      TextFormField(
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Please Select Date";
+                                          }
+                                          return null;
+                                        },
+                                        //keyboardType: TextInputType.number,
+                                        controller: _date,
+                                        style: TextStyle(height: 1),
+                                        decoration: InputDecoration(
+                                          suffixIcon: IconButton(
+                                            icon: Icon(Icons.date_range_outlined,color: AppColors.primary,size: 18.sp,),
+                                            onPressed: () async
+                                            {
+                                              DateTime? datepicker = await showDatePicker(
+                                                  context: context,
+                                                  initialDate: DateTime.now(),
+                                                  firstDate: DateTime(2024,1),
+                                                  lastDate: DateTime(2024,12));
+                                              if(datepicker!= null)
+                                              {
+                                                String formattedDate = DateFormat('dd-MM-yyyy').format(datepicker);
+                                                setState(() {
+                                                  _date.text = formattedDate.toString();
+                                                });
+                                              }
+                                            },
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(30),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          disabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(10),
+                                              borderSide:
+                                              BorderSide(color: Colors.grey)),
+                                          hintText: 'Select Date',
+                                          hintStyle: TextStyle(
+                                              color: Colors.black.withOpacity(0.4),
+                                              fontSize: 11.sp,
+                                              fontFamily: "task"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              if (_formKey.currentState!.validate()) {
+                                // countryValue == null &&
+                                //     cityValue == null &&
+                                //     stateValue == null
+                                //     ? buildErrorDialog(context, 'Field Error',
+                                //     'Country, State & City Required')
+                                //     : cityValue == null && stateValue == null
+                                //     ? buildErrorDialog(context, 'Field Error',
+                                //     'State & City Required')
+                                //     : cityValue == null
+                                //     ? buildErrorDialog(context,
+                                //     'Field Error', 'City Required')
+                                //     : shippingap();
+                                // print(selected?.title);
+                              }
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                    margin:
+                                    EdgeInsets.only(right: 7.w, left: 7.w),
+                                    alignment: Alignment.center,
+                                    height: 6.h,
+                                    width: 85.w,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Color(0xff0061b0)),
+                                    child: Text(
+                                      "Submit Form",
+                                      style: TextStyle(
+                                          fontSize: 14.sp,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "task"),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                        ]),
+                  ]
+              ),
+            ),
+          ),
+        )
+    );;
+  }
+}

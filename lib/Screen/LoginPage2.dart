@@ -126,7 +126,7 @@ class _LoginPage2State extends State<LoginPage2> {
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide:
                                           BorderSide(color: Colors.grey)),
                                   hintText: 'Email',
