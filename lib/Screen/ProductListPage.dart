@@ -24,8 +24,10 @@ class ProductListPage extends StatefulWidget {
   String? catid;
   String? subcatid;
   String? allcatid;
+  String? selid;
 
-  ProductListPage({super.key, this.catid, this.subcatid, this.allcatid});
+
+  ProductListPage({super.key, this.catid, this.subcatid, this.allcatid,this.selid});
 
   @override
   State<ProductListPage> createState() => _ProductListPageState();
@@ -274,7 +276,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                             crossAxisSpacing:
                                                 10.0, // Adjust as needed
                                             childAspectRatio:
-                                                6.5 / 11 // Adjust as needed
+                                                6.5 / 9 // Adjust as needed
                                             ),
                                     delegate: SliverChildBuilderDelegate(
                                       (BuildContext context, int index) {
@@ -304,7 +306,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                         .push(
                                                         MaterialPageRoute(
                                                           builder: (context) =>
-                                                              productdetailwebview(
+                                                              productdetailnovartion(
                                                             productid: allsubcatwiceproduct
                                                                     ?.subcategoriesWiseProduct?[
                                                                         index]
@@ -546,7 +548,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                   MaterialPageRoute(
                                                                     builder:
                                                                         (context) =>
-                                                                            productdetailwebview(
+                                                                            productdetailnovartion(
                                                                       productid: allsubcatwiceproduct
                                                                               ?.subcategoriesWiseProduct?[index]
                                                                               .productID ??
@@ -684,7 +686,7 @@ class _ProductListPageState extends State<ProductListPage> {
                         //                     crossAxisSpacing:
                         //                         10.0, // Adjust as needed
                         //                     childAspectRatio:
-                        //                         6.5 / 11 // Adjust as needed
+                        //                         6.5 / 9 // Adjust as needed
                         //                     ),
                         //             delegate: SliverChildBuilderDelegate(
                         //               (BuildContext context, int index) {
@@ -1121,16 +1123,17 @@ class _ProductListPageState extends State<ProductListPage> {
         onChanged: (value) {
           // subcatserchap(_serch.text);
         },
-        style: TextStyle(color: Colors.black, fontFamily: 'task'),
+        style: TextStyle(color: Colors.black, fontFamily: 'task',fontSize: 12.
+        sp),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(
             Icons.search,
             color: Colors.black,
-            size: 20,
+            size: 13.sp,
           ),
           prefixIconConstraints: BoxConstraints(
-            maxHeight: 20,
+            maxHeight: 25,
             minWidth: 25,
           ),
           border: InputBorder.none,

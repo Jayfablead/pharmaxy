@@ -223,7 +223,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 Text(
                                   "Product Detail Page",
                                   style: TextStyle(
-                                    fontSize: 13.sp,
+                                    fontSize: 12.sp,
                                     fontFamily: "task",
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -251,7 +251,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                 color: Color(0xff0061b0),
                                                 fontFamily: 'task',
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 17.sp,
+                                                fontSize: 13.sp,
                                               ),
                                             )
                                           : Container(

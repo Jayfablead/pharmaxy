@@ -555,21 +555,10 @@ class _WishListPageState extends State<WishListPage> {
                                                               ),
                                                               GestureDetector(
                                                                 onTap: () {
-                                                                  userwishlIstmodal
-                                                                              ?.wishList?[
-                                                                                  index]
-                                                                              .productType ==
-                                                                          '1'
-                                                                      ? Navigator.of(context).push(
-                                                                          MaterialPageRoute(
-                                                                              builder: (context) =>
-                                                                                  productdetailnovartion(
-                                                                                    productid: userwishlIstmodal?.wishList?[index].productID ?? '',
-                                                                                  )))
-                                                                      : Navigator.of(
+                                                                 Navigator.of(
                                                                               context)
                                                                           .push(MaterialPageRoute(
-                                                                              builder: (context) => productdetailwebview(
+                                                                              builder: (context) => productdetailnovartion(
                                                                                     productid: userwishlIstmodal?.wishList?[index].productID ?? '',
                                                                                   )));
                                                                 },

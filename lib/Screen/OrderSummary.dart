@@ -118,7 +118,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                             color: Color(0xff0061b0),
                                             fontFamily: 'task',
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 17.sp,
+                                            fontSize: 13.sp,
                                           ),
                                         )
                                       : Container(
@@ -632,11 +632,14 @@ class _OrderSummaryState extends State<OrderSummary> {
                                     if (myoederdetailmodal?.orderDetails?.orderStatus =='Completed'||myoederdetailmodal?.orderDetails?.orderStatus =='Order Cancelled') SizedBox() else InkWell(
                                       onTap: () {
                                         AlertDialog alertDialog = AlertDialog(
-                                          title: Text("Cancel order",style: TextStyle(
+                                          title: Text("Cancel Order",style: TextStyle(
                                               fontFamily: "task",
+                                            fontSize: 13.sp,
+
                                           ),),
                                           content: Text("Are you sure want cancel this order?",style: TextStyle(
-                                              fontFamily: "task"
+                                              fontFamily: "task",
+                                            fontSize: 12.sp,
                                           ),),
                                           backgroundColor: Colors.grey.shade100,
                                           // contentPadding: EdgeInsets.all(10.0),
@@ -645,8 +648,12 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                onPressed: (){
                                                  ordercancelledap();
                                                },
-                                               child: Text("Yes"),
+                                               child: Text("Yes",style: TextStyle(
+                                                 fontSize: 10.sp,
+                                                 fontFamily: 'task',
+                                               ),),
                                              style: ElevatedButton.styleFrom(
+                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                                backgroundColor: Color(0xff0061b0),
                                                foregroundColor: Colors.white
                                              ),
@@ -655,9 +662,13 @@ class _OrderSummaryState extends State<OrderSummary> {
                                               onPressed: (){
                                                 Navigator.of(context).pop();
                                               },
-                                              child: Text("No"),
+                                              child: Text("No",style: TextStyle(
+                                                fontSize: 10.sp,
+                                                fontFamily: 'task',
+                                              ),),
                                               style: ElevatedButton.styleFrom(
                                                   backgroundColor: Color(0xff0061b0),
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                                   foregroundColor: Colors.white
                                               ),
                                             ),

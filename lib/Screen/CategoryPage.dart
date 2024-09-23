@@ -149,7 +149,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                             color: Color(0xff0061b0),
                                             fontFamily: 'task',
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14.sp,
+                                            fontSize: 13.sp,
                                           ),
                                         )
                                       : Container(
@@ -195,7 +195,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'task',
-                                      fontSize: 16.sp,
+                                      fontSize: 13.sp,
                                       color: Colors.black),
                                 ),
                               ))

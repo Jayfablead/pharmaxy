@@ -57,7 +57,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                         Text(
                           "Request Appointment",
                           style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 13.sp,
                             fontFamily: "task",
                             fontWeight: FontWeight.bold,
                           ),
@@ -131,7 +131,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 13.sp,
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
@@ -139,7 +139,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                   height: 8.h,
                                   width: 85.w,
                                   child: DropdownButtonFormField(
-                                    borderRadius: BorderRadius.circular(30),
+                                    borderRadius: BorderRadius.circular(10),
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.symmetric(
                                           vertical: 1.h, horizontal: 3.w),
@@ -202,7 +202,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
-                                            fontSize: 13.sp,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       SizedBox(height: 0.5.h,),
@@ -258,7 +258,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
-                                            fontSize: 13.sp,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       SizedBox(height: 0.5.h,),
@@ -314,7 +314,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
-                                            fontSize: 13.sp,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       SizedBox(height: 0.5.h,),
@@ -370,7 +370,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
-                                            fontSize: 13.sp,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       SizedBox(height: 0.5.h,),
@@ -404,7 +404,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                             },
                                           ),
                                           enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(30),
+                                              borderRadius: BorderRadius.circular(10),
                                               borderSide:
                                               BorderSide(color: Colors.grey)),
                                           disabledBorder: OutlineInputBorder(
@@ -466,12 +466,12 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                     height: 6.h,
                                     width: 85.w,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
+                                        borderRadius: BorderRadius.circular(10),
                                         color: Color(0xff0061b0)),
                                     child: Text(
                                       "Submit Form",
                                       style: TextStyle(
-                                          fontSize: 14.sp,
+                                          fontSize: 12.sp,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: "task"),

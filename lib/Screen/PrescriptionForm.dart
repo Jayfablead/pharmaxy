@@ -62,7 +62,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                         Text(
                           "Prescription Form",
                           style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 13.sp,
                             fontFamily: "task",
                             fontWeight: FontWeight.bold,
                           ),
@@ -140,7 +140,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                       style: TextStyle(
                                           color: Colors.black87,
                                           fontFamily: "task",
-                                          fontSize: 13.sp,
+                                          fontSize: 12.sp,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     SizedBox(height: 0.5.h,),
@@ -201,7 +201,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 13.sp,
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
@@ -259,7 +259,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 13.sp,
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
@@ -324,7 +324,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 13.sp,
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
@@ -381,7 +381,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 13.sp,
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
@@ -437,7 +437,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 13.sp,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
@@ -493,7 +493,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 13.sp,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
@@ -549,7 +549,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 13.sp,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
@@ -631,12 +631,12 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                     height: 6.h,
                                     width: 85.w,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
+                                        borderRadius: BorderRadius.circular(10),
                                         color: Color(0xff0061b0)),
                                     child: Text(
                                       "Next",
                                       style: TextStyle(
-                                          fontSize: 14.sp,
+                                          fontSize: 13.sp,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: "task"),

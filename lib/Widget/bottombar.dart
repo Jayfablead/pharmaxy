@@ -43,7 +43,7 @@ class _bottombarState extends State<bottombar> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: Colors.white),
-      height: Platform.isAndroid ? 7.h : 8.h,
+      height: Platform.isAndroid ? 9.h : 8.h,
       margin: EdgeInsets.only(
         right: 1.w,
         left: 1.w,
@@ -72,6 +72,15 @@ class _bottombarState extends State<bottombar> {
                         color: selected == 1
                             ? AppColors.primary
                             : Colors.black
+                      ),
+                      Text(
+                        "Home",
+                        style: TextStyle(
+                          fontSize: 8.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "task",
+                          color: selected == 1 ? AppColors.primary : Colors.black,
+                        ),
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -117,6 +126,15 @@ class _bottombarState extends State<bottombar> {
                         color: selected == 2
                             ? AppColors.primary
                             : Colors.black
+                      ),
+                      Text(
+                        "Cart",
+                        style: TextStyle(
+                          fontSize: 8.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "task",
+                          color: selected == 2 ? AppColors.primary : Colors.black,
+                        ),
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -164,6 +182,15 @@ class _bottombarState extends State<bottombar> {
                         color: selected == 4
                             ? AppColors.primary
                             : Colors.black
+                      ),
+                      Text(
+                        "WishList",
+                        style: TextStyle(
+                          fontSize: 8.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "task",
+                          color: selected == 4? AppColors.primary : Colors.black,
+                        ),
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -208,7 +235,7 @@ class _bottombarState extends State<bottombar> {
                           color: AppColors.primary,
                           fontFamily: 'task',
                           fontWeight: FontWeight.bold,
-                          fontSize: 14.sp,
+                          fontSize: 13.sp,
                         ),
                       ),
                     ))
@@ -221,9 +248,8 @@ class _bottombarState extends State<bottombar> {
                   onTap: () {
                     setState(() {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => HomePage(
-                                sel: 0,
-                              )));
+                        builder: (context) => HomePage(sel: 0),
+                      ));
                       selected = 1;
                     });
                   },
@@ -232,9 +258,17 @@ class _bottombarState extends State<bottombar> {
                       Icon(
                         CupertinoIcons.home,
                         size: 22.sp,
-                        color: selected == 1
-                            ? AppColors.primary
-                            : Colors.black
+                        color: selected == 1 ? AppColors.primary : Colors.black,
+                      ),
+
+                      Text(
+                        "Home",
+                        style: TextStyle(
+                          fontSize: 8.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "task",
+                          color: selected == 1 ? AppColors.primary : Colors.grey.shade500,
+                        ),
                       ),
                       SizedBox(
                         height: 0.5.h,
@@ -244,26 +278,14 @@ class _bottombarState extends State<bottombar> {
                         width: 4.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: selected == 1
-                              ? AppColors.primary
-                              : Colors.transparent,
+                          color: selected == 1 ? AppColors.primary : Colors.transparent,
                         ),
                       ),
 
-                      // Text("Home",
-                      //   style: TextStyle(
-                      //     fontSize: 13.sp,
-                      //     fontWeight: FontWeight.normal,
-                      //     fontFamily: "task",
-                      //     color: selected == 1
-                      //         ? AppColors.primary
-                      //         :  Colors.grey.shade500,
-                      //
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
+
                 GestureDetector(
                   onTap: () {
                     setState(() {
@@ -281,9 +303,19 @@ class _bottombarState extends State<bottombar> {
                             ? AppColors.primary
                             : Colors.black
                       ),
+                      Text(
+                        "Cart",
+                        style: TextStyle(
+                          fontSize: 9.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "task",
+                          color: selected == 2 ? AppColors.primary : Colors.black,
+                        ),
+                      ),
                       SizedBox(
                         height: 0.5.h,
                       ),
+
                       Container(
                         height: 0.5.h,
                         width: 4.h,
@@ -328,12 +360,21 @@ class _bottombarState extends State<bottombar> {
                             ? AppColors.primary
                             : Colors.black
                       ),
+                      Text(
+                        "WishList",
+                        style: TextStyle(
+                          fontSize: 8.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "task",
+                          color: selected == 4 ? AppColors.primary : Colors.black,
+                        ),
+                      ),
                       SizedBox(
                         height: 0.5.h,
                       ),
                       Container(
                         height: 0.5.h,
-                        width: 4.h,
+                        width: 6.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: selected == 4
@@ -397,12 +438,21 @@ class _bottombarState extends State<bottombar> {
                                   ? AppColors.primary
                                   : Colors.black
                             ),
+                            Text(
+                              "Profile",
+                              style: TextStyle(
+                                fontSize: 9.sp,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "task",
+                                color: selected == 5 ? AppColors.primary : Colors.black,
+                              ),
+                            ),
                             SizedBox(
                               height: 0.5.h,
                             ),
                             Container(
                               height: 0.5.h,
-                              width: 4.h,
+                              width: 5.h,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
                                 color: selected == 5
@@ -565,6 +615,15 @@ class _bottombarState extends State<bottombar> {
                               Icons.logout,
                               color: Colors.red.shade400,
                               size: 22.sp,
+                            ),
+                            Text(
+                              "LogOut",
+                              style: TextStyle(
+                                fontSize: 9.sp,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "task",
+                                color: selected == 5 ? AppColors.primary : Colors.black,
+                              ),
                             ),
                             SizedBox(
                               height: 0.5.h,
