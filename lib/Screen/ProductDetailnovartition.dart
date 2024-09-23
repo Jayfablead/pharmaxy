@@ -134,7 +134,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     addoff() async {
       print("notlog");
       print("notlog ${price.toString()}");
-      print("notlog ${productdetailmodal?.productData?.productName }");
+      print("5555555 ${productdetailmodal?.productData?.productID}");
       CartItem item = CartItem(
         VariationTblId: colormatchmodal?.priceData?.length == 0 ||
                 colorshowmodal?.variationData?.length == 0 &&
@@ -190,9 +190,6 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
         buildErrorDialog(context, '', 'Your item is Added in Cart');
       }
     }
-
-
-
 
 
 
