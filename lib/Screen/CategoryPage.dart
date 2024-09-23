@@ -337,6 +337,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                             ),
                                                           ),
                                                           SizedBox(
+                                                            height: 0.8.h,
+                                                          ),
+                                                          SizedBox(
                                                             width: 50.w,
                                                             child: Row(
                                                               mainAxisAlignment:
@@ -403,14 +406,14 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                   decoration: BoxDecoration(
                                                                       borderRadius:
                                                                           BorderRadius.circular(
-                                                                              30),
+                                                                              10),
                                                                       color: Color(0xff0061b0)),
                                                                   child: Text(
                                                                     "View Sub Category",
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
-                                                                          11.sp,
+                                                                          10.sp,
                                                                       color: Colors
                                                                           .white,
                                                                       fontFamily:

@@ -184,7 +184,7 @@ class _HomePageState extends State<HomePage> {
           child: isLoading
               ? Container()
               : Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
+                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
                   child: CustomScrollView(
                     slivers: [
                       SliverToBoxAdapter(
@@ -417,89 +417,86 @@ class _HomePageState extends State<HomePage> {
                       SliverToBoxAdapter(
                         child: Container(
                           alignment: Alignment.center,
-                          height: 140,
-                          // width: 150,
+                          height: 130,
+                          width: 50,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: AppColors.primary),
-                          child: Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: 7.w),
-                            child: Row(
-                              children: [
-                                Image.network(
-                                  'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
-                                  // Replace with your banner image link
-                                  fit: BoxFit.cover,
-                                  width: 110,
-                                  height: 110,
+                          child: Row(
+                            children: [
+                              Image.network(
+                                'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
+                                // Replace with your banner image link
+                                fit: BoxFit.cover,
+                                width: 110,
+                                height: 100,
+                              ),
+                              SizedBox(
+                                width: 4.w,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "FLAT 24% OFF",
+                                      style: TextStyle(
+                                          fontSize: 10.5.sp,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'task',
+                                          color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      height: 1.2.h,
+                                    ),
+                                    Text(
+                                      "on your first order",
+                                      style: TextStyle(
+                                          fontSize: 11.sp,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'task',
+                                          color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      height: 1.2.h,
+                                    ),
+                                    Container(
+                                      height: 3.h,
+                                      width: 38.w, // Height of the button
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        // Button background color
+                                        borderRadius: BorderRadius.circular(10),
+                                        // Rounded corners
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 5,
+                                            spreadRadius: 2,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          // Button icon
+                                          Text(
+                                            "Code : 45GHUYRV",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 9.5.sp,
+                                                fontFamily: 'task'),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  width: 5.w,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "FLAT 24% OFF",
-                                        style: TextStyle(
-                                            fontSize: 10.5.sp,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'task',
-                                            color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Text(
-                                        "on your first order",
-                                        style: TextStyle(
-                                            fontSize: 11.sp,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'task',
-                                            color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Container(
-                                        height: 3.h,
-                                        width: 38.w, // Height of the button
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          // Button background color
-                                          borderRadius: BorderRadius.circular(10),
-                                          // Rounded corners
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black12,
-                                              blurRadius: 5,
-                                              spreadRadius: 2,
-                                            ),
-                                          ],
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            // Button icon
-                                            Text(
-                                              "Code : 45GHUYRV",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 9.5.sp,
-                                                  fontFamily: 'task'),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -559,57 +556,63 @@ class _HomePageState extends State<HomePage> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 110,
-                                                child: Text(
-                                                  'Order Medicine',
-                                                  style: TextStyle(
-                                                      fontSize: 11.sp,
-                                                      // Adjust the font size
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontFamily: 'task'),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 110,
+                                                  child: Text(
+                                                    'Order Medicine',
+                                                    style: TextStyle(
+                                                        fontSize: 11.sp,
+                                                        // Adjust the font size
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontFamily: 'task'),
+                                                  ),
                                                 ),
-                                              ),
-                                              Image.network(
-                                                'https://4vector.com/i/free-vector-prescription-medicine-clip-art_119936_prescription-medicine-clip-art/Prescription_Medicine_clip_art_hight.png',
-                                                width: 70,
-                                                height: 70,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          width: 200,
-                                          alignment: Alignment.centerLeft,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
-                                              color: Colors.red.shade50),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 15),
-                                            child: Text(
-                                              'UPTO 24% OFF',
-                                              style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontSize: 9.sp,
-                                                  fontFamily: 'task'),
+                                                Image.network(
+                                                  'https://4vector.com/i/free-vector-prescription-medicine-clip-art_119936_prescription-medicine-clip-art/Prescription_Medicine_clip_art_hight.png',
+                                                  width: 70,
+                                                  height: 70,
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        )
-                                      ],
+                                          Container(
+                                            height: 30,
+                                            width: 200,
+                                            alignment: Alignment.centerLeft,
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(10),
+                                                    bottomRight:
+                                                        Radius.circular(10)),
+                                                color: Colors.red.shade50),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(left: 15),
+                                              child: Text(
+                                                'UPTO 24% OFF',
+                                                style: TextStyle(
+                                                    color: Colors.red,
+                                                    fontSize: 9.sp,
+                                                    fontFamily: 'task'),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
@@ -620,57 +623,65 @@ class _HomePageState extends State<HomePage> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 110,
-                                                child: Text(
-                                                  'Request Prescription',
-                                                  style: TextStyle(
-                                                      fontSize: 11.sp,
-                                                      // Adjust the font size
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontFamily: 'task'),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                        color: Colors.white,
+                                      ),
+
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 110,
+                                                  child: Text(
+                                                    'Request Prescription',
+                                                    style: TextStyle(
+                                                        fontSize: 11.sp,
+                                                        // Adjust the font size
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontFamily: 'task'),
+                                                  ),
                                                 ),
-                                              ),
-                                              Image.network(
-                                                'https://static.vecteezy.com/system/resources/previews/021/193/217/non_2x/prescription-icon-medical-assets-3d-rendering-png.png',
-                                                width: 70,
-                                                height: 70,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          width: 200,
-                                          alignment: Alignment.centerLeft,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
-                                              color: Colors.red.shade50),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 15),
-                                            child: Text(
-                                              'UPTO 24% OFF',
-                                              style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontSize: 9.sp,
-                                                  fontFamily: 'task'),
+                                                Image.network(
+                                                  'https://static.vecteezy.com/system/resources/previews/021/193/217/non_2x/prescription-icon-medical-assets-3d-rendering-png.png',
+                                                  width: 70,
+                                                  height: 70,
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        )
-                                      ],
+                                          Container(
+                                            height: 30,
+                                            width: 200,
+                                            alignment: Alignment.centerLeft,
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(10),
+                                                    bottomRight:
+                                                        Radius.circular(10)),
+                                                color: Colors.red.shade50),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(left: 15),
+                                              child: Text(
+                                                'UPTO 24% OFF',
+                                                style: TextStyle(
+                                                    color: Colors.red,
+                                                    fontSize: 9.sp,
+                                                    fontFamily: 'task'),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
@@ -681,57 +692,63 @@ class _HomePageState extends State<HomePage> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 110,
-                                                child: Text(
-                                                  'Request Doctors',
-                                                  style: TextStyle(
-                                                      fontSize: 11.sp,
-                                                      // Adjust the font size
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontFamily: 'task'),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white,
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 110,
+                                                  child: Text(
+                                                    'Request Doctors',
+                                                    style: TextStyle(
+                                                        fontSize: 11.sp,
+                                                        // Adjust the font size
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontFamily: 'task'),
+                                                  ),
                                                 ),
-                                              ),
-                                              Image.network(
-                                                'https://static.vecteezy.com/system/resources/previews/036/485/041/original/3d-doctor-character-talking-on-phone-call-suitable-for-medical-content-free-png.png',
-                                                width: 70,
-                                                height: 70,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          width: 200,
-                                          alignment: Alignment.centerLeft,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
-                                              color: Colors.red.shade50),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 15),
-                                            child: Text(
-                                              'UPTO 24% OFF',
-                                              style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontSize: 9.sp,
-                                                  fontFamily: 'task'),
+                                                Image.network(
+                                                  'https://static.vecteezy.com/system/resources/previews/036/485/041/original/3d-doctor-character-talking-on-phone-call-suitable-for-medical-content-free-png.png',
+                                                  width: 70,
+                                                  height: 70,
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        )
-                                      ],
+                                          Container(
+                                            height: 30,
+                                            width: 200,
+                                            alignment: Alignment.centerLeft,
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(10),
+                                                    bottomRight:
+                                                        Radius.circular(10)),
+                                                color: Colors.red.shade50),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(left: 15),
+                                              child: Text(
+                                                'UPTO 24% OFF',
+                                                style: TextStyle(
+                                                    color: Colors.red,
+                                                    fontSize: 9.sp,
+                                                    fontFamily: 'task'),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -1713,259 +1730,265 @@ class _HomePageState extends State<HomePage> {
                                                     },
                                                     child: Card(
                                                       color: Colors.white,
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Container(
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              imageUrl:
-                                                                  // bestsellerproductmodal
-                                                                  //                 ?.productData?[
-                                                                  //                     index]
-                                                                  //                 .imgData ==
-                                                                  //             '' ||
-                                                                  //         bestsellerproductmodal
-                                                                  //                 ?.productData?[
-                                                                  //                     index]
-                                                                  //                 .imgData ==
-                                                                  //             null
-                                                                  //     ? 'N/A'
-                                                                  //     : bestsellerproductmodal
-                                                                  //             ?.productData?[
-                                                                  //                 index]
-                                                                  //             .imgData ??
-                                                              items1[index]['imageUrl']!,
-                                                              height: 12.h,
-                                                              width: 30.w,
-                                                              imageBuilder:
-                                                                  (context,
-                                                                          imageProvider) =>
-                                                                      Container(
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  // borderRadius: BorderRadius.circular(10),
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    filterQuality:
-                                                                        FilterQuality
-                                                                            .high,
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          color: Colors.white
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Container(
+                                                              child:
+                                                                  CachedNetworkImage(
+                                                                imageUrl:
+                                                                    // bestsellerproductmodal
+                                                                    //                 ?.productData?[
+                                                                    //                     index]
+                                                                    //                 .imgData ==
+                                                                    //             '' ||
+                                                                    //         bestsellerproductmodal
+                                                                    //                 ?.productData?[
+                                                                    //                     index]
+                                                                    //                 .imgData ==
+                                                                    //             null
+                                                                    //     ? 'N/A'
+                                                                    //     : bestsellerproductmodal
+                                                                    //             ?.productData?[
+                                                                    //                 index]
+                                                                    //             .imgData ??
+                                                                items1[index]['imageUrl']!,
+                                                                height: 12.h,
+                                                                width: 30.w,
+                                                                imageBuilder:
+                                                                    (context,
+                                                                            imageProvider) =>
+                                                                        Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    // borderRadius: BorderRadius.circular(10),
                                                                     image:
-                                                                        imageProvider,
+                                                                        DecorationImage(
+                                                                      filterQuality:
+                                                                          FilterQuality
+                                                                              .high,
+                                                                      image:
+                                                                          imageProvider,
+                                                                    ),
                                                                   ),
                                                                 ),
+                                                                placeholder: (context,
+                                                                        url) =>
+                                                                    Center(
+                                                                        child:
+                                                                            CircularProgressIndicator()),
+                                                                errorWidget: (context,
+                                                                        url,
+                                                                        error) =>
+                                                                    Icon(Icons
+                                                                        .error),
                                                               ),
-                                                              placeholder: (context,
-                                                                      url) =>
-                                                                  Center(
-                                                                      child:
-                                                                          CircularProgressIndicator()),
-                                                              errorWidget: (context,
-                                                                      url,
-                                                                      error) =>
-                                                                  Icon(Icons
-                                                                      .error),
                                                             ),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 1.h,
-                                                          ),
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  SizedBox(
-                                                                    width: 30.w,
-                                                                    child: Text(
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      maxLines:
-                                                                          1,
-                                                                      // bestsellerproductmodal?.productData?[index].productName == "" || bestsellerproductmodal?.productData?[index].productName == null
-                                                                      //     ? "N/A"
-                                                                      //     : bestsellerproductmodal?.productData?[index].productName ??
-                                                                      //         '',
+                                                            SizedBox(
+                                                              height: 1.h,
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      width: 30.w,
+                                                                      child: Text(
+                                                                        textAlign:
+                                                                            TextAlign
+                                                                                .center,
+                                                                        overflow:
+                                                                            TextOverflow
+                                                                                .ellipsis,
+                                                                        maxLines:
+                                                                            1,
+                                                                        // bestsellerproductmodal?.productData?[index].productName == "" || bestsellerproductmodal?.productData?[index].productName == null
+                                                                        //     ? "N/A"
+                                                                        //     : bestsellerproductmodal?.productData?[index].productName ??
+                                                                        //         '',
 
-                                                                      items1[index]['title']!,
-                                                                      style: TextStyle(
-                                                                          fontSize: 10
-                                                                              .sp,
-                                                                          fontFamily:
-                                                                              'task',
-                                                                          fontWeight: FontWeight
-                                                                              .bold,
-                                                                          letterSpacing:
-                                                                              1,
-                                                                          color:
-                                                                              Colors.black),
+                                                                        items1[index]['title']!,
+                                                                        style: TextStyle(
+                                                                            fontSize: 10
+                                                                                .sp,
+                                                                            fontFamily:
+                                                                                'task',
+                                                                            fontWeight: FontWeight
+                                                                                .bold,
+                                                                            letterSpacing:
+                                                                                1,
+                                                                            color:
+                                                                                Colors.black),
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          // SizedBox(
-                                                          //   width: 35.w,
-                                                          //   child: Text(
-                                                          //     textAlign:
-                                                          //         TextAlign
-                                                          //             .center,
-                                                          //     overflow:
-                                                          //         TextOverflow
-                                                          //             .ellipsis,
-                                                          //     maxLines: 2,
-                                                          //     // bestsellerproductmodal?.productData?[index].productShortDesc ==
-                                                          //     //             "" ||
-                                                          //     //         bestsellerproductmodal?.productData?[index].productShortDesc ==
-                                                          //     //             null
-                                                          //     //     ? "N/A"
-                                                          //     //     : bestsellerproductmodal
-                                                          //     //             ?.productData?[index]
-                                                          //     //             .productShortDesc ??
-                                                          //     //         '',
-                                                          //             "",
-                                                          //     // "This Is The Antibiotic Product And Body",
-                                                          //     style:
-                                                          //         TextStyle(
-                                                          //       fontSize:
-                                                          //           12.sp,
-                                                          //       fontFamily:
-                                                          //           'task',
-                                                          //       fontWeight:
-                                                          //           FontWeight
-                                                          //               .normal,
-                                                          //       letterSpacing:
-                                                          //           1,
-                                                          //       color: Colors
-                                                          //           .black,
-                                                          //     ),
-                                                          //   ),
-                                                          // ),
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    // bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                    //             "" ||
-                                                                    //         bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                    //             null
-                                                                    //     ? "N/A"
-                                                                    //     : '₹' +
-                                                                    //         (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
-                                                                    "\$500",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          11.sp,
-                                                                      fontFamily:
-                                                                          'task',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      letterSpacing:
-                                                                          1,
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width:
-                                                                        0.5.w,
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsets.only(
-                                                                        top: 0.4
-                                                                            .h),
-                                                                    child: Text(
-                                                                      // bestsellerproductmodal?.productData?[index].productPrice == "" ||
-                                                                      //         bestsellerproductmodal?.productData?[index].productPrice ==
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            // SizedBox(
+                                                            //   width: 35.w,
+                                                            //   child: Text(
+                                                            //     textAlign:
+                                                            //         TextAlign
+                                                            //             .center,
+                                                            //     overflow:
+                                                            //         TextOverflow
+                                                            //             .ellipsis,
+                                                            //     maxLines: 2,
+                                                            //     // bestsellerproductmodal?.productData?[index].productShortDesc ==
+                                                            //     //             "" ||
+                                                            //     //         bestsellerproductmodal?.productData?[index].productShortDesc ==
+                                                            //     //             null
+                                                            //     //     ? "N/A"
+                                                            //     //     : bestsellerproductmodal
+                                                            //     //             ?.productData?[index]
+                                                            //     //             .productShortDesc ??
+                                                            //     //         '',
+                                                            //             "",
+                                                            //     // "This Is The Antibiotic Product And Body",
+                                                            //     style:
+                                                            //         TextStyle(
+                                                            //       fontSize:
+                                                            //           12.sp,
+                                                            //       fontFamily:
+                                                            //           'task',
+                                                            //       fontWeight:
+                                                            //           FontWeight
+                                                            //               .normal,
+                                                            //       letterSpacing:
+                                                            //           1,
+                                                            //       color: Colors
+                                                            //           .black,
+                                                            //     ),
+                                                            //   ),
+                                                            // ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Row(
+                                                                  children: [
+                                                                    Text(
+                                                                      // bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                                      //             "" ||
+                                                                      //         bestsellerproductmodal?.productData?[index].saleProductPrice ==
                                                                       //             null
                                                                       //     ? "N/A"
                                                                       //     : '₹' +
-                                                                      //         (bestsellerproductmodal?.productData?[index].productPrice).toString(),
-                                                                     "\$580",
+                                                                      //         (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
+                                                                      "\$500",
                                                                       style:
                                                                           TextStyle(
-                                                                        decoration:
-                                                                            TextDecoration.lineThrough,
                                                                         fontSize:
                                                                             11.sp,
                                                                         fontFamily:
                                                                             'task',
                                                                         fontWeight:
-                                                                            FontWeight.normal,
+                                                                            FontWeight
+                                                                                .bold,
                                                                         letterSpacing:
                                                                             1,
                                                                         color: Colors
                                                                             .black,
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(
-                                                            height: 1.h,
-                                                          ),
-                                                          GestureDetector(
-                                                            onTap: () {
-                                                              Navigator.of(context).push(
-                                                                  MaterialPageRoute(
-                                                                      builder:
-                                                                          (context) =>
-                                                                          productdetailnovartion(
-                                                                            productid:
-                                                                            bestsellerproductmodal?.productData?[index].productID ?? '',
-                                                                          )));
+                                                                    SizedBox(
+                                                                      width:
+                                                                          0.5.w,
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsets.only(
+                                                                          top: 0.4
+                                                                              .h),
+                                                                      child: Text(
+                                                                        // bestsellerproductmodal?.productData?[index].productPrice == "" ||
+                                                                        //         bestsellerproductmodal?.productData?[index].productPrice ==
+                                                                        //             null
+                                                                        //     ? "N/A"
+                                                                        //     : '₹' +
+                                                                        //         (bestsellerproductmodal?.productData?[index].productPrice).toString(),
+                                                                       "\$580",
+                                                                        style:
+                                                                            TextStyle(
+                                                                          decoration:
+                                                                              TextDecoration.lineThrough,
+                                                                          fontSize:
+                                                                              11.sp,
+                                                                          fontFamily:
+                                                                              'task',
+                                                                          fontWeight:
+                                                                              FontWeight.normal,
+                                                                          letterSpacing:
+                                                                              1,
+                                                                          color: Colors
+                                                                              .black,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              height: 1.h,
+                                                            ),
+                                                            GestureDetector(
+                                                              onTap: () {
+                                                                Navigator.of(context).push(
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                            productdetailnovartion(
+                                                                              productid:
+                                                                              bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                                            )));
 
-                                                            },
-                                                            child: Container(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              height: 4.h,
-                                                              width: 32.w,
-                                                              decoration: BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              10),
-                                                                  color: AppColors
-                                                                      .primary),
-                                                              child: Text(
-                                                                "View Product",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        11.sp,
-                                                                    color: Colors
-                                                                        .white),
+                                                              },
+                                                              child: Container(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                height: 4.h,
+                                                                width: 32.w,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                10),
+                                                                    color: AppColors
+                                                                        .primary),
+                                                                child: Text(
+                                                                  "View Product",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          11.sp,
+                                                                      color: Colors
+                                                                          .white),
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -2106,42 +2129,48 @@ class _HomePageState extends State<HomePage> {
                               return Card(
                                 color: Colors.blue.shade50,
                                 elevation: 0,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: 12.5.h,
-                                      width: 60.w,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          topRight: Radius.circular(10),
-                                        ),
-                                        child: CachedNetworkImage(
-                                          fit: BoxFit.cover,
-                                          imageUrl: items[index]['imageUrl']!,
-                                          width: 50.w,
-                                          height: 7.h,
-                                          progressIndicatorBuilder: (context, url, progress) =>
-                                              Center(child: CircularProgressIndicator()),
-                                          errorWidget: (context, url, error) => Image.asset(""),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 60.w,
-                                      child: Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Text(
-                                          items[index]['title']!,
-                                          style: TextStyle(
-                                            fontFamily: 'task',
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: 12.5.h,
+                                        width: 60.w,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                          ),
+                                          child: CachedNetworkImage(
+                                            fit: BoxFit.cover,
+                                            imageUrl: items[index]['imageUrl']!,
+                                            width: 50.w,
+                                            height: 7.h,
+                                            progressIndicatorBuilder: (context, url, progress) =>
+                                                Center(child: CircularProgressIndicator()),
+                                            errorWidget: (context, url, error) => Image.asset(""),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(
+                                        width: 60.w,
+                                        child: Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Text(
+                                            items[index]['title']!,
+                                            style: TextStyle(
+                                              fontFamily: 'task',
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             },

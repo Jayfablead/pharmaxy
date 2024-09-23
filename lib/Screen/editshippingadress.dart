@@ -146,7 +146,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
-                                            fontSize: 13.sp,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       TextFormField(
@@ -162,22 +162,22 @@ class _editshippingadressState extends State<editshippingadress> {
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(10),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           disabledBorder: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(10),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           focusedBorder: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(10),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           border: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(10),
                                               borderSide: BorderSide(
                                                   color: Colors.grey)),
                                           hintText: 'Enter Your First Name',
@@ -206,7 +206,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -222,22 +222,22 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your Last Name',
@@ -263,7 +263,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -279,22 +279,22 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your Address ',
@@ -320,7 +320,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -336,22 +336,22 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Phone number',
@@ -377,7 +377,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
@@ -385,7 +385,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 1, color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(50),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     padding: EdgeInsets.only(
                                         top: 0.5.h, bottom: 0.5.h, right: 5.w),
@@ -440,7 +440,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
@@ -448,7 +448,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 1, color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(50),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     padding: EdgeInsets.only(
                                         top: 0.5.h, bottom: 0.5.h, right: 5.w),
@@ -503,7 +503,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Container(
@@ -511,7 +511,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 1, color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(50),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     padding: EdgeInsets.only(
                                         top: 0.5.h, bottom: 0.5.h, right: 5.w),
@@ -541,7 +541,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                               style: TextStyle(
                                                   color: Colors.black87,
                                                   fontFamily: 'task',
-                                                  fontSize: 14.sp),
+                                                  fontSize: 12.sp),
                                             ),
                                             value: location.cityID,
                                           );
@@ -570,7 +570,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   TextFormField(
@@ -586,22 +586,22 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(10),
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Zip code',
@@ -645,12 +645,12 @@ class _editshippingadressState extends State<editshippingadress> {
                                   height: 6.h,
                                   width: 80.w,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       color: Color(0xff0061b0)),
                                   child: Text(
                                     "Save Address",
                                     style: TextStyle(
-                                        fontSize: 14.sp,
+                                        fontSize: 13.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "task"),

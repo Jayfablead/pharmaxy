@@ -63,7 +63,7 @@ class _drawer1State extends State<drawer1> {
                           Text(
                             'Login to View All Details',
                             style: TextStyle(
-                                fontSize: 16.sp,
+                                fontSize: 12.sp,
                                 fontFamily: 'task',
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
@@ -81,12 +81,13 @@ class _drawer1State extends State<drawer1> {
                                 height: 4.h,
                                 width: 32.w,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Color(0xfff7941d)),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: AppColors.primary,
+                                ),
                                 child: Text(
                                   "Login",
                                   style: TextStyle(
-                                      fontSize: 17.sp,
+                                      fontSize: 13.sp,
                                       color: Colors.white,
                                       fontFamily: "task"),
                                 )),

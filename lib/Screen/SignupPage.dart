@@ -57,7 +57,7 @@ class _SignupPageState extends State<SignupPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'task',
-                            fontSize: 20.sp,
+                            fontSize: 17.sp,
                             color: Colors.white),
                       ),
                     ),
@@ -89,16 +89,16 @@ class _SignupPageState extends State<SignupPage> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'FirstName',
                               hintStyle: TextStyle(
@@ -138,16 +138,16 @@ class _SignupPageState extends State<SignupPage> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'LastName',
                               hintStyle: TextStyle(
@@ -194,16 +194,16 @@ class _SignupPageState extends State<SignupPage> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'Email',
                               hintStyle: TextStyle(
@@ -246,18 +246,70 @@ class _SignupPageState extends State<SignupPage> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'Phone',
+                              hintStyle: TextStyle(
+                                  color: Colors.black.withOpacity(0.6),
+                                  fontSize: 12.sp,
+                                  fontFamily: "task"),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  SizedBox(
+                    width: 90.w,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 3.w,
+                        ),
+                        Container(
+                          width: 85.w,
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Please Enter The Phone";
+                              }
+                              else if (value.length != 10){
+                                return "Please enter Valid Phone Number";
+                              }
+                              return null;
+                            },
+                            controller: phone,
+                            keyboardType: TextInputType.phone,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.phone_android_rounded,
+                                color: Colors.black.withOpacity(0.6),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.grey)),
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.grey)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.grey)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.grey)),
+                              hintText: 'Refer By Admin',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
                                   fontSize: 12.sp,
@@ -315,16 +367,16 @@ class _SignupPageState extends State<SignupPage> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'Password',
                               hintStyle: TextStyle(
@@ -384,16 +436,16 @@ class _SignupPageState extends State<SignupPage> {
                                 color: Colors.black.withOpacity(0.6),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
                               hintText: 'Confirm Password',
                               hintStyle: TextStyle(
@@ -409,6 +461,8 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(
                     height: 2.h,
                   ),
+
+
                   SizedBox(
                     height: 3.h,
                   ),
@@ -421,7 +475,7 @@ class _SignupPageState extends State<SignupPage> {
                         height: 6.h,
                         width: 75.w,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(10),
                             color: Color(0xff0061b0)),
                         child: Text(
                           "Register",

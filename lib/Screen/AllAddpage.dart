@@ -287,10 +287,10 @@ class _AllAddpageState extends State<AllAddpage> {
                                       left: 85.w,
                                       child: PopupMenuButton(
                                           elevation: 00,
-                                          color: Colors.deepOrange.shade50,
+                                          color: Colors.white,
                                           icon: Icon(
                                             Icons.more_vert,
-                                            color: Color(0xff0061b0),
+                                            color:AppColors.primary,
                                             size: 18.sp,
                                           ),
                                           // add this line

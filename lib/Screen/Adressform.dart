@@ -670,12 +670,12 @@ class _AdressformState extends State<Adressform> {
                             children: [
                               Container(
                                   margin:
-                                      EdgeInsets.only(right: 7.w, left: 7.w),
+                                      EdgeInsets.only(right: 7.w, left: 10.w),
                                   alignment: Alignment.center,
                                   height: 6.h,
                                   width: 80.w,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                       color: Color(0xff0061b0)),
                                   child: Text(
                                     "Save Address",

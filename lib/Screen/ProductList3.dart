@@ -262,7 +262,7 @@ class _ProductList3State extends State<ProductList3> {
                                             crossAxisSpacing:
                                                 10.0, // Adjust as needed
                                             childAspectRatio:
-                                                6.5 / 11 // Adjust as needed
+                                                6.5 / 10 // Adjust as needed
                                             ),
                                     delegate: SliverChildBuilderDelegate(
                                       (BuildContext context, int index) {
@@ -298,247 +298,253 @@ class _ProductList3State extends State<ProductList3> {
                                               },
                                               child: Card(
                                                 color: Colors.white,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: 2.h,
-                                                    ),
-                                                    Container(
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            bestsellerproductmodal
-                                                                    ?.productData?[
-                                                                        index]
-                                                                    .imgData ??
-                                                                '',
-                                                        height: 11.5.h,
-                                                        width: 30.w,
-                                                        imageBuilder: (context,
-                                                                imageProvider) =>
-                                                            Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            // borderRadius: BorderRadius.circular(10),
-                                                            image:
-                                                                DecorationImage(
-                                                              filterQuality:
-                                                                  FilterQuality
-                                                                      .high,
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius: BorderRadius.circular(10)
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.center,
+                                                    children: [
+                                                      SizedBox(
+                                                        height: 2.h,
+                                                      ),
+                                                      Container(
+                                                        child: CachedNetworkImage(
+                                                          imageUrl:
+                                                              bestsellerproductmodal
+                                                                      ?.productData?[
+                                                                          index]
+                                                                      .imgData ??
+                                                                  '',
+                                                          height: 11.5.h,
+                                                          width: 30.w,
+                                                          imageBuilder: (context,
+                                                                  imageProvider) =>
+                                                              Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              // borderRadius: BorderRadius.circular(10),
                                                               image:
-                                                                  imageProvider,
-                                                              fit: BoxFit.cover,
+                                                                  DecorationImage(
+                                                                filterQuality:
+                                                                    FilterQuality
+                                                                        .high,
+                                                                image:
+                                                                    imageProvider,
+                                                                fit: BoxFit.cover,
+                                                              ),
                                                             ),
                                                           ),
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              Icon(Icons.error),
                                                         ),
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            Center(
-                                                                child:
-                                                                    CircularProgressIndicator()),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Icon(Icons.error),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 1.h,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 1.w),
-                                                      child: Row(
+                                                      SizedBox(
+                                                        height: 1.h,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.symmetric(
+                                                                horizontal: 1.w),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                SizedBox(
+                                                                  width: 30.w,
+                                                                  child: Text(
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                    maxLines: 1,
+                                                                    bestsellerproductmodal
+                                                                            ?.productData?[
+                                                                                index]
+                                                                            .productName ??
+                                                                        '',
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            11
+                                                                                .sp,
+                                                                        fontFamily:
+                                                                            'task',
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        letterSpacing:
+                                                                            1,
+                                                                        color: Colors
+                                                                            .black),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       EdgeInsets.symmetric(
+                                                      //     horizontal: 1.5.w,
+                                                      //   ),
+                                                      //   child: SizedBox(
+                                                      //     width: 35.w,
+                                                      //     child: Text(
+                                                      //       textAlign:
+                                                      //           TextAlign.center,
+                                                      //       overflow: TextOverflow
+                                                      //           .ellipsis,
+                                                      //       maxLines: 2,
+                                                      //       bestsellerproductmodal
+                                                      //               ?.productData?[
+                                                      //                   index]
+                                                      //               .productShortDesc ??
+                                                      //           '',
+                                                      //       style: TextStyle(
+                                                      //         fontSize: 12.sp,
+                                                      //         fontFamily: 'task',
+                                                      //         fontWeight:
+                                                      //             FontWeight
+                                                      //                 .normal,
+                                                      //         letterSpacing: 1,
+                                                      //         color: Colors.black,
+                                                      //       ),
+                                                      //     ),
+                                                      //   ),
+                                                      // ),
+                                                      Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .center,
                                                         children: [
-                                                          Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
+                                                          Row(
                                                             children: [
-                                                              SizedBox(
-                                                                width: 30.w,
-                                                                child: Text(
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  maxLines: 1,
-                                                                  bestsellerproductmodal
-                                                                          ?.productData?[
-                                                                              index]
-                                                                          .productName ??
-                                                                      '',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          11
-                                                                              .sp,
-                                                                      fontFamily:
-                                                                          'task',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      letterSpacing:
-                                                                          1,
-                                                                      color: Colors
-                                                                          .black),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    // Padding(
-                                                    //   padding:
-                                                    //       EdgeInsets.symmetric(
-                                                    //     horizontal: 1.5.w,
-                                                    //   ),
-                                                    //   child: SizedBox(
-                                                    //     width: 35.w,
-                                                    //     child: Text(
-                                                    //       textAlign:
-                                                    //           TextAlign.center,
-                                                    //       overflow: TextOverflow
-                                                    //           .ellipsis,
-                                                    //       maxLines: 2,
-                                                    //       bestsellerproductmodal
-                                                    //               ?.productData?[
-                                                    //                   index]
-                                                    //               .productShortDesc ??
-                                                    //           '',
-                                                    //       style: TextStyle(
-                                                    //         fontSize: 12.sp,
-                                                    //         fontFamily: 'task',
-                                                    //         fontWeight:
-                                                    //             FontWeight
-                                                    //                 .normal,
-                                                    //         letterSpacing: 1,
-                                                    //         color: Colors.black,
-                                                    //       ),
-                                                    //     ),
-                                                    //   ),
-                                                    // ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              '₹' +
-                                                                  (bestsellerproductmodal
-                                                                          ?.productData?[
-                                                                              index]
-                                                                          .saleProductPrice)
-                                                                      .toString(),
-                                                              style: TextStyle(
-                                                                fontSize: 11.sp,
-                                                                fontFamily:
-                                                                    'task',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                letterSpacing:
-                                                                    1,
-                                                                color: Colors
-                                                                    .black,
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 0.5.w,
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      top: 0.4
-                                                                          .h),
-                                                              child: Text(
+                                                              Text(
                                                                 '₹' +
                                                                     (bestsellerproductmodal
-                                                                            ?.productData?[index]
-                                                                            .productPrice)
+                                                                            ?.productData?[
+                                                                                index]
+                                                                            .saleProductPrice)
                                                                         .toString(),
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .lineThrough,
-                                                                  fontSize:
-                                                                      11.sp,
+                                                                style: TextStyle(
+                                                                  fontSize: 11.sp,
                                                                   fontFamily:
                                                                       'task',
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .normal,
+                                                                          .bold,
                                                                   letterSpacing:
                                                                       1,
                                                                   color: Colors
                                                                       .black,
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: 1.h,
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        bestsellerproductmodal
-                                                                    ?.productData?[
-                                                                        index]
-                                                                    .productType ==
-                                                                '1'
-                                                            ? Navigator.of(context).push(
-                                                                MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            productdetailnovartion(
-                                                                              productid: bestsellerproductmodal?.productData?[index].productID ?? '',
-                                                                            )))
-                                                            : Navigator.of(context).push(
-                                                                MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            productdetailwebview(
-                                                                              productid: bestsellerproductmodal?.productData?[index].productID ?? '',
-                                                                            )));
-                                                      },
-                                                      child: Container(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        height: 4.h,
-                                                        width: 32.w,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            color: Color(0xff0061b0)),
-                                                        child: Text(
-                                                          "View Product",
-                                                          style: TextStyle(
-                                                              fontSize: 11.sp,
-                                                              color:
-                                                                  Colors.white),
+                                                              SizedBox(
+                                                                width: 0.5.w,
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 0.4
+                                                                            .h),
+                                                                child: Text(
+                                                                  '₹' +
+                                                                      (bestsellerproductmodal
+                                                                              ?.productData?[index]
+                                                                              .productPrice)
+                                                                          .toString(),
+                                                                  style:
+                                                                      TextStyle(
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .lineThrough,
+                                                                    fontSize:
+                                                                        11.sp,
+                                                                    fontFamily:
+                                                                        'task',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    letterSpacing:
+                                                                        1,
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 1.h,
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          bestsellerproductmodal
+                                                                      ?.productData?[
+                                                                          index]
+                                                                      .productType ==
+                                                                  '1'
+                                                              ? Navigator.of(context).push(
+                                                                  MaterialPageRoute(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              productdetailnovartion(
+                                                                                productid: bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                                              )))
+                                                              : Navigator.of(context).push(
+                                                                  MaterialPageRoute(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              productdetailwebview(
+                                                                                productid: bestsellerproductmodal?.productData?[index].productID ?? '',
+                                                                              )));
+                                                        },
+                                                        child: Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          height: 4.h,
+                                                          width: 32.w,
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              color: Color(0xff0061b0)),
+                                                          child: Text(
+                                                            "View Product",
+                                                            style: TextStyle(
+                                                                fontSize: 11.sp,
+                                                                color:
+                                                                    Colors.white),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1068,7 +1074,7 @@ class _ProductList3State extends State<ProductList3> {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.12),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(
         controller: _serch2,
