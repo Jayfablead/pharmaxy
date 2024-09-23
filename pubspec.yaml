@@ -63,6 +63,7 @@ dependencies:
   html:
   flutter_inappwebview:
   get:
+  intl:
 
 
 
