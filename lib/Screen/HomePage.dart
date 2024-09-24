@@ -1735,22 +1735,22 @@ class _HomePageState extends State<HomePage> {
                                                               child:
                                                                   CachedNetworkImage(
                                                                 imageUrl:
-                                                                    // bestsellerproductmodal
-                                                                    //                 ?.productData?[
-                                                                    //                     index]
-                                                                    //                 .imgData ==
-                                                                    //             '' ||
-                                                                    //         bestsellerproductmodal
-                                                                    //                 ?.productData?[
-                                                                    //                     index]
-                                                                    //                 .imgData ==
-                                                                    //             null
-                                                                    //     ? 'N/A'
-                                                                    //     : bestsellerproductmodal
-                                                                    //             ?.productData?[
-                                                                    //                 index]
-                                                                    //             .imgData ??
-                                                                items1[index]['imageUrl']!,
+                                                                    bestsellerproductmodal
+                                                                                    ?.productData?[
+                                                                                        index]
+                                                                                    .imgData ==
+                                                                                '' ||
+                                                                            bestsellerproductmodal
+                                                                                    ?.productData?[
+                                                                                        index]
+                                                                                    .imgData ==
+                                                                                null
+                                                                        ? 'N/A'
+                                                                        : bestsellerproductmodal
+                                                                                ?.productData?[
+                                                                                    index]
+                                                                                .imgData ?? "",
+                                                                // items1[index]['imageUrl']!,
                                                                 height: 12.h,
                                                                 width: 30.w,
                                                                 imageBuilder:
@@ -1809,12 +1809,12 @@ class _HomePageState extends State<HomePage> {
                                                                                 .ellipsis,
                                                                         maxLines:
                                                                             1,
-                                                                        // bestsellerproductmodal?.productData?[index].productName == "" || bestsellerproductmodal?.productData?[index].productName == null
-                                                                        //     ? "N/A"
-                                                                        //     : bestsellerproductmodal?.productData?[index].productName ??
-                                                                        //         '',
+                                                                        bestsellerproductmodal?.productData?[index].productName == "" || bestsellerproductmodal?.productData?[index].productName == null
+                                                                            ? "N/A"
+                                                                            : bestsellerproductmodal?.productData?[index].productName ??
+                                                                                '',
 
-                                                                        items1[index]['title']!,
+                                                                        // items1[index]['title']!,
                                                                         style: TextStyle(
                                                                             fontSize: 10
                                                                                 .sp,
@@ -1877,14 +1877,14 @@ class _HomePageState extends State<HomePage> {
                                                                 Row(
                                                                   children: [
                                                                     Text(
-                                                                      // bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                      //             "" ||
-                                                                      //         bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                      //             null
-                                                                      //     ? "N/A"
-                                                                      //     : '₹' +
-                                                                      //         (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
-                                                                      "\$500",
+                                                                      bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                                                  "" ||
+                                                                              bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                                                  null
+                                                                          ? "N/A"
+                                                                          : '₹' +
+                                                                              (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
+                                                                      // "\$500",
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
@@ -1909,13 +1909,13 @@ class _HomePageState extends State<HomePage> {
                                                                           top: 0.4
                                                                               .h),
                                                                       child: Text(
-                                                                        // bestsellerproductmodal?.productData?[index].productPrice == "" ||
-                                                                        //         bestsellerproductmodal?.productData?[index].productPrice ==
-                                                                        //             null
-                                                                        //     ? "N/A"
-                                                                        //     : '₹' +
-                                                                        //         (bestsellerproductmodal?.productData?[index].productPrice).toString(),
-                                                                       "\$580",
+                                                                        bestsellerproductmodal?.productData?[index].productPrice == "" ||
+                                                                                bestsellerproductmodal?.productData?[index].productPrice ==
+                                                                                    null
+                                                                            ? "N/A"
+                                                                            : '₹' +
+                                                                                (bestsellerproductmodal?.productData?[index].productPrice).toString(),
+                                                                       // "\$580",
                                                                         style:
                                                                             TextStyle(
                                                                           decoration:
@@ -2021,19 +2021,22 @@ class _HomePageState extends State<HomePage> {
                                                 ],
                                               );
                                             },
-                                            childCount: items1.length,
+                                            childCount:
 
-                                            // _isLoading
-                                            //     ? bestsellerproductmodal
-                                            //         ?.productData?.length
-                                            //     : (bestsellerproductmodal
-                                            //                     ?.productData
-                                            //                     ?.length ??
-                                            //                 0) <
-                                            //             5
-                                            //         ? bestsellerproductmodal
-                                            //             ?.productData?.length
-                                            //         : 4,
+
+                                            // items1.length,
+
+                                            _isLoading
+                                                ? bestsellerproductmodal
+                                                    ?.productData?.length
+                                                : (bestsellerproductmodal
+                                                                ?.productData
+                                                                ?.length ??
+                                                            0) <
+                                                        5
+                                                    ? bestsellerproductmodal
+                                                        ?.productData?.length
+                                                    : 4,
                                             // Replace
                                           ),
                                         ),

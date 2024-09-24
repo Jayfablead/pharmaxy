@@ -134,7 +134,10 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     addoff() async {
       print("notlog");
       print("notlog ${price.toString()}");
-      print("5555555 ${productdetailmodal?.productData?.productID}");
+      print("notlog ${price.toString()}");
+      print("6666666 ${ double.parse(
+          (productdetail2modal?.productData?.saleProductPrice)
+              .toString())}");
       CartItem item = CartItem(
         VariationTblId: colormatchmodal?.priceData?.length == 0 ||
                 colorshowmodal?.variationData?.length == 0 &&
@@ -148,44 +151,24 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
         Color: colorshowmodal?.variationData?.length == 0
             ? '0'
             : (colorshowmodal?.variationData?[0].variationID ?? ""),
-        initialPrice: sizeshowmodal?.variationData?.length != 0
-            ? double.parse(price.toString())
-            : colorshowmodal?.variationData?.length == 0 &&
-                    sizeshowmodal?.variationData?.length == 0
-                ? double.parse(
-                    (productdetailmodal?.productData?.saleProductPrice)
-                        .toString())
-                : double.parse(
-                    (selectcolormodal?.variationData?.saleVariationPrice)
+        initialPrice:  double.parse(
+                    (productdetail2modal?.productData?.saleProductPrice)
                         .toString()),
-        productName: productdetailmodal?.productData?.productName ?? "",
+
+        productName: productdetail2modal?.productData?.productName ?? "",
         productQuantity: 1,
-        productImage: productdetailmodal?.productData?.allimage?[0] ?? "",
-        productPrice: sizeshowmodal?.variationData?.length != 0
-            ? double.parse(price.toString())
-            : colorshowmodal?.variationData?.length == 0 &&
-                    sizeshowmodal?.variationData?.length == 0
-                ? double.parse(
-                    (productdetailmodal?.productData?.saleProductPrice)
-                        .toString())
-                : double.parse(
-                    (selectcolormodal?.variationData?.saleVariationPrice)
+        productImage: productdetail2modal?.productData?.allimage?[0] ?? "",
+        productPrice:  double.parse(
+                    (productdetail2modal?.productData?.saleProductPrice)
                         .toString()),
         productDescription:
-            productdetailmodal?.productData?.productShortDesc ?? "",
+        productdetail2modal?.productData?.productShortDesc ?? "",
       );
       int result = await databaseHelper.insertCartItem(item);
       if (result != 0) {
-        cartitm.addTotalPrice(sizeshowmodal?.variationData?.length != 0
-            ? double.parse(price.toString())
-            : colorshowmodal?.variationData?.length == 0 &&
-                    sizeshowmodal?.variationData?.length == 0
-                ? double.parse(
-                    (productdetailmodal?.productData?.saleProductPrice)
-                        .toString())
-                : double.parse(
-                    (selectcolormodal?.variationData?.saleVariationPrice)
-                        .toString()));
+        cartitm.addTotalPrice(double.parse(
+            (productdetail2modal?.productData?.saleProductPrice)
+                .toString()));
 
         buildErrorDialog(context, '', 'Your item is Added in Cart');
       }
@@ -196,6 +179,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
+        extendBody: true,
         backgroundColor: Colors.grey.shade100,
         key: _scaffoldKeynovar,
         drawer: drawer1(),

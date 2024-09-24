@@ -301,7 +301,7 @@ class _CartPageState extends State<CartPage> {
                                                                                               overflow: TextOverflow.ellipsis,
                                                                                               maxLines: 2,
                                                                                               snapshot.data![index].productDescription ?? '',
-                                                                                              style: TextStyle(color: Colors.black87, fontSize: 12.sp, fontWeight: FontWeight.normal, fontFamily: "task"),
+                                                                                              style: TextStyle(color: Colors.black87, fontSize: 11.sp, fontWeight: FontWeight.normal, fontFamily: "task"),
                                                                                             ),
                                                                                           ),
                                                                                         ),
@@ -672,7 +672,7 @@ class _CartPageState extends State<CartPage> {
                                                     child: Text(
                                                       "Login to Checkout",
                                                       style: TextStyle(
-                                                          fontSize: 15.sp,
+                                                          fontSize: 12.sp,
                                                           color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.bold,
