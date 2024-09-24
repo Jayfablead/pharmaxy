@@ -389,8 +389,9 @@ class _LoginPage2State extends State<LoginPage2> {
               });
               if (carti.length != 0) {
                 print('batli Bhareli');
-                for (int index = 0; index <= carti.length; index++) {
+                for (int index = 0; index < carti.length; index++) {
                   addcartap(index);
+                  print((carti[index].initialPrice).toString());
                 }
               } else {
                 print('batli Khali');

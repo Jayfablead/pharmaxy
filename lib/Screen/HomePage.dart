@@ -5,12 +5,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/AllCatModal.dart';
 import 'package:ecommerce/Modal/BestSellerProductModal.dart';
+import 'package:ecommerce/Modal/BlogModel.dart';
+import 'package:ecommerce/Modal/BrandModel.dart';
 import 'package:ecommerce/Modal/CatWiceProductModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/SalesProductModal.dart';
 import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/All_Brands.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/PrescriptionForm.dart';
@@ -21,6 +24,7 @@ import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/RequestDoctorForm.dart';
 import 'package:ecommerce/Screen/SubCateGoryPage.dart';
+import 'package:ecommerce/Screen/productlistpage2.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/bottombar.dart';
@@ -168,6 +172,8 @@ class _HomePageState extends State<HomePage> {
     viewap();
     salesproductap();
     bestsellerproductap();
+    blogap();
+    brandap();
     setState(() {
       isLoading = true;
     });
@@ -418,92 +424,106 @@ class _HomePageState extends State<HomePage> {
                       //     ],
                       //   ),
                       // ),
+
                       SliverToBoxAdapter(
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 140,
-                          // width: 150,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: AppColors.primary),
-                          child: Row(
-                            children: [
-                              Image.network(
-                                'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
-                                // Replace with your banner image link
-                                fit: BoxFit.cover,
-                                width: 110,
-                                height: 110,
-                              ),
-                              SizedBox(
-                                width: 4.w,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                        child: SizedBox(
+                          height: 18.h,
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.horizontal,
+                            itemCount:2,  // Change to use dynamic list length
+                            itemBuilder: (context, index) {
+                              return  Container(margin: EdgeInsets.only(right: 2.w),
+                                alignment: Alignment.center,
+                                height: 18.h,
+                                 width: 84.w,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: AppColors.primary),
+                                child: Row(
                                   children: [
-                                    Text(
-                                      "FLAT 24% OFF",
-                                      style: TextStyle(
-                                          fontSize: 10.5.sp,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'task',
-                                          color: Colors.white),
+                                    Image.network(
+                                      'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
+                                      // Replace with your banner image link
+                                      fit: BoxFit.cover,
+                                      width: 110,
+                                      height: 110,
                                     ),
                                     SizedBox(
-                                      height: 1.5.h,
+                                      width: 4.w,
                                     ),
-                                    Text(
-                                      "on your first order",
-                                      style: TextStyle(
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'task',
-                                          color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      height: 1.5.h,
-                                    ),
-                                    Container(
-                                      height: 3.h,
-                                      width: 38.w, // Height of the button
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        // Button background color
-                                        borderRadius: BorderRadius.circular(10),
-                                        // Rounded corners
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black12,
-                                            blurRadius: 5,
-                                            spreadRadius: 2,
-                                          ),
-                                        ],
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          // Button icon
                                           Text(
-                                            "Code : 45GHUYRV",
+                                            "FLAT 24% OFF",
                                             style: TextStyle(
-                                                color: Colors.black,
+                                                fontSize: 10.5.sp,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 9.5.sp,
-                                                fontFamily: 'task'),
+                                                fontFamily: 'task',
+                                                color: Colors.white),
+                                          ),
+                                          SizedBox(
+                                            height: 1.5.h,
+                                          ),
+                                          Text(
+                                            "on your first order",
+                                            style: TextStyle(
+                                                fontSize: 11.sp,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'task',
+                                                color: Colors.white),
+                                          ),
+                                          SizedBox(
+                                            height: 1.5.h,
+                                          ),
+                                          Container(
+                                            height: 3.h,
+                                            width: 38.w, // Height of the button
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              // Button background color
+                                              borderRadius: BorderRadius.circular(10),
+                                              // Rounded corners
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black12,
+                                                  blurRadius: 5,
+                                                  spreadRadius: 2,
+                                                ),
+                                              ],
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                // Button icon
+                                                Text(
+                                                  "Code : 45GHUYRV",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 9.5.sp,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
+                              );
+                            },
                           ),
                         ),
                       ),
+
+
+
 
                       // SliverToBoxAdapter(
                       //   child: Row(
@@ -1084,7 +1104,7 @@ class _HomePageState extends State<HomePage> {
                             GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => CategoryPage()));
+                                    builder: (context) => All_Brands()));
                               },
                               child: Container(
                                 child: allcatmodal?.categories?.length == 0
@@ -1113,14 +1133,13 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                           ),
-
                           height: 15.h,
-                          child: allcatmodal?.categories?.length == 0
+                          child: brandmodel?.data?.length == 0
                               ? Center(
                                   child: Text(
                                     "No Brands Available",
                                     style: TextStyle(
-                                      fontSize: 18.sp,
+                                      fontSize: 13.sp,
                                       fontFamily: 'task',
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -1144,15 +1163,15 @@ class _HomePageState extends State<HomePage> {
                                               onTap: () {
                                                 setState(() {
                                                   sel = index;
-                                                  selected = allcatmodal
-                                                      ?.categories?[index]
-                                                      .categoryID
+                                                  selected = brandmodel
+                                                      ?.data?[index]
+                                                      .brandID
                                                       .toString();
                                                   Navigator.of(context).push(
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              SubCateGoryPage(
-                                                                catid: selected,
+                                                              ProductListPage2(
+                                                             allcatid: brandmodel?.data?[index]?. brandID  ?? "",
                                                               )));
                                                 });
                                                 catwiceproductap();
@@ -1178,9 +1197,9 @@ class _HomePageState extends State<HomePage> {
                                                   child: CachedNetworkImage(
                                                     height: 19.w,
                                                     width: 19.w,
-                                                    imageUrl: allcatmodal
-                                                            ?.categories?[index]
-                                                            .catagoryimage ??
+                                                    imageUrl: brandmodel
+                                                            ?.data?[index]
+                                                            .image ??
                                                         '',
                                                     fit: BoxFit.cover,
                                                     progressIndicatorBuilder:
@@ -1206,18 +1225,15 @@ class _HomePageState extends State<HomePage> {
                                                 textAlign: TextAlign.center,
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
-                                                allcatmodal?.categories?[index]
-                                                                .categoryName ==
+                                                brandmodel?.data?[index]
+                                                                .brandName ==
                                                             '' ||
-                                                        allcatmodal
-                                                                ?.categories?[
-                                                                    index]
-                                                                .categoryName ==
+                                                    brandmodel?.data?[index]
+                                                        .brandName ==
                                                             null
                                                     ? 'N/A'
-                                                    : allcatmodal
-                                                            ?.categories?[index]
-                                                            .categoryName ??
+                                                    : brandmodel?.data?[index]
+                                                    .brandName ??
                                                         '',
                                                 style: TextStyle(
                                                   fontSize: 10.sp,
@@ -1232,14 +1248,14 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     );
                                   },
-                                  itemCount: allcatmodal?.categories?.length,
+                                  itemCount: brandmodel?.data?.length,
                                 ),
                         ),
                       ),
 
                       _serch.text == ''
                           ? SliverToBoxAdapter()
-                          : searchbestsaleModal?.productData?.length == 0 ||
+                          : searchbestsaleModal?.productData?.length != 0 ||
                                   searchbestsaleModal?.productData?.length ==
                                       null
                               ? SliverToBoxAdapter(
@@ -1250,7 +1266,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Text(
                                         "No Products Available",
                                             style: TextStyle(
-                                            fontSize: 20.sp,
+                                            fontSize: 14.sp,
                                             fontFamily: 'task',
                                             fontWeight: FontWeight.bold
                                             ),
@@ -1604,9 +1620,7 @@ class _HomePageState extends State<HomePage> {
                                 height: 1.h,
                               ),
                             ),
-                      name
-                          ? SliverToBoxAdapter(child: Container())
-                          : SliverToBoxAdapter(
+                     SliverToBoxAdapter(
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -1624,19 +1638,12 @@ class _HomePageState extends State<HomePage> {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  ProductListPage(
+                                                  ProductList3(
                                                     selid: selected.toString(),
                                                   )));
                                     },
                                     child: Container(
-                                      child: bestsellerproductmodal
-                                                      ?.productData?.length ==
-                                                  0 ||
-                                              bestsellerproductmodal
-                                                      ?.productData?.length ==
-                                                  null
-                                          ? Text("")
-                                          : Text(
+                                      child:   Text(
                                               "View All",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
@@ -1686,7 +1693,8 @@ class _HomePageState extends State<HomePage> {
                                       ? SliverToBoxAdapter(
                                           child: Center(
                                               child:
-                                                  CircularProgressIndicator()),
+                                                  CircularProgressIndicator()
+                                          ),
                                         )
                                       : SliverGrid(
                                           gridDelegate:
@@ -1706,7 +1714,7 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   GestureDetector(
                                                     onTap: () {
-                                            Navigator.of(context).push(
+                                                      Navigator.of(context).push(
                                                               MaterialPageRoute(
                                                                   builder:
                                                                       (context) =>
@@ -2110,12 +2118,12 @@ class _HomePageState extends State<HomePage> {
 
                       SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 21.h,
+                          height: 19.h,
                           width: 60.w,
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
                             scrollDirection: Axis.horizontal,
-                            itemCount: items.length,  // Change to use dynamic list length
+                            itemCount:blogmodel?.data?.length,  // Change to use dynamic list length
                             itemBuilder: (context, index) {
                               return Card(
                                 color: Colors.blue.shade50,
@@ -2135,9 +2143,12 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                           child: CachedNetworkImage(
                                             fit: BoxFit.cover,
-                                            imageUrl: items[index]['imageUrl']!,
+                                            imageUrl :blogmodel
+                                                ?.data?[index]
+                                                .image ??
+                                                '',
                                             width: 50.w,
-                                            height: 7.h,
+                                            height: 10.h,
                                             progressIndicatorBuilder: (context, url, progress) =>
                                                 Center(child: CircularProgressIndicator()),
                                             errorWidget: (context, url, error) => Image.asset(""),
@@ -2149,7 +2160,19 @@ class _HomePageState extends State<HomePage> {
                                         child: Padding(
                                           padding: EdgeInsets.all(8.0),
                                           child: Text(
-                                            items[index]['title']!,
+                                            blogmodel
+                                                ?.data?[index]
+                                                .title ==
+                                                '' ||
+                                                blogmodel
+                                                    ?.data?[index]
+                                                    .title ==
+                                                    null
+                                                ? 'N/A'
+                                                :blogmodel
+                                                ?.data?[index]
+                                                .title ??
+                                                '',
                                             style: TextStyle(
                                               fontFamily: 'task',
                                               color: Colors.black,
@@ -2525,4 +2548,74 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+
+
+
+  blogap() async {
+    final Map<String, String> data = {};
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().blogapi(data).then((response) async {
+          blogmodel =
+              BlogModel.fromJson(json.decode(response.body));
+          print(blogmodel?.status);
+          if (response.statusCode == 200 &&
+              blogmodel?.status == "success") {
+            print('EE Thay Gyu Hooooo ! ^_^');
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          wait = false;
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
+
+  brandap() async {
+    final Map<String, String> data = {};
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().brandapi(data).then((response) async {
+          brandmodel =
+              BrandModel.fromJson(json.decode(response.body));
+          print(brandmodel?.status);
+          if (response.statusCode == 200 &&
+              brandmodel?.status == "success") {
+            print('EE Thay Gyu Hooooo ! ^_^');
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          wait = false;
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
 }

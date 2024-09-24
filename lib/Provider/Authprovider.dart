@@ -191,6 +191,83 @@ class authprovider with ChangeNotifier {
   //   return responseJson;
   // }
 
+
+  // Blog api auth
+
+  Future<http.Response> blogapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/get_blog";
+    var responseJson;
+    final response = await http.post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+  // barnd api auth
+
+  Future<http.Response> brandapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/Brands";
+    var responseJson;
+    final response = await http.post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+
+  // brands wice product
+
+
+  Future<http.Response> brandswiceproductapi( Map<String, String> bodyData) async {
+    const url = "$baseUrl/Brands_wise_product";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+  // brands wice serach
+
+  Future<http.Response> brandswiceproductsearchapi( Map<String, String> bodyData) async {
+    const url = "$baseUrl/Brands_wise_product_search";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
   Future<http.Response> catwiceproductapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/category_wice_product";
     var responseJson;
@@ -630,8 +707,7 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
-  Future<http.Response> salesproductlistapi(
-      Map<String, String> bodyData) async {
+  Future<http.Response> salesproductlistapi( Map<String, String> bodyData) async {
     const url = "$baseUrl/all_sales_list_product";
     var responseJson;
     final response = await http

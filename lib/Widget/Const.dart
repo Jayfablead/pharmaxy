@@ -6,6 +6,10 @@ import 'package:ecommerce/Modal/AllProductModal.dart';
 import 'package:ecommerce/Modal/AllSubcatWiceProduct.dart';
 import 'package:ecommerce/Modal/AllUserAddModal.dart';
 import 'package:ecommerce/Modal/BestSellerProductModal.dart';
+import 'package:ecommerce/Modal/BlogModel.dart';
+import 'package:ecommerce/Modal/BrandModel.dart';
+import 'package:ecommerce/Modal/BrandWiceProductModel.dart';
+import 'package:ecommerce/Modal/BrandWiceProductsearchModel.dart';
 import 'package:ecommerce/Modal/CatWiceProductModal.dart';
 import 'package:ecommerce/Modal/ChangePasswordModal.dart';
 import 'package:ecommerce/Modal/ChatModel.dart';
@@ -134,6 +138,12 @@ cateModel?catemodel;
 bestsellerModel?bestselllermodel;
 ChatModel? chatviewmodal;
 SendMessage?sendmessagesmodal;
+
+
+BlogModel?blogmodel;
+BrandModel?brandmodel;
+BrandWiceProductModel?brandWiceProductmodel;
+BrandWiceProductsearchModel?brandWiceProductsearchmodel;
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());
