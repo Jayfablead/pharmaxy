@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/AllCatModal.dart';
+import 'package:ecommerce/Modal/AllCouponModal.dart';
 import 'package:ecommerce/Modal/BestSellerProductModal.dart';
 import 'package:ecommerce/Modal/BlogModel.dart';
 import 'package:ecommerce/Modal/BrandModel.dart';
@@ -168,6 +169,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    allcoupon();
     allcatap();
     viewap();
     salesproductap();
@@ -431,7 +433,7 @@ class _HomePageState extends State<HomePage> {
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
                             scrollDirection: Axis.horizontal,
-                            itemCount:2,  // Change to use dynamic list length
+                            itemCount:allcouponmodal?.data?.length,  // Change to use dynamic list length
                             itemBuilder: (context, index) {
                               return  Container(margin: EdgeInsets.only(right: 2.w),
                                 alignment: Alignment.center,
@@ -450,38 +452,46 @@ class _HomePageState extends State<HomePage> {
                                       height: 110,
                                     ),
                                     SizedBox(
-                                      width: 4.w,
+                                      width: 2.w,
                                     ),
                                     Expanded(
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "FLAT 24% OFF",
-                                            style: TextStyle(
-                                                fontSize: 10.5.sp,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: 'task',
-                                                color: Colors.white),
+                                          Padding(
+                                            padding:EdgeInsets.only(left: 3.5.w),
+                                            child: Text(
+
+                                              "FLAT  ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType=="1"?"%":"Fixed"} OFF",
+                                              style: TextStyle(
+                                                  fontSize: 10.5.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'task',
+                                                  color: Colors.white),
+                                            ),
                                           ),
                                           SizedBox(
                                             height: 1.5.h,
                                           ),
-                                          Text(
-                                            "on your first order",
-                                            style: TextStyle(
-                                                fontSize: 11.sp,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: 'task',
-                                                color: Colors.white),
+                                          Padding(
+                                              padding:EdgeInsets.only(left: 3.5.w),
+                                            child: Text(
+                                              "on your first order",
+                                              style: TextStyle(
+                                                  fontSize: 11.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'task',
+                                                  color: Colors.white),
+                                            ),
                                           ),
                                           SizedBox(
                                             height: 1.5.h,
                                           ),
                                           Container(
-                                            height: 3.h,
-                                            width: 38.w, // Height of the button
+                                            margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                            padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 1.h),
+                                            // Height of the button
                                             decoration: BoxDecoration(
                                               color: Colors.white,
                                               // Button background color
@@ -495,20 +505,13 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ],
                                             ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                // Button icon
-                                                Text(
-                                                  "Code : 45GHUYRV",
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 9.5.sp,
-                                                      fontFamily: 'task'),
-                                                ),
-                                              ],
+                                            child: Text(
+                                              "Code :${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 9.5.sp,
+                                                  fontFamily: 'task'),
                                             ),
                                           ),
                                         ],
@@ -2526,6 +2529,39 @@ class _HomePageState extends State<HomePage> {
           print(bestsellerproductmodal?.status);
           if (response.statusCode == 200 &&
               bestsellerproductmodal?.status == "success") {
+            print('EE Thay Gyu Hooooo ! ^_^');
+
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          wait = false;
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+  allcoupon() async {
+    final Map<String, String> data = {};
+    data['user_id'] = (usermodal?.userId).toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().coponapi(data).then((response) async {
+          allcouponmodal =
+              AllCouponModal.fromJson(json.decode(response.body));
+          print(allcouponmodal?.status);
+          if (response.statusCode == 200 &&
+              allcouponmodal?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
 
             setState(() {

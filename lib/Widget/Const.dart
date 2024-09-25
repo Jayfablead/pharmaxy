@@ -2,6 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:ecommerce/Modal/AddCartModal.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/AllCatModal.dart';
+import 'package:ecommerce/Modal/AllCouponModal.dart';
 import 'package:ecommerce/Modal/AllProductModal.dart';
 import 'package:ecommerce/Modal/AllSubcatWiceProduct.dart';
 import 'package:ecommerce/Modal/AllUserAddModal.dart';
@@ -138,6 +139,7 @@ cateModel?catemodel;
 bestsellerModel?bestselllermodel;
 ChatModel? chatviewmodal;
 SendMessage?sendmessagesmodal;
+AllCouponModal? allcouponmodal;
 
 
 BlogModel?blogmodel;
