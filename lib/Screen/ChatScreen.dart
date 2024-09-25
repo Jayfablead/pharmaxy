@@ -35,7 +35,7 @@ class _ChatscreenState extends State<Chatscreen> {
   String adminID = "6";
   TextEditingController _sendmeasssges = TextEditingController();
   Timer? _timer;
-  int type = 0;
+  int type = 1;
   bool send = false;
   @override
   void initState() {
@@ -47,7 +47,6 @@ class _ChatscreenState extends State<Chatscreen> {
     Chatmessageapi();
     _timer = Timer.periodic(const Duration(milliseconds: 600), (timer) {
       Chatmessageapi();
-
     });
   }
   @override
@@ -109,56 +108,246 @@ class _ChatscreenState extends State<Chatscreen> {
                 reverse: true,
                 itemCount: chatviewmodal?.data?.livechat?.length,
                 itemBuilder: (context, index) {
-                  return chatviewmodal?.data?.livechat?[index].msgType == "1"?Align(
-                      alignment: Alignment.centerRight,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                   return Column(
+                    children: [
+                      chatviewmodal?.data?.livechat?[index].senderId == usermodal?.userId ? Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                              margin: EdgeInsets.symmetric(vertical: 2.h,horizontal: 3.h),
-                              padding: EdgeInsets.all(5.0),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(11),
-                                  color: Colors.blue.shade50
-                              ),
-                              child: chatviewmodal?.data?.livechat?[index].msgType == "1"?
-                              Text(
-                                chatviewmodal?.data?.livechat?[index].message??"",style: TextStyle(
-                                  fontFamily: "task",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 11.sp,
-                                  color: Colors.black
-                              ),
-                              ): Container(
-                                child: CachedNetworkImage(
-                                  imageUrl: chatviewmodal?.data?.livechat?[index].message??"",
-                                  width: 100,
-                                  height: 100,
-                                ),
-
-                              )
+                          chatviewmodal?.data?.livechat?[index].msgType=="1"?Text(
+                            chatviewmodal?.data?.livechat?[index].createdAt == "" || chatviewmodal
+                                ?.data
+                                ?.livechat?[
+                            index]
+                                .createdAt ==
+                                null
+                                ? "N/A"
+                                : chatviewmodal
+                                ?.data
+                                ?.livechat?[index]
+                                .createdAt ??
+                                '',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: "task"
+                            ),
+                          ):Container(
+                            child: CachedNetworkImage(
+                                imageUrl: chatviewmodal?.data?.livechat?[index].message??'',
+                              width: 30.w,
+                              height: 30.h,
+                              fit: BoxFit.cover,
+                              errorWidget: (context, url, error) {
+                                return Icon(Icons.error_rounded);
+                              },
+                            ),
                           ),
-                          Text(chatviewmodal?.data?.livechat?[index].createdAt??"",style: TextStyle(
-                              fontFamily: "task",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 8.sp,
-                              color: Colors.black
-                          ),)
+                          SizedBox(
+                            width: 1.w,
+                          ),
+                          Container(
+                            alignment:
+                            Alignment.centerRight,
+                            margin: EdgeInsets.symmetric(
+                                vertical: 1.h),
+                            width: 40.w,
+                            height: 5.h,
+                            padding: EdgeInsets.only(right: 3.w),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary,
+                              borderRadius:
+                              BorderRadius.only(
+                                bottomRight:
+                                Radius.circular(7.w),
+                                bottomLeft:
+                                Radius.circular(7.w),
+                                topLeft:
+                                Radius.circular(7.w),
+                              ),
+                            ),
+                            child: Text(
+                              chatviewmodal
+                                  ?.data
+                                  ?.livechat?[index]
+                                  .message ==
+                                  "" ||
+                                  chatviewmodal
+                                      ?.data
+                                      ?.livechat?[
+                                  index]
+                                      .message ==
+                                      null
+                                  ? "N/A"
+                                  : chatviewmodal
+                                  ?.data
+                                  ?.livechat?[index]
+                                  .message ??
+                                  "",
+                              style: TextStyle(
+                                  fontFamily: "task",
+                                  fontSize: 12,
+                                  color: Colors.white
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 1.w,
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(2000.w),
+                            child: CachedNetworkImage(
+                              imageUrl: chatviewmodal?.data?.loginUser?.userProfile ?? "",
+                              width: 12.w,
+                              height: 12.w,
+                              fit: BoxFit.cover,
+                              errorWidget: (context, url, error) {
+                                return Icon(Icons.error_rounded,);
+                              },
+                              imageBuilder: (context,
+                                  imageProvider) {
+                                return Image(
+                                  image:
+                                  imageProvider,
+                                  width: 12.w,
+                                  height: 12.w,
+                                  fit: BoxFit.cover,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ) : Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                                2000.w),
+                            child: CachedNetworkImage(
+                              imageUrl:
+                              chatviewmodal?.data?.chatUser?.userProfile ??
+                                  "",
+                              width: 12.w,
+                              height: 12.w,
+                              fit: BoxFit.cover,
+                              errorWidget: (context,
+                                  url, error) {
+                                return Icon(Icons.error_rounded);
+                              },
+                              imageBuilder: (context,
+                                  imageProvider) {
+                                return Image(
+                                  image:
+                                  imageProvider,
+                                  width: 12.w,
+                                  height: 12.w,
+                                  fit: BoxFit.cover,
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: 1.w,
+                          ),
+                          Container(
+                            alignment:
+                            Alignment.centerLeft,
+                            margin: EdgeInsets.symmetric(
+                                vertical: 1.h),
+                            width: 40.w,
+                            height:5.h,
+                            padding: EdgeInsets.only(left: 3.w),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary,
+                              borderRadius:
+                              BorderRadius.only(
+                                topRight:
+                                Radius.circular(7.w),
+                                bottomLeft:
+                                Radius.circular(7.w),
+                                bottomRight:
+                                Radius.circular(7.w),
+                              ),
+                            ),
+                            child: chatviewmodal?.data?.livechat?[index].msgType=="1"?Text(
+                              chatviewmodal
+                                  ?.data
+                                  ?.livechat?[
+                              index]
+                                  .message ==
+                                  null ||
+                                  chatviewmodal
+                                      ?.data
+                                      ?.livechat?[
+                                  index]
+                                      .message ==
+                                      ""
+                                  ? "N/A"
+                                  : chatviewmodal
+                                  ?.data
+                                  ?.livechat?[index]
+                                  .message ??
+                                  '',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "task",
+                                fontSize: 12.0,
 
+                              ),
+                            ):Container(
+                              child: CachedNetworkImage(
+                                imageUrl: chatviewmodal?.data?.livechat?[index].message??'',
+                                width: 30.w,
+                                height: 30.h,
+                                fit: BoxFit.cover,
+                                errorWidget: (context, url, error) {
+                                  return Icon(Icons.error_rounded);
+                                },
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 1.w,
+                          ),
+                          Text(
+                            chatviewmodal
+                                ?.data
+                                ?.livechat?[
+                            index]
+                                .createdAt ==
+                                null ||
+                                chatviewmodal
+                                    ?.data
+                                    ?.livechat?[
+                                index]
+                                    .createdAt ==
+                                    ""
+                                ? "N/A"
+                                : chatviewmodal
+                                ?.data
+                                ?.livechat?[index]
+                                .createdAt ??
+                                '',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: "task",
+                            ),
+                          ),
                         ],
                       )
-                  ): Text("0");
+                    ],
+                  );
                 },
               )
           ),
           Row(
             children: [
               Expanded(child:Container(
-                height: 6.h,
+                height: 7.h,
                 width: MediaQuery.of(context).size.width,
                 margin: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(11.0),
                     color: Colors.grey.shade100,
                     border: Border.all(color: Colors.grey)
                 ),
@@ -187,6 +376,7 @@ class _ChatscreenState extends State<Chatscreen> {
                     ),
                     IconButton(onPressed: () async{
                       selectfile();
+                      SendMessages();
                     },
                         icon: Icon(Icons.attach_file,size: 17.sp,color: AppColors.primary,)),
                   ],
@@ -203,464 +393,22 @@ class _ChatscreenState extends State<Chatscreen> {
                       backgroundColor:
                       AppColors.primary,
                       textColor: Colors.white,
-                      fontSize: 11.sp
+                      fontSize: 10.sp
                   );
                 }
                 else{
                   SendMessages();
                 }
-              }, icon: Icon(Icons.send,color: AppColors.primary,size: 25.sp,)
-              ),
+              }, icon: Icon(Icons.send,color: AppColors.primary,)),
             ],
           ),
         ],
       ),
-      // body: Stack(
-      //   children: [
-      //     isLoading
-      //         ? Container()
-      //         : SingleChildScrollView(
-      //       child: Column(
-      //         children: [
-      //           Container(
-      //             width: MediaQuery.of(context).size.width,
-      //             height: 78.5.h,
-      //             child:
-      //             chatviewmodal?.data?.livechat?.length == 0 || chatviewmodal?.data?.livechat?.length == null
-      //                 ? Center(
-      //                 child: Text(
-      //                   "No Message Available",
-      //                   style: TextStyle(
-      //                       fontFamily: "task",
-      //                       fontWeight: FontWeight.bold,
-      //                       fontSize: 20.sp,
-      //                       color: Colors.black),
-      //                 ))
-      //                 : Column(
-      //               children: [
-      //                 Container(
-      //                   width:
-      //                   MediaQuery.of(context).size.width,
-      //                   height: 77.h,
-      //                   child: ListView.builder(
-      //                     shrinkWrap: true,
-      //                     reverse: false,
-      //                     itemCount:  chatviewmodal?.data?.livechat?.length,
-      //                     itemBuilder: (context, index) {
-      //                       return chatviewmodal
-      //                           ?.data?.livechat?[index].msgType == "1"
-      //                           ? Align(
-      //                         alignment: Alignment.topRight,
-      //                         child: Column(
-      //                           crossAxisAlignment: CrossAxisAlignment.end,
-      //                           children: [
-      //                             Container(
-      //                                 margin: EdgeInsets
-      //                                     .symmetric(
-      //                                     horizontal:
-      //                                     1.h,
-      //                                     vertical:
-      //                                     3.w),
-      //                                 alignment: Alignment
-      //                                     .centerLeft,
-      //                                 padding: EdgeInsets
-      //                                     .symmetric(
-      //                                     horizontal:
-      //                                     1.h,
-      //                                     vertical:
-      //                                     3.w),
-      //                                 width: 70.w,
-      //                                 decoration:
-      //                                 BoxDecoration(
-      //                                   borderRadius: BorderRadius
-      //                                       .only(
-      //                                       topLeft:
-      //                                       Radius
-      //                                           .circular(
-      //                                         15,
-      //                                       ),
-      //                                       topRight:
-      //                                       Radius
-      //                                           .circular(
-      //                                         15,
-      //                                       ),
-      //                                       bottomLeft:
-      //                                       Radius.circular(
-      //                                         15,
-      //                                       )),
-      //                                   color: Colors.orange.shade700,
-      //                                 ),
-      //                                 child: chatviewmodal
-      //                                     ?.data?.livechat?[
-      //                                 index]
-      //                                     .msgType ==
-      //                                     "1"
-      //                                     ? Text(
-      //                                   chatviewmodal
-      //                                       ?.data?.livechat?[index]
-      //                                       .message ??
-      //                                       "",
-      //                                   style: TextStyle(
-      //                                       fontSize: 12
-      //                                           .sp,
-      //                                       color: Colors
-      //                                           .black,
-      //                                       fontWeight: FontWeight
-      //                                           .bold,
-      //                                       fontFamily:
-      //                                       'task'),
-      //                                 )
-      //                                     : InkWell(
-      //                                   onTap:
-      //                                       () {
-      //                                     showDialog(
-      //                                       context:
-      //                                       context,
-      //                                       builder:
-      //                                           (context) {
-      //                                         return Stack(
-      //                                           children: [
-      //                                             Container(
-      //                                               padding: EdgeInsets.all(4.w),
-      //                                               margin: EdgeInsets.only(top: 1.h),
-      //                                               child: ClipRRect(
-      //                                                 borderRadius: BorderRadius.circular(20),
-      //                                                 child: CachedNetworkImage(
-      //                                                   imageUrl: chatviewmodal?.data?.livechat?[index].message ?? "",
-      //                                                   height: 77.h,
-      //                                                   imageBuilder: (context, imageProvider) => Container(
-      //                                                     decoration: BoxDecoration(
-      //                                                       image: DecorationImage(
-      //                                                         image: imageProvider,
-      //                                                         fit: BoxFit.cover,
-      //                                                       ),
-      //                                                     ),
-      //                                                   ),
-      //                                                   placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-      //                                                   errorWidget: (context, url, error) => Icon(Icons.error),
-      //                                                 ),
-      //                                               ),
-      //                                             ),
-      //                                             Positioned(
-      //                                               left: 84.5.w,
-      //                                               top: 3.51.h,
-      //                                               child: InkWell(
-      //                                                 onTap: () {
-      //                                                   Navigator.pop(context);
-      //                                                 },
-      //                                                 child: Container(
-      //                                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(90), color: Colors.red, border: Border.all(color: Colors.red)),
-      //                                                     padding: EdgeInsets.all(2.w),
-      //                                                     child: Icon(
-      //                                                       Icons.close_rounded,
-      //                                                       color: Colors.white,
-      //                                                     )),
-      //                                               ),
-      //                                             )
-      //                                           ],
-      //                                         );
-      //                                       },
-      //                                     );
-      //                                   },
-      //                                   child:
-      //                                   ClipRRect(
-      //                                     borderRadius:
-      //                                     BorderRadius.circular(30),
-      //                                     child: Image
-      //                                         .network(
-      //                                       chatviewmodal?.data?.livechat?[index].message ??
-      //                                           "",
-      //                                       height:
-      //                                       30.h,
-      //                                       width:
-      //                                       70.w,
-      //                                     ),
-      //                                   ),
-      //                                 )),
-      //                             Padding(
-      //                               padding:
-      //                               EdgeInsets.only(
-      //                                   right: 1.h),
-      //                               child: Text(
-      //                       chatviewmodal?.data?.livechat?[index].createdAt ?? "",
-      //                                 style: TextStyle(
-      //                                     fontSize:
-      //                                     10.sp,
-      //                                     fontWeight:
-      //                                     FontWeight
-      //                                         .normal,
-      //                                     fontFamily: "task",
-      //                                     color: Colors
-      //                                         .white),
-      //                               ),
-      //                             ),
-      //                           ],
-      //                         ),
-      //                       )
-      //                           : Align(
-      //                         alignment:
-      //                         Alignment.topLeft,
-      //                         child: Column(
-      //                           crossAxisAlignment:
-      //                           CrossAxisAlignment
-      //                               .start,
-      //                           children: [
-      //                             Container(
-      //                               margin: EdgeInsets
-      //                                   .symmetric(
-      //                                   horizontal:
-      //                                   1.h,
-      //                                   vertical:
-      //                                   3.w),
-      //                               alignment: Alignment
-      //                                   .center,
-      //                               padding: EdgeInsets
-      //                                   .symmetric(
-      //                                 vertical: 1.5.h,
-      //                               ),
-      //                               width: 70.w,
-      //                               decoration: BoxDecoration(
-      //                                   borderRadius: BorderRadius.only(
-      //                                       topLeft: Radius.circular(
-      //                                         15,
-      //                                       ),
-      //                                       topRight: Radius.circular(
-      //                                         15,
-      //                                       ),
-      //                                       bottomRight: Radius.circular(
-      //                                         15,
-      //                                       )),
-      //                                   color: Colors.orange),
-      //                               child: SizedBox(
-      //                                   width: 60.w,
-      //                                   child: chatviewmodal
-      //                                       ?.data?.livechat?[index]
-      //                                       .msgType ==
-      //                                       "1"
-      //                                       ? Text(
-      //                                     chatviewmodal?.data?.livechat?[index].message ??
-      //                                         "",
-      //                                     style: TextStyle(
-      //                                         fontSize:
-      //                                         11.sp,
-      //                                         color: Colors.white,
-      //                                         fontWeight: FontWeight.normal,
-      //                                         fontFamily: 'task'),
-      //                                   )
-      //                                       : InkWell(
-      //                                     onTap:
-      //                                         () {
-      //                                       showDialog(
-      //                                         context:
-      //                                         context,
-      //                                         builder:
-      //                                             (context) {
-      //                                           return Stack(
-      //                                             children: [
-      //                                               Container(
-      //                                                 padding: EdgeInsets.all(4.w),
-      //                                                 margin: EdgeInsets.only(top: 1.h),
-      //                                                 child: ClipRRect(
-      //                                                   borderRadius: BorderRadius.circular(20),
-      //                                                   child: CachedNetworkImage(
-      //                                                     imageUrl: chatviewmodal?.data?.livechat?[index].message ?? "",
-      //                                                     height: 90.h,
-      //                                                     imageBuilder: (context, imageProvider) => Container(
-      //                                                       decoration: BoxDecoration(
-      //                                                         image: DecorationImage(
-      //                                                           image: imageProvider,
-      //                                                           fit: BoxFit.cover,
-      //                                                         ),
-      //                                                       ),
-      //                                                     ),
-      //                                                     placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-      //                                                     errorWidget: (context, url, error) => Icon(Icons.error),
-      //                                                   ),
-      //                                                 ),
-      //                                               ),
-      //                                               Positioned(
-      //                                                 left: 83.5.w,
-      //                                                 top: 3.51.h,
-      //                                                 child: InkWell(
-      //                                                   onTap: () {
-      //                                                     Navigator.pop(context);
-      //                                                   },
-      //                                                   child: Container(
-      //                                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(90), color: Colors.red, border: Border.all(color: Colors.red)),
-      //                                                       padding: EdgeInsets.all(2.w),
-      //                                                       child: Icon(
-      //                                                         Icons.close_rounded,
-      //                                                         size: 22.sp,
-      //                                                         color: Colors.white,
-      //                                                       )),
-      //                                                 ),
-      //                                               )
-      //                                             ],
-      //                                           );
-      //                                         },
-      //                                       );
-      //                                     },
-      //                                     child:
-      //                                     ClipRRect(
-      //                                       borderRadius:
-      //                                       BorderRadius.circular(30),
-      //                                       child:
-      //                                       Image.network(
-      //                                         chatviewmodal?.data?.livechat?[index].message ??
-      //                                             "",
-      //                                         height:
-      //                                         30.h,
-      //                                         width:
-      //                                         70.w,
-      //                                       ),
-      //                                     ),
-      //                                   )),
-      //                             ),
-      //                             Padding(
-      //                               padding:
-      //                               EdgeInsets.only(
-      //                                   left: 1.h),
-      //                               child: Text(
-      //                                 chatviewmodal?.data?.livechat?[index].createdAt ??
-      //                                     "",
-      //                                 style: TextStyle(
-      //                                     fontSize:
-      //                                     10.sp,
-      //                                     fontWeight:
-      //                                     FontWeight
-      //                                         .normal,
-      //                                     fontFamily:
-      //                                     "volken",
-      //                                     color: Colors
-      //                                         .white),
-      //                               ),
-      //                             ),
-      //                           ],
-      //                         ),
-      //                       );
-      //                     },
-      //                   ),
-      //                 ),
-      //               ],
-      //             ),
-      //           ),
-      //           Column(
-      //             children: [
-      //               Row(
-      //                 children: [
-      //                   SizedBox(
-      //                     width: 2.w,
-      //                   ),
-      //                   GestureDetector(
-      //                       onTap: () {
-      //                         // selectfile();
-      //                       },
-      //                       child: Icon(
-      //                         Icons.attach_file,
-      //                         size: 23.sp,
-      //                         color: Colors.orange,
-      //                       )),
-      //                   SizedBox(
-      //                     width: 2.w,
-      //                   ),
-      //                   Container(
-      //                     alignment: Alignment.center,
-      //                     width: 71.w,
-      //                     height: 7.h,
-      //                     child: TextFormField(
-      //                       controller: _sendmeasssges,
-      //                       style: TextStyle(color: Colors.grey),
-      //                       decoration: InputDecoration(
-      //                         border: OutlineInputBorder(
-      //                           borderRadius: BorderRadius.circular(20),
-      //                           borderSide: BorderSide(color: Colors.grey)
-      //                         ),
-      //                         hintText: "Send Message",
-      //                       ),
-      //                     ),
-      //                   ),
-      //                   SizedBox(
-      //                     width: 3.w,
-      //                   ),
-      //                   send1 ? Center(child: Container( height: 5.5.h,
-      //                     width: 12.w,
-      //                     alignment: Alignment.center,
-      //                     decoration: BoxDecoration(
-      //                       color: Colors.orange,
-      //                       borderRadius: BorderRadius.circular(10,),
-      //                     ),child:CircularProgressIndicator()
-      //                     ,),):Container(
-      //                       height: 5.5.h,
-      //                       width: 12.w,
-      //                       alignment: Alignment.center,
-      //                       decoration: BoxDecoration(
-      //                         color: Colors.orange,
-      //                         borderRadius: BorderRadius.circular(
-      //                           10,
-      //                         ),
-      //                       ),
-      //                       child: IconButton(
-      //                         onPressed: () {
-      //                           setState(() {
-      //                             send = true;
-      //                             send1 = true;
-      //                             type = 1;
-      //                           });
-      //                           _sendmeasssges.text == ''?Fluttertoast.showToast(
-      //                               msg: "You Can't Send Empty Messages",
-      //                               toastLength:
-      //                               Toast.LENGTH_SHORT,
-      //                               timeInSecForIosWeb: 1,
-      //                               backgroundColor:
-      //                               Colors.black,
-      //                               textColor: Colors.white,
-      //                               fontSize: 11.sp):"";
-      //                         },
-      //                         icon: Icon(
-      //                           Icons.send,
-      //                           color: Colors.black,
-      //                           size: 6.w,
-      //                         ),
-      //                       )),
-      //                 ],
-      //               ),
-      //               SizedBox(
-      //                 height: 1.5.h,
-      //               ),
-      //             ],
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //
-      //     // today text
-      //     // Row(
-      //     //   mainAxisAlignment: MainAxisAlignment.center,
-      //     //   children: [
-      //     //     Container(
-      //     //       padding: EdgeInsets.symmetric(vertical: 0.5.h, horizontal: 4.w),
-      //     //       decoration: BoxDecoration(
-      //     //         borderRadius: BorderRadius.circular(900),
-      //     //         color: Colors.blue.withOpacity(0.3),
-      //     //       ),
-      //     //       child: Text(
-      //     //         'vayo ja batli',
-      //     //         style: TextStyle(
-      //     //           fontFamily: 'volken',
-      //     //           color: Colors.black,
-      //     //           fontWeight: FontWeight.bold,
-      //     //           fontSize: 12.5.sp,
-      //     //           letterSpacing: 1,
-      //     //         ),
-      //     //       ),
-      //     //     ),
-      //     //   ],
-      //     // )
-      //   ],
-      // ),
 
     );
   }
+
+
   selectfile() {
     AlertDialog alert = AlertDialog(
       elevation: 0,
@@ -777,10 +525,9 @@ class _ChatscreenState extends State<Chatscreen> {
   }
   SendMessages() {
     final Map<String, String> data = {};
-
     data['mType'] = type == 1 ? "1" : "2";
     data['textMsg'] = type == 1 ? _sendmeasssges.text.toString() : _pickedFile?.path ?? '';
-
+    data['order_id']= widget.orderId;
     print(data);
     print("adfdsfdsfdsf${data}");
     checkInternet().then((internet) async {
@@ -806,4 +553,6 @@ class _ChatscreenState extends State<Chatscreen> {
       }
     });
   }
+
+
 }

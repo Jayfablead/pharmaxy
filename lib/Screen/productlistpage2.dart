@@ -230,365 +230,9 @@ class _ProductListPageState extends State<ProductListPage2> {
                             height: 2.h,
                           ),
                         ),
-                        _serch2.text == ''
+                        _serch2.text != ''
                             ?
-                        brandWiceProductmodel?.data?.length == 0 ||
-                            brandWiceProductmodel?.data?.length ==
-                                        null
-                                ? SliverToBoxAdapter(
-                                    child: Container(
-                                      height: 70.h,
-                                      child: Center(
-                                          child: Text(
-                                        'No Products Available',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontFamily: 'task',
-                                          fontSize: 15.sp,
-                                        ),
-                                      )),
-                                    ),
-                                  )
-                                : SliverGrid(
-                                    gridDelegate:
-                                        SliverGridDelegateWithMaxCrossAxisExtent(
-                                            maxCrossAxisExtent:
-                                                200, // Adjust as needed
-                                            mainAxisSpacing:
-                                                10.0, // Adjust as needed
-                                            crossAxisSpacing:
-                                                10.0, // Adjust as needed
-                                            childAspectRatio:
-                                                6.5 / 11 // Adjust as needed
-                                            ),
-                                    delegate: SliverChildBuilderDelegate(
-                                      (BuildContext context, int index) {
-                                        return Stack(
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                 Navigator.of(context)
-                                                        .push(MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                productdetailnovartion(
-                                                                  productid: brandWiceProductmodel
-                                                                          ?.data?[
-                                                                              index]
-                                                                          .productID ??
-                                                                      '',
-                                                                )));
-
-                                              },
-                                              child: Card(
-                                                color: Colors.white,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: 2.h,
-                                                    ),
-                                                    Container(
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                        brandWiceProductmodel
-                                                            ?.data?[
-                                                        index]
-                                                            .productImages?.length==0?'': brandWiceProductmodel
-                                                                    ?.data?[
-                                                                        index]
-                                                                    .productImages?[0] ??
-                                                                '',
-                                                        fit: BoxFit.cover,
-                                                        height: 11.5.h,
-                                                        width: 30.w,
-                                                        imageBuilder: (context,
-                                                                imageProvider) =>
-                                                            Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            // borderRadius: BorderRadius.circular(10),
-                                                            image:
-                                                                DecorationImage(
-                                                              filterQuality:
-                                                                  FilterQuality
-                                                                      .high,
-                                                              image:
-                                                                  imageProvider,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            Center(
-                                                                child:
-                                                                    CircularProgressIndicator()),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Icon(Icons.error),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 1.h,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 1.w),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              SizedBox(
-                                                                width: 30.w,
-                                                                child: Text(
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  maxLines: 1,
-                                                                  brandWiceProductmodel
-                                                                          ?.data?[
-                                                                              index]
-                                                                          .productName ??
-                                                                      '',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          12.5
-                                                                              .sp,
-                                                                      fontFamily:
-                                                                          'task',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      letterSpacing:
-                                                                          1,
-                                                                      color: Colors
-                                                                          .black),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    // Padding(
-                                                    //   padding:
-                                                    //       EdgeInsets.symmetric(
-                                                    //     horizontal: 1.5.w,
-                                                    //   ),
-                                                    //   child: SizedBox(
-                                                    //     width: 35.w,
-                                                    //     child: Text(
-                                                    //       textAlign:
-                                                    //           TextAlign.center,
-                                                    //       overflow: TextOverflow
-                                                    //           .ellipsis,
-                                                    //       maxLines: 2,
-                                                    //       salesproductlistmodal
-                                                    //               ?.productData?[
-                                                    //                   index]
-                                                    //               .productShortDesc ??
-                                                    //           '',
-                                                    //       style: TextStyle(
-                                                    //         fontSize: 12.sp,
-                                                    //         fontFamily: 'task',
-                                                    //         fontWeight:
-                                                    //             FontWeight
-                                                    //                 .normal,
-                                                    //         letterSpacing: 1,
-                                                    //         color: Colors.black,
-                                                    //       ),
-                                                    //     ),
-                                                    //   ),
-                                                    // ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              '₹' +
-                                                                  (brandWiceProductmodel
-                                                                          ?.data?[
-                                                                              index]
-                                                                          .saleProductPrice)
-                                                                      .toString(),
-                                                              style: TextStyle(
-                                                                fontSize: 12.sp,
-                                                                fontFamily:
-                                                                    'task',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                letterSpacing:
-                                                                    1,
-                                                                color: Colors
-                                                                    .black,
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 0.5.w,
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      top: 0.4
-                                                                          .h),
-                                                              child: Text(
-                                                                '₹' +
-                                                                    (brandWiceProductmodel
-                                                                            ?.data?[index]
-                                                                            .productPrice)
-                                                                        .toString(),
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .lineThrough,
-                                                                  fontSize:
-                                                                      12.sp,
-                                                                  fontFamily:
-                                                                      'task',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  letterSpacing:
-                                                                      1,
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: 1.h,
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.of(context).push(
-                                                                MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            productdetailnovartion(
-                                                                              productid: brandWiceProductmodel?.data?[index].productID ?? '',
-                                                                            )));
-
-                                                        //ADD CART API
-                                                        // addtocartapi((allsubcatwiceproduct
-                                                        //     ?.subcategoriesWiseProduct?[
-                                                        // index]
-                                                        //     .productID ??
-                                                        //     ''));
-                                                      },
-                                                      child: Container(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        height: 4.h,
-                                                        width: 30.w,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            color: Color(0xff0061b0)),
-                                                        child: Text(
-                                                          "View Product",
-                                                          style: TextStyle(
-                                                              fontSize: 12.sp,
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                                left: 37.w,
-                                                top: 1.h,
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    usermodal?.userId == "" ||
-                                                            usermodal?.userId ==
-                                                                null
-                                                        ? Navigator.of(context)
-                                                            .push(MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        LoginPage2()))
-                                                        : brandWiceProductmodel
-                                                                    ?.data?[
-                                                                        index]
-                                                                    .wishlist ==
-                                                                1
-                                                            ? removewishlistap(
-                                                                (brandWiceProductmodel
-                                                                        ?.data?[
-                                                                            index]
-                                                                        .productID)
-                                                                    .toString())
-                                                            : addwishlistap(
-                                                                (brandWiceProductmodel
-                                                                        ?.data?[
-                                                                            index]
-                                                                        .productID)
-                                                                    .toString());
-                                                  },
-                                                  child: Icon(
-                                                    brandWiceProductmodel
-                                                                ?.data?[
-                                                                    index]
-                                                                .wishlist ==
-                                                            1
-                                                        ? Icons.favorite
-                                                        : Icons
-                                                            .favorite_outline,
-                                                    size: 20.sp,
-                                                    color: brandWiceProductmodel
-                                                                ?.data?[
-                                                                    index]
-                                                                .wishlist ==
-                                                            1
-                                                        ? Colors.red
-                                                        : Colors.black,
-                                                  ),
-                                                )),
-                                          ],
-                                        );
-                                      },
-                                      childCount:  brandWiceProductmodel
-                                          ?.data?.length, // Replace with the number of grid items you want
-                                    ),
-                                  )
-
-
-
-
-
-
-
-                            : brandWiceProductsearchmodel?.data?.length == 0 ||
+                        brandWiceProductsearchmodel?.data?.length == 0 ||
                             brandWiceProductsearchmodel?.data?.length ==
                                         null
                                 ? SliverToBoxAdapter(
@@ -929,7 +573,357 @@ class _ProductListPageState extends State<ProductListPage2> {
                                       childCount: brandWiceProductsearchmodel
                                           ?.data?.length,
                                     ),
+                                  ):
+                        brandWiceProductmodel?.data?.length == 0 ||
+                            brandWiceProductmodel?.data?.length ==
+                                null
+                            ? SliverToBoxAdapter(
+                          child: Container(
+                            height: 70.h,
+                            child: Center(
+                                child: Text(
+                                  'No Products Available',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontFamily: 'task',
+                                    fontSize: 15.sp,
                                   ),
+                                )),
+                          ),
+                        )
+                            : SliverGrid(
+                          gridDelegate:
+                          SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent:
+                              200, // Adjust as needed
+                              mainAxisSpacing:
+                              10.0, // Adjust as needed
+                              crossAxisSpacing:
+                              10.0, // Adjust as needed
+                              childAspectRatio:
+                              6.5 / 11 // Adjust as needed
+                          ),
+                          delegate: SliverChildBuilderDelegate(
+                                (BuildContext context, int index) {
+                              return Stack(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                          builder: (context) =>
+                                              productdetailnovartion(
+                                                productid: brandWiceProductmodel
+                                                    ?.data?[
+                                                index]
+                                                    .productID ??
+                                                    '',
+                                              )));
+
+                                    },
+                                    child: Card(
+                                      color: Colors.white,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            height: 2.h,
+                                          ),
+                                          Container(
+                                            child: CachedNetworkImage(
+                                              imageUrl:
+                                              brandWiceProductmodel
+                                                  ?.data?[
+                                              index]
+                                                  .productImages?.length==0?'': brandWiceProductmodel
+                                                  ?.data?[
+                                              index]
+                                                  .productImages?[0] ??
+                                                  '',
+                                              fit: BoxFit.cover,
+                                              height: 11.5.h,
+                                              width: 30.w,
+                                              imageBuilder: (context,
+                                                  imageProvider) =>
+                                                  Container(
+                                                    decoration:
+                                                    BoxDecoration(
+                                                      // borderRadius: BorderRadius.circular(10),
+                                                      image:
+                                                      DecorationImage(
+                                                        filterQuality:
+                                                        FilterQuality
+                                                            .high,
+                                                        image:
+                                                        imageProvider,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                              placeholder: (context,
+                                                  url) =>
+                                                  Center(
+                                                      child:
+                                                      CircularProgressIndicator()),
+                                              errorWidget: (context,
+                                                  url, error) =>
+                                                  Icon(Icons.error),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 1.h,
+                                          ),
+                                          Padding(
+                                            padding:
+                                            EdgeInsets.symmetric(
+                                                horizontal: 1.w),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .center,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment
+                                                      .center,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: 30.w,
+                                                      child: Text(
+                                                        textAlign:
+                                                        TextAlign
+                                                            .center,
+                                                        overflow:
+                                                        TextOverflow
+                                                            .ellipsis,
+                                                        maxLines: 1,
+                                                        brandWiceProductmodel
+                                                            ?.data?[
+                                                        index]
+                                                            .productName ??
+                                                            '',
+                                                        style: TextStyle(
+                                                            fontSize:
+                                                            12.5
+                                                                .sp,
+                                                            fontFamily:
+                                                            'task',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold,
+                                                            letterSpacing:
+                                                            1,
+                                                            color: Colors
+                                                                .black),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          // Padding(
+                                          //   padding:
+                                          //       EdgeInsets.symmetric(
+                                          //     horizontal: 1.5.w,
+                                          //   ),
+                                          //   child: SizedBox(
+                                          //     width: 35.w,
+                                          //     child: Text(
+                                          //       textAlign:
+                                          //           TextAlign.center,
+                                          //       overflow: TextOverflow
+                                          //           .ellipsis,
+                                          //       maxLines: 2,
+                                          //       salesproductlistmodal
+                                          //               ?.productData?[
+                                          //                   index]
+                                          //               .productShortDesc ??
+                                          //           '',
+                                          //       style: TextStyle(
+                                          //         fontSize: 12.sp,
+                                          //         fontFamily: 'task',
+                                          //         fontWeight:
+                                          //             FontWeight
+                                          //                 .normal,
+                                          //         letterSpacing: 1,
+                                          //         color: Colors.black,
+                                          //       ),
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment
+                                                .center,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    '₹' +
+                                                        (brandWiceProductmodel
+                                                            ?.data?[
+                                                        index]
+                                                            .saleProductPrice)
+                                                            .toString(),
+                                                    style: TextStyle(
+                                                      fontSize: 12.sp,
+                                                      fontFamily:
+                                                      'task',
+                                                      fontWeight:
+                                                      FontWeight
+                                                          .bold,
+                                                      letterSpacing:
+                                                      1,
+                                                      color: Colors
+                                                          .black,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 0.5.w,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets
+                                                        .only(
+                                                        top: 0.4
+                                                            .h),
+                                                    child: Text(
+                                                      '₹' +
+                                                          (brandWiceProductmodel
+                                                              ?.data?[index]
+                                                              .productPrice)
+                                                              .toString(),
+                                                      style:
+                                                      TextStyle(
+                                                        decoration:
+                                                        TextDecoration
+                                                            .lineThrough,
+                                                        fontSize:
+                                                        12.sp,
+                                                        fontFamily:
+                                                        'task',
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .normal,
+                                                        letterSpacing:
+                                                        1,
+                                                        color: Colors
+                                                            .black,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 1.h,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder:
+                                                          (context) =>
+                                                          productdetailnovartion(
+                                                            productid: brandWiceProductmodel?.data?[index].productID ?? '',
+                                                          )));
+
+                                              //ADD CART API
+                                              // addtocartapi((allsubcatwiceproduct
+                                              //     ?.subcategoriesWiseProduct?[
+                                              // index]
+                                              //     .productID ??
+                                              //     ''));
+                                            },
+                                            child: Container(
+                                              alignment:
+                                              Alignment.center,
+                                              height: 4.h,
+                                              width: 30.w,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(
+                                                      10),
+                                                  color: Color(0xff0061b0)),
+                                              child: Text(
+                                                "View Product",
+                                                style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    color:
+                                                    Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                      left: 37.w,
+                                      top: 1.h,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          usermodal?.userId == "" ||
+                                              usermodal?.userId ==
+                                                  null
+                                              ? Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                              builder:
+                                                  (context) =>
+                                                  LoginPage2()))
+                                              : brandWiceProductmodel
+                                              ?.data?[
+                                          index]
+                                              .wishlist ==
+                                              1
+                                              ? removewishlistap(
+                                              (brandWiceProductmodel
+                                                  ?.data?[
+                                              index]
+                                                  .productID)
+                                                  .toString())
+                                              : addwishlistap(
+                                              (brandWiceProductmodel
+                                                  ?.data?[
+                                              index]
+                                                  .productID)
+                                                  .toString());
+                                        },
+                                        child: Icon(
+                                          brandWiceProductmodel
+                                              ?.data?[
+                                          index]
+                                              .wishlist ==
+                                              1
+                                              ? Icons.favorite
+                                              : Icons
+                                              .favorite_outline,
+                                          size: 20.sp,
+                                          color: brandWiceProductmodel
+                                              ?.data?[
+                                          index]
+                                              .wishlist ==
+                                              1
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      )),
+                                ],
+                              );
+                            },
+                            childCount:  brandWiceProductmodel
+                                ?.data?.length, // Replace with the number of grid items you want
+                          ),
+                        ),
+
                         SliverToBoxAdapter(
                           child: SizedBox(
                             height: 1.h,
@@ -1154,7 +1148,8 @@ class _ProductListPageState extends State<ProductListPage2> {
     final Map<String, String> data = {};
     data['brand_id'] = widget.allcatid.toString();
     data['search_term'] = value.toString();
-    data['user_id'] = (usermodal?.userId).toString();
+    data['User_id'] = (usermodal?.userId).toString();
+    print('AA dada : ${data}');
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().brandswiceproductsearchapi(data).then((response) async {

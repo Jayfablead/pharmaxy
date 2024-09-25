@@ -5,6 +5,7 @@ import 'package:ecommerce/Widget/CustomExpection.dart';
 import 'package:ecommerce/Widget/response.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 class authprovider with ChangeNotifier {
   Map<String, String> headers = {
@@ -996,21 +997,66 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
-  Future<http.Response> sendmessgesapi(userid,adminid ,orderid, Map<String, String> bodyData) async {
-    String url = 'https://ecomweb.fableadtechnolabs.com/api/sendMessage/${userid}/${adminid}/${orderid}';
-    print(url);
-    print("sdfdsfdsfds${url}");
+  // Future<http.Response> sendmessgesapi(userid,adminid ,orderid, Map<String, String> bodyData) async {
+  //   String url = 'https://pharmato.fableadtechnolabs.com/api/sendMessage/${userid}/${adminid}/${orderid}';
+  //   print(url);
+  //   print("sdfdsfdsfds${url}");
+  //   var responseJson;
+  //   final response = await http
+  //       .post(Uri.parse(url), body: bodyData, headers: headers)
+  //       .timeout(
+  //     const Duration(seconds: 60),
+  //     onTimeout: () {
+  //       throw const SocketException('Something went wrong');
+  //     },
+  //   );
+  //   responseJson = responses(response);
+  //   print(response.body);
+  //   return responseJson;
+  // }
+
+
+
+  Future<http.Response> sendmessgesapi(userid,adminid ,orderid,Map<String, String> bodyData,) async {
+    String url = 'https://pharmato.fableadtechnolabs.com/api/sendMessage/${userid}/${adminid}/${orderid}';
     var responseJson;
-    final response = await http
-        .post(Uri.parse(url), body: bodyData, headers: headers)
-        .timeout(
-      const Duration(seconds: 60),
-      onTimeout: () {
-        throw const SocketException('Something went wrong');
-      },
-    );
-    responseJson = responses(response);
-    print(response.body);
-    return responseJson;
+    if (bodyData['mType'] == "1") {
+      final response = await http
+          .post(Uri.parse(url), headers: headers, body: bodyData)
+          .timeout(
+        const Duration(seconds: 60),
+        onTimeout: () {
+          throw const SocketException('Something went wrong');
+        },
+      );
+      responseJson = responses(response);
+      return responseJson;
+    } else {
+      try {
+        final imageUploadRequest =
+        http.MultipartRequest('POST', Uri.parse(url));
+        imageUploadRequest.headers.addAll(headers);
+        if (bodyData['file']?.isNotEmpty ?? false) {
+          final file =
+          await http.MultipartFile.fromPath('file', bodyData['file'] ?? '',
+              contentType: bodyData['mType'] == "2"
+                  ? MediaType('image', 'jpg,png')
+                  : bodyData['mType'] == "2"
+                  ? MediaType('video', 'mp4')
+                  : MediaType('application', 'pdf'));
+          imageUploadRequest.files.add(file);
+        }
+        imageUploadRequest.fields.addAll(bodyData);
+        final streamResponse = await imageUploadRequest.send();
+        responseJson =
+            responses(await http.Response.fromStream(streamResponse));
+      } on SocketException {
+        throw FetchDataException('No Internet connection');
+      }
+      return responseJson;
+    }
   }
+
+
+
 }

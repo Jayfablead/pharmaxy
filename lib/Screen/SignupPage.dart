@@ -281,7 +281,7 @@ class _SignupPageState extends State<SignupPage> {
                         Container(
                           width: 85.w,
                           child: TextFormField(
-                            controller: phone,
+                            // controller: phone,
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
                               prefixIcon: Icon(
