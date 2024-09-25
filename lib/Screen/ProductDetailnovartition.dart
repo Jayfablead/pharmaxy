@@ -21,6 +21,7 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
@@ -1433,7 +1434,12 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                   );
                 }),
               ),
-            )
+            ),
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 10.h,
+                      ),
+                    ),
                   ],
                 ),
               ),

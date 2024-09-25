@@ -40,13 +40,13 @@ class SearchResults {
 
   SearchResults(
       {this.productID,
-      this.productName,
-      this.productShortDesc,
-      this.productPrice,
-      this.saleProductPrice,
-      this.productType,
-      this.allImages,
-      this.wishlist});
+        this.productName,
+        this.productShortDesc,
+        this.productPrice,
+        this.saleProductPrice,
+        this.productType,
+        this.allImages,
+        this.wishlist});
 
   SearchResults.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];

@@ -383,7 +383,7 @@ class _LoginPage2State extends State<LoginPage2> {
               _password.clear();
               print(carti.length);
               buildErrorDialog(context, 'Success', usermodal?.message ?? "");
-              Timer(Duration(seconds: 3),(){
+              Timer(Duration(seconds: 2),(){
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => HomePage(sel: 0,)));
               });

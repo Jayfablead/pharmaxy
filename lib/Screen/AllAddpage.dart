@@ -47,378 +47,380 @@ class _AllAddpageState extends State<AllAddpage> {
         bottomNavigationBar: bottombar(),
         body: isLoading
             ? Container()
-            : Padding(
-                padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 3.h,
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            icon: Icon(
-                              Icons.arrow_back_ios_new_outlined,
-                              size: 18.sp,
-                            ),
-                          ),
-                          Text(
-                            "Address",
-                            style: TextStyle(
-                              fontSize: 13.sp,
-                              fontFamily: "task",
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(null),
-                          ),
-                        ],
+            : SingleChildScrollView(
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 3.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => Adressform()));
-                      },
-                      child: Container(
-                        height: 6.h,
-                        width: 50.w,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                                height: 7.w,
-                                width: 7.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Color(0xff0061b0),
-                                ),
-                                child: Center(
-                                    child: Icon(
-                                  Icons.add,
-                                  size: 15.sp,
-                                  color: Colors.white,
-                                ))),
-                            SizedBox(
-                              width: 2.w,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Adressform(),
-                                    ));
+                            IconButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
                               },
-                              child: Center(
-                                child: Text(
-                                  textAlign: TextAlign.center,
-                                  "Add New Address",
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    fontFamily: 'task',
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black,
-                                  ),
-                                ),
+                              icon: Icon(
+                                Icons.arrow_back_ios_new_outlined,
+                                size: 18.sp,
                               ),
+                            ),
+                            Text(
+                              "Address",
+                              style: TextStyle(
+                                fontSize: 13.sp,
+                                fontFamily: "task",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(null),
                             ),
                           ],
                         ),
                       ),
-                    ),
-                    alluseraddmodal?.allShippingAddress?.length == 0 ||
-                            alluseraddmodal?.allShippingAddress?.length == null
-                        ? Container(
-                            height: 62.h,
-                            child: Center(
-                              child: Text(
-                                'No Address Available',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    fontFamily: 'task',
-                                    fontSize: 20.sp,
-                                    color: Colors.black),
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(
+                              builder: (context) => Adressform()));
+                        },
+                        child: Container(
+                          height: 6.h,
+                          width: 50.w,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  height: 7.w,
+                                  width: 7.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Color(0xff0061b0),
+                                  ),
+                                  child: Center(
+                                      child: Icon(
+                                    Icons.add,
+                                    size: 15.sp,
+                                    color: Colors.white,
+                                  ))),
+                              SizedBox(
+                                width: 2.w,
                               ),
-                            ),
-                          )
-                        : Container(
-                            height: 62.h,
-                            child: ListView.builder(
-                              itemCount:
-                                  alluseraddmodal?.allShippingAddress?.length,
-                              itemBuilder: (context, index) {
-                                return Stack(
-                                  children: [
-                                    Card(
-                                      elevation: 00,
-                                      color: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 2.h, horizontal: 2.w),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                setState(() {
-                                                  sell = index;
-                                                  selid = alluseraddmodal
-                                                          ?.allShippingAddress?[
-                                                              index]
-                                                          .id ??
-                                                      '';
-                                                });
-                                                print(selid);
-                                              },
-                                              child: Icon(
-                                                sell == index
-                                                    ? Icons.check_box
-                                                    : Icons
-                                                        .check_box_outline_blank,
-                                                color: sell == index
-                                                    ? Color(0xff0061b0)
-                                                    : Colors.black,
-                                                size: 22.sp,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Adressform(),
+                                      ));
+                                },
+                                child: Center(
+                                  child: Text(
+                                    textAlign: TextAlign.center,
+                                    "Add New Address",
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontFamily: 'task',
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      alluseraddmodal?.allShippingAddress?.length == 0 ||
+                              alluseraddmodal?.allShippingAddress?.length == null
+                          ? Container(
+                              height: 62.h,
+                              child: Center(
+                                child: Text(
+                                  'No Address Available',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontFamily: 'task',
+                                      fontSize: 20.sp,
+                                      color: Colors.black),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              height: 62.h,
+                              child: ListView.builder(
+                                itemCount:
+                                    alluseraddmodal?.allShippingAddress?.length,
+                                itemBuilder: (context, index) {
+                                  return Stack(
+                                    children: [
+                                      Card(
+                                        elevation: 00,
+                                        color: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 2.h, horizontal: 2.w),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  setState(() {
+                                                    sell = index;
+                                                    selid = alluseraddmodal
+                                                            ?.allShippingAddress?[
+                                                                index]
+                                                            .id ??
+                                                        '';
+                                                  });
+                                                  print(selid);
+                                                },
+                                                child: Icon(
+                                                  sell == index
+                                                      ? Icons.check_box
+                                                      : Icons
+                                                          .check_box_outline_blank,
+                                                  color: sell == index
+                                                      ? Color(0xff0061b0)
+                                                      : Colors.black,
+                                                  size: 22.sp,
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(width: 2.w),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 1.w,
-                                                  vertical: 0.5.h),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        alluseraddmodal
-                                                                ?.allShippingAddress?[
-                                                                    index]
-                                                                .firstName ??
-                                                            "",
-                                                        style: TextStyle(
-                                                            fontSize: 13.sp,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontFamily: "task"),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 1.w,
-                                                      ),
-                                                      Text(
-                                                        alluseraddmodal
-                                                                ?.allShippingAddress?[
-                                                                    index]
-                                                                .lastName ??
-                                                            "",
-                                                        style: TextStyle(
-                                                            fontSize: 13.sp,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontFamily: "task"),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      SizedBox(
-                                                        width: 75.w,
-                                                        child: Text(
+                                              SizedBox(width: 2.w),
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 1.w,
+                                                    vertical: 0.5.h),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
                                                           alluseraddmodal
                                                                   ?.allShippingAddress?[
                                                                       index]
-                                                                  .address ??
+                                                                  .firstName ??
                                                               "",
                                                           style: TextStyle(
-                                                              fontSize: 12.sp,
-                                                              color:
-                                                                  Colors.black,
+                                                              fontSize: 13.sp,
                                                               fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontFamily:
-                                                                  "task"),
+                                                                  FontWeight.bold,
+                                                              fontFamily: "task"),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                        SizedBox(
+                                                          width: 1.w,
+                                                        ),
+                                                        Text(
+                                                          alluseraddmodal
+                                                                  ?.allShippingAddress?[
+                                                                      index]
+                                                                  .lastName ??
+                                                              "",
+                                                          style: TextStyle(
+                                                              fontSize: 13.sp,
+                                                              fontWeight:
+                                                                  FontWeight.bold,
+                                                              fontFamily: "task"),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 75.w,
+                                                          child: Text(
+                                                            alluseraddmodal
+                                                                    ?.allShippingAddress?[
+                                                                        index]
+                                                                    .address ??
+                                                                "",
+                                                            style: TextStyle(
+                                                                fontSize: 12.sp,
+                                                                color:
+                                                                    Colors.black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                fontFamily:
+                                                                    "task"),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Positioned(
-                                      left: 85.w,
-                                      child: PopupMenuButton(
-                                          elevation: 00,
-                                          color: Colors.white,
-                                          icon: Icon(
-                                            Icons.more_vert,
-                                            color:AppColors.primary,
-                                            size: 18.sp,
-                                          ),
-                                          // add this line
-                                          itemBuilder: (_) =>
-                                              <PopupMenuItem<String>>[
-                                                PopupMenuItem<String>(
-                                                    child: Container(
-                                                        width: 10.w,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pushReplacement(
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            editshippingadress(
-                                                                              addid: alluseraddmodal?.allShippingAddress?[index].id,
-                                                                            )));
-                                                          },
-                                                          child: Text(
-                                                            "Edit",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 12.sp,
-                                                              fontFamily:
-                                                                  'task',
+                                      Positioned(
+                                        left: 85.w,
+                                        child: PopupMenuButton(
+                                            elevation: 00,
+                                            color: Colors.white,
+                                            icon: Icon(
+                                              Icons.more_vert,
+                                              color:AppColors.primary,
+                                              size: 18.sp,
+                                            ),
+                                            // add this line
+                                            itemBuilder: (_) =>
+                                                <PopupMenuItem<String>>[
+                                                  PopupMenuItem<String>(
+                                                      child: Container(
+                                                          width: 10.w,
+                                                          child: GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pushReplacement(
+                                                                      MaterialPageRoute(
+                                                                          builder: (context) =>
+                                                                              editshippingadress(
+                                                                                addid: alluseraddmodal?.allShippingAddress?[index].id,
+                                                                              )));
+                                                            },
+                                                            child: Text(
+                                                              "Edit",
+                                                              style: TextStyle(
+                                                                color:
+                                                                    Colors.black,
+                                                                fontSize: 12.sp,
+                                                                fontFamily:
+                                                                    'task',
+                                                              ),
                                                             ),
-                                                          ),
-                                                        )),
-                                                    value: 'report'),
-                                                PopupMenuItem<String>(
-                                                    child: Container(
-                                                        width: 14.w,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                            removeadressap(
-                                                                (alluseraddmodal
-                                                                        ?.allShippingAddress?[
-                                                                            index]
-                                                                        .id)
-                                                                    .toString());
-                                                          },
-                                                          child: Text(
-                                                            "Delete",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 12.sp,
-                                                              fontFamily:
-                                                                  'task',
+                                                          )),
+                                                      value: 'report'),
+                                                  PopupMenuItem<String>(
+                                                      child: Container(
+                                                          width: 14.w,
+                                                          child: GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                              removeadressap(
+                                                                  (alluseraddmodal
+                                                                          ?.allShippingAddress?[
+                                                                              index]
+                                                                          .id)
+                                                                      .toString());
+                                                            },
+                                                            child: Text(
+                                                              "Delete",
+                                                              style: TextStyle(
+                                                                color:
+                                                                    Colors.black,
+                                                                fontSize: 12.sp,
+                                                                fontFamily:
+                                                                    'task',
+                                                              ),
                                                             ),
-                                                          ),
-                                                        )),
-                                                    value: 'report'),
-                                              ],
-                                          onSelected: (index) async {
-                                            switch (index) {
-                                              case 'report':
-                                                break;
-                                            }
-                                          }),
-                                    )
-                                  ],
-                                );
-                              },
+                                                          )),
+                                                      value: 'report'),
+                                                ],
+                                            onSelected: (index) async {
+                                              switch (index) {
+                                                case 'report':
+                                                  break;
+                                              }
+                                            }),
+                                      )
+                                    ],
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        print(alluseraddmodal?.allShippingAddress?[sell].id);
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => CheckoutDetail(
-                                  address: alluseraddmodal
-                                          ?.allShippingAddress?[sell].address ??
-                                      "",
-                                  firstname: alluseraddmodal
-                                          ?.allShippingAddress?[sell]
-                                          .firstName ??
-                                      "",
-                                  lastname: alluseraddmodal
-                                          ?.allShippingAddress?[sell]
-                                          .lastName ??
-                                      "",
-                                  addid: alluseraddmodal
-                                          ?.allShippingAddress?[sell].id ??
-                                      "",
-                                  page: "1",
-                                )));
-                      },
-                      child: Row(
-                        children: [
-                          alluseraddmodal?.allShippingAddress?.length == 0 ||
-                                  alluseraddmodal?.allShippingAddress?.length ==
-                                      null
-                              ? Container()
-                              : Container(
-                                  margin:
-                                      EdgeInsets.only(right: 7.w, left: 7.w),
-                                  alignment: Alignment.center,
-                                  height: 6.h,
-                                  width: 80.w,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Color(0xff0061b0)),
-                                  child: Text(
-                                    "Confirm",
-                                    style: TextStyle(
-                                        fontSize: 13.sp,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "task"),
-                                  )),
-                        ],
+                      SizedBox(
+                        height: 2.h,
                       ),
-                    ),
-                  ],
+                      GestureDetector(
+                        onTap: () {
+                          print(alluseraddmodal?.allShippingAddress?[sell].id);
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(
+                              builder: (context) => CheckoutDetail(
+                                    address: alluseraddmodal
+                                            ?.allShippingAddress?[sell].address ??
+                                        "",
+                                    firstname: alluseraddmodal
+                                            ?.allShippingAddress?[sell]
+                                            .firstName ??
+                                        "",
+                                    lastname: alluseraddmodal
+                                            ?.allShippingAddress?[sell]
+                                            .lastName ??
+                                        "",
+                                    addid: alluseraddmodal
+                                            ?.allShippingAddress?[sell].id ??
+                                        "",
+                                    page: "1",
+                                  )));
+                        },
+                        child: Row(
+                          children: [
+                            alluseraddmodal?.allShippingAddress?.length == 0 ||
+                                    alluseraddmodal?.allShippingAddress?.length ==
+                                        null
+                                ? Container()
+                                : Container(
+                                    margin:
+                                        EdgeInsets.only(right: 7.w, left: 7.w),
+                                    alignment: Alignment.center,
+                                    height: 6.h,
+                                    width: 80.w,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Color(0xff0061b0)),
+                                    child: Text(
+                                      "Confirm",
+                                      style: TextStyle(
+                                          fontSize: 13.sp,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "task"),
+                                    )),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+            ),
       ),
     );
   }

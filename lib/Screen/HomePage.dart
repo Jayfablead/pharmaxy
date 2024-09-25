@@ -2154,7 +2154,7 @@ class _HomePageState extends State<HomePage> {
                                             height: 10.h,
                                             progressIndicatorBuilder: (context, url, progress) =>
                                                 Center(child: CircularProgressIndicator()),
-                                            errorWidget: (context, url, error) => Image.asset(""),
+                                            errorWidget: (context, url, error) => Image.asset('assets/my.png',color: AppColors.primary,),
                                           ),
                                         ),
                                       ),

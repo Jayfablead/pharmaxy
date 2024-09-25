@@ -874,10 +874,10 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         ),
                                         Text(
 
-                                          "\$50",
-                                          // chekoutdetailmodal?.finalTotal == null||chekoutdetailmodal?.finalTotal == ""
-                                          //     ? "N/A"
-                                          //     : '₹' + (chekoutdetailmodal?.finalTotal).toString(),
+                                          // "\$50",
+                                          chekoutdetailmodal?.finalTotal == null||chekoutdetailmodal?.finalTotal == ""
+                                              ? "N/A"
+                                              : '₹' + (chekoutdetailmodal?.finalTotal).toString(),
                                           style: TextStyle(
                                               fontFamily: 'task',
                                               fontSize: 12.sp,
@@ -1014,13 +1014,13 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                       ),
                                     ),
                                     Text(
-                                      "\$100",
-                                      // (chekoutdetailmodal?.totalWithTaxShip) ==
-                                      //         null
-                                      //     ? "N/A"
-                                      //     : '₹' +
-                                      //         (chekoutdetailmodal?.totalWithTaxShip)
-                                      //             .toString(),
+                                      // "\$100",
+                                      (chekoutdetailmodal?.totalWithTaxShip) ==
+                                              null
+                                          ? "N/A"
+                                          : '₹' +
+                                              (chekoutdetailmodal?.totalWithTaxShip)
+                                                  .toString(),
                                       style: TextStyle(
                                         fontFamily: 'task',
                                         fontSize: 12.sp,

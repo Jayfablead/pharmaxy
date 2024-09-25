@@ -94,7 +94,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                     Text(
                                       "Product List",
                                       style: TextStyle(
-                                        fontSize: 15.sp,
+                                        fontSize: 13.sp,
                                         fontFamily: "task",
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -259,7 +259,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                             crossAxisSpacing:
                                                 10.0, // Adjust as needed
                                             childAspectRatio:
-                                                6.5 / 11 // Adjust as needed
+                                                6.5 / 10 // Adjust as needed
                                             ),
                                     delegate: SliverChildBuilderDelegate(
                                       (BuildContext context, int index) {
@@ -386,36 +386,36 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                         ],
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                        horizontal: 1.5.w,
-                                                      ),
-                                                      child: SizedBox(
-                                                        width: 35.w,
-                                                        child: Text(
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 2,
-                                                          brandWiceProductsearchmodel
-                                                                  ?.data?[
-                                                                      index]
-                                                                  .productShortDesc ??
-                                                              '',
-                                                          style: TextStyle(
-                                                            fontSize: 11.sp,
-                                                            fontFamily: 'task',
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            letterSpacing: 1,
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding:
+                                                    //       EdgeInsets.symmetric(
+                                                    //     horizontal: 1.5.w,
+                                                    //   ),
+                                                    //   child: SizedBox(
+                                                    //     width: 35.w,
+                                                    //     child: Text(
+                                                    //       textAlign:
+                                                    //           TextAlign.center,
+                                                    //       overflow: TextOverflow
+                                                    //           .ellipsis,
+                                                    //       maxLines: 2,
+                                                    //       brandWiceProductsearchmodel
+                                                    //               ?.data?[
+                                                    //                   index]
+                                                    //               .productShortDesc ??
+                                                    //           '',
+                                                    //       style: TextStyle(
+                                                    //         fontSize: 11.sp,
+                                                    //         fontFamily: 'task',
+                                                    //         fontWeight:
+                                                    //             FontWeight
+                                                    //                 .normal,
+                                                    //         letterSpacing: 1,
+                                                    //         color: Colors.black,
+                                                    //       ),
+                                                    //     ),
+                                                    //   ),
+                                                    // ),
                                                     Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -497,7 +497,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                         alignment:
                                                             Alignment.center,
                                                         height: 4.h,
-                                                        width: 30.w,
+                                                        width: 32.w,
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 BorderRadius
@@ -507,7 +507,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                         child: Text(
                                                           "View Product",
                                                           style: TextStyle(
-                                                              fontSize: 12.sp,
+                                                              fontSize: 11.sp,
                                                               color:
                                                                   Colors.white),
                                                         ),
@@ -601,7 +601,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                               crossAxisSpacing:
                               10.0, // Adjust as needed
                               childAspectRatio:
-                              6.5 / 11 // Adjust as needed
+                              6.5 / 10 // Adjust as needed
                           ),
                           delegate: SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
@@ -710,7 +710,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                             '',
                                                         style: TextStyle(
                                                             fontSize:
-                                                            12.5
+                                                          11
                                                                 .sp,
                                                             fontFamily:
                                                             'task',
@@ -773,7 +773,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                             .saleProductPrice)
                                                             .toString(),
                                                     style: TextStyle(
-                                                      fontSize: 12.sp,
+                                                      fontSize: 11.sp,
                                                       fontFamily:
                                                       'task',
                                                       fontWeight:
@@ -846,7 +846,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                               alignment:
                                               Alignment.center,
                                               height: 4.h,
-                                              width: 30.w,
+                                              width: 32.w,
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                   BorderRadius
@@ -856,7 +856,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                               child: Text(
                                                 "View Product",
                                                 style: TextStyle(
-                                                    fontSize: 12.sp,
+                                                    fontSize: 11.sp,
                                                     color:
                                                     Colors.white),
                                               ),
@@ -1011,7 +1011,7 @@ class _ProductListPageState extends State<ProductListPage2> {
           ),
           border: InputBorder.none,
           hintText: 'Search Products',
-          hintStyle: TextStyle(color: Colors.black, fontFamily: 'task'),
+          hintStyle: TextStyle(color: Colors.black, fontFamily: 'task',fontSize: 12.sp),
         ),
       ),
     );
