@@ -22,27 +22,27 @@ class ChekOutDetailModal {
     message = json['message'];
     status = json['status'];
     userDetails = json['user_details'] != null
-        ? new UserDetails.fromJson(json['user_details'])
+        ? UserDetails.fromJson(json['user_details'])
         : null;
     finalTotal = json['final_total'];
-    totalTax = json['total_tax'];
-    finalTotalWithTax = json['final_total_with_tax'];
+    totalTax = (json['total_tax'] as num?)?.toDouble();
+    finalTotalWithTax = (json['final_total_with_tax'] as num?)?.toDouble();
     shippingRate = json['shipping_rate'];
-    totalWithTaxShip = json['total_with_tax_ship'];
+    totalWithTaxShip = (json['total_with_tax_ship'] as num?)?.toDouble();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    data['status'] = this.status;
-    if (this.userDetails != null) {
-      data['user_details'] = this.userDetails!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    data['status'] = status;
+    if (userDetails != null) {
+      data['user_details'] = userDetails!.toJson();
     }
-    data['final_total'] = this.finalTotal;
-    data['total_tax'] = this.totalTax;
-    data['final_total_with_tax'] = this.finalTotalWithTax;
-    data['shipping_rate'] = this.shippingRate;
-    data['total_with_tax_ship'] = this.totalWithTaxShip;
+    data['final_total'] = finalTotal;
+    data['total_tax'] = totalTax;
+    data['final_total_with_tax'] = finalTotalWithTax;
+    data['shipping_rate'] = shippingRate;
+    data['total_with_tax_ship'] = totalWithTaxShip;
     return data;
   }
 }
@@ -121,29 +121,29 @@ class UserDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['UserID'] = this.userID;
-    data['UserType'] = this.userType;
-    data['UserEmail'] = this.userEmail;
-    data['UserPassword'] = this.userPassword;
-    data['UserFirstName'] = this.userFirstName;
-    data['UserLastName'] = this.userLastName;
-    data['DOB'] = this.dOB;
-    data['UserGander'] = this.userGander;
-    data['UserProfile'] = this.userProfile;
-    data['UserCity'] = this.userCity;
-    data['UserState'] = this.userState;
-    data['UserZip'] = this.userZip;
-    data['UserEmailVerified'] = this.userEmailVerified;
-    data['UserRegistrationDate'] = this.userRegistrationDate;
-    data['UserVerificationCode'] = this.userVerificationCode;
-    data['forgot_pass_key'] = this.forgotPassKey;
-    data['UserPhone'] = this.userPhone;
-    data['UserCountry'] = this.userCountry;
-    data['UserAddress'] = this.userAddress;
-    data['UserAddress2'] = this.userAddress2;
-    data['Created_at'] = this.createdAt;
-    data['Updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['UserID'] = userID;
+    data['UserType'] = userType;
+    data['UserEmail'] = userEmail;
+    data['UserPassword'] = userPassword;
+    data['UserFirstName'] = userFirstName;
+    data['UserLastName'] = userLastName;
+    data['DOB'] = dOB;
+    data['UserGander'] = userGander;
+    data['UserProfile'] = userProfile;
+    data['UserCity'] = userCity;
+    data['UserState'] = userState;
+    data['UserZip'] = userZip;
+    data['UserEmailVerified'] = userEmailVerified;
+    data['UserRegistrationDate'] = userRegistrationDate;
+    data['UserVerificationCode'] = userVerificationCode;
+    data['forgot_pass_key'] = forgotPassKey;
+    data['UserPhone'] = userPhone;
+    data['UserCountry'] = userCountry;
+    data['UserAddress'] = userAddress;
+    data['UserAddress2'] = userAddress2;
+    data['Created_at'] = createdAt;
+    data['Updated_at'] = updatedAt;
     return data;
   }
 }

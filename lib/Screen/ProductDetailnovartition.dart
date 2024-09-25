@@ -1094,12 +1094,27 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
 
                     SliverToBoxAdapter(child: SizedBox(height: 1.h,)),
 
-                    SliverToBoxAdapter(
+                    productdetail2modal?.relatedProducts?.length == 0 ||
+                        productdetail2modal?.relatedProducts?.length ==
+                            null
+                        ? SliverToBoxAdapter(
+                      child: Container(
+                        height: 30.h,
+                        child: Center(
+                            child: Text(
+                              'No Products Available',
+                              style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                fontFamily: 'task',
+                                fontSize: 15.sp,
+                              ),
+                            )),
+                      ),
+                    ):  SliverToBoxAdapter(
                   child: Container(
                    height: 35.h,
                  child: ListView.builder(
-
-                   itemCount: items1.length,
+                   itemCount: productdetail2modal?.relatedProducts?.length,
                     scrollDirection: Axis.horizontal,
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index){
@@ -1113,7 +1128,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                       (context) =>
                                       productdetailnovartion(
                                         productid:
-                                        bestsellerproductmodal?.productData?[index].productID ?? '',
+                                        productdetail2modal?.relatedProducts?[index].productID ?? '',
                                       )));
 
                         },
@@ -1139,22 +1154,22 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                   child:
                                   CachedNetworkImage(
                                     imageUrl:
-                                    // bestsellerproductmodal
-                                    //                 ?.productData?[
-                                    //                     index]
-                                    //                 .imgData ==
-                                    //             '' ||
-                                    //         bestsellerproductmodal
-                                    //                 ?.productData?[
-                                    //                     index]
-                                    //                 .imgData ==
-                                    //             null
-                                    //     ? 'N/A'
-                                    //     : bestsellerproductmodal
-                                    //             ?.productData?[
-                                    //                 index]
-                                    //             .imgData ??
-                                    items1[index]['imageUrl']!,
+                                    productdetail2modal
+                                                    ?.relatedProducts?[
+                                                        index]
+                                                    .image ==
+                                                '' ||
+                                        productdetail2modal
+                                                    ?.relatedProducts?[
+                                                        index]
+                                                    .image ==
+                                                null
+                                        ? 'N/A'
+                                        : productdetail2modal
+                                                ?.relatedProducts?[
+                                                    index]
+                                                .image ?? "",
+                                    // items1[index]['imageUrl']!,
                                     height: 15.h,
                                     width: 48.w,
                                     imageBuilder:
@@ -1213,12 +1228,21 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                 .ellipsis,
                                             maxLines:
                                             1,
-                                            // bestsellerproductmodal?.productData?[index].productName == "" || bestsellerproductmodal?.productData?[index].productName == null
-                                            //     ? "N/A"
-                                            //     : bestsellerproductmodal?.productData?[index].productName ??
-                                            //         '',
+                                            productdetail2modal
+                                                ?.relatedProducts?[
+                                            index]
+                                                .productName == "" || productdetail2modal
+                                                ?.relatedProducts?[
+                                            index]
+                                                .productName == null
+                                                ? "N/A"
+                                                : productdetail2modal
+                                                ?.relatedProducts?[
+                                            index]
+                                                .productName ??
+                                                    '',
 
-                                            items1[index]['title']!,
+                                            // items1[index]['title']!,
                                             style: TextStyle(
                                                 fontSize: 10
                                                     .sp,
@@ -1281,14 +1305,14 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                     Row(
                                       children: [
                                         Text(
-                                          // bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                          //             "" ||
-                                          //         bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                          //             null
-                                          //     ? "N/A"
-                                          //     : '₹' +
-                                          //         (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
-                                          "\$500",
+                                          productdetail2modal?.relatedProducts?[index].saleProductPrice ==
+                                                      "" ||
+                                              productdetail2modal?.relatedProducts?[index].saleProductPrice ==
+                                                      null
+                                              ? "N/A"
+                                              : '₹' +
+                                                  (  productdetail2modal?.relatedProducts?[index].saleProductPrice).toString(),
+
                                           style:
                                           TextStyle(
                                             fontSize:
@@ -1313,13 +1337,22 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                               top: 0.4
                                                   .h),
                                           child: Text(
-                                            // bestsellerproductmodal?.productData?[index].productPrice == "" ||
-                                            //         bestsellerproductmodal?.productData?[index].productPrice ==
-                                            //             null
-                                            //     ? "N/A"
-                                            //     : '₹' +
-                                            //         (bestsellerproductmodal?.productData?[index].productPrice).toString(),
-                                            "\$580",
+                                            productdetail2modal
+                                                ?.relatedProducts?[
+                                            index]
+                                                .productPrice == "" ||
+                                                productdetail2modal
+                                                    ?.relatedProducts?[
+                                                index]
+                                                    .productPrice ==
+                                                        null
+                                                ? "N/A"
+                                                : '₹' +
+                                                    (productdetail2modal
+                                                        ?.relatedProducts?[
+                                                    index]
+                                                        .productPrice).toString(),
+
                                             style:
                                             TextStyle(
                                               decoration:
@@ -1346,23 +1379,13 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    // bestsellerproductmodal
-                                    //             ?.productData?[
-                                    //                 index]
-                                    //             .productType ==
-                                    //         '1'
-                                    //     ? Navigator.of(context).push(
-                                    //         MaterialPageRoute(
-                                    //             builder: (context) =>
-                                    //                 productdetailnovartion(
-                                    //                   productid: bestsellerproductmodal?.productData?[index].productID ?? '',
-                                    //                 )))
-                                    //     : Navigator.of(
-                                    //             context)
-                                    //         .push(MaterialPageRoute(
-                                    //             builder: (context) => productdetailwebview(
-                                    //                   productid: bestsellerproductmodal?.productData?[index].productID ?? '',
-                                    //                 )));
+                                   Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    productdetailnovartion(
+                                                      productid: productdetail2modal?.relatedProducts?[index].productID ?? '',
+                                                    )));
+
                                   },
                                   child: Container(
                                     alignment:
@@ -1407,18 +1430,18 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                   builder:
                                       (context) =>
                                       LoginPage2()))
-                                  : bestsellerproductmodal
-                                  ?.productData?[
+                                  : productdetail2modal
+                                  ?.relatedProducts?[
                               index]
                                   .wishlist ==
                                   1
-                                  ? removewishlistap((bestsellerproductmodal
-                                  ?.productData?[
+                                  ? removewishlistap((productdetail2modal
+                                  ?.relatedProducts?[
                               index]
                                   .productID)
                                   .toString())
-                                  : addwishlistap((bestsellerproductmodal
-                                  ?.productData?[
+                                  : addwishlistap((productdetail2modal
+                                  ?.relatedProducts?[
                               index]
                                   .productID)
                                   .toString());
@@ -1551,7 +1574,6 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
               addtowishlIstmodal?.status == "success") {
             buildErrorDialog(context, '', "Your item is added in wishlist");
             productdetail2ap();
-
             setState(() {
               // isLoading = false;
             });

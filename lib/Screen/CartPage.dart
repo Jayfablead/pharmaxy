@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/Cartmodal.dart';
+import 'package:ecommerce/Modal/CheckOutSendModel.dart';
+import 'package:ecommerce/Modal/CouponModel.dart';
 import 'package:ecommerce/Modal/DisIncrementModal.dart';
 import 'package:ecommerce/Modal/IncrementModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
@@ -51,6 +53,11 @@ class order {
 int pricetag = 0;
 
 bool isLoading = true;
+bool cpupon = false;
+
+String? coponapplend=_serch.text.toString();
+
+
 int total = 0;
 List<order> cat = [
   order(
@@ -78,6 +85,8 @@ class _CartPageState extends State<CartPage> {
 
     setState(() {
       isLoading = true;
+      cpupon = false;
+
     });
     alluseraddapi();
   }
@@ -1198,6 +1207,9 @@ class _CartPageState extends State<CartPage> {
                                                   ),
                                                   GestureDetector(
                                                     onTap: () {
+                                                      setState(() {
+                                                        applycoupon();
+                                                      });
                                                     },
                                                     child:   Container(
                                                       padding: EdgeInsets.symmetric(horizontal: 3.w,vertical: 1.5.h),
@@ -1271,11 +1283,13 @@ class _CartPageState extends State<CartPage> {
                                                       right: 3.w,
                                                     ),
                                                     child: Text(
-                                                      (viewcartmodal?.finalTotalWithTax) == null ? "N/A"
-                                                          : '₹ ' +
-                                                              (viewcartmodal
-                                                                      ?.finalTotal)
-                                                                  .toString(),
+                                                      cpupon? '₹ ' +
+                                                          (couponmodel
+                                                              ?.finalTotal)
+                                                              .toString(): '₹ ' +
+                                                          (viewcartmodal
+                                                              ?.finalTotal)
+                                                              .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 10.sp,
@@ -1323,13 +1337,14 @@ class _CartPageState extends State<CartPage> {
                                                       right: 3.w,
                                                     ),
                                                     child: Text(
-                                                      // (viewcartmodal?.finalTotalWithTax) == null ? "N/A"
-                                                      //     : '₹' +
-                                                      //         (viewcartmodal
-                                                      //                 ?.finalTotal)
-                                                      //             .toString(),
+                                                      cpupon? '₹ ' +
+                                                          (couponmodel
+                                                              ?.totalTax)
+                                                              .toString(): '₹ ' +
+                                                          (viewcartmodal
+                                                              ?.totalTax)
+                                                              .toString(),
 
-                                                      "10 %",
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 10.sp,
@@ -1377,12 +1392,13 @@ class _CartPageState extends State<CartPage> {
                                                       right: 3.w,
                                                     ),
                                                     child: Text(
-                                                      // (viewcartmodal?.finalTotalWithTax) == null ? "N/A"
-                                                      //     : '₹' +
-                                                      //         (viewcartmodal
-                                                      //                 ?.finalTotal)
-                                                      //             .toString(),
-                                                      "₹ 50",
+                                                      cpupon?  '₹ ' +
+                                                          (couponmodel
+                                                              ?.discountApplied)
+                                                              .toString():'₹ ' +
+                                                          ("0")
+                                                              .toString(),
+
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 12.sp,
@@ -1432,10 +1448,12 @@ class _CartPageState extends State<CartPage> {
                                                       right: 3.w,
                                                     ),
                                                     child: Text(
-                                                      (viewcartmodal?.finalTotalWithTax) == null ? "N/A"
-                                                          : '₹ ' +
+                                                        cpupon? '₹ ' +
+                                                            (couponmodel
+                                                                ?.finalTotalWithTax)
+                                                                .toString(): '₹ ' +
                                                               (viewcartmodal
-                                                                      ?.finalTotal)
+                                                                      ?.finalTotalWithTax)
                                                                   .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
@@ -1509,7 +1527,9 @@ class _CartPageState extends State<CartPage> {
                                                                   ?.allShippingAddress?[
                                                               0]
                                                                   .address,
+
                                                             )));
+                                                   chekoutsenddetail();
                                               },
                                               child: Container(
                                                   padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
@@ -1588,6 +1608,7 @@ class _CartPageState extends State<CartPage> {
           print(viewcartmodal?.status);
           if (response.statusCode == 200 &&
               viewcartmodal?.status == "success") {
+            // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
             print(viewcartmodal?.finalTotalWithTax);
             setState(() {
@@ -1765,5 +1786,83 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
+
+
+  applycoupon() async {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    data['Coupon'] = _serch.text.toString();
+    print("cart incre $data");
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().applycouponapi(data).then((response) async {
+          couponmodel = CouponModel.fromJson(json.decode(response.body));
+          print(couponmodel?.status);
+          if (response.statusCode == 200 &&
+              couponmodel?.status == "success") {
+
+            setState(() {
+              cpupon =true;
+            });
+
+            ViewCartApi();
+            print('ADD');
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            buildErrorDialog(context, 'Success', couponmodel?.couponMessage ?? "");
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+  chekoutsenddetail() async {
+    final Map<String, String> data = {};
+    data['user_id'] = (usermodal?.userId).toString();
+    data['final_total'] = cpupon?(viewcartmodal ?.finalTotal).toString():(viewcartmodal ?.finalTotal).toString();
+    data['total_tax'] = cpupon?(couponmodel ?.totalTax).toString():(viewcartmodal ?.totalTax).toString();
+    data['final_total_with_tax'] = cpupon?(couponmodel ?.finalTotalWithTax).toString():(viewcartmodal ?.finalTotalWithTax).toString();
+    data['coupon'] = _serch.text==null||_serch.text==""?"":_serch.text.trim().toString();
+    data['discount'] = cpupon?(couponmodel?.discountApplied).toString():"";
+    print("sdfdsfsdsfdsf${data}");
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().chekoutdetailsendapi(data).then((response) async {
+          checkOutsendModel = CheckOutSendModel.fromJson(json.decode(response.body));
+          print(checkOutsendModel?.status);
+          if (response.statusCode == 200 &&
+              checkOutsendModel?.status == "success") {
+            // applycoupon();
+            print('EE Thay Gyu Hooooo ! ^_^');
+            _serch.clear();
+            setState(() {
+              isLoading = false;
+              _serch.clear();
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
 
 }

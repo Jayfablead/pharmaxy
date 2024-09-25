@@ -33,6 +33,7 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
 
@@ -433,85 +434,89 @@ class _HomePageState extends State<HomePage> {
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
                             scrollDirection: Axis.horizontal,
-                            itemCount:allcouponmodal?.data?.length,  // Change to use dynamic list length
+                            itemCount: allcouponmodal?.data?.length,  // Dynamic list length
                             itemBuilder: (context, index) {
-                              return  Container(margin: EdgeInsets.only(right: 2.w),
+                              return Container(
+                                margin: EdgeInsets.only(right: 2.w),
                                 alignment: Alignment.center,
                                 height: 18.h,
-                                 width: 84.w,
+                                width: 84.w,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColors.primary),
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: AppColors.primary,
+                                ),
                                 child: Row(
                                   children: [
                                     Image.network(
                                       'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
-                                      // Replace with your banner image link
                                       fit: BoxFit.cover,
                                       width: 110,
                                       height: 110,
                                     ),
-                                    SizedBox(
-                                      width: 2.w,
-                                    ),
+                                    SizedBox(width: 2.w),
                                     Expanded(
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding:EdgeInsets.only(left: 3.5.w),
+                                            padding: EdgeInsets.only(left: 3.5.w),
                                             child: Text(
-
-                                              "FLAT  ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType=="1"?"%":"Fixed"} OFF",
+                                              "FLAT ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
                                               style: TextStyle(
-                                                  fontSize: 10.5.sp,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'task',
-                                                  color: Colors.white),
+                                                fontSize: 10.5.sp,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'task',
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: 1.5.h,
-                                          ),
+                                          SizedBox(height: 1.5.h),
                                           Padding(
-                                              padding:EdgeInsets.only(left: 3.5.w),
+                                            padding: EdgeInsets.only(left: 3.5.w),
                                             child: Text(
                                               "on your first order",
                                               style: TextStyle(
-                                                  fontSize: 11.sp,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'task',
-                                                  color: Colors.white),
+                                                fontSize: 11.sp,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'task',
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: 1.5.h,
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                            padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 1.h),
-                                            // Height of the button
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              // Button background color
-                                              borderRadius: BorderRadius.circular(10),
-                                              // Rounded corners
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.black12,
-                                                  blurRadius: 5,
-                                                  spreadRadius: 2,
-                                                ),
-                                              ],
-                                            ),
-                                            child: Text(
-                                              "Code :${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                              style: TextStyle(
+                                          SizedBox(height: 1.5.h),
+                                          GestureDetector(
+                                            onTap: () {
+                                              // Copy coupon code to clipboard
+                                              Clipboard.setData(ClipboardData(text: allcouponmodal?.data?[index].couponCode ?? ""));
+                                              // Show snackbar confirmation
+                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBar(content: Text('Coupon code copied: ${allcouponmodal?.data?[index].couponCode ?? ""}')),
+                                              );
+                                            },
+                                            child: Container(
+                                              margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.circular(10),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black12,
+                                                    blurRadius: 5,
+                                                    spreadRadius: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                              child: Text(
+                                                "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 9.5.sp,
-                                                  fontFamily: 'task'),
+                                                  fontFamily: 'task',
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -524,6 +529,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
+
 
 
 

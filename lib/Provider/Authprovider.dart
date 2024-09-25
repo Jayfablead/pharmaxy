@@ -269,6 +269,44 @@ class authprovider with ChangeNotifier {
 
 
 
+
+
+  // apply coupon api
+
+  Future<http.Response> applycouponapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/view_cart_list_test";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+  // chekoutdetailsend api
+  Future<http.Response> chekoutdetailsendapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/checkout_price";
+    var responseJson;
+    final response = await http.post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
   Future<http.Response> catwiceproductapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/category_wice_product";
     var responseJson;
