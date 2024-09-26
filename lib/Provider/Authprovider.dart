@@ -211,6 +211,25 @@ class authprovider with ChangeNotifier {
 
 
 
+  //  blog detail page
+
+  Future<http.Response> blogdetailap(Map<String, String> bodyData) async {
+    const url = "$baseUrl/single_blog";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
   // barnd api auth
 
   Future<http.Response> brandapi(Map<String, String> bodyData) async {
@@ -943,6 +962,59 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
+
+
+
+  // orderplaced api
+
+  Future<http.Response> orderplacedapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/Placed_myorders";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+  // orderpaid api
+  Future<http.Response> orderpaidapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/Paid_myorders";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+  // ordershipped api
+  Future<http.Response> ordershippedapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/Shipped_myorders";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
   Future<http.Response> forgotapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/forgot_password_app";
     var responseJson;
@@ -1069,32 +1141,90 @@ class authprovider with ChangeNotifier {
       );
       responseJson = responses(response);
       return responseJson;
-    } else {
+    }
+    else {
       try {
         final imageUploadRequest =
         http.MultipartRequest('POST', Uri.parse(url));
         imageUploadRequest.headers.addAll(headers);
-        if (bodyData['file']?.isNotEmpty ?? false) {
-          final file =
-          await http.MultipartFile.fromPath('file', bodyData['file'] ?? '',
-              contentType: bodyData['mType'] == "2"
-                  ? MediaType('image', 'jpg,png')
-                  : bodyData['mType'] == "2"
-                  ? MediaType('video', 'mp4')
-                  : MediaType('application', 'pdf'));
+        if (bodyData['message']?.isNotEmpty ?? false) {
+          var file = await http.MultipartFile.fromPath('message', bodyData['message'] ?? '',
+              contentType: MediaType('image', 'jpg,png'));
+
           imageUploadRequest.files.add(file);
         }
+
         imageUploadRequest.fields.addAll(bodyData);
         final streamResponse = await imageUploadRequest.send();
-        responseJson =
-            responses(await http.Response.fromStream(streamResponse));
+
+        responseJson = responses(await http.Response.fromStream(streamResponse));
       } on SocketException {
         throw FetchDataException('No Internet connection');
       }
       return responseJson;
     }
+
   }
 
+
+//   reqwestdoctor api
+  Future<http.Response> requestformap(Map<String, String> bodyData) async {
+    const url = "$baseUrl/create_appointments";
+    var responseJson;
+    final response = await http
+        .post( Uri.parse(url),body: bodyData,headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+//   reqwest prescripition
+
+  Future<http.Response> prescriptionformap(Map<String, String> bodyData) async {
+    const url = "$baseUrl/create_prescription";
+    var responseJson;
+    if (bodyData['image'] != "") {
+      try {
+        final imageUploadRequest =
+        http.MultipartRequest('POST', Uri.parse(url));
+        imageUploadRequest.headers.addAll(headers);
+        if (bodyData['image']?.isNotEmpty ?? false) {
+          final file = await http.MultipartFile.fromPath(
+              'image', bodyData['image'] ?? '');
+          imageUploadRequest.files.add(file);
+        }
+        imageUploadRequest.fields.addAll(bodyData);
+        print(imageUploadRequest.files);
+        final streamResponse = await imageUploadRequest.send();
+        print(streamResponse.statusCode);
+        responseJson =
+            responses(await http.Response.fromStream(streamResponse));
+        print(responseJson);
+      } on SocketException {
+        throw FetchDataException('No Internet connection');
+      }
+      return responseJson;
+    } else {
+      print("a helllooo");
+      final response = await http
+          .post(Uri.parse(url), body: bodyData, headers: headers)
+          .timeout(
+        const Duration(seconds: 30),
+        onTimeout: () {
+          throw const SocketException('Something went wrong');
+        },
+      );
+      print(response.statusCode);
+      responseJson = responses(response);
+      print(responseJson);
+      return responseJson;
+    }
+  }
 
 
 }

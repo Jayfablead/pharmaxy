@@ -2412,9 +2412,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   Text(
 
                                     // "\$50",
-                                    chekoutdetailmodal?.finalTotal == null||chekoutdetailmodal?.finalTotal == ""
+                                    chekoutdetailmodal?.checkoutData?[0].finalTotal == null||chekoutdetailmodal?.checkoutData?[0].finalTotal == ""
                                         ? "N/A"
-                                        : '₹' + (chekoutdetailmodal?.finalTotal).toString(),
+                                        : '₹' + (chekoutdetailmodal?.checkoutData?[0].finalTotal).toString(),
                                     style: TextStyle(
                                         fontFamily: 'task',
                                         fontSize: 12.sp,
@@ -2442,11 +2442,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   ),
                                   Text(
                                     // "\$10",
-                                    chekoutdetailmodal?.totalTax == null||chekoutdetailmodal?.totalTax == ""
+                                    chekoutdetailmodal?.checkoutData?[0].totalTax == null||chekoutdetailmodal?.checkoutData?[0].totalTax == ""
                                         ? "N/A"
-                                        : '₹' +
-                                            (chekoutdetailmodal?.totalTax)
-                                                .toString(),
+                                        : '₹' + (chekoutdetailmodal?.checkoutData?[0].totalTax).toString(),
                                     style: TextStyle(
                                       fontFamily: 'task',
                                       fontSize: 12.sp,
@@ -2473,11 +2471,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                     ),
                                   ),
                                   Text(
+                                    "\₹ 0.0",
                                     // "\$10",
-                                    (chekoutdetailmodal?.shippingRate) == null || (chekoutdetailmodal?.shippingRate) == ''
-                                        ? "N/A"
-                                        : '₹' + (chekoutdetailmodal?.shippingRate).toString()
-                                               ,
+                                    // chekoutdetailmodal?.checkoutData?[0].totalTax == null||chekoutdetailmodal?.checkoutData?[0].totalTax == ""
+                                    //     ? "N/A"
+                                    //     : '₹' + (chekoutdetailmodal?.checkoutData?[0].totalTax).toString(),
                                     style: TextStyle(
                                       fontFamily: 'task',
                                       fontSize: 12.sp,
@@ -2504,11 +2502,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                     ),
                                   ),
                                   Text(
-                                    "\$10",
-                                    // (chekoutdetailmodal?.shippingRate) == null || (chekoutdetailmodal?.shippingRate) == ''
-                                    //     ? "N/A"
-                                    //     : '₹' + (chekoutdetailmodal?.shippingRate).toString()
-                                    //            ,
+                                    chekoutdetailmodal?.checkoutData?[0].discount == null||chekoutdetailmodal?.checkoutData?[0].discount == ""
+                                        ? "\ ₹ 0.0"
+                                        : '₹ ' + (chekoutdetailmodal?.checkoutData?[0].discount).toString(),
                                     style: TextStyle(
                                       fontFamily: 'task',
                                       fontSize: 12.sp,
@@ -2551,13 +2547,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                 ),
                               ),
                               Text(
-                                // "\$100",
-                                (chekoutdetailmodal?.finalTotalWithTax) ==
-                                        null
+                                chekoutdetailmodal?.checkoutData?[0].finalTotalWithTax == null||chekoutdetailmodal?.checkoutData?[0].finalTotalWithTax == ""
                                     ? "N/A"
-                                    : '₹' +
-                                        (chekoutdetailmodal?.finalTotalWithTax)
-                                            .toString(),
+                                    : '₹ ' + (chekoutdetailmodal?.checkoutData?[0].finalTotalWithTax).toString(),
                                 style: TextStyle(
                                   fontFamily: 'task',
                                   fontSize: 12.sp,
@@ -2656,7 +2648,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                       : selectedpayment == 1
                       ? () {
                     double total = double.parse(
-                        (chekoutdetailmodal?.totalWithTaxShip)
+                        ( chekoutdetailmodal?.checkoutData?[0].finalTotalWithTax)
                             .toString());
                     String formattedNumber =
                     total.toStringAsFixed(2);

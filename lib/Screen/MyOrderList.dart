@@ -4,8 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/DeliveredOrderModal.dart';
 import 'package:ecommerce/Modal/MyOrderListModal.dart';
 import 'package:ecommerce/Modal/OrderCancelModal.dart';
+import 'package:ecommerce/Modal/PaidOrderModel.dart';
 import 'package:ecommerce/Modal/PendingOrderModal.dart';
+import 'package:ecommerce/Modal/PlacedOrderModel.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
+import 'package:ecommerce/Modal/ShippedOrderModel.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/ChatScreen.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
@@ -44,9 +47,12 @@ int sel = 0;
 
 List cate = [
   'All',
-  'Delivered',
-  'Pending',
-  'Cancelled',
+  'paid',
+  'Shipped',
+  'placed',
+  'pending',
+  'completed',
+  'cancelled',
 ];
 
 List<wish> fav = [
@@ -110,6 +116,9 @@ class _MyOrderListState extends State<MyOrderList> {
       deliveredap();
       pendingorderap();
       ordercancelledap();
+      orderpaidap();
+      ordershippedap();
+      orderplacedap();
       isLoading = true;
     });
   }
@@ -268,8 +277,8 @@ class _MyOrderListState extends State<MyOrderList> {
                       height: 1.h,
                     ),
                     sel == 0
-                        ? myorderlistmodal?.cartDetails?.length == 0 ||
-                                myorderlistmodal?.cartDetails?.length == null
+                        ? myorderlistmodal?.data?.length == 0 ||
+                                myorderlistmodal?.data?.length == null
                             ? Container(
                                 height: 75.h,
                                 alignment: Alignment.center,
@@ -278,74 +287,18 @@ class _MyOrderListState extends State<MyOrderList> {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'task',
-                                      fontSize: 16.sp,
+                                      fontSize: 13.sp,
                                       color: Colors.black),
                                 ),
                               )
                             : Column(
                                 children: [
-                                  // Padding(
-                                  //    padding: EdgeInsets.only(left: 1.w),
-                                  //    child: Row(
-                                  //      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  //      children: [
-                                  //        Padding(
-                                  //          padding: EdgeInsets.only(left: 1.w),
-                                  //          child: Column(
-                                  //            children: [
-                                  //              Row(
-                                  //                children: [
-                                  //
-                                  //                ],
-                                  //              ),
-                                  //            ],
-                                  //          ),
-                                  //        ),
-                                  //        // Container(
-                                  //        //   alignment: Alignment.center,
-                                  //        //   height: 4.h,
-                                  //        //   width: 22.w,
-                                  //        //   decoration: BoxDecoration(
-                                  //        //       color: Colors.white,
-                                  //        //       border: Border.all(color: Colors.grey),
-                                  //        //       borderRadius: BorderRadius.circular(15)),
-                                  //        //   child: Column(
-                                  //        //     mainAxisAlignment: MainAxisAlignment.center,
-                                  //        //     children: [
-                                  //        //       Row(
-                                  //        //         mainAxisAlignment: MainAxisAlignment.center,
-                                  //        //         children: [
-                                  //        //           Icon(
-                                  //        //             Icons.filter_list_sharp,
-                                  //        //             color: Color(0xfff7941d),
-                                  //        //             size: 19.sp,
-                                  //        //           ),
-                                  //        //           SizedBox(
-                                  //        //             width: 1.w,
-                                  //        //           ),
-                                  //        //           Text(
-                                  //        //             "Filter",
-                                  //        //             style: TextStyle(
-                                  //        //               fontWeight: FontWeight.bold,
-                                  //        //               fontFamily: 'task',
-                                  //        //               fontSize: 13.sp,
-                                  //        //             ),
-                                  //        //           ),
-                                  //        //         ],
-                                  //        //       ),
-                                  //        //     ],
-                                  //        //   ),
-                                  //        // ),
-                                  //      ],
-                                  //    ),
-                                  //  ),
-
                                   Container(
                                     height: 75.h,
                                     child: ListView.builder(
                                       padding: EdgeInsets.only(top: 1.h),
                                       itemCount:
-                                          myorderlistmodal?.cartDetails?.length,
+                                          myorderlistmodal?.data?.length,
                                       // The number of items in the grid
                                       itemBuilder:
                                           (BuildContext context, int index) {
@@ -357,13 +310,13 @@ class _MyOrderListState extends State<MyOrderList> {
                                                     builder: (context) =>
                                                         OrderSummary(
                                                           stuts: myorderlistmodal
-                                                              ?.cartDetails?[
+                                                              ?.data?[
                                                           index]
                                                               .orderStatus,
                                                             iteamid: myorderlistmodal
-                                                                ?.cartDetails?[
+                                                                ?.data?[
                                                                     index]
-                                                                .orderitemid)));
+                                                                .orderId)));
                                           },
                                           child: Card(
 
@@ -400,9 +353,9 @@ class _MyOrderListState extends State<MyOrderList> {
                                                           child:
                                                               CachedNetworkImage(
                                                             imageUrl: myorderlistmodal
-                                                                    ?.cartDetails?[
+                                                                    ?.data?[
                                                                         index]
-                                                                    .imgData ??
+                                                                    .firstImage ??
                                                                 '',
                                                             height: 25.w,
                                                             width: 25.w,
@@ -467,31 +420,49 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                       .only(
                                                                           left: 1
                                                                               .w),
-                                                                  child: SizedBox(
-                                                                    width: 55.w,
-                                                                    child: Text(
-                                                                      maxLines: 1,
-                                                                      myorderlistmodal?.cartDetails?[index].productName ==
-                                                                                  '' ||
-                                                                              myorderlistmodal?.cartDetails?[index].productName ==
-                                                                                  null
-                                                                          ? 'N/A'
-                                                                          : myorderlistmodal?.cartDetails?[index].productName ??
-                                                                              '',
-                                                                      style: TextStyle(
-                                                                          overflow:
-                                                                              TextOverflow
-                                                                                  .ellipsis,
-                                                                          color: Colors
-                                                                              .black,
-                                                                          fontSize: 10
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight
-                                                                                  .w600,
-                                                                          fontFamily:
-                                                                              "task"),
-                                                                    ),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        maxLines: 1,
+                                                                      "Order Number :- ",
+                                                                        style: TextStyle(
+                                                                            overflow:
+                                                                            TextOverflow
+                                                                                .ellipsis,
+                                                                            color: Colors
+                                                                                .black,
+                                                                            fontSize: 11
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                            FontWeight
+                                                                                .normal,
+                                                                            fontFamily:
+                                                                            "task"),
+                                                                      ),
+
+                                                                      Text(
+                                                                        maxLines: 1,
+                                                                        myorderlistmodal?.data?[index].orderNumber ==
+                                                                                    '' ||
+                                                                                myorderlistmodal?.data?[index].orderNumber ==
+                                                                                    null
+                                                                            ? 'N/A'
+                                                                            : "# " +(myorderlistmodal?.data?[index].orderNumber).toString(),
+                                                                        style: TextStyle(
+                                                                            overflow:
+                                                                                TextOverflow
+                                                                                    .ellipsis,
+                                                                            color: Colors
+                                                                                .black,
+                                                                            fontSize: 11
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                                FontWeight
+                                                                                    .w600,
+                                                                            fontFamily:
+                                                                                "task"),
+                                                                      ),
+                                                                    ],
                                                                   ),
                                                                 ),
                                                                 SizedBox(
@@ -521,16 +492,33 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                   child: Row(
                                                                     children: [
                                                                       Text(
-                                                                        myorderlistmodal?.cartDetails?[index].singleProductPrice == "" ||
-                                                                                myorderlistmodal?.cartDetails?[index].singleProductPrice ==
+                                                                        maxLines: 1,
+                                                                        "Total Amount :- ",
+                                                                        style: TextStyle(
+                                                                            overflow:
+                                                                            TextOverflow
+                                                                                .ellipsis,
+                                                                            color: Colors
+                                                                                .black,
+                                                                            fontSize: 11
+                                                                                .sp,
+                                                                            fontWeight:
+                                                                            FontWeight
+                                                                                .normal,
+                                                                            fontFamily:
+                                                                            "task"),
+                                                                      ),
+                                                                      Text(
+                                                                        myorderlistmodal?.data?[index].totalAmount == "" ||
+                                                                                myorderlistmodal?.data?[index].totalAmount ==
                                                                                     null
                                                                             ? "N/A"
                                                                             : '₹' +
-                                                                                (myorderlistmodal?.cartDetails?[index].singleProductPrice).toString(),
+                                                                                (myorderlistmodal?.data?[index].totalAmount).toString(),
                                                                         style:
                                                                             TextStyle(
                                                                           fontSize:
-                                                                              12.sp,
+                                                                              11.sp,
                                                                           fontFamily:
                                                                               'task',
                                                                           fontWeight:
@@ -551,15 +539,18 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                 Row(
                                                                   children: [
                                                                     Text(
-                                                                      myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                          '' ||
-                                                                          myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                              null
-                                                                          ? 'N/A'
-                                                                          : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
-                                                                          myorderlistmodal?.cartDetails?[index].orderStatus == 'Order Cancelled'
-                                                                          ? "Cancelled"
-                                                                          : myorderlistmodal?.cartDetails?[index].orderStatus ?? '',
+                                                                      myorderlistmodal?.data?[index].orderStatus ==
+                                                                          'Pending'
+                                                                          ? 'Pending'
+                                                                          :  myorderlistmodal?.data?[index].orderStatus == "Cancelled"
+                                                                          ? 'Cancelled'
+                                                                          :  myorderlistmodal?.data?[index].orderStatus == "Completed"
+                                                                          ? 'Completed'
+                                                                          : myorderlistmodal?.data?[index].orderStatus == "Placed"
+                                                                          ? "Placed"
+                                                                          : myorderlistmodal?.data?[index].orderStatus == "Paid"
+                                                                          ? "Paid"
+                                                                          : "Shipped",
                                                                       style:
                                                                       TextStyle(
                                                                         fontSize:
@@ -569,14 +560,16 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         fontWeight:
                                                                         FontWeight
                                                                             .bold,
-                                                                        color: myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending order cancelled' ||
-                                                                            myorderlistmodal?.cartDetails?[index].orderStatus ==
-                                                                                'Order Cancelled'
-                                                                            ? Colors
-                                                                            .red
-                                                                            : myorderlistmodal?.cartDetails?[index].orderStatus == 'Pending'
-                                                                            ? Color(0xfff7941d)
-                                                                            : Colors.green,
+                                                                        color:  myorderlistmodal?.data?[index].orderStatus =='Pending'
+                                                                            ? Colors.orange
+                                                                            : myorderlistmodal?.data?[index].orderStatus == "Cancelled"
+                                                                            ? Colors.red
+                                                                            : myorderlistmodal?.data?[index].orderStatus == "Completed"
+                                                                            ? Colors.green :
+                                                                             myorderlistmodal?.data?[index].orderStatus == "Placed"
+                                                                             ?Colors.green
+                                                                            :  myorderlistmodal?.data?[index].orderStatus == "Paid"
+                                                                                 ?Colors.green:AppColors.primary
                                                                       ),
                                                                     ),
                                                                     SizedBox(
@@ -588,7 +581,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         Navigator.of(
                                                                                 context)
                                                                             .push(
-                                                                                MaterialPageRoute(builder: (context) => OrderSummary(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                                MaterialPageRoute(builder: (context) => OrderSummary(iteamid: myorderlistmodal?.data?[index].orderId)));
                                                                       },
                                                                       child: Container(
                                                                           alignment: Alignment.center,
@@ -608,7 +601,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         // Navigator.of(
                                                                         //     context)
                                                                         //     .push(
-                                                                        //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                        //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.data?[index].orderitemid)));
                                                                       },
                                                                       child: Container(
                                                                           alignment: Alignment.center,
@@ -619,7 +612,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             onTap: () {
                                                                               Navigator.of(context).push(
                                                                                 MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                                  orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                                  orderId: myorderlistmodal?.data?[index].orderId??"",
                                                                                 ),)
                                                                               );
                                                                             },
@@ -658,9 +651,9 @@ class _MyOrderListState extends State<MyOrderList> {
                                 ],
                               )
                         : sel == 1
-                            ? deliveredordermodal?.cartDetails?.length == 0 ||
-                                    deliveredordermodal?.cartDetails?.length ==
-                                        null
+                            ? paidorderModel?.data?.length == 0 ||
+                        paidorderModel?.data?.length ==
+                                        null||paidorderModel?.data?.length == ""
                                 ? Container(
                                     height: 75.h,
                                     alignment: Alignment.center,
@@ -674,88 +667,12 @@ class _MyOrderListState extends State<MyOrderList> {
                                     ))
                                 : Column(
                                     children: [
-                                      // Padding(
-                                      //   padding: EdgeInsets.only(left: 1.w),
-                                      //   child: Row(
-                                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      //     children: [
-                                      //       Padding(
-                                      //         padding: EdgeInsets.only(left: 1.w),
-                                      //         child: Column(
-                                      //           children: [
-                                      //             Row(
-                                      //               children: [
-                                      //                 Text(
-                                      //                   "Order ID :",
-                                      //                   style: TextStyle(
-                                      //                       fontWeight: FontWeight.normal,
-                                      //                       fontFamily: 'task',
-                                      //                       fontSize: 15.sp,
-                                      //                       color: Colors.black45),
-                                      //                 ),
-                                      //                 Text(
-                                      //                   deliveredordermodal?.cartDetails?[0].orderid == '' ||
-                                      //                       deliveredordermodal
-                                      //                           ?.cartDetails?[0].orderid ==
-                                      //                           null
-                                      //                       ? 'N/A'
-                                      //                       : deliveredordermodal?.cartDetails?[0].orderid ??
-                                      //                       '',
-                                      //                   style: TextStyle(
-                                      //                       fontWeight: FontWeight.bold,
-                                      //                       fontFamily: 'task',
-                                      //                       fontSize: 15.sp,
-                                      //                       color: Colors.grey),
-                                      //                 ),
-                                      //               ],
-                                      //             ),
-                                      //           ],
-                                      //         ),
-                                      //       ),
-                                      //       Container(
-                                      //         alignment: Alignment.center,
-                                      //         height: 4.h,
-                                      //         width: 22.w,
-                                      //         decoration: BoxDecoration(
-                                      //             color: Colors.white,
-                                      //             border: Border.all(color: Colors.grey),
-                                      //             borderRadius: BorderRadius.circular(15)),
-                                      //         child: Column(
-                                      //           mainAxisAlignment: MainAxisAlignment.center,
-                                      //           children: [
-                                      //             Row(
-                                      //               mainAxisAlignment: MainAxisAlignment.center,
-                                      //               children: [
-                                      //                 Icon(
-                                      //                   Icons.filter_list_sharp,
-                                      //                   color: Color(0xfff7941d),
-                                      //                   size: 19.sp,
-                                      //                 ),
-                                      //                 SizedBox(
-                                      //                   width: 1.w,
-                                      //                 ),
-                                      //                 Text(
-                                      //                   "Filter",
-                                      //                   style: TextStyle(
-                                      //                     fontWeight: FontWeight.bold,
-                                      //                     fontFamily: 'task',
-                                      //                     fontSize: 13.sp,
-                                      //                   ),
-                                      //                 ),
-                                      //               ],
-                                      //             ),
-                                      //           ],
-                                      //         ),
-                                      //       ),
-                                      //     ],
-                                      //   ),
-                                      // ),
                                       Container(
                                         height: 75.h,
                                         child: ListView.builder(
                                           padding: EdgeInsets.only(top: 1.h),
-                                          itemCount: deliveredordermodal
-                                              ?.cartDetails?.length,
+                                          itemCount: paidorderModel
+                                              ?.data?.length,
                                           // The number of items in the grid
                                           itemBuilder: (BuildContext context,
                                               int index) {
@@ -765,10 +682,10 @@ class _MyOrderListState extends State<MyOrderList> {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) => OrderSummary(
-                                                            iteamid: deliveredordermodal
-                                                                ?.cartDetails?[
+                                                            iteamid: paidorderModel
+                                                                ?.data?[
                                                                     index]
-                                                                .orderitemid)));
+                                                                .orderId)));
                                               },
                                               child: Card(
                                                 color: Color(0xffffffff),
@@ -813,10 +730,10 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                       3.0),
                                                               child:
                                                                   CachedNetworkImage(
-                                                                imageUrl: myorderlistmodal
-                                                                        ?.cartDetails?[
+                                                                imageUrl: paidorderModel
+                                                                        ?.data?[
                                                                             index]
-                                                                        .imgData ??
+                                                                        .firstImage ??
                                                                     '',
                                                                 height: 30.w,
                                                                 width: 27.w,
@@ -889,21 +806,43 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         width:
                                                                             55.w,
                                                                         child:
-                                                                            Text(
-                                                                          maxLines:
-                                                                              1,
-                                                                          deliveredordermodal?.cartDetails?[index].productName == '' || deliveredordermodal?.cartDetails?[index].productName == null
-                                                                              ? 'N/A'
-                                                                              : deliveredordermodal?.cartDetails?[index].productName ??
-                                                                                  '',
-                                                                          style: TextStyle(
-                                                                              overflow:
-                                                                                  TextOverflow.ellipsis,
-                                                                              color: Colors.black,
-                                                                              fontSize: 11.sp,
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontFamily: "task"),
-                                                                        ),
+                                                                            Row(
+                                                                              children: [
+
+                                                                                Text(
+                                                                                  maxLines: 1,
+                                                                                  "Order Number :- ",
+                                                                                  style: TextStyle(
+                                                                                      overflow:
+                                                                                      TextOverflow
+                                                                                          .ellipsis,
+                                                                                      color: Colors
+                                                                                          .black,
+                                                                                      fontSize: 11
+                                                                                          .sp,
+                                                                                      fontWeight:
+                                                                                      FontWeight
+                                                                                          .normal,
+                                                                                      fontFamily:
+                                                                                      "task"),
+                                                                                ),
+                                                                                Text(
+                                                                                                                                                          maxLines:
+                                                                                  1,
+                                                                                  paidorderModel?.data?[index].orderNumber == '' || paidorderModel?.data?[index].orderNumber == null
+                                                                                  ? 'N/A'
+                                                                                  : paidorderModel?.data?[index].orderNumber ??
+                                                                                      '',
+                                                                                                                                                          style: TextStyle(
+                                                                                  overflow:
+                                                                                      TextOverflow.ellipsis,
+                                                                                  color: Colors.black,
+                                                                                  fontSize: 11.sp,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontFamily: "task"),
+                                                                                                                                                        ),
+                                                                              ],
+                                                                            ),
                                                                       ),
                                                                     ),
                                                                     SizedBox(
@@ -934,9 +873,26 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                       child: Row(
                                                                         children: [
                                                                           Text(
-                                                                            deliveredordermodal?.cartDetails?[index].singleProductPrice == "" || deliveredordermodal?.cartDetails?[index].singleProductPrice == null
+                                                                            maxLines: 1,
+                                                                            "Total Amount :- ",
+                                                                            style: TextStyle(
+                                                                                overflow:
+                                                                                TextOverflow
+                                                                                    .ellipsis,
+                                                                                color: Colors
+                                                                                    .black,
+                                                                                fontSize: 11
+                                                                                    .sp,
+                                                                                fontWeight:
+                                                                                FontWeight
+                                                                                    .normal,
+                                                                                fontFamily:
+                                                                                "task"),
+                                                                          ),
+                                                                          Text(
+                                                                            paidorderModel?.data?[index].totalAmount == "" || paidorderModel?.data?[index].totalAmount == null
                                                                                 ? "N/A"
-                                                                                : '₹' + (deliveredordermodal?.cartDetails?[index].singleProductPrice).toString(),
+                                                                                : '₹' + (paidorderModel?.data?[index].totalAmount).toString(),
                                                                             style:
                                                                                 TextStyle(
                                                                               fontSize:
@@ -962,7 +918,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                     Row(
                                                                       children: [
                                                                         Text(
-                                                                          "Delivered",
+                                                                          "Paid",
                                                                           style:
                                                                           TextStyle(
                                                                             fontSize:
@@ -986,7 +942,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                           onTap:
                                                                               () {
                                                                             Navigator.of(context)
-                                                                                .push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
+                                                                                .push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: paidorderModel?.data?[index].orderId)));
                                                                           },
                                                                           child: Container(
                                                                               alignment: Alignment.center,
@@ -1006,7 +962,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                               () {
                                                                             Navigator.of(context).push(
                                                                               MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                                orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                                orderId: paidorderModel?.data?[index].orderId??"",
                                                                               ),)
                                                                             );
                                                                            // Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
@@ -1050,10 +1006,13 @@ class _MyOrderListState extends State<MyOrderList> {
                                     ],
                                   )
                             : sel == 2
-                                ? pendingordermodal?.cartDetails?.length == 0 ||
-                                        pendingordermodal
-                                                ?.cartDetails?.length ==
-                                            null
+                                ? shippedorderModel?.data?.length == 0 ||
+                        shippedorderModel
+                                                ?.data?.length ==
+                                            null||
+                        shippedorderModel
+                            ?.data?.length ==
+                                   ""
                                     ? Container(
                                         height: 75.h,
                                         alignment: Alignment.center,
@@ -1067,89 +1026,14 @@ class _MyOrderListState extends State<MyOrderList> {
                                         ))
                                     : Column(
                                         children: [
-                                          // Padding(
-                                          //   padding: EdgeInsets.only(left: 1.w),
-                                          //   child: Row(
-                                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          //     children: [
-                                          //       Padding(
-                                          //         padding: EdgeInsets.only(left: 1.w),
-                                          //         child: Column(
-                                          //           children: [
-                                          //             Row(
-                                          //               children: [
-                                          //                 Text(
-                                          //                   "Order ID :",
-                                          //                   style: TextStyle(
-                                          //                       fontWeight: FontWeight.normal,
-                                          //                       fontFamily: 'task',
-                                          //                       fontSize: 15.sp,
-                                          //                       color: Colors.black45),
-                                          //                 ),
-                                          //                 Text(
-                                          //                   pendingordermodal?.cartDetails?[0].orderid == '' ||
-                                          //                       pendingordermodal
-                                          //                           ?.cartDetails?[0].orderid ==
-                                          //                           null
-                                          //                       ? 'N/A'
-                                          //                       : pendingordermodal?.cartDetails?[0].orderid ??
-                                          //                       '',
-                                          //                   style: TextStyle(
-                                          //                       fontWeight: FontWeight.bold,
-                                          //                       fontFamily: 'task',
-                                          //                       fontSize: 15.sp,
-                                          //                       color: Colors.grey),
-                                          //                 ),
-                                          //               ],
-                                          //             ),
-                                          //           ],
-                                          //         ),
-                                          //       ),
-                                          //       Container(
-                                          //         alignment: Alignment.center,
-                                          //         height: 4.h,
-                                          //         width: 22.w,
-                                          //         decoration: BoxDecoration(
-                                          //             color: Colors.white,
-                                          //             border: Border.all(color: Colors.grey),
-                                          //             borderRadius: BorderRadius.circular(15)),
-                                          //         child: Column(
-                                          //           mainAxisAlignment: MainAxisAlignment.center,
-                                          //           children: [
-                                          //             Row(
-                                          //               mainAxisAlignment: MainAxisAlignment.center,
-                                          //               children: [
-                                          //                 Icon(
-                                          //                   Icons.filter_list_sharp,
-                                          //                   color: Color(0xfff7941d),
-                                          //                   size: 19.sp,
-                                          //                 ),
-                                          //                 SizedBox(
-                                          //                   width: 1.w,
-                                          //                 ),
-                                          //                 Text(
-                                          //                   "Filter",
-                                          //                   style: TextStyle(
-                                          //                     fontWeight: FontWeight.bold,
-                                          //                     fontFamily: 'task',
-                                          //                     fontSize: 13.sp,
-                                          //                   ),
-                                          //                 ),
-                                          //               ],
-                                          //             ),
-                                          //           ],
-                                          //         ),
-                                          //       ),
-                                          //     ],
-                                          //   ),
-                                          // ),
+
                                           Container(
                                             height: 75.h,
                                             child: ListView.builder(
                                               padding:
                                                   EdgeInsets.only(top: 1.h),
-                                              itemCount: pendingordermodal
-                                                  ?.cartDetails?.length,
+                                              itemCount: shippedorderModel
+                                                  ?.data?.length,
                                               // The number of items in the grid
                                               itemBuilder:
                                                   (BuildContext context,
@@ -1160,10 +1044,10 @@ class _MyOrderListState extends State<MyOrderList> {
                                                     Navigator.of(context).push(
                                                         MaterialPageRoute(
                                                             builder: (context) => OrderSummary(
-                                                                iteamid: pendingordermodal
-                                                                    ?.cartDetails?[
+                                                                iteamid: shippedorderModel
+                                                                    ?.data?[
                                                                         index]
-                                                                    .orderitemid)));
+                                                                    .orderId)));
                                                   },
                                                   child: Card(
 
@@ -1211,10 +1095,10 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                               3.0),
                                                                   child:
                                                                       CachedNetworkImage(
-                                                                    imageUrl: pendingordermodal
-                                                                            ?.cartDetails?[
+                                                                    imageUrl: shippedorderModel
+                                                                            ?.data?[
                                                                                 index]
-                                                                            .imgData ??
+                                                                            .firstImage ??
                                                                         '',
                                                                     height: 25.w,
                                                                     width: 25.w,
@@ -1287,38 +1171,46 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             width:
                                                                                 55.w,
                                                                             child:
-                                                                                Text(
-                                                                              maxLines:
-                                                                                  1,
-                                                                              pendingordermodal?.cartDetails?[index].productName == '' || pendingordermodal?.cartDetails?[index].productName == null
-                                                                                  ? 'N/A'
-                                                                                  : pendingordermodal?.cartDetails?[index].productName ?? '',
-                                                                              style: TextStyle(
-                                                                                  overflow: TextOverflow.ellipsis,
-                                                                                  color: Colors.black,
-                                                                                  fontSize: 11.sp,
-                                                                                  fontWeight: FontWeight.w600,
-                                                                                  fontFamily: "task"),
-                                                                            ),
+                                                                                Row(
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      maxLines: 1,
+                                                                                      "Order Number :- ",
+                                                                                      style: TextStyle(
+                                                                                          overflow:
+                                                                                          TextOverflow
+                                                                                              .ellipsis,
+                                                                                          color: Colors
+                                                                                              .black,
+                                                                                          fontSize: 11
+                                                                                              .sp,
+                                                                                          fontWeight:
+                                                                                          FontWeight
+                                                                                              .normal,
+                                                                                          fontFamily:
+                                                                                          "task"),
+                                                                                    ),
+                                                                                    Text(
+                                                                                                                                                                  maxLines:
+                                                                                      1,
+                                                                                      shippedorderModel?.data?[index].orderNumber == '' || shippedorderModel?.data?[index].orderNumber == null
+                                                                                      ? 'N/A'
+                                                                                      : "# "+(shippedorderModel?.data?[index].orderNumber ).toString(),
+                                                                                                                                                                  style: TextStyle(
+                                                                                      overflow: TextOverflow.ellipsis,
+                                                                                      color: Colors.black,
+                                                                                      fontSize: 11.sp,
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                      fontFamily: "task"),
+                                                                                                                                                                ),
+                                                                                  ],
+                                                                                ),
                                                                           ),
                                                                         ),
                                                                         SizedBox(
                                                                           height:
                                                                               0.2.h,
                                                                         ),
-                                                                        // Padding(
-                                                                        //   padding: EdgeInsets.only(left: 1.w),
-                                                                        //   child: Text(
-                                                                        //     "Delivered On 10 Sep",
-                                                                        //     style: TextStyle(
-                                                                        //       fontSize: 13.sp,
-                                                                        //       fontFamily: 'task',
-                                                                        //       fontWeight: FontWeight.normal,
-                                                                        //       letterSpacing: 1,
-                                                                        //       color: Colors.black,
-                                                                        //     ),
-                                                                        //   ),
-                                                                        // ),
                                                                         SizedBox(
                                                                           height:
                                                                               0.2.h,
@@ -1330,7 +1222,24 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                               Row(
                                                                             children: [
                                                                               Text(
-                                                                                pendingordermodal?.cartDetails?[index].singleProductPrice == "" || pendingordermodal?.cartDetails?[index].singleProductPrice == null ? "N/A" : '₹' + (pendingordermodal?.cartDetails?[index].singleProductPrice).toString(),
+                                                                                maxLines: 1,
+                                                                                "Total Amount :- ",
+                                                                                style: TextStyle(
+                                                                                    overflow:
+                                                                                    TextOverflow
+                                                                                        .ellipsis,
+                                                                                    color: Colors
+                                                                                        .black,
+                                                                                    fontSize: 11
+                                                                                        .sp,
+                                                                                    fontWeight:
+                                                                                    FontWeight
+                                                                                        .normal,
+                                                                                    fontFamily:
+                                                                                    "task"),
+                                                                              ),
+                                                                              Text(
+                                                                                shippedorderModel?.data?[index].totalAmount == "" || shippedorderModel?.data?[index].totalAmount == null ? "N/A" : '₹' + (shippedorderModel?.data?[index].totalAmount).toString(),
                                                                                 style: TextStyle(
                                                                                   fontSize: 12.sp,
                                                                                   fontFamily: 'task',
@@ -1350,14 +1259,14 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                         Row(
                                                                           children: [
                                                                             Text(
-                                                                              "Pending",
+                                                                              "shipped",
                                                                               style:
                                                                               TextStyle(
                                                                                 fontSize: 11.sp,
                                                                                 fontFamily: 'task',
                                                                                 fontWeight: FontWeight.bold,
                                                                                 letterSpacing: 1,
-                                                                                color: Color(0xfff7941d),
+                                                                                color: AppColors.primary
                                                                               ),
                                                                             ),
                                                                             SizedBox(
@@ -1367,7 +1276,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                             GestureDetector(
                                                                               onTap:
                                                                                   () {
-                                                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: pendingordermodal?.cartDetails?[index].orderitemid)));
+                                                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: shippedorderModel?.data?[index].orderId)));
                                                                               },
                                                                               child: Container(
                                                                                   alignment: Alignment.center,
@@ -1387,7 +1296,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                               onTap: () {
                                                                                 Navigator.of(context).push(
                                                                                   MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                                    orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
+                                                                                    orderId: shippedorderModel?.data?[index].orderId??"",
                                                                                   ),)
                                                                                 );
                                                                                 // Navigator.of(
@@ -1435,388 +1344,1389 @@ class _MyOrderListState extends State<MyOrderList> {
                                           ),
                                         ],
                                       )
-                                : ordercancelmodal?.cartDetails?.length == 0 ||
-                                        ordercancelmodal?.cartDetails?.length ==
-                                            null
-                                    ? Container(
-                                        height: 75.h,
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "No Products Available",
-                                          style: TextStyle(
-                                              fontFamily: "task",
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13.sp,
-                                              color: Colors.black),
-                                        ))
-                                    : Column(
-                                        children: [
-                                          // Padding(
-                                          //   padding: EdgeInsets.only(left: 1.w),
-                                          //   child: Row(
-                                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          //     children: [
-                                          //       Padding(
-                                          //         padding: EdgeInsets.only(left: 1.w),
-                                          //         child: Column(
-                                          //           children: [
-                                          //             Row(
-                                          //               children: [
-                                          //                 Text(
-                                          //                   "Order ID :",
-                                          //                   style: TextStyle(
-                                          //                       fontWeight: FontWeight.normal,
-                                          //                       fontFamily: 'task',
-                                          //                       fontSize: 15.sp,
-                                          //                       color: Colors.black45),
-                                          //                 ),
-                                          //                 Text(
-                                          //                   pendingordermodal?.cartDetails?[0].orderid == '' ||
-                                          //                       pendingordermodal
-                                          //                           ?.cartDetails?[0].orderid ==
-                                          //                           null
-                                          //                       ? 'N/A'
-                                          //                       : pendingordermodal?.cartDetails?[0].orderid ??
-                                          //                       '',
-                                          //                   style: TextStyle(
-                                          //                       fontWeight: FontWeight.bold,
-                                          //                       fontFamily: 'task',
-                                          //                       fontSize: 15.sp,
-                                          //                       color: Colors.grey),
-                                          //                 ),
-                                          //               ],
-                                          //             ),
-                                          //           ],
-                                          //         ),
-                                          //       ),
-                                          //       Container(
-                                          //         alignment: Alignment.center,
-                                          //         height: 4.h,
-                                          //         width: 22.w,
-                                          //         decoration: BoxDecoration(
-                                          //             color: Colors.white,
-                                          //             border: Border.all(color: Colors.grey),
-                                          //             borderRadius: BorderRadius.circular(15)),
-                                          //         child: Column(
-                                          //           mainAxisAlignment: MainAxisAlignment.center,
-                                          //           children: [
-                                          //             Row(
-                                          //               mainAxisAlignment: MainAxisAlignment.center,
-                                          //               children: [
-                                          //                 Icon(
-                                          //                   Icons.filter_list_sharp,
-                                          //                   color: Color(0xfff7941d),
-                                          //                   size: 19.sp,
-                                          //                 ),
-                                          //                 SizedBox(
-                                          //                   width: 1.w,
-                                          //                 ),
-                                          //                 Text(
-                                          //                   "Filter",
-                                          //                   style: TextStyle(
-                                          //                     fontWeight: FontWeight.bold,
-                                          //                     fontFamily: 'task',
-                                          //                     fontSize: 13.sp,
-                                          //                   ),
-                                          //                 ),
-                                          //               ],
-                                          //             ),
-                                          //           ],
-                                          //         ),
-                                          //       ),
-                                          //     ],
-                                          //   ),
-                                          // ),
-                                          Container(
-                                            height: 75.h,
-                                            child: ListView.builder(
-                                              padding:
-                                                  EdgeInsets.only(top: 1.h),
-                                              itemCount: ordercancelmodal
-                                                  ?.cartDetails?.length,
-                                              // The number of items in the grid
-                                              itemBuilder:
-                                                  (BuildContext context,
-                                                      int index) {
-                                                // Build each item in the grid
-                                                return GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.of(context).push(
-                                                        MaterialPageRoute(
-                                                            builder: (context) => OrderSummary(
-                                                                iteamid: ordercancelmodal
-                                                                    ?.cartDetails?[
-                                                                        index]
-                                                                    .orderitemid)));
-                                                  },
-                                                  child: Card(
-                                                    color: Color(0xffffffff),
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(10),
-                                                        color: Colors.white
+                        : sel == 3
+                        ? placedorderModel?.data?.length == 0 ||
+                        placedorderModel
+                            ?.data?.length ==
+                            null||placedorderModel?.data?.length== ""
+                        ? Container(
+                        height: 75.h,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "No Products Available",
+                          style: TextStyle(
+                              fontFamily: "task",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13.sp,
+                              color: Colors.black),
+                        ))
+                        : Column(
+                      children: [
+
+                        Container(
+                          height: 75.h,
+                          child: ListView.builder(
+                            padding:
+                            EdgeInsets.only(top: 1.h),
+                            itemCount: placedorderModel
+                                ?.data?.length,
+                            // The number of items in the grid
+                            itemBuilder:
+                                (BuildContext context,
+                                int index) {
+                              // Build each item in the grid
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) => OrderSummary(
+                                              iteamid: placedorderModel
+                                                  ?.data?[
+                                              index]
+                                                  .orderId)));
+                                },
+                                child: Card(
+
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .center,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment
+                                          .center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment
+                                              .start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .center,
+                                          children: [
+                                            SizedBox(
+                                              width: 2.w,
+                                            ),
+                                            Container(
+                                              decoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .all(
+                                                  Radius.circular(
+                                                      20),
+                                                ),
+                                                // color: Colors
+                                                //     .grey
+                                                //     .shade200
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                EdgeInsets
+                                                    .all(
+                                                    3.0),
+                                                child:
+                                                CachedNetworkImage(
+                                                  imageUrl: placedorderModel
+                                                      ?.data?[
+                                                  index]
+                                                      .firstImage ??
+                                                      '',
+                                                  height: 25.w,
+                                                  width: 25.w,
+                                                  imageBuilder:
+                                                      (context,
+                                                      imageProvider) =>
+                                                      Container(
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                            25,
+                                                          ),
+                                                          image:
+                                                          DecorationImage(
+                                                            image:
+                                                            imageProvider,
+                                                            // fit: BoxFit.cover,
+                                                          ),
+                                                        ),
                                                       ),
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
+                                                  placeholder: (context,
+                                                      url) =>
+                                                      Center(
+                                                          child:
+                                                          CircularProgressIndicator()),
+                                                  errorWidget: (context,
+                                                      url,
+                                                      error) =>
+                                                      Icon(Icons
+                                                          .error),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 1.w,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets
+                                                  .symmetric(
+                                                  vertical:
+                                                  1.h,
+                                                  horizontal:
+                                                  1.w),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .start,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 2.h,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .center,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(left: 1.w),
+                                                        child:
+                                                        SizedBox(
+                                                          width:
+                                                          55.w,
+                                                          child:
                                                           Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
                                                             children: [
-                                                              SizedBox(
-                                                                width: 2.w,
+                                                              Text(
+                                                                maxLines: 1,
+                                                                "Order Number :- ",
+                                                                style: TextStyle(
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize: 11
+                                                                        .sp,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                    fontFamily:
+                                                                    "task"),
                                                               ),
-                                                              Container(
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius
-                                                                                .all(
-                                                                          Radius.circular(
-                                                                              20),
-                                                                        ),
-                                                                        // color: Colors
-                                                                        //     .grey
-                                                                        //     .shade200
-                                                                    ),
-                                                                child: Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              3.0),
-                                                                  child:
-                                                                      CachedNetworkImage(
-                                                                    imageUrl: ordercancelmodal
-                                                                            ?.cartDetails?[
-                                                                                index]
-                                                                            .imgData ??
-                                                                        '',
-                                                                    height: 25.w,
-                                                                    width: 25.w,
-                                                                    imageBuilder:
-                                                                        (context,
-                                                                                imageProvider) =>
-                                                                            Container(
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius
-                                                                                .circular(
-                                                                          25,
-                                                                        ),
-                                                                        image:
-                                                                            DecorationImage(
-                                                                          image:
-                                                                              imageProvider,
-                                                                          // fit: BoxFit.cover,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    placeholder: (context,
-                                                                            url) =>
-                                                                        Center(
-                                                                            child:
-                                                                                CircularProgressIndicator()),
-                                                                    errorWidget: (context,
-                                                                            url,
-                                                                            error) =>
-                                                                        Icon(Icons
-                                                                            .error),
-                                                                  ),
-                                                                ),
+                                                              Text(
+                                                                maxLines:
+                                                                1,
+                                                                placedorderModel?.data?[index].orderNumber == '' || placedorderModel?.data?[index].orderNumber == null
+                                                                    ? 'N/A'
+                                                                    : placedorderModel?.data?[index].orderNumber ?? '',
+                                                                style: TextStyle(
+                                                                    overflow: TextOverflow.ellipsis,
+                                                                    color: Colors.black,
+                                                                    fontSize: 11.sp,
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontFamily: "task"),
                                                               ),
-                                                              SizedBox(
-                                                                width: 1.w,
-                                                              ),
-                                                              Padding(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        vertical:
-                                                                            1.h,
-                                                                        horizontal:
-                                                                            1.w),
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .start,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    SizedBox(
-                                                                      height: 2.h,
-                                                                    ),
-                                                                    Column(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding:
-                                                                              EdgeInsets.only(left: 1.w),
-                                                                          child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                55.w,
-                                                                            child:
-                                                                                Text(
-                                                                              maxLines:
-                                                                                  1,
-                                                                              ordercancelmodal?.cartDetails?[index].productName == '' || ordercancelmodal?.cartDetails?[index].productName == null
-                                                                                  ? 'N/A'
-                                                                                  : ordercancelmodal?.cartDetails?[index].productName ?? '',
-                                                                              style: TextStyle(
-                                                                                  overflow: TextOverflow.ellipsis,
-                                                                                  color: Colors.black,
-                                                                                  fontSize: 11.sp,
-                                                                                  fontWeight: FontWeight.w600,
-                                                                                  fontFamily: "task"),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          height:
-                                                                              0.2.h,
-                                                                        ),
-                                                                        // Padding(
-                                                                        //   padding: EdgeInsets.only(left: 1.w),
-                                                                        //   child: Text(
-                                                                        //     "Delivered On 10 Sep",
-                                                                        //     style: TextStyle(
-                                                                        //       fontSize: 13.sp,
-                                                                        //       fontFamily: 'task',
-                                                                        //       fontWeight: FontWeight.normal,
-                                                                        //       letterSpacing: 1,
-                                                                        //       color: Colors.black,
-                                                                        //     ),
-                                                                        //   ),
-                                                                        // ),
-                                                                        SizedBox(
-                                                                          height:
-                                                                              0.2.h,
-                                                                        ),
-                                                                        Padding(
-                                                                          padding:
-                                                                              EdgeInsets.only(left: 1.w),
-                                                                          child:
-                                                                              Row(
-                                                                            children: [
-                                                                              Text(
-                                                                                ordercancelmodal?.cartDetails?[index].singleProductPrice == "" || ordercancelmodal?.cartDetails?[index].singleProductPrice == null ? "N/A" : '₹' + (ordercancelmodal?.cartDetails?[index].singleProductPrice).toString(),
-                                                                                style: TextStyle(
-                                                                                  fontSize: 12.sp,
-                                                                                  fontFamily: 'task',
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  letterSpacing: 1,
-                                                                                  color: Colors.black,
-                                                                                ),
-                                                                              ),
-                                                                              //
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          height:
-                                                                              0.5.h,
-                                                                        ),
-                                                                        Row(
-                                                                          children: [
-                                                                            Text(
-                                                                              "Cancelled",
-                                                                              style:
-                                                                              TextStyle(
-                                                                                fontSize: 11.sp,
-                                                                                fontFamily: 'task',
-                                                                                fontWeight: FontWeight.bold,
-                                                                                letterSpacing: 1,
-                                                                                color: Colors.red.shade400,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              width:
-                                                                              4.w,
-                                                                            ),
-                                                                            GestureDetector(
-                                                                              onTap:
-                                                                                  () {
-                                                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: ordercancelmodal?.cartDetails?[index].orderitemid)));
-                                                                              },
-                                                                              child: Container(
-                                                                                  alignment: Alignment.center,
-                                                                                 padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 1.h),
-                                                                                  width: 13.w,
-                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ,border: Border.all(width: 0.5,color: AppColors.primary)),
-                                                                                  child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              width:
-                                                                              2.5.w,
-                                                                            ),
-                                                                            GestureDetector(
-                                                                              onTap: () {
-                                                                                Navigator.of(context).push(
-                                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                                    orderId: myorderlistmodal?.cartDetails?[index].orderid??"",
-                                                                                  ),)
-                                                                                );
-                                                                                // Navigator.of(
-                                                                                //     context)
-                                                                                //     .push(
-                                                                                //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                                              },
-                                                                              child: Container(
-                                                                                  alignment: Alignment.center,
-                                                                               padding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 0.8.h),
-                                                                                  width: 13.w,
-                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white ,border: Border.all(width: 0.5,color: AppColors.primary)),
-                                                                                  child: Icon(
-                                                                                    CupertinoIcons.chat_bubble_fill,
-                                                                                    size: 13.sp,
-                                                                                    color: Color(0xff0061b0),
-                                                                                  )
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              width:
-                                                                                  4.w,
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height: 1.h,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              )
                                                             ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.2.h,
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.2.h,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(left: 1.w),
+                                                        child:
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              maxLines: 1,
+                                                              "Total Amount :- ",
+                                                              style: TextStyle(
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 11
+                                                                      .sp,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                                  fontFamily:
+                                                                  "task"),
+                                                            ),
+                                                            Text(
+                                                              placedorderModel?.data?[index].totalAmount == "" || placedorderModel?.data?[index].totalAmount == null ? "N/A" : '₹' + (placedorderModel?.data?[index].totalAmount).toString(),
+                                                              style: TextStyle(
+                                                                fontSize: 12.sp,
+                                                                fontFamily: 'task',
+                                                                fontWeight: FontWeight.bold,
+                                                                letterSpacing: 1,
+                                                                color: Colors.black,
+                                                              ),
+                                                            ),
+                                                            //
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.5.h,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "placed",
+                                                            style:
+                                                            TextStyle(
+                                                              fontSize: 11.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight: FontWeight.bold,
+                                                              letterSpacing: 1,
+                                                              color:Colors.green
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            4.w,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap:
+                                                                () {
+                                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: placedorderModel?.data?[index].orderId)));
+                                                            },
+                                                            child: Container(
+                                                                alignment: Alignment.center,
+                                                                padding: EdgeInsets.symmetric(
+                                                                    horizontal: 1.w,vertical: 0.5.h
+                                                                ),
+                                                                width: 13.w,
+                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            2.5.w,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                    orderId: placedorderModel?.data?[index].orderId??"",
+                                                                  ),)
+                                                              );
+                                                              // Navigator.of(
+                                                              //     context)
+                                                              //     .push(
+                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                            },
+                                                            child: Container(
+                                                                alignment: Alignment.center,
+                                                                padding: EdgeInsets.symmetric(
+                                                                    horizontal: 1.w,vertical: 0.8.h
+                                                                ),
+                                                                width: 13.w,
+                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                child: Icon(
+                                                                  CupertinoIcons.chat_bubble_fill,
+                                                                  size: 13.sp,
+                                                                  color: Color(0xff0061b0),
+                                                                )
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            4.w,
                                                           ),
                                                         ],
                                                       ),
-                                                    ),
+                                                    ],
                                                   ),
-                                                );
-                                              },
+                                                  SizedBox(
+                                                    height: 1.h,
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                        : sel == 4
+                        ? pendingordermodal?.data?.length == 0 ||
+                        pendingordermodal
+                            ?.data?.length ==
+                            null
+                        ? Container(
+                        height: 75.h,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "No Products Available",
+                          style: TextStyle(
+                              fontFamily: "task",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13.sp,
+                              color: Colors.black),
+                        ))
+                        : Column(
+                      children: [
+
+                        Container(
+                          height: 75.h,
+                          child: ListView.builder(
+                            padding:
+                            EdgeInsets.only(top: 1.h),
+                            itemCount: pendingordermodal
+                                ?.data?.length,
+                            // The number of items in the grid
+                            itemBuilder:
+                                (BuildContext context,
+                                int index) {
+                              // Build each item in the grid
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) => OrderSummary(
+                                              iteamid: pendingordermodal
+                                                  ?.data?[
+                                              index]
+                                                  .orderId)));
+                                },
+                                child: Card(
+
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .center,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment
+                                          .center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment
+                                              .start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .center,
+                                          children: [
+                                            SizedBox(
+                                              width: 2.w,
                                             ),
-                                          ),
-                                        ],
-                                      )
-                  ],
-                ),
+                                            Container(
+                                              decoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .all(
+                                                  Radius.circular(
+                                                      20),
+                                                ),
+                                                // color: Colors
+                                                //     .grey
+                                                //     .shade200
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                EdgeInsets
+                                                    .all(
+                                                    3.0),
+                                                child:
+                                                CachedNetworkImage(
+                                                  imageUrl: pendingordermodal
+                                                      ?.data?[
+                                                  index]
+                                                      .firstImage ??
+                                                      '',
+                                                  height: 25.w,
+                                                  width: 25.w,
+                                                  imageBuilder:
+                                                      (context,
+                                                      imageProvider) =>
+                                                      Container(
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                            25,
+                                                          ),
+                                                          image:
+                                                          DecorationImage(
+                                                            image:
+                                                            imageProvider,
+                                                            // fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                  placeholder: (context,
+                                                      url) =>
+                                                      Center(
+                                                          child:
+                                                          CircularProgressIndicator()),
+                                                  errorWidget: (context,
+                                                      url,
+                                                      error) =>
+                                                      Icon(Icons
+                                                          .error),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 1.w,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets
+                                                  .symmetric(
+                                                  vertical:
+                                                  1.h,
+                                                  horizontal:
+                                                  1.w),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .start,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 2.h,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .center,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(left: 1.w),
+                                                        child:
+                                                        SizedBox(
+                                                          width:
+                                                          55.w,
+                                                          child:
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                maxLines: 1,
+                                                                "Order Number :- ",
+                                                                style: TextStyle(
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize: 11
+                                                                        .sp,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                    fontFamily:
+                                                                    "task"),
+                                                              ),
+                                                              Text(
+                                                                maxLines:
+                                                                1,
+                                                                pendingordermodal?.data?[index].orderNumber == '' || pendingordermodal?.data?[index].orderNumber == null
+                                                                    ? 'N/A'
+                                                                    : pendingordermodal?.data?[index].orderNumber ?? '',
+                                                                style: TextStyle(
+                                                                    overflow: TextOverflow.ellipsis,
+                                                                    color: Colors.black,
+                                                                    fontSize: 11.sp,
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontFamily: "task"),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.2.h,
+                                                      ),
+                                                      // Padding(
+                                                      //   padding: EdgeInsets.only(left: 1.w),
+                                                      //   child: Text(
+                                                      //     "Delivered On 10 Sep",
+                                                      //     style: TextStyle(
+                                                      //       fontSize: 13.sp,
+                                                      //       fontFamily: 'task',
+                                                      //       fontWeight: FontWeight.normal,
+                                                      //       letterSpacing: 1,
+                                                      //       color: Colors.black,
+                                                      //     ),
+                                                      //   ),
+                                                      // ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.2.h,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(left: 1.w),
+                                                        child:
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              maxLines: 1,
+                                                              "Total Amount :- ",
+                                                              style: TextStyle(
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 11
+                                                                      .sp,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                                  fontFamily:
+                                                                  "task"),
+                                                            ),
+                                                            Text(
+                                                              pendingordermodal?.data?[index].totalAmount == "" || pendingordermodal?.data?[index].totalAmount == null ? "N/A" : '₹' + (pendingordermodal?.data?[index].totalAmount).toString(),
+                                                              style: TextStyle(
+                                                                fontSize: 12.sp,
+                                                                fontFamily: 'task',
+                                                                fontWeight: FontWeight.bold,
+                                                                letterSpacing: 1,
+                                                                color: Colors.black,
+                                                              ),
+                                                            ),
+                                                            //
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.5.h,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "Pending",
+                                                            style:
+                                                            TextStyle(
+                                                              fontSize: 11.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight: FontWeight.bold,
+                                                              letterSpacing: 1,
+                                                              color: Color(0xfff7941d),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            4.w,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap:
+                                                                () {
+                                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: pendingordermodal?.data?[index].orderId)));
+                                                            },
+                                                            child: Container(
+                                                                alignment: Alignment.center,
+                                                                padding: EdgeInsets.symmetric(
+                                                                    horizontal: 1.w,vertical: 0.5.h
+                                                                ),
+                                                                width: 13.w,
+                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            2.5.w,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                    orderId: pendingordermodal?.data?[index].orderId??"",
+                                                                  ),)
+                                                              );
+                                                              // Navigator.of(
+                                                              //     context)
+                                                              //     .push(
+                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                            },
+                                                            child: Container(
+                                                                alignment: Alignment.center,
+                                                                padding: EdgeInsets.symmetric(
+                                                                    horizontal: 1.w,vertical: 0.8.h
+                                                                ),
+                                                                width: 13.w,
+                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                child: Icon(
+                                                                  CupertinoIcons.chat_bubble_fill,
+                                                                  size: 13.sp,
+                                                                  color: Color(0xff0061b0),
+                                                                )
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            4.w,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 1.h,
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                        : sel == 5
+                        ? deliveredordermodal?.data?.length == 0 ||
+                        deliveredordermodal
+                            ?.data?.length ==
+                            null||deliveredordermodal?.data?.length==""
+                        ? Container(
+                        height: 75.h,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "No Products Available",
+                          style: TextStyle(
+                              fontFamily: "task",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13.sp,
+                              color: Colors.black),
+                        ))
+                        : Column(
+                      children: [
+
+                        Container(
+                          height: 75.h,
+                          child: ListView.builder(
+                            padding:
+                            EdgeInsets.only(top: 1.h),
+                            itemCount: deliveredordermodal
+                                ?.data?.length,
+                            // The number of items in the grid
+                            itemBuilder:
+                                (BuildContext context,
+                                int index) {
+                              // Build each item in the grid
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) => OrderSummary(
+                                              iteamid: deliveredordermodal
+                                                  ?.data?[
+                                              index]
+                                                  .orderId)));
+                                },
+                                child: Card(
+
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .center,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment
+                                          .center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment
+                                              .start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .center,
+                                          children: [
+                                            SizedBox(
+                                              width: 2.w,
+                                            ),
+                                            Container(
+                                              decoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .all(
+                                                  Radius.circular(
+                                                      20),
+                                                ),
+                                                // color: Colors
+                                                //     .grey
+                                                //     .shade200
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                EdgeInsets
+                                                    .all(
+                                                    3.0),
+                                                child:
+                                                CachedNetworkImage(
+                                                  imageUrl: deliveredordermodal
+                                                      ?.data?[
+                                                  index]
+                                                      .firstImage ??
+                                                      '',
+                                                  height: 25.w,
+                                                  width: 25.w,
+                                                  imageBuilder:
+                                                      (context,
+                                                      imageProvider) =>
+                                                      Container(
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                            25,
+                                                          ),
+                                                          image:
+                                                          DecorationImage(
+                                                            image:
+                                                            imageProvider,
+                                                            // fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                  placeholder: (context,
+                                                      url) =>
+                                                      Center(
+                                                          child:
+                                                          CircularProgressIndicator()),
+                                                  errorWidget: (context,
+                                                      url,
+                                                      error) =>
+                                                      Icon(Icons
+                                                          .error),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 1.w,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets
+                                                  .symmetric(
+                                                  vertical:
+                                                  1.h,
+                                                  horizontal:
+                                                  1.w),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .start,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 2.h,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .center,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(left: 1.w),
+                                                        child:
+                                                        SizedBox(
+                                                          width:
+                                                          55.w,
+                                                          child:
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                maxLines: 1,
+                                                                "Order Number :- ",
+                                                                style: TextStyle(
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize: 11
+                                                                        .sp,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                    fontFamily:
+                                                                    "task"),
+                                                              ),
+                                                              Text(
+                                                                maxLines:
+                                                                1,
+                                                                deliveredordermodal?.data?[index].orderNumber == '' || deliveredordermodal?.data?[index].orderNumber == null
+                                                                    ? 'N/A'
+                                                                    : deliveredordermodal?.data?[index].orderNumber ?? '',
+                                                                style: TextStyle(
+                                                                    overflow: TextOverflow.ellipsis,
+                                                                    color: Colors.black,
+                                                                    fontSize: 11.sp,
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontFamily: "task"),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.2.h,
+                                                      ),
+                                                      // Padding(
+                                                      //   padding: EdgeInsets.only(left: 1.w),
+                                                      //   child: Text(
+                                                      //     "Delivered On 10 Sep",
+                                                      //     style: TextStyle(
+                                                      //       fontSize: 13.sp,
+                                                      //       fontFamily: 'task',
+                                                      //       fontWeight: FontWeight.normal,
+                                                      //       letterSpacing: 1,
+                                                      //       color: Colors.black,
+                                                      //     ),
+                                                      //   ),
+                                                      // ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.2.h,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(left: 1.w),
+                                                        child:
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              maxLines: 1,
+                                                              "Total Amount :- ",
+                                                              style: TextStyle(
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 11
+                                                                      .sp,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                                  fontFamily:
+                                                                  "task"),
+                                                            ),
+                                                            Text(
+                                                              deliveredordermodal?.data?[index].totalAmount == "" || deliveredordermodal?.data?[index].totalAmount == null ? "N/A" : '₹' + (deliveredordermodal?.data?[index].totalAmount).toString(),
+                                                              style: TextStyle(
+                                                                fontSize: 12.sp,
+                                                                fontFamily: 'task',
+                                                                fontWeight: FontWeight.bold,
+                                                                letterSpacing: 1,
+                                                                color: Colors.black,
+                                                              ),
+                                                            ),
+                                                            //
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.5.h,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "completed",
+                                                            style:
+                                                            TextStyle(
+                                                              fontSize: 11.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight: FontWeight.bold,
+                                                              letterSpacing: 1,
+                                                              color: Colors.green
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            4.w,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap:
+                                                                () {
+                                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.data?[index].orderId)));
+                                                            },
+                                                            child: Container(
+                                                                alignment: Alignment.center,
+                                                                padding: EdgeInsets.symmetric(
+                                                                    horizontal: 1.w,vertical: 0.5.h
+                                                                ),
+                                                                width: 13.w,
+                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            2.5.w,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                    orderId: deliveredordermodal?.data?[index].orderId??"",
+                                                                  ),)
+                                                              );
+                                                              // Navigator.of(
+                                                              //     context)
+                                                              //     .push(
+                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                            },
+                                                            child: Container(
+                                                                alignment: Alignment.center,
+                                                                padding: EdgeInsets.symmetric(
+                                                                    horizontal: 1.w,vertical: 0.8.h
+                                                                ),
+                                                                width: 13.w,
+                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                child: Icon(
+                                                                  CupertinoIcons.chat_bubble_fill,
+                                                                  size: 13.sp,
+                                                                  color: Color(0xff0061b0),
+                                                                )
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            4.w,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 1.h,
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                        : ordercancelmodal ?.data?.length == 0 ||
+                        ordercancelmodal
+                            ?.data?.length ==
+                            null||ordercancelmodal?.data?.length==""
+                        ? Container(
+                        height: 75.h,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "No Products Available",
+                          style: TextStyle(
+                              fontFamily: "task",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13.sp,
+                              color: Colors.black),
+                        ))
+                        : Column(
+                      children: [
+
+                        Container(
+                          height: 75.h,
+                          child: ListView.builder(
+                            padding:
+                            EdgeInsets.only(top: 1.h),
+                            itemCount: ordercancelmodal
+                                ?.data?.length,
+                            // The number of items in the grid
+                            itemBuilder:
+                                (BuildContext context,
+                                int index) {
+                              // Build each item in the grid
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) => OrderSummary(
+                                              iteamid: ordercancelmodal
+                                                  ?.data?[
+                                              index]
+                                                  .orderId)));
+                                },
+                                child: Card(
+
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .center,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment
+                                          .center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment
+                                              .start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .center,
+                                          children: [
+                                            SizedBox(
+                                              width: 2.w,
+                                            ),
+                                            Container(
+                                              decoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .all(
+                                                  Radius.circular(
+                                                      20),
+                                                ),
+                                                // color: Colors
+                                                //     .grey
+                                                //     .shade200
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                EdgeInsets
+                                                    .all(
+                                                    3.0),
+                                                child:
+                                                CachedNetworkImage(
+                                                  imageUrl: ordercancelmodal
+                                                      ?.data?[
+                                                  index]
+                                                      .firstImage ??
+                                                      '',
+                                                  height: 25.w,
+                                                  width: 25.w,
+                                                  imageBuilder:
+                                                      (context,
+                                                      imageProvider) =>
+                                                      Container(
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                            25,
+                                                          ),
+                                                          image:
+                                                          DecorationImage(
+                                                            image:
+                                                            imageProvider,
+                                                            // fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                  placeholder: (context,
+                                                      url) =>
+                                                      Center(
+                                                          child:
+                                                          CircularProgressIndicator()),
+                                                  errorWidget: (context,
+                                                      url,
+                                                      error) =>
+                                                      Icon(Icons
+                                                          .error),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 1.w,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets
+                                                  .symmetric(
+                                                  vertical:
+                                                  1.h,
+                                                  horizontal:
+                                                  1.w),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .start,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 2.h,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .center,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(left: 1.w),
+                                                        child:
+                                                        SizedBox(
+                                                          width:
+                                                          55.w,
+                                                          child:
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                maxLines: 1,
+                                                                "Order Number :- ",
+                                                                style: TextStyle(
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize: 11
+                                                                        .sp,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                    fontFamily:
+                                                                    "task"),
+                                                              ),
+                                                              Text(
+                                                                maxLines:
+                                                                1,
+                                                                ordercancelmodal?.data?[index].orderNumber == '' || ordercancelmodal?.data?[index].orderNumber == null
+                                                                    ? 'N/A'
+                                                                    : ordercancelmodal?.data?[index].orderNumber ?? '',
+                                                                style: TextStyle(
+                                                                    overflow: TextOverflow.ellipsis,
+                                                                    color: Colors.black,
+                                                                    fontSize: 11.sp,
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontFamily: "task"),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.2.h,
+                                                      ),
+                                                      // Padding(
+                                                      //   padding: EdgeInsets.only(left: 1.w),
+                                                      //   child: Text(
+                                                      //     "Delivered On 10 Sep",
+                                                      //     style: TextStyle(
+                                                      //       fontSize: 13.sp,
+                                                      //       fontFamily: 'task',
+                                                      //       fontWeight: FontWeight.normal,
+                                                      //       letterSpacing: 1,
+                                                      //       color: Colors.black,
+                                                      //     ),
+                                                      //   ),
+                                                      // ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.2.h,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                        EdgeInsets.only(left: 1.w),
+                                                        child:
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              maxLines: 1,
+                                                              "Total Amount :- ",
+                                                              style: TextStyle(
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 11
+                                                                      .sp,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                                  fontFamily:
+                                                                  "task"),
+                                                            ),
+                                                            Text(
+                                                              ordercancelmodal?.data?[index].totalAmount == "" || ordercancelmodal?.data?[index].totalAmount == null ? "N/A" : '₹' + (ordercancelmodal?.data?[index].totalAmount).toString(),
+                                                              style: TextStyle(
+                                                                fontSize: 12.sp,
+                                                                fontFamily: 'task',
+                                                                fontWeight: FontWeight.bold,
+                                                                letterSpacing: 1,
+                                                                color: Colors.black,
+                                                              ),
+                                                            ),
+                                                            //
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                        0.5.h,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "cancelled",
+                                                            style:
+                                                            TextStyle(
+                                                              fontSize: 11.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight: FontWeight.bold,
+                                                              letterSpacing: 1,
+                                                              color: Colors.red
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            4.w,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap:
+                                                                () {
+                                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: ordercancelmodal?.data?[index].orderId)));
+                                                            },
+                                                            child: Container(
+                                                                alignment: Alignment.center,
+                                                                padding: EdgeInsets.symmetric(
+                                                                    horizontal: 1.w,vertical: 0.5.h
+                                                                ),
+                                                                width: 13.w,
+                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                child: Icon(Icons.visibility,color: Color(0xff0061b0),size: 15.sp,)
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            2.5.w,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                    orderId: ordercancelmodal?.data?[index].orderId??"",
+                                                                  ),)
+                                                              );
+                                                              // Navigator.of(
+                                                              //     context)
+                                                              //     .push(
+                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                            },
+                                                            child: Container(
+                                                                alignment: Alignment.center,
+                                                                padding: EdgeInsets.symmetric(
+                                                                    horizontal: 1.w,vertical: 0.8.h
+                                                                ),
+                                                                width: 13.w,
+                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                child: Icon(
+                                                                  CupertinoIcons.chat_bubble_fill,
+                                                                  size: 13.sp,
+                                                                  color: Color(0xff0061b0),
+                                                                )
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            4.w,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 1.h,
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+    ]),
               ),
       ),
     );
@@ -1969,4 +2879,102 @@ class _MyOrderListState extends State<MyOrderList> {
       }
     });
   }
+
+
+  orderplacedap() async {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().orderplacedapi(data).then((response) async {
+          placedorderModel =
+              PlacedOrderModel.fromJson(json.decode(response.body));
+          print(placedorderModel?.status);
+          if (response.statusCode == 200 &&
+              placedorderModel?.status == "success") {
+            print('EE Thay Gyu Hooooo ! ^_^');
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+  orderpaidap() async {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().orderpaidapi(data).then((response) async {
+          paidorderModel =
+              PaidOrderModel.fromJson(json.decode(response.body));
+          print(paidorderModel?.status);
+          if (response.statusCode == 200 &&
+              paidorderModel?.status == "success") {
+            print('EE Thay Gyu Hooooo ! ^_^');
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
+  ordershippedap() async {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().ordershippedapi(data).then((response) async {
+          shippedorderModel =
+              ShippedOrderModel.fromJson(json.decode(response.body));
+          print(shippedorderModel?.status);
+          if (response.statusCode == 200 &&
+              shippedorderModel?.status == "success") {
+            print('EE Thay Gyu Hooooo ! ^_^');
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
+
+
+
+
 }

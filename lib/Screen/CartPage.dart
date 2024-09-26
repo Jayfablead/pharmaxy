@@ -1565,25 +1565,22 @@ class _CartPageState extends State<CartPage> {
   Widget searchBox() {
     return Container(
       width: 62.w,
-      padding:  EdgeInsets.symmetric(horizontal: 3.w),
+      padding: EdgeInsets.symmetric(horizontal: 3.w),
       decoration: BoxDecoration(
         color: Colors.grey.shade50,
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(
         controller: _serch,
-        onTap: () {},
+        onTap: () {
+          // Tap event handled here (optional)
+        },
         onChanged: (value) {
-
+          // When text changes, handle it here (optional)
         },
         style: TextStyle(color: Colors.black, fontFamily: 'task'),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(0),
-          // prefixIcon: Icon(
-          //   Icons.search,
-          //   color: Colors.black,
-          //   size: 20,
-          // ),
           prefixIconConstraints: BoxConstraints(
             maxHeight: 20,
             minWidth: 25,
@@ -1596,6 +1593,7 @@ class _CartPageState extends State<CartPage> {
       ),
     );
   }
+
 
   ViewCartApi() async {
     final Map<String, String> data = {};

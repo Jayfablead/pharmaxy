@@ -48,9 +48,7 @@ class _OrderSummaryState extends State<OrderSummary> {
     });
     myorderdetailap();
     ordercancelledap();
-    print("myoederdetailmodal?.orderDetails ?.orderStatus${myoederdetailmodal
-        ?.orderDetails
-        ?.orderStatus}");
+
 
 
   }
@@ -173,8 +171,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                             fontSize: 12.sp,
                                             color: Colors.black45),
                                       ),
-                                      Text(myoederdetailmodal?.orderDetails?.orderNumber == '' || myoederdetailmodal?.orderDetails?.orderNumber == null ? 'N/A'
-                                            : myoederdetailmodal?.orderDetails?.orderNumber ?? '',
+                                      Text(myoederdetailmodal?.userDetail?.orderID == '' || myoederdetailmodal?.userDetail?.orderID == null ? 'N/A'
+                                            : myoederdetailmodal?.userDetail?.orderID ?? '',
                                         style: TextStyle(
                                             fontWeight: FontWeight.normal,
                                             fontFamily: 'task',
@@ -189,314 +187,248 @@ class _OrderSummaryState extends State<OrderSummary> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 2.h,)
-                      ,
+                      SizedBox(height: 2.h,),
                       Container(
-                        child: Card(
-                            elevation: 00,
-                            color: Colors.white,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: 2.w,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20)),
-                                         ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(3.0),
-                                        child: CachedNetworkImage(
-                                          imageUrl: myoederdetailmodal
-                                                  ?.orderDetails?.imgData ??
-                                              '',
-                                          fit: BoxFit.cover,
-                                          height: 25.w,
-                                          width: 25.w,
-                                          imageBuilder:
-                                              (context, imageProvider) =>
-                                                  Container(
+                        height: myoederdetailmodal
+                            ?.orderDetails?.length==1?20.h:30.h,
+                        child: ListView.builder(
+                          padding:
+                          EdgeInsets.only(top: 1.h),
+                          itemCount: myoederdetailmodal
+                              ?.orderDetails?.length,
+                          // The number of items in the grid
+                          itemBuilder:
+                              (BuildContext context,
+                              int index) {
+                            // Build each item in the grid
+                            return Container(
+                              child: Card(
+                                  elevation: 00,
+                                  color: Colors.white,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            width: 2.w,
+                                          ),
+                                          Container(
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              image: DecorationImage(
-                                                image: imageProvider,
-                                                // fit: BoxFit.cover,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20)),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(3.0),
+                                              child: CachedNetworkImage(
+                                                imageUrl: myoederdetailmodal
+                                                    ?.orderDetails?[index].imgData ??
+                                                    '',
+                                                fit: BoxFit.cover,
+                                                height: 23.w,
+                                                width: 23.w,
+                                                imageBuilder:
+                                                    (context, imageProvider) =>
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                        BorderRadius.circular(25),
+                                                        image: DecorationImage(
+                                                          image: imageProvider,
+                                                          // fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                placeholder: (context, url) => Center(
+                                                    child:
+                                                    CircularProgressIndicator()),
+                                                errorWidget: (context, url, error) =>
+                                                    Icon(Icons.error),
                                               ),
                                             ),
                                           ),
-                                          placeholder: (context, url) => Center(
-                                              child:
-                                                  CircularProgressIndicator()),
-                                          errorWidget: (context, url, error) =>
-                                              Icon(Icons.error),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 3.w,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 0.h, horizontal: 1.w),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
                                           SizedBox(
-                                            height: 2.h,
+                                            width: 3.w,
                                           ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: 1.w),
-                                                child: SizedBox(
-                                                  width: 50.w,
-                                                  child: Text(
-                                                    myoederdetailmodal
-                                                                    ?.orderDetails
-                                                                    ?.productName ==
-                                                                '' ||
-                                                            myoederdetailmodal
-                                                                    ?.orderDetails
-                                                                    ?.productName ==
-                                                                null
-                                                        ? 'N/A'
-                                                        : myoederdetailmodal
-                                                                ?.orderDetails
-                                                                ?.productName ??
-                                                            '',
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 11.sp,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontFamily: "task"),
-                                                  ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 0.h, horizontal: 1.w),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  height: 2.h,
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                height: 1.h,
-                                              ),
-                                              for (int index = 0;
-                                                  index <
-                                                      (myoederdetailmodal
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                      EdgeInsets.only(left: 1.w),
+                                                      child: SizedBox(
+                                                        width: 50.w,
+                                                        child: Text(
+                                                          myoederdetailmodal
                                                               ?.orderDetails
-                                                              ?.variationDetails
-                                                              ?.length ??
-                                                          0);
-                                                  index++) ...[
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 1.w),
-                                                  child: Row(
-                                                    children: [
-                                                      Text(
-                                                        myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.variationDetails?[
-                                                                            index]
-                                                                        .variationTypeName ==
-                                                                    "" ||
-                                                                myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.variationDetails?[
-                                                                            index]
-                                                                        .variationTypeName ==
-                                                                    null
-                                                            ? "N/A"
-                                                            : (myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.variationDetails?[
-                                                                            index]
-                                                                        .variationTypeName)
-                                                                    .toString() +
-                                                                ' : ',
-                                                        style: TextStyle(
-                                                          fontSize: 12.sp,
-                                                          fontFamily: 'task',
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          letterSpacing: 1,
-                                                          color: Colors
-                                                              .grey.shade800,
+                                                              ?[index]?.productName ==
+                                                              '' ||
+                                                              myoederdetailmodal
+                                                                  ?.orderDetails
+                                                              ?[index]?.productName ==
+                                                                  null
+                                                              ? 'N/A'
+                                                              : myoederdetailmodal
+                                                              ?.orderDetails
+                                                          ?[index]?.productName ??
+                                                              '',
+                                                          style: TextStyle(
+                                                              color: Colors.black,
+                                                              fontSize: 10.sp,
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontFamily: "task"),
                                                         ),
                                                       ),
-                                                      Text(
-                                                        myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.variationDetails?[
-                                                                            index]
-                                                                        .variationName ==
-                                                                    "" ||
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                      EdgeInsets.only(left: 1.w),
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            'Price : ',
+                                                            style: TextStyle(
+                                                              fontSize: 12.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight:
+                                                              FontWeight.bold,
+                                                              letterSpacing: 1,
+                                                              color: Colors
+                                                                  .grey.shade800,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            myoederdetailmodal
+                                                                ?.orderDetails
+                                                            ?[index]?.price ==
+                                                                "" ||
                                                                 myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.variationDetails?[
-                                                                            index]
-                                                                        .variationName ==
-                                                                    null
-                                                            ? "N/A"
-                                                            : (myoederdetailmodal
                                                                     ?.orderDetails
-                                                                    ?.variationDetails?[
-                                                                        index]
-                                                                    .variationName)
-                                                                .toString(),
-                                                        style: TextStyle(
-                                                          fontSize: 12.sp,
-                                                          fontFamily: 'task',
-                                                          fontWeight:
+                                                                ?[index]?.price ==
+                                                                    null
+                                                                ? "N/A"
+                                                                : '₹' +
+                                                                (myoederdetailmodal
+                                                                    ?.orderDetails
+                                                                ?[index]?.price)
+                                                                    .toString(),
+                                                            style: TextStyle(
+                                                              fontSize: 11.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight:
                                                               FontWeight.bold,
-                                                          letterSpacing: 1,
-                                                          color: Colors.black,
-                                                        ),
+                                                              letterSpacing: 1,
+                                                              color: Colors.black,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                      EdgeInsets.only(left: 1.w),
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            'Status : ',
+                                                            style: TextStyle(
+                                                              fontSize: 11.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight:
+                                                              FontWeight.bold,
+                                                              letterSpacing: 1,
+                                                              color: Colors
+                                                                  .grey.shade800,
+                                                            ),
+                                                          ),
+                                                       Text(
+                                                         myoederdetailmodal
+                                                             ?.orderDetails
+                                                         ?[index]?.orderStatus ==
+                                                                '' ||
+                                                             myoederdetailmodal
+                                                                 ?.orderDetails
+                                                             ?[index]?.orderStatus ==
+                                                                    null
+                                                                ? 'N/A'
+                                                                : myoederdetailmodal
+                                                             ?.orderDetails
+                                                         ?[index]?.orderStatus ?? '',
+                                                            maxLines: 1,
+                                                            overflow: TextOverflow.ellipsis,
+                                                            style: TextStyle(
+                                                              fontSize: 11.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight:
+                                                              FontWeight.bold,
+                                                              color: myoederdetailmodal
+                                                                  ?.orderDetails
+                                                              ?[index]?.orderStatus =='Pending'
+                                                                  ? Colors.orange
+                                                                  : myoederdetailmodal
+                                                                  ?.orderDetails
+                                                              ?[index]?.orderStatus == "Cancelled"
+                                                                  ? Colors.red
+                                                                  : myoederdetailmodal
+                                                                  ?.orderDetails
+                                                              ?[index]?.orderStatus == "Completed"
+                                                                  ? Colors.green :
+                                                              myoederdetailmodal
+                                                                  ?.orderDetails
+                                                              ?[index]?.orderStatus == "Placed"
+                                                                  ?Colors.green
+                                                                  :  myoederdetailmodal
+                                                                  ?.orderDetails
+                                                              ?[index]?.orderStatus == "Paid"
+                                                                  ?Colors.green:AppColors.primary
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                                 SizedBox(
-                                                  height: 1.h,
+                                                  height: 2.h,
                                                 ),
                                               ],
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: 1.w),
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      'Price : ',
-                                                      style: TextStyle(
-                                                        fontSize: 12.sp,
-                                                        fontFamily: 'task',
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        letterSpacing: 1,
-                                                        color: Colors
-                                                            .grey.shade800,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                      ?.price ==
-                                                                  "" ||
-                                                              myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                      ?.price ==
-                                                                  null
-                                                          ? "N/A"
-                                                          : '₹' +
-                                                              (myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                      ?.price)
-                                                                  .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 12.sp,
-                                                        fontFamily: 'task',
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        letterSpacing: 1,
-                                                        color: Colors.black,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 1.h,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: 1.w),
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      'Status : ',
-                                                      style: TextStyle(
-                                                        fontSize: 12.sp,
-                                                        fontFamily: 'task',
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        letterSpacing: 1,
-                                                        color: Colors
-                                                            .grey.shade800,
-                                                      ),
-                                                    ),
-                                                    myoederdetailmodal
-                                                        ?.orderDetails
-                                                        ?.orderStatus == 'Order Cancelled'?Text("Cancelled",style:TextStyle(color: Colors.red, fontSize: 15.sp,
-                                                      fontFamily: 'task',
-                                                      fontWeight:
-                                                      FontWeight.bold,) ,) :Text(
-                                                      myoederdetailmodal
-
-                                                                      ?.orderDetails
-                                                                      ?.orderStatus ==
-                                                                  '' ||
-                                                              myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                      ?.orderStatus ==
-                                                                  null
-                                                          ? 'N/A'
-                                                          : myoederdetailmodal
-                                                                  ?.orderDetails
-                                                                  ?.orderStatus ?? '',
-                                                      maxLines: 1,
-                                                      overflow: TextOverflow.ellipsis,
-                                                      style: TextStyle(
-                                                        fontSize: 11.sp,
-                                                        fontFamily: 'task',
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: myoederdetailmodal
-                                                                    ?.orderDetails
-                                                                    ?.orderStatus ==
-                                                                'Pending'
-                                                            ? Colors.orange
-                                                            : myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.orderStatus ==
-                                                                    'Completed'
-                                                                ? Colors.green
-                                                                : myoederdetailmodal
-                                                                            ?.orderDetails
-                                                                            ?.orderStatus == 'Order Cancelled'
-                                                                    ? Colors.red
-                                                                    : Colors
-                                                                        .black,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 2.h,
-                                          ),
+                                            ),
+                                          )
                                         ],
                                       ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            )),
+                                    ],
+                                  )),
+                            );
+                          },
+                        ),
                       ),
+
                       SizedBox(
                         height: 1.h,
                       ),
@@ -551,17 +483,17 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                     children: [
                                                       Text(
                                                         myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.firstname ==
+                                                                        ?.userDetail
+                                                                        ?.fname ==
                                                                     '' ||
-                                                                myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.firstname ==
+                                                            myoederdetailmodal
+                                                                ?.userDetail
+                                                                ?.fname ==
                                                                     null
                                                             ? 'N/A'
                                                             : myoederdetailmodal
-                                                                    ?.orderDetails
-                                                                    ?.firstname ??
+                                                            ?.userDetail
+                                                            ?.fname??
                                                                 '',
                                                         style: TextStyle(
                                                             fontSize: 12.sp,
@@ -574,18 +506,18 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                       ),
                                                       Text(
                                                         myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.lastname ==
-                                                                    '' ||
-                                                                myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                        ?.lastname ==
-                                                                    null
+                                                            ?.userDetail
+                                                            ?.lname ==
+                                                            '' ||
+                                                            myoederdetailmodal
+                                                                ?.userDetail
+                                                                ?.lname ==
+                                                                null
                                                             ? 'N/A'
                                                             : myoederdetailmodal
-                                                                    ?.orderDetails
-                                                                    ?.lastname ??
-                                                                '',
+                                                            ?.userDetail
+                                                            ?.lname??
+                                                            '',
                                                         style: TextStyle(
                                                             fontSize: 12.sp,
                                                             fontWeight:
@@ -599,18 +531,18 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   ),
                                                   Text(
                                                     myoederdetailmodal
-                                                                    ?.orderDetails
-                                                                    ?.address1 ==
-                                                                '' ||
-                                                            myoederdetailmodal
-                                                                    ?.orderDetails
-                                                                    ?.address1 ==
-                                                                null
+                                                        ?.userDetail
+                                                        ?.address1 ==
+                                                        '' ||
+                                                        myoederdetailmodal
+                                                            ?.userDetail
+                                                            ?.address1 ==
+                                                            null
                                                         ? 'N/A'
                                                         : myoederdetailmodal
-                                                                ?.orderDetails
-                                                                ?.address1 ??
-                                                            '',
+                                                        ?.userDetail
+                                                        ?.address1??
+                                                        '',
                                                     style: TextStyle(
                                                         fontSize: 13.5.sp,
                                                         color: Colors.black,
@@ -629,7 +561,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                     SizedBox(
                                       height: 2.h,
                                     ),
-                                    if (myoederdetailmodal?.orderDetails?.orderStatus =='Completed'||myoederdetailmodal?.orderDetails?.orderStatus =='Order Cancelled') SizedBox() else InkWell(
+                                    if (myoederdetailmodal?.userDetail?.orderStatus =='Completed'||myoederdetailmodal?.userDetail?.orderStatus =='Cancelled') SizedBox() else InkWell(
                                       onTap: () {
                                         AlertDialog alertDialog = AlertDialog(
                                           title: Text("Cancel Order",style: TextStyle(
@@ -701,8 +633,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                 SizedBox(
                                   height: 2.h,
                                 ),
-                                myoederdetailmodal?.orderDetails?.orderStatus ==
-                                        'Order Cancelled'
+                                myoederdetailmodal?.userDetail?.orderStatus ==
+                                        'Cancelled'
                                     ? Container()
                                     : Padding(
                                         padding: EdgeInsets.only(left: 2.w),
@@ -718,7 +650,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                 SizedBox(
                                   height: 0.5.h,
                                 ),
-                                myoederdetailmodal?.orderDetails?.payment ==
+                                myoederdetailmodal?.userDetail?.payment ==
                                         'cod'
                                     ? Container(
                                   alignment: Alignment.center,
@@ -729,9 +661,9 @@ class _OrderSummaryState extends State<OrderSummary> {
 
                                             color: Colors.white),
                                         child:
-                                            myoederdetailmodal?.orderDetails
+                                            myoederdetailmodal?.userDetail
                                                         ?.orderStatus ==
-                                                    'Order Cancelled'
+                                                    'Cancelled'
                                                 ? Container()
                                                 : Padding(
                                                     padding:
@@ -829,8 +761,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   ),
                                       )
                                     : myoederdetailmodal
-                                                ?.orderDetails?.orderStatus ==
-                                            'Order Cancelled'
+                                                ?.userDetail?.orderStatus ==
+                                            'Cancelled'
                                         ? Container()
                                         : Padding(
                                             padding: EdgeInsets.symmetric(
@@ -956,7 +888,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(builder: (context) => Chatscreen(
-                                     orderId: myoederdetailmodal?.orderDetails?.orderID ?? '',
+                                     orderId: myoederdetailmodal?.userDetail?.orderID ?? '',
                                   ),)
                                 );
                               },

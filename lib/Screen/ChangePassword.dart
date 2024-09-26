@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ecommerce/Modal/ChangePasswordModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
@@ -336,7 +337,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                         onTap: () {
                           Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (context) => LoginPage2(),)
+                              MaterialPageRoute(builder: (context) => HomePage(sel: 1,),)
                           );
                         },
                       ),

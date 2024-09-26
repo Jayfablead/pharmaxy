@@ -15,6 +15,7 @@ import 'package:ecommerce/Modal/SalesProductModal.dart';
 import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/All_Brands.dart';
+import 'package:ecommerce/Screen/BlogdetailsPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/PrescriptionForm.dart';
@@ -2134,63 +2135,73 @@ class _HomePageState extends State<HomePage> {
                             scrollDirection: Axis.horizontal,
                             itemCount:blogmodel?.data?.length,  // Change to use dynamic list length
                             itemBuilder: (context, index) {
-                              return Card(
-                                color: Colors.blue.shade50,
-                                elevation: 0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white,),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 60.w,
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
-                                          ),
-                                          child: CachedNetworkImage(
-                                            fit: BoxFit.cover,
-                                            imageUrl :blogmodel
-                                                ?.data?[index]
-                                                .image ??
-                                                '',
-                                            width: 50.w,
-                                            height: 10.h,
-                                            progressIndicatorBuilder: (context, url, progress) =>
-                                                Center(child: CircularProgressIndicator()),
-                                            errorWidget: (context, url, error) => Image.asset('assets/my.png',color: AppColors.primary,),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 60.w,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Text(
-                                            blogmodel
-                                                ?.data?[index]
-                                                .title ==
-                                                '' ||
-                                                blogmodel
-                                                    ?.data?[index]
-                                                    .title ==
-                                                    null
-                                                ? 'N/A'
-                                                :blogmodel
-                                                ?.data?[index]
-                                                .title ??
-                                                '',
-                                            style: TextStyle(
-                                              fontFamily: 'task',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
+                              return GestureDetector(
+                                onTap: (){
+
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) => Blogdetailspage(
+                                          id:blogmodel?.data?[index].id ?? ''
+                                      ),)
+                                  );
+                                },
+                                child: Card(
+                                  color: Colors.blue.shade50,
+                                  elevation: 0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white,),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: 60.w,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              topRight: Radius.circular(10),
+                                            ),
+                                            child: CachedNetworkImage(
+                                              fit: BoxFit.cover,
+                                              imageUrl :blogmodel
+                                                  ?.data?[index]
+                                                  .image ??
+                                                  '',
+                                              width: 50.w,
+                                              height: 10.h,
+                                              progressIndicatorBuilder: (context, url, progress) =>
+                                                  Center(child: CircularProgressIndicator()),
+                                              errorWidget: (context, url, error) => Image.asset('assets/my.png',color: AppColors.primary,),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        SizedBox(
+                                          width: 60.w,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Text(
+                                              blogmodel
+                                                  ?.data?[index]
+                                                  .title ==
+                                                  '' ||
+                                                  blogmodel
+                                                      ?.data?[index]
+                                                      .title ==
+                                                      null
+                                                  ? 'N/A'
+                                                  :blogmodel
+                                                  ?.data?[index]
+                                                  .title ??
+                                                  '',
+                                              style: TextStyle(
+                                                fontFamily: 'task',
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
@@ -2591,8 +2602,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-
-
   blogap() async {
     final Map<String, String> data = {};
     checkInternet().then((internet) async {
@@ -2624,8 +2633,6 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-
-
 
   brandap() async {
     final Map<String, String> data = {};

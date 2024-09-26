@@ -1,15 +1,29 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:ecommerce/Modal/PrescriptionModel.dart';
+import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/PrescriptionForm.dart';
 import 'package:ecommerce/Widget/Const.dart';
+import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 
 class Prescriptionform2 extends StatefulWidget {
-  const Prescriptionform2({super.key});
 
+  String firstname = '';
+  String lastname = '';
+  String Address = '';
+  String phone = '';
+  String email = '';
+  String ZipCode = '';
+  String city = '';
+  String state = '';
+  Prescriptionform2({required this.firstname,required this.lastname,required this.Address,required this.phone,
+    required this.email,required this.ZipCode,required this.city,required this.state,});
   @override
   State<Prescriptionform2> createState() => _Prescriptionform2State();
 }
@@ -488,11 +502,11 @@ class _Prescriptionform2State extends State<Prescriptionform2> {
                                           height: 6.h,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
-                                            border: Border.all(
-                                              style: BorderStyle.solid,
-                                              color: AppColors.primary
-                                            )
+                                              borderRadius: BorderRadius.circular(10),
+                                              border: Border.all(
+                                                  style: BorderStyle.solid,
+                                                  color: AppColors.primary
+                                              )
                                           ),
                                           child: Text("Upload Prescription",style: TextStyle(
                                               color: AppColors.primary,
@@ -527,6 +541,7 @@ class _Prescriptionform2State extends State<Prescriptionform2> {
                           GestureDetector(
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
+                                preformap();
                                 // countryValue == null &&
                                 //     cityValue == null &&
                                 //     stateValue == null
@@ -657,5 +672,54 @@ class _Prescriptionform2State extends State<Prescriptionform2> {
         builder: (context) {
           return alert;
         });
+  }
+  preformap() async {
+    if (_formKey.currentState!.validate()) {
+      final Map<String, String> data = {};
+      data['UserId'] = (usermodal?.userId).toString();
+      data['Patientfname'] = widget.firstname;
+      data['Patientlname'] = widget.lastname;
+      data['Patientemail'] = widget.email;
+      data['Patientaddress'] = widget.Address;
+      data['State'] = widget.state;
+      data['City'] = widget.city;
+      data['Zipcode'] = widget.ZipCode;
+      data['Phone'] = widget.phone;
+      data['Gender'] = selected ;
+      data['Patientage'] = _age.text.toString();
+      data['Physiciansfname'] = _doctorfname.text.toString();
+      data['Physicianslname'] = _doctorlname.text.toString();
+      data['Physiciansnumber'] = _phoneno.text.toString();
+      data['Prescribedmedicine'] = _medicine.text.toString();
+      data['image'] = _pickedFile == null ?'':_pickedFile?.path ?? '';
+      print(data);
+      checkInternet().then((internet) async {
+        if (internet) {
+          authprovider().prescriptionformap(data).then((response) async {
+            prescriptionformModel = PrescriptionformModel.fromJson(json.decode(response.body));
+            print(prescriptionformModel?.status);
+            if (response.statusCode == 200 && prescriptionformModel?.status == "success") {
+              setState(() {
+                isLoading = true;
+              });
+              EasyLoading.showSuccess('Submit Form Successfully');
+              setState(() {
+                isLoading = false;
+              });
+            } else {
+              EasyLoading.showError('Submit Failed');
+              setState(() {
+                isLoading = false;
+              });
+            }
+          });
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          buildErrorDialog(context, 'Error', "Internet Required");
+        }
+      });
+    }
   }
 }

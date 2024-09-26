@@ -605,7 +605,16 @@ class _PrescriptionformState extends State<Prescriptionform> {
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
                                 Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) => Prescriptionform2(),)
+                                    MaterialPageRoute(builder: (context) => Prescriptionform2(
+                                      firstname: _firstname.text.toString(),
+                                      lastname: _lastname.text.toString(),
+                                      Address: _Address.text.toString(),
+                                      email: _email.text.toString(),
+                                      city: _city.text.toString(),
+                                      phone: _phone.text.toString(),
+                                      state: _state.text.toString(),
+                                      ZipCode: _ZipCode.text.toString(),
+                                    ),)
                                 );
                                 // countryValue == null &&
                                 //     cityValue == null &&
@@ -653,6 +662,6 @@ class _PrescriptionformState extends State<Prescriptionform> {
             ),
           ),
         )
-    );;
+    );
   }
 }

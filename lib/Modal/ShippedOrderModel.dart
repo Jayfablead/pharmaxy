@@ -1,10 +1,10 @@
-class DeliveredOrderModal {
+class ShippedOrderModel {
   String? status;
   List<Data>? data;
 
-  DeliveredOrderModal({this.status, this.data});
+  ShippedOrderModel({this.status, this.data});
 
-  DeliveredOrderModal.fromJson(Map<String, dynamic> json) {
+  ShippedOrderModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['data'] != null) {
       data = <Data>[];

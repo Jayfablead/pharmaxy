@@ -1,12 +1,25 @@
 
+import 'dart:convert';
+
+import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/RequestDoctorForm.dart';
 import 'package:ecommerce/Widget/Const.dart';
+import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
+
+import '../Modal/RequestformModel.dart';
 class Requestdoctorform2 extends StatefulWidget {
-  const Requestdoctorform2({super.key});
+  String firstname = "";
+  String lastname = "";
+  String email = "";
+  String address = "";
+  String phone = "";
+  Requestdoctorform2({required this.firstname,required this.lastname,required this.email,required this.address,required this.phone});
 
   @override
   State<Requestdoctorform2> createState() => _Requestdoctorform2State();
@@ -440,8 +453,12 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                             height: 5.h,
                           ),
                           GestureDetector(
-                            onTap: () {
+                            onTap: () async{
                               if (_formKey.currentState!.validate()) {
+                                await Requestformap();
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) =>HomePage(sel: 1) ,)
+                                );
                                 // countryValue == null &&
                                 //     cityValue == null &&
                                 //     stateValue == null
@@ -488,6 +505,49 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
             ),
           ),
         )
-    );;
+    );
+  }
+  Requestformap() async {
+    if (_formKey.currentState!.validate()) {
+      final Map<String, String> data = {};
+      data['UserId'] = (usermodal?.userId).toString();
+      data['fname'] = widget.firstname;
+      data['lname'] = widget.lastname;
+      data['email'] = widget.email;
+      data['address'] = widget.address;
+      data['state'] = _state.text.toString();
+      data['city'] = _city.text.toString();
+      data['zipcode'] = _ZipCode.text.toString();
+      data['phone'] = widget.phone;
+      data['gender'] = selected ;
+      data['appointmentdate'] = _date.text.toString();
+      print('form $data');
+      checkInternet().then((internet) async {
+        if (internet) {
+          authprovider().requestformap(data).then((response) async {
+            requestformModel = RequestformModel.fromJson(json.decode(response.body));
+            if (response.statusCode == 200 && requestformModel?.status == "success") {
+              setState(() {
+                isLoading = true;
+              });
+              await EasyLoading.showSuccess('Submit Form Successfully');
+              setState(() {
+                isLoading = false;
+              });
+            } else {
+              await EasyLoading.showError('Submit Failed');
+              setState(() {
+                isLoading = false;
+              });
+            }
+          });
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          buildErrorDialog(context, 'Error', "Internet Required");
+        }
+      });
+    }
   }
 }

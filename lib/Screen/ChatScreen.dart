@@ -108,7 +108,7 @@ class _ChatscreenState extends State<Chatscreen> {
                 reverse: true,
                 itemCount: chatviewmodal?.data?.livechat?.length,
                 itemBuilder: (context, index) {
-                   return Column(
+                  return Column(
                     children: [
                       chatviewmodal?.data?.livechat?[index].senderId == usermodal?.userId ? Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -133,7 +133,7 @@ class _ChatscreenState extends State<Chatscreen> {
                             ),
                           ):Container(
                             child: CachedNetworkImage(
-                                imageUrl: chatviewmodal?.data?.livechat?[index].message??'',
+                              imageUrl: chatviewmodal?.data?.livechat?[index].message??'',
                               width: 30.w,
                               height: 30.h,
                               fit: BoxFit.cover,

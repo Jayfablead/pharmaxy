@@ -34,14 +34,18 @@ import 'package:ecommerce/Modal/MainCatModal.dart';
 import 'package:ecommerce/Modal/MyOederDetailModal.dart';
 import 'package:ecommerce/Modal/MyOrderListModal.dart';
 import 'package:ecommerce/Modal/OrderCancelModal.dart';
+import 'package:ecommerce/Modal/PaidOrderModel.dart';
 import 'package:ecommerce/Modal/PaymentMthodsModal.dart';
 import 'package:ecommerce/Modal/PaypalModal.dart';
 import 'package:ecommerce/Modal/PendingOrderModal.dart';
+import 'package:ecommerce/Modal/PlacedOrderModel.dart';
+import 'package:ecommerce/Modal/PrescriptionModel.dart';
 import 'package:ecommerce/Modal/ProductDetailModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveAddressModal.dart';
 import 'package:ecommerce/Modal/RemoveCartModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
+import 'package:ecommerce/Modal/RequestformModel.dart';
 import 'package:ecommerce/Modal/SaleListSerachModal.dart';
 import 'package:ecommerce/Modal/SalesProductListModal.dart';
 import 'package:ecommerce/Modal/SalesProductModal.dart';
@@ -49,6 +53,7 @@ import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Modal/SearchModal.dart';
 import 'package:ecommerce/Modal/SelectColorModal.dart';
 import 'package:ecommerce/Modal/SendmsgModel.dart';
+import 'package:ecommerce/Modal/ShippedOrderModel.dart';
 import 'package:ecommerce/Modal/ShippingAddModal.dart';
 import 'package:ecommerce/Modal/SignupModal.dart';
 import 'package:ecommerce/Modal/SizeShowModal.dart';
@@ -62,6 +67,7 @@ import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:ecommerce/Modal/bestsellerModel.dart';
 import 'package:ecommerce/Modal/cateModel.dart';
+import 'package:ecommerce/Screen/BlocdetailModel.dart';
 
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -152,6 +158,15 @@ BrandWiceProductsearchModel?brandWiceProductsearchmodel;
 CouponModel?couponmodel;
 
 CheckOutSendModel?checkOutsendModel;
+BlocdetailsModal?blocdetailsModal;
+PlacedOrderModel?placedorderModel;
+PaidOrderModel?paidorderModel;
+ShippedOrderModel?shippedorderModel;
+
+
+
+RequestformModel? requestformModel;
+PrescriptionformModel?prescriptionformModel;
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());

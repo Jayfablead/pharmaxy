@@ -1,15 +1,23 @@
 class MyOederDetailModal {
   String? message;
   String? status;
-  OrderDetails? orderDetails;
+  List<OrderDetails>? orderDetails;
+  UserDetail? userDetail;
 
-  MyOederDetailModal({this.message, this.status, this.orderDetails});
+  MyOederDetailModal(
+      {this.message, this.status, this.orderDetails, this.userDetail});
 
   MyOederDetailModal.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    orderDetails = json['order_details'] != null
-        ? new OrderDetails.fromJson(json['order_details'])
+    if (json['order_details'] != null) {
+      orderDetails = <OrderDetails>[];
+      json['order_details'].forEach((v) {
+        orderDetails!.add(new OrderDetails.fromJson(v));
+      });
+    }
+    userDetail = json['user_detail'] != null
+        ? new UserDetail.fromJson(json['user_detail'])
         : null;
   }
 
@@ -18,7 +26,11 @@ class MyOederDetailModal {
     data['message'] = this.message;
     data['status'] = this.status;
     if (this.orderDetails != null) {
-      data['order_details'] = this.orderDetails!.toJson();
+      data['order_details'] =
+          this.orderDetails!.map((v) => v.toJson()).toList();
+    }
+    if (this.userDetail != null) {
+      data['user_detail'] = this.userDetail!.toJson();
     }
     return data;
   }
@@ -30,10 +42,10 @@ class OrderDetails {
   String? productID;
   String? quantity;
   String? price;
-  String? variationTableId;
-  String? productColor;
-  String? productSize;
-  List<VariationDetails>? variationDetails;
+  Null? variationTableId;
+  Null? productColor;
+  Null? productSize;
+  Null? variationDetails;
   String? createdAt;
   String? updatedAt;
   String? productName;
@@ -47,36 +59,36 @@ class OrderDetails {
   String? phoneno;
   String? address1;
   String? zipcode;
-  String? countryName;
-  String? stateName;
   String? cityName;
+  String? stateName;
+  String? countryName;
 
   OrderDetails(
       {this.orderItemID,
-      this.orderID,
-      this.productID,
-      this.quantity,
-      this.price,
-      this.variationTableId,
-      this.productColor,
-      this.productSize,
-      this.variationDetails,
-      this.createdAt,
-      this.updatedAt,
-      this.productName,
-      this.imgData,
-      this.orderData,
-      this.orderNumber,
-      this.payment,
-      this.orderStatus,
-      this.firstname,
-      this.lastname,
-      this.phoneno,
-      this.address1,
-      this.zipcode,
-      this.countryName,
-      this.stateName,
-      this.cityName});
+        this.orderID,
+        this.productID,
+        this.quantity,
+        this.price,
+        this.variationTableId,
+        this.productColor,
+        this.productSize,
+        this.variationDetails,
+        this.createdAt,
+        this.updatedAt,
+        this.productName,
+        this.imgData,
+        this.orderData,
+        this.orderNumber,
+        this.payment,
+        this.orderStatus,
+        this.firstname,
+        this.lastname,
+        this.phoneno,
+        this.address1,
+        this.zipcode,
+        this.cityName,
+        this.stateName,
+        this.countryName});
 
   OrderDetails.fromJson(Map<String, dynamic> json) {
     orderItemID = json['OrderItemID'];
@@ -87,12 +99,7 @@ class OrderDetails {
     variationTableId = json['variation_table_id'];
     productColor = json['product_color'];
     productSize = json['product_size'];
-    if (json['variation_details'] != null) {
-      variationDetails = <VariationDetails>[];
-      json['variation_details'].forEach((v) {
-        variationDetails!.add(new VariationDetails.fromJson(v));
-      });
-    }
+    variationDetails = json['variation_details'];
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
     productName = json['product_name'];
@@ -106,9 +113,9 @@ class OrderDetails {
     phoneno = json['phoneno'];
     address1 = json['address1'];
     zipcode = json['zipcode'];
-    countryName = json['country_name'];
-    stateName = json['state_name'];
     cityName = json['city_name'];
+    stateName = json['state_name'];
+    countryName = json['country_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -121,10 +128,7 @@ class OrderDetails {
     data['variation_table_id'] = this.variationTableId;
     data['product_color'] = this.productColor;
     data['product_size'] = this.productSize;
-    if (this.variationDetails != null) {
-      data['variation_details'] =
-          this.variationDetails!.map((v) => v.toJson()).toList();
-    }
+    data['variation_details'] = this.variationDetails;
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     data['product_name'] = this.productName;
@@ -138,46 +142,114 @@ class OrderDetails {
     data['phoneno'] = this.phoneno;
     data['address1'] = this.address1;
     data['zipcode'] = this.zipcode;
-    data['country_name'] = this.countryName;
-    data['state_name'] = this.stateName;
     data['city_name'] = this.cityName;
+    data['state_name'] = this.stateName;
+    data['country_name'] = this.countryName;
     return data;
   }
 }
 
-class VariationDetails {
-  String? variationsDetailsID;
-  String? variationID;
-  String? variationVlueID;
-  String? variationName;
-  String? variationTypeName;
-  String? variationTypeID;
+class UserDetail {
+  String? orderID;
+  String? userID;
+  String? fname;
+  String? lname;
+  String? email;
+  String? phoneno;
+  String? country;
+  String? state;
+  String? city;
+  String? address1;
+  String? address2;
+  String? zipcode;
+  String? company;
+  String? orderDate;
+  String? orderNumber;
+  String? totalTax;
+  String? totalShipingCost;
+  String? totalDiscount;
+  String? totalAmount;
+  String? payment;
+  String? orderStatus;
+  String? createdAt;
+  String? updatedAt;
 
-  VariationDetails(
-      {this.variationsDetailsID,
-      this.variationID,
-      this.variationVlueID,
-      this.variationName,
-      this.variationTypeName,
-      this.variationTypeID});
+  UserDetail(
+      {this.orderID,
+        this.userID,
+        this.fname,
+        this.lname,
+        this.email,
+        this.phoneno,
+        this.country,
+        this.state,
+        this.city,
+        this.address1,
+        this.address2,
+        this.zipcode,
+        this.company,
+        this.orderDate,
+        this.orderNumber,
+        this.totalTax,
+        this.totalShipingCost,
+        this.totalDiscount,
+        this.totalAmount,
+        this.payment,
+        this.orderStatus,
+        this.createdAt,
+        this.updatedAt});
 
-  VariationDetails.fromJson(Map<String, dynamic> json) {
-    variationsDetailsID = json['VariationsDetailsID'];
-    variationID = json['VariationID'];
-    variationVlueID = json['VariationVlueID'];
-    variationName = json['VariationName'];
-    variationTypeName = json['VariationTypeName'];
-    variationTypeID = json['VariationTypeID'];
+  UserDetail.fromJson(Map<String, dynamic> json) {
+    orderID = json['OrderID'];
+    userID = json['UserID'];
+    fname = json['fname'];
+    lname = json['lname'];
+    email = json['email'];
+    phoneno = json['phoneno'];
+    country = json['country'];
+    state = json['state'];
+    city = json['city'];
+    address1 = json['address1'];
+    address2 = json['address2'];
+    zipcode = json['zipcode'];
+    company = json['company'];
+    orderDate = json['OrderDate'];
+    orderNumber = json['OrderNumber'];
+    totalTax = json['totalTax'];
+    totalShipingCost = json['totalShipingCost'];
+    totalDiscount = json['totalDiscount'];
+    totalAmount = json['TotalAmount'];
+    payment = json['payment'];
+    orderStatus = json['OrderStatus'];
+    createdAt = json['Created_at'];
+    updatedAt = json['Updated_at'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['VariationsDetailsID'] = this.variationsDetailsID;
-    data['VariationID'] = this.variationID;
-    data['VariationVlueID'] = this.variationVlueID;
-    data['VariationName'] = this.variationName;
-    data['VariationTypeName'] = this.variationTypeName;
-    data['VariationTypeID'] = this.variationTypeID;
+    data['OrderID'] = this.orderID;
+    data['UserID'] = this.userID;
+    data['fname'] = this.fname;
+    data['lname'] = this.lname;
+    data['email'] = this.email;
+    data['phoneno'] = this.phoneno;
+    data['country'] = this.country;
+    data['state'] = this.state;
+    data['city'] = this.city;
+    data['address1'] = this.address1;
+    data['address2'] = this.address2;
+    data['zipcode'] = this.zipcode;
+    data['company'] = this.company;
+    data['OrderDate'] = this.orderDate;
+    data['OrderNumber'] = this.orderNumber;
+    data['totalTax'] = this.totalTax;
+    data['totalShipingCost'] = this.totalShipingCost;
+    data['totalDiscount'] = this.totalDiscount;
+    data['TotalAmount'] = this.totalAmount;
+    data['payment'] = this.payment;
+    data['OrderStatus'] = this.orderStatus;
+    data['Created_at'] = this.createdAt;
+    data['Updated_at'] = this.updatedAt;
     return data;
   }
 }
