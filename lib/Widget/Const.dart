@@ -42,6 +42,7 @@ import 'package:ecommerce/Modal/PlacedOrderModel.dart';
 import 'package:ecommerce/Modal/PrescriptionModel.dart';
 import 'package:ecommerce/Modal/ProductDetailModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
+import 'package:ecommerce/Modal/RecentBlogModel.dart';
 import 'package:ecommerce/Modal/RemoveAddressModal.dart';
 import 'package:ecommerce/Modal/RemoveCartModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
@@ -156,12 +157,12 @@ BrandModel?brandmodel;
 BrandWiceProductModel?brandWiceProductmodel;
 BrandWiceProductsearchModel?brandWiceProductsearchmodel;
 CouponModel?couponmodel;
-
 CheckOutSendModel?checkOutsendModel;
 BlocdetailsModal?blocdetailsModal;
 PlacedOrderModel?placedorderModel;
 PaidOrderModel?paidorderModel;
 ShippedOrderModel?shippedorderModel;
+RecentBlogModel?recentblogModel;
 
 
 
@@ -208,24 +209,24 @@ InputDecoration inputDecoration({
     disabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.pink.withOpacity(0.1), width: 1),
       //ram
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(10),
     ),
     errorBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.red, width: 1), //ram
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(10),
     ),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide.none,
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(10),
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.red, width: 1), //ram
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(10),
     ),
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.pink.withOpacity(0.1), width: 1),
       //ram
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(10),
     ),
     border: OutlineInputBorder(
       borderSide: BorderSide.none,

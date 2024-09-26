@@ -230,6 +230,25 @@ class authprovider with ChangeNotifier {
 
 
 
+  //  recent blog
+
+  Future<http.Response> recentblogapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/get_recent_blog";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
   // barnd api auth
 
   Future<http.Response> brandapi(Map<String, String> bodyData) async {

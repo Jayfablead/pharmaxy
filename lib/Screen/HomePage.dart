@@ -2140,6 +2140,7 @@ class _HomePageState extends State<HomePage> {
 
                                   Navigator.of(context).push(
                                       MaterialPageRoute(builder: (context) => Blogdetailspage(
+                                        iteamid: blogmodel?.data?[index].id ?? '',
                                           id:blogmodel?.data?[index].id ?? ''
                                       ),)
                                   );
