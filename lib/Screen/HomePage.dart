@@ -8,6 +8,7 @@ import 'package:ecommerce/Modal/AllCouponModal.dart';
 import 'package:ecommerce/Modal/BestSellerProductModal.dart';
 import 'package:ecommerce/Modal/BlogModel.dart';
 import 'package:ecommerce/Modal/BrandModel.dart';
+import 'package:ecommerce/Modal/CartcountModel.dart';
 import 'package:ecommerce/Modal/CatWiceProductModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
@@ -16,6 +17,7 @@ import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/All_Brands.dart';
 import 'package:ecommerce/Screen/BlogdetailsPage.dart';
+import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/PrescriptionForm.dart';
@@ -178,6 +180,7 @@ class _HomePageState extends State<HomePage> {
     bestsellerproductap();
     blogap();
     brandap();
+    carttotal();
     setState(() {
       isLoading = true;
     });
@@ -208,105 +211,171 @@ class _HomePageState extends State<HomePage> {
                       SliverToBoxAdapter(
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Stack(
                             children: [
-                              // Menu Icon
-                              IconButton(
-                                onPressed: () {
-                                  _scaffoldKeyhome.currentState?.openDrawer();
-                                },
-                                icon: Icon(
-                                  Icons.menu,
-                                  size: 25.sp,
-                                ),
-                              ),
-
-                              // Image between Menu and Cart
-                              Image.asset(
-                                'assets/my.png', // Replace with your image path
-                                height: 10.w, // Adjust as needed
-                                width: 30.w,
-                                color: AppColors.primary,// Adjust as needed
-                              ),
-
-                              // Cart Icon and Profile
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  // Cart Icon
+                                  // Menu Icon
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      _scaffoldKeyhome.currentState?.openDrawer();
+                                    },
                                     icon: Icon(
-                                      Icons.shopping_cart,
-                                      color: AppColors.primary,
+                                      Icons.menu,
                                       size: 25.sp,
                                     ),
                                   ),
 
-                                  // User Login/Profile
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 2.w),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        usermodal?.userId == "" ||
-                                                usermodal?.userId == null
-                                            ? Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      LoginPage2(),
-                                                ),
-                                              )
-                                            : Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfilePage(),
-                                                ),
-                                              );
-                                      },
-                                      child: usermodal?.userId == "" ||
-                                              usermodal?.userId == null
-                                          ? Text(
-                                              "Login",
-                                              style: TextStyle(
-                                                color: AppColors.primary,
-                                                fontFamily: 'task',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12.sp,
-                                              ),
-                                            )
-                                          : Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 1.w),
-                                              height: 12.2.w,
-                                              width: 12.2.w,
-                                              padding: EdgeInsets.all(1.w),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(90),
-                                                child: CachedNetworkImage(
-                                                  imageUrl: profilemodal
-                                                          ?.profileDetails
-                                                          ?.profileimage ??
-                                                      '',
-                                                  fit: BoxFit.cover,
-                                                  progressIndicatorBuilder:
-                                                      (context, url,
-                                                              progress) =>
-                                                          Center(
-                                                              child:
-                                                                  CircularProgressIndicator()),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          Icon(
-                                                    Icons.error_outline_rounded,
+                                  // Image between Menu and Cart
+                                  Image.asset(
+                                    'assets/my.png', // Replace with your image path
+                                    height: 10.w, // Adjust as needed
+                                    width: 30.w,
+                                    color: AppColors.primary,// Adjust as needed
+                                  ),
+
+                                  // Cart Icon and Profile
+                                  Row(
+                                    children: [
+                                      // Cart Icon
+                                      IconButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CartPage(),
+                                            ),
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.shopping_cart,
+                                          color: AppColors.primary,
+                                          size: 25.sp,
+                                        ),
+                                      ),
+
+                                      // User Login/Profile
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 2.w),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            usermodal?.userId == "" ||
+                                                    usermodal?.userId == null
+                                                ? Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          LoginPage2(),
+                                                    ),
+                                                  )
+                                                : Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ProfilePage(),
+                                                    ),
+                                                  );
+                                          },
+                                          child: usermodal?.userId == "" ||
+                                                  usermodal?.userId == null
+                                              ? Text(
+                                                  "Login",
+                                                  style: TextStyle(
+                                                    color: AppColors.primary,
+                                                    fontFamily: 'task',
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 12.sp,
+                                                  ),
+                                                )
+                                              : Container(
+                                                  margin: EdgeInsets.symmetric(
+                                                      horizontal: 1.w),
+                                                  height: 12.2.w,
+                                                  width: 12.2.w,
+                                                  padding: EdgeInsets.all(1.w),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(90),
+                                                    child: CachedNetworkImage(
+                                                      imageUrl: profilemodal
+                                                              ?.profileDetails
+                                                              ?.profileimage ??
+                                                          '',
+                                                      fit: BoxFit.cover,
+                                                      progressIndicatorBuilder:
+                                                          (context, url,
+                                                                  progress) =>
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
+                                                      errorWidget:
+                                                          (context, url, error) =>
+                                                              Icon(
+                                                        Icons.error_outline_rounded,
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ),
-                                    ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
+                              Positioned(
+                                  bottom:3.5.h, // Adjust the value based on your layout
+                                  right: 17.5.w, // Adjust the value based on your layout
+                                  child: GestureDetector(
+                                      onTap: () {
+                                        // Handle the tap on the cart icon
+                                      },
+                                      child: Container(
+                                          width: 5.w,
+                                          height: 5.w,
+                                          child: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              Positioned(
+                                                top: 0,
+                                                right: 0,
+                                                child: Container(
+                                                  width: 5.w,
+                                                  height: 5.w,
+                                                  alignment: Alignment.center,
+                                                  padding: EdgeInsets.all(2),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.red,
+                                                    borderRadius: BorderRadius.circular(100),
+                                                  ),
+                                                  constraints: BoxConstraints(
+                                                    minWidth: 18,
+                                                    minHeight: 18,
+                                                  ),
+                                                  child: Text(
+                                                    cartcountmodel
+                                                        ?.cartCount ==
+                                                        null ||
+                                                        cartcountmodel
+                                                            ?.cartCount ==
+                                                            ""
+                                                        ? "0"
+                                                        : (cartcountmodel
+                                                        ?.cartCount)
+                                                        .toString(),
+
+
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 12,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                      )
+                                  )
+                              )
                             ],
                           ),
                         ),
@@ -2569,6 +2638,7 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+
   allcoupon() async {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
@@ -2646,6 +2716,41 @@ class _HomePageState extends State<HomePage> {
           if (response.statusCode == 200 &&
               brandmodel?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          wait = false;
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
+  carttotal() async {
+    final Map<String, String> data = {};
+    data['user_id'] = (usermodal?.userId).toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().carttotalcountapi(data).then((response) async {
+          cartcountmodel =
+              CartcountModel.fromJson(json.decode(response.body));
+          print(cartcountmodel?.status);
+          if (response.statusCode == 200 &&
+              cartcountmodel?.status == "success") {
+            print('EE Thay Gyu Hooooo ! ^_^');
+
             setState(() {
               wait = false;
               isLoading = false;

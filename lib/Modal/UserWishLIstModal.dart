@@ -53,39 +53,45 @@ class WishList {
   String? productDimensions;
   String? productQuantity;
   String? priceProduct;
+  String? isTaxable;
+  String? taxClassId;
+  String? slug;
   String? createdAt;
   String? updatedAt;
-  List<String>? allImages;
+  String? allImages;
 
   WishList(
       {this.productID,
-      this.productSKU,
-      this.productType,
-      this.categoryID,
-      this.subCategoryID,
-      this.variationTypeID,
-      this.variationID,
-      this.brandID,
-      this.tagID,
-      this.shippingID,
-      this.productName,
-      this.productPrice,
-      this.saleProductPrice,
-      this.productCartDesc,
-      this.productShortDesc,
-      this.productLongDesc,
-      this.productImage,
-      this.productStock,
-      this.productLowStock,
-      this.stockStatus,
-      this.productLive,
-      this.productWeight,
-      this.productDimensions,
-      this.productQuantity,
-      this.priceProduct,
-      this.createdAt,
-      this.updatedAt,
-      this.allImages});
+        this.productSKU,
+        this.productType,
+        this.categoryID,
+        this.subCategoryID,
+        this.variationTypeID,
+        this.variationID,
+        this.brandID,
+        this.tagID,
+        this.shippingID,
+        this.productName,
+        this.productPrice,
+        this.saleProductPrice,
+        this.productCartDesc,
+        this.productShortDesc,
+        this.productLongDesc,
+        this.productImage,
+        this.productStock,
+        this.productLowStock,
+        this.stockStatus,
+        this.productLive,
+        this.productWeight,
+        this.productDimensions,
+        this.productQuantity,
+        this.priceProduct,
+        this.isTaxable,
+        this.taxClassId,
+        this.slug,
+        this.createdAt,
+        this.updatedAt,
+        this.allImages});
 
   WishList.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];
@@ -113,9 +119,12 @@ class WishList {
     productDimensions = json['product_dimensions'];
     productQuantity = json['product_quantity'];
     priceProduct = json['price_product'];
+    isTaxable = json['is_taxable'];
+    taxClassId = json['tax_class_id'];
+    slug = json['slug'];
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
-    allImages = json['allImages'].cast<String>();
+    allImages = json['allImages'];
   }
 
   Map<String, dynamic> toJson() {
@@ -145,6 +154,9 @@ class WishList {
     data['product_dimensions'] = this.productDimensions;
     data['product_quantity'] = this.productQuantity;
     data['price_product'] = this.priceProduct;
+    data['is_taxable'] = this.isTaxable;
+    data['tax_class_id'] = this.taxClassId;
+    data['slug'] = this.slug;
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     data['allImages'] = this.allImages;

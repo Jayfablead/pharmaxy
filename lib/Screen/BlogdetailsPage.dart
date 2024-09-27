@@ -40,158 +40,153 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
       scaffold: Scaffold(
         backgroundColor: Colors.grey.shade50,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 3.w),
+          padding: EdgeInsets.symmetric(horizontal: 2.w),
           child: CustomScrollView(
             slivers: [
               isLoading
                   ? SliverToBoxAdapter(
-                      child: Container()) // A placeholder when loading
+                  child: Container()) // A placeholder when loading
                   : SliverPadding(
-                      padding: EdgeInsets.symmetric(),
-                      sliver: SliverList(
-                        delegate: SliverChildListDelegate(
-                          [
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                            // APP BAR
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              HomePage(sel: 1),
-                                        ),
-                                      );
-                                    },
-                                    icon: Icon(
-                                      Icons.arrow_back_ios_new_outlined,
-                                      size: 17.sp,
-                                    ),
+                padding: EdgeInsets.symmetric(),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate(
+                    [
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      // APP BAR
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomePage(sel: 1),
                                   ),
-                                  Text(
-                                    "Blog Details",
-                                    style: TextStyle(
-                                      fontSize: 13.sp,
-                                      fontFamily: "task",
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(null),
-                                  ),
-                                ],
+                                );
+                              },
+                              icon: Icon(
+                                Icons.arrow_back_ios_new_outlined,
+                                size: 17.sp,
                               ),
                             ),
-                            SizedBox(
-                              height: 1.h,
+                            Text(
+                              "Blog Details",
+                              style: TextStyle(
+                                fontSize: 13.sp,
+                                fontFamily: "task",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(null),
                             ),
                           ],
                         ),
                       ),
-                    ),
+                      SizedBox(
+                        height: 1.h,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: 1.w),
+                padding: EdgeInsets.symmetric(horizontal: 0.w),
                 sliver: SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (context, index) {
+                        (context, index) {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                             width: MediaQuery.of(context).size.width,
                             height: 25.h,
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  blocdetailsModal?.data?[index].image ?? "",
-                              width: MediaQuery.of(context).size.width,
-                              height: 30.h,
-                              fit: BoxFit.cover,
-                              placeholder: (context, url) {
-                                return Icon(Icons.error_rounded,
-                                    color: Colors.blue);
-                              },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: CachedNetworkImage(
+                                imageUrl: blocdetailsModal?.data?[index].image ?? "",
+                                width: MediaQuery.of(context).size.width,
+                                height: 30.h,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) {
+                                  return Icon(Icons.error_rounded, color: Colors.blue);
+                                },
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: 2.h,
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 4.w),
-                            child: Text(
-                              blocdetailsModal?.data?[index].title?.isEmpty ??
-                                      true
-                                  ? "N/A"
-                                  : blocdetailsModal?.data?[index].title ?? "",
-                              style: TextStyle(
-                                fontFamily: "task",
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Text(
+                            blocdetailsModal?.data?[index].title?.isEmpty ??
+                                true
+                                ? "N/A"
+                                : blocdetailsModal?.data?[index].title ?? "",
+                            style: TextStyle(
+                              fontFamily: "task",
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(
                             height: 1.5.h,
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 4.w),
-                            child: Text(
-                              blocdetailsModal
-                                          ?.data?[index].createdAt?.isEmpty ??
-                                      true
-                                  ? "N/A"
-                                  : blocdetailsModal?.data?[index].createdAt ??
-                                      "",
-                              style: TextStyle(
-                                fontFamily: "task",
-                                fontSize: 11.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Text(
+                            blocdetailsModal
+                                ?.data?[index].createdAt?.isEmpty ??
+                                true
+                                ? "N/A"
+                                : blocdetailsModal?.data?[index].createdAt ??
+                                "",
+                            style: TextStyle(
+                              fontFamily: "task",
+                              fontSize: 11.sp,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(
-                            height: 2.h,
+                            height: 1.5.h,
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 4.w),
-                            child: ReadMoreText(
-                              blocdetailsModal
-                                          ?.data?[index].description?.isEmpty ??
-                                      true
-                                  ? "N/A"
-                                  : blocdetailsModal
-                                          ?.data?[index].description ??
-                                      "",
-                              trimLines: 3,
-                              trimMode: TrimMode.Line,
-                              style: TextStyle(
-                                fontFamily: "task",
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey,
-                              ),
-                              trimCollapsedText: ' Show more',
-                              trimExpandedText: ' Show less',
-                              lessStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'task',
-                                color: Color(0xff0061b0),
-                                fontSize: 10.sp,
-                              ),
-                              moreStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'task',
-                                color: Color(0xff0061b0),
-                                fontSize: 10.sp,
-                              ),
+                          ReadMoreText(
+                            blocdetailsModal
+                                ?.data?[index].description?.isEmpty ??
+                                true
+                                ? "N/A"
+                                : blocdetailsModal
+                                ?.data?[index].description ??
+                                "",
+                            trimLines: 3,
+                            trimMode: TrimMode.Line,
+                            style: TextStyle(
+                              fontFamily: "task",
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            ),
+                            trimCollapsedText: ' Show more',
+                            trimExpandedText: ' Show less',
+                            lessStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'task',
+                              color: Color(0xff0061b0),
+                              fontSize: 10.sp,
+                            ),
+                            moreStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'task',
+                              color: Color(0xff0061b0),
+                              fontSize: 10.sp,
                             ),
                           ),
                         ],
@@ -201,32 +196,69 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                   ),
                 ),
               ),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 2.h,
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Container(
+                  width: 84.w,
+                  height: 7.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0),topRight: Radius.circular(10.0)),
+                    color: Color(0xffFFFFFF),
+                  ),
+
+                  alignment: Alignment.center,
+                  child: Text("Recent Post",style: TextStyle(
+                    fontSize: 14.sp,
+                    fontFamily: "task",
+                  ),),
+                ),
+              ),
+              SliverToBoxAdapter(
+                  child: Divider(
+                    color: Colors.grey,
+                  )
+              ),
               SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   // Add padding here
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
+                          (BuildContext context, int index) {
                         return Container(
-                          margin: EdgeInsets.symmetric(vertical: 8),
+                          margin: EdgeInsets.symmetric(vertical: 0.5.h),
+                          padding: EdgeInsets.symmetric(horizontal: 2.w),
                           alignment: Alignment.center,
-                          height: 18.h,
+                          height: 15.h,
                           width: 84.w,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.green
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xffFFFFFF)
                           ),
                           child: Row(
                             children: [
-                              Image.network(
-                               blogmodel
-                                    ?.data?[index]
-                                    .image ?? "",
-
-                                fit: BoxFit.cover,
-                                width: 110,
-                                height: 110,
+                              ClipRRect(
+                                child: CachedNetworkImage(
+                                  imageUrl: blogmodel?.data?[index].image ?? "",
+                                  fit: BoxFit.cover,
+                                  width: 120,
+                                  height: 80,
+                                  errorWidget: (context, url, error) {
+                                    return Icon(Icons.error_rounded);
+                                  },
+                                  placeholder: (context, url) => CircularProgressIndicator(),
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
+                              // Image.network(
+                              //  blogmodel?.data?[index].image ?? "",
+                              //   fit: BoxFit.cover,
+                              //   width: 110,
+                              //   height: 110,
+                              // ),
                               SizedBox(width: 2.w),
                               Expanded(
                                 child: Column(
@@ -241,7 +273,6 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                                           fontSize: 10.5.sp,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'task',
-                                          color: Colors.white,
                                         ),
                                       ),
                                     ),

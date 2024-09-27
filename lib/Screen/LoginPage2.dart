@@ -369,6 +369,7 @@ class _LoginPage2State extends State<LoginPage2> {
 
   loginap() async {
     if (_formKey.currentState!.validate()) {
+      EasyLoading.show(status: 'Please Wait ...');
       final Map<String, String> data = {};
       data['email'] = _email.text.trim().toString();
       data['password'] = _password.text.trim().toString();
@@ -382,11 +383,9 @@ class _LoginPage2State extends State<LoginPage2> {
               _email.clear();
               _password.clear();
               print(carti.length);
-              buildErrorDialog(context, 'Success', usermodal?.message ?? "");
-              Timer(Duration(seconds: 2),(){
+              EasyLoading.showSuccess("Login Success");
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => HomePage(sel: 0,)));
-              });
               if (carti.length != 0) {
                 print('batli Bhareli');
                 for (int index = 0; index < carti.length; index++) {
@@ -402,7 +401,8 @@ class _LoginPage2State extends State<LoginPage2> {
               SaveDataLocal.saveLogInData(usermodal!);
               setState(() {});
             } else {
-              buildErrorDialog(context, 'Error', "Email Or Password Is Wrong");
+              EasyLoading.showError("Email Or Password Is Wrong");
+
             }
           });
         } else {

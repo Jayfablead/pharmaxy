@@ -11,6 +11,8 @@ import 'package:ecommerce/Modal/BlogModel.dart';
 import 'package:ecommerce/Modal/BrandModel.dart';
 import 'package:ecommerce/Modal/BrandWiceProductModel.dart';
 import 'package:ecommerce/Modal/BrandWiceProductsearchModel.dart';
+
+import 'package:ecommerce/Modal/CartcountModel.dart';
 import 'package:ecommerce/Modal/CatWiceProductModal.dart';
 import 'package:ecommerce/Modal/ChangePasswordModal.dart';
 import 'package:ecommerce/Modal/ChatModel.dart';
@@ -151,7 +153,7 @@ ChatModel? chatviewmodal;
 SendMessage?sendmessagesmodal;
 AllCouponModal? allcouponmodal;
 
-
+// Ram Api
 BlogModel?blogmodel;
 BrandModel?brandmodel;
 BrandWiceProductModel?brandWiceProductmodel;
@@ -163,9 +165,10 @@ PlacedOrderModel?placedorderModel;
 PaidOrderModel?paidorderModel;
 ShippedOrderModel?shippedorderModel;
 RecentBlogModel?recentblogModel;
+CartcountModel?cartcountmodel;
 
 
-
+//Prit Api
 RequestformModel? requestformModel;
 PrescriptionformModel?prescriptionformModel;
 
