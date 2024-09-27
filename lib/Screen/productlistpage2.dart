@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/BrandWiceProductModel.dart';
 import 'package:ecommerce/Modal/BrandWiceProductsearchModel.dart';
+import 'package:ecommerce/Modal/FilterbyModel.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/SaleListSerachModal.dart';
@@ -32,6 +33,7 @@ class ProductListPage2 extends StatefulWidget {
 }
 
 bool name = false;
+bool type = false;
 
 TextEditingController _serch2 = TextEditingController();
 
@@ -49,6 +51,7 @@ class _ProductListPageState extends State<ProductListPage2> {
     setState(() {
       _serch2.text = '';
       setState(() {
+        type=false;
         isLoading = true;
       });
     });
@@ -162,52 +165,149 @@ class _ProductListPageState extends State<ProductListPage2> {
                               ),
                               // sort & Filter
                               Padding(
-                                padding:  EdgeInsets.symmetric(horizontal: 2.w),
+                                padding: EdgeInsets.symmetric(horizontal: 2.w),
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   alignment: Alignment.center,
                                   height: 50.0,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.grey.shade100,
-                                      border: Border.all(color: Colors.grey)
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: Colors.grey.shade100,
+                                    border: Border.all(color: Colors.grey),
                                   ),
                                   child: Row(
                                     children: [
-                                      SizedBox(width: 30.0,),
-                                      Icon(
-                                        CupertinoIcons.sort_down,
-                                        size: 20.sp,
-                                        color: Color(0xff0061b0),
+                                      SizedBox(width: 30.0),
+                                      Theme(
+                                        data: Theme.of(context).copyWith(
+                                          popupMenuTheme: PopupMenuThemeData(
+                                            color: AppColors.primary, // White background for the popup menu
+                                          ),
+                                        ),
+                                        child: PopupMenuButton<String>(
+                                          icon: Icon(
+                                            CupertinoIcons.sort_down,
+                                            size: 20.sp,
+                                            color: Color(0xff0061b0),
+                                          ),
+                                          onSelected: (value) {
+                                            // Select action based on the value chosen
+                                            if (value == "A to Z") {
+                                              print("Sort by A to Z");
+                                            }
+                                          },
+                                          itemBuilder: (context) => [
+                                            PopupMenuItem(
+                                              value: "A to Z",
+                                              child: Text(
+                                                "A to Z",
+                                                style: TextStyle(
+                                                  fontFamily: "task",
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.white
+                                                ),
+                                              ),
+                                            ),
+                                            PopupMenuItem(
+                                              value: "Z to A",
+                                              child: Text(
+                                                "Z to A",
+                                                style: TextStyle(
+                                                  fontFamily: "task",
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  color:Colors.white
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      SizedBox(width: 20.0,),
-                                      Text("Sort By",style:TextStyle(
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        "Sort By",
+                                        style: TextStyle(
                                           fontFamily: "task",
                                           fontSize: 15.0,
                                           fontWeight: FontWeight.w600,
-                                          color: Color(0xff0061b0)
-                                      )),
-                                      SizedBox(width: 20.0,),
-                                      VerticalDivider(
-                                        color: Colors.grey.withOpacity(0.5),  // Change the color of the divider
-                                        thickness: 2,         // Thickness of the divider
-                                        width: 20,            // The width that the divider takes (not its thickness)
-                                        indent: 10,           // Spacing from the top
-                                        endIndent: 10,        // Spacing from the bottom
+                                          color: Color(0xff0061b0),
+                                        ),
                                       ),
-                                      SizedBox(width: 20.0,),
-                                      Icon(Icons.filter_alt_sharp,size: 20.sp,color: Color(0xff0061b0)),
-                                      SizedBox(width: 20.0,),
-                                      Text("Filter By",style:TextStyle(
-                                        fontFamily: "task",
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff0061b0),
-                                      )),
+                                      SizedBox(width: 20.0),
+                                      VerticalDivider(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        thickness: 2,
+                                        width: 20,
+                                        indent: 10,
+                                        endIndent: 10,
+                                      ),
+                                      SizedBox(width: 5.0),
+                                      Theme(
+                                        data: Theme.of(context).copyWith(
+                                          popupMenuTheme: PopupMenuThemeData(
+                                            color: AppColors.primary // White background for the popup menu
+                                          ),
+                                        ),
+                                        child: PopupMenuButton<String>(
+                                          icon: Icon(
+                                            Icons.filter_alt_sharp,
+                                            size: 20.sp,
+                                            color: Color(0xff0061b0),
+                                          ),
+                                          onSelected: (value) {
+                                            if (value == "Price High to Low") {
+                                              print("Filter by Price High to Low");
+                                            }
+                                          },
+                                          itemBuilder: (context) => [
+                                            PopupMenuItem(
+                                              value: "Price High to Low",onTap: (){
+                                                setState(() {
+                                                  filterbysearch("Price High to Low");
+                                                  type=true;
+                                                });
+                                            },
+                                              child: Text(
+                                                "Price High to Low",
+                                                style: TextStyle(
+                                                  fontFamily: "task",
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  color:Colors.white
+                                                ),
+                                              ),
+                                            ),
+                                            PopupMenuItem(
+                                              value: "Price Low to High",
+                                              child: Text(
+                                                "Price Low to High",
+                                                style: TextStyle(
+                                                  fontFamily: "task",
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.white
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        "Filter By",
+                                        style: TextStyle(
+                                          fontFamily: "task",
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xff0061b0),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
                               ),
+
                               SizedBox(
                                 height: 2.h,
                               ),
@@ -230,7 +330,331 @@ class _ProductListPageState extends State<ProductListPage2> {
                             height: 2.h,
                           ),
                         ),
-                        _serch2.text != ''
+                   type? SliverGrid(
+                     gridDelegate:
+                     SliverGridDelegateWithMaxCrossAxisExtent(
+                         maxCrossAxisExtent:
+                         200, // Adjust as needed
+                         mainAxisSpacing:
+                         10.0, // Adjust as needed
+                         crossAxisSpacing:
+                         10.0, // Adjust as needed
+                         childAspectRatio:
+                         6.5 / 10 // Adjust as needed
+                     ),
+                     delegate: SliverChildBuilderDelegate(
+                           (BuildContext context, int index) {
+                         return Stack(
+                           children: [
+                             GestureDetector(
+                               onTap: () {
+                                 Navigator.of(context)
+                                     .push(MaterialPageRoute(
+                                     builder: (context) =>
+                                         productdetailnovartion(
+                                           productid: filterbymodel
+                                               ?.searchResults?[
+                                           index]
+                                               .productID ??
+                                               '',
+                                         )));
+
+                               },
+                               child: Card(
+                                 color: Colors.white,
+                                 child: Column(
+                                   mainAxisAlignment:
+                                   MainAxisAlignment.center,
+                                   crossAxisAlignment:
+                                   CrossAxisAlignment.center,
+                                   children: [
+                                     SizedBox(
+                                       height: 2.h,
+                                     ),
+                                     Container(
+                                       child: CachedNetworkImage(
+                                         imageUrl:
+                                         filterbymodel
+                                             ?.searchResults?[
+                                         index]
+                                             .allImages?.length==0?'': filterbymodel
+                                             ?.searchResults?[
+                                         index]
+                                             .allImages?[0] ??
+                                             '',
+                                         fit: BoxFit.cover,
+                                         height: 11.5.h,
+                                         width: 30.w,
+                                         imageBuilder: (context,
+                                             imageProvider) =>
+                                             Container(
+                                               decoration:
+                                               BoxDecoration(
+                                                 // borderRadius: BorderRadius.circular(10),
+                                                 image:
+                                                 DecorationImage(
+                                                   filterQuality:
+                                                   FilterQuality
+                                                       .high,
+                                                   image:
+                                                   imageProvider,
+                                                   fit: BoxFit.cover,
+                                                 ),
+                                               ),
+                                             ),
+                                         placeholder: (context,
+                                             url) =>
+                                             Center(
+                                                 child:
+                                                 CircularProgressIndicator()),
+                                         errorWidget: (context,
+                                             url, error) =>
+                                             Icon(Icons.error),
+                                       ),
+                                     ),
+                                     SizedBox(
+                                       height: 1.h,
+                                     ),
+                                     Padding(
+                                       padding:
+                                       EdgeInsets.symmetric(
+                                           horizontal: 1.w),
+                                       child: Row(
+                                         mainAxisAlignment:
+                                         MainAxisAlignment
+                                             .center,
+                                         children: [
+                                           Column(
+                                             mainAxisAlignment:
+                                             MainAxisAlignment
+                                                 .center,
+                                             crossAxisAlignment:
+                                             CrossAxisAlignment
+                                                 .center,
+                                             children: [
+                                               SizedBox(
+                                                 width: 30.w,
+                                                 child: Text(
+                                                   textAlign:
+                                                   TextAlign
+                                                       .center,
+                                                   overflow:
+                                                   TextOverflow
+                                                       .ellipsis,
+                                                   maxLines: 1,
+                                                   filterbymodel
+                                                       ?.searchResults?[
+                                                   index]
+                                                       .productName ??
+                                                       '',
+                                                   style: TextStyle(
+                                                       fontSize:
+                                                       11
+                                                           .sp,
+                                                       fontFamily:
+                                                       'task',
+                                                       fontWeight:
+                                                       FontWeight
+                                                           .bold,
+                                                       letterSpacing:
+                                                       1,
+                                                       color: Colors
+                                                           .black),
+                                                 ),
+                                               ),
+                                             ],
+                                           ),
+                                         ],
+                                       ),
+                                     ),
+                                     // Padding(
+                                     //   padding:
+                                     //       EdgeInsets.symmetric(
+                                     //     horizontal: 1.5.w,
+                                     //   ),
+                                     //   child: SizedBox(
+                                     //     width: 35.w,
+                                     //     child: Text(
+                                     //       textAlign:
+                                     //           TextAlign.center,
+                                     //       overflow: TextOverflow
+                                     //           .ellipsis,
+                                     //       maxLines: 2,
+                                     //       brandWiceProductsearchmodel
+                                     //               ?.data?[
+                                     //                   index]
+                                     //               .productShortDesc ??
+                                     //           '',
+                                     //       style: TextStyle(
+                                     //         fontSize: 11.sp,
+                                     //         fontFamily: 'task',
+                                     //         fontWeight:
+                                     //             FontWeight
+                                     //                 .normal,
+                                     //         letterSpacing: 1,
+                                     //         color: Colors.black,
+                                     //       ),
+                                     //     ),
+                                     //   ),
+                                     // ),
+                                     Row(
+                                       mainAxisAlignment:
+                                       MainAxisAlignment
+                                           .center,
+                                       children: [
+                                         Row(
+                                           children: [
+                                             Text(
+                                               '₹' +
+                                                   (filterbymodel
+                                                       ?.searchResults?[
+                                                   index]
+                                                       .productPrice)
+                                                       .toString(),
+                                               style: TextStyle(
+                                                 fontSize: 11.sp,
+                                                 fontFamily:
+                                                 'task',
+                                                 fontWeight:
+                                                 FontWeight
+                                                     .bold,
+                                                 letterSpacing:
+                                                 1,
+                                                 color: Colors
+                                                     .black,
+                                               ),
+                                             ),
+                                             SizedBox(
+                                               width: 1.w,
+                                             ),
+                                             Text(
+                                               '₹' +
+                                                   (filterbymodel
+                                                       ?.searchResults?[
+                                                   index]
+                                                       .productPrice)
+                                                       .toString(),
+                                               style: TextStyle(
+                                                 decoration:
+                                                 TextDecoration
+                                                     .lineThrough,
+                                                 fontSize: 12.sp,
+                                                 fontFamily:
+                                                 'task',
+                                                 fontWeight:
+                                                 FontWeight
+                                                     .normal,
+                                                 letterSpacing:
+                                                 1,
+                                                 color: Colors
+                                                     .black,
+                                               ),
+                                             ),
+                                           ],
+                                         ),
+                                       ],
+                                     ),
+                                     SizedBox(
+                                       height: 1.h,
+                                     ),
+                                     GestureDetector(
+                                       onTap: () {
+                                         Navigator.of(context).push(
+                                             MaterialPageRoute(
+                                                 builder:
+                                                     (context) =>
+                                                     productdetailnovartion(
+                                                       productid: filterbymodel?.searchResults?[index].productID ?? '',
+                                                     )));
+
+                                         //ADD CART API
+                                         // addtocartapi((allsubcatwiceproduct
+                                         //     ?.subcategoriesWiseProduct?[
+                                         // index]
+                                         //     .productID ??
+                                         //     ''));
+                                       },
+                                       child: Container(
+                                         alignment:
+                                         Alignment.center,
+                                         height: 4.h,
+                                         width: 32.w,
+                                         decoration: BoxDecoration(
+                                             borderRadius:
+                                             BorderRadius
+                                                 .circular(
+                                                 10),
+                                             color: Color(0xff0061b0)),
+                                         child: Text(
+                                           "View Product",
+                                           style: TextStyle(
+                                               fontSize: 11.sp,
+                                               color:
+                                               Colors.white),
+                                         ),
+                                       ),
+                                     ),
+                                   ],
+                                 ),
+                               ),
+                             ),
+                             Positioned(
+                                 left: 37.w,
+                                 top: 1.h,
+                                 child: GestureDetector(
+                                   onTap: () {
+                                     usermodal?.userId == "" ||
+                                         usermodal?.userId ==
+                                             null
+                                         ? Navigator.of(context)
+                                         .push(MaterialPageRoute(
+                                         builder:
+                                             (context) =>
+                                             LoginPage2()))
+                                         : filterbymodel
+                                         ?.searchResults?[
+                                     index]
+                                         .wishlist ==
+                                         1
+                                         ? removewishlistap(
+                                         (filterbymodel
+                                             ?.searchResults?[
+                                         index]
+                                             .productID)
+                                             .toString())
+                                         : addwishlistap(
+                                         (filterbymodel
+                                             ?.searchResults?[
+                                         index]
+                                             .productID)
+                                             .toString());
+                                   },
+                                   child: Icon(
+                                     filterbymodel
+                                         ?.searchResults?[
+                                     index]
+                                         .wishlist ==
+                                         1
+                                         ? Icons.favorite
+                                         : Icons
+                                         .favorite_outline,
+                                     size: 20.sp,
+                                     color: filterbymodel
+                                         ?.searchResults?[
+                                     index]
+                                         .wishlist ==
+                                         1
+                                         ? Colors.red
+                                         : Colors.black,
+                                   ),
+                                 )),
+                           ],
+                         );
+                       },
+                       childCount: filterbymodel
+                           ?.searchResults?.length,
+                     ),
+                   ):_serch2.text != ''
                             ?
                         brandWiceProductsearchmodel?.data?.length == 0 ||
                             brandWiceProductsearchmodel?.data?.length ==
@@ -1127,17 +1551,17 @@ class _ProductListPageState extends State<ProductListPage2> {
               brandWiceProductmodel?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
-              isLoading = false;
+              isLoading = false; type=false;
             });
           } else {
             setState(() {
-              isLoading = false;
+              isLoading = false; type=false;
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
+          isLoading = false; type=false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -1160,16 +1584,53 @@ class _ProductListPageState extends State<ProductListPage2> {
               brandWiceProductsearchmodel?.status == "success") {
             setState(() {
               isLoading = false;
+              type=false;
             });
           } else {
             setState(() {
               isLoading = false;
+              type=false;
             });
           }
         });
       } else {
         setState(() {
           isLoading = false;
+          type=false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
+  filterbysearch(String value) async {
+    final Map<String, String> data = {};
+    data['User_id'] = (usermodal?.userId).toString();
+    data['priceSort'] = value.toString();
+    print('AA dada : ${data}');
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().filterserchapi(data).then((response) async {
+          filterbymodel =
+              FilterbyModel.fromJson(json.decode(response.body));
+          print(filterbymodel?.status);
+          if (response.statusCode == 200 &&
+              filterbymodel?.status == "success") {
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }

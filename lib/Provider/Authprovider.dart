@@ -305,7 +305,22 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
+  // fliter by serach
 
+  Future<http.Response> filterserchapi( Map<String, String> bodyData) async {
+    const url = "$baseUrl/filter_low_to_high";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
 
 
 

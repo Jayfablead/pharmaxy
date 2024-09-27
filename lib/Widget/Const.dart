@@ -30,6 +30,7 @@ import 'package:ecommerce/Modal/DeliveredOrderModal.dart';
 import 'package:ecommerce/Modal/DisIncrementModal.dart';
 import 'package:ecommerce/Modal/EditShippingAdd.dart';
 import 'package:ecommerce/Modal/EditprofileModal.dart';
+import 'package:ecommerce/Modal/FilterbyModel.dart';
 import 'package:ecommerce/Modal/ForgotModal.dart';
 import 'package:ecommerce/Modal/IncrementModal.dart';
 import 'package:ecommerce/Modal/MainCatModal.dart';
@@ -166,7 +167,7 @@ PaidOrderModel?paidorderModel;
 ShippedOrderModel?shippedorderModel;
 RecentBlogModel?recentblogModel;
 CartcountModel?cartcountmodel;
-
+FilterbyModel?filterbymodel;
 
 //Prit Api
 RequestformModel? requestformModel;
