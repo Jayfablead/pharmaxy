@@ -17,6 +17,7 @@ import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -1787,6 +1788,7 @@ class _CartPageState extends State<CartPage> {
 
 
   applycoupon() async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
     data['Coupon'] = _serch.text.toString();
@@ -1798,6 +1800,7 @@ class _CartPageState extends State<CartPage> {
           print(couponmodel?.status);
           if (response.statusCode == 200 &&
               couponmodel?.status == "success") {
+            EasyLoading.showSuccess("Coupon Applied");
 
             setState(() {
               cpupon =true;
@@ -1809,7 +1812,7 @@ class _CartPageState extends State<CartPage> {
               isLoading = false;
             });
           } else {
-            buildErrorDialog(context, 'Success', couponmodel?.couponMessage ?? "");
+            EasyLoading.showError("Coupon cannot be applied. Please check the conditions");
             setState(() {
               isLoading = false;
             });

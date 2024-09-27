@@ -385,7 +385,7 @@ class _LoginPage2State extends State<LoginPage2> {
               print(carti.length);
               EasyLoading.showSuccess("Login Success");
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => HomePage(sel: 0,)));
+                    builder: (context) => HomePage(sel: 1,)));
               if (carti.length != 0) {
                 print('batli Bhareli');
                 for (int index = 0; index < carti.length; index++) {

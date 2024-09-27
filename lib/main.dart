@@ -15,6 +15,18 @@ void main() async {
   configLoading();
 }
 
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..backgroundColor = Colors.pink
+    ..progressColor = Colors.pink
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.light
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..maskColor = Colors.pink
+    ..userInteractions = false;
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
