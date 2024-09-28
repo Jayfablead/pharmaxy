@@ -25,9 +25,10 @@ class ProductListPage extends StatefulWidget {
   String? subcatid;
   String? allcatid;
   String? selid;
+  String? name;
 
 
-  ProductListPage({super.key, this.catid, this.subcatid, this.allcatid,this.selid});
+  ProductListPage({super.key, this.catid, this.subcatid, this.allcatid,this.selid,this.name});
 
   @override
   State<ProductListPage> createState() => _ProductListPageState();
@@ -101,12 +102,16 @@ class _ProductListPageState extends State<ProductListPage> {
                                           Icons.arrow_back_ios_new_rounded,
                                           size: 16.sp,
                                         )),
-                                    Text(
-                                      "Product List",
-                                      style: TextStyle(
-                                        fontSize: 13.sp,
-                                        fontFamily: "task",
-                                        fontWeight: FontWeight.bold,
+                                    SizedBox(
+                                      width: 50.w,
+                                      child: Text(
+                                          widget.name.toString(),
+                                        style: TextStyle(
+                                          overflow: TextOverflow.ellipsis,
+                                          fontSize: 12.sp,
+                                          fontFamily: "task",
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                     Row(

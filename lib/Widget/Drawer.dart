@@ -703,59 +703,59 @@ class _drawer1State extends State<drawer1> {
                         ),
                       ),
                       // Chat
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      InkWell(
-                        // onTap: () {
-                        //   Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => Chatscreen(),
-                        //   ));
-                        // },
-                        child: Container(
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 6.w,
-                              ),
-                              Container(
-                                width: 64.w,
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          CupertinoIcons.chat_bubble_fill,
-                                          size: 16.sp,
-                                          color: AppColors.primary,
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        Text(
-                                          "Chat",
-                                          style: TextStyle(
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.w500,
-                                            fontFamily: 'task',
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Icon(
-                                      Icons.chevron_right_rounded,
-                                      color: Colors.black,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // SizedBox(
+                      //   height: 2.h,
+                      // ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     Navigator.of(context).push(MaterialPageRoute(
+                      //       builder: (context) => Chatscreen(orderId: "",),
+                      //     ));
+                      //   },
+                      //   child: Container(
+                      //     child: Row(
+                      //       children: [
+                      //         SizedBox(
+                      //           width: 6.w,
+                      //         ),
+                      //         Container(
+                      //           width: 64.w,
+                      //           child: Row(
+                      //             mainAxisAlignment:
+                      //             MainAxisAlignment.spaceBetween,
+                      //             children: [
+                      //               Row(
+                      //                 children: [
+                      //                   Icon(
+                      //                     CupertinoIcons.chat_bubble_fill,
+                      //                     size: 16.sp,
+                      //                     color: AppColors.primary,
+                      //                   ),
+                      //                   SizedBox(
+                      //                     width: 2.w,
+                      //                   ),
+                      //                   Text(
+                      //                     "Chat",
+                      //                     style: TextStyle(
+                      //                       fontSize: 12.sp,
+                      //                       fontWeight: FontWeight.w500,
+                      //                       fontFamily: 'task',
+                      //                       color: Colors.black,
+                      //                     ),
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //               Icon(
+                      //                 Icons.chevron_right_rounded,
+                      //                 color: Colors.black,
+                      //               )
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                       // Change Password
                       SizedBox(
                         height: 2.h,

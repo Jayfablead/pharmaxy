@@ -161,15 +161,13 @@ class _All_BrandsState extends State<All_Brands> {
                       // Build each item in the grid
                       return GestureDetector(
                         onTap: () {
-                          // Navigator.of(context).push(
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             SubCateGoryPage(
-                          //               catid: maincatmodal
-                          //                   ?.categories?[index]
-                          //                   .categoryID ??
-                          //                   '',
-                          //             )));
+                          Navigator.of(
+                              context)
+                              .push(MaterialPageRoute(
+                              builder: (context) => ProductListPage2(
+                                allcatid: brandmodel?.data?[index]?. brandID  ?? "",
+                                name: brandmodel?.data?[index]?. brandName  ?? "",
+                              )));
                         },
                         child: Card(
                           // color: Colors.white,
@@ -179,7 +177,6 @@ class _All_BrandsState extends State<All_Brands> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white,
                               ),
-
                               child: Column(
                                 mainAxisAlignment:
                                 MainAxisAlignment.center,
@@ -289,48 +286,6 @@ class _All_BrandsState extends State<All_Brands> {
                                               SizedBox(
                                                 height: 0.8.h,
                                               ),
-                                              // SizedBox(
-                                              //   width: 50.w,
-                                              //   child: Row(
-                                              //     mainAxisAlignment:
-                                              //     MainAxisAlignment
-                                              //         .spaceBetween,
-                                              //     children: [
-                                              //       Container(
-                                              //         padding: EdgeInsets
-                                              //             .only(
-                                              //             left:
-                                              //             1.w),
-                                              //         child:
-                                              //         Container(
-                                              //           width: 47.w,
-                                              //           child: Text(
-                                              //             overflow:
-                                              //             TextOverflow
-                                              //                 .ellipsis,
-                                              //             maxLines:
-                                              //             1,
-                                              //             brandmodel?.data?[index]. == "" ||
-                                              //                 maincatmodal?.categories?[index].categoryDesc ==
-                                              //                     null
-                                              //                 ? "N/A"
-                                              //                 : maincatmodal?.categories?[index].categoryDesc ??
-                                              //                 '',
-                                              //             style: TextStyle(
-                                              //                 color: Colors
-                                              //                     .black,
-                                              //                 fontSize: 11
-                                              //                     .sp,
-                                              //                 fontWeight: FontWeight
-                                              //                     .normal,
-                                              //                 fontFamily:
-                                              //                 "task"),
-                                              //           ),
-                                              //         ),
-                                              //       ),
-                                              //     ],
-                                              //   ),
-                                              // ),
                                               SizedBox(height: 1.h),
                                               Row(
                                                 children: [
@@ -344,6 +299,7 @@ class _All_BrandsState extends State<All_Brands> {
                                                           .push(MaterialPageRoute(
                                                           builder: (context) => ProductListPage2(
                                                             allcatid: brandmodel?.data?[index]?. brandID  ?? "",
+                                                            name: brandmodel?.data?[index]?. brandName  ?? "",
                                                           )));
                                                     },
                                                     child:

@@ -25,8 +25,9 @@ import 'package:sizer/sizer.dart';
 
 class ProductListPage2 extends StatefulWidget {
   String? allcatid;
+  String? name;
 
-  ProductListPage2({super.key, this.allcatid});
+  ProductListPage2({super.key, this.allcatid,this.name});
 
   @override
   State<ProductListPage2> createState() => _ProductListPageState();
@@ -94,12 +95,16 @@ class _ProductListPageState extends State<ProductListPage2> {
                                           Icons.arrow_back_ios_new_rounded,
                                           size: 22.sp,
                                         )),
-                                    Text(
-                                      "Product List",
-                                      style: TextStyle(
-                                        fontSize: 13.sp,
-                                        fontFamily: "task",
-                                        fontWeight: FontWeight.bold,
+                                    SizedBox(
+                                      width: 30.w,
+                                      child: Text(
+                                        overflow: TextOverflow.ellipsis,
+                                      widget.name.toString(),
+                                        style: TextStyle(
+                                          fontSize: 13.sp,
+                                          fontFamily: "task",
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                     Row(

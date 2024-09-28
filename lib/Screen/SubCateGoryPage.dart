@@ -217,6 +217,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                                 index]
                                                             .subCategoryId ??
                                                         '',
+                                                    name:subcatmodal?.subCategories?[index].subCategory ?? '',
                                                   )));
                                     },
                                     child: Card(
@@ -340,34 +341,6 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                               ),
                                                             ),
 
-                                                            // SizedBox(
-                                                            //   width: 50.w,
-                                                            //   child: Row(
-                                                            //     mainAxisAlignment:
-                                                            //     MainAxisAlignment.spaceBetween,
-                                                            //     children: [
-                                                            //       Container(
-                                                            //         padding:
-                                                            //         EdgeInsets.only(left: 1.w),
-                                                            //         child: Container(
-                                                            //           width: 47.w,
-                                                            //           child: Text(
-                                                            //             overflow:
-                                                            //             TextOverflow.ellipsis,
-                                                            //             maxLines: 2,
-                                                            //             cat[index].dec ?? "",
-                                                            //             style: TextStyle(
-                                                            //                 color: Colors.black26,
-                                                            //                 fontSize: 12.sp,
-                                                            //                 fontWeight:
-                                                            //                 FontWeight.w600,
-                                                            //                 fontFamily: "task"),
-                                                            //           ),
-                                                            //         ),
-                                                            //       ),
-                                                            //     ],
-                                                            //   ),
-                                                            // ),
 
                                                             SizedBox(height: 1.h),
                                                             Row(
@@ -380,6 +353,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                                             builder: (context) => ProductListPage(
                                                                                   catid: widget.catid,
                                                                                   subcatid: subcatmodal?.subCategories?[index].subCategoryId ?? '',
+                                                                              name:subcatmodal?.subCategories?[index].subCategory ?? '',
                                                                                 )));
                                                                   },
                                                                   child:

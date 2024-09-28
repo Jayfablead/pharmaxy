@@ -1129,6 +1129,7 @@ class _HomePageState extends State<HomePage> {
                                                           builder: (context) =>
                                                               ProductListPage2(
                                                              allcatid: brandmodel?.data?[index]?. brandID  ?? "",
+                                                                name: brandmodel?.data?[index]?. brandName  ?? "",
                                                               )));
                                                 });
                                                 catwiceproductap();

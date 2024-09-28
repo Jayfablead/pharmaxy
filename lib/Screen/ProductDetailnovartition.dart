@@ -210,7 +210,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                       size: 20.sp,
                                     )),
                                 Text(
-                                  "Product Detail Page",
+                                  "Product Description",
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontFamily: "task",
@@ -234,15 +234,12 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                       },
                                       child: usermodal?.userId == "" ||
                                               usermodal?.userId == null
-                                          ? Text(
-                                              "Login",
-                                              style: TextStyle(
-                                                color: Color(0xff0061b0),
-                                                fontFamily: 'task',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13.sp,
-                                              ),
-                                            )
+                                          ?  Icon(
+                                          CupertinoIcons.person_add,
+                                          size: 21.sp,
+                                          color:  AppColors.primary
+
+                                      )
                                           : Container(
                                               margin: EdgeInsets.symmetric(
                                                   horizontal: 1.w),
@@ -1640,7 +1637,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
           print(addcartmodal?.status);
           if (response.statusCode == 200 && addcartmodal?.status == "success") {
             productdetail2ap();
-            _showDialog(context, "Your item is added in cart");
+            buildErrorDialog(context, '', 'Your item is Added in Cart');
 
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {

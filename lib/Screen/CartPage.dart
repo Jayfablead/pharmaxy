@@ -1052,7 +1052,7 @@ class _CartPageState extends State<CartPage> {
                                                       )),
                                                   Positioned(
                                                     left: 82.w,
-                                                    top: 1.h,
+                                                    top: 0.h,
                                                     child: IconButton(
                                                       icon: Icon(
                                                         Icons.highlight_remove,
