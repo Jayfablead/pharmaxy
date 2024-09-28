@@ -52,6 +52,7 @@ class UserDetails {
   String? userEmailVerified;
   String? userRegistrationDate;
   String? userVerificationCode;
+  String? referCode;
   String? forgotPassKey;
   String? userPhone;
   String? userCountry;
@@ -76,6 +77,7 @@ class UserDetails {
         this.userEmailVerified,
         this.userRegistrationDate,
         this.userVerificationCode,
+        this.referCode,
         this.forgotPassKey,
         this.userPhone,
         this.userCountry,
@@ -100,6 +102,7 @@ class UserDetails {
     userEmailVerified = json['UserEmailVerified'];
     userRegistrationDate = json['UserRegistrationDate'];
     userVerificationCode = json['UserVerificationCode'];
+    referCode = json['refer_code'];
     forgotPassKey = json['forgot_pass_key'];
     userPhone = json['UserPhone'];
     userCountry = json['UserCountry'];
@@ -126,6 +129,7 @@ class UserDetails {
     data['UserEmailVerified'] = this.userEmailVerified;
     data['UserRegistrationDate'] = this.userRegistrationDate;
     data['UserVerificationCode'] = this.userVerificationCode;
+    data['refer_code'] = this.referCode;
     data['forgot_pass_key'] = this.forgotPassKey;
     data['UserPhone'] = this.userPhone;
     data['UserCountry'] = this.userCountry;
@@ -145,9 +149,11 @@ class CheckoutData {
   String? finalTotalWithTax;
   String? coupon;
   String? discount;
-  String? productId;
+  String? referral;
   String? createdAt;
   String? updatedAt;
+  String? shippingTax;
+  String? total;
 
   CheckoutData(
       {this.id,
@@ -157,9 +163,11 @@ class CheckoutData {
         this.finalTotalWithTax,
         this.coupon,
         this.discount,
-        this.productId,
+        this.referral,
         this.createdAt,
-        this.updatedAt});
+        this.updatedAt,
+        this.shippingTax,
+        this.total});
 
   CheckoutData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -169,9 +177,11 @@ class CheckoutData {
     finalTotalWithTax = json['final_total_with_tax'];
     coupon = json['coupon'];
     discount = json['discount'];
-    productId = json['product_id'];
+    referral = json['referral'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    shippingTax = json['shipping_tax'];
+    total = json['total'];
   }
 
   Map<String, dynamic> toJson() {
@@ -183,9 +193,11 @@ class CheckoutData {
     data['final_total_with_tax'] = this.finalTotalWithTax;
     data['coupon'] = this.coupon;
     data['discount'] = this.discount;
-    data['product_id'] = this.productId;
+    data['referral'] = this.referral;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
+    data['shipping_tax'] = this.shippingTax;
+    data['total'] = this.total;
     return data;
   }
 }

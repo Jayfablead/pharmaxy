@@ -5,14 +5,20 @@ class ViewCartModal {
   String? finalTotal;
   String? totalTax;
   String? finalTotalWithTax;
+  String? referralDiscountApplied;
+  String? referralDiscountValue;
+  String? referralDiscountAmount;
 
   ViewCartModal(
       {this.message,
-      this.status,
-      this.cartDetails,
-      this.finalTotal,
-      this.totalTax,
-      this.finalTotalWithTax});
+        this.status,
+        this.cartDetails,
+        this.finalTotal,
+        this.totalTax,
+        this.finalTotalWithTax,
+        this.referralDiscountApplied,
+        this.referralDiscountValue,
+        this.referralDiscountAmount});
 
   ViewCartModal.fromJson(Map<String, dynamic> json) {
     message = json['message'];
@@ -26,6 +32,9 @@ class ViewCartModal {
     finalTotal = json['final_total'];
     totalTax = json['total_tax'];
     finalTotalWithTax = json['final_total_with_tax'];
+    referralDiscountApplied = json['referral_discount_applied'];
+    referralDiscountValue = json['referral_discount_value'];
+    referralDiscountAmount = json['referral_discount_amount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -38,6 +47,9 @@ class ViewCartModal {
     data['final_total'] = this.finalTotal;
     data['total_tax'] = this.totalTax;
     data['final_total_with_tax'] = this.finalTotalWithTax;
+    data['referral_discount_applied'] = this.referralDiscountApplied;
+    data['referral_discount_value'] = this.referralDiscountValue;
+    data['referral_discount_amount'] = this.referralDiscountAmount;
     return data;
   }
 }
@@ -55,6 +67,7 @@ class CartDetails {
   String? shippingID;
   String? productName;
   String? productPrice;
+  String? saleProductPrice;
   String? productCartDesc;
   String? productShortDesc;
   String? productLongDesc;
@@ -67,87 +80,97 @@ class CartDetails {
   String? productDimensions;
   String? productQuantity;
   String? priceProduct;
+  String? isTaxable;
+  String? taxClassId;
+  String? slug;
   String? createdAt;
   String? updatedAt;
-  String? cartProductQuantity;
+  int? cartProductQuantity;
   String? productColor;
   String? productSize;
-  String? productPriceMain;
+  int? productPriceMain;
   String? variationTblId;
   String? cartTblId;
   String? allImages;
 
   CartDetails(
       {this.productID,
-      this.productSKU,
-      this.productType,
-      this.categoryID,
-      this.subCategoryID,
-      this.variationTypeID,
-      this.variationID,
-      this.brandID,
-      this.tagID,
-      this.shippingID,
-      this.productName,
-      this.productPrice,
-      this.productCartDesc,
-      this.productShortDesc,
-      this.productLongDesc,
-      this.productImage,
-      this.productStock,
-      this.productLowStock,
-      this.stockStatus,
-      this.productLive,
-      this.productWeight,
-      this.productDimensions,
-      this.productQuantity,
-      this.priceProduct,
-      this.createdAt,
-      this.updatedAt,
-      this.cartProductQuantity,
-      this.productColor,
-      this.productSize,
-      this.productPriceMain,
-      this.variationTblId,
-      this.cartTblId,
-      this.allImages});
+        this.productSKU,
+        this.productType,
+        this.categoryID,
+        this.subCategoryID,
+        this.variationTypeID,
+        this.variationID,
+        this.brandID,
+        this.tagID,
+        this.shippingID,
+        this.productName,
+        this.productPrice,
+        this.saleProductPrice,
+        this.productCartDesc,
+        this.productShortDesc,
+        this.productLongDesc,
+        this.productImage,
+        this.productStock,
+        this.productLowStock,
+        this.stockStatus,
+        this.productLive,
+        this.productWeight,
+        this.productDimensions,
+        this.productQuantity,
+        this.priceProduct,
+        this.isTaxable,
+        this.taxClassId,
+        this.slug,
+        this.createdAt,
+        this.updatedAt,
+        this.cartProductQuantity,
+        this.productColor,
+        this.productSize,
+        this.productPriceMain,
+        this.variationTblId,
+        this.cartTblId,
+        this.allImages});
 
   CartDetails.fromJson(Map<String, dynamic> json) {
-    productID = json['ProductID']?.toString();
-    productSKU = json['ProductSKU']?.toString();
-    productType = json['ProductType']?.toString();
-    categoryID = json['CategoryID']?.toString();
-    subCategoryID = json['SubCategoryID']?.toString();
-    variationTypeID = json['VariationTypeID']?.toString();
-    variationID = json['VariationID']?.toString();
-    brandID = json['BrandID']?.toString();
-    tagID = json['TagID']?.toString();
-    shippingID = json['ShippingID']?.toString();
-    productName = json['ProductName']?.toString();
-    productPrice = json['ProductPrice']?.toString();
-    productCartDesc = json['ProductCartDesc']?.toString();
-    productShortDesc = json['ProductShortDesc']?.toString();
-    productLongDesc = json['ProductLongDesc']?.toString();
-    productImage = json['ProductImage']?.toString();
-    productStock = json['ProductStock']?.toString();
-    productLowStock = json['ProductLowStock']?.toString();
-    stockStatus = json['Stock_Status']?.toString();
-    productLive = json['ProductLive']?.toString();
-    productWeight = json['product_weight']?.toString();
-    productDimensions = json['product_dimensions']?.toString();
-    productQuantity = json['product_quantity']?.toString();
-    priceProduct = json['price_product']?.toString();
-    createdAt = json['Created_at']?.toString();
-    updatedAt = json['Updated_at']?.toString();
-    cartProductQuantity = json['cart_product_quantity']?.toString();
-    productColor = json['product_color']?.toString();
-    productSize = json['product_size']?.toString();
-    productPriceMain = json['product_price_main']?.toString();
-    variationTblId = json['variation_tbl_id']?.toString();
-    cartTblId = json['cart_tbl_id']?.toString();
-    allImages = json['allImages']?.toString();
+    productID = json['ProductID'];
+    productSKU = json['ProductSKU'];
+    productType = json['ProductType'];
+    categoryID = json['CategoryID'];
+    subCategoryID = json['SubCategoryID'];
+    variationTypeID = json['VariationTypeID'];
+    variationID = json['VariationID'];
+    brandID = json['BrandID'];
+    tagID = json['TagID'];
+    shippingID = json['ShippingID'];
+    productName = json['ProductName'];
+    productPrice = json['ProductPrice'];
+    saleProductPrice = json['Sale_ProductPrice'];
+    productCartDesc = json['ProductCartDesc'];
+    productShortDesc = json['ProductShortDesc'];
+    productLongDesc = json['ProductLongDesc'];
+    productImage = json['ProductImage'];
+    productStock = json['ProductStock'];
+    productLowStock = json['ProductLowStock'];
+    stockStatus = json['Stock_Status'];
+    productLive = json['ProductLive'];
+    productWeight = json['product_weight'];
+    productDimensions = json['product_dimensions'];
+    productQuantity = json['product_quantity'];
+    priceProduct = json['price_product'];
+    isTaxable = json['is_taxable'];
+    taxClassId = json['tax_class_id'];
+    slug = json['slug'];
+    createdAt = json['Created_at'];
+    updatedAt = json['Updated_at'];
+    cartProductQuantity = json['cart_product_quantity'];
+    productColor = json['product_color'];
+    productSize = json['product_size'];
+    productPriceMain = json['product_price_main'];
+    variationTblId = json['variation_tbl_id'];
+    cartTblId = json['cart_tbl_id'];
+    allImages = json['allImages'];
   }
-
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -163,6 +186,7 @@ class CartDetails {
     data['ShippingID'] = this.shippingID;
     data['ProductName'] = this.productName;
     data['ProductPrice'] = this.productPrice;
+    data['Sale_ProductPrice'] = this.saleProductPrice;
     data['ProductCartDesc'] = this.productCartDesc;
     data['ProductShortDesc'] = this.productShortDesc;
     data['ProductLongDesc'] = this.productLongDesc;
@@ -175,6 +199,9 @@ class CartDetails {
     data['product_dimensions'] = this.productDimensions;
     data['product_quantity'] = this.productQuantity;
     data['price_product'] = this.priceProduct;
+    data['is_taxable'] = this.isTaxable;
+    data['tax_class_id'] = this.taxClassId;
+    data['slug'] = this.slug;
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     data['cart_product_quantity'] = this.cartProductQuantity;

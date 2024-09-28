@@ -39,19 +39,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   alignment: Alignment.bottomRight,
                   decoration: BoxDecoration(
                     borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(100)),
+                        BorderRadius.only(bottomLeft: Radius.circular(50),),
                     color:Color(0xff0061b0),
                   ),
-                  height: 37.h,
+                  height: 30.h,
                   width: double.infinity,
                   child: Padding(
                     padding: EdgeInsets.only(right: 9.w, bottom: 2.h),
-                    // child: Text("My Profile",style: TextStyle(
-                    //     fontWeight: FontWeight.bold,
-                    //     fontFamily: 'task',
-                    //     fontSize: 30.sp,
-                    //     color: Colors.white io9o
-                    // ),),
                   ),
                 ),
                 SizedBox(
@@ -231,7 +225,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
             Positioned(
-              top: 15.h,
+              top: 13.h,
               right: 4.w,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25),
@@ -343,7 +337,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Positioned(
               top: 5.h,
-              right: 88.w,
+              right: 83.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -361,7 +355,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Positioned(
               top: 6.h,
-              right: 38.w,
+              right: 37.w,
               child: Text(
                 "My Profile",
                 style: TextStyle(

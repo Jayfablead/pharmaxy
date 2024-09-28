@@ -954,7 +954,7 @@ class _CartPageState extends State<CartPage> {
                                                                                   children: [
                                                                                     InkWell(
                                                                                       onTap: () {
-                                                                                        int.parse(viewcartmodal?.cartDetails?[index].cartProductQuantity ?? '') <= 1 ? buildErrorDialog(context, 'Alert', 'Minimum allowed quantity is 1') : decrement((viewcartmodal?.cartDetails?[index].cartTblId).toString());
+                                                                                        int.parse((viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() ?? '') <= 1 ? buildErrorDialog(context, 'Alert', 'Minimum allowed quantity is 1') : decrement((viewcartmodal?.cartDetails?[index].cartTblId).toString());
                                                                                         // setState(() {
                                                                                         //   age--;
                                                                                         // });
@@ -980,7 +980,7 @@ class _CartPageState extends State<CartPage> {
                                                                                         children: [
                                                                                           Container(
                                                                                             child: Text(
-                                                                                              viewcartmodal?.cartDetails?[index].cartProductQuantity == null ? "1" : (viewcartmodal?.cartDetails?[index].cartProductQuantity).toString(),
+                                                                                              (viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() == null ? "1" : (viewcartmodal?.cartDetails?[index].cartProductQuantity).toString(),
                                                                                               style: TextStyle(
                                                                                                 fontWeight: FontWeight.bold,
                                                                                                 fontFamily: "task",
@@ -996,7 +996,7 @@ class _CartPageState extends State<CartPage> {
                                                                                     ),
                                                                                     InkWell(
                                                                                       onTap: () {
-                                                                                        int.parse(viewcartmodal?.cartDetails?[index].cartProductQuantity ?? '') >= 5
+                                                                                        int.parse((viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() ?? '') >= 5
                                                                                             ? buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 5')
                                                                                             : increment(
                                                                                                 (viewcartmodal?.cartDetails?[index].cartTblId).toString(),
@@ -1284,7 +1284,7 @@ class _CartPageState extends State<CartPage> {
                                                     child: Text(
                                                       cpupon? '₹ ' +
                                                           (couponmodel
-                                                              ?.finalTotal)
+                                                              ?.totalAmount)
                                                               .toString(): '₹ ' +
                                                           (viewcartmodal
                                                               ?.finalTotal)
@@ -1311,7 +1311,6 @@ class _CartPageState extends State<CartPage> {
                                               SizedBox(
                                                 height: 1.h,
                                               ),
-
                                               Row(
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -1366,7 +1365,60 @@ class _CartPageState extends State<CartPage> {
                                               SizedBox(
                                                 height: 1.h,
                                               ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      left: 3.w,
+                                                    ),
+                                                    child: Text(
+                                                      'Agent Discount : ',
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 11.sp,
+                                                        color: Colors.grey.shade800,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      right: 3.w,
+                                                    ),
+                                                    child: Text(
+                                                      cpupon? '₹ ' +
+                                                          (couponmodel
+                                                              ?.agentDiscountApplied)
+                                                              .toString(): '₹ ' +
+                                                          (viewcartmodal
+                                                              ?.referralDiscountAmount)
+                                                              .toString(),
 
+                                                      style: TextStyle(
+                                                          fontFamily: "task",
+                                                          fontSize: 10.sp,
+                                                          fontWeight: FontWeight.w600,
+                                                          color: Colors.black87
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 1.h,
+                                              ),
+                                              Divider(
+                                                height: 1,
+                                                color: Colors.grey.shade200,
+                                                indent: 3.w,
+                                                endIndent: 3.w,
+                                              ),
+                                              SizedBox(
+                                                height: 1.h,
+                                              ),
                                               Row(
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -1379,7 +1431,7 @@ class _CartPageState extends State<CartPage> {
                                                     child: Text(
                                                       'Discount Applied : ',
                                                       style: TextStyle(
-                                                        fontFamily: 'task',
+                                                        fontFamily: "task",
                                                         fontSize: 12.sp,
                                                         color: Colors.grey.shade800,
                                                         fontWeight: FontWeight.bold,
@@ -1833,6 +1885,7 @@ class _CartPageState extends State<CartPage> {
     data['final_total_with_tax'] = cpupon?(couponmodel ?.finalTotalWithTax).toString():(viewcartmodal ?.finalTotalWithTax).toString();
     data['coupon'] = _serch.text==null||_serch.text==""?"":_serch.text.trim().toString();
     data['discount'] = cpupon?(couponmodel?.discountApplied).toString():"";
+    data['referral'] =cpupon?(couponmodel ?.agentDiscountApplied).toString():(viewcartmodal ?.referralDiscountAmount).toString();
     print("sdfdsfsdsfdsf${data}");
     checkInternet().then((internet) async {
       if (internet) {

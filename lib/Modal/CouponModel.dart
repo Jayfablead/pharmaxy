@@ -2,20 +2,24 @@ class CouponModel {
   String? message;
   String? status;
   List<CartDetails>? cartDetails;
-  String? finalTotal;
+  String? totalAmount;
   String? totalTax;
-  String? finalTotalWithTax;
   String? discountApplied;
+  String? agentDiscountApplied;
+  String? finalTotalWithTax;
+  String? allTotal;
   String? couponMessage;
 
   CouponModel(
       {this.message,
         this.status,
         this.cartDetails,
-        this.finalTotal,
+        this.totalAmount,
         this.totalTax,
-        this.finalTotalWithTax,
         this.discountApplied,
+        this.agentDiscountApplied,
+        this.finalTotalWithTax,
+        this.allTotal,
         this.couponMessage});
 
   CouponModel.fromJson(Map<String, dynamic> json) {
@@ -27,10 +31,12 @@ class CouponModel {
         cartDetails!.add(new CartDetails.fromJson(v));
       });
     }
-    finalTotal = json['final_total'];
+    totalAmount = json['total_amount'];
     totalTax = json['total_tax'];
-    finalTotalWithTax = json['final_total_with_tax'];
     discountApplied = json['discount_applied'];
+    agentDiscountApplied = json['Agent_discount_applied'];
+    finalTotalWithTax = json['final_total_with_tax'];
+    allTotal = json['all_total'];
     couponMessage = json['coupon_message'];
   }
 
@@ -41,10 +47,12 @@ class CouponModel {
     if (this.cartDetails != null) {
       data['cart_details'] = this.cartDetails!.map((v) => v.toJson()).toList();
     }
-    data['final_total'] = this.finalTotal;
+    data['total_amount'] = this.totalAmount;
     data['total_tax'] = this.totalTax;
-    data['final_total_with_tax'] = this.finalTotalWithTax;
     data['discount_applied'] = this.discountApplied;
+    data['Agent_discount_applied'] = this.agentDiscountApplied;
+    data['final_total_with_tax'] = this.finalTotalWithTax;
+    data['all_total'] = this.allTotal;
     data['coupon_message'] = this.couponMessage;
     return data;
   }
@@ -56,36 +64,36 @@ class CartDetails {
   String? productType;
   String? categoryID;
   String? subCategoryID;
-  String? variationTypeID;
-  String? variationID;
+  Null? variationTypeID;
+  Null? variationID;
   String? brandID;
-  String? tagID;
+  Null? tagID;
   String? shippingID;
   String? productName;
   String? productPrice;
   String? saleProductPrice;
-  String? productCartDesc;
+  Null? productCartDesc;
   String? productShortDesc;
   String? productLongDesc;
   String? productImage;
   String? productStock;
-  String? productLowStock;
+  Null? productLowStock;
   String? stockStatus;
   String? productLive;
   String? productWeight;
   String? productDimensions;
-  String? productQuantity;
-  String? priceProduct;
+  Null? productQuantity;
+  Null? priceProduct;
   String? isTaxable;
   String? taxClassId;
   String? slug;
   String? createdAt;
   String? updatedAt;
   String? cartProductQuantity;
-  String? productColor;
-  String? productSize;
+  Null? productColor;
+  Null? productSize;
   String? productPriceMain;
-  String? variationTblId;
+  Null? variationTblId;
   String? cartTblId;
   String? allImages;
 

@@ -222,71 +222,96 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                     color: Colors.grey,
                   )
               ),
-              SliverPadding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  // Add padding here
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                        return Container(
-                          margin: EdgeInsets.symmetric(vertical: 0.5.h),
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          alignment: Alignment.center,
-                          height: 15.h,
-                          width: 84.w,
-                          decoration: BoxDecoration(
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 2.h,
+                ),
+              ),
+
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 22.h,
+                  width: 62.w,
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    scrollDirection: Axis.horizontal,
+                    itemCount:blogmodel?.data?.length,  // Change to use dynamic list length
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: (){
+
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Blogdetailspage(
+                                  iteamid: recentblogModel?.data?[index].id ?? '',
+                                  id:recentblogModel?.data?[index].id ?? ''
+                              ),)
+                          );
+                        },
+                        child: Card(
+                          color: Colors.blue.shade50,
+                          elevation: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Color(0xffFFFFFF)
-                          ),
-                          child: Row(
-                            children: [
-                              ClipRRect(
-                                child: CachedNetworkImage(
-                                  imageUrl: blogmodel?.data?[index].image ?? "",
-                                  fit: BoxFit.cover,
-                                  width: 120,
-                                  height: 80,
-                                  errorWidget: (context, url, error) {
-                                    return Icon(Icons.error_rounded);
-                                  },
-                                  placeholder: (context, url) => CircularProgressIndicator(),
+                              color: Colors.white,),
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: 65.w,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      topRight: Radius.circular(10),
+                                    ),
+                                    child: CachedNetworkImage(
+                                      fit: BoxFit.cover,
+                                      imageUrl :recentblogModel
+                                          ?.data?[index]
+                                          .image ??
+                                          '',
+                                      width: 53.w,
+                                      height: 15.h,
+                                      progressIndicatorBuilder: (context, url, progress) =>
+                                          Center(child: CircularProgressIndicator()),
+                                      errorWidget: (context, url, error) => Image.asset('assets/my.png',color: AppColors.primary,),
+                                    ),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              // Image.network(
-                              //  blogmodel?.data?[index].image ?? "",
-                              //   fit: BoxFit.cover,
-                              //   width: 110,
-                              //   height: 110,
-                              // ),
-                              SizedBox(width: 2.w),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 3.5.w),
-                                      child: Text(
-                                        recentblogModel?.data?[index].title ?? "",
-                                        style: TextStyle(
-                                          fontSize: 10.5.sp,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'task',
-                                        ),
+                                SizedBox(
+                                  width: 60.w,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text(
+                                      recentblogModel
+                                          ?.data?[index]
+                                          .title ==
+                                          '' ||
+                                          recentblogModel
+                                              ?.data?[index]
+                                              .title ==
+                                              null
+                                          ? 'N/A'
+                                          :recentblogModel
+                                          ?.data?[index]
+                                          .title ??
+                                          '',
+                                      style: TextStyle(
+                                        fontFamily: 'task',
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        );
-                      },
-                      childCount: recentblogModel?.data?.length ??
-                          0, // Dynamic list length
-                    ),
-                  ))
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              )
             ],
           ),
         ),

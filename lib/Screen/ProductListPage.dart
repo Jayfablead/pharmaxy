@@ -264,13 +264,13 @@ class _ProductListPageState extends State<ProductListPage> {
                                     gridDelegate:
                                         SliverGridDelegateWithMaxCrossAxisExtent(
                                             maxCrossAxisExtent:
-                                                200, // Adjust as needed
+                                            200, // Adjust as needed
                                             mainAxisSpacing:
-                                                10.0, // Adjust as needed
+                                            0.0, // Adjust as needed
                                             crossAxisSpacing:
-                                                10.0, // Adjust as needed
+                                            0.0, // Adjust as needed
                                             childAspectRatio:
-                                                6.5 / 10 // Adjust as needed
+                                            6.5 / 7.5 // Adjust as needed
                                             ),
                                     delegate: SliverChildBuilderDelegate(
                                       (BuildContext context, int index) {
@@ -317,8 +317,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                   .allImages ??
                                                               '',
                                                           fit: BoxFit.cover,
-                                                          height: 11.5.h,
-                                                          width: 30.w,
+                                                          height: 9.5.h,
+                                                          width: 25.w,
                                                           imageBuilder: (context,
                                                                   imageProvider) =>
                                                               Container(
@@ -634,11 +634,11 @@ class _ProductListPageState extends State<ProductListPage> {
                               maxCrossAxisExtent:
                               200, // Adjust as needed
                               mainAxisSpacing:
-                              10.0, // Adjust as needed
+                              0.0, // Adjust as needed
                               crossAxisSpacing:
-                              10.0, // Adjust as needed
+                              0.0, // Adjust as needed
                               childAspectRatio:
-                              6.5 / 9 // Adjust as needed
+                              6.5 / 7.5 // Adjust as needed
                           ),
                           delegate: SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
@@ -703,8 +703,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                                     .productImage1 ??
                                                     '',
                                                 fit: BoxFit.cover,
-                                                height: 11.5.h,
-                                                width: 30.w,
+                                                height: 9.5.h,
+                                                width: 25.w,
                                                 imageBuilder: (context,
                                                     imageProvider) =>
                                                     Container(

@@ -191,6 +191,7 @@ class _HomePageState extends State<HomePage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
+        extendBody: true,
         backgroundColor: bgcolor,
         key: _scaffoldKeyhome,
         drawer: drawer1(),
@@ -410,101 +411,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
 
-                      // SliverToBoxAdapter(
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //     children: [
-                      //       Text(
-                      //         'Offers',
-                      //         style: TextStyle(
-                      //             fontSize: 17.sp,
-                      //             fontWeight: FontWeight.bold,
-                      //             fontFamily: 'task'
-                      //         ),
-                      //       ),
-                      //       TextButton(
-                      //         onPressed: () {},
-                      //         child: Text(
-                      //           'View All',
-                      //           style: TextStyle(
-                      //               color:AppColors.primary,
-                      //               fontFamily: 'task',
-                      //             fontWeight: FontWeight.bold
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-
-                      // SliverToBoxAdapter(
-                      //   child: CarouselSlider(
-                      //     options: CarouselOptions(
-                      //       enlargeFactor: double.minPositive,
-                      //       height: 13.h,
-                      //       enableInfiniteScroll: true,
-                      //       enlargeCenterPage: true,
-                      //       autoPlay: true,
-                      //     ),
-                      //     items: [
-                      //       // Manually inserted image
-                      //       Builder(
-                      //         builder: (BuildContext context) {
-                      //           return GestureDetector(
-                      //             onTap: () {
-                      //               // Define the action when the manually added image is tapped
-                      //             },
-                      //             child: Container(
-                      //               width: MediaQuery.of(context).size.width,
-                      //               margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      //               decoration: BoxDecoration(
-                      //                 borderRadius: BorderRadius.circular(15),
-                      //                 border: Border.all(width: 0.5, color: Colors.black),
-                      //                 color:Colors.blue.shade300,
-                      //               ),
-                      //               child: ClipRRect(
-                      //                 borderRadius: BorderRadius.circular(15),
-                      //                 child: Image.network(
-                      //                   'https://www.pngplay.com/wp-content/uploads/8/Special-offer-Deal-PNG-Clipart-Background.png',  // Manually added image from assets
-                      //                   fit: BoxFit.cover,
-                      //                   color: Colors.white,
-                      //                 ),
-                      //               ),
-                      //             ),
-                      //           );
-                      //         },
-                      //       ),
-                      //       // Add more manually inserted images if needed
-                      //       Builder(
-                      //         builder: (BuildContext context) {
-                      //           return GestureDetector(
-                      //             onTap: () {
-                      //               // Another action for the second manually added image
-                      //             },
-                      //             child: Container(
-                      //               width: MediaQuery.of(context).size.width,
-                      //               margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      //               decoration: BoxDecoration(
-                      //                 borderRadius: BorderRadius.circular(15),
-                      //                 border: Border.all(width: 0.5, color: Colors.black),
-                      //                 color:Colors.blue.shade300,
-                      //               ),
-                      //               child: ClipRRect(
-                      //                 borderRadius: BorderRadius.circular(15),
-                      //                 child: Image.network(
-                      //                   'https://www.pngplay.com/wp-content/uploads/8/Special-offer-Deal-PNG-Clipart-Background.png',  // Another manually added image
-                      //                   fit: BoxFit.cover,
-                      //                   color: Colors.white,
-                      //                 ),
-                      //               ),
-                      //             ),
-                      //           );
-                      //         },
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-
                       SliverToBoxAdapter(
                         child: SizedBox(
                           height: 18.h,
@@ -539,11 +445,11 @@ class _HomePageState extends State<HomePage> {
                                           Padding(
                                             padding: EdgeInsets.only(left: 3.5.w),
                                             child: Text(
-                                              "FLAT ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
+                                              "FLAT ₹ ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
                                               style: TextStyle(
                                                 fontSize: 10.5.sp,
                                                 fontWeight: FontWeight.bold,
-                                                fontFamily: 'task',
+                                                fontFamily: "task",
                                                 color: Colors.white,
                                               ),
                                             ),
@@ -610,41 +516,6 @@ class _HomePageState extends State<HomePage> {
 
 
 
-
-                      // SliverToBoxAdapter(
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //     children: [
-                      //       SizedBox(
-                      //         child: Text(
-                      //           "Shop By Category ",
-                      //           style: TextStyle(
-                      //               fontSize: 16.sp,
-                      //               fontWeight: FontWeight.bold,
-                      //               fontFamily: "task"),
-                      //         ),
-                      //       ),
-                      //       GestureDetector(
-                      //         onTap: () {
-                      //           Navigator.of(context).push(MaterialPageRoute(
-                      //               builder: (context) => CategoryPage()));
-                      //          },
-                      //         child: Container(
-                      //           child: allcatmodal?.categories?.length == 0
-                      //               ? Text("")
-                      //               : Text(
-                      //                   "View All",
-                      //                   style: TextStyle(
-                      //                       fontWeight: FontWeight.bold,
-                      //                       fontSize: 13.5.sp,
-                      //                       color:AppColors.primary,
-                      //                       fontFamily: "task"),
-                      //                 ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
                       SliverToBoxAdapter(
                         child: SizedBox(
                           height: 2.h,
@@ -1338,7 +1209,47 @@ class _HomePageState extends State<HomePage> {
                                 ),
                         ),
                       ),
-
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 2.h,
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Top Selling Products",
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "task",
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ProductList3(
+                                              selid: selected.toString(),
+                                            )));
+                              },
+                              child: Container(
+                                child:   Text(
+                                  "View All",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10.sp,
+                                      color: AppColors.primary,
+                                      fontFamily: "task"),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       _serch.text == ''
                           ? SliverToBoxAdapter()
                           : searchbestsaleModal?.productData?.length != 0 ||
@@ -1691,57 +1602,7 @@ class _HomePageState extends State<HomePage> {
 
                                       ),
                                 ),
-                      name
-                          ? SliverToBoxAdapter(child: Container())
-                          : SliverToBoxAdapter(
-                              child: SizedBox(
-                                height: 1.5.h,
-                              ),
-                            ),
 
-                      name
-                          ? SliverToBoxAdapter(child: Container())
-                          : SliverToBoxAdapter(
-                              child: SizedBox(
-                                height: 1.h,
-                              ),
-                            ),
-                     SliverToBoxAdapter(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Top Selling Products",
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "task",
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ProductList3(
-                                                    selid: selected.toString(),
-                                                  )));
-                                    },
-                                    child: Container(
-                                      child:   Text(
-                                              "View All",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 10.sp,
-                                                  color: AppColors.primary,
-                                                  fontFamily: "task"),
-                                            ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                       name
                           ? SliverToBoxAdapter(child: Container())
                           : SliverToBoxAdapter(
@@ -1749,9 +1610,7 @@ class _HomePageState extends State<HomePage> {
                                 height: 2.h,
                               ),
                             ),
-                      name
-                          ? SliverToBoxAdapter(child: Container())
-                          : wait
+                      wait
                               ? SliverToBoxAdapter(
                                   child: Center(
                                       child: CircularProgressIndicator()),
@@ -1786,13 +1645,13 @@ class _HomePageState extends State<HomePage> {
                                           gridDelegate:
                                               SliverGridDelegateWithMaxCrossAxisExtent(
                                                   maxCrossAxisExtent:
-                                                      180, // Adjust as needed
+                                                  200, // Adjust as needed
                                                   mainAxisSpacing:
-                                                      8.0, // Adjust as needed
+                                                  0.0, // Adjust as needed
                                                   crossAxisSpacing:
-                                                      8, // Adjust as needed
-                                                  childAspectRatio: 3.5 /
-                                                      5 // Adjust as needed
+                                                  0.0, // Adjust as needed
+                                                  childAspectRatio:
+                                                  6.5 / 7.5 // Adjust as needed
                                                   ),
                                           delegate: SliverChildBuilderDelegate(
                                             (BuildContext context, int index) {
@@ -1845,8 +1704,8 @@ class _HomePageState extends State<HomePage> {
                                                                                     index]
                                                                                 .imgData ?? "",
                                                                 // items1[index]['imageUrl']!,
-                                                                height: 12.h,
-                                                                width: 30.w,
+                                                                height: 9.5.h,
+                                                                width: 25.w,
                                                                 imageBuilder:
                                                                     (context,
                                                                             imageProvider) =>
@@ -2285,7 +2144,13 @@ class _HomePageState extends State<HomePage> {
                             },
                           ),
                         ),
-                      )
+                      ),
+
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 9.h,
+                        ),
+                      ),
 
                     ],
                   ),

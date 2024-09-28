@@ -2471,11 +2471,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                     ),
                                   ),
                                   Text(
-                                    "\₹ 0.0",
-                                    // "\$10",
-                                    // chekoutdetailmodal?.checkoutData?[0].totalTax == null||chekoutdetailmodal?.checkoutData?[0].totalTax == ""
-                                    //     ? "N/A"
-                                    //     : '₹' + (chekoutdetailmodal?.checkoutData?[0].totalTax).toString(),
+                                    chekoutdetailmodal?.checkoutData?[0].shippingTax == null||chekoutdetailmodal?.checkoutData?[0].shippingTax == ""
+                                        ? "N/A"
+                                        : '₹' + (chekoutdetailmodal?.checkoutData?[0].shippingTax).toString(),
                                     style: TextStyle(
                                       fontFamily: 'task',
                                       fontSize: 12.sp,
@@ -2503,8 +2501,8 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   ),
                                   Text(
                                     chekoutdetailmodal?.checkoutData?[0].discount == null||chekoutdetailmodal?.checkoutData?[0].discount == ""
-                                        ? "\ ₹ 0.0"
-                                        : '₹ ' + (chekoutdetailmodal?.checkoutData?[0].discount).toString(),
+                                        ? "N/A"
+                                        : '₹' + (chekoutdetailmodal?.checkoutData?[0].discount).toString(),
                                     style: TextStyle(
                                       fontFamily: 'task',
                                       fontSize: 12.sp,
@@ -2513,7 +2511,35 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   ),
                                 ],
                               ),
-
+                              SizedBox(
+                                height: 1.h,
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Agent Discount: ',
+                                    style: TextStyle(
+                                      fontFamily: 'task',
+                                      fontSize: 12.sp,
+                                      color: Colors.grey.shade800,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    chekoutdetailmodal?.checkoutData?[0].referral == null||chekoutdetailmodal?.checkoutData?[0].referral == ""
+                                        ? "N/A"
+                                        : '₹' + (chekoutdetailmodal?.checkoutData?[0].referral).toString(),
+                                    style: TextStyle(
+                                      fontFamily: 'task',
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
