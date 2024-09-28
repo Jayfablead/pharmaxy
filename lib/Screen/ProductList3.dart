@@ -115,15 +115,12 @@ class _ProductList3State extends State<ProductList3> {
                                           },
                                           child: usermodal?.userId == "" ||
                                                   usermodal?.userId == null
-                                              ? Text(
-                                                  "Login",
-                                                  style: TextStyle(
-                                                    color: Color(0xff0061b0),
-                                                    fontFamily: 'task',
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 17.sp,
-                                                  ),
-                                                )
+                                              ?   Icon(
+                                              CupertinoIcons.person_add,
+                                              size: 21.sp,
+                                              color:  AppColors.primary
+
+                                          )
                                               : Container(
                                                   margin: EdgeInsets.symmetric(
                                                       horizontal: 1.w),

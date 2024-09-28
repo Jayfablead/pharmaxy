@@ -12,6 +12,7 @@ import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/bottombar.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -143,15 +144,12 @@ class _CategoryPageState extends State<CategoryPage> {
                                   },
                                   child: usermodal?.userId == "" ||
                                           usermodal?.userId == null
-                                      ? Text(
-                                          "Login",
-                                          style: TextStyle(
-                                            color: Color(0xff0061b0),
-                                            fontFamily: 'task',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13.sp,
-                                          ),
-                                        )
+                                      ?  Icon(
+                                      CupertinoIcons.person_add,
+                                      size: 21.sp,
+                                      color:  AppColors.primary
+
+                                  )
                                       : Container(
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 1.w),

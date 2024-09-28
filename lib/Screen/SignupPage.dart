@@ -24,6 +24,7 @@ TextEditingController email = TextEditingController();
 TextEditingController _password = TextEditingController();
 TextEditingController _confirmpassword = TextEditingController();
 TextEditingController phone = TextEditingController();
+TextEditingController refer = TextEditingController();
 final _formKey = GlobalKey<FormState>();
 
 bool secure = false;
@@ -281,7 +282,7 @@ class _SignupPageState extends State<SignupPage> {
                         Container(
                           width: 85.w,
                           child: TextFormField(
-                            // controller: phone,
+                            controller: refer,
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
                               prefixIcon: Icon(
@@ -541,6 +542,7 @@ class _SignupPageState extends State<SignupPage> {
       data['email'] = email.text.trim().toString();
       data['phone'] = phone.text.trim().toString();
       data['password'] = _password.text.trim().toString();
+      data['refer_code'] = refer.text.trim().toString();
       print(data);
       if (_password.text == _confirmpassword.text) {
         checkInternet().then((internet) async {
@@ -559,6 +561,7 @@ class _SignupPageState extends State<SignupPage> {
                 email.clear();
                 _password.clear();
                 phone.clear();
+                refer.clear();
 
                 print('EE Thay Gyu Hooooo ! ^_^');
 

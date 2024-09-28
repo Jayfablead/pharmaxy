@@ -33,6 +33,7 @@ class SearchResults {
   String? productName;
   String? productShortDesc;
   String? productPrice;
+  String? saleProductPrice;
   List<String>? allImages;
   int? wishlist;
 
@@ -41,6 +42,7 @@ class SearchResults {
         this.productName,
         this.productShortDesc,
         this.productPrice,
+        this.saleProductPrice,
         this.allImages,
         this.wishlist});
 
@@ -49,6 +51,7 @@ class SearchResults {
     productName = json['ProductName'];
     productShortDesc = json['ProductShortDesc'];
     productPrice = json['ProductPrice'];
+    saleProductPrice = json['Sale_ProductPrice'];
     allImages = json['allImages'].cast<String>();
     wishlist = json['wishlist'];
   }
@@ -59,6 +62,7 @@ class SearchResults {
     data['ProductName'] = this.productName;
     data['ProductShortDesc'] = this.productShortDesc;
     data['ProductPrice'] = this.productPrice;
+    data['Sale_ProductPrice'] = this.saleProductPrice;
     data['allImages'] = this.allImages;
     data['wishlist'] = this.wishlist;
     return data;

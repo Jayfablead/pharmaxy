@@ -277,15 +277,17 @@ class _HomePageState extends State<HomePage> {
                                           },
                                           child: usermodal?.userId == "" ||
                                                   usermodal?.userId == null
-                                              ? Text(
-                                                  "Login",
-                                                  style: TextStyle(
-                                                    color: AppColors.primary,
-                                                    fontFamily: 'task',
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12.sp,
+                                              ? Column(
+                                                children: [
+                                                  Icon(
+                                                      CupertinoIcons.person_add,
+                                                      size: 21.sp,
+                                                      color:  AppColors.primary
+
                                                   ),
-                                                )
+
+                                                ],
+                                              )
                                               : Container(
                                                   margin: EdgeInsets.symmetric(
                                                       horizontal: 1.w),
@@ -321,7 +323,9 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                              Positioned(
+                              usermodal?.userId == "" ||
+                                  usermodal?.userId == null
+                                  ?Container():Positioned(
                                   bottom:3.5.h, // Adjust the value based on your layout
                                   right: 17.5.w, // Adjust the value based on your layout
                                   child: GestureDetector(
@@ -337,7 +341,10 @@ class _HomePageState extends State<HomePage> {
                                               Positioned(
                                                 top: 0,
                                                 right: 0,
-                                                child: Container(
+                                                child:  cartcountmodel
+                                                    ?.cartCount ==
+                                                    0?
+                                                 Container(): Container(
                                                   width: 5.w,
                                                   height: 5.w,
                                                   alignment: Alignment.center,

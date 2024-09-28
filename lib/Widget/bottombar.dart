@@ -229,14 +229,25 @@ class _bottombarState extends State<bottombar> {
                       padding: Platform.isAndroid
                           ? EdgeInsets.only(bottom: 1.h)
                           : EdgeInsets.only(bottom: 3.5.h),
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          color: AppColors.primary,
-                          fontFamily: 'task',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13.sp,
-                        ),
+                      child: Column(
+                        children: [
+                          Icon(
+                              CupertinoIcons.person_add,
+                              size: 21.sp,
+                              color: selected == 5
+                                  ? AppColors.primary
+                                  : Colors.black
+                          ),
+                          Text(
+                            "Login",
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "task",
+                              color: selected == 5? AppColors.primary : Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
                     ))
               ],
@@ -522,7 +533,7 @@ class _bottombarState extends State<bottombar> {
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(30),
+                                                                .circular(10),
                                                         color: Colors.white70,
                                                         border: Border.all(
                                                             width: 0.5,
@@ -562,7 +573,7 @@ class _bottombarState extends State<bottombar> {
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(30),
+                                                                .circular(10),
                                                         color:
                                                             AppColors.primary),
                                                     child: Text(

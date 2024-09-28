@@ -23,17 +23,12 @@ class _SpleshScreenState extends State<SpleshScreen> {
     getdata();
     Timer(
         Duration(seconds: 5),
-        () => (usermodal == null)
-            ? Navigator.pushReplacement(
+        () =>  Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LoginPage2(),
-                ))
-            : Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomePage(sel: 0),
+                  builder: (context) =>  HomePage(sel: 0),
                 )));
+
   }
 
   getdata() async {

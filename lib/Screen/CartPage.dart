@@ -16,6 +16,7 @@ import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
@@ -113,7 +114,7 @@ class _CartPageState extends State<CartPage> {
             ? Container()
             : SingleChildScrollView(
               child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 3.w),
                   child: usermodal?.userId == "" || usermodal?.userId == null
                       ? Container(
                           child: FutureBuilder(
@@ -155,14 +156,11 @@ class _CartPageState extends State<CartPage> {
                                               child: Padding(
                                                 padding:
                                                     EdgeInsets.only(bottom: 1.h),
-                                                child: Text(
-                                                  "Login",
-                                                  style: TextStyle(
-                                                    color: Color(0xff0061b0),
-                                                    fontFamily: 'task',
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 13.sp,
-                                                  ),
+                                                child:  Icon(
+                                                    CupertinoIcons.person_add,
+                                                    size: 21.sp,
+                                                    color:  AppColors.primary
+
                                                 ),
                                               ))
                                         ],
@@ -1053,8 +1051,8 @@ class _CartPageState extends State<CartPage> {
                                                         ),
                                                       )),
                                                   Positioned(
-                                                    left: 84.w,
-                                                    top: 0.h,
+                                                    left: 82.w,
+                                                    top: 1.h,
                                                     child: IconButton(
                                                       icon: Icon(
                                                         Icons.highlight_remove,
@@ -1565,7 +1563,7 @@ class _CartPageState extends State<CartPage> {
 
   Widget searchBox() {
     return Container(
-      width: 62.w,
+      width: 61.w,
       padding: EdgeInsets.symmetric(horizontal: 3.w),
       decoration: BoxDecoration(
         color: Colors.grey.shade50,

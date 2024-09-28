@@ -119,15 +119,12 @@ class _ProductListPageState extends State<ProductListPage2> {
                                           },
                                           child: usermodal?.userId == "" ||
                                                   usermodal?.userId == null
-                                              ? Text(
-                                                  "Login",
-                                                  style: TextStyle(
-                                                    color: Color(0xff0061b0),
-                                                    fontFamily: 'task',
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 17.sp,
-                                                  ),
-                                                )
+                                              ?  Icon(
+                                              CupertinoIcons.person_add,
+                                              size: 21.sp,
+                                              color:  AppColors.primary
+
+                                          )
                                               : Container(
                                                   margin: EdgeInsets.symmetric(
                                                       horizontal: 1.w),
@@ -509,7 +506,7 @@ class _ProductListPageState extends State<ProductListPage2> {
                                                    (filterbymodel
                                                        ?.searchResults?[
                                                    index]
-                                                       .productPrice)
+                                                       .saleProductPrice)
                                                        .toString(),
                                                style: TextStyle(
                                                  fontSize: 11.sp,
