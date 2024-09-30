@@ -301,7 +301,7 @@ class _SignupPageState extends State<SignupPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(color: Colors.grey)),
-                              hintText: 'Referred by admin (Optional)',
+                              hintText: 'Referred Code(Optional)',
                               hintStyle: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
                                   fontSize: 12.sp,

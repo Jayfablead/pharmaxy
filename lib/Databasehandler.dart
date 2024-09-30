@@ -42,7 +42,7 @@ class DatabaseHelper {
         VariationTblId TEXT,
         Color TEXT,
         Size TEXT
-        
+       
       )
     ''');
   }

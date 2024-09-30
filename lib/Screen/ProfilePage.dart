@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/EditProfile.dart';
+import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/bottombar.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
@@ -17,6 +18,7 @@ class ProfilePage extends StatefulWidget {
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
+bool isLoading = true;
 
 class _ProfilePageState extends State<ProfilePage> {
   @override
@@ -29,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: bottombar(),
+      bottomNavigationBar: bottombar(selected: 5,),
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -343,13 +345,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => HomePage(sel: 1)));
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_new_outlined,
                         color: Colors.white,
                         size: 20.sp,
-                      )),
+                      )
+                  ),
                 ],
               ),
             ),

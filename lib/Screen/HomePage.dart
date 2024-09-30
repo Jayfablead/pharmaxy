@@ -23,10 +23,12 @@ import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/PrescriptionForm.dart';
 import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
 import 'package:ecommerce/Screen/ProductList3.dart';
+import 'package:ecommerce/Screen/ProductList4.dart';
 import 'package:ecommerce/Screen/ProductListPage.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/RequestDoctorForm.dart';
+import 'package:ecommerce/Screen/Request_Medicine.dart';
 import 'package:ecommerce/Screen/SubCateGoryPage.dart';
 import 'package:ecommerce/Screen/productlistpage2.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -51,7 +53,7 @@ class HomePage extends StatefulWidget {
 
 bool isLoading = true;
 bool name = false;
-bool wait = true;
+bool wait = false;
 TextEditingController _serch = TextEditingController();
 
 class book {
@@ -405,13 +407,19 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
 
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ): SliverToBoxAdapter(
                         child: SizedBox(
                           height: 2.h,
                         ),
                       ),
 
-                      SliverToBoxAdapter(
+                 name?SliverToBoxAdapter(
+                   child: Container(
+                   ),
+                 ):  SliverToBoxAdapter(
                         child: SizedBox(
                           height: 18.h,
                           child: ListView.builder(
@@ -514,15 +522,20 @@ class _HomePageState extends State<HomePage> {
                       ),
 
 
-
-
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):
                       SliverToBoxAdapter(
                         child: SizedBox(
                           height: 2.h,
                         ),
                       ),
 
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ): SliverToBoxAdapter(
                         child: Padding(
                             padding: EdgeInsets.all(3.0),
                             // Adjust padding for the entire row
@@ -532,66 +545,145 @@ class _HomePageState extends State<HomePage> {
                               child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [
-                                  Card(
-                                    elevation: 0,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.white),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              children: [
-                                                SizedBox(
-                                                  width: 110,
-                                                  child: Text(
-                                                    'Order Medicine',
-                                                    style: TextStyle(
-                                                        fontSize: 11.sp,
-                                                        // Adjust the font size
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontFamily: 'task'),
+                                  SizedBox(
+                                    width: 1.w,
+                                  ),
+                                  InkWell(
+                                    onTap: (){
+                                      // Navigator.of(context).push(MaterialPageRoute(
+                                      //     builder: (context) => Request_Medicine()));
+                                    },
+                                    child: Card(
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10)),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Colors.white),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 110,
+                                                    child: Text(
+                                                      'Request Medicine',
+                                                      style: TextStyle(
+                                                          fontSize: 11.sp,
+                                                          // Adjust the font size
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontFamily: "task"),
+                                                    ),
                                                   ),
-                                                ),
-                                                Image.network(
-                                                  'https://4vector.com/i/free-vector-prescription-medicine-clip-art_119936_prescription-medicine-clip-art/Prescription_Medicine_clip_art_hight.png',
-                                                  width: 70,
-                                                  height: 70,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 30,
-                                            width: 200,
-                                            alignment: Alignment.centerLeft,
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(10),
-                                                    bottomRight:
-                                                        Radius.circular(10)),
-                                                color: Colors.red.shade50),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.only(left: 15),
-                                              child: Text(
-                                                'UPTO 24% OFF',
-                                                style: TextStyle(
-                                                    color: Colors.red,
-                                                    fontSize: 9.sp,
-                                                    fontFamily: 'task'),
+                                                  Image.network(
+                                                    'https://www.pngplay.com/wp-content/uploads/9/Medicine-Background-PNG.png',
+                                                    width: 70,
+                                                    height: 70,
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          )
-                                        ],
+                                            Container(
+                                              height: 30,
+                                              width: 200,
+                                              alignment: Alignment.centerLeft,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                      bottomLeft:
+                                                      Radius.circular(10),
+                                                      bottomRight:
+                                                      Radius.circular(10)),
+                                                  color: Colors.red.shade50),
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets.only(left: 15),
+                                                child: Text(
+                                                  'UPTO 24% OFF',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 9.sp,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  InkWell(
+                                    onTap: (){
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => ProductList4()));
+                                    },
+                                    child: Card(
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.white),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 110,
+                                                    child: Text(
+                                                      'Order Medicine',
+                                                      style: TextStyle(
+                                                          fontSize: 11.sp,
+                                                          // Adjust the font size
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontFamily: 'task'),
+                                                    ),
+                                                  ),
+                                                  Image.network(
+                                                    'https://4vector.com/i/free-vector-prescription-medicine-clip-art_119936_prescription-medicine-clip-art/Prescription_Medicine_clip_art_hight.png',
+                                                    width: 70,
+                                                    height: 70,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 30,
+                                              width: 200,
+                                              alignment: Alignment.centerLeft,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(10),
+                                                      bottomRight:
+                                                          Radius.circular(10)),
+                                                  color: Colors.red.shade50),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.only(left: 15),
+                                                child: Text(
+                                                  'UPTO 24% OFF',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 9.sp,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -670,8 +762,6 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-
-
                                   SizedBox(
                                     width: 1.w,
                                   ),
@@ -749,18 +839,27 @@ class _HomePageState extends State<HomePage> {
                               ),
                             )),
                       ),
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):SliverToBoxAdapter(
                         child: SizedBox(
                           height: 0.h,
                         ),
                       ),
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):SliverToBoxAdapter(
                         child: SizedBox(
                           height: 2.h,
                         ),
                       ),
 
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):  SliverToBoxAdapter(
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -789,13 +888,19 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):SliverToBoxAdapter(
                         child: SizedBox(
                           height: 2.h,
                         ),
                       ),
 
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):   SliverToBoxAdapter(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -858,13 +963,19 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):SliverToBoxAdapter(
                         child: SizedBox(
                           height: 3.h,
                         ),
                       ),
 
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):   SliverToBoxAdapter(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -898,19 +1009,24 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ): SliverToBoxAdapter(
                         child: SizedBox(
                           height: 2.h,
                         ),
                       ),
 
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ): SliverToBoxAdapter(
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                           ),
-
                           height: 38.h,
                           child: allcatmodal?.categories?.length == 0
                               ? Center(
@@ -1002,7 +1118,10 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
+                                            name?SliverToBoxAdapter(
+                                              child: Container(
+                                              ),
+                                            ): SizedBox(
                                               height: 1.h,
                                             ),
                                             SizedBox(
@@ -1039,13 +1158,19 @@ class _HomePageState extends State<HomePage> {
                                 ),
                         ),
                       ),
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):SliverToBoxAdapter(
                         child: SizedBox(
                           height: 3.h,
                         ),
                       ),
 
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ): SliverToBoxAdapter(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -1079,12 +1204,18 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ): SliverToBoxAdapter(
                         child: SizedBox(
                           height: 1.h,
                         ),
                       ),
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ): SliverToBoxAdapter(
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -1215,7 +1346,14 @@ class _HomePageState extends State<HomePage> {
                           height: 2.h,
                         ),
                       ),
-                      SliverToBoxAdapter(
+                      bestsellerproductmodal?.productData?.length ==
+                          0 ||
+                          bestsellerproductmodal
+                              ?.productData?.length ==
+                              null
+                          ? SliverToBoxAdapter(
+                          child:Container())
+                          :  SliverToBoxAdapter(
                         child: Row(
                           mainAxisAlignment:
                           MainAxisAlignment.spaceBetween,
@@ -1253,7 +1391,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       _serch.text == ''
                           ? SliverToBoxAdapter()
-                          : searchbestsaleModal?.productData?.length != 0 ||
+                          : searchbestsaleModal?.productData?.length == 0 ||
                                   searchbestsaleModal?.productData?.length ==
                                       null
                               ? SliverToBoxAdapter(
@@ -1276,13 +1414,13 @@ class _HomePageState extends State<HomePage> {
                                   gridDelegate:
                                       SliverGridDelegateWithMaxCrossAxisExtent(
                                           maxCrossAxisExtent:
-                                              200, // Adjust as needed
+                                          200, // Adjust as needed
                                           mainAxisSpacing:
-                                              10.0, // Adjust as needed
+                                          0.0, // Adjust as needed
                                           crossAxisSpacing:
-                                              10.0, // Adjust as needed
+                                          0.0, // Adjust as needed
                                           childAspectRatio:
-                                              6.5 / 11 // Adjust as needed
+                                          6.5 / 7.5 // Adjust as needed
                                           ),
                                   delegate: SliverChildBuilderDelegate(
                                       (BuildContext context, int index) {
@@ -1303,246 +1441,208 @@ class _HomePageState extends State<HomePage> {
                                           },
                                           child: Card(
                                             color: Colors.white,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  height: 2.h,
-                                                ),
-                                                Container(
-                                                  child: CachedNetworkImage(
-                                                    imageUrl:
-                                                        searchbestsaleModal
-                                                                ?.productData?[
-                                                                    index]
-                                                                .imgData ??
-                                                            '',
-                                                    height: 11.5.h,
-                                                    width: 30.w,
-                                                    imageBuilder: (context,
-                                                            imageProvider) =>
-                                                        Container(
-                                                      decoration: BoxDecoration(
-                                                        // borderRadius: BorderRadius.circular(10),
-                                                        image: DecorationImage(
-                                                          filterQuality:
-                                                              FilterQuality
-                                                                  .high,
-                                                          image: imageProvider,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10),
+                                                color: Colors.white
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 2.h,
+                                                  ),
+                                                  Container(
+                                                    child: CachedNetworkImage(
+                                                      imageUrl:
+                                                          searchbestsaleModal
+                                                                  ?.productData?[
+                                                                      index]
+                                                                  .imgData ??
+                                                              '',
+                                                      height: 9.5.h,
+                                                      width: 25.w,
+                                                      imageBuilder: (context,
+                                                              imageProvider) =>
+                                                          Container(
+                                                        decoration: BoxDecoration(
+                                                          // borderRadius: BorderRadius.circular(10),
+                                                          image: DecorationImage(
+                                                            filterQuality:
+                                                                FilterQuality
+                                                                    .high,
+                                                            image: imageProvider,
+                                                          ),
                                                         ),
                                                       ),
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          Center(
+                                                              child:
+                                                                  CircularProgressIndicator()),
+                                                      errorWidget:
+                                                          (context, url, error) =>
+                                                              Icon(Icons.error),
                                                     ),
-                                                    placeholder: (context,
-                                                            url) =>
-                                                        Center(
-                                                            child:
-                                                                CircularProgressIndicator()),
-                                                    errorWidget:
-                                                        (context, url, error) =>
-                                                            Icon(Icons.error),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  height: 1.h,
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 1.w),
-                                                  child: Row(
+                                                  SizedBox(
+                                                    height: 1.h,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.symmetric(
+                                                        horizontal: 1.w),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            SizedBox(
+                                                              width: 30.w,
+                                                              child: Text(
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                maxLines: 1,
+                                                                searchbestsaleModal
+                                                                                ?.productData?[
+                                                                                    index]
+                                                                                .productName ==
+                                                                            "" ||
+                                                                        searchbestsaleModal
+                                                                                ?.productData?[
+                                                                                    index]
+                                                                                .productName ==
+                                                                            null
+                                                                    ? "N/A"
+                                                                    : searchbestsaleModal
+                                                                            ?.productData?[
+                                                                                index]
+                                                                            .productName ??
+                                                                        '',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        11.5.sp,
+                                                                    fontFamily:
+                                                                        'task',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    letterSpacing:
+                                                                        1,
+                                                                    color: Colors
+                                                                        .black),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                        MainAxisAlignment.center,
                                                     children: [
-                                                      Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
+                                                      Row(
                                                         children: [
+                                                          Text(
+                                                            '₹' +
+                                                                (searchbestsaleModal
+                                                                        ?.productData?[
+                                                                            index]
+                                                                        .saleProductPrice)
+                                                                    .toString(),
+                                                            style: TextStyle(
+                                                              fontSize: 11.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight:
+                                                                  FontWeight.bold,
+                                                              letterSpacing: 1,
+                                                              color: Colors.black,
+                                                            ),
+                                                          ),
                                                           SizedBox(
-                                                            width: 30.w,
+                                                            width: 0.5.h,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 0.5.h),
                                                             child: Text(
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              maxLines: 1,
-                                                              searchbestsaleModal
-                                                                              ?.productData?[
-                                                                                  index]
-                                                                              .productName ==
-                                                                          "" ||
-                                                                      searchbestsaleModal
-                                                                              ?.productData?[
-                                                                                  index]
-                                                                              .productName ==
-                                                                          null
-                                                                  ? "N/A"
-                                                                  : searchbestsaleModal
+                                                              '₹' +
+                                                                  (searchbestsaleModal
                                                                           ?.productData?[
                                                                               index]
-                                                                          .productName ??
-                                                                      '',
+                                                                          .productPrice)
+                                                                      .toString(),
                                                               style: TextStyle(
-                                                                  fontSize:
-                                                                      12.5.sp,
-                                                                  fontFamily:
-                                                                      'task',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  letterSpacing:
-                                                                      1,
-                                                                  color: Colors
-                                                                      .black),
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .lineThrough,
+                                                                fontSize: 11.sp,
+                                                                fontFamily:
+                                                                    'task',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                letterSpacing: 1,
+                                                                color:
+                                                                    Colors.black,
+                                                              ),
                                                             ),
                                                           ),
                                                         ],
                                                       ),
                                                     ],
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal: 1.5.w,
+                                                  SizedBox(
+                                                    height: 1.h,
                                                   ),
-                                                  child: SizedBox(
-                                                    width: 35.w,
-                                                    child: Text(
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 2,
-                                                      searchbestsaleModal
-                                                                      ?.productData?[
-                                                                          index]
-                                                                      .productShortDesc ==
-                                                                  "" ||
-                                                              searchbestsaleModal
-                                                                      ?.productData?[
-                                                                          index]
-                                                                      .productShortDesc ==
-                                                                  null
-                                                          ? "N/A"
-                                                          : searchbestsaleModal
-                                                                  ?.productData?[
-                                                                      index]
-                                                                  .productShortDesc ??
-                                                              '',
-                                                      style: TextStyle(
-                                                        fontSize: 12.sp,
-                                                        fontFamily: 'task',
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        letterSpacing: 1,
-                                                        color: Colors.black,
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                   Navigator.of(context).push(
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          productdetailnovartion(
+                                                                            productid:
+                                                                                searchbestsaleModal?.productData?[index].productID ?? '',
+                                                                          )));
+
+                                                    },
+                                                    child: Container(
+                                                      alignment: Alignment.center,
+                                                      height: 4.h,
+                                                      width: 32.w,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          color:
+                                                             AppColors.primary),
+                                                      child: Text(
+                                                        "View Product",
+                                                        style: TextStyle(
+                                                            fontSize: 12.sp,
+                                                            color: Colors.white),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          '₹' +
-                                                              (searchbestsaleModal
-                                                                      ?.productData?[
-                                                                          index]
-                                                                      .saleProductPrice)
-                                                                  .toString(),
-                                                          style: TextStyle(
-                                                            fontSize: 12.sp,
-                                                            fontFamily: 'task',
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            letterSpacing: 1,
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 0.5.h,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 0.5.h),
-                                                          child: Text(
-                                                            '₹' +
-                                                                (searchbestsaleModal
-                                                                        ?.productData?[
-                                                                            index]
-                                                                        .productPrice)
-                                                                    .toString(),
-                                                            style: TextStyle(
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .lineThrough,
-                                                              fontSize: 12.sp,
-                                                              fontFamily:
-                                                                  'task',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              letterSpacing: 1,
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 1.h,
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                 Navigator.of(context).push(
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        productdetailnovartion(
-                                                                          productid:
-                                                                              searchbestsaleModal?.productData?[index].productID ?? '',
-                                                                        )));
-                                                    //ADD CART API
-                                                    // addtocartapi((catwiceproductmodal
-                                                    //     ?.categoriesWiseProduct?[
-                                                    // index]
-                                                    //     .productID)
-                                                    //     .toString());
-                                                  },
-                                                  child: Container(
-                                                    alignment: Alignment.center,
-                                                    height: 4.h,
-                                                    width: 32.w,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        color:
-                                                            Color(0xfff7941d)),
-                                                    child: Text(
-                                                      "View Product",
-                                                      style: TextStyle(
-                                                          fontSize: 12.sp,
-                                                          color: Colors.white),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -1603,30 +1703,30 @@ class _HomePageState extends State<HomePage> {
 
                                       ),
                                 ),
-
                       name
                           ? SliverToBoxAdapter(child: Container())
                           : SliverToBoxAdapter(
                               child: SizedBox(
-                                height: 2.h,
+                                height:  bestsellerproductmodal?.productData?.length ==
+                                    0 ||
+                                    bestsellerproductmodal
+                                        ?.productData?.length ==
+                                        null
+                                    ? 0.h
+                                    :2.h,
                               ),
                             ),
-                      wait
-                              ? SliverToBoxAdapter(
-                                  child: Center(
-                                      child: CircularProgressIndicator()),
-                                )
-                              : bestsellerproductmodal?.productData?.length ==
+                    wait? SliverToBoxAdapter(child: Container()): bestsellerproductmodal?.productData?.length ==
                                           0 ||
                                       bestsellerproductmodal
                                               ?.productData?.length ==
                                           null
                                   ? SliverToBoxAdapter(
                                       child: Container(
-                                      height: 20.h,
+                                      height: 0.h,
                                       child: Center(
                                         child: Text(
-                                          'No Products Available',
+                                          '',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontFamily: 'task',
@@ -1635,13 +1735,6 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ),
                                     ))
-                                  : wait
-                                      ? SliverToBoxAdapter(
-                                          child: Center(
-                                              child:
-                                                  CircularProgressIndicator()
-                                          ),
-                                        )
                                       : SliverGrid(
                                           gridDelegate:
                                               SliverGridDelegateWithMaxCrossAxisExtent(
@@ -2036,7 +2129,10 @@ class _HomePageState extends State<HomePage> {
                                 )
                               : Container()),
 
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ): SliverToBoxAdapter(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -2062,7 +2158,10 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
 
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):SliverToBoxAdapter(
                         child: SizedBox(
                           height: 19.h,
                           width: 60.w,
@@ -2179,10 +2278,12 @@ class _HomePageState extends State<HomePage> {
           if (_serch.text.isEmpty) {
             setState(() {
               name = false;
+              wait=false;
             });
           } else {
             setState(() {
               name = true;
+              wait=true;
             });
           }
           bestsalesserchap(_serch.text);
@@ -2492,19 +2593,17 @@ class _HomePageState extends State<HomePage> {
             print('EE Thay Gyu Hooooo ! ^_^');
 
             setState(() {
-              wait = false;
               isLoading = false;
+
             });
           } else {
             setState(() {
-              wait = false;
               isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          wait = false;
           isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");

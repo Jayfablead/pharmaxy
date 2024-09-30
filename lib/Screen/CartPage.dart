@@ -108,6 +108,7 @@ class _CartPageState extends State<CartPage> {
       scaffold: Scaffold(
         bottomNavigationBar: bottombar(),
         key: _scaffoldKeycart,
+        extendBody: true,
         drawer: drawer1(),
         backgroundColor: bgcolor,
         body: isLoading
@@ -1375,7 +1376,7 @@ class _CartPageState extends State<CartPage> {
                                                       left: 3.w,
                                                     ),
                                                     child: Text(
-                                                      'Agent Discount : ',
+                                                      'Referred Code : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 11.sp,

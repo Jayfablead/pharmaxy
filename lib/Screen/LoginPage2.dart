@@ -437,19 +437,12 @@ class _LoginPage2State extends State<LoginPage2> {
               int.parse(carti[ind].id.toString()),
             );
             print('itemdeleted');
-            setState(() {
-              // isLoading = false;
-            });
           } else {
-            setState(() {
-              // isLoading = false;
-            });
+
           }
         });
       } else {
-        setState(() {
-          // isLoading = false;
-        });
+
         buildErrorDialog(context, 'Error', "Internet Required");
       }
     });

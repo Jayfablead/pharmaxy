@@ -1,11 +1,11 @@
-class FilterbyModel {
+class ShortbyModel {
   String? status;
   String? message;
   List<SearchResults>? searchResults;
 
-  FilterbyModel({this.status, this.message, this.searchResults});
+  ShortbyModel({this.status, this.message, this.searchResults});
 
-  FilterbyModel.fromJson(Map<String, dynamic> json) {
+  ShortbyModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['searchResults'] != null) {
@@ -52,7 +52,7 @@ class SearchResults {
     productShortDesc = json['ProductShortDesc'];
     productPrice = json['ProductPrice'];
     saleProductPrice = json['Sale_ProductPrice'];
-    allImages = json['allImages'] != null ? json['allImages'].cast<String>() : [];
+    allImages = json['allImages'] != null ? List<String>.from(json['allImages']) : [];
     wishlist = json['wishlist'];
   }
 

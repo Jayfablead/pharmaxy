@@ -191,64 +191,64 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           SizedBox(
                             height: 2.5.h,
                           ),
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Patient Last Name",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                TextFormField(
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please Enter The Last Name";
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.text,
-                                  controller: _lastname,
-                                  style: TextStyle(height: 1),
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter Your Last Name ',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.4),
-                                        fontSize: 11.sp,
-                                        fontFamily: "task"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 2.5.h,
-                          ),
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "Patient Last Name",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 12.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       TextFormField(
+                          //         validator: (value) {
+                          //           if (value!.isEmpty) {
+                          //             return "Please Enter The Last Name";
+                          //           }
+                          //           return null;
+                          //         },
+                          //         keyboardType: TextInputType.text,
+                          //         controller: _lastname,
+                          //         style: TextStyle(height: 1),
+                          //         decoration: InputDecoration(
+                          //           enabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           disabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           focusedBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           border: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           hintText: 'Enter Your Last Name ',
+                          //           hintStyle: TextStyle(
+                          //               color: Colors.black.withOpacity(0.4),
+                          //               fontSize: 11.sp,
+                          //               fontFamily: "task"),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 2.5.h,
+                          // ),
                           Container(
                             width: 85.w,
                             child: Column(
@@ -371,118 +371,118 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           SizedBox(
                             height: 2.5.h,
                           ),
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "State",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                TextFormField(
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please Enter Statte";
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.text,
-                                  controller: _state,
-                                  style: TextStyle(height: 1),
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter State',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.4),
-                                        fontSize: 11.sp,
-                                        fontFamily: "task"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 2.5.h,),
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "City",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                TextFormField(
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please Enter City";
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.text,
-                                  controller: _city,
-                                  style: TextStyle(height: 1),
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter City',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.4),
-                                        fontSize: 11.sp,
-                                        fontFamily: "task"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 2.5.h,),
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "State",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 12.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       TextFormField(
+                          //         validator: (value) {
+                          //           if (value!.isEmpty) {
+                          //             return "Please Enter Statte";
+                          //           }
+                          //           return null;
+                          //         },
+                          //         keyboardType: TextInputType.text,
+                          //         controller: _state,
+                          //         style: TextStyle(height: 1),
+                          //         decoration: InputDecoration(
+                          //           enabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           disabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           focusedBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           border: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           hintText: 'Enter State',
+                          //           hintStyle: TextStyle(
+                          //               color: Colors.black.withOpacity(0.4),
+                          //               fontSize: 11.sp,
+                          //               fontFamily: "task"),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(height: 2.5.h,),
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "City",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 11.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       TextFormField(
+                          //         validator: (value) {
+                          //           if (value!.isEmpty) {
+                          //             return "Please Enter City";
+                          //           }
+                          //           return null;
+                          //         },
+                          //         keyboardType: TextInputType.text,
+                          //         controller: _city,
+                          //         style: TextStyle(height: 1),
+                          //         decoration: InputDecoration(
+                          //           enabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           disabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           focusedBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           border: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           hintText: 'Enter City',
+                          //           hintStyle: TextStyle(
+                          //               color: Colors.black.withOpacity(0.4),
+                          //               fontSize: 11.sp,
+                          //               fontFamily: "task"),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(height: 2.5.h,),
                           Container(
                             width: 85.w,
                             child: Column(

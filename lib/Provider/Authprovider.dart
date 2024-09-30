@@ -177,20 +177,20 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
-  // Future<http.Response>allproductapi(Map<String, String> bodyData) async {
-  //   const url = "$baseUrl/allProducts";
-  //   var responseJson;
-  //   final response = await http
-  //       .get(Uri.parse(url),)
-  //       .timeout(
-  //     const Duration(seconds: 30),
-  //     onTimeout: () {
-  //       throw const SocketException('Something went wrong');
-  //     },
-  //   );
-  //   responseJson = responses(response);
-  //   return responseJson;
-  // }
+  Future<http.Response>allproductapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/allProducts";
+    var responseJson;
+    final response = await http
+        .get(Uri.parse(url),)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
 
 
   // Blog api auth
@@ -323,6 +323,24 @@ class authprovider with ChangeNotifier {
   }
 
 
+
+
+  // short by serach
+
+  Future<http.Response> shortsearchapi( Map<String, String> bodyData) async {
+    const url = "$baseUrl/filter_a_to_z";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
 
   // apply coupon api
 

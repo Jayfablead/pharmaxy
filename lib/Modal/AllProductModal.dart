@@ -40,6 +40,7 @@ class AllProducts {
   String? shippingID;
   String? productName;
   String? productPrice;
+  String? saleProductPrice;
   String? productCartDesc;
   String? productShortDesc;
   String? productLongDesc;
@@ -52,38 +53,47 @@ class AllProducts {
   String? productDimensions;
   String? productQuantity;
   String? priceProduct;
+  String? isTaxable;
+  String? taxClassId;
+  String? slug;
   String? createdAt;
   String? updatedAt;
   List<String>? allProductImage;
+  int? wishlist;
 
   AllProducts(
       {this.productID,
-      this.productSKU,
-      this.productType,
-      this.categoryID,
-      this.subCategoryID,
-      this.variationTypeID,
-      this.variationID,
-      this.brandID,
-      this.tagID,
-      this.shippingID,
-      this.productName,
-      this.productPrice,
-      this.productCartDesc,
-      this.productShortDesc,
-      this.productLongDesc,
-      this.productImage,
-      this.productStock,
-      this.productLowStock,
-      this.stockStatus,
-      this.productLive,
-      this.productWeight,
-      this.productDimensions,
-      this.productQuantity,
-      this.priceProduct,
-      this.createdAt,
-      this.updatedAt,
-      this.allProductImage});
+        this.productSKU,
+        this.productType,
+        this.categoryID,
+        this.subCategoryID,
+        this.variationTypeID,
+        this.variationID,
+        this.brandID,
+        this.tagID,
+        this.shippingID,
+        this.productName,
+        this.productPrice,
+        this.saleProductPrice,
+        this.productCartDesc,
+        this.productShortDesc,
+        this.productLongDesc,
+        this.productImage,
+        this.productStock,
+        this.productLowStock,
+        this.stockStatus,
+        this.productLive,
+        this.productWeight,
+        this.productDimensions,
+        this.productQuantity,
+        this.priceProduct,
+        this.isTaxable,
+        this.taxClassId,
+        this.slug,
+        this.createdAt,
+        this.updatedAt,
+        this.allProductImage,
+        this.wishlist});
 
   AllProducts.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];
@@ -98,6 +108,7 @@ class AllProducts {
     shippingID = json['ShippingID'];
     productName = json['ProductName'];
     productPrice = json['ProductPrice'];
+    saleProductPrice = json['Sale_ProductPrice'];
     productCartDesc = json['ProductCartDesc'];
     productShortDesc = json['ProductShortDesc'];
     productLongDesc = json['ProductLongDesc'];
@@ -110,9 +121,13 @@ class AllProducts {
     productDimensions = json['product_dimensions'];
     productQuantity = json['product_quantity'];
     priceProduct = json['price_product'];
+    isTaxable = json['is_taxable'];
+    taxClassId = json['tax_class_id'];
+    slug = json['slug'];
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
     allProductImage = json['AllProductImage'].cast<String>();
+    wishlist = json['wishlist'];
   }
 
   Map<String, dynamic> toJson() {
@@ -129,6 +144,7 @@ class AllProducts {
     data['ShippingID'] = this.shippingID;
     data['ProductName'] = this.productName;
     data['ProductPrice'] = this.productPrice;
+    data['Sale_ProductPrice'] = this.saleProductPrice;
     data['ProductCartDesc'] = this.productCartDesc;
     data['ProductShortDesc'] = this.productShortDesc;
     data['ProductLongDesc'] = this.productLongDesc;
@@ -141,9 +157,13 @@ class AllProducts {
     data['product_dimensions'] = this.productDimensions;
     data['product_quantity'] = this.productQuantity;
     data['price_product'] = this.priceProduct;
+    data['is_taxable'] = this.isTaxable;
+    data['tax_class_id'] = this.taxClassId;
+    data['slug'] = this.slug;
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     data['AllProductImage'] = this.allProductImage;
+    data['wishlist'] = this.wishlist;
     return data;
   }
 }

@@ -59,6 +59,7 @@ import 'package:ecommerce/Modal/SelectColorModal.dart';
 import 'package:ecommerce/Modal/SendmsgModel.dart';
 import 'package:ecommerce/Modal/ShippedOrderModel.dart';
 import 'package:ecommerce/Modal/ShippingAddModal.dart';
+import 'package:ecommerce/Modal/ShortbyModel.dart';
 import 'package:ecommerce/Modal/SignupModal.dart';
 import 'package:ecommerce/Modal/SizeShowModal.dart';
 import 'package:ecommerce/Modal/StateModal.dart';
@@ -168,6 +169,7 @@ ShippedOrderModel?shippedorderModel;
 RecentBlogModel?recentblogModel;
 CartcountModel?cartcountmodel;
 FilterbyModel?filterbymodel;
+ShortbyModel?shortbymodel;
 
 //Prit Api
 RequestformModel? requestformModel;

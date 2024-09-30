@@ -323,112 +323,112 @@ class _Prescriptionform2State extends State<Prescriptionform2> {
                                   ),
                                 ),
                                 SizedBox(height: 2.5.h,),
-                                Container(
-                                  width: 85.w,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Physician Last Name",
-                                        style: TextStyle(
-                                            color: Colors.black87,
-                                            fontFamily: "task",
-                                            fontSize: 13.sp,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(height: 0.5.h,),
-                                      TextFormField(
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return "Please Enter Name";
-                                          }
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.text,
-                                        controller: _doctorlname,
-                                        style: TextStyle(height: 1),
-                                        decoration: InputDecoration(
-                                          enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(10),
-                                              borderSide:
-                                              BorderSide(color: Colors.grey)),
-                                          disabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(10),
-                                              borderSide:
-                                              BorderSide(color: Colors.grey)),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(10),
-                                              borderSide:
-                                              BorderSide(color: Colors.grey)),
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(10),
-                                              borderSide:
-                                              BorderSide(color: Colors.grey)),
-                                          hintText: 'Enter Physician Last Name',
-                                          hintStyle: TextStyle(
-                                              color: Colors.black.withOpacity(0.4),
-                                              fontSize: 11.sp,
-                                              fontFamily: "task"),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 2.5.h,),
-                                Container(
-                                  width: 85.w,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Phycian Phone Number",
-                                        style: TextStyle(
-                                            color: Colors.black87,
-                                            fontFamily: "task",
-                                            fontSize: 13.sp,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(height: 0.5.h,),
-                                      TextFormField(
-                                        keyboardType: TextInputType.phone,
-                                        controller: _phoneno,
-                                        style: TextStyle(height: 1),
-                                        decoration: InputDecoration(
-                                          enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(10),
-                                              borderSide:
-                                              BorderSide(color: Colors.grey)),
-                                          disabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(10),
-                                              borderSide:
-                                              BorderSide(color: Colors.grey)),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(10),
-                                              borderSide:
-                                              BorderSide(color: Colors.grey)),
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(10),
-                                              borderSide:
-                                              BorderSide(color: Colors.grey)),
-                                          hintText: 'Enter Your Phone Number',
-                                          hintStyle: TextStyle(
-                                              color: Colors.black.withOpacity(0.4),
-                                              fontSize: 11.sp,
-                                              fontFamily: "task"),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 2.5.h,),
+                                // Container(
+                                //   width: 85.w,
+                                //   child: Column(
+                                //     crossAxisAlignment: CrossAxisAlignment.start,
+                                //     children: [
+                                //       Text(
+                                //         "Physician Last Name",
+                                //         style: TextStyle(
+                                //             color: Colors.black87,
+                                //             fontFamily: "task",
+                                //             fontSize: 13.sp,
+                                //             fontWeight: FontWeight.bold),
+                                //       ),
+                                //       SizedBox(height: 0.5.h,),
+                                //       TextFormField(
+                                //         validator: (value) {
+                                //           if (value!.isEmpty) {
+                                //             return "Please Enter Name";
+                                //           }
+                                //           return null;
+                                //         },
+                                //         keyboardType: TextInputType.text,
+                                //         controller: _doctorlname,
+                                //         style: TextStyle(height: 1),
+                                //         decoration: InputDecoration(
+                                //           enabledBorder: OutlineInputBorder(
+                                //               borderRadius:
+                                //               BorderRadius.circular(10),
+                                //               borderSide:
+                                //               BorderSide(color: Colors.grey)),
+                                //           disabledBorder: OutlineInputBorder(
+                                //               borderRadius:
+                                //               BorderRadius.circular(10),
+                                //               borderSide:
+                                //               BorderSide(color: Colors.grey)),
+                                //           focusedBorder: OutlineInputBorder(
+                                //               borderRadius:
+                                //               BorderRadius.circular(10),
+                                //               borderSide:
+                                //               BorderSide(color: Colors.grey)),
+                                //           border: OutlineInputBorder(
+                                //               borderRadius:
+                                //               BorderRadius.circular(10),
+                                //               borderSide:
+                                //               BorderSide(color: Colors.grey)),
+                                //           hintText: 'Enter Physician Last Name',
+                                //           hintStyle: TextStyle(
+                                //               color: Colors.black.withOpacity(0.4),
+                                //               fontSize: 11.sp,
+                                //               fontFamily: "task"),
+                                //         ),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
+                                // SizedBox(height: 2.5.h,),
+                                // Container(
+                                //   width: 85.w,
+                                //   child: Column(
+                                //     crossAxisAlignment: CrossAxisAlignment.start,
+                                //     children: [
+                                //       Text(
+                                //         "Phycian Phone Number",
+                                //         style: TextStyle(
+                                //             color: Colors.black87,
+                                //             fontFamily: "task",
+                                //             fontSize: 13.sp,
+                                //             fontWeight: FontWeight.bold),
+                                //       ),
+                                //       SizedBox(height: 0.5.h,),
+                                //       TextFormField(
+                                //         keyboardType: TextInputType.phone,
+                                //         controller: _phoneno,
+                                //         style: TextStyle(height: 1),
+                                //         decoration: InputDecoration(
+                                //           enabledBorder: OutlineInputBorder(
+                                //               borderRadius:
+                                //               BorderRadius.circular(10),
+                                //               borderSide:
+                                //               BorderSide(color: Colors.grey)),
+                                //           disabledBorder: OutlineInputBorder(
+                                //               borderRadius:
+                                //               BorderRadius.circular(10),
+                                //               borderSide:
+                                //               BorderSide(color: Colors.grey)),
+                                //           focusedBorder: OutlineInputBorder(
+                                //               borderRadius:
+                                //               BorderRadius.circular(10),
+                                //               borderSide:
+                                //               BorderSide(color: Colors.grey)),
+                                //           border: OutlineInputBorder(
+                                //               borderRadius:
+                                //               BorderRadius.circular(10),
+                                //               borderSide:
+                                //               BorderSide(color: Colors.grey)),
+                                //           hintText: 'Enter Your Phone Number',
+                                //           hintStyle: TextStyle(
+                                //               color: Colors.black.withOpacity(0.4),
+                                //               fontSize: 11.sp,
+                                //               fontFamily: "task"),
+                                //         ),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
+                                // SizedBox(height: 2.5.h,),
                                 Container(
                                   width: 85.w,
                                   child: Column(
@@ -444,6 +444,7 @@ class _Prescriptionform2State extends State<Prescriptionform2> {
                                       ),
                                       SizedBox(height: 0.5.h,),
                                       TextFormField(
+                                        maxLines: 3,
                                         keyboardType: TextInputType.text,
                                         controller: _medicine,
                                         style: TextStyle(height: 1),

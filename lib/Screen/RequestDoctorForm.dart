@@ -193,64 +193,64 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
                           SizedBox(
                             height: 2.5.h,
                           ),
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Last Name",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                TextFormField(
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please Enter The Last Name";
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.text,
-                                  controller: _lastname,
-                                  style: TextStyle(height: 1),
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter Your Last Name ',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.4),
-                                        fontSize: 11.sp,
-                                        fontFamily: "task"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 2.5.h,
-                          ),
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "Last Name",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 12.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       TextFormField(
+                          //         validator: (value) {
+                          //           if (value!.isEmpty) {
+                          //             return "Please Enter The Last Name";
+                          //           }
+                          //           return null;
+                          //         },
+                          //         keyboardType: TextInputType.text,
+                          //         controller: _lastname,
+                          //         style: TextStyle(height: 1),
+                          //         decoration: InputDecoration(
+                          //           enabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           disabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           focusedBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           border: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           hintText: 'Enter Your Last Name ',
+                          //           hintStyle: TextStyle(
+                          //               color: Colors.black.withOpacity(0.4),
+                          //               fontSize: 11.sp,
+                          //               fontFamily: "task"),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 2.5.h,
+                          // ),
                           Container(
                             width: 85.w,
                             child: Column(

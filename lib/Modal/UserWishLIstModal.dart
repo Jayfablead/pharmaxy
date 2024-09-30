@@ -58,7 +58,7 @@ class WishList {
   String? slug;
   String? createdAt;
   String? updatedAt;
-  String? allImages;
+  List<String>? allImages;
 
   WishList(
       {this.productID,
@@ -124,7 +124,7 @@ class WishList {
     slug = json['slug'];
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
-    allImages = json['allImages'];
+    allImages = json['allImages'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
