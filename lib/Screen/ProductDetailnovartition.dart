@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Databasehandler.dart';
 import 'package:ecommerce/Modal/AddCartModal.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
+import 'package:ecommerce/Modal/Addtocart_withoutuser_Model.dart';
 import 'package:ecommerce/Modal/Cartmodal.dart';
 import 'package:ecommerce/Modal/DeleteReviewModal.dart';
 import 'package:ecommerce/Modal/ProductDetail2Modal.dart';
@@ -12,6 +15,7 @@ import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:ecommerce/Modal/addReviewModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
@@ -63,6 +67,8 @@ int selectedColorIndex = 0;
 int selcted = 0;
 String? price;
 String? price1;
+String? deviceName;
+String? deviceOS;
 
 
 final List<Map<String, String>> items1 = [
@@ -99,12 +105,9 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     // TODO: implement initState
     super.initState();
 
-    setState(() {
-      color = 0;
-      selected = 0;
-      isLoading = true;
-    });
+
     productdetail2ap();
+    getDeviceInfoandStore();
     setState(() {
       isLoading = true;
     });
@@ -132,6 +135,9 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
   @override
   Widget build(BuildContext context) {
     final cartitm = Provider.of<CartProvider>(context);
+
+
+
     addoff() async {
       print("notlog");
       print("notlog ${price.toString()}");
@@ -203,7 +209,13 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                               children: [
                                 IconButton(
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder:
+                                                  (context) =>
+                                                  HomePage(
+                                                    sel: 1,
+                                                  )));
                                     },
                                     icon: Icon(
                                       Icons.arrow_back_ios_rounded,
@@ -443,9 +455,24 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                       color: Color(0xff0061b0),
                                                       fontSize: 10.sp),
                                                 ),
+
+                                                SizedBox(
+                                                  height: 3.h,
+                                                ),
+
+                                                Text(
+                                                 "Price may vary depending on the product batch*",
+                                                  style: TextStyle(
+                                                    fontSize: 10.sp,
+                                                    color: Colors.red,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: "task",
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
+
                                           SizedBox(
                                             height: 6.h,
                                           ),
@@ -560,7 +587,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                               print(usermodal?.userId);
                                               usermodal?.userId == "" ||
                                                       usermodal?.userId == null
-                                                  ? addoff()
+                                                  ? addtocartwithoutlogin()
                                                   : addcartap();
                                             },
                                             child: Container(
@@ -1069,14 +1096,15 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Similar Product",style: TextStyle(
+                            Text("Similar Medicine",style: TextStyle(
                               fontSize: 13.sp,
                               fontFamily: 'task',
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1,
                               color: Colors.black.withOpacity(0.7),
                             ),),
-                            Text("View All",style: TextStyle(
+                            Text("View All",
+                              style: TextStyle(
                               fontSize: 11.sp,
                               fontFamily: 'task',
                               fontWeight: FontWeight.bold,
@@ -1090,7 +1118,6 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                     ),
 
                     SliverToBoxAdapter(child: SizedBox(height: 1.h,)),
-
                     productdetail2modal?.relatedProducts?.length == 0 ||
                         productdetail2modal?.relatedProducts?.length ==
                             null
@@ -1099,7 +1126,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                         height: 30.h,
                         child: Center(
                             child: Text(
-                              'No Products Available',
+                              'No Medicine Available',
                               style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 fontFamily: 'task',
@@ -1127,7 +1154,6 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                         productid:
                                         productdetail2modal?.relatedProducts?[index].productID ?? '',
                                       )));
-
                         },
                         child: Card(
 
@@ -1657,6 +1683,43 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       }
     });
   }
+
+
+
+  addtocartwithoutlogin() async {
+    final Map<String, String> data = {};
+    data['device_id'] = deviceName.toString();
+    data['productID'] = widget.productid.toString();
+    data['product_quantity'] = '1';
+    data['product_price'] =
+        (productdetail2modal?.productData?.saleProductPrice).toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().addcartwithoutloginapi(data).then((response) async {
+          addtocartwithoutuserModel = Addtocart_withoutuser_Model.fromJson(json.decode(response.body));
+          print(addtocartwithoutuserModel?.status);
+          if (response.statusCode == 200 && addtocartwithoutuserModel?.status == "success") {
+            productdetail2ap();
+            buildErrorDialog(context, '', 'Your item is Added in Cart');
+            print('EE Thay Gyu Hooooo ! ^_^');
+            setState(() {
+              // isLoading = false;
+            });
+          } else {
+            setState(() {
+              // isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          // isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
 
   addreviewap() async {
     if (_formKey.currentState!.validate()) {
@@ -2207,5 +2270,29 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       },
     );
   }
+
+
+  Future<void> getDeviceInfoandStore() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      setState(() {
+        deviceName =
+            androidInfo.model; // Device name
+        deviceOS = 'Android ${androidInfo.version.release}';
+      });
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      setState(() {
+        deviceName = iosInfo.name; // Device name
+        deviceOS = 'iOS ${iosInfo.systemVersion}';
+      });
+    }
+    print('Device Name: $deviceName');
+    print('Device OS: $deviceOS');
+  }
+
+
 
 }

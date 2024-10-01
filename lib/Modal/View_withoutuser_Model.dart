@@ -1,26 +1,24 @@
-class CouponModel {
+class View_withoutuser_Model {
   String? message;
   String? status;
   List<CartDetails>? cartDetails;
-  String? totalAmount;
+  String? finalTotal;
   String? handlingCharge;
-  String? discountApplied;
-  String? agentDiscountApplied;
-  String? finalTotalWithHandlingCharge;
-  String? couponMessage;
+  String? finalTotalWithHandling;
+  String? finalTotalWithTax;
+  String? couponDiscountAmount;
 
-  CouponModel(
+  View_withoutuser_Model(
       {this.message,
         this.status,
         this.cartDetails,
-        this.totalAmount,
+        this.finalTotal,
         this.handlingCharge,
-        this.discountApplied,
-        this.agentDiscountApplied,
-        this.finalTotalWithHandlingCharge,
-        this.couponMessage});
+        this.finalTotalWithHandling,
+        this.finalTotalWithTax,
+        this.couponDiscountAmount});
 
-  CouponModel.fromJson(Map<String, dynamic> json) {
+  View_withoutuser_Model.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
     if (json['cart_details'] != null) {
@@ -29,12 +27,11 @@ class CouponModel {
         cartDetails!.add(new CartDetails.fromJson(v));
       });
     }
-    totalAmount = json['total_amount'];
+    finalTotal = json['final_total'];
     handlingCharge = json['handling_charge'];
-    discountApplied = json['discount_applied'];
-    agentDiscountApplied = json['agent_discount_applied'];
-    finalTotalWithHandlingCharge = json['final_total_with_handling_charge'];
-    couponMessage = json['coupon_message'];
+    finalTotalWithHandling = json['final_total_with_handling'];
+    finalTotalWithTax = json['final_total_with_tax'];
+    couponDiscountAmount = json['coupon_discount_amount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -44,13 +41,11 @@ class CouponModel {
     if (this.cartDetails != null) {
       data['cart_details'] = this.cartDetails!.map((v) => v.toJson()).toList();
     }
-    data['total_amount'] = this.totalAmount;
+    data['final_total'] = this.finalTotal;
     data['handling_charge'] = this.handlingCharge;
-    data['discount_applied'] = this.discountApplied;
-    data['agent_discount_applied'] = this.agentDiscountApplied;
-    data['final_total_with_handling_charge'] =
-        this.finalTotalWithHandlingCharge;
-    data['coupon_message'] = this.couponMessage;
+    data['final_total_with_handling'] = this.finalTotalWithHandling;
+    data['final_total_with_tax'] = this.finalTotalWithTax;
+    data['coupon_discount_amount'] = this.couponDiscountAmount;
     return data;
   }
 }
@@ -61,35 +56,33 @@ class CartDetails {
   String? productType;
   String? categoryID;
   String? subCategoryID;
-  Null? variationTypeID;
-  Null? variationID;
+  String? variationTypeID;
+  String? variationID;
   String? brandID;
   String? tagID;
   String? shippingID;
   String? productName;
   String? productPrice;
   String? saleProductPrice;
-  Null? productCartDesc;
+  String? productCartDesc;
   String? productShortDesc;
   String? productLongDesc;
   String? productImage;
   String? productStock;
-  Null? productLowStock;
+  String? productLowStock;
   String? stockStatus;
   String? productLive;
   String? productWeight;
   String? productDimensions;
-  Null? productQuantity;
-  Null? priceProduct;
+  String? productQuantity;
+  String? priceProduct;
   String? isTaxable;
   String? taxClassId;
   String? slug;
-  Null? package;
-  Null? expriceDate;
   String? createdAt;
   String? updatedAt;
-  String? cartProductQuantity;
-  String? productPriceMain;
+  int? cartProductQuantity;
+  int? productPriceMain;
   String? cartTblId;
   String? allImages;
 
@@ -122,8 +115,6 @@ class CartDetails {
         this.isTaxable,
         this.taxClassId,
         this.slug,
-        this.package,
-        this.expriceDate,
         this.createdAt,
         this.updatedAt,
         this.cartProductQuantity,
@@ -160,8 +151,6 @@ class CartDetails {
     isTaxable = json['is_taxable'];
     taxClassId = json['tax_class_id'];
     slug = json['slug'];
-    package = json['package'];
-    expriceDate = json['exprice_date'];
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
     cartProductQuantity = json['cart_product_quantity'];
@@ -200,8 +189,6 @@ class CartDetails {
     data['is_taxable'] = this.isTaxable;
     data['tax_class_id'] = this.taxClassId;
     data['slug'] = this.slug;
-    data['package'] = this.package;
-    data['exprice_date'] = this.expriceDate;
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     data['cart_product_quantity'] = this.cartProductQuantity;

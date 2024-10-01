@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:ecommerce/Modal/AddCartModal.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
+import 'package:ecommerce/Modal/Addtocart_withoutuser_Model.dart';
 import 'package:ecommerce/Modal/AllCatModal.dart';
 import 'package:ecommerce/Modal/AllCouponModal.dart';
 import 'package:ecommerce/Modal/AllProductModal.dart';
@@ -49,6 +50,7 @@ import 'package:ecommerce/Modal/RecentBlogModel.dart';
 import 'package:ecommerce/Modal/RemoveAddressModal.dart';
 import 'package:ecommerce/Modal/RemoveCartModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
+import 'package:ecommerce/Modal/Remove_cart_withoutlogin_Model.dart';
 import 'package:ecommerce/Modal/RequestformModel.dart';
 import 'package:ecommerce/Modal/SaleListSerachModal.dart';
 import 'package:ecommerce/Modal/SalesProductListModal.dart';
@@ -70,9 +72,12 @@ import 'package:ecommerce/Modal/UserSelectAddModal.dart';
 import 'package:ecommerce/Modal/UserWishLIstModal.dart';
 import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
+import 'package:ecommerce/Modal/View_withoutuser_Model.dart';
 import 'package:ecommerce/Modal/bestsellerModel.dart';
 import 'package:ecommerce/Modal/cateModel.dart';
+import 'package:ecommerce/Modal/increment_without_login_model.dart';
 import 'package:ecommerce/Screen/BlocdetailModel.dart';
+import 'package:ecommerce/Screen/decrement_without_login.dart';
 
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -174,6 +179,17 @@ ShortbyModel?shortbymodel;
 //Prit Api
 RequestformModel? requestformModel;
 PrescriptionformModel?prescriptionformModel;
+
+
+
+// without user Apis
+
+Addtocart_withoutuser_Model?addtocartwithoutuserModel;
+View_withoutuser_Model?viewwithoutuserModel;
+Remove_cart_withoutlogin_Model?removecartwithoutloginModel;
+increment_without_login_model1? Incrementwithoutloginmodel;
+decrement_without_login1?Decrementwithoutlogin;
+
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());

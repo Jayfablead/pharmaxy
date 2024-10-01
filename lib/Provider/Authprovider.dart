@@ -482,7 +482,7 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
-
+  // add to cart user login
   Future<http.Response> addcartapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/addtocart";
     var responseJson;
@@ -498,6 +498,25 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
+
+
+  // add to cart without user  login
+  Future<http.Response> addcartwithoutloginapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/withoutlogingaddtocart";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
   Future<http.Response> addReviewApi(Map<String, String> bodyData) async {
     const url = "$baseUrl/add_review";
     var responseJson;
@@ -512,7 +531,7 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
-
+  // view cart list api user wice
   Future<http.Response> viewcartapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/view_cart_list";
     var responseJson;
@@ -528,8 +547,48 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
+
+
+  // view cart list api with out user
+  Future<http.Response> viewcartwithoutloginapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/withoutlogin_view_cart_list";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+  // remove cart user wice
   Future<http.Response> removecartapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/remove_cart";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+
+  // remove cart without login
+  Future<http.Response> removecarwithoutlogintapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/withoutpoginremove_cart";
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -557,9 +616,47 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
-
+  // user wice increment
   Future<http.Response> incrementapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/increment_quantity";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+
+  //   increment without login
+  Future<http.Response> incrementwithoutloginapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/withoutpogin_increment_quantity";
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+
+  //   increment without login
+  Future<http.Response> decrementwithoutloginapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/withoutpogin_decrement_quantity";
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)

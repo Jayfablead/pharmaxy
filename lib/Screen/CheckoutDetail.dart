@@ -1539,7 +1539,9 @@
 //   }
 // }
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Modal/CheckOutModal.dart';
 import 'package:ecommerce/Modal/ChekOutDetailModal.dart';
 import 'package:ecommerce/Modal/PaymentMthodsModal.dart';
@@ -1599,6 +1601,9 @@ String name = '';
 String name1 = '';
 int selectedpayment = 0;
 
+String? deviceName;
+String? deviceOS;
+
 bool isLoading = true;
 
 List<String> genderOptions = ["Male", "Female"];
@@ -1621,9 +1626,10 @@ void MakePayment(String fname, String lname) async {
 class _CheckoutDetailState extends State<CheckoutDetail> {
   @override
   void initState() {
+
     // TODO: implement initState
     super.initState();
-
+    getDeviceInfoandStore();
     void _handlePaymentSuccess(PaymentSuccessResponse response) {
       Fluttertoast.showToast(
           msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
@@ -2883,7 +2889,8 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
 
   checkoutap() {
     final Map<String, String> data = {};
-    data['user_id'] = (usermodal?.userId).toString();
+    data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
+        ?deviceName.toString(): (usermodal?.userId).toString();
     data['shipphing_id'] = widget.addid.toString();
     print(data);
     checkInternet().then((internet) async {
@@ -2891,6 +2898,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
         authprovider().checkoutapi(data).then((response) async {
           chekoutdetailmodal = ChekOutDetailModal.fromJson(json.decode(response.body));
           if (response.statusCode == 200 && chekoutdetailmodal?.status == "success") {
+            print("55555555${data}");
             setState(() {
               isLoading = false;
             });
@@ -3092,5 +3100,24 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     });
   }
 
+  Future<void> getDeviceInfoandStore() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      setState(() {
+        deviceName =
+            androidInfo.model; // Device name
+        deviceOS = 'Android ${androidInfo.version.release}';
+      });
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      setState(() {
+        deviceName = iosInfo.name; // Device name
+        deviceOS = 'iOS ${iosInfo.systemVersion}';
+      });
+    }
+    print('Device Name: $deviceName');
+    print('Device OS: $deviceOS');
+  }
 
 }
