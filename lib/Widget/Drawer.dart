@@ -50,7 +50,6 @@ class _drawer1State extends State<drawer1> {
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      height: 15.h,
                       padding: EdgeInsets.all(3.w),
                       width: widthDrawer,
                       // color: Colors.black.withOpacity(0.3),
@@ -60,38 +59,6 @@ class _drawer1State extends State<drawer1> {
                           SizedBox(
                             height: 2.h,
                           ),
-                          Text(
-                            'Login to View All Details',
-                            style: TextStyle(
-                                fontSize: 12.sp,
-                                fontFamily: 'task',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          SizedBox(
-                            height: 2.h,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => LoginPage2()));
-                            },
-                            child: Container(
-                                alignment: Alignment.center,
-                                height: 4.h,
-                                width: 32.w,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColors.primary,
-                                ),
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      fontSize: 13.sp,
-                                      color: Colors.white,
-                                      fontFamily: "task"),
-                                )),
-                          ),
                         ],
                       ),
                     ),
@@ -100,9 +67,6 @@ class _drawer1State extends State<drawer1> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Divider(
-                        color: Colors.grey,
-                      ),
                       InkWell(
                         onTap: () {
                           Navigator.of(context).pop();
@@ -184,7 +148,7 @@ class _drawer1State extends State<drawer1> {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        Text("Categories",
+                                        Text("Medicine",
                                             style: TextStyle(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w500,
@@ -206,6 +170,57 @@ class _drawer1State extends State<drawer1> {
                       ),
                       SizedBox(
                         height: 2.h,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          setState(() async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginPage2(),
+                                ));
+                          });
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 32.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Row(
+                                      children: [
+                                         Icon(
+                                          Icons.logout,
+                                          color: AppColors.primary,
+                                          size: 20.sp,
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Login",
+                                          style: TextStyle(
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'task',
+                                            color:  AppColors.primary,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       // InkWell(
                       //   onTap: () {

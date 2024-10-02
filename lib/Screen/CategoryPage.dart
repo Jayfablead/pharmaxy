@@ -120,7 +120,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                   size: 25.sp,
                                 )),
                             Text(
-                              "Categories",
+                              "Medicine",
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontFamily: "task",

@@ -67,7 +67,7 @@ class _LoginPage2State extends State<LoginPage2> {
                               bottomLeft: Radius.circular(100)),
                           color: Color(0xff0061b0),
                         ),
-                        height: 37.h,
+                        height: 30.h,
                         width: double.infinity,
                         child: Padding(
                           padding: EdgeInsets.only(right: 9.w, bottom: 2.h),
@@ -319,19 +319,20 @@ class _LoginPage2State extends State<LoginPage2> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Container(
-                                  alignment: Alignment.center,
-                                  height: 4.h,
-                                  width: 30.w,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Color(0xff0061b0)),
-                                  child: Text(
-                                    "Skip..",
-                                    style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.white,
-                                        fontFamily: "task"),
-                                  )),
+                               width: 15.w,
+                                height: 15.w,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100), // Fully rounded container
+                                  color: Color(0xff0061b0),
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward, // Arrow icon instead of text
+                                  size: 23.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+
                             ],
                           ),
                         ),

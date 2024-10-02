@@ -629,7 +629,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 2.w),
                             child: Container(
-                              height: 100,
+                              height: 10.h,
                               alignment: Alignment.center,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
@@ -661,32 +661,25 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                         height: 1.h,
                                       ),
                                       Text(
-                                        "Get ₹ 10.37 additional pharmato",
+                                        "Free Shipping",
                                         style: TextStyle(
                                           fontSize: 11.sp,
                                           fontFamily: "task",
                                           fontWeight: FontWeight.bold
                                         ),
                                       ),
+
                                       Text(
-                                        "Credit with Plus",
-                                        style: TextStyle(
-                                          fontSize: 10.sp,
-                                          fontFamily: "task",
-                                            fontWeight: FontWeight.bold
-                                        ),
-                                      ),
-                                      Text(
-                                        'Enrol now & enjoy FREE delivery',
+                                        'You\'ve got free shipping for ',
                                         style: TextStyle(
                                             fontSize: 10.sp,
                                             fontFamily: "task",
                                             color: Color(0xff0061b0)),
                                       ),
                                       Text(
-                                        'on your order',
+                                        '\₹ 1500',
                                         style: TextStyle(
-                                            fontSize: 12.sp,
+                                            fontSize: 11.sp,
                                             fontFamily: "task",
                                             color: Color(0xff0061b0)),
                                       ),
@@ -703,7 +696,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                             ),
                           ),
                           SizedBox(height: 2.h),
-                          Padding(
+                          usermodal?.userId == "" || usermodal?.userId == null
+                              ?Container(): Padding(
                             padding: EdgeInsets.symmetric(horizontal: 2.w),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -751,7 +745,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                       ),
                     ),
 
-                    viewReviewmodal?.reviewData?.length == 0 ||
+                    usermodal?.userId == "" || usermodal?.userId == null
+                        ?SliverToBoxAdapter():viewReviewmodal?.reviewData?.length == 0 ||
                             viewReviewmodal?.reviewData?.length == null
                         ? SliverToBoxAdapter(
                             child: Center(
@@ -1088,7 +1083,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                               );
                             },
                           ),
-                    SliverToBoxAdapter(child: SizedBox(height: 2.h,)),
+                    usermodal?.userId == "" || usermodal?.userId == null
+                        ?SliverToBoxAdapter(child: SizedBox(height: 0.h,)):SliverToBoxAdapter(child: SizedBox(height: 2.h,)),
 
                     SliverToBoxAdapter(
                       child: Padding(

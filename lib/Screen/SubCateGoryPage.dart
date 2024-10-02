@@ -123,7 +123,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                               ),
                             ),
                             Text(
-                              "Sub Categories",
+                              "Medicine",
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontFamily: "task",
@@ -353,7 +353,7 @@ class _SubCateGoryPageState extends State<SubCateGoryPage> {
                                                                             builder: (context) => ProductListPage(
                                                                                   catid: widget.catid,
                                                                                   subcatid: subcatmodal?.subCategories?[index].subCategoryId ?? '',
-                                                                              name:subcatmodal?.subCategories?[index].subCategory ?? '',
+                                                                                  name:subcatmodal?.subCategories?[index].subCategory ?? '',
                                                                                 )));
                                                                   },
                                                                   child:
