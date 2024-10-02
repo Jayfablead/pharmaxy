@@ -1611,7 +1611,7 @@ List<String> genderOptions = ["Male", "Female"];
 void MakePayment(String fname, String lname) async {
   var options = {
     'key': paymethodmodal?.data?.razorpayData?.keyId ?? '',
-    'amount': double.parse((viewcartmodal?.finalTotalWithTax).toString()) * 100,
+    'amount': double.parse((viewcartmodal?.finalTotalWithCharge).toString()) * 100,
     'name': '${fname} ${lname}',
     'description': 'Fine T-Shirt',
     'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'}
@@ -1669,7 +1669,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     print('Add name2 : ${widget.lastname}');
     print('Address : ${widget.address}');
     Paymethod();
-    checkoutap();
+
     userselectaddap();
   }
 
@@ -1743,7 +1743,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                   ),
                 ),
                 SizedBox(height: 1.h,),
-                Padding(
+               Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: 2.w, vertical: 1.h),
                   child: Column(
@@ -1773,6 +1773,24 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         children: [
                                           Text(
                                             widget.page == "1"
+                                                ? userselectaddmodal
+                                                ?.selectShippingAddress
+                                                ?.lastName ==
+                                                '' ||
+                                                userselectaddmodal
+                                                    ?.selectShippingAddress
+                                                    ?.lastName ==
+                                                    null
+                                                ? ''
+                                                : (userselectaddmodal
+                                                ?.selectShippingAddress
+                                                ?.lastName)
+                                                .toString()
+                                                : widget.address == '' ||
+                                                widget.address ==
+                                                    null
+                                                ? ''
+                                                : widget.page == "1"
                                                 ? (userselectaddmodal
                                                 ?.selectShippingAddress
                                                 ?.firstName)
@@ -1788,8 +1806,26 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           SizedBox(
                                             width: 1.w,
                                           ),
-                                          Text(
-                                            widget.page == "1"
+                                           Text(
+                                             widget.page == "1"
+                                                 ? userselectaddmodal
+                                                 ?.selectShippingAddress
+                                                 ?.lastName ==
+                                                 '' ||
+                                                 userselectaddmodal
+                                                     ?.selectShippingAddress
+                                                     ?.lastName ==
+                                                     null
+                                                 ? 'Please Select Shipping Address'
+                                                 : (userselectaddmodal
+                                                 ?.selectShippingAddress
+                                                 ?.lastName)
+                                                 .toString()
+                                                 : widget.address == '' ||
+                                                 widget.address ==
+                                                     null
+                                                 ? 'Please Select Shipping Address'
+                                                 :widget.page == "1"
                                                 ? (userselectaddmodal
                                                 ?.selectShippingAddress
                                                 ?.lastName)
@@ -1797,7 +1833,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                 : widget.lastname
                                                 .toString(),
                                             style: TextStyle(
-                                                fontSize: 12.sp,
+                                                fontSize: 11.sp,
                                                 fontWeight:
                                                 FontWeight.bold,
                                                 fontFamily: "task"),
@@ -2031,7 +2067,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         buildErrorDialog(
                                             context,
                                             'Sorry',
-                                            'Cash on Delivery is Not Available at this time');
+                                            'Pay after bill generation   is Not Available at this time');
                                       },
                                       child: Container(
                                         padding:
@@ -2060,7 +2096,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                               .center,
                                           children: [
                                             Image.asset(
-                                              "assets/cod2.png",
+                                              "assets/paybill.png",
                                               height: 5.h,
                                               width: 20.w,
                                             ),
@@ -2068,7 +2104,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                               width: 5.w,
                                             ),
                                             Text(
-                                                "Cash On Delivery",
+                                                "Pay after bill generation  ",
                                                 style: TextStyle(
                                                   color:
                                                   Colors.grey,
@@ -2124,15 +2160,15 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                               .center,
                                           children: [
                                             Image.asset(
-                                              "assets/cod1.png",
-                                              height: 5.h,
-                                              width: 19.w,
+                                              "assets/paybill.png",
+                                              height: 6.h,
+                                              width: 20.w,
                                             ),
                                             SizedBox(
-                                              width: 5.w,
+                                              width: 2.w,
                                             ),
                                             Text(
-                                                "Cash On Delivery",
+                                                "Pay after bill generation ",
                                                 style: TextStyle(
                                                     color: Colors
                                                         .black,
@@ -2438,7 +2474,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                 MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Tax : ',
+                                    'Handling Charge : ',
                                     style: TextStyle(
                                       fontFamily: 'task',
                                       fontSize: 12.sp,
@@ -2447,10 +2483,10 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                     ),
                                   ),
                                   Text(
-                                    // "\$10",
-                                    chekoutdetailmodal?.checkoutData?[0].totalTax == null||chekoutdetailmodal?.checkoutData?[0].totalTax == ""
-                                        ? "N/A"
-                                        : '₹' + (chekoutdetailmodal?.checkoutData?[0].totalTax).toString(),
+                                    "\₹5",
+                                    // chekoutdetailmodal?.checkoutData?[0].totalTax == null||chekoutdetailmodal?.checkoutData?[0].totalTax == ""
+                                    //     ? "N/A"
+                                    //     : '₹' + (chekoutdetailmodal?.checkoutData?[0].totalTax).toString(),
                                     style: TextStyle(
                                       fontFamily: 'task',
                                       fontSize: 12.sp,
@@ -2507,7 +2543,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   ),
                                   Text(
                                     chekoutdetailmodal?.checkoutData?[0].discount == null||chekoutdetailmodal?.checkoutData?[0].discount == ""
-                                        ? "N/A"
+                                        ? "\₹ 0"
                                         : '₹' + (chekoutdetailmodal?.checkoutData?[0].discount).toString(),
                                     style: TextStyle(
                                       fontFamily: 'task',
@@ -2520,7 +2556,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                               SizedBox(
                                 height: 1.h,
                               ),
-                              Row(
+                              usermodal?.userId == "" || usermodal?.userId == null?Container():    Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
@@ -2579,9 +2615,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                 ),
                               ),
                               Text(
-                                chekoutdetailmodal?.checkoutData?[0].finalTotalWithTax == null||chekoutdetailmodal?.checkoutData?[0].finalTotalWithTax == ""
+                                chekoutdetailmodal?.checkoutData?[0].total == null||chekoutdetailmodal?.checkoutData?[0].total == ""
                                     ? "N/A"
-                                    : '₹ ' + (chekoutdetailmodal?.checkoutData?[0].finalTotalWithTax).toString(),
+                                    : '₹ ' + (chekoutdetailmodal?.checkoutData?[0].total).toString(),
                                 style: TextStyle(
                                   fontFamily: 'task',
                                   fontSize: 12.sp,
@@ -2889,8 +2925,8 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
 
   checkoutap() {
     final Map<String, String> data = {};
-    data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
-        ?deviceName.toString(): (usermodal?.userId).toString();
+    data['user_id'] =usermodal?.userId == "" || usermodal?.userId == null
+        ?deviceName.toString():usermodal?.userId ?? "";
     data['shipphing_id'] = widget.addid.toString();
     print(data);
     checkInternet().then((internet) async {
@@ -2903,6 +2939,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
               isLoading = false;
             });
           } else {
+            print("55555555${data}");
             setState(() {
               isLoading = false;
             });
@@ -2919,7 +2956,8 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
 
   checkoutcodap() {
     final Map<String, String> data = {};
-    data['user_id'] = (usermodal?.userId).toString();
+    data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
+        ?deviceName.toString():usermodal?.userId ?? "";
     data['payment'] = 'cod';
     data['shipping_address_id'] = widget.addid.toString();
     print(data);
@@ -3010,7 +3048,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     data['expiry_year'] = widget.ey ?? '';
     data['cvv'] = widget.cvv ?? '';
     data['name'] = widget.name ?? '';
-    data['amt'] = (viewcartmodal?.finalTotalWithTax).toString();
+    data['amt'] = (viewcartmodal?.finalTotalWithCharge).toString();
     print(data);
     checkInternet().then((internet) async {
       if (internet) {
@@ -3109,6 +3147,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
             androidInfo.model; // Device name
         deviceOS = 'Android ${androidInfo.version.release}';
       });
+      checkoutap();
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       setState(() {

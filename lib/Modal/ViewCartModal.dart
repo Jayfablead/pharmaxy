@@ -3,8 +3,8 @@ class ViewCartModal {
   String? status;
   List<CartDetails>? cartDetails;
   String? finalTotal;
-  String? totalTax;
-  String? finalTotalWithTax;
+  String? headingCharge;
+  String? finalTotalWithCharge;
   String? referralDiscountApplied;
   String? referralDiscountValue;
   String? referralDiscountAmount;
@@ -14,8 +14,8 @@ class ViewCartModal {
         this.status,
         this.cartDetails,
         this.finalTotal,
-        this.totalTax,
-        this.finalTotalWithTax,
+        this.headingCharge,
+        this.finalTotalWithCharge,
         this.referralDiscountApplied,
         this.referralDiscountValue,
         this.referralDiscountAmount});
@@ -30,8 +30,8 @@ class ViewCartModal {
       });
     }
     finalTotal = json['final_total'];
-    totalTax = json['total_tax'];
-    finalTotalWithTax = json['final_total_with_tax'];
+    headingCharge = json['heading_charge'];
+    finalTotalWithCharge = json['final_total_with_charge'];
     referralDiscountApplied = json['referral_discount_applied'];
     referralDiscountValue = json['referral_discount_value'];
     referralDiscountAmount = json['referral_discount_amount'];
@@ -45,8 +45,8 @@ class ViewCartModal {
       data['cart_details'] = this.cartDetails!.map((v) => v.toJson()).toList();
     }
     data['final_total'] = this.finalTotal;
-    data['total_tax'] = this.totalTax;
-    data['final_total_with_tax'] = this.finalTotalWithTax;
+    data['heading_charge'] = this.headingCharge;
+    data['final_total_with_charge'] = this.finalTotalWithCharge;
     data['referral_discount_applied'] = this.referralDiscountApplied;
     data['referral_discount_value'] = this.referralDiscountValue;
     data['referral_discount_amount'] = this.referralDiscountAmount;
@@ -60,36 +60,39 @@ class CartDetails {
   String? productType;
   String? categoryID;
   String? subCategoryID;
-  String? variationTypeID;
-  String? variationID;
+  Null? variationTypeID;
+  Null? variationID;
   String? brandID;
   String? tagID;
   String? shippingID;
   String? productName;
   String? productPrice;
   String? saleProductPrice;
-  String? productCartDesc;
+  Null? productCartDesc;
   String? productShortDesc;
   String? productLongDesc;
   String? productImage;
   String? productStock;
-  String? productLowStock;
+  Null? productLowStock;
   String? stockStatus;
   String? productLive;
   String? productWeight;
   String? productDimensions;
-  String? productQuantity;
-  String? priceProduct;
+  Null? productQuantity;
+  Null? priceProduct;
   String? isTaxable;
   String? taxClassId;
   String? slug;
+  Null? batch;
+  Null? package;
+  Null? expriceDate;
   String? createdAt;
   String? updatedAt;
   int? cartProductQuantity;
-  String? productColor;
-  String? productSize;
+  Null? productColor;
+  Null? productSize;
   int? productPriceMain;
-  String? variationTblId;
+  Null? variationTblId;
   String? cartTblId;
   String? allImages;
 
@@ -122,6 +125,9 @@ class CartDetails {
         this.isTaxable,
         this.taxClassId,
         this.slug,
+        this.batch,
+        this.package,
+        this.expriceDate,
         this.createdAt,
         this.updatedAt,
         this.cartProductQuantity,
@@ -161,6 +167,9 @@ class CartDetails {
     isTaxable = json['is_taxable'];
     taxClassId = json['tax_class_id'];
     slug = json['slug'];
+    batch = json['batch'];
+    package = json['package'];
+    expriceDate = json['exprice_date'];
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
     cartProductQuantity = json['cart_product_quantity'];
@@ -202,6 +211,9 @@ class CartDetails {
     data['is_taxable'] = this.isTaxable;
     data['tax_class_id'] = this.taxClassId;
     data['slug'] = this.slug;
+    data['batch'] = this.batch;
+    data['package'] = this.package;
+    data['exprice_date'] = this.expriceDate;
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     data['cart_product_quantity'] = this.cartProductQuantity;

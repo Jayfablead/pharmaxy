@@ -427,7 +427,8 @@ class _AllAddpageState extends State<AllAddpage> {
 
   alluseraddapi() async {
     final Map<String, String> data = {};
-    data['userId'] = (usermodal?.userId).toString();
+    data['userId'] = usermodal?.userId == "" || usermodal?.userId == null
+        ?deviceName.toString():(usermodal?.userId).toString();
     print(data);
     checkInternet().then((internet) async {
       if (internet) {

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Modal/Cartmodal.dart';
@@ -16,6 +15,7 @@ import 'package:ecommerce/Modal/View_withoutuser_Model.dart';
 import 'package:ecommerce/Modal/increment_without_login_model.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/CheckoutDetail.dart';
+import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/decrement_without_login.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -24,6 +24,7 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -41,7 +42,7 @@ class CartPage extends StatefulWidget {
   State<CartPage> createState() => _CartPageState();
 }
 
-TextEditingController _serch = TextEditingController();
+late TextEditingController _searchController;
 
 int age = 1;
 int? newprice;
@@ -65,7 +66,7 @@ int pricetag = 0;
 bool isLoading = true;
 bool cpupon = false;
 
-String? coponapplend=_serch.text.toString();
+String? coponapplend=_searchController.text.toString();
 
 
 int total = 0;
@@ -91,7 +92,6 @@ class _CartPageState extends State<CartPage> {
   @override
   void initState() {
     super.initState();
-    ViewCartwithoutloginAp();
     ViewCartApi();
     getDeviceInfoandStore();
 print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserModel?.handlingCharge).toString()}");
@@ -100,13 +100,22 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
       cpupon = false;
     });
     alluseraddapi();
+    _searchController = TextEditingController();
   }
+
+
 
   Future<void> _fetchCartItems() async {
     List<CartItem> items = await databaseHelper.getCartItems();
     setState(() {
       cartItems = items;
     });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose(); // Dispose of controller to avoid memory leaks
+    super.dispose();
   }
 
   @override
@@ -778,7 +787,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                         child: Column(
                           children: [
                             Container(
-                              height: 42.h,
+                              height: 40.h,
                               child: ListView.builder(
                                 padding: EdgeInsets.zero,
                                 itemCount: viewwithoutuserModel
@@ -789,262 +798,276 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                   // Build each item in the grid
                                   return Stack(
                                     children: [
-                                      Card(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10),
-                                              color: Colors.white,
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment
-                                                  .center,
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .start,
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .center,
-                                                  children: [
-                                                    SizedBox(
-                                                      width: 2.w,
-                                                    ),
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                20)),
-                                                        // color: Colors
-                                                        //     .grey
-                                                        //     .shade200
+                                      InkWell(
+                                        onTap: (){
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                              builder: (context) =>
+                                                  productdetailnovartion(
+                                                    productid: viewwithoutuserModel
+                                                        ?.cartDetails?[
+                                                    index]
+                                                        .productID ??
+                                                        '',
+                                                  )));
+                                        },
+                                        child: Card(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10),
+                                                color: Colors.white,
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .center,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .start,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .center,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: 2.w,
                                                       ),
-                                                      child: Padding(
-                                                           padding:
-                                                        EdgeInsets
-                                                            .all(
-                                                            3.0),
-                                                        child:
-                                                        CachedNetworkImage(
-                                                          imageUrl: (viewwithoutuserModel
-                                                              ?.cartDetails?[
-                                                          index]
-                                                              .allImages)
-                                                              .toString(),
-                                                          fit: BoxFit
-                                                              .cover,
-                                                          height: 34.w,
-                                                          width: 32.w,
-                                                          imageBuilder:
-                                                              (context,
-                                                              imageProvider) =>
-                                                              Container(
-                                                                decoration:
-                                                                BoxDecoration(
-                                                                  borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      25),
-                                                                  image:
-                                                                  DecorationImage(
+                                                      Container(
+                                                        decoration: BoxDecoration(
+                                                          borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  20)),
+                                                          // color: Colors
+                                                          //     .grey
+                                                          //     .shade200
+                                                        ),
+                                                        child: Padding(
+                                                             padding:
+                                                          EdgeInsets
+                                                              .all(
+                                                              3.0),
+                                                          child:
+                                                          CachedNetworkImage(
+                                                            imageUrl: (viewwithoutuserModel
+                                                                ?.cartDetails?[
+                                                            index]
+                                                                .allImages)
+                                                                .toString(),
+                                                            fit: BoxFit
+                                                                .cover,
+                                                            height: 34.w,
+                                                            width: 32.w,
+                                                            imageBuilder:
+                                                                (context,
+                                                                imageProvider) =>
+                                                                Container(
+                                                                  decoration:
+                                                                  BoxDecoration(
+                                                                    borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        25),
                                                                     image:
-                                                                    imageProvider,
-                                                                    // fit: BoxFit.cover,
+                                                                    DecorationImage(
+                                                                      image:
+                                                                      imageProvider,
+                                                                      // fit: BoxFit.cover,
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                          placeholder: (context,
-                                                              url) =>
-                                                              Center(
-                                                                  child:
-                                                                  CircularProgressIndicator()),
-                                                          errorWidget: (context,
-                                                              url,
-                                                              error) =>
-                                                              Icon(Icons
-                                                                  .error),
+                                                            placeholder: (context,
+                                                                url) =>
+                                                                Center(
+                                                                    child:
+                                                                    CircularProgressIndicator()),
+                                                            errorWidget: (context,
+                                                                url,
+                                                                error) =>
+                                                                Icon(Icons
+                                                                    .error),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 3.w,
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets
-                                                          .symmetric(
-                                                          vertical:
-                                                          0.5.h,
-                                                          horizontal:
-                                                          0.5.w),
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .start,
-                                                        crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                        children: [
-                                                          SizedBox(
-                                                            height:
-                                                            1.5.h,
-                                                          ),
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                EdgeInsets.only(left: 1.w),
-                                                                child:
-                                                                SizedBox(
-                                                                  width:
-                                                                  45.w,
+                                                      SizedBox(
+                                                        width: 3.w,
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                            vertical:
+                                                            0.5.h,
+                                                            horizontal:
+                                                            0.5.w),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                          children: [
+                                                            SizedBox(
+                                                              height:
+                                                              1.5.h,
+                                                            ),
+                                                            Column(
+                                                              crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                              mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                              children: [
+                                                                Padding(
+                                                                  padding:
+                                                                  EdgeInsets.only(left: 1.w),
                                                                   child:
-                                                                  Text(
-                                                                    (viewwithoutuserModel?.cartDetails?[index].productName) == null
-                                                                        ? "N/A"
-                                                                        : (viewwithoutuserModel?.cartDetails?[index].productName).toString(),
-                                                                    maxLines:
-                                                                    2,
-                                                                    overflow:
-                                                                    TextOverflow.ellipsis,
-                                                                    style: TextStyle(
-                                                                        color: Colors.black,
-                                                                        fontSize: 10.sp,
-                                                                        fontWeight: FontWeight.w600,
-                                                                        fontFamily: "task"),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                height:
-                                                                0.5.h,
-                                                              ),
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                MainAxisAlignment.spaceBetween,
-                                                                children: [
-                                                                  Container(
-                                                                    alignment:
-                                                                    Alignment.center,
-                                                                    width:
-                                                                    26.w,
-                                                                    height:
-                                                                    6.5.h,
-                                                                    decoration:
-                                                                    BoxDecoration(
-                                                                      borderRadius: BorderRadius.circular(20),
-                                                                    ),
-                                                                    child:
-                                                                    Row(
-                                                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                                      children: [
-                                                                        InkWell(
-                                                                          onTap: () {
-                                                                            int.parse((viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString() ?? '') <= 1 ? buildErrorDialog(context, 'Alert', 'Minimum allowed quantity is 1') : decrementwithoutlogin((viewwithoutuserModel?.cartDetails?[index].cartTblId).toString());
-                                                                            // setState(() {
-                                                                            //   age--;
-                                                                            // });
-                                                                          },
-                                                                          child: Container(
-                                                                              height: 7.5.w,
-                                                                              width: 7.5.w,
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.circular(15),
-                                                                                color: Color(0xff0061b0),
-                                                                              ),
-                                                                              child: Icon(
-                                                                                Icons.remove,
-                                                                                size: 20.sp,
-                                                                                color: Colors.white,
-                                                                              )),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width: 2.5.w,
-                                                                        ),
-                                                                        Container(
-                                                                          child: Row(
-                                                                            children: [
-                                                                              Container(
-                                                                                child: Text(
-                                                                                  (viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString() == null ? "1" : (viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString(),
-                                                                                  style: TextStyle(
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                    fontFamily: "task",
-                                                                                    fontSize: 14.sp,
-                                                                                  ),
-                                                                                ),
-                                                                              )
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width: 2.5.w,
-                                                                        ),
-                                                                        InkWell(
-                                                                          onTap: () {
-                                                                            int.parse((viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString() ?? '') >= 5
-                                                                                ? buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 5')
-                                                                                : incrementwithoutlogin(
-                                                                              (viewwithoutuserModel?.cartDetails?[index].cartTblId).toString(),
-                                                                            );
-                                                                          },
-                                                                          child: Container(
-                                                                              height: 7.5.w,
-                                                                              width: 7.5.w,
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.circular(25),
-                                                                                color: Color(0xff0061b0),
-                                                                              ),
-                                                                              child: Icon(
-                                                                                Icons.add,
-                                                                                size: 14.sp,
-                                                                                color: Colors.white,
-                                                                              )),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
                                                                   SizedBox(
                                                                     width:
-                                                                    1.w,
-                                                                  ),
-                                                                  Text(
-                                                                    (viewwithoutuserModel?.cartDetails?[index].productPriceMain) == null
-                                                                        ? "N/A"
-                                                                        : '₹' + (viewwithoutuserModel?.cartDetails?[index].productPriceMain).toString(),
-                                                                    style:
-                                                                    TextStyle(
-                                                                      fontSize: 14.sp,
-                                                                      fontFamily: 'task',
-                                                                      fontWeight: FontWeight.normal,
-                                                                      letterSpacing: 1,
-                                                                      color: Colors.black,
+                                                                    45.w,
+                                                                    child:
+                                                                    Text(
+                                                                      (viewwithoutuserModel?.cartDetails?[index].productName) == null
+                                                                          ? "N/A"
+                                                                          : (viewwithoutuserModel?.cartDetails?[index].productName).toString(),
+                                                                      maxLines:
+                                                                      2,
+                                                                      overflow:
+                                                                      TextOverflow.ellipsis,
+                                                                      style: TextStyle(
+                                                                          color: Colors.black,
+                                                                          fontSize: 10.sp,
+                                                                          fontWeight: FontWeight.w600,
+                                                                          fontFamily: "task"),
                                                                     ),
                                                                   ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(
-                                                            height: 2.h,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          )),
+                                                                ),
+                                                                SizedBox(
+                                                                  height:
+                                                                  0.5.h,
+                                                                ),
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                  MainAxisAlignment.spaceBetween,
+                                                                  children: [
+                                                                    Container(
+                                                                      alignment:
+                                                                      Alignment.center,
+                                                                      width:
+                                                                      26.w,
+                                                                      height:
+                                                                      6.5.h,
+                                                                      decoration:
+                                                                      BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(20),
+                                                                      ),
+                                                                      child:
+                                                                      Row(
+                                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                                        children: [
+                                                                          InkWell(
+                                                                            onTap: () {
+                                                                              int.parse((viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString() ?? '') <= 1 ? buildErrorDialog(context, 'Alert', 'Minimum allowed quantity is 1') : decrementwithoutlogin((viewwithoutuserModel?.cartDetails?[index].cartTblId).toString());
+                                                                              // setState(() {
+                                                                              //   age--;
+                                                                              // });
+                                                                            },
+                                                                            child: Container(
+                                                                                height: 7.5.w,
+                                                                                width: 7.5.w,
+                                                                                decoration: BoxDecoration(
+                                                                                  borderRadius: BorderRadius.circular(15),
+                                                                                  color: Color(0xff0061b0),
+                                                                                ),
+                                                                                child: Icon(
+                                                                                  Icons.remove,
+                                                                                  size: 20.sp,
+                                                                                  color: Colors.white,
+                                                                                )),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            width: 2.5.w,
+                                                                          ),
+                                                                          Container(
+                                                                            child: Row(
+                                                                              children: [
+                                                                                Container(
+                                                                                  child: Text(
+                                                                                    (viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString() == null ? "1" : (viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString(),
+                                                                                    style: TextStyle(
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontFamily: "task",
+                                                                                      fontSize: 14.sp,
+                                                                                    ),
+                                                                                  ),
+                                                                                )
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            width: 2.5.w,
+                                                                          ),
+                                                                          InkWell(
+                                                                            onTap: () {
+                                                                              int.parse((viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString() ?? '') >= 5
+                                                                                  ? buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 5')
+                                                                                  : incrementwithoutlogin(
+                                                                                (viewwithoutuserModel?.cartDetails?[index].cartTblId).toString(),
+                                                                              );
+                                                                            },
+                                                                            child: Container(
+                                                                                height: 7.5.w,
+                                                                                width: 7.5.w,
+                                                                                decoration: BoxDecoration(
+                                                                                  borderRadius: BorderRadius.circular(25),
+                                                                                  color: Color(0xff0061b0),
+                                                                                ),
+                                                                                child: Icon(
+                                                                                  Icons.add,
+                                                                                  size: 14.sp,
+                                                                                  color: Colors.white,
+                                                                                )),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                      width:
+                                                                      1.w,
+                                                                    ),
+                                                                    Text(
+                                                                      (viewwithoutuserModel?.cartDetails?[index].productPriceMain) == null
+                                                                          ? "N/A"
+                                                                          : '₹' + (viewwithoutuserModel?.cartDetails?[index].productPriceMain).toString(),
+                                                                      style:
+                                                                      TextStyle(
+                                                                        fontSize: 14.sp,
+                                                                        fontFamily: 'task',
+                                                                        fontWeight: FontWeight.normal,
+                                                                        letterSpacing: 1,
+                                                                        color: Colors.black,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              height: 2.h,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            )),
+                                      ),
                                       Positioned(
                                         left: 82.w,
                                         top: 0.h,
@@ -1237,9 +1260,20 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                               ),
                             ),
                             SizedBox(
-                              height: 2.h,
+                              height: 1.h,
                             ),
-
+                            Text(
+                              "Price may vary depending on the product batch*",
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "task",
+                              ),
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
                             Container(
                               width: MediaQuery.of(context).size.width,
                               padding: EdgeInsets.symmetric(horizontal: 3.w,vertical: 1.h),
@@ -1632,7 +1666,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                     child: Column(
                                       children: [
                                         Container(
-                                          height: 42.h,
+                                          height: 36.5.h,
                                           child: ListView.builder(
                                             padding: EdgeInsets.zero,
                                             itemCount: viewcartmodal
@@ -1643,262 +1677,276 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                               // Build each item in the grid
                                               return Stack(
                                                 children: [
-                                                  Card(
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(10),
-                                                          color: Colors.white,
-                                                        ),
-                                                        child: Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment.end,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                SizedBox(
-                                                                  width: 2.w,
-                                                                ),
-                                                                Container(
-                                                                  decoration: BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.all(
-                                                                              Radius.circular(
-                                                                                  20)),
-                                                                      // color: Colors
-                                                                      //     .grey
-                                                                      //     .shade200
+                                                  GestureDetector(
+                                                    onTap: (){
+                                                      Navigator.of(context)
+                                                          .push(MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              productdetailnovartion(
+                                                                productid: viewcartmodal
+                                                                    ?.cartDetails?[
+                                                                index]
+                                                                    .productID ??
+                                                                    '',
+                                                              )));
+                                                    },
+                                                    child: Card(
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius.circular(10),
+                                                            color: Colors.white,
+                                                          ),
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment.end,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  SizedBox(
+                                                                    width: 2.w,
                                                                   ),
-                                                                  child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .all(
-                                                                                3.0),
-                                                                    child:
-                                                                        CachedNetworkImage(
-                                                                      imageUrl: (viewcartmodal
-                                                                              ?.cartDetails?[
-                                                                                  index]
-                                                                              .allImages)
-                                                                          .toString(),
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                      height: 34.w,
-                                                                      width: 32.w,
-                                                                      imageBuilder:
-                                                                          (context,
-                                                                                  imageProvider) =>
-                                                                              Container(
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(
-                                                                                  25),
-                                                                          image:
-                                                                              DecorationImage(
-                                                                            image:
-                                                                                imageProvider,
-                                                                            // fit: BoxFit.cover,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      placeholder: (context,
-                                                                              url) =>
-                                                                          Center(
-                                                                              child:
-                                                                                  CircularProgressIndicator()),
-                                                                      errorWidget: (context,
-                                                                              url,
-                                                                              error) =>
-                                                                          Icon(Icons
-                                                                              .error),
+                                                                  Container(
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.all(
+                                                                                Radius.circular(
+                                                                                    20)),
+                                                                        // color: Colors
+                                                                        //     .grey
+                                                                        //     .shade200
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                  width: 3.w,
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets
-                                                                      .symmetric(
-                                                                          vertical:
-                                                                              0.5.h,
-                                                                          horizontal:
-                                                                              0.5.w),
-                                                                  child: Column(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .start,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      SizedBox(
-                                                                        height:
-                                                                            1.5.h,
-                                                                      ),
-                                                                      Column(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment
-                                                                                .start,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment
-                                                                                .center,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding:
-                                                                                EdgeInsets.only(left: 1.w),
-                                                                            child:
-                                                                                SizedBox(
-                                                                              width:
-                                                                                  45.w,
-                                                                              child:
-                                                                                  Text(
-                                                                                (viewcartmodal?.cartDetails?[index].productName) == null
-                                                                                    ? "N/A"
-                                                                                    : (viewcartmodal?.cartDetails?[index].productName).toString(),
-                                                                                maxLines:
-                                                                                    2,
-                                                                                overflow:
-                                                                                    TextOverflow.ellipsis,
-                                                                                style: TextStyle(
-                                                                                    color: Colors.black,
-                                                                                    fontSize: 10.sp,
-                                                                                    fontWeight: FontWeight.w600,
-                                                                                    fontFamily: "task"),
-                                                                              ),
+                                                                    child: Padding(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .all(
+                                                                                  3.0),
+                                                                      child:
+                                                                          CachedNetworkImage(
+                                                                        imageUrl: (viewcartmodal
+                                                                                ?.cartDetails?[
+                                                                                    index]
+                                                                                .allImages)
+                                                                            .toString(),
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                        height: 34.w,
+                                                                        width: 32.w,
+                                                                        imageBuilder:
+                                                                            (context,
+                                                                                    imageProvider) =>
+                                                                                Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(
+                                                                                    25),
+                                                                            image:
+                                                                                DecorationImage(
+                                                                              image:
+                                                                                  imageProvider,
+                                                                              // fit: BoxFit.cover,
                                                                             ),
                                                                           ),
-                                                                          SizedBox(
-                                                                            height:
-                                                                                0.5.h,
-                                                                          ),
-                                                                          Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            children: [
-                                                                              Container(
-                                                                                alignment:
-                                                                                    Alignment.center,
-                                                                                width:
-                                                                                    26.w,
-                                                                                height:
-                                                                                    6.5.h,
-                                                                                decoration:
-                                                                                    BoxDecoration(
-                                                                                  borderRadius: BorderRadius.circular(20),
-                                                                                ),
+                                                                        ),
+                                                                        placeholder: (context,
+                                                                                url) =>
+                                                                            Center(
                                                                                 child:
-                                                                                    Row(
-                                                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                  children: [
-                                                                                    InkWell(
-                                                                                      onTap: () {
-                                                                                        int.parse((viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() ?? '') <= 1 ? buildErrorDialog(context, 'Alert', 'Minimum allowed quantity is 1') : decrement((viewcartmodal?.cartDetails?[index].cartTblId).toString());
-                                                                                        // setState(() {
-                                                                                        //   age--;
-                                                                                        // });
-                                                                                      },
-                                                                                      child: Container(
-                                                                                          height: 7.5.w,
-                                                                                          width: 7.5.w,
-                                                                                          decoration: BoxDecoration(
-                                                                                            borderRadius: BorderRadius.circular(15),
-                                                                                            color: Color(0xff0061b0),
-                                                                                          ),
-                                                                                          child: Icon(
-                                                                                            Icons.remove,
-                                                                                            size: 20.sp,
-                                                                                            color: Colors.white,
-                                                                                          )),
-                                                                                    ),
-                                                                                    SizedBox(
-                                                                                      width: 2.5.w,
-                                                                                    ),
-                                                                                    Container(
-                                                                                      child: Row(
-                                                                                        children: [
-                                                                                          Container(
-                                                                                            child: Text(
-                                                                                              (viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() == null ? "1" : (viewcartmodal?.cartDetails?[index].cartProductQuantity).toString(),
-                                                                                              style: TextStyle(
-                                                                                                fontWeight: FontWeight.bold,
-                                                                                                fontFamily: "task",
-                                                                                                fontSize: 14.sp,
-                                                                                              ),
-                                                                                            ),
-                                                                                          )
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-                                                                                    SizedBox(
-                                                                                      width: 2.5.w,
-                                                                                    ),
-                                                                                    InkWell(
-                                                                                      onTap: () {
-                                                                                        int.parse((viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() ?? '') >= 5
-                                                                                            ? buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 5')
-                                                                                            : increment(
-                                                                                                (viewcartmodal?.cartDetails?[index].cartTblId).toString(),
-                                                                                              );
-                                                                                      },
-                                                                                      child: Container(
-                                                                                          height: 7.5.w,
-                                                                                          width: 7.5.w,
-                                                                                          decoration: BoxDecoration(
-                                                                                            borderRadius: BorderRadius.circular(25),
-                                                                                            color: Color(0xff0061b0),
-                                                                                          ),
-                                                                                          child: Icon(
-                                                                                            Icons.add,
-                                                                                            size: 14.sp,
-                                                                                            color: Colors.white,
-                                                                                          )),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                              SizedBox(
-                                                                                width:
-                                                                                    1.w,
-                                                                              ),
-                                                                              Text(
-                                                                                (viewcartmodal?.cartDetails?[index].productPriceMain) == null
-                                                                                    ? "N/A"
-                                                                                    : '₹' + (viewcartmodal?.cartDetails?[index].productPriceMain).toString(),
-                                                                                style:
-                                                                                    TextStyle(
-                                                                                  fontSize: 14.sp,
-                                                                                  fontFamily: 'task',
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                  letterSpacing: 1,
-                                                                                  color: Colors.black,
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ],
+                                                                                    CircularProgressIndicator()),
+                                                                        errorWidget: (context,
+                                                                                url,
+                                                                                error) =>
+                                                                            Icon(Icons
+                                                                                .error),
                                                                       ),
-                                                                      SizedBox(
-                                                                        height: 2.h,
-                                                                      ),
-                                                                    ],
+                                                                    ),
                                                                   ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      )),
+                                                                  SizedBox(
+                                                                    width: 3.w,
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets
+                                                                        .symmetric(
+                                                                            vertical:
+                                                                                0.5.h,
+                                                                            horizontal:
+                                                                                0.5.w),
+                                                                    child: Column(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .start,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        SizedBox(
+                                                                          height:
+                                                                              1.5.h,
+                                                                        ),
+                                                                        Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment
+                                                                                  .start,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment
+                                                                                  .center,
+                                                                          children: [
+                                                                            Padding(
+                                                                              padding:
+                                                                                  EdgeInsets.only(left: 1.w),
+                                                                              child:
+                                                                                  SizedBox(
+                                                                                width:
+                                                                                    45.w,
+                                                                                child:
+                                                                                    Text(
+                                                                                  (viewcartmodal?.cartDetails?[index].productName) == null
+                                                                                      ? "N/A"
+                                                                                      : (viewcartmodal?.cartDetails?[index].productName).toString(),
+                                                                                  maxLines:
+                                                                                      2,
+                                                                                  overflow:
+                                                                                      TextOverflow.ellipsis,
+                                                                                  style: TextStyle(
+                                                                                      color: Colors.black,
+                                                                                      fontSize: 10.sp,
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                      fontFamily: "task"),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height:
+                                                                                  0.5.h,
+                                                                            ),
+                                                                            Row(
+                                                                              mainAxisAlignment:
+                                                                                  MainAxisAlignment.spaceBetween,
+                                                                              children: [
+                                                                                Container(
+                                                                                  alignment:
+                                                                                      Alignment.center,
+                                                                                  width:
+                                                                                      26.w,
+                                                                                  height:
+                                                                                      6.5.h,
+                                                                                  decoration:
+                                                                                      BoxDecoration(
+                                                                                    borderRadius: BorderRadius.circular(20),
+                                                                                  ),
+                                                                                  child:
+                                                                                      Row(
+                                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                                    children: [
+                                                                                      InkWell(
+                                                                                        onTap: () {
+                                                                                          int.parse((viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() ?? '') <= 1 ? buildErrorDialog(context, 'Alert', 'Minimum allowed quantity is 1') : decrement((viewcartmodal?.cartDetails?[index].cartTblId).toString());
+                                                                                          // setState(() {
+                                                                                          //   age--;
+                                                                                          // });
+                                                                                        },
+                                                                                        child: Container(
+                                                                                            height: 7.5.w,
+                                                                                            width: 7.5.w,
+                                                                                            decoration: BoxDecoration(
+                                                                                              borderRadius: BorderRadius.circular(15),
+                                                                                              color: Color(0xff0061b0),
+                                                                                            ),
+                                                                                            child: Icon(
+                                                                                              Icons.remove,
+                                                                                              size: 20.sp,
+                                                                                              color: Colors.white,
+                                                                                            )),
+                                                                                      ),
+                                                                                      SizedBox(
+                                                                                        width: 2.5.w,
+                                                                                      ),
+                                                                                      Container(
+                                                                                        child: Row(
+                                                                                          children: [
+                                                                                            Container(
+                                                                                              child: Text(
+                                                                                                (viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() == null ? "1" : (viewcartmodal?.cartDetails?[index].cartProductQuantity).toString(),
+                                                                                                style: TextStyle(
+                                                                                                  fontWeight: FontWeight.bold,
+                                                                                                  fontFamily: "task",
+                                                                                                  fontSize: 14.sp,
+                                                                                                ),
+                                                                                              ),
+                                                                                            )
+                                                                                          ],
+                                                                                        ),
+                                                                                      ),
+                                                                                      SizedBox(
+                                                                                        width: 2.5.w,
+                                                                                      ),
+                                                                                      InkWell(
+                                                                                        onTap: () {
+                                                                                          int.parse((viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() ?? '') >= 5
+                                                                                              ? buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 5')
+                                                                                              : increment(
+                                                                                                  (viewcartmodal?.cartDetails?[index].cartTblId).toString(),
+                                                                                                );
+                                                                                        },
+                                                                                        child: Container(
+                                                                                            height: 7.5.w,
+                                                                                            width: 7.5.w,
+                                                                                            decoration: BoxDecoration(
+                                                                                              borderRadius: BorderRadius.circular(25),
+                                                                                              color: Color(0xff0061b0),
+                                                                                            ),
+                                                                                            child: Icon(
+                                                                                              Icons.add,
+                                                                                              size: 14.sp,
+                                                                                              color: Colors.white,
+                                                                                            )),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                                SizedBox(
+                                                                                  width:
+                                                                                      1.w,
+                                                                                ),
+                                                                                Text(
+                                                                                  (viewcartmodal?.cartDetails?[index].productPriceMain) == null
+                                                                                      ? "N/A"
+                                                                                      : '₹' + (viewcartmodal?.cartDetails?[index].productPriceMain).toString(),
+                                                                                  style:
+                                                                                      TextStyle(
+                                                                                    fontSize: 14.sp,
+                                                                                    fontFamily: 'task',
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                    letterSpacing: 1,
+                                                                                    color: Colors.black,
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                        SizedBox(
+                                                                          height: 2.h,
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )),
+                                                  ),
                                                   Positioned(
                                                     left: 82.w,
                                                     top: 0.h,
@@ -2091,9 +2139,20 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                           ),
                                         ),
                                         SizedBox(
-                                          height: 2.h,
+                                          height: 1.h,
                                         ),
-
+                                        Text(
+                                          "Price may vary depending on the product batch*",
+                                          style: TextStyle(
+                                            fontSize: 10.sp,
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: "task",
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 1.h,
+                                        ),
                                         Container(
                                           width: MediaQuery.of(context).size.width,
                                           padding: EdgeInsets.symmetric(horizontal: 3.w,vertical: 1.h),
@@ -2170,7 +2229,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                                       left: 3.w,
                                                     ),
                                                     child: Text(
-                                                      'Tax : ',
+                                                      'Handling Charge : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 11.sp,
@@ -2189,7 +2248,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                                               ?.handlingCharge)
                                                               .toString(): '₹ ' +
                                                           (viewcartmodal
-                                                              ?.totalTax)
+                                                              ?.headingCharge)
                                                               .toString(),
 
                                                       style: TextStyle(
@@ -2353,7 +2412,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                                                 ?.finalTotalWithHandlingCharge)
                                                                 .toString(): '₹ ' +
                                                               (viewcartmodal
-                                                                      ?.finalTotalWithTax)
+                                                                      ?.finalTotalWithCharge)
                                                                   .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
@@ -2461,7 +2520,6 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
       ),
     );
   }
-
   Widget searchBox() {
     return Container(
       width: 61.w,
@@ -2471,7 +2529,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(
-        controller: _serch,
+        controller: _searchController,
         onTap: () {
           // Tap event handled here (optional)
         },
@@ -2495,6 +2553,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
   }
 
 
+
   ViewCartApi() async {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
@@ -2508,7 +2567,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
               viewcartmodal?.status == "success") {
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
-            print(viewcartmodal?.finalTotalWithTax);
+
             setState(() {
               isLoading = false;
             });
@@ -2541,7 +2600,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
               viewwithoutuserModel?.status == "success") {
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
-            print(viewcartmodal?.finalTotalWithTax);
+            print(viewcartmodal?.finalTotalWithCharge);
             setState(() {
               isLoading = false;
             });
@@ -2831,7 +2890,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
-    data['Coupon'] = _serch.text.toString();
+    data['Coupon'] = _searchController.text.toString();
     print("cart incre $data");
     checkInternet().then((internet) async {
       if (internet) {
@@ -2872,7 +2931,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = deviceName.toString();
-    data['Coupon'] = _serch.text.toString();
+    data['Coupon'] = _searchController.text.toString();
     print("cart incre $data");
     checkInternet().then((internet) async {
       if (internet) {
@@ -2908,31 +2967,34 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
   }
 
   chekoutsenddetail() async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
     data['final_total'] = cpupon?(viewcartmodal ?.finalTotal).toString():(viewcartmodal ?.finalTotal).toString();
-    data['total_tax'] = "";
-    data['final_total_with_tax'] = cpupon?(couponmodel ?.handlingCharge).toString():(viewcartmodal ?.finalTotalWithTax).toString();
-    data['coupon'] = _serch.text==null||_serch.text==""?"":_serch.text.trim().toString();
+    data['total_tax'] = cpupon?(couponmodel ?.handlingCharge).toString():(viewcartmodal ?.headingCharge).toString();
+    data['final_total_with_tax'] = cpupon?(couponmodel ?.handlingCharge).toString():(viewcartmodal ?.finalTotalWithCharge).toString();
+    data['coupon'] = _searchController.text==null||_searchController.text==""?"":_searchController.text.trim().toString();
     data['discount'] = cpupon?(couponmodel?.discountApplied).toString():"";
     data['referral'] =cpupon?(couponmodel ?.agentDiscountApplied).toString():(viewcartmodal ?.referralDiscountAmount).toString();
     print("sdfdsfsdsfdsf${data}");
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().chekoutdetailsendapi(data).then((response) async {
+          EasyLoading.showSuccess("success");
           checkOutsendModel = CheckOutSendModel.fromJson(json.decode(response.body));
           print(checkOutsendModel?.status);
           if (response.statusCode == 200 &&
               checkOutsendModel?.status == "success") {
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
-            _serch.clear();
+            _searchController.clear();
             setState(() {
               isLoading = false;
-              _serch.clear();
+              _searchController.clear();
             });
           } else {
             setState(() {
+              EasyLoading.showError("No Data Found");
               isLoading = false;
             });
           }
@@ -2948,12 +3010,13 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
 
 
   chekoutsenddetail1() async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['user_id'] = deviceName.toString();
     data['final_total'] = cpupon?(viewwithoutuserModel ?.finalTotal).toString():(viewwithoutuserModel ?.finalTotal).toString();
     data['total_tax'] = cpupon?(couponmodel ?.handlingCharge).toString():(viewwithoutuserModel ?.handlingCharge).toString();
     data['final_total_with_tax'] = cpupon?(couponmodel ?.finalTotalWithHandlingCharge).toString():(viewwithoutuserModel ?.finalTotalWithTax).toString();
-    data['coupon'] = _serch.text==null||_serch.text==""?"":_serch.text.trim().toString();
+    data['coupon'] = _searchController.text==null||_searchController.text==""?"":_searchController.text.trim().toString();
     data['discount'] = cpupon?(couponmodel?.discountApplied).toString():"";
     data['referral'] =cpupon?(couponmodel ?.agentDiscountApplied).toString():(viewcartmodal ?.referralDiscountAmount).toString();
 
@@ -2964,16 +3027,18 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
           print(checkOutsendModel?.status);
           if (response.statusCode == 200 &&
               checkOutsendModel?.status == "success") {
-            print("sdfdsfsdsfdsf${data}");
+            EasyLoading.showSuccess("success");
+            print("data on${data}");
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
-            _serch.clear();
+            _searchController.clear();
             setState(() {
               isLoading = false;
-              _serch.clear();
+              _searchController.clear();
             });
           } else {
             setState(() {
+              EasyLoading.showError("No Data Found");
               isLoading = false;
             });
           }
@@ -2996,6 +3061,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
             androidInfo.model; // Device name
         deviceOS = 'Android ${androidInfo.version.release}';
       });
+      ViewCartwithoutloginAp();
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       setState(() {

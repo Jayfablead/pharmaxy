@@ -1,4 +1,4 @@
-class UserSelectAddModal {
+class UserSelectAddModal{
   String? message;
   String? status;
   SelectShippingAddress? selectShippingAddress;
@@ -29,6 +29,7 @@ class SelectShippingAddress {
   String? userId;
   String? firstName;
   String? lastName;
+  String? email;
   String? city;
   String? state;
   String? country;
@@ -39,22 +40,24 @@ class SelectShippingAddress {
 
   SelectShippingAddress(
       {this.id,
-      this.userId,
-      this.firstName,
-      this.lastName,
-      this.city,
-      this.state,
-      this.country,
-      this.zipcode,
-      this.address,
-      this.number,
-      this.createdAt});
+        this.userId,
+        this.firstName,
+        this.lastName,
+        this.email,
+        this.city,
+        this.state,
+        this.country,
+        this.zipcode,
+        this.address,
+        this.number,
+        this.createdAt});
 
   SelectShippingAddress.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
     firstName = json['first_name'];
     lastName = json['last_name'];
+    email = json['email'];
     city = json['city'];
     state = json['state'];
     country = json['country'];
@@ -70,6 +73,7 @@ class SelectShippingAddress {
     data['user_id'] = this.userId;
     data['first_name'] = this.firstName;
     data['last_name'] = this.lastName;
+    data['email'] = this.email;
     data['city'] = this.city;
     data['state'] = this.state;
     data['country'] = this.country;

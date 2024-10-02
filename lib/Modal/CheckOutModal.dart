@@ -8,11 +8,11 @@ class CheckOutModal {
 
   CheckOutModal(
       {this.message,
-      this.status,
-      this.cartDetails,
-      this.finalTotal,
-      this.totalTax,
-      this.finalTotalWithTax});
+        this.status,
+        this.cartDetails,
+        this.finalTotal,
+        this.totalTax,
+        this.finalTotalWithTax});
 
   CheckOutModal.fromJson(Map<String, dynamic> json) {
     message = json['message'];
@@ -52,26 +52,26 @@ class CartDetails {
   String? zipcode;
   String? orderDate;
   int? orderNumber;
-  String? totalAmount;
+  double? totalAmount;
   String? payment;
   String? orderStatus;
 
   CartDetails(
       {this.userID,
-      this.fname,
-      this.lname,
-      this.email,
-      this.phoneno,
-      this.country,
-      this.state,
-      this.city,
-      this.address1,
-      this.zipcode,
-      this.orderDate,
-      this.orderNumber,
-      this.totalAmount,
-      this.payment,
-      this.orderStatus});
+        this.fname,
+        this.lname,
+        this.email,
+        this.phoneno,
+        this.country,
+        this.state,
+        this.city,
+        this.address1,
+        this.zipcode,
+        this.orderDate,
+        this.orderNumber,
+        this.totalAmount,
+        this.payment,
+        this.orderStatus});
 
   CartDetails.fromJson(Map<String, dynamic> json) {
     userID = json['UserID'];
@@ -86,10 +86,11 @@ class CartDetails {
     zipcode = json['zipcode'];
     orderDate = json['OrderDate'];
     orderNumber = json['OrderNumber'];
-    totalAmount = json['TotalAmount'];
+    totalAmount = json['TotalAmount'] != null ? json['TotalAmount'].toDouble() : null; // Convert int or double to double
     payment = json['payment'];
     orderStatus = json['OrderStatus'];
   }
+
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

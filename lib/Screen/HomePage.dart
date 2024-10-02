@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage> {
 
                                   // Image between Menu and Cart
                                   Image.asset(
-                                    'assets/my.png', // Replace with your image path
+                                    'assets/mylogo.png', // Replace with your image path
                                     height: 10.w, // Adjust as needed
                                     width: 30.w,
                                     color: AppColors.primary,// Adjust as needed
@@ -453,7 +453,7 @@ class _HomePageState extends State<HomePage> {
                                           Padding(
                                             padding: EdgeInsets.only(left: 3.5.w),
                                             child: Text(
-                                              "FLAT ₹ ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
+                                              "FLAT ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
                                               style: TextStyle(
                                                 fontSize: 10.5.sp,
                                                 fontWeight: FontWeight.bold,

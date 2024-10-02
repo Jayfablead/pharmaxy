@@ -1,7 +1,7 @@
 class ChekOutDetailModal {
   String? status;
   String? message;
-  UserDetails? userDetails;
+  List<UserDetails>? userDetails;
   List<CheckoutData>? checkoutData;
 
   ChekOutDetailModal(
@@ -10,9 +10,12 @@ class ChekOutDetailModal {
   ChekOutDetailModal.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    userDetails = json['user_details'] != null
-        ? new UserDetails.fromJson(json['user_details'])
-        : null;
+    if (json['user_details'] != null) {
+      userDetails = <UserDetails>[];
+      json['user_details'].forEach((v) {
+        userDetails!.add(new UserDetails.fromJson(v));
+      });
+    }
     if (json['checkout_data'] != null) {
       checkoutData = <CheckoutData>[];
       json['checkout_data'].forEach((v) {
@@ -26,7 +29,7 @@ class ChekOutDetailModal {
     data['status'] = this.status;
     data['message'] = this.message;
     if (this.userDetails != null) {
-      data['user_details'] = this.userDetails!.toJson();
+      data['user_details'] = this.userDetails!.map((v) => v.toJson()).toList();
     }
     if (this.checkoutData != null) {
       data['checkout_data'] =
@@ -38,37 +41,49 @@ class ChekOutDetailModal {
 
 class UserDetails {
   String? id;
-  String? deviceId;
+  String? userId;
   String? productId;
   String? quantity;
+  String? variationTblId;
+  String? productColor;
+  String? productSize;
   String? productPrice;
-  String? createdAt;
+  String? createdDate;
 
   UserDetails(
       {this.id,
-        this.deviceId,
+        this.userId,
         this.productId,
         this.quantity,
+        this.variationTblId,
+        this.productColor,
+        this.productSize,
         this.productPrice,
-        this.createdAt});
+        this.createdDate});
 
   UserDetails.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    deviceId = json['device_id'];
+    userId = json['user_id'];
     productId = json['product_id'];
     quantity = json['quantity'];
+    variationTblId = json['variation_tbl_id'];
+    productColor = json['product_color'];
+    productSize = json['product_size'];
     productPrice = json['product_price'];
-    createdAt = json['Created_at'];
+    createdDate = json['created_date'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['device_id'] = this.deviceId;
+    data['user_id'] = this.userId;
     data['product_id'] = this.productId;
     data['quantity'] = this.quantity;
+    data['variation_tbl_id'] = this.variationTblId;
+    data['product_color'] = this.productColor;
+    data['product_size'] = this.productSize;
     data['product_price'] = this.productPrice;
-    data['Created_at'] = this.createdAt;
+    data['created_date'] = this.createdDate;
     return data;
   }
 }
@@ -79,14 +94,14 @@ class CheckoutData {
   String? deviceId;
   String? finalTotal;
   String? totalTax;
-  String? finalTotalWithTax;
+  int? finalTotalWithTax;
   String? coupon;
   String? discount;
   String? referral;
   String? createdAt;
   String? updatedAt;
   String? shippingTax;
-  String? total;
+  int? total;
 
   CheckoutData(
       {this.id,

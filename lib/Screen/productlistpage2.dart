@@ -22,6 +22,7 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 class ProductListPage2 extends StatefulWidget {
@@ -2641,6 +2642,7 @@ class _ProductListPageState extends State<ProductListPage2> {
 
 
   filterbysearch(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
     data['priceSort'] = type1.toString();
@@ -2653,6 +2655,7 @@ class _ProductListPageState extends State<ProductListPage2> {
           print(filterbymodel?.status);
           if (response.statusCode == 200 &&
               filterbymodel?.status == "success") {
+            EasyLoading.showSuccess( 'success');
             setState(() {
               isLoading = false;
               short= "";
@@ -2680,6 +2683,7 @@ class _ProductListPageState extends State<ProductListPage2> {
 
 
   shortbyap(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
     data['sortOrder'] = short.toString();
@@ -2692,6 +2696,7 @@ class _ProductListPageState extends State<ProductListPage2> {
           print(shortbymodel?.status);
           if (response.statusCode == 200 &&
               shortbymodel?.status == "success") {
+            EasyLoading.showSuccess( 'success');
             setState(() {
               isLoading = false;
               type1= "";

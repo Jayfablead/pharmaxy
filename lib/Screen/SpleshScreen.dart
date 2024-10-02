@@ -22,7 +22,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
     super.initState();
     getdata();
     Timer(
-        Duration(seconds: 5),
+        Duration(minutes: 5),
         () =>  Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -38,30 +38,65 @@ class _SpleshScreenState extends State<SpleshScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgcolor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              child:
-                  Lottie.asset('assets/ecom2.json', width: 50.w, height: 60.w),
+              height: 35.h,
+              child: Image.asset(
+                "assets/sp.png",
+                fit: BoxFit.cover,
+              ),
             ),
             Column(
               children: [
-                Container(
-                  child: Lottie.asset('assets/lo.json', height: 19.h),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Welcome to ',
+                        style: TextStyle(
+                            fontFamily: "task",
+                            letterSpacing: 1,
+                            color:AppColors.primary,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.normal),
+                      ),
+                      TextSpan(
+                        text: 'Pharmaxy',
+                        style: TextStyle(
+                          fontFamily: "task",
+                          letterSpacing: 1,
+                          color:AppColors.primary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 1.h,
                 ),
                 Text(
-                  'Please Wait ...',
+                  'Search And Get Medicine',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 15.sp,
-                      fontFamily: 'task',
-                      fontWeight: FontWeight.bold),
-                )
+                      fontFamily: "task",
+                      letterSpacing: 1,
+                      color:AppColors.primary,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.normal),
+                ),
               ],
             ),
           ],
+
+
         ),
       ),
     );

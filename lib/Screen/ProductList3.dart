@@ -18,6 +18,7 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 import 'ProductDetailnovartition.dart';
@@ -2639,6 +2640,7 @@ class _ProductList3State extends State<ProductList3> {
 
 
   filterbysearch(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
     data['priceSort'] = type1.toString();
@@ -2651,6 +2653,7 @@ class _ProductList3State extends State<ProductList3> {
           print(filterbymodel?.status);
           if (response.statusCode == 200 &&
               filterbymodel?.status == "success") {
+            EasyLoading.showSuccess('success');
             setState(() {
               isLoading = false;
               short= "";
@@ -2658,6 +2661,7 @@ class _ProductList3State extends State<ProductList3> {
             });
           } else {
             setState(() {
+              EasyLoading.showError('No Data Found');
               isLoading = false;
               short= "";
 
@@ -2678,6 +2682,7 @@ class _ProductList3State extends State<ProductList3> {
 
 
   shortbyap(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
     data['sortOrder'] = short.toString();
@@ -2690,12 +2695,14 @@ class _ProductList3State extends State<ProductList3> {
           print(shortbymodel?.status);
           if (response.statusCode == 200 &&
               shortbymodel?.status == "success") {
+            EasyLoading.showSuccess('success');
             setState(() {
               isLoading = false;
               type1= "";
             });
           } else {
             setState(() {
+              EasyLoading.showError('No Data Found');
               isLoading = false;
               type1= "";
 

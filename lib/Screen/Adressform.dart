@@ -7,6 +7,7 @@ import 'package:ecommerce/Modal/ShippingAddModal.dart';
 import 'package:ecommerce/Modal/StateModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/AllAddpage.dart';
+import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
@@ -64,6 +65,7 @@ class _AdressformState extends State<Adressform> {
   TextEditingController _Address = TextEditingController();
   TextEditingController _ZipCode = TextEditingController();
   TextEditingController _phone = TextEditingController();
+  TextEditingController _email = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   List<test> items = [];
   List<test1> items1 = [];
@@ -74,6 +76,7 @@ class _AdressformState extends State<Adressform> {
     // TODO: implement initState
     super.initState();
     print(widget.addid);
+    print("deviceNamedeviceName${deviceName}");
     setState(() {
       countryValue = null;
       cityValue = null;
@@ -252,6 +255,67 @@ class _AdressformState extends State<Adressform> {
                                           borderSide:
                                               BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your Last Name ',
+                                      hintStyle: TextStyle(
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 11.sp,
+                                          fontFamily: "task"),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 2.5.h,
+                            ),
+
+                            Container(
+                              width: 85.w,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Email",
+                                    style: TextStyle(
+                                        color: Colors.black87,
+                                        fontFamily: "task",
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  TextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Please Enter The Email";
+                                      }
+                                      return null;
+                                    },
+                                    keyboardType: TextInputType.text,
+                                    controller: _email,
+                                    style: TextStyle(height: 1),
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      disabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      hintText: 'Please Enter The Email',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
                                           fontSize: 11.sp,
@@ -701,9 +765,11 @@ class _AdressformState extends State<Adressform> {
   shippingap() async {
     if (_formKey.currentState!.validate()) {
       final Map<String, String> data = {};
-      data['userId'] = (usermodal?.userId).toString();
+      data['userId'] = usermodal?.userId == "" || usermodal?.userId == null
+          ?deviceName.toString():(usermodal?.userId).toString();
       data['first_name'] = _firstname.text.toString();
       data['last_name'] = _lastname.text.toString();
+      data['email'] = _email.text.toString();
       data['city'] = cityValue ?? "";
       data['state'] = stateValue ?? "";
       data['country'] = countryValue ?? "";

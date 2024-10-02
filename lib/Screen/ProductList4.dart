@@ -19,6 +19,7 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 import 'ProductDetailnovartition.dart';
@@ -2629,6 +2630,7 @@ class _ProductList4State extends State<ProductList4> {
 
 
   filterbysearch(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
     data['priceSort'] = type1.toString();
@@ -2641,6 +2643,7 @@ class _ProductList4State extends State<ProductList4> {
           print(filterbymodel?.status);
           if (response.statusCode == 200 &&
               filterbymodel?.status == "success") {
+            EasyLoading.showSuccess('success');
             setState(() {
               isLoading = false;
               short= "";
@@ -2648,6 +2651,7 @@ class _ProductList4State extends State<ProductList4> {
             });
           } else {
             setState(() {
+              EasyLoading.showError('No Data Found');
               isLoading = false;
               short= "";
 
@@ -2668,6 +2672,7 @@ class _ProductList4State extends State<ProductList4> {
 
 
   shortbyap(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
     data['sortOrder'] = short.toString();
@@ -2680,14 +2685,17 @@ class _ProductList4State extends State<ProductList4> {
           print(shortbymodel?.status);
           if (response.statusCode == 200 &&
               shortbymodel?.status == "success") {
+            EasyLoading.showSuccess('success');
             setState(() {
               isLoading = false;
               type1= "";
             });
           } else {
             setState(() {
+
               isLoading = false;
               type1= "";
+              EasyLoading.showError('No Data Found');
 
             });
           }

@@ -328,7 +328,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                     ),
                                     Container(
                                       alignment: Alignment.center,
-                                      height: 25.h,
+                                      height: 30.h,
                                       margin: EdgeInsets.symmetric(horizontal: 1.w),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
