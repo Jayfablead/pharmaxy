@@ -1,38 +1,36 @@
 
 import 'dart:convert';
 
-import 'package:ecommerce/Modal/RequestMedicineModel.dart';
+import 'package:ecommerce/Modal/RefillModel.dart';
 import 'package:ecommerce/Modal/RequestformModel.dart';
-
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
-class Request_Medicine extends StatefulWidget {
-  const Request_Medicine({super.key});
+class Refill_Alert extends StatefulWidget {
 
   @override
-  State<Request_Medicine> createState() => _Request_MedicineState();
+  State<Refill_Alert> createState() => _Refill_AlertState();
 }
 
-
-class _Request_MedicineState extends State<Request_Medicine> {
+class _Refill_AlertState extends State<Refill_Alert> {
   TextEditingController _firstname = TextEditingController();
   TextEditingController _phone = TextEditingController();
   TextEditingController _medicine = TextEditingController();
   TextEditingController _quantity = TextEditingController();
+  TextEditingController _date = TextEditingController();
   // void _removeMedicine(int index) {
   //   setState(() {
   //     medicines.removeAt(index);
   //   });
   // }
+  final _formKey = GlobalKey<FormState>();
   void _removeMedicineField(int index) {
     setState(() {
       medicines.removeAt(index);
@@ -95,15 +93,15 @@ class _Request_MedicineState extends State<Request_Medicine> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Medicine name",
-                      style: TextStyle(
-                          color: Colors.black87,
-                          fontFamily: "task",
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 0.5.h,),
+                    // Text(
+                    //   "Medicine name",
+                    //   style: TextStyle(
+                    //       color: Colors.black87,
+                    //       fontFamily: "task",
+                    //       fontSize: 11.sp,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    // SizedBox(height: 0.5.h,),
                     TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -153,15 +151,15 @@ class _Request_MedicineState extends State<Request_Medicine> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "quantity",
-                      style: TextStyle(
-                          color: Colors.black87,
-                          fontFamily: "task",
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 0.5.h,),
+                    // Text(
+                    //   "quantity",
+                    //   style: TextStyle(
+                    //       color: Colors.black87,
+                    //       fontFamily: "task",
+                    //       fontSize: 11.sp,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    // SizedBox(height: 0.5.h,),
                     TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -232,7 +230,6 @@ class _Request_MedicineState extends State<Request_Medicine> {
       }),
     );
   }
-  final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -271,7 +268,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                   size: 18.sp,
                                 )),
                             Text(
-                              "Request Medicine",
+                              "Refill Alert",
                               style: TextStyle(
                                 fontSize: 13.sp,
                                 fontFamily: "task",
@@ -287,7 +284,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                           height: 23.h,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage("assets/requestmedicine.jpg",),fit: BoxFit.cover
+                                image: AssetImage("assets/refill.jpg",),fit: BoxFit.cover
                             ),
                             borderRadius: BorderRadius.circular(15.0),
                           ),
@@ -532,7 +529,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                                   BorderRadius.circular(10),
                                                   borderSide:
                                                   BorderSide(color: Colors.grey)),
-                                              hintText: 'Quantity',
+                                              hintText: 'quantity',
                                               hintStyle: TextStyle(
                                                   color: Colors.black.withOpacity(0.4),
                                                   fontSize: 11.sp,
@@ -551,16 +548,90 @@ class _Request_MedicineState extends State<Request_Medicine> {
                               ),
                               _buildAddedMedicinesList(),
                               SizedBox(
+                                height: 2.5.h,
+                              ),
+                              // DATE
+                              Container(
+                                width: 85.w,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Select Date",
+                                      style: TextStyle(
+                                          color: Colors.black87,
+                                          fontFamily: "task",
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(height: 0.5.h,),
+                                    TextFormField(
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Please Select Date";
+                                        }
+                                        return null;
+                                      },
+                                      //keyboardType: TextInputType.number,
+                                      controller: _date,
+                                      style: TextStyle(height: 1),
+                                      decoration: InputDecoration(
+                                        suffixIcon: IconButton(
+                                          icon: Icon(Icons.date_range_outlined,color: AppColors.primary,size: 18.sp,),
+                                          onPressed: () async
+                                          {
+                                            DateTime? datepicker = await showDatePicker(
+                                                context: context,
+                                                initialDate: DateTime.now(),
+                                                firstDate: DateTime(2024,1),
+                                                lastDate: DateTime(2040,12));
+                                            if(datepicker!= null)
+                                            {
+                                              String formattedDate = DateFormat('dd-MM-yyyy').format(datepicker);
+                                              setState(() {
+                                                _date.text = formattedDate.toString();
+                                              });
+                                            }
+                                          },
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                            borderSide:
+                                            BorderSide(color: Colors.grey)),
+                                        disabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                            borderSide:
+                                            BorderSide(color: Colors.grey)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                            borderSide:
+                                            BorderSide(color: Colors.grey)),
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                            borderSide:
+                                            BorderSide(color: Colors.grey)),
+                                        hintText: 'Select Date',
+                                        hintStyle: TextStyle(
+                                            color: Colors.black.withOpacity(0.4),
+                                            fontSize: 11.sp,
+                                            fontFamily: "task"),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
                                 height: 5.h,
                               ),
-                              // SUBMIT
                               GestureDetector(
                                 onTap: () async{
-                                  await Requestmediformap();
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) => HomePage(sel: 1),)
-                                  );
-                                  print(medicines);
+                                 await Refillformap();
+                                 Navigator.of(context).push(
+                                   MaterialPageRoute(builder:  (context) => HomePage(sel: 1),)
+                                 );
                                 },
                                 child: Row(
                                   children: [
@@ -597,161 +668,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
 
 
   }
-
-  // Widget _buildAddedMedicinesList() {
-  //   return Column(
-  //     children: medicines.map((medicine) {
-  //       return Padding(
-  //         padding:  EdgeInsets.only(left: 4.h,top: 2.5.h),
-  //         child: Row(
-  //           children: [
-  //             Container(
-  //               width: 47.w,
-  //               child: Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [
-  //                   // Text(
-  //                   //   "Medicine name",
-  //                   //   style: TextStyle(
-  //                   //       color: Colors.black87,
-  //                   //       fontFamily: "task",
-  //                   //       fontSize: 11.sp,
-  //                   //       fontWeight: FontWeight.bold),
-  //                   // ),
-  //                   // SizedBox(height: 0.5.h,),
-  //                   TextFormField(
-  //                     validator: (value) {
-  //                       if (value!.isEmpty) {
-  //                         return "Please Enter Medicine";
-  //                       }
-  //                       return null;
-  //                     },
-  //                     keyboardType: TextInputType.text,
-  //                     controller: _medicine,
-  //                     style: TextStyle(height: 1),
-  //                     decoration: InputDecoration(
-  //                       enabledBorder: OutlineInputBorder(
-  //                           borderRadius:
-  //                           BorderRadius.circular(10),
-  //                           borderSide:
-  //                           BorderSide(color: Colors.grey)),
-  //                       disabledBorder: OutlineInputBorder(
-  //                           borderRadius:
-  //                           BorderRadius.circular(10),
-  //                           borderSide:
-  //                           BorderSide(color: Colors.grey)),
-  //                       focusedBorder: OutlineInputBorder(
-  //                           borderRadius:
-  //                           BorderRadius.circular(10),
-  //                           borderSide:
-  //                           BorderSide(color: Colors.grey)),
-  //                       border: OutlineInputBorder(
-  //                           borderRadius:
-  //                           BorderRadius.circular(10),
-  //                           borderSide:
-  //                           BorderSide(color: Colors.grey)),
-  //                       hintText: 'Medicine Name',
-  //                       hintStyle: TextStyle(
-  //                           color: Colors.black.withOpacity(0.4),
-  //                           fontSize: 11.sp,
-  //                           fontFamily: "task"),
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //             SizedBox(
-  //               width: 3.w,
-  //             ),
-  //             Container(
-  //               width: 25.w,
-  //               child: Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [
-  //                   // Text(
-  //                   //   "quantity",
-  //                   //   style: TextStyle(
-  //                   //       color: Colors.black87,
-  //                   //       fontFamily: "task",
-  //                   //       fontSize: 11.sp,
-  //                   //       fontWeight: FontWeight.bold),
-  //                   // ),
-  //                  // SizedBox(height: 0.5.h,),
-  //                   TextFormField(
-  //                     validator: (value) {
-  //                       if (value!.isEmpty) {
-  //                         return "Enter Number of Quantity";
-  //                       }
-  //                       return null;
-  //                     },
-  //                     keyboardType: TextInputType.number,
-  //                     controller: _quantity,
-  //                     style: TextStyle(height: 1),
-  //                     decoration: InputDecoration(
-  //                       enabledBorder: OutlineInputBorder(
-  //                           borderRadius:
-  //                           BorderRadius.circular(10),
-  //                           borderSide:
-  //                           BorderSide(color: Colors.grey)),
-  //                       disabledBorder: OutlineInputBorder(
-  //                           borderRadius:
-  //                           BorderRadius.circular(10),
-  //                           borderSide:
-  //                           BorderSide(color: Colors.grey)),
-  //                       focusedBorder: OutlineInputBorder(
-  //                           borderRadius:
-  //                           BorderRadius.circular(10),
-  //                           borderSide:
-  //                           BorderSide(color: Colors.grey)),
-  //                       border: OutlineInputBorder(
-  //                           borderRadius:
-  //                           BorderRadius.circular(10),
-  //                           borderSide:
-  //                           BorderSide(color: Colors.grey)),
-  //                       hintText: 'Quantity',
-  //                       hintStyle: TextStyle(
-  //                           color: Colors.black.withOpacity(0.4),
-  //                           fontSize: 11.sp,
-  //                           fontFamily: "task"),
-  //                     ),
-  //                   ),
-  //
-  //                 ],
-  //               ),
-  //             ),
-  //             SizedBox(
-  //               width: 2.w,
-  //             ),
-  //             GestureDetector(
-  //               onTap: () {
-  //                 _removeMedicine(0);
-  //               },
-  //               child: Container(
-  //                 margin: EdgeInsets.only(top: 1.h),
-  //                 alignment: Alignment.center,
-  //                 height: 4.h,
-  //                 width: 8.w,
-  //                 decoration: BoxDecoration(
-  //                   borderRadius: BorderRadius.circular(5),
-  //                   color: Color(0xff0061b0),
-  //                 ),
-  //                 child: Icon(
-  //                   Icons.remove_circle_outline,color: Colors.red,
-  //                 ),
-  //               ),
-  //             ),
-  //
-  //           ],
-  //         ),
-  //       );
-  //
-  //       // return ListTile(
-  //       //   title: Text('${medicine['name']} - ${medicine['quantity']}'),
-  //       // );
-  //     }).toList(),
-  //   );
-  // }
-  Requestmediformap() async {
+  Refillformap() async {
     if (_formKey.currentState!.validate()) {
       final List<String> allMedicines = [_medicine.text.toString(), ..._medicineControllers.map((controller) => controller.text.toString())];
       final List<String> allQuantities = [_quantity.text.toString(), ..._quantityControllers.map((controller) => controller.text.toString())];
@@ -759,15 +676,18 @@ class _Request_MedicineState extends State<Request_Medicine> {
       data['UserId'] = (usermodal?.userId).toString();
       data['name'] = _firstname.text.toString();
       data['mobile_number'] = _phone.text.toString();
+      data['date'] = _date.text.toString();
       data['medicine_name[]'] = allMedicines.join(',');
       data['quantity[]'] = allQuantities.join(',');
       print('form $data');
       checkInternet().then((internet) async {
         if (internet) {
-          authprovider().requestmediformap(data).then((response) async {
-            requestMedicineModel = RequestMedicineModel.fromJson(json.decode(response.body));
-            if (response.statusCode == 200 && requestMedicineModel?.status == "success") {
-
+          authprovider().refillformap(data).then((response) async {
+            refillModel = RefillModel.fromJson(json.decode(response.body));
+            if (response.statusCode == 200 && refillModel?.status == "success") {
+              setState(() {
+                isLoading = true;
+              });
               await EasyLoading.showSuccess('Submit Form Successfully');
               setState(() {
                 isLoading = false;

@@ -47,10 +47,12 @@ import 'package:ecommerce/Modal/PrescriptionModel.dart';
 import 'package:ecommerce/Modal/ProductDetailModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RecentBlogModel.dart';
+import 'package:ecommerce/Modal/RefillModel.dart';
 import 'package:ecommerce/Modal/RemoveAddressModal.dart';
 import 'package:ecommerce/Modal/RemoveCartModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/Remove_cart_withoutlogin_Model.dart';
+import 'package:ecommerce/Modal/RequestMedicineModel.dart';
 import 'package:ecommerce/Modal/RequestformModel.dart';
 import 'package:ecommerce/Modal/SaleListSerachModal.dart';
 import 'package:ecommerce/Modal/SalesProductListModal.dart';
@@ -179,6 +181,8 @@ ShortbyModel?shortbymodel;
 //Prit Api
 RequestformModel? requestformModel;
 PrescriptionformModel?prescriptionformModel;
+RequestMedicineModel?requestMedicineModel;
+RefillModel? refillModel;
 
 
 

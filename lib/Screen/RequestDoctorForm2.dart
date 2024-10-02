@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
-import 'package:ecommerce/Screen/RequestDoctorForm.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
@@ -57,11 +56,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                       children: [
                         IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Requestdoctorform(),
-                                  ));
+                              Navigator.pop(context);
                             },
                             icon: Icon(
                               Icons.arrow_back_ios_new_outlined,
@@ -512,11 +507,8 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
       final Map<String, String> data = {};
       data['UserId'] = (usermodal?.userId).toString();
       data['fname'] = widget.firstname;
-      data['lname'] = widget.lastname;
       data['email'] = widget.email;
       data['address'] = widget.address;
-      data['state'] = _state.text.toString();
-      data['city'] = _city.text.toString();
       data['zipcode'] = _ZipCode.text.toString();
       data['phone'] = widget.phone;
       data['gender'] = selected ;

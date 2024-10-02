@@ -370,6 +370,26 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
+            profilemodal?.profileDetails?.referCode=="1"?Positioned(
+              top: 25.h,
+              right: 4.w,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 0.5.h,horizontal: 2.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white
+                ),
+                child: Text(
+                  "Referred User",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'task',
+                    fontSize: 11.sp,
+                    color: AppColors.primary,
+                  ),
+                ),
+              ),
+            ):Container(),
           ],
         ),
       ),

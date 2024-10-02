@@ -27,6 +27,7 @@ import 'package:ecommerce/Screen/ProductList4.dart';
 import 'package:ecommerce/Screen/ProductListPage.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
+import 'package:ecommerce/Screen/Refill_Alert.dart';
 import 'package:ecommerce/Screen/RequestDoctorForm.dart';
 import 'package:ecommerce/Screen/Request_Medicine.dart';
 import 'package:ecommerce/Screen/SubCateGoryPage.dart';
@@ -545,13 +546,84 @@ class _HomePageState extends State<HomePage> {
                               child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [
+
+                                  // refill alert
+                                  InkWell(
+                                    onTap: (){
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => Refill_Alert()));
+                                    },
+                                    child: Card(
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10)),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Colors.white),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 110,
+                                                    child: Text(
+                                                      'Refill Alert',
+                                                      style: TextStyle(
+                                                          fontSize: 11.sp,
+                                                          // Adjust the font size
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontFamily: "task"),
+                                                    ),
+                                                  ),
+                                                  Image.network(
+                                                    'https://cdn-icons-png.flaticon.com/512/3789/3789150.png',
+                                                    width: 70,
+                                                    height: 70,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 30,
+                                              width: 200,
+                                              alignment: Alignment.centerLeft,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                      bottomLeft:
+                                                      Radius.circular(10),
+                                                      bottomRight:
+                                                      Radius.circular(10)),
+                                                  color: Colors.red.shade50),
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets.only(left: 15),
+                                                child: Text(
+                                                  'UPTO 24% OFF',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 9.sp,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                   SizedBox(
                                     width: 1.w,
                                   ),
                                   InkWell(
                                     onTap: (){
-                                      // Navigator.of(context).push(MaterialPageRoute(
-                                      //     builder: (context) => Request_Medicine()));
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => Request_Medicine()));
                                     },
                                     child: Card(
                                       elevation: 0,
@@ -617,7 +689,9 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-
+                                  SizedBox(
+                                    width: 1.w,
+                                  ),
                                   InkWell(
                                     onTap: (){
                                       Navigator.of(context).push(MaterialPageRoute(

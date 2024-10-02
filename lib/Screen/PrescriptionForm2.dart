@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:ecommerce/Modal/PrescriptionModel.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/PrescriptionForm.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
@@ -63,11 +64,7 @@ class _Prescriptionform2State extends State<Prescriptionform2> {
                       children: [
                         IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Prescriptionform(),
-                                  ));
+                              Navigator.of(context).pop();
                             },
                             icon: Icon(
                               Icons.arrow_back_ios_new_outlined,
@@ -273,7 +270,7 @@ class _Prescriptionform2State extends State<Prescriptionform2> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Physician First Name",
+                                        "Physician Name",
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
@@ -540,9 +537,12 @@ class _Prescriptionform2State extends State<Prescriptionform2> {
                             height: 4.h,
                           ),
                           GestureDetector(
-                            onTap: () {
+                            onTap: () async{
                               if (_formKey.currentState!.validate()) {
-                                preformap();
+                                await preformap();
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) =>HomePage(sel: 1) ,)
+                                );
                                 // countryValue == null &&
                                 //     cityValue == null &&
                                 //     stateValue == null
@@ -679,18 +679,13 @@ class _Prescriptionform2State extends State<Prescriptionform2> {
       final Map<String, String> data = {};
       data['UserId'] = (usermodal?.userId).toString();
       data['Patientfname'] = widget.firstname;
-      data['Patientlname'] = widget.lastname;
       data['Patientemail'] = widget.email;
       data['Patientaddress'] = widget.Address;
-      data['State'] = widget.state;
-      data['City'] = widget.city;
       data['Zipcode'] = widget.ZipCode;
       data['Phone'] = widget.phone;
       data['Gender'] = selected ;
       data['Patientage'] = _age.text.toString();
       data['Physiciansfname'] = _doctorfname.text.toString();
-      data['Physicianslname'] = _doctorlname.text.toString();
-      data['Physiciansnumber'] = _phoneno.text.toString();
       data['Prescribedmedicine'] = _medicine.text.toString();
       data['image'] = _pickedFile == null ?'':_pickedFile?.path ?? '';
       print(data);
