@@ -2617,7 +2617,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                               Text(
                                 chekoutdetailmodal?.checkoutData?[0].total == null||chekoutdetailmodal?.checkoutData?[0].total == ""
                                     ? "N/A"
-                                    : '₹ ' + (chekoutdetailmodal?.checkoutData?[0].total).toString(),
+                                    : '₹ ' + ((chekoutdetailmodal?.checkoutData?[0].total)?.toStringAsFixed(2) ?? ""),
                                 style: TextStyle(
                                   fontFamily: 'task',
                                   fontSize: 12.sp,
@@ -2958,7 +2958,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     final Map<String, String> data = {};
     data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
         ?deviceName.toString():usermodal?.userId ?? "";
-    data['payment'] = 'cod';
+    data['payment'] = 'online';
     data['shipping_address_id'] = widget.addid.toString();
     print(data);
     checkInternet().then((internet) async {

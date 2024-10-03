@@ -256,10 +256,9 @@ class _HomePageState extends State<HomePage> {
                                         icon: Icon(
                                           Icons.shopping_cart,
                                           color: AppColors.primary,
-                                          size: 25.sp,
+                                          size: 20.sp,
                                         ),
                                       ),
-
                                       // User Login/Profile
                                       Padding(
                                         padding: EdgeInsets.only(right: 2.w),
@@ -286,18 +285,16 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   Icon(
                                                       CupertinoIcons.person_add,
-                                                      size: 21.sp,
+                                                      size: 20.sp,
                                                       color:  AppColors.primary
-
                                                   ),
-
                                                 ],
                                               )
                                               : Container(
                                                   margin: EdgeInsets.symmetric(
                                                       horizontal: 1.w),
-                                                  height: 12.2.w,
-                                                  width: 12.2.w,
+                                                  height: 10.2.w,
+                                                  width: 10.2.w,
                                                   padding: EdgeInsets.all(1.w),
                                                   child: ClipRRect(
                                                     borderRadius:
@@ -331,8 +328,8 @@ class _HomePageState extends State<HomePage> {
                               usermodal?.userId == "" ||
                                   usermodal?.userId == null
                                   ?Container():Positioned(
-                                  bottom:3.5.h, // Adjust the value based on your layout
-                                  right: 17.5.w, // Adjust the value based on your layout
+                                  bottom:2.8.h, // Adjust the value based on your layout
+                                  right: 15.5.w, // Adjust the value based on your layout
                                   child: GestureDetector(
                                       onTap: () {
                                         // Handle the tap on the cart icon
@@ -398,7 +395,6 @@ class _HomePageState extends State<HomePage> {
                           height: 1.h,
                         ),
                       ),
-
                       SliverToBoxAdapter(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -408,7 +404,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-
                       name?SliverToBoxAdapter(
                         child: Container(
                         ),
@@ -417,7 +412,6 @@ class _HomePageState extends State<HomePage> {
                           height: 2.h,
                         ),
                       ),
-
                  name?SliverToBoxAdapter(
                    child: Container(
                    ),
@@ -522,8 +516,6 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-
-
                       name?SliverToBoxAdapter(
                         child: Container(
                         ),
@@ -533,7 +525,6 @@ class _HomePageState extends State<HomePage> {
                           height: 2.h,
                         ),
                       ),
-
                       name?SliverToBoxAdapter(
                         child: Container(
                         ),
@@ -1415,12 +1406,19 @@ class _HomePageState extends State<HomePage> {
                                 ),
                         ),
                       ),
-                      SliverToBoxAdapter(
+                      name?SliverToBoxAdapter(
+                        child:  SizedBox(
+                          height: 1.h,
+                        ),
+                      ):SliverToBoxAdapter(
                         child: SizedBox(
                           height: 2.h,
                         ),
                       ),
-                      bestsellerproductmodal?.productData?.length ==
+                      name?SliverToBoxAdapter(
+                        child: Container(
+                        ),
+                      ):bestsellerproductmodal?.productData?.length ==
                           0 ||
                           bestsellerproductmodal
                               ?.productData?.length ==
@@ -1494,7 +1492,7 @@ class _HomePageState extends State<HomePage> {
                                           crossAxisSpacing:
                                           0.0, // Adjust as needed
                                           childAspectRatio:
-                                          6.5 / 7.5 // Adjust as needed
+                                          6.5 / 7.9 // Adjust as needed
                                           ),
                                   delegate: SliverChildBuilderDelegate(
                                       (BuildContext context, int index) {

@@ -94,14 +94,14 @@ class CheckoutData {
   String? deviceId;
   String? finalTotal;
   String? totalTax;
-  int? finalTotalWithTax;
+  num? finalTotalWithTax;
   String? coupon;
   String? discount;
   String? referral;
   String? createdAt;
   String? updatedAt;
   String? shippingTax;
-  int? total;
+  num? total;
 
   CheckoutData(
       {this.id,

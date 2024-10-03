@@ -42,14 +42,14 @@ class CartPage extends StatefulWidget {
   State<CartPage> createState() => _CartPageState();
 }
 
-late TextEditingController _searchController;
+
 
 int age = 1;
 int? newprice;
 int? taxprice;
 String? deviceName;
 String? deviceOS;
-final GlobalKey<ScaffoldState> _scaffoldKeycart = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeycart1 = GlobalKey<ScaffoldState>();
 DatabaseHelper databaseHelper = DatabaseHelper();
 
 class order {
@@ -67,7 +67,7 @@ bool isLoading = true;
 bool cpupon = false;
 
 String? coponapplend=_searchController.text.toString();
-
+late TextEditingController _searchController;
 
 int total = 0;
 List<order> cat = [
@@ -125,7 +125,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
       isLoading: isLoading,
       scaffold: Scaffold(
         bottomNavigationBar: bottombar(),
-        key: _scaffoldKeycart,
+        key: _scaffoldKeycart1,
         extendBody: true,
         drawer: drawer1(),
         backgroundColor: bgcolor,
@@ -731,7 +731,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  _scaffoldKeycart.currentState
+                                  _scaffoldKeycart1.currentState
                                       ?.openDrawer();
                                 },
                                 icon: Icon(
@@ -1218,7 +1218,35 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                 children: [
                                   Row(
                                     children: [
-                                      searchBox(),
+                              Container(
+                              width: 61.w,
+                                padding: EdgeInsets.symmetric(horizontal: 3.w),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade50,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: TextField(
+                                  controller: _searchController,
+                                  onTap: () {
+                                    // Tap event handled here (optional)
+                                  },
+                                  onChanged: (value) {
+                                    // When text changes, handle it here (optional)
+                                  },
+                                  style: TextStyle(color: Colors.black, fontFamily: 'task'),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(0),
+                                    prefixIconConstraints: BoxConstraints(
+                                      maxHeight: 20,
+                                      minWidth: 25,
+                                    ),
+                                    border: InputBorder.none,
+                                    hintText: 'Enter Coupon Code',
+                                    hintStyle: TextStyle(
+                                        color: Colors.black, fontFamily: 'task', fontSize: 11.sp),
+                                  ),
+                                ),
+                              ),
                                       SizedBox(
                                         width: 3.w,
                                       ),
@@ -1594,7 +1622,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                 children: [
                                   IconButton(
                                       onPressed: () {
-                                        _scaffoldKeycart.currentState
+                                        _scaffoldKeycart1.currentState
                                             ?.openDrawer();
                                       },
                                       icon: Icon(
@@ -2097,7 +2125,35 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                             children: [
                                               Row(
                                                 children: [
-                                                  searchBox(),
+                                          Container(
+                                          width: 61.w,
+                                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey.shade50,
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                            child: TextField(
+                                              controller: _searchController,
+                                              onTap: () {
+                                                // Tap event handled here (optional)
+                                              },
+                                              onChanged: (value) {
+                                                // When text changes, handle it here (optional)
+                                              },
+                                              style: TextStyle(color: Colors.black, fontFamily: 'task'),
+                                              decoration: InputDecoration(
+                                                contentPadding: EdgeInsets.all(0),
+                                                prefixIconConstraints: BoxConstraints(
+                                                  maxHeight: 20,
+                                                  minWidth: 25,
+                                                ),
+                                                border: InputBorder.none,
+                                                hintText: 'Enter Coupon Code',
+                                                hintStyle: TextStyle(
+                                                    color: Colors.black, fontFamily: 'task', fontSize: 11.sp),
+                                              ),
+                                            ),
+                                          ),
                                                   SizedBox(
                                                     width: 3.w,
                                                   ),
@@ -2520,37 +2576,37 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
       ),
     );
   }
-  Widget searchBox() {
-    return Container(
-      width: 61.w,
-      padding: EdgeInsets.symmetric(horizontal: 3.w),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: TextField(
-        controller: _searchController,
-        onTap: () {
-          // Tap event handled here (optional)
-        },
-        onChanged: (value) {
-          // When text changes, handle it here (optional)
-        },
-        style: TextStyle(color: Colors.black, fontFamily: 'task'),
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(0),
-          prefixIconConstraints: BoxConstraints(
-            maxHeight: 20,
-            minWidth: 25,
-          ),
-          border: InputBorder.none,
-          hintText: 'Enter Coupon Code',
-          hintStyle: TextStyle(
-              color: Colors.black, fontFamily: 'task', fontSize: 11.sp),
-        ),
-      ),
-    );
-  }
+  // Widget searchBox() {
+  //   return Container(
+  //     width: 61.w,
+  //     padding: EdgeInsets.symmetric(horizontal: 3.w),
+  //     decoration: BoxDecoration(
+  //       color: Colors.grey.shade50,
+  //       borderRadius: BorderRadius.circular(10),
+  //     ),
+  //     child: TextField(
+  //       controller: _searchController,
+  //       onTap: () {
+  //         // Tap event handled here (optional)
+  //       },
+  //       onChanged: (value) {
+  //         // When text changes, handle it here (optional)
+  //       },
+  //       style: TextStyle(color: Colors.black, fontFamily: 'task'),
+  //       decoration: InputDecoration(
+  //         contentPadding: EdgeInsets.all(0),
+  //         prefixIconConstraints: BoxConstraints(
+  //           maxHeight: 20,
+  //           minWidth: 25,
+  //         ),
+  //         border: InputBorder.none,
+  //         hintText: 'Enter Coupon Code',
+  //         hintStyle: TextStyle(
+  //             color: Colors.black, fontFamily: 'task', fontSize: 11.sp),
+  //       ),
+  //     ),
+  //   );
+  // }
 
 
 
