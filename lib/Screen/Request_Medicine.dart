@@ -75,8 +75,8 @@ class _Request_MedicineState extends State<Request_Medicine> {
         },
         child: Padding(
           padding: addbutton
-              ? EdgeInsets.only(top: 4.h)
-              : EdgeInsets.only(bottom: 0.5.h),
+              ? EdgeInsets.only(top: 3.h)
+              : EdgeInsets.only(bottom: 0.h),
           child: Container(
             //margin: EdgeInsets.only(top: 2.5.h),
             alignment: Alignment.center,
@@ -103,7 +103,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
     return Column(
       children: List.generate(medicines.length, (index) {
         return Padding(
-          padding:  EdgeInsets.only(left: 4.h,top: 2.5.h),
+          padding:  EdgeInsets.only(left: 3.5.h,top: 2.5.h),
           child: Row(
             children: [
               Container(
@@ -162,7 +162,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                 ),
               ),
               SizedBox(
-                width: 3.w,
+                width: 2.w,
               ),
               Container(
                 width: 19.w,
@@ -221,23 +221,28 @@ class _Request_MedicineState extends State<Request_Medicine> {
                 ),
               ),
               SizedBox(
-                width: 2.w,
+                width: 1.5.w,
               ),
               GestureDetector(
                 onTap: () {
                   _removeMedicineField(0);
                 },
-                child: Container(
-                  // margin: EdgeInsets.only(top: 1.h),
-                  alignment: Alignment.center,
-                  height: 6.5.h,
-                  width: 15.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0xff0061b0),
-                  ),
-                  child: Icon(
-                    Icons.remove_circle_outline,color: Colors.white,
+                child: Padding(
+                  padding: addbutton
+                      ? EdgeInsets.only(top: 0.h)
+                      : EdgeInsets.only(bottom: 3.h),
+                  child: Container(
+                    // margin: EdgeInsets.only(top: 1.h),
+                    alignment: Alignment.center,
+                    height: 6.5.h,
+                    width: 15.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xff0061b0),
+                    ),
+                    child: Icon(
+                      Icons.remove_circle_outline,color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -254,7 +259,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
-        body:  Form(
+        body: Form(
             key: _formKey,
             child: commanScreen(
               isLoading: isLoading,
@@ -297,9 +302,9 @@ class _Request_MedicineState extends State<Request_Medicine> {
                             IconButton(onPressed: () {}, icon: Icon(null)),
                           ],
                         ),
-                        SizedBox(height: 1.h,),
+                        SizedBox(height: 2.h,),
                         Container(
-                          width: 90.w,
+                          width: 87.w,
                           height: 23.h,
                           decoration: BoxDecoration(
                             image: DecorationImage(
@@ -442,7 +447,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                 height: 2.5.h,
                               ),
                               Padding(
-                                padding:  EdgeInsets.only(left: 4.h),
+                                padding:  EdgeInsets.only(left: 3.5.h),
                                 child: Row(
                                   children: [
                                     Container(
@@ -501,7 +506,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 3.w,
+                                      width: 2.w,
                                     ),
                                     Container(
                                       width: 19.w,
@@ -559,7 +564,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 2.w,
+                                      width: 1.5.w,
                                     ),
                                     _buildAddButton(),
                                   ],
@@ -567,7 +572,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                               ),
                               _buildAddedMedicinesList(),
                               SizedBox(
-                                height: 5.h,
+                                height: 3.h,
                               ),
                               // SUBMIT
                               GestureDetector(
@@ -777,8 +782,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
       final List<String> allMedicines = [_medicine.text.toString(), ..._medicineControllers.map((controller) => controller.text.toString())];
       final List<String> allQuantities = [_quantity.text.toString(), ..._quantityControllers.map((controller) => controller.text.toString())];
       final Map<String, String> data = {};
-      data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
-          ?deviceName.toString():usermodal?.userId ?? "";
+      data['UserId'] = (usermodal?.userId).toString();
       data['name'] = _firstname.text.toString();
       data['mobile_number'] = _phone.text.toString();
       data['medicine_name[]'] = allMedicines.join(',');
@@ -789,7 +793,6 @@ class _Request_MedicineState extends State<Request_Medicine> {
           authprovider().requestmediformap(data).then((response) async {
             requestMedicineModel = RequestMedicineModel.fromJson(json.decode(response.body));
             if (response.statusCode == 200 && requestMedicineModel?.status == "success") {
-
               await EasyLoading.showSuccess('Submit  Successfully');
               setState(() {
                 isLoading = false;
@@ -811,7 +814,6 @@ class _Request_MedicineState extends State<Request_Medicine> {
     }
   }
 
-
   Future<void> getDeviceInfoandStore() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
@@ -832,6 +834,5 @@ class _Request_MedicineState extends State<Request_Medicine> {
     print('Device Name: $deviceName');
     print('Device OS: $deviceOS');
   }
-
 
 }

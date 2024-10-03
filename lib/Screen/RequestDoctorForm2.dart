@@ -438,7 +438,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                           ),
 
                           SizedBox(
-                            height: 5.h,
+                            height: 4.h,
                           ),
                           GestureDetector(
                             onTap: () async{
@@ -494,6 +494,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
           ),
         )
     );
+
   }
   Requestformap() async {
     if (_formKey.currentState!.validate()) {

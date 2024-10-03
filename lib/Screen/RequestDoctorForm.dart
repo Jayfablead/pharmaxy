@@ -431,11 +431,9 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
                               ],
                             ),
                           ),
+
                           SizedBox(
-                            height: 2.5.h,
-                          ),
-                          SizedBox(
-                            height: 5.h,
+                            height: 4.h,
                           ),
                           GestureDetector(
                             onTap: () {

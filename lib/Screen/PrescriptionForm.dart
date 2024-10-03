@@ -48,7 +48,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
   Widget build(BuildContext context) {
     return  Form(
         key: _formKey,
-        child: commanScreen(
+        child:commanScreen(
           isLoading: isLoading,
           scaffold: Scaffold(
             backgroundColor: Colors.white,
@@ -79,7 +79,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                               size: 18.sp,
                             )),
                         Text(
-                          "Prescription Form",
+                          "Upload Prescription",
                           style: TextStyle(
                             fontSize: 13.sp,
                             fontFamily: "task",
@@ -141,68 +141,68 @@ class _PrescriptionformState extends State<Prescriptionform> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: 2.5.h,
+                            height: 1.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                width: 85.w,
-                                child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Patient Name",
-                                      style: TextStyle(
-                                          color: Colors.black87,
-                                          fontFamily: "task",
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(height: 0.5.h,),
-                                    TextFormField(
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Please Enter Your Name";
-                                        }
-                                        return null;
-                                      },
-                                      keyboardType: TextInputType.text,
-                                      style: TextStyle(height: 1),
-                                      controller: _firstname,
-                                      decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey)),
-                                        disabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey)),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey)),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey)),
-                                        hintText: 'Enter Your  Name',
-                                        hintStyle: TextStyle(
-                                            color:
-                                            Colors.black.withOpacity(0.4),
-                                            fontSize: 11.sp,
-                                            fontFamily: "task"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              // Container(
+                              //   width: 85.w,
+                              //   child: Column(
+                              //     crossAxisAlignment:
+                              //     CrossAxisAlignment.start,
+                              //     children: [
+                              //       Text(
+                              //         "Patient Name",
+                              //         style: TextStyle(
+                              //             color: Colors.black87,
+                              //             fontFamily: "task",
+                              //             fontSize: 11.sp,
+                              //             fontWeight: FontWeight.bold),
+                              //       ),
+                              //       SizedBox(height: 0.5.h,),
+                              //       TextFormField(
+                              //         validator: (value) {
+                              //           if (value!.isEmpty) {
+                              //             return "Please Enter Your Name";
+                              //           }
+                              //           return null;
+                              //         },
+                              //         keyboardType: TextInputType.text,
+                              //         style: TextStyle(height: 1),
+                              //         controller: _firstname,
+                              //         decoration: InputDecoration(
+                              //           enabledBorder: OutlineInputBorder(
+                              //               borderRadius:
+                              //               BorderRadius.circular(10),
+                              //               borderSide: BorderSide(
+                              //                   color: Colors.grey)),
+                              //           disabledBorder: OutlineInputBorder(
+                              //               borderRadius:
+                              //               BorderRadius.circular(10),
+                              //               borderSide: BorderSide(
+                              //                   color: Colors.grey)),
+                              //           focusedBorder: OutlineInputBorder(
+                              //               borderRadius:
+                              //               BorderRadius.circular(10),
+                              //               borderSide: BorderSide(
+                              //                   color: Colors.grey)),
+                              //           border: OutlineInputBorder(
+                              //               borderRadius:
+                              //               BorderRadius.circular(10),
+                              //               borderSide: BorderSide(
+                              //                   color: Colors.grey)),
+                              //           hintText: 'Enter Your  Name',
+                              //           hintStyle: TextStyle(
+                              //               color:
+                              //               Colors.black.withOpacity(0.4),
+                              //               fontSize: 11.sp,
+                              //               fontFamily: "task"),
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
                             ],
                           ),
                           SizedBox(
@@ -267,128 +267,128 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           //   height: 2.5.h,
                           // ),
                           // email
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Patient Email",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                TextFormField(
-                                  keyboardType: TextInputType.emailAddress,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please Enter Your Email";
-                                    }
-                                    else if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value))
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "Patient Email",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 11.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       TextFormField(
+                          //         keyboardType: TextInputType.emailAddress,
+                          //         validator: (value) {
+                          //           if (value!.isEmpty) {
+                          //             return "Please Enter Your Email";
+                          //           }
+                          //           else if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value))
+                          //
+                          //           {
+                          //             return "Please Enter valid email address";
+                          //           }
+                          //           return null;
+                          //         },
+                          //         controller: _email,
+                          //         style: TextStyle(height: 1),
+                          //         decoration: InputDecoration(
+                          //           enabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           disabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           focusedBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           border: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           hintText: 'Enter Your Email ',
+                          //           hintStyle: TextStyle(
+                          //               color: Colors.black.withOpacity(0.4),
+                          //               fontSize: 11.sp,
+                          //               fontFamily: "task"),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
 
-                                    {
-                                      return "Please Enter valid email address";
-                                    }
-                                    return null;
-                                  },
-                                  controller: _email,
-                                  style: TextStyle(height: 1),
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter Your Email ',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.4),
-                                        fontSize: 11.sp,
-                                        fontFamily: "task"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: 2.5.h,
-                          ),
+                          // SizedBox(
+                          //   height: 2.5.h,
+                          // ),
                           // Address
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Patient Address",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                TextFormField(
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please Enter Your Address";
-                                    }
-                                  },
-                                  keyboardType: TextInputType.text,
-                                  controller: _Address,
-                                  style: TextStyle(height: 1),
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter Your Address ',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.4),
-                                        fontSize: 11.sp,
-                                        fontFamily: "task"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 2.5.h,
-                          ),
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "Patient Address",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 11.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       TextFormField(
+                          //         validator: (value) {
+                          //           if (value!.isEmpty) {
+                          //             return "Please Enter Your Address";
+                          //           }
+                          //         },
+                          //         keyboardType: TextInputType.text,
+                          //         controller: _Address,
+                          //         style: TextStyle(height: 1),
+                          //         decoration: InputDecoration(
+                          //           enabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           disabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           focusedBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           border: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           hintText: 'Enter Your Address ',
+                          //           hintStyle: TextStyle(
+                          //               color: Colors.black.withOpacity(0.4),
+                          //               fontSize: 11.sp,
+                          //               fontFamily: "task"),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 2.5.h,
+                          // ),
                           // Container(
                           //   width: 85.w,
                           //   child: Column(
@@ -558,138 +558,138 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           // ),
                           // SizedBox(height: 2.5.h,),
                           // Phone
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Patient Phone",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                TextFormField(
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please Enter Phone Number";
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.phone,
-                                  controller: _phone,
-                                  style: TextStyle(height: 1),
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter Your Phone Number',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.4),
-                                        fontSize: 11.sp,
-                                        fontFamily: "task"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 2.5.h,
-                          ),
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Gender",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                Container(
-                                  height: 8.h,
-                                  width: 85.w,
-                                  child: DropdownButtonFormField(
-                                    borderRadius: BorderRadius.circular(30),
-                                    decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 2.h, horizontal: 4.w),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.grey)),
-                                      disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.grey)),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.grey)),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.grey)),
-                                      // filled: true,
-                                      hintStyle: TextStyle(
-                                        // color: Colors.grey[800]
-                                      ),
-                                    ),
-                                    value: selected,
-                                    onChanged: (val) {
-                                      setState(() {
-                                        selected = val!;
-                                      });
-                                    },
-                                    items: [
-                                      DropdownMenuItem<String>(
-                                        child: Text("Please Select"),
-                                        value: "please select",
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        child: Text("Male"),
-                                        value: "male",
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        child: Text("Female"),
-                                        value: "female",
-                                      )
-                                    ],
-                                    // Initialize this variable with the selected value.
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 2.5.h,),
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "Patient Phone",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 11.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       TextFormField(
+                          //         validator: (value) {
+                          //           if (value!.isEmpty) {
+                          //             return "Please Enter Phone Number";
+                          //           }
+                          //           return null;
+                          //         },
+                          //         keyboardType: TextInputType.phone,
+                          //         controller: _phone,
+                          //         style: TextStyle(height: 1),
+                          //         decoration: InputDecoration(
+                          //           enabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           disabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           focusedBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           border: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           hintText: 'Enter Your Phone Number',
+                          //           hintStyle: TextStyle(
+                          //               color: Colors.black.withOpacity(0.4),
+                          //               fontSize: 11.sp,
+                          //               fontFamily: "task"),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 2.5.h,
+                          // ),
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "Gender",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 11.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       Container(
+                          //         height: 8.h,
+                          //         width: 85.w,
+                          //         child: DropdownButtonFormField(
+                          //           borderRadius: BorderRadius.circular(30),
+                          //           decoration: InputDecoration(
+                          //             contentPadding: EdgeInsets.symmetric(
+                          //                 vertical: 2.h, horizontal: 4.w),
+                          //             border: OutlineInputBorder(
+                          //                 borderRadius: BorderRadius.all(
+                          //                   Radius.circular(10),
+                          //                 ),
+                          //                 borderSide: BorderSide(color: Colors.grey)),
+                          //             disabledBorder: OutlineInputBorder(
+                          //                 borderRadius: BorderRadius.all(
+                          //                   Radius.circular(10.0),
+                          //                 ),
+                          //                 borderSide: BorderSide(color: Colors.grey)),
+                          //             enabledBorder: OutlineInputBorder(
+                          //                 borderRadius: BorderRadius.all(
+                          //                   Radius.circular(10.0),
+                          //                 ),
+                          //                 borderSide: BorderSide(color: Colors.grey)),
+                          //             focusedBorder: OutlineInputBorder(
+                          //                 borderRadius: BorderRadius.all(
+                          //                   Radius.circular(10.0),
+                          //                 ),
+                          //                 borderSide: BorderSide(color: Colors.grey)),
+                          //             // filled: true,
+                          //             hintStyle: TextStyle(
+                          //               // color: Colors.grey[800]
+                          //             ),
+                          //           ),
+                          //           value: selected,
+                          //           onChanged: (val) {
+                          //             setState(() {
+                          //               selected = val!;
+                          //             });
+                          //           },
+                          //           items: [
+                          //             DropdownMenuItem<String>(
+                          //               child: Text("Please Select"),
+                          //               value: "please select",
+                          //             ),
+                          //             DropdownMenuItem<String>(
+                          //               child: Text("Male"),
+                          //               value: "male",
+                          //             ),
+                          //             DropdownMenuItem<String>(
+                          //               child: Text("Female"),
+                          //               value: "female",
+                          //             )
+                          //           ],
+                          //           // Initialize this variable with the selected value.
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(height: 2.5.h,),
                           Container(
                             width: 85.w,
                             child: Column(
@@ -745,62 +745,62 @@ class _PrescriptionformState extends State<Prescriptionform> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 2.5.h,),
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Physician Name",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                TextFormField(
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please Enter Name";
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.text,
-                                  controller: _doctorfname,
-                                  style: TextStyle(height: 1),
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter Physician First Name',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.4),
-                                        fontSize: 11.sp,
-                                        fontFamily: "task"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          // SizedBox(height: 2.5.h,),
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "Physician Name",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 11.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       TextFormField(
+                          //         validator: (value) {
+                          //           if (value!.isEmpty) {
+                          //             return "Please Enter Name";
+                          //           }
+                          //           return null;
+                          //         },
+                          //         keyboardType: TextInputType.text,
+                          //         controller: _doctorfname,
+                          //         style: TextStyle(height: 1),
+                          //         decoration: InputDecoration(
+                          //           enabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           disabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           focusedBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           border: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           hintText: 'Enter Physician First Name',
+                          //           hintStyle: TextStyle(
+                          //               color: Colors.black.withOpacity(0.4),
+                          //               fontSize: 11.sp,
+                          //               fontFamily: "task"),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                           SizedBox(height: 2.5.h,),
                           Container(
                             width: 85.w,
@@ -890,7 +890,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                     ),),
                                   ),
                                 ),
-                                SizedBox(height: 2.h,),
+                                SizedBox(height: 1.h,),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -906,7 +906,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                             ),
                           ),
                           SizedBox(
-                            height: 5.h,
+                            height: 1.h,
                           ),
                           GestureDetector(
                             onTap: () async{
@@ -929,7 +929,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                         borderRadius: BorderRadius.circular(10),
                                         color: Color(0xff0061b0)),
                                     child: Text(
-                                      "Prescription Form",
+                                      "Submit Prescription",
                                       style: TextStyle(
                                           fontSize: 13.sp,
                                           color: Colors.white,

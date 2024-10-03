@@ -76,9 +76,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
           // }
         },
         child: Padding(
-          padding: addbutton
-              ? EdgeInsets.only(top: 4.h)
-              : EdgeInsets.only(bottom: 0.5.h),
+          padding: addbutton ? EdgeInsets.only(top: 3.h) : EdgeInsets.only(bottom: 0.h),
           child: Container(
             //margin: EdgeInsets.only(top: 2.5.h),
             alignment: Alignment.center,
@@ -95,7 +93,6 @@ class _Refill_AlertState extends State<Refill_Alert> {
           ),
         ));
   }
-@override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -105,7 +102,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
     return Column(
       children: List.generate(medicines.length, (index) {
         return Padding(
-          padding: EdgeInsets.only(left: 4.h, top: 2.5.h),
+          padding: EdgeInsets.only(left: 3.5.h, top: 2.5.h),
           child: Row(
             children: [
               Container(
@@ -156,7 +153,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                 ),
               ),
               SizedBox(
-                width: 3.w,
+                width: 2.w,
               ),
               Container(
                 width: 19.w,
@@ -206,24 +203,29 @@ class _Refill_AlertState extends State<Refill_Alert> {
                 ),
               ),
               SizedBox(
-                width: 2.w,
+                width: 1.5.w,
               ),
               GestureDetector(
                 onTap: () {
                   _removeMedicineField(0);
                 },
-                child: Container(
-                  // margin: EdgeInsets.only(top: 1.h),
-                  alignment: Alignment.center,
-                  height: 6.5.h,
-                  width: 15.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Color(0xff0061b0),
-                  ),
-                  child: Icon(
-                    Icons.remove_circle_outline,
-                    color: Colors.white,
+                child: Padding(
+                  padding: addbutton
+                      ? EdgeInsets.only(top: 0.h)
+                      : EdgeInsets.only(bottom: 3.h),
+                  child: Container(
+                    // margin: EdgeInsets.only(top: 1.h),
+                    alignment: Alignment.center,
+                    height: 6.5.h,
+                    width: 15.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xff0061b0),
+                    ),
+                    child: Icon(
+                      Icons.remove_circle_outline,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -287,10 +289,10 @@ class _Refill_AlertState extends State<Refill_Alert> {
                           ],
                         ),
                         SizedBox(
-                          height: 1.h,
+                          height: 2.h,
                         ),
                         Container(
-                          width: 90.w,
+                          width: 87.w,
                           height: 23.h,
                           decoration: BoxDecoration(
                             image: DecorationImage(
@@ -460,7 +462,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                 height: 2.5.h,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 4.h),
+                                padding: EdgeInsets.only(left: 3.5.h),
                                 child: Row(
                                   children: [
                                     Container(
@@ -542,7 +544,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 3.w,
+                                      width: 2.w,
                                     ),
                                     Container(
                                       width: 19.w,
@@ -622,7 +624,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 2.w,
+                                      width: 1.5.w,
                                     ),
                                     _buildAddButton(),
                                   ],
@@ -640,7 +642,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                   CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Select Date",
+                                      "Select Day",
                                       style: TextStyle(
                                           color: Colors.black87,
                                           fontFamily: "task",
@@ -653,7 +655,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                     TextFormField(
                                       validator: (value) {
                                         if (value!.isEmpty) {
-                                          return "Please Select Date";
+                                          return "Please Select Day";
                                         }
                                         return null;
                                       },
@@ -710,7 +712,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                             BorderRadius.circular(10),
                                             borderSide: BorderSide(
                                                 color: Colors.grey)),
-                                        hintText: 'Select Date',
+                                        hintText: 'Select Day',
                                         hintStyle: TextStyle(
                                             color: Colors.black
                                                 .withOpacity(0.4),
@@ -722,7 +724,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                 ),
                               ),
                               SizedBox(
-                                height: 5.h,
+                                height: 3.h,
                               ),
                               GestureDetector(
                                 onTap: () async {
@@ -733,8 +735,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                     await Refillformap();
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          HomePage(sel: 1),
+                                      builder: (context) => HomePage(sel: 1),
                                     ));
                                   }
                                 },
@@ -839,4 +840,6 @@ class _Refill_AlertState extends State<Refill_Alert> {
     print('Device Name: $deviceName');
     print('Device OS: $deviceOS');
   }
+
+
 }
