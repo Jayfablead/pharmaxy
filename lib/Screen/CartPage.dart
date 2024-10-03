@@ -2845,7 +2845,6 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
   }
 
 
-
   decrement(String value) async {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
@@ -2878,7 +2877,6 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
       }
     });
   }
-
 
 
   viewap() {
@@ -2967,7 +2965,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
               isLoading = false;
             });
           } else {
-            EasyLoading.showError("Coupon cannot be applied. Please check the conditions");
+            EasyLoading.showError(couponmodel?.message ?? '');
             setState(() {
               isLoading = false;
             });

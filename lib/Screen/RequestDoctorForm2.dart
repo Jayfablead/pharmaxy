@@ -474,7 +474,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                         borderRadius: BorderRadius.circular(10),
                                         color: Color(0xff0061b0)),
                                     child: Text(
-                                      "Request Doctor",
+                                      "Appointment Doctor",
                                       style: TextStyle(
                                           fontSize: 12.sp,
                                           color: Colors.white,

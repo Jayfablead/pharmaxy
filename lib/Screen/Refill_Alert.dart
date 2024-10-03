@@ -733,10 +733,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                   });
                                   if (_formKey.currentState!.validate()) {
                                     await Refillformap();
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                      builder: (context) => HomePage(sel: 1),
-                                    ));
+
                                   }
                                 },
                                 child: Row(
@@ -772,6 +769,54 @@ class _Refill_AlertState extends State<Refill_Alert> {
             )));
   }
 
+  // Refillformap() async {
+  //   if (_formKey.currentState!.validate()) {
+  //     final List<String> allMedicines = [
+  //       _medicine.text.toString(),
+  //       ..._medicineControllers.map((controller) => controller.text.toString())
+  //     ];
+  //     final List<String> allQuantities = [
+  //       _quantity.text.toString(),
+  //       ..._quantityControllers.map((controller) => controller.text.toString())
+  //     ];
+  //     final Map<String, String> data = {};
+  //     data['UserId'] =usermodal?.userId == "" || usermodal?.userId == null
+  //         ?deviceName.toString():usermodal?.userId ?? "";
+  //     data['name'] = _firstname.text.toString();
+  //     data['mobile_number'] = _phone.text.toString();
+  //     data['date'] = _date.text.toString();
+  //     data['medicine_name[]'] = allMedicines.join(',');
+  //     data['quantity[]'] = allQuantities.join(',');
+  //     print('form $data');
+  //     checkInternet().then((internet) async {
+  //       if (internet) {
+  //         authprovider().refillformap(data).then((response) async {
+  //           refillModel = RefillModel.fromJson(json.decode(response.body));
+  //           if (response.statusCode == 200 &&
+  //               refillModel?.status == "success") {
+  //             setState(() {
+  //               isLoading = true;
+  //             });
+  //             await EasyLoading.showSuccess('Submit Successfully');
+  //             setState(() {
+  //               isLoading = false;
+  //             });
+  //           } else {
+  //             await EasyLoading.showError('Submit Failed');
+  //             setState(() {
+  //               isLoading = false;
+  //             });
+  //           }
+  //         });
+  //       } else {
+  //         setState(() {
+  //           isLoading = false;
+  //         });
+  //         buildErrorDialog(context, 'Error', "Internet Required");
+  //       }
+  //     });
+  //   }
+  // }
   Refillformap() async {
     if (_formKey.currentState!.validate()) {
       final List<String> allMedicines = [
@@ -782,21 +827,49 @@ class _Refill_AlertState extends State<Refill_Alert> {
         _quantity.text.toString(),
         ..._quantityControllers.map((controller) => controller.text.toString())
       ];
-      final Map<String, String> data = {};
-      data['UserId'] =usermodal?.userId == "" || usermodal?.userId == null
-          ?deviceName.toString():usermodal?.userId ?? "";
+
+      // Creating list of maps for medicines and quantities
+      List<Map<String, dynamic>> medicinesList = [];
+
+      for (int i = 0; i < allMedicines.length; i++) {
+        medicinesList.add({
+          "medicine_name": allMedicines[i],
+          "quantity": allQuantities[i],
+        });
+      }
+
+      // Building the final map with all required data
+      final Map<String, dynamic> data = {};
+      data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
+          ? deviceName.toString()
+          : usermodal?.userId ?? "";
       data['name'] = _firstname.text.toString();
       data['mobile_number'] = _phone.text.toString();
       data['date'] = _date.text.toString();
-      data['medicine_name[]'] = allMedicines.join(',');
-      data['quantity[]'] = allQuantities.join(',');
+      data['medicines[]'] = medicinesList;  // Sending the medicines list
+      data['quantity[]'] = medicinesList;  // Sending the medicines list
+
       print('form $data');
+
       checkInternet().then((internet) async {
         if (internet) {
-          authprovider().refillformap(data).then((response) async {
+          // Adding headers for JSON content type
+          Map<String, String> headers = {
+            "Content-Type": "application/json", // Ensure content type is JSON
+            // Add other headers if needed, like authorization token
+          };
+
+          try {
+            print("hary");
+            // Sending JSON-encoded data in the request
+            final response = await authprovider().refillformap(data, headers,);
+
             refillModel = RefillModel.fromJson(json.decode(response.body));
-            if (response.statusCode == 200 &&
-                refillModel?.status == "success") {
+            if (response.statusCode == 200 && refillModel?.status == "success") {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(
+                builder: (context) => HomePage(sel: 1),
+              ));
               setState(() {
                 isLoading = true;
               });
@@ -805,12 +878,18 @@ class _Refill_AlertState extends State<Refill_Alert> {
                 isLoading = false;
               });
             } else {
+              print("refillModel${refillModel?.message ?? ""}");
               await EasyLoading.showError('Submit Failed');
               setState(() {
                 isLoading = false;
               });
             }
-          });
+          } catch (e) {
+            await EasyLoading.showError('API call failed: $e');
+            setState(() {
+              isLoading = false;
+            });
+          }
         } else {
           setState(() {
             isLoading = false;
@@ -820,6 +899,12 @@ class _Refill_AlertState extends State<Refill_Alert> {
       });
     }
   }
+
+
+
+
+
+
   Future<void> getDeviceInfoandStore() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {

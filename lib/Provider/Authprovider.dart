@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:ecommerce/Widget/Const.dart';
@@ -1413,20 +1414,42 @@ class authprovider with ChangeNotifier {
   }
 
   // refillform
-  Future<http.Response> refillformap(Map<String, String> bodyData) async {
+  // Future<http.Response> refillformap(Map<String, String> bodyData) async {
+  //   const url = "$baseUrl/RefillAlert";
+  //   var responseJson;
+  //   final response = await http
+  //       .post( Uri.parse(url),body: bodyData,headers: headers)
+  //       .timeout(
+  //     const Duration(seconds: 30),
+  //     onTimeout: () {
+  //       throw const SocketException('Something went wrong');
+  //     },
+  //   );
+  //   responseJson = responses(response);
+  //   return responseJson;
+  // }
+  Future<http.Response> refillformap(Map<String, dynamic> bodyData, Map<String, String> headers) async {
     const url = "$baseUrl/RefillAlert";
-    var responseJson;
-    final response = await http
-        .post( Uri.parse(url),body: bodyData,headers: headers)
-        .timeout(
-      const Duration(seconds: 30),
-      onTimeout: () {
-        throw const SocketException('Something went wrong');
-      },
-    );
-    responseJson = responses(response);
-    return responseJson;
+print("dfdsfdsf${url}");
+    try {
+      final response = await http
+          .post(
+        Uri.parse(url),
+        body: json.encode(bodyData),  // Encode body data to JSON
+        headers: headers,
+      )
+          .timeout(
+        const Duration(seconds: 30),
+        onTimeout: () {
+          throw const SocketException('Request timed out');
+        },
+      );
+      return response;  // Return the actual response
+    } catch (e) {
+      throw Exception('API call failed: $e');
+    }
   }
+
 
 
 }
