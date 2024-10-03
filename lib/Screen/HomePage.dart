@@ -15,6 +15,7 @@ import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/SalesProductModal.dart';
 import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/All_Blog.dart';
 import 'package:ecommerce/Screen/All_Brands.dart';
 import 'package:ecommerce/Screen/BlogdetailsPage.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
@@ -546,7 +547,151 @@ class _HomePageState extends State<HomePage> {
                               child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [
+                                  InkWell(
+                                    onTap: (){
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => Prescriptionform()));
+                                    },
+                                    child: Card(
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10)),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          color: Colors.white,
+                                        ),
 
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 110,
+                                                    child: Text(
+                                                      'Request Prescription',
+                                                      style: TextStyle(
+                                                          fontSize: 11.sp,
+                                                          // Adjust the font size
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontFamily: 'task'),
+                                                    ),
+                                                  ),
+                                                  Image.network(
+                                                    'https://static.vecteezy.com/system/resources/previews/021/193/217/non_2x/prescription-icon-medical-assets-3d-rendering-png.png',
+                                                    width: 70,
+                                                    height: 70,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 30,
+                                              width: 200,
+                                              alignment: Alignment.centerLeft,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                      bottomLeft:
+                                                      Radius.circular(10),
+                                                      bottomRight:
+                                                      Radius.circular(10)),
+                                                  color: Colors.red.shade50),
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets.only(left: 15),
+                                                child: Text(
+                                                  'UPTO 24% OFF',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 9.sp,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 1.w,
+                                  ),
+                                  InkWell(
+                                    onTap: (){
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => Requestdoctorform()));
+                                    },
+                                    child: Card(
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10)),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.white,
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 110,
+                                                    child: Text(
+                                                      'Request Doctors',
+                                                      style: TextStyle(
+                                                          fontSize: 11.sp,
+                                                          // Adjust the font size
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontFamily: 'task'),
+                                                    ),
+                                                  ),
+                                                  Image.network(
+                                                    'https://static.vecteezy.com/system/resources/previews/036/485/041/original/3d-doctor-character-talking-on-phone-call-suitable-for-medical-content-free-png.png',
+                                                    width: 70,
+                                                    height: 70,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 30,
+                                              width: 200,
+                                              alignment: Alignment.centerLeft,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                      bottomLeft:
+                                                      Radius.circular(10),
+                                                      bottomRight:
+                                                      Radius.circular(10)),
+                                                  color: Colors.red.shade50),
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets.only(left: 15),
+                                                child: Text(
+                                                  'UPTO 24% OFF',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 9.sp,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                   // refill alert
                                   InkWell(
                                     onTap: (){
@@ -763,151 +908,6 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   SizedBox(
                                     width: 1.w,
-                                  ),
-                                  InkWell(
-                                    onTap: (){
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => Prescriptionform()));
-                                    },
-                                    child: Card(
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(10),
-                                          color: Colors.white,
-                                        ),
-
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Row(
-                                                children: [
-                                                  SizedBox(
-                                                    width: 110,
-                                                    child: Text(
-                                                      'Request Prescription',
-                                                      style: TextStyle(
-                                                          fontSize: 11.sp,
-                                                          // Adjust the font size
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontFamily: 'task'),
-                                                    ),
-                                                  ),
-                                                  Image.network(
-                                                    'https://static.vecteezy.com/system/resources/previews/021/193/217/non_2x/prescription-icon-medical-assets-3d-rendering-png.png',
-                                                    width: 70,
-                                                    height: 70,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Container(
-                                              height: 30,
-                                              width: 200,
-                                              alignment: Alignment.centerLeft,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(10),
-                                                      bottomRight:
-                                                          Radius.circular(10)),
-                                                  color: Colors.red.shade50),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.only(left: 15),
-                                                child: Text(
-                                                  'UPTO 24% OFF',
-                                                  style: TextStyle(
-                                                      color: Colors.red,
-                                                      fontSize: 9.sp,
-                                                      fontFamily: 'task'),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 1.w,
-                                  ),
-                                  InkWell(
-                                    onTap: (){
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => Requestdoctorform()));
-                                    },
-                                    child: Card(
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.white,
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Row(
-                                                children: [
-                                                  SizedBox(
-                                                    width: 110,
-                                                    child: Text(
-                                                      'Request Doctors',
-                                                      style: TextStyle(
-                                                          fontSize: 11.sp,
-                                                          // Adjust the font size
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontFamily: 'task'),
-                                                    ),
-                                                  ),
-                                                  Image.network(
-                                                    'https://static.vecteezy.com/system/resources/previews/036/485/041/original/3d-doctor-character-talking-on-phone-call-suitable-for-medical-content-free-png.png',
-                                                    width: 70,
-                                                    height: 70,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Container(
-                                              height: 30,
-                                              width: 200,
-                                              alignment: Alignment.centerLeft,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(10),
-                                                      bottomRight:
-                                                          Radius.circular(10)),
-                                                  color: Colors.red.shade50),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.only(left: 15),
-                                                child: Text(
-                                                  'UPTO 24% OFF',
-                                                  style: TextStyle(
-                                                      color: Colors.red,
-                                                      fontSize: 9.sp,
-                                                      fontFamily: 'task'),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
                                   ),
                                 ],
                               ),
@@ -2218,7 +2218,13 @@ class _HomePageState extends State<HomePage> {
                                   fontFamily: 'task'),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) => All_blogs(
+
+                                    ),)
+                                );
+                              },
                               child: Text(
                                 'View All',
                                 style: TextStyle(
@@ -2668,7 +2674,6 @@ class _HomePageState extends State<HomePage> {
 
             setState(() {
               isLoading = false;
-
             });
           } else {
             setState(() {

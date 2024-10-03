@@ -1,9 +1,11 @@
-
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Modal/RefillModel.dart';
 import 'package:ecommerce/Modal/RequestformModel.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/EditProfile.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
@@ -14,7 +16,6 @@ import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 class Refill_Alert extends StatefulWidget {
-
   @override
   State<Refill_Alert> createState() => _Refill_AlertState();
 }
@@ -25,12 +26,14 @@ class _Refill_AlertState extends State<Refill_Alert> {
   TextEditingController _medicine = TextEditingController();
   TextEditingController _quantity = TextEditingController();
   TextEditingController _date = TextEditingController();
+
   // void _removeMedicine(int index) {
   //   setState(() {
   //     medicines.removeAt(index);
   //   });
   // }
   final _formKey = GlobalKey<FormState>();
+
   void _removeMedicineField(int index) {
     setState(() {
       medicines.removeAt(index);
@@ -40,6 +43,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
       _quantityControllers.removeAt(index);
     });
   }
+
   void _addMedicineField() {
     setState(() {
       medicines.add({});
@@ -47,45 +51,61 @@ class _Refill_AlertState extends State<Refill_Alert> {
       _quantityControllers.add(TextEditingController());
     });
   }
+
   List<Map<String, String>> medicines = [];
+  bool addbutton = true;
+  String? deviceName;
+  String? deviceOS;
   List<TextEditingController> _medicineControllers = [];
   List<TextEditingController> _quantityControllers = [];
+
   Widget _buildAddButton() {
     return GestureDetector(
-      onTap: () {
-        _addMedicineField();
-        print("_medicineControllers${_medicineControllers}");
-        // if (_medicine.text.isNotEmpty && _quantity.text.isNotEmpty) {
-        //   setState(() {
-        //     medicines.add({
-        //       "name": _medicine.text,
-        //       "quantity": _quantity.text,
-        //     });
-        //     _medicine.clear();
-        //     _quantity.clear();
-        //   });
-        // }
-      },
-      child: Container(
-        margin: EdgeInsets.only(top: 4.h),
-        alignment: Alignment.center,
-        height: 4.h,
-        width: 8.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Color(0xff0061b0),
-        ),
-        child: Icon(
-          Icons.add,color: Colors.white,
-        ),
-      ),
-    );
+        onTap: () {
+          _addMedicineField();
+          print("_medicineControllers${_medicineControllers}");
+          // if (_medicine.text.isNotEmpty && _quantity.text.isNotEmpty) {
+          //   setState(() {
+          //     medicines.add({
+          //       "name": _medicine.text,
+          //       "quantity": _quantity.text,
+          //     });
+          //     _medicine.clear();
+          //     _quantity.clear();
+          //   });
+          // }
+        },
+        child: Padding(
+          padding: addbutton
+              ? EdgeInsets.only(top: 4.h)
+              : EdgeInsets.only(bottom: 0.5.h),
+          child: Container(
+            //margin: EdgeInsets.only(top: 2.5.h),
+            alignment: Alignment.center,
+            height: 6.5.h,
+            width: 15.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Color(0xff0061b0),
+            ),
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          ),
+        ));
+  }
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDeviceInfoandStore();
   }
   Widget _buildAddedMedicinesList() {
     return Column(
       children: List.generate(medicines.length, (index) {
         return Padding(
-          padding:  EdgeInsets.only(left: 4.h,top: 2.5.h),
+          padding: EdgeInsets.only(left: 4.h, top: 2.5.h),
           child: Row(
             children: [
               Container(
@@ -110,29 +130,21 @@ class _Refill_AlertState extends State<Refill_Alert> {
                         return null;
                       },
                       keyboardType: TextInputType.text,
-                      controller:_medicineControllers[index],
+                      controller: _medicineControllers[index],
                       style: TextStyle(height: 1),
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(10),
-                            borderSide:
-                            BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey)),
                         disabledBorder: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(10),
-                            borderSide:
-                            BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey)),
                         focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(10),
-                            borderSide:
-                            BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey)),
                         border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(10),
-                            borderSide:
-                            BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey)),
                         hintText: 'Medicine Name',
                         hintStyle: TextStyle(
                             color: Colors.black.withOpacity(0.4),
@@ -147,7 +159,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                 width: 3.w,
               ),
               Container(
-                width: 25.w,
+                width: 19.w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -172,25 +184,17 @@ class _Refill_AlertState extends State<Refill_Alert> {
                       style: TextStyle(height: 1),
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(10),
-                            borderSide:
-                            BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey)),
                         disabledBorder: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(10),
-                            borderSide:
-                            BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey)),
                         focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(10),
-                            borderSide:
-                            BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey)),
                         border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.circular(10),
-                            borderSide:
-                            BorderSide(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey)),
                         hintText: 'Quantity',
                         hintStyle: TextStyle(
                             color: Colors.black.withOpacity(0.4),
@@ -198,7 +202,6 @@ class _Refill_AlertState extends State<Refill_Alert> {
                             fontFamily: "task"),
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -210,32 +213,34 @@ class _Refill_AlertState extends State<Refill_Alert> {
                   _removeMedicineField(0);
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 1.h),
+                  // margin: EdgeInsets.only(top: 1.h),
                   alignment: Alignment.center,
-                  height: 4.h,
-                  width: 8.w,
+                  height: 6.5.h,
+                  width: 15.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     color: Color(0xff0061b0),
                   ),
                   child: Icon(
-                    Icons.remove_circle_outline,color: Colors.white,
+                    Icons.remove_circle_outline,
+                    color: Colors.white,
                   ),
                 ),
               ),
-
             ],
           ),
         );
       }),
     );
   }
+
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
-        body:  Form(
+        body: Form(
             key: _formKey,
             child: commanScreen(
               isLoading: isLoading,
@@ -253,14 +258,16 @@ class _Refill_AlertState extends State<Refill_Alert> {
                         ),
                         // app bar
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
                           children: [
                             IconButton(
                                 onPressed: () {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomePage(sel: 1),
+                                        builder: (context) =>
+                                            HomePage(sel: 1),
                                       ));
                                 },
                                 icon: Icon(
@@ -275,17 +282,22 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            IconButton(onPressed: () {}, icon: Icon(null)),
+                            IconButton(
+                                onPressed: () {}, icon: Icon(null)),
                           ],
                         ),
-                        SizedBox(height: 1.h,),
+                        SizedBox(
+                          height: 1.h,
+                        ),
                         Container(
                           width: 90.w,
                           height: 23.h,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage("assets/refill.jpg",),fit: BoxFit.cover
-                            ),
+                                image: AssetImage(
+                                  "assets/refill.jpg",
+                                ),
+                                fit: BoxFit.cover),
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
@@ -300,7 +312,8 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                 height: 2.5.h,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
                                 children: [
                                   Container(
                                     width: 85.w,
@@ -314,9 +327,12 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                               color: Colors.black87,
                                               fontFamily: "task",
                                               fontSize: 12.sp,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight:
+                                              FontWeight.bold),
                                         ),
-                                        SizedBox(height: 0.5.h,),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
                                         TextFormField(
                                           validator: (value) {
                                             if (value!.isEmpty) {
@@ -324,34 +340,48 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                             }
                                             return null;
                                           },
-                                          keyboardType: TextInputType.text,
+                                          keyboardType:
+                                          TextInputType.text,
                                           style: TextStyle(height: 1),
                                           controller: _firstname,
                                           decoration: InputDecoration(
-                                            enabledBorder: OutlineInputBorder(
+                                            enabledBorder:
+                                            OutlineInputBorder(
                                                 borderRadius:
-                                                BorderRadius.circular(10),
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey)),
-                                            disabledBorder: OutlineInputBorder(
+                                                BorderRadius
+                                                    .circular(10),
+                                                borderSide:
+                                                BorderSide(
+                                                    color: Colors
+                                                        .grey)),
+                                            disabledBorder:
+                                            OutlineInputBorder(
                                                 borderRadius:
-                                                BorderRadius.circular(10),
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey)),
-                                            focusedBorder: OutlineInputBorder(
+                                                BorderRadius
+                                                    .circular(10),
+                                                borderSide:
+                                                BorderSide(
+                                                    color: Colors
+                                                        .grey)),
+                                            focusedBorder:
+                                            OutlineInputBorder(
                                                 borderRadius:
-                                                BorderRadius.circular(10),
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey)),
+                                                BorderRadius
+                                                    .circular(10),
+                                                borderSide:
+                                                BorderSide(
+                                                    color: Colors
+                                                        .grey)),
                                             border: OutlineInputBorder(
                                                 borderRadius:
-                                                BorderRadius.circular(10),
+                                                BorderRadius.circular(
+                                                    10),
                                                 borderSide: BorderSide(
                                                     color: Colors.grey)),
                                             hintText: 'Enter Your  Name',
                                             hintStyle: TextStyle(
-                                                color:
-                                                Colors.black.withOpacity(0.4),
+                                                color: Colors.black
+                                                    .withOpacity(0.4),
                                                 fontSize: 11.sp,
                                                 fontFamily: "task"),
                                           ),
@@ -367,7 +397,8 @@ class _Refill_AlertState extends State<Refill_Alert> {
                               Container(
                                 width: 85.w,
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "Mobile Number",
@@ -377,11 +408,13 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                           fontSize: 11.sp,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    SizedBox(height: 0.5.h,),
+                                    SizedBox(
+                                      height: 0.5.h,
+                                    ),
                                     TextFormField(
                                       validator: (value) {
                                         if (value!.isEmpty) {
-                                          return "Please Enter The Phone";
+                                          return "Please Enter Your Phone";
                                         }
                                         return null;
                                       },
@@ -392,26 +425,30 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                         enabledBorder: OutlineInputBorder(
                                             borderRadius:
                                             BorderRadius.circular(10),
-                                            borderSide:
-                                            BorderSide(color: Colors.grey)),
-                                        disabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.grey)),
+                                        disabledBorder:
+                                        OutlineInputBorder(
                                             borderRadius:
-                                            BorderRadius.circular(10),
-                                            borderSide:
-                                            BorderSide(color: Colors.grey)),
+                                            BorderRadius.circular(
+                                                10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey)),
                                         focusedBorder: OutlineInputBorder(
                                             borderRadius:
                                             BorderRadius.circular(10),
-                                            borderSide:
-                                            BorderSide(color: Colors.grey)),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey)),
                                         border: OutlineInputBorder(
                                             borderRadius:
                                             BorderRadius.circular(10),
-                                            borderSide:
-                                            BorderSide(color: Colors.grey)),
-                                        hintText: 'Enter Your Phone Number',
+                                            borderSide: BorderSide(
+                                                color: Colors.grey)),
+                                        hintText:
+                                        'Enter Your Phone Number',
                                         hintStyle: TextStyle(
-                                            color: Colors.black.withOpacity(0.4),
+                                            color: Colors.black
+                                                .withOpacity(0.4),
                                             fontSize: 11.sp,
                                             fontFamily: "task"),
                                       ),
@@ -423,13 +460,14 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                 height: 2.5.h,
                               ),
                               Padding(
-                                padding:  EdgeInsets.only(left: 4.h),
+                                padding: EdgeInsets.only(left: 4.h),
                                 child: Row(
                                   children: [
                                     Container(
                                       width: 47.w,
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             "Medicine name",
@@ -437,9 +475,12 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                                 color: Colors.black87,
                                                 fontFamily: "task",
                                                 fontSize: 11.sp,
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight:
+                                                FontWeight.bold),
                                           ),
-                                          SizedBox(height: 0.5.h,),
+                                          SizedBox(
+                                            height: 0.5.h,
+                                          ),
                                           TextFormField(
                                             validator: (value) {
                                               if (value!.isEmpty) {
@@ -447,33 +488,52 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                               }
                                               return null;
                                             },
-                                            keyboardType: TextInputType.text,
+                                            keyboardType:
+                                            TextInputType.text,
                                             controller: _medicine,
                                             style: TextStyle(height: 1),
                                             decoration: InputDecoration(
-                                              enabledBorder: OutlineInputBorder(
+                                              enabledBorder:
+                                              OutlineInputBorder(
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius
+                                                      .circular(
+                                                      10),
                                                   borderSide:
-                                                  BorderSide(color: Colors.grey)),
-                                              disabledBorder: OutlineInputBorder(
+                                                  BorderSide(
+                                                      color: Colors
+                                                          .grey)),
+                                              disabledBorder:
+                                              OutlineInputBorder(
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius
+                                                      .circular(
+                                                      10),
                                                   borderSide:
-                                                  BorderSide(color: Colors.grey)),
-                                              focusedBorder: OutlineInputBorder(
+                                                  BorderSide(
+                                                      color: Colors
+                                                          .grey)),
+                                              focusedBorder:
+                                              OutlineInputBorder(
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius
+                                                      .circular(
+                                                      10),
                                                   borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                                  BorderSide(
+                                                      color: Colors
+                                                          .grey)),
                                               border: OutlineInputBorder(
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
-                                                  borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                                  BorderRadius
+                                                      .circular(10),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                      Colors.grey)),
                                               hintText: 'Medicine Name',
                                               hintStyle: TextStyle(
-                                                  color: Colors.black.withOpacity(0.4),
+                                                  color: Colors.black
+                                                      .withOpacity(0.4),
                                                   fontSize: 11.sp,
                                                   fontFamily: "task"),
                                             ),
@@ -485,19 +545,22 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                       width: 3.w,
                                     ),
                                     Container(
-                                      width: 25.w,
+                                      width: 19.w,
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             "Quantity",
                                             style: TextStyle(
                                                 color: Colors.black87,
-                                                fontFamily: "task",
                                                 fontSize: 11.sp,
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight:
+                                                FontWeight.w500),
                                           ),
-                                          SizedBox(height: 0.5.h,),
+                                          SizedBox(
+                                            height: 0.5.h,
+                                          ),
                                           TextFormField(
                                             validator: (value) {
                                               if (value!.isEmpty) {
@@ -505,33 +568,52 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                               }
                                               return null;
                                             },
-                                            keyboardType: TextInputType.number,
+                                            keyboardType:
+                                            TextInputType.number,
                                             controller: _quantity,
                                             style: TextStyle(height: 1),
                                             decoration: InputDecoration(
-                                              enabledBorder: OutlineInputBorder(
+                                              enabledBorder:
+                                              OutlineInputBorder(
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius
+                                                      .circular(
+                                                      10),
                                                   borderSide:
-                                                  BorderSide(color: Colors.grey)),
-                                              disabledBorder: OutlineInputBorder(
+                                                  BorderSide(
+                                                      color: Colors
+                                                          .grey)),
+                                              disabledBorder:
+                                              OutlineInputBorder(
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius
+                                                      .circular(
+                                                      10),
                                                   borderSide:
-                                                  BorderSide(color: Colors.grey)),
-                                              focusedBorder: OutlineInputBorder(
+                                                  BorderSide(
+                                                      color: Colors
+                                                          .grey)),
+                                              focusedBorder:
+                                              OutlineInputBorder(
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius
+                                                      .circular(
+                                                      10),
                                                   borderSide:
-                                                  BorderSide(color: Colors.grey)),
+                                                  BorderSide(
+                                                      color: Colors
+                                                          .grey)),
                                               border: OutlineInputBorder(
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
-                                                  borderSide:
-                                                  BorderSide(color: Colors.grey)),
-                                              hintText: 'quantity',
+                                                  BorderRadius
+                                                      .circular(10),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                      Colors.grey)),
+                                              hintText: 'Quantity',
                                               hintStyle: TextStyle(
-                                                  color: Colors.black.withOpacity(0.4),
+                                                  color: Colors.black
+                                                      .withOpacity(0.4),
                                                   fontSize: 11.sp,
                                                   fontFamily: "task"),
                                             ),
@@ -554,7 +636,8 @@ class _Refill_AlertState extends State<Refill_Alert> {
                               Container(
                                 width: 85.w,
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "Select Date",
@@ -564,7 +647,9 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    SizedBox(height: 0.5.h,),
+                                    SizedBox(
+                                      height: 0.5.h,
+                                    ),
                                     TextFormField(
                                       validator: (value) {
                                         if (value!.isEmpty) {
@@ -577,45 +662,58 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                       style: TextStyle(height: 1),
                                       decoration: InputDecoration(
                                         suffixIcon: IconButton(
-                                          icon: Icon(Icons.date_range_outlined,color: AppColors.primary,size: 18.sp,),
-                                          onPressed: () async
-                                          {
-                                            DateTime? datepicker = await showDatePicker(
+                                          icon: Icon(
+                                            Icons.date_range_outlined,
+                                            color: AppColors.primary,
+                                            size: 18.sp,
+                                          ),
+                                          onPressed: () async {
+                                            DateTime? datepicker =
+                                            await showDatePicker(
                                                 context: context,
-                                                initialDate: DateTime.now(),
-                                                firstDate: DateTime(2024,1),
-                                                lastDate: DateTime(2040,12));
-                                            if(datepicker!= null)
-                                            {
-                                              String formattedDate = DateFormat('dd-MM-yyyy').format(datepicker);
+                                                initialDate:
+                                                DateTime.now(),
+                                                firstDate:
+                                                DateTime(2024, 1),
+                                                lastDate: DateTime(
+                                                    2040, 12));
+                                            if (datepicker != null) {
+                                              String formattedDate =
+                                              DateFormat('dd-MM-yyyy')
+                                                  .format(datepicker);
                                               setState(() {
-                                                _date.text = formattedDate.toString();
+                                                _date.text = formattedDate
+                                                    .toString();
                                               });
                                             }
                                           },
                                         ),
                                         enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(10),
-                                            borderSide:
-                                            BorderSide(color: Colors.grey)),
-                                        disabledBorder: OutlineInputBorder(
                                             borderRadius:
                                             BorderRadius.circular(10),
-                                            borderSide:
-                                            BorderSide(color: Colors.grey)),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey)),
+                                        disabledBorder:
+                                        OutlineInputBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(
+                                                10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey)),
                                         focusedBorder: OutlineInputBorder(
                                             borderRadius:
                                             BorderRadius.circular(10),
-                                            borderSide:
-                                            BorderSide(color: Colors.grey)),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey)),
                                         border: OutlineInputBorder(
                                             borderRadius:
                                             BorderRadius.circular(10),
-                                            borderSide:
-                                            BorderSide(color: Colors.grey)),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey)),
                                         hintText: 'Select Date',
                                         hintStyle: TextStyle(
-                                            color: Colors.black.withOpacity(0.4),
+                                            color: Colors.black
+                                                .withOpacity(0.4),
                                             fontSize: 11.sp,
                                             fontFamily: "task"),
                                       ),
@@ -627,25 +725,33 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                 height: 5.h,
                               ),
                               GestureDetector(
-                                onTap: () async{
-                                 await Refillformap();
-                                 Navigator.of(context).push(
-                                   MaterialPageRoute(builder:  (context) => HomePage(sel: 1),)
-                                 );
+                                onTap: () async {
+                                  setState(() {
+                                    addbutton = false;
+                                  });
+                                  if (_formKey.currentState!.validate()) {
+                                    await Refillformap();
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          HomePage(sel: 1),
+                                    ));
+                                  }
                                 },
                                 child: Row(
                                   children: [
                                     Container(
-                                        margin:
-                                        EdgeInsets.only(right: 7.w, left: 7.w),
+                                        margin: EdgeInsets.only(
+                                            right: 7.w, left: 7.w),
                                         alignment: Alignment.center,
                                         height: 6.h,
                                         width: 85.w,
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                            BorderRadius.circular(10),
                                             color: Color(0xff0061b0)),
                                         child: Text(
-                                          "Sunmit Form",
+                                          "Refill Alert",
                                           style: TextStyle(
                                               fontSize: 13.sp,
                                               color: Colors.white,
@@ -659,21 +765,25 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                 height: 2.h,
                               ),
                             ]),
-                      ]
-                  ),
+                      ]),
                 ),
               ),
-            )
-        ));
-
-
+            )));
   }
+
   Refillformap() async {
     if (_formKey.currentState!.validate()) {
-      final List<String> allMedicines = [_medicine.text.toString(), ..._medicineControllers.map((controller) => controller.text.toString())];
-      final List<String> allQuantities = [_quantity.text.toString(), ..._quantityControllers.map((controller) => controller.text.toString())];
+      final List<String> allMedicines = [
+        _medicine.text.toString(),
+        ..._medicineControllers.map((controller) => controller.text.toString())
+      ];
+      final List<String> allQuantities = [
+        _quantity.text.toString(),
+        ..._quantityControllers.map((controller) => controller.text.toString())
+      ];
       final Map<String, String> data = {};
-      data['UserId'] = (usermodal?.userId).toString();
+      data['UserId'] =usermodal?.userId == "" || usermodal?.userId == null
+          ?deviceName.toString():usermodal?.userId ?? "";
       data['name'] = _firstname.text.toString();
       data['mobile_number'] = _phone.text.toString();
       data['date'] = _date.text.toString();
@@ -684,11 +794,12 @@ class _Refill_AlertState extends State<Refill_Alert> {
         if (internet) {
           authprovider().refillformap(data).then((response) async {
             refillModel = RefillModel.fromJson(json.decode(response.body));
-            if (response.statusCode == 200 && refillModel?.status == "success") {
+            if (response.statusCode == 200 &&
+                refillModel?.status == "success") {
               setState(() {
                 isLoading = true;
               });
-              await EasyLoading.showSuccess('Submit Form Successfully');
+              await EasyLoading.showSuccess('Submit Successfully');
               setState(() {
                 isLoading = false;
               });
@@ -707,5 +818,25 @@ class _Refill_AlertState extends State<Refill_Alert> {
         }
       });
     }
+  }
+  Future<void> getDeviceInfoandStore() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      setState(() {
+        deviceName =
+            androidInfo.model; // Device name
+        deviceOS = 'Android ${androidInfo.version.release}';
+      });
+
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      setState(() {
+        deviceName = iosInfo.name; // Device name
+        deviceOS = 'iOS ${iosInfo.systemVersion}';
+      });
+    }
+    print('Device Name: $deviceName');
+    print('Device OS: $deviceOS');
   }
 }

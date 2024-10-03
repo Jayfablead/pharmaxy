@@ -3,6 +3,10 @@ import 'dart:convert';
 import 'package:ecommerce/Modal/CheckOutModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
+import 'package:ecommerce/Screen/pdfscreen.dart';
+import 'package:ecommerce/Screen/webview.dart';
+
+
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +14,9 @@ import 'package:sizer/sizer.dart';
 
 class ThankyouPage extends StatefulWidget {
   String? uid;
+  String? orderid;
 
-  ThankyouPage({super.key, this.uid});
+  ThankyouPage({super.key, this.uid,required this.orderid});
 
   @override
   State<ThankyouPage> createState() => _ThankyouPageState();
@@ -25,7 +30,6 @@ class _ThankyouPageState extends State<ThankyouPage> {
     print(widget.uid);
     checkoutpayap();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,18 +45,7 @@ class _ThankyouPageState extends State<ThankyouPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios_new_outlined,
-                        size: 19.sp,
-                      )),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(null),
-                  ),
+
                 ],
               ),
             ),
@@ -149,6 +142,27 @@ class _ThankyouPageState extends State<ThankyouPage> {
                         fontFamily: 'task'),
                   )),
             ),
+            Padding(
+              padding: EdgeInsets.only(left: 70.w,top: 5.h),
+              child: FloatingActionButton(
+                onPressed: () async{
+                  // var file = await OpenPdfUtil().loadPdfFromNetwork("https://pharmato.fableadtechnolabs.com/admin/invoice/79");
+                  // String url1 = "https://pharmato.fableadtechnolabs.com/admin/invoice/79";
+                  // print("55555555${url1}");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => Privacy_Policy(
+
+                      ),
+                    ),
+                  );
+                  print("PDF icon pressed");
+                },
+                backgroundColor:AppColors.primary, // Customize button color
+                child: Icon(Icons.picture_as_pdf,color: Colors.white,), // Use an icon for PDF, e.g., a PDF icon
+              ),
+            ),
+
           ],
         ),
       ),
@@ -167,9 +181,11 @@ class _ThankyouPageState extends State<ThankyouPage> {
           if (response.statusCode == 200 &&
               checkoutmodal?.status == "success") {
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => ThankyouPage()));
+                .push(MaterialPageRoute(builder: (context) => ThankyouPage(
+              orderid: "79",
+            )));
             print(checkoutmodal?.status);
-            print("  Reti na dhagala ni jay hooo.......");
+            print("Reti na dhagala ni jay hooo......");
             setState(() {
               isLoading = false;
             });

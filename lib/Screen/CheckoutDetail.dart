@@ -2970,6 +2970,8 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => ThankyouPage(
                   uid: (checkoutmodal?.cartDetails?.orderNumber).toString(),
+                  orderid: "79",
+
                 )));
             print(checkoutmodal?.status);
             setState(() {

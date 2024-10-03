@@ -227,7 +227,6 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                   height: 2.h,
                 ),
               ),
-
               SliverToBoxAdapter(
                 child: SizedBox(
                   height: 22.h,
@@ -350,7 +349,6 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
       }
     });
   }
-
 
   recentblog() async {
     final Map<String, String> data = {};

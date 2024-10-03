@@ -1,6 +1,8 @@
 
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Modal/RequestMedicineModel.dart';
 import 'package:ecommerce/Modal/RequestformModel.dart';
 
@@ -52,36 +54,50 @@ class _Request_MedicineState extends State<Request_Medicine> {
   List<Map<String, String>> medicines = [];
   List<TextEditingController> _medicineControllers = [];
   List<TextEditingController> _quantityControllers = [];
+  bool addbutton = true;
+  String? deviceName;
+  String? deviceOS;
   Widget _buildAddButton() {
     return GestureDetector(
-      onTap: () {
-        _addMedicineField();
-        print("_medicineControllers${_medicineControllers}");
-        // if (_medicine.text.isNotEmpty && _quantity.text.isNotEmpty) {
-        //   setState(() {
-        //     medicines.add({
-        //       "name": _medicine.text,
-        //       "quantity": _quantity.text,
-        //     });
-        //     _medicine.clear();
-        //     _quantity.clear();
-        //   });
-        // }
-      },
-      child: Container(
-        margin: EdgeInsets.only(top: 4.h),
-        alignment: Alignment.center,
-        height: 4.h,
-        width: 8.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Color(0xff0061b0),
-        ),
-        child: Icon(
-          Icons.add,color: Colors.white,
-        ),
-      ),
-    );
+        onTap: () {
+          _addMedicineField();
+          print("_medicineControllers${_medicineControllers}");
+          // if (_medicine.text.isNotEmpty && _quantity.text.isNotEmpty) {
+          //   setState(() {
+          //     medicines.add({
+          //       "name": _medicine.text,
+          //       "quantity": _quantity.text,
+          //     });
+          //     _medicine.clear();
+          //     _quantity.clear();
+          //   });
+          // }
+        },
+        child: Padding(
+          padding: addbutton
+              ? EdgeInsets.only(top: 4.h)
+              : EdgeInsets.only(bottom: 0.5.h),
+          child: Container(
+            //margin: EdgeInsets.only(top: 2.5.h),
+            alignment: Alignment.center,
+            height: 6.5.h,
+            width: 15.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Color(0xff0061b0),
+            ),
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          ),
+        ));
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDeviceInfoandStore();
   }
   Widget _buildAddedMedicinesList() {
     return Column(
@@ -95,15 +111,15 @@ class _Request_MedicineState extends State<Request_Medicine> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Medicine name",
-                      style: TextStyle(
-                          color: Colors.black87,
-                          fontFamily: "task",
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 0.5.h,),
+                    // Text(
+                    //   "Medicine name",
+                    //   style: TextStyle(
+                    //       color: Colors.black87,
+                    //       fontFamily: "task",
+                    //       fontSize: 11.sp,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    // SizedBox(height: 0.5.h,),
                     TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -149,19 +165,19 @@ class _Request_MedicineState extends State<Request_Medicine> {
                 width: 3.w,
               ),
               Container(
-                width: 25.w,
+                width: 19.w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "quantity",
-                      style: TextStyle(
-                          color: Colors.black87,
-                          fontFamily: "task",
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 0.5.h,),
+                    // Text(
+                    //   "quantity",
+                    //   style: TextStyle(
+                    //       color: Colors.black87,
+                    //       fontFamily: "task",
+                    //       fontSize: 11.sp,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    // SizedBox(height: 0.5.h,),
                     TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -212,12 +228,12 @@ class _Request_MedicineState extends State<Request_Medicine> {
                   _removeMedicineField(0);
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 1.h),
+                  // margin: EdgeInsets.only(top: 1.h),
                   alignment: Alignment.center,
-                  height: 4.h,
-                  width: 8.w,
+                  height: 6.5.h,
+                  width: 15.w,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(10),
                     color: Color(0xff0061b0),
                   ),
                   child: Icon(
@@ -488,7 +504,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                       width: 3.w,
                                     ),
                                     Container(
-                                      width: 25.w,
+                                      width: 19.w,
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
@@ -496,9 +512,9 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                             "Quantity",
                                             style: TextStyle(
                                                 color: Colors.black87,
-                                                fontFamily: "task",
                                                 fontSize: 11.sp,
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight: FontWeight.w500
+                                            ),
                                           ),
                                           SizedBox(height: 0.5.h,),
                                           TextFormField(
@@ -556,11 +572,18 @@ class _Request_MedicineState extends State<Request_Medicine> {
                               // SUBMIT
                               GestureDetector(
                                 onTap: () async{
-                                  await Requestmediformap();
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) => HomePage(sel: 1),)
-                                  );
-                                  print(medicines);
+                                  setState(() {
+                                    addbutton = false;
+                                  });
+                                  if (_formKey.currentState!.validate()) {
+                                    await Requestmediformap();
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) => HomePage(sel: 1),)
+                                    );
+                                    print(medicines);
+
+                                  }
+
                                 },
                                 child: Row(
                                   children: [
@@ -574,7 +597,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                             borderRadius: BorderRadius.circular(10),
                                             color: Color(0xff0061b0)),
                                         child: Text(
-                                          "Sunmit Form",
+                                          "Request Medicine",
                                           style: TextStyle(
                                               fontSize: 13.sp,
                                               color: Colors.white,
@@ -594,8 +617,6 @@ class _Request_MedicineState extends State<Request_Medicine> {
               ),
             )
         ));
-
-
   }
 
   // Widget _buildAddedMedicinesList() {
@@ -756,7 +777,8 @@ class _Request_MedicineState extends State<Request_Medicine> {
       final List<String> allMedicines = [_medicine.text.toString(), ..._medicineControllers.map((controller) => controller.text.toString())];
       final List<String> allQuantities = [_quantity.text.toString(), ..._quantityControllers.map((controller) => controller.text.toString())];
       final Map<String, String> data = {};
-      data['UserId'] = (usermodal?.userId).toString();
+      data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
+          ?deviceName.toString():usermodal?.userId ?? "";
       data['name'] = _firstname.text.toString();
       data['mobile_number'] = _phone.text.toString();
       data['medicine_name[]'] = allMedicines.join(',');
@@ -768,7 +790,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
             requestMedicineModel = RequestMedicineModel.fromJson(json.decode(response.body));
             if (response.statusCode == 200 && requestMedicineModel?.status == "success") {
 
-              await EasyLoading.showSuccess('Submit Form Successfully');
+              await EasyLoading.showSuccess('Submit  Successfully');
               setState(() {
                 isLoading = false;
               });
@@ -788,4 +810,28 @@ class _Request_MedicineState extends State<Request_Medicine> {
       });
     }
   }
+
+
+  Future<void> getDeviceInfoandStore() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      setState(() {
+        deviceName =
+            androidInfo.model; // Device name
+        deviceOS = 'Android ${androidInfo.version.release}';
+      });
+
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      setState(() {
+        deviceName = iosInfo.name; // Device name
+        deviceOS = 'iOS ${iosInfo.systemVersion}';
+      });
+    }
+    print('Device Name: $deviceName');
+    print('Device OS: $deviceOS');
+  }
+
+
 }

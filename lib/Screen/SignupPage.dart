@@ -49,7 +49,7 @@ class _SignupPageState extends State<SignupPage> {
                           BorderRadius.only(bottomLeft: Radius.circular(100)),
                       color: Color(0xff0061b0),
                     ),
-                    height: 37.h,
+                    height: 30.h,
                     width: double.infinity,
                     child: Padding(
                       padding: EdgeInsets.only(right: 9.w, bottom: 2.h),

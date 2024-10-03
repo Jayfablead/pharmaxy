@@ -328,7 +328,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                     ),
                                     Container(
                                       alignment: Alignment.center,
-                                      height: 30.h,
+                                      height: 32.h,
                                       margin: EdgeInsets.symmetric(horizontal: 1.w),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -1099,7 +1099,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                               letterSpacing: 1,
                               color: Colors.black.withOpacity(0.7),
                             ),),
-                            Text("View All",
+                            Text("",
                               style: TextStyle(
                               fontSize: 11.sp,
                               fontFamily: 'task',

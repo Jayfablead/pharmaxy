@@ -97,7 +97,7 @@ class _ProductList4State extends State<ProductList4> {
                                     size: 20.sp,
                                   )),
                               Text(
-                                "All Product",
+                                "All Medicines",
                                 style: TextStyle(
                                   fontSize: 13.sp,
                                   fontFamily: "task",

@@ -138,7 +138,7 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
                                   CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "First Name",
+                                      "Name",
                                       style: TextStyle(
                                           color: Colors.black87,
                                           fontFamily: "task",
@@ -149,7 +149,7 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
                                     TextFormField(
                                       validator: (value) {
                                         if (value!.isEmpty) {
-                                          return "Please Enter The First Name";
+                                          return "Please Enter Your Name";
                                         }
                                         return null;
                                       },
@@ -177,7 +177,7 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
                                             BorderRadius.circular(10),
                                             borderSide: BorderSide(
                                                 color: Colors.grey)),
-                                        hintText: 'Enter Your First Name',
+                                        hintText: 'Enter Your  Name',
                                         hintStyle: TextStyle(
                                             color:
                                             Colors.black.withOpacity(0.4),

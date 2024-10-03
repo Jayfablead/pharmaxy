@@ -1,7 +1,16 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:ecommerce/Modal/PrescriptionModel.dart';
+import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/PrescriptionForm2.dart';
+import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Widget/const.dart';
@@ -18,13 +27,23 @@ class _PrescriptionformState extends State<Prescriptionform> {
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
   TextEditingController _firstname = TextEditingController();
-  TextEditingController _lastname = TextEditingController();
   TextEditingController _Address = TextEditingController();
   TextEditingController _phone = TextEditingController();
   TextEditingController _email = TextEditingController();
-  TextEditingController _ZipCode = TextEditingController();
-  TextEditingController _city = TextEditingController();
-  TextEditingController _state = TextEditingController();
+  TextEditingController _age = TextEditingController();
+  TextEditingController _doctorfname= TextEditingController();
+  TextEditingController _medicine = TextEditingController();
+  String selected = 'please select';
+  ImagePicker _picker = ImagePicker();
+  File? _pickedFile = null;
+  String? deviceName;
+  String? deviceOS;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDeviceInfoandStore();
+  }
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -71,54 +90,52 @@ class _PrescriptionformState extends State<Prescriptionform> {
                       ],
                     ),
                     SizedBox(
-                      height: 2.h,
+                      height: 1.h,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text('1',style: TextStyle(
-                          fontSize: 16.sp,
-                          fontFamily: "task",
-                          fontWeight: FontWeight.bold,
-                        ),),
-                        Container(
-                          height: 0.7.h,
-                          width: 18.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: AppColors.primary),
-                        ),
-                        Container(
-                          height: 0.7.h,
-                          width: 18.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: AppColors.primary),
-                        ),
-                        Container(
-                          height: 0.7.h,
-                          width: 18.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.grey),
-                        ),
-                        Container(
-                          height: 0.7.h,
-                          width: 18.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.grey),
-                        ),
-                        Text('2',style: TextStyle(
-                          fontSize: 16.sp,
-                          fontFamily: "task",
-                          fontWeight: FontWeight.bold,
-                        ),),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 0.h,
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     Text('1',style: TextStyle(
+                    //       fontSize: 16.sp,
+                    //       fontFamily: "task",
+                    //       fontWeight: FontWeight.bold,
+                    //     ),),
+                    //     Container(
+                    //       height: 0.7.h,
+                    //       width: 18.w,
+                    //       decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(50),
+                    //           color: AppColors.primary),
+                    //     ),
+                    //     Container(
+                    //       height: 0.7.h,
+                    //       width: 18.w,
+                    //       decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(50),
+                    //           color: AppColors.primary),
+                    //     ),
+                    //     Container(
+                    //       height: 0.7.h,
+                    //       width: 18.w,
+                    //       decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(50),
+                    //           color: Colors.grey),
+                    //     ),
+                    //     Container(
+                    //       height: 0.7.h,
+                    //       width: 18.w,
+                    //       decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(50),
+                    //           color: Colors.grey),
+                    //     ),
+                    //     Text('2',style: TextStyle(
+                    //       fontSize: 16.sp,
+                    //       fontFamily: "task",
+                    //       fontWeight: FontWeight.bold,
+                    //     ),),
+                    //   ],
+                    // ),
+
                     Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,18 +153,18 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Patient First Name",
+                                      "Patient Name",
                                       style: TextStyle(
                                           color: Colors.black87,
                                           fontFamily: "task",
-                                          fontSize: 12.sp,
+                                          fontSize: 11.sp,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     SizedBox(height: 0.5.h,),
                                     TextFormField(
                                       validator: (value) {
                                         if (value!.isEmpty) {
-                                          return "Please Enter The First Name";
+                                          return "Please Enter Your Name";
                                         }
                                         return null;
                                       },
@@ -175,7 +192,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                             BorderRadius.circular(10),
                                             borderSide: BorderSide(
                                                 color: Colors.grey)),
-                                        hintText: 'Enter Your First Name',
+                                        hintText: 'Enter Your  Name',
                                         hintStyle: TextStyle(
                                             color:
                                             Colors.black.withOpacity(0.4),
@@ -249,6 +266,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           // SizedBox(
                           //   height: 2.5.h,
                           // ),
+                          // email
                           Container(
                             width: 85.w,
                             child: Column(
@@ -259,7 +277,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 12.sp,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
@@ -274,7 +292,6 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                     {
                                       return "Please Enter valid email address";
                                     }
-                                    return null;
                                     return null;
                                   },
                                   controller: _email,
@@ -314,6 +331,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           SizedBox(
                             height: 2.5.h,
                           ),
+                          // Address
                           Container(
                             width: 85.w,
                             child: Column(
@@ -324,14 +342,14 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
-                                      fontSize: 12.sp,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
                                 TextFormField(
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Please Enter The Address";
+                                      return "Please Enter Your Address";
                                     }
                                   },
                                   keyboardType: TextInputType.text,
@@ -483,62 +501,63 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           //   ),
                           // ),
                           // SizedBox(height: 2.5.h,),
-                          Container(
-                            width: 85.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Zip Code(PostalCode)",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontFamily: "task",
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                TextFormField(
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Please Enter The Zip Code";
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.number,
-                                  controller: _ZipCode,
-                                  style: TextStyle(height: 1),
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        borderSide:
-                                        BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter Zip Code',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.4),
-                                        fontSize: 11.sp,
-                                        fontFamily: "task"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 2.5.h,),
+                          // Container(
+                          //   width: 85.w,
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text(
+                          //         "Zip Code(PostalCode)",
+                          //         style: TextStyle(
+                          //             color: Colors.black87,
+                          //             fontFamily: "task",
+                          //             fontSize: 11.sp,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //       SizedBox(height: 0.5.h,),
+                          //       TextFormField(
+                          //         validator: (value) {
+                          //           if (value!.isEmpty) {
+                          //             return "Please Enter The Zip Code";
+                          //           }
+                          //           return null;
+                          //         },
+                          //         keyboardType: TextInputType.number,
+                          //         controller: _ZipCode,
+                          //         style: TextStyle(height: 1),
+                          //         decoration: InputDecoration(
+                          //           enabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           disabledBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           focusedBorder: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           border: OutlineInputBorder(
+                          //               borderRadius:
+                          //               BorderRadius.circular(10),
+                          //               borderSide:
+                          //               BorderSide(color: Colors.grey)),
+                          //           hintText: 'Enter Zip Code',
+                          //           hintStyle: TextStyle(
+                          //               color: Colors.black.withOpacity(0.4),
+                          //               fontSize: 11.sp,
+                          //               fontFamily: "task"),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(height: 2.5.h,),
+                          // Phone
                           Container(
                             width: 85.w,
                             child: Column(
@@ -556,7 +575,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                 TextFormField(
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Please Enter The Phone";
+                                      return "Please Enter Phone Number";
                                     }
                                     return null;
                                   },
@@ -597,38 +616,305 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           SizedBox(
                             height: 2.5.h,
                           ),
+                          Container(
+                            width: 85.w,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Gender",
+                                  style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: "task",
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 0.5.h,),
+                                Container(
+                                  height: 8.h,
+                                  width: 85.w,
+                                  child: DropdownButtonFormField(
+                                    borderRadius: BorderRadius.circular(30),
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 2.h, horizontal: 4.w),
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.grey)),
+                                      disabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.grey)),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.grey)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                          borderSide: BorderSide(color: Colors.grey)),
+                                      // filled: true,
+                                      hintStyle: TextStyle(
+                                        // color: Colors.grey[800]
+                                      ),
+                                    ),
+                                    value: selected,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        selected = val!;
+                                      });
+                                    },
+                                    items: [
+                                      DropdownMenuItem<String>(
+                                        child: Text("Please Select"),
+                                        value: "please select",
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        child: Text("Male"),
+                                        value: "male",
+                                      ),
+                                      DropdownMenuItem<String>(
+                                        child: Text("Female"),
+                                        value: "female",
+                                      )
+                                    ],
+                                    // Initialize this variable with the selected value.
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2.5.h,),
+                          Container(
+                            width: 85.w,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Patient Age",
+                                  style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: "task",
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 0.5.h,),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please Enter Age";
+                                    }
+                                    return null;
+                                  },
+                                  keyboardType: TextInputType.number,
+                                  controller: _age,
+                                  style: TextStyle(height: 1),
+                                  decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    disabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    hintText: 'Enter Age',
+                                    hintStyle: TextStyle(
+                                        color: Colors.black.withOpacity(0.4),
+                                        fontSize: 11.sp,
+                                        fontFamily: "task"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2.5.h,),
+                          Container(
+                            width: 85.w,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Physician Name",
+                                  style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: "task",
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 0.5.h,),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please Enter Name";
+                                    }
+                                    return null;
+                                  },
+                                  keyboardType: TextInputType.text,
+                                  controller: _doctorfname,
+                                  style: TextStyle(height: 1),
+                                  decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    disabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    hintText: 'Enter Physician First Name',
+                                    hintStyle: TextStyle(
+                                        color: Colors.black.withOpacity(0.4),
+                                        fontSize: 11.sp,
+                                        fontFamily: "task"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2.5.h,),
+                          Container(
+                            width: 85.w,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Prescribe Medicine",
+                                  style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: "task",
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 0.5.h,),
+                                TextFormField(
+                                  maxLines: 3,
+                                  keyboardType: TextInputType.text,
+                                  controller: _medicine,
+                                  style: TextStyle(height: 1),
+                                  decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    disabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    hintText: 'Enter Medicine Name',
+                                    hintStyle: TextStyle(
+                                        color: Colors.black.withOpacity(0.4),
+                                        fontSize: 11.sp,
+                                        fontFamily: "task"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2.5.h,),
+                          Container(
+                            width: 85.w,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Upload Photo Of Your Prescription",
+                                  style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: "task",
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 2.h,),
+                                InkWell(
+                                  onTap: () {
+                                    selectfile();
+                                  },
+                                  child: Container(
+                                    width: 85.w,
+                                    height: 6.h,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                            style: BorderStyle.solid,
+                                            color: AppColors.primary
+                                        )
+                                    ),
+                                    child: Text("Upload Prescription",style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontFamily: "task",
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+                                  ),
+                                ),
+                                SizedBox(height: 2.h,),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 8.h,
+                                      height: 8.h,
+                                      child: _pickedFile==null?Container():Image.file(_pickedFile!,fit: BoxFit.cover,),
+                                    )
+                                  ],
+                                )
 
+                              ],
+                            ),
+                          ),
                           SizedBox(
                             height: 5.h,
                           ),
                           GestureDetector(
-                            onTap: () {
+                            onTap: () async{
                               if (_formKey.currentState!.validate()) {
+                                await preformap();
                                 Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) => Prescriptionform2(
-                                      firstname: _firstname.text.toString(),
-                                      lastname: _lastname.text.toString(),
-                                      Address: _Address.text.toString(),
-                                      email: _email.text.toString(),
-                                      city: _city.text.toString(),
-                                      phone: _phone.text.toString(),
-                                      state: _state.text.toString(),
-                                      ZipCode: _ZipCode.text.toString(),
-                                    ),)
+                                    MaterialPageRoute(builder: (context) => HomePage(sel: 1,),)
                                 );
-                                // countryValue == null &&
-                                //     cityValue == null &&
-                                //     stateValue == null
-                                //     ? buildErrorDialog(context, 'Field Error',
-                                //     'Country, State & City Required')
-                                //     : cityValue == null && stateValue == null
-                                //     ? buildErrorDialog(context, 'Field Error',
-                                //     'State & City Required')
-                                //     : cityValue == null
-                                //     ? buildErrorDialog(context,
-                                //     'Field Error', 'City Required')
-                                //     : shippingap();
-                                // print(selected?.title);
                               }
                             },
                             child: Row(
@@ -643,7 +929,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                         borderRadius: BorderRadius.circular(10),
                                         color: Color(0xff0061b0)),
                                     child: Text(
-                                      "Next",
+                                      "Prescription Form",
                                       style: TextStyle(
                                           fontSize: 13.sp,
                                           color: Colors.white,
@@ -663,5 +949,153 @@ class _PrescriptionformState extends State<Prescriptionform> {
           ),
         )
     );
+  }
+  selectfile() {
+    AlertDialog alert = AlertDialog(
+      elevation: 0,
+      alignment: Alignment.center,
+      backgroundColor: Colors.grey.shade100,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      actions: [
+        Column(
+          children: [
+            SizedBox(
+              height: 2.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    IconButton(
+                        onPressed: () async {
+                          XFile? photo = await _picker.pickImage(
+                              source: ImageSource.camera);
+                          setState(() {
+                            _pickedFile = File(photo!.path);
+                          });
+                          Navigator.of(context).pop();
+                        },
+                        icon: Icon(
+                          Icons.camera_alt,
+                          size: 15.sp,
+                          color: Color(0xff0061b0),
+                        )),
+                    Text(
+                      "Camera",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13.sp,
+                          fontFamily: "task",
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                        onPressed: () async {
+                          XFile? photo = await _picker.pickImage(
+                              source: ImageSource.gallery);
+                          _pickedFile = File(photo!.path);
+                          setState(() {
+                            _pickedFile = File(photo!.path);
+                          });
+                          Navigator.of(context).pop();
+                        },
+                        icon: Icon(
+                          Icons.browse_gallery,
+                          size: 15.sp,
+                          color: Color(0xff0061b0),
+                        )),
+                    Text(
+                      "Gallery",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13.sp,
+                          fontFamily: "task",
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (context) {
+          return alert;
+        });
+  }
+  preformap() async {
+    if (_formKey.currentState!.validate()) {
+      final Map<String, String> data = {};
+      data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
+          ?deviceName.toString():usermodal?.userId ?? "";
+      data['Patientfname'] = _firstname.text.toString();
+      data['Patientemail'] = _email.text.toString();
+      data['Patientaddress'] = _Address.text.toString();
+      //data['Zipcode'] = widget.ZipCode;
+      data['Phone'] = _phone.text.toString();
+      data['Gender'] = selected ;
+      data['Patientage'] = _age.text.toString();
+      data['Physiciansfname'] = _doctorfname.text.toString();
+      data['Prescribedmedicine'] = _medicine.text.toString();
+      data['image'] = _pickedFile == null ?'':_pickedFile?.path ?? '';
+      print(data);
+      checkInternet().then((internet) async {
+        if (internet) {
+          authprovider().prescriptionformap(data).then((response) async {
+            prescriptionformModel = PrescriptionformModel.fromJson(json.decode(response.body));
+            print(prescriptionformModel?.status);
+            if (response.statusCode == 200 && prescriptionformModel?.status == "success") {
+              setState(() {
+                isLoading = true;
+              });
+              EasyLoading.showSuccess('Submit Successfully');
+              setState(() {
+                isLoading = false;
+              });
+            } else {
+              EasyLoading.showError('Submit Failed');
+              setState(() {
+                isLoading = false;
+              });
+            }
+          });
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          buildErrorDialog(context, 'Error', "Internet Required");
+        }
+      });
+    }
+  }
+  Future<void> getDeviceInfoandStore() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      setState(() {
+        deviceName =
+            androidInfo.model; // Device name
+        deviceOS = 'Android ${androidInfo.version.release}';
+      });
+
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      setState(() {
+        deviceName = iosInfo.name; // Device name
+        deviceOS = 'iOS ${iosInfo.systemVersion}';
+      });
+    }
+    print('Device Name: $deviceName');
+    print('Device OS: $deviceOS');
   }
 }

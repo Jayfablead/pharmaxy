@@ -22,7 +22,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
     super.initState();
     getdata();
     Timer(
-        Duration(minutes: 5),
+        Duration(seconds: 5),
         () =>  Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -58,7 +58,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                
+
                 Column(
                   children: [
                     RichText(

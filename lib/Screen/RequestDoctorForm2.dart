@@ -1,6 +1,8 @@
 
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -27,11 +29,20 @@ class Requestdoctorform2 extends StatefulWidget {
 class _Requestdoctorform2State extends State<Requestdoctorform2> {
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
+  String? deviceName;
+  String? deviceOS;
+  TextEditingController _selectdoctor = TextEditingController();
   TextEditingController _ZipCode = TextEditingController();
   TextEditingController _city = TextEditingController();
   TextEditingController _state = TextEditingController();
   TextEditingController _date = TextEditingController();
   String selected = 'please select';
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDeviceInfoandStore();
+  }
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -135,7 +146,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Gender",
+                                  "Select Doctor",
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
@@ -143,60 +154,42 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 0.5.h,),
-                                Container(
-                                  height: 8.h,
-                                  width: 85.w,
-                                  child: DropdownButtonFormField(
-                                    borderRadius: BorderRadius.circular(10),
-                                    decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 1.h, horizontal: 3.w),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.grey)),
-                                      disabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.grey)),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.grey)),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0),
-                                          ),
-                                          borderSide: BorderSide(color: Colors.grey)),
-                                      // filled: true,
-                                      hintStyle: TextStyle(
-                                        // color: Colors.grey[800]
-                                      ),
-                                    ),
-                                    value: selected,
-                                    onChanged: (val) {
-                                      setState(() {
-                                        selected = val!;
-                                      });
-                                    },
-                                    items: [
-                                      DropdownMenuItem<String>(
-                                        child: Text("Please Select"),
-                                        value: "please select",
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        child: Text("Male"),
-                                        value: "male",
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        child: Text("Female"),
-                                        value: "female",
-                                      )
-                                    ],
-                                    // Initialize this variable with the selected value.
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please Enter Doctor Name";
+                                    }
+                                    return null;
+                                  },
+                                  keyboardType: TextInputType.text,
+                                  controller: _selectdoctor,
+                                  style: TextStyle(height: 1),
+                                  decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    disabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    hintText: 'Enter Doctor Name',
+                                    hintStyle: TextStyle(
+                                        color: Colors.black.withOpacity(0.4),
+                                        fontSize: 11.sp,
+                                        fontFamily: "task"),
                                   ),
                                 ),
                                 // SizedBox(height: 2.5.h,),
@@ -401,7 +394,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                                   context: context,
                                                   initialDate: DateTime.now(),
                                                   firstDate: DateTime(2024,1),
-                                                  lastDate: DateTime(2024,12));
+                                                  lastDate: DateTime(2040,12));
                                               if(datepicker!= null)
                                               {
                                                 String formattedDate = DateFormat('dd-MM-yyyy').format(datepicker);
@@ -481,7 +474,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                         borderRadius: BorderRadius.circular(10),
                                         color: Color(0xff0061b0)),
                                     child: Text(
-                                      "Submit Form",
+                                      "Request Doctor",
                                       style: TextStyle(
                                           fontSize: 12.sp,
                                           color: Colors.white,
@@ -505,13 +498,14 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
   Requestformap() async {
     if (_formKey.currentState!.validate()) {
       final Map<String, String> data = {};
-      data['UserId'] = (usermodal?.userId).toString();
+      data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
+          ?deviceName.toString():usermodal?.userId ?? "";
       data['fname'] = widget.firstname;
       data['email'] = widget.email;
       data['address'] = widget.address;
+      data['specialist'] = _selectdoctor.text.toString();
       data['zipcode'] = _ZipCode.text.toString();
       data['phone'] = widget.phone;
-      data['gender'] = selected ;
       data['appointmentdate'] = _date.text.toString();
       print('form $data');
       checkInternet().then((internet) async {
@@ -522,7 +516,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
               setState(() {
                 isLoading = true;
               });
-              await EasyLoading.showSuccess('Submit Form Successfully');
+              await EasyLoading.showSuccess('Submit  Successfully');
               setState(() {
                 isLoading = false;
               });
@@ -541,5 +535,26 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
         }
       });
     }
+  }
+
+  Future<void> getDeviceInfoandStore() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      setState(() {
+        deviceName =
+            androidInfo.model; // Device name
+        deviceOS = 'Android ${androidInfo.version.release}';
+      });
+
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      setState(() {
+        deviceName = iosInfo.name; // Device name
+        deviceOS = 'iOS ${iosInfo.systemVersion}';
+      });
+    }
+    print('Device Name: $deviceName');
+    print('Device OS: $deviceOS');
   }
 }

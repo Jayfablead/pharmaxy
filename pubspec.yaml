@@ -65,6 +65,9 @@ dependencies:
   get:
   intl:
   device_info_plus:
+  flutter_pdfview:
+  fl_downloader:
+
 
 
 
