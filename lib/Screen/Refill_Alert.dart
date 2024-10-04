@@ -817,20 +817,202 @@ class _Refill_AlertState extends State<Refill_Alert> {
   //     });
   //   }
   // }
+// Make sure to import this for jsonEncode
+
+  // Refillformap() async {
+  //   if (_formKey.currentState!.validate()) {
+  //     final List<String> allMedicines = [
+  //       _medicine.text.toString(),
+  //       ..._medicineControllers.map((controller) => controller.text.toString())
+  //     ];
+  //
+  //     final List<int> allQuantities = [
+  //       int.parse(_quantity.text.toString()),
+  //       ..._quantityControllers.map((controller) => int.parse(controller.text.toString()))
+  //     ];
+  //
+  //     // Building the final map with all required data
+  //     final Map<String, dynamic> data = {};
+  //     data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
+  //         ? deviceName.toString()
+  //         : usermodal?.userId ?? "";
+  //     data['name'] = _firstname.text.toString();
+  //     data['mobile_number'] = _phone.text.toString();
+  //     data['date'] = _date.text.toString();
+  //
+  //     // Building the medicines list
+  //     List<Map<String, dynamic>> medicinesList = [];
+  //     for (int i = 0; i < allMedicines.length; i++) {
+  //       medicinesList.add({
+  //         "medicine_name": allMedicines[i],
+  //         "quantity": allQuantities[i],
+  //       });
+  //     }
+  //
+  //     // Directly assign medicinesList to the data map
+  //     data['medicines'] = medicinesList; // Assign the list directly
+  //
+  //     print('form $data');
+  //
+  //     checkInternet().then((internet) async {
+  //       if (internet) {
+  //         Map<String, String> headers = {
+  //           "Content-Type": "application/json",  // Set Content-Type to JSON
+  //         };
+  //
+  //         try {
+  //           // Convert the entire data map to a JSON string
+  //           String jsonBody = jsonEncode(data);
+  //
+  //           // Sending JSON-encoded data in the request
+  //           final response = await authprovider().refillformap(jsonBody, headers);
+  //           print('form $data');
+  //           refillModel = RefillModel.fromJson(json.decode(response.body));
+  //           if (response.statusCode == 200 && refillModel?.status == "success") {
+  //             Navigator.of(context).push(MaterialPageRoute(
+  //               builder: (context) => HomePage(sel: 1),
+  //             ));
+  //             setState(() {
+  //               isLoading = true;
+  //             });
+  //             await EasyLoading.showSuccess('Submit Successfully');
+  //             setState(() {
+  //               isLoading = false;
+  //             });
+  //           } else {
+  //             print("refillModel${refillModel?.message ?? ""}");
+  //             await EasyLoading.showError('Submit Failed');
+  //             setState(() {
+  //               isLoading = false;
+  //             });
+  //           }
+  //         } catch (e) {
+  //           await EasyLoading.showError('API call failed: $e');
+  //           setState(() {
+  //             isLoading = false;
+  //           });
+  //         }
+  //       } else {
+  //         setState(() {
+  //           isLoading = false;
+  //         });
+  //         buildErrorDialog(context, 'Error', "Internet Required");
+  //       }
+  //     });
+  //   }
+  // }
+
+  // Refillformap() async {
+  //   if (_formKey.currentState!.validate()) {
+  //     final List<String> allMedicines = [
+  //       _medicine.text.toString(),
+  //       ..._medicineControllers.map((controller) => controller.text.toString())
+  //     ];
+  //
+  //     final List<int> allQuantities = [
+  //      int.parse( _quantity.text.toString()),
+  //       ..._quantityControllers.map((controller) => int.parse(controller.text.toString()))
+  //     ];
+  //
+  //     // Building the final map with all required data
+  //     final Map<String, dynamic> data = {};
+  //     data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
+  //         ? deviceName.toString()
+  //         : usermodal?.userId ?? "";
+  //     data['name'] = _firstname.text.toString();
+  //     data['mobile_number'] = _phone.text.toString();
+  //     data['date'] = _date.text.toString();
+  //
+  //     // Building the medicines list
+  //     List<Map<String, dynamic>> medicinesList = [];
+  //     for (int i = 0; i < allMedicines.length; i++) {
+  //       medicinesList.add({
+  //         "medicine_name": allMedicines[i],
+  //         "quantity": allQuantities[i],
+  //       });
+  //     }
+  //
+  //     // Convert medicinesList to JSON string
+  //     String medicinesJson = jsonEncode(medicinesList);
+  //     data['medicines'] = medicinesJson;
+  //
+  //     print('form $data');
+  //
+  //     checkInternet().then((internet) async {
+  //       if (internet) {
+  //         Map<String, String> headers = {
+  //           "Content-Type": "application/json",  // Set Content-Type to JSON
+  //         };
+  //
+  //         try {
+  //           // Convert the entire data map to a JSON string
+  //           String jsonBody = jsonEncode(data);
+  //
+  //           // Sending JSON-encoded data in the request
+  //           final response = await authprovider().refillformap(jsonBody, headers);
+  //
+  //           refillModel = RefillModel.fromJson(json.decode(response.body));
+  //           if (response.statusCode == 200 && refillModel?.status == "success") {
+  //             Navigator.of(context).push(MaterialPageRoute(
+  //               builder: (context) => HomePage(sel: 1),
+  //             ));
+  //             setState(() {
+  //               isLoading = true;
+  //             });
+  //             await EasyLoading.showSuccess('Submit Successfully');
+  //             setState(() {
+  //               isLoading = false;
+  //             });
+  //           } else {
+  //             print("refillModel${refillModel?.message ?? ""}");
+  //             await EasyLoading.showError('Submit Failed');
+  //             setState(() {
+  //               isLoading = false;
+  //             });
+  //           }
+  //         } catch (e) {
+  //           await EasyLoading.showError('API call failed: $e');
+  //           setState(() {
+  //             isLoading = false;
+  //           });
+  //         }
+  //       } else {
+  //         setState(() {
+  //           isLoading = false;
+  //         });
+  //         buildErrorDialog(context, 'Error', "Internet Required");
+  //       }
+  //     });
+  //   }
+  // }
+
+
+
+
+
+
   Refillformap() async {
     if (_formKey.currentState!.validate()) {
       final List<String> allMedicines = [
         _medicine.text.toString(),
         ..._medicineControllers.map((controller) => controller.text.toString())
       ];
-      final List<String> allQuantities = [
-        _quantity.text.toString(),
-        ..._quantityControllers.map((controller) => controller.text.toString())
+
+      final List<int> allQuantities = [
+        int.parse(_quantity.text.toString()),
+        ..._quantityControllers.map((controller) => int.parse(controller.text.toString()))
       ];
 
-      // Creating list of maps for medicines and quantities
-      List<Map<String, dynamic>> medicinesList = [];
+      final Map<String, dynamic> data = {
+        "user_id": usermodal?.userId == "" || usermodal?.userId == null
+                ? deviceName.toString():usermodal?.userId ?? "",
+        "name":  _firstname.text.toString(),
+        "mobile_number":_phone.text.toString(),
+        "date": _date.text.toString(),
+      };
 
+      // Construct the medicines list as a list of maps
+      List<Map<String, dynamic>> medicinesList = [];
       for (int i = 0; i < allMedicines.length; i++) {
         medicinesList.add({
           "medicine_name": allMedicines[i],
@@ -838,36 +1020,27 @@ class _Refill_AlertState extends State<Refill_Alert> {
         });
       }
 
-      // Building the final map with all required data
-      final Map<String, dynamic> data = {};
-      data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
-          ? deviceName.toString()
-          : usermodal?.userId ?? "";
-      data['name'] = _firstname.text.toString();
-      data['mobile_number'] = _phone.text.toString();
-      data['date'] = _date.text.toString();
-      data['medicines[]'] = medicinesList;  // Sending the medicines list
-      data['quantity[]'] = medicinesList;  // Sending the medicines list
+      // Store the medicines list directly in the data map
+      data['medicines'] = medicinesList;  // No need to convert to JSON string
 
       print('form $data');
 
       checkInternet().then((internet) async {
         if (internet) {
-          // Adding headers for JSON content type
           Map<String, String> headers = {
-            "Content-Type": "application/json", // Ensure content type is JSON
-            // Add other headers if needed, like authorization token
+            "Content-Type": "application/json",  // Set Content-Type to JSON
           };
 
           try {
-            print("hary");
+            // Convert the entire data map to a JSON string
+            String jsonBody = jsonEncode(data);
+
             // Sending JSON-encoded data in the request
-            final response = await authprovider().refillformap(data, headers,);
+            final response = await authprovider().refillformap(jsonBody, headers);
 
             refillModel = RefillModel.fromJson(json.decode(response.body));
             if (response.statusCode == 200 && refillModel?.status == "success") {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(
+              Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => HomePage(sel: 1),
               ));
               setState(() {
@@ -885,6 +1058,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
               });
             }
           } catch (e) {
+            print('error :$e');
             await EasyLoading.showError('API call failed: $e');
             setState(() {
               isLoading = false;
@@ -899,6 +1073,12 @@ class _Refill_AlertState extends State<Refill_Alert> {
       });
     }
   }
+
+
+
+
+
+
 
 
 
