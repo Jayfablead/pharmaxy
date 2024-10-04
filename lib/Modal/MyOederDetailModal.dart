@@ -42,10 +42,10 @@ class OrderDetails {
   String? productID;
   String? quantity;
   String? price;
-  Null? variationTableId;
-  Null? productColor;
-  Null? productSize;
-  Null? variationDetails;
+  String? variationTableId;
+  String? productColor;
+  String? productSize;
+  String? variationDetails;
   String? createdAt;
   String? updatedAt;
   String? productName;

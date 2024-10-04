@@ -135,7 +135,7 @@ class _OpenPDFState extends State<OpenPDF> {
             : Column(
           children: [
             SizedBox(
-              height: 80.h,
+              height: 70.h,
               child: PDFView(
                 filePath: widget.file.path,
               ),

@@ -1218,37 +1218,54 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                 children: [
                                   Row(
                                     children: [
-                              Container(
-                              width: 61.w,
-                                padding: EdgeInsets.symmetric(horizontal: 3.w),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade50,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: TextField(
-                                  controller: _searchController,
-                                  onTap: () {
-                                    // Tap event handled here (optional)
-                                  },
-                                  onChanged: (value) {
-                                    // When text changes, handle it here (optional)
-                                  },
-                                  style: TextStyle(color: Colors.black, fontFamily: 'task'),
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(0),
-                                    prefixIconConstraints: BoxConstraints(
-                                      maxHeight: 20,
-                                      minWidth: 25,
-                                    ),
-                                    border: InputBorder.none,
-                                    hintText: 'Enter Coupon Code',
-                                    hintStyle: TextStyle(
-                                        color: Colors.black, fontFamily: 'task', fontSize: 11.sp),
-                                  ),
-                                ),
-                              ),
+                                      Container(
+                                        width: 61.w,
+                                        padding: EdgeInsets.symmetric(horizontal: 3.w),
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey.shade50,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: TextField(
+                                          controller: _searchController,
+                                          onTap: () {
+                                            // Tap event handled here (optional)
+                                          },
+                                          onChanged: (value) {
+                                            // When text changes, handle it here (optional)
+                                          },
+                                          style: TextStyle(color: Colors.black, fontFamily: 'task'),
+                                          textAlign: TextAlign.center, // Center the text input
+                                          decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.all(0),
+                                            prefixIconConstraints: BoxConstraints(
+                                              maxHeight: 20,
+                                              minWidth: 25,
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                              borderSide: BorderSide(color: Colors.grey.shade300), // Default border color
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                              borderSide: BorderSide(color: Colors.grey.shade400), // Border color when enabled
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                              borderSide: BorderSide(color: AppColors.primary, width: 2), // Border color when focused
+                                            ),
+                                            hintText: 'Enter Coupon Code',
+                                            hintStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: 'task',
+                                              fontSize: 11.sp,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+
                                       SizedBox(
-                                        width: 3.w,
+                                        width: 2.w,
                                       ),
                                       GestureDetector(
                                         onTap: () {
@@ -2125,42 +2142,59 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                             children: [
                                               Row(
                                                 children: [
-                                          Container(
-                                          width: 61.w,
-                                            padding: EdgeInsets.symmetric(horizontal: 3.w),
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey.shade50,
-                                              borderRadius: BorderRadius.circular(10),
-                                            ),
-                                            child: TextField(
-                                              controller: _searchController,
-                                              onTap: () {
-                                                // Tap event handled here (optional)
-                                              },
-                                              onChanged: (value) {
-                                                // When text changes, handle it here (optional)
-                                              },
-                                              style: TextStyle(color: Colors.black, fontFamily: 'task'),
-                                              decoration: InputDecoration(
-                                                contentPadding: EdgeInsets.all(0),
-                                                prefixIconConstraints: BoxConstraints(
-                                                  maxHeight: 20,
-                                                  minWidth: 25,
-                                                ),
-                                                border: InputBorder.none,
-                                                hintText: 'Enter Coupon Code',
-                                                hintStyle: TextStyle(
-                                                    color: Colors.black, fontFamily: 'task', fontSize: 11.sp),
-                                              ),
-                                            ),
-                                          ),
+                                                  Container(
+                                                    width: 61.w,
+                                                    padding: EdgeInsets.symmetric(horizontal: 3.w),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey.shade50,
+                                                      borderRadius: BorderRadius.circular(10),
+                                                    ),
+                                                    child: TextField(
+                                                      controller: _searchController,
+                                                      onTap: () {
+                                                        // Tap event handled here (optional)
+                                                      },
+                                                      onChanged: (value) {
+                                                        // When text changes, handle it here (optional)
+                                                      },
+                                                      style: TextStyle(color: Colors.black, fontFamily: 'task'),
+                                                      textAlign: TextAlign.center, // Center the text input
+                                                      decoration: InputDecoration(
+                                                        contentPadding: EdgeInsets.all(0),
+                                                        prefixIconConstraints: BoxConstraints(
+                                                          maxHeight: 20,
+                                                          minWidth: 25,
+                                                        ),
+                                                        border: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          borderSide: BorderSide(color: Colors.grey.shade300), // Default border color
+                                                        ),
+                                                        enabledBorder: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          borderSide: BorderSide(color: Colors.grey.shade400), // Border color when enabled
+                                                        ),
+                                                        focusedBorder: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          borderSide: BorderSide(color: AppColors.primary, width: 2), // Border color when focused
+                                                        ),
+                                                        hintText: 'Enter Coupon Code',
+                                                        hintStyle: TextStyle(
+                                                          color: Colors.black,
+                                                          fontFamily: 'task',
+                                                          fontSize: 11.sp,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+
+
                                                   SizedBox(
-                                                    width: 3.w,
+                                                    width: 2.w,
                                                   ),
                                                   GestureDetector(
                                                     onTap: () {
                                                       setState(() {
-                                                        applycoupon();
+                                                        applycoupon1();
                                                       });
                                                     },
                                                     child:   Container(

@@ -415,7 +415,9 @@ class _HomePageState extends State<HomePage> {
                  name?SliverToBoxAdapter(
                    child: Container(
                    ),
-                 ):  SliverToBoxAdapter(
+                 ):  allcouponmodal?.data?.length==""||allcouponmodal?.data?.length==null?SliverToBoxAdapter(
+                   child: Container(),
+                 ):SliverToBoxAdapter(
                         child: SizedBox(
                           height: 18.h,
                           child: ListView.builder(
@@ -2340,8 +2342,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget searchBox() {
     return Container(
-      width: 92.w,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      width: 92.w, // Container ni width jethi screen pranu responsive layout same aave
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.12),
         borderRadius: BorderRadius.circular(10),
@@ -2356,12 +2357,12 @@ class _HomePageState extends State<HomePage> {
           if (_serch.text.isEmpty) {
             setState(() {
               name = false;
-              wait=false;
+              wait = false;
             });
           } else {
             setState(() {
               name = true;
-              wait=true;
+              wait = true;
             });
           }
           bestsalesserchap(_serch.text);
@@ -2376,9 +2377,20 @@ class _HomePageState extends State<HomePage> {
           ),
           prefixIconConstraints: BoxConstraints(
             maxHeight: 20,
-            minWidth: 25,
+            minWidth: 40,
           ),
-          border: InputBorder.none,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.grey.shade300,), // Outline border ni width same rakhavi
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.grey.shade400, ), // Enabled state ni border width same
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: AppColors.primary,), // Focused state ni border width same rakhvi
+          ),
           hintText: 'Search  For Medicines',
           hintStyle: TextStyle(
               color: Colors.black, fontFamily: 'task', fontSize: 12.sp),
@@ -2386,6 +2398,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
 
   allcatap() async {
     final Map<String, String> data = {};

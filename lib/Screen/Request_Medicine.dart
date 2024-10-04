@@ -55,6 +55,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
   List<TextEditingController> _medicineControllers = [];
   List<TextEditingController> _quantityControllers = [];
   bool addbutton = true;
+  bool Setbutton = true;
   String? deviceName;
   String? deviceOS;
   Widget _buildAddButton() {
@@ -74,7 +75,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
           // }
         },
         child: Padding(
-          padding: addbutton
+          padding: Setbutton
               ? EdgeInsets.only(top: 3.h)
               : EdgeInsets.only(bottom: 0.h),
           child: Container(
@@ -121,12 +122,12 @@ class _Request_MedicineState extends State<Request_Medicine> {
                     // ),
                     // SizedBox(height: 0.5.h,),
                     TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Please Enter Medicine";
-                        }
-                        return null;
-                      },
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return "Please Enter Medicine";
+                      //   }
+                      //   return null;
+                      // },
                       keyboardType: TextInputType.text,
                       controller:_medicineControllers[index],
                       style: TextStyle(height: 1),
@@ -179,12 +180,12 @@ class _Request_MedicineState extends State<Request_Medicine> {
                     // ),
                     // SizedBox(height: 0.5.h,),
                     TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter Number of Quantity";
-                        }
-                        return null;
-                      },
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return "Enter Number of Quantity";
+                      //   }
+                      //   return null;
+                      // },
                       keyboardType: TextInputType.number,
                       controller: _quantityControllers[index],
                       style: TextStyle(height: 1),
@@ -578,13 +579,12 @@ class _Request_MedicineState extends State<Request_Medicine> {
                               GestureDetector(
                                 onTap: () async{
                                   setState(() {
-                                    addbutton = false;
+                                    addbutton = true;
+                                    Setbutton= false;
                                   });
                                   if (_formKey.currentState!.validate()) {
                                     await Requestmediformap();
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => HomePage(sel: 1),)
-                                    );
+
                                     print(medicines);
 
                                   }
@@ -778,38 +778,76 @@ class _Request_MedicineState extends State<Request_Medicine> {
   //   );
   // }
   Requestmediformap() async {
+
     if (_formKey.currentState!.validate()) {
+      EasyLoading.show(status: 'Please Wait ...');
+      Setbutton = true;
       final List<String> allMedicines = [_medicine.text.toString(), ..._medicineControllers.map((controller) => controller.text.toString())];
       final List<String> allQuantities = [_quantity.text.toString(), ..._quantityControllers.map((controller) => controller.text.toString())];
-      final Map<String, String> data = {};
-      data['UserId'] = (usermodal?.userId).toString();
-      data['name'] = _firstname.text.toString();
-      data['mobile_number'] = _phone.text.toString();
-      data['medicine_name[]'] = allMedicines.join(',');
-      data['quantity[]'] = allQuantities.join(',');
+      final Map<String, dynamic> data = {
+        "user_id": usermodal?.userId == "" || usermodal?.userId == null
+            ? deviceName.toString():usermodal?.userId ?? "",
+        "name":  _firstname.text.toString(),
+        "mobile_number":_phone.text.toString(),
+      };
+      // Construct the medicines list as a list of maps
+      List<Map<String, dynamic>> medicinesList = [];
+      for (int i = 0; i < allMedicines.length; i++) {
+        medicinesList.add({
+          "medicine_name": allMedicines[i],
+          "quantity": allQuantities[i],
+        });
+      }
+      // Store the medicines list directly in the data map
+      data['medicines'] = medicinesList;  // No need to convert to JSON string
+
       print('form $data');
       checkInternet().then((internet) async {
         if (internet) {
-          authprovider().requestmediformap(data).then((response) async {
+          Map<String, String> headers = {
+            "Content-Type": "application/json",  // Set Content-Type to JSON
+          };
+          try {
+            // Convert the entire data map to a JSON string
+            String jsonBody = jsonEncode(data);
+
+            // Sending JSON-encoded data in the request
+            final response = await authprovider().requestmediformap(jsonBody, headers);
+
             requestMedicineModel = RequestMedicineModel.fromJson(json.decode(response.body));
             if (response.statusCode == 200 && requestMedicineModel?.status == "success") {
-              await EasyLoading.showSuccess('Submit  Successfully');
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => HomePage(sel: 1),
+              ));
+              setState(() {
+                Setbutton = true;
+                isLoading = true;
+              });
+              await EasyLoading.showSuccess('Submit Successfully');
               setState(() {
                 isLoading = false;
               });
             } else {
+              print("requestModel${requestMedicineModel?.message ?? ""}");
               await EasyLoading.showError('Submit Failed');
               setState(() {
                 isLoading = false;
               });
             }
-          });
+          } catch (e) {
+            print('error :$e');
+            await EasyLoading.showError('API call failed: $e');
+            setState(() {
+              isLoading = false;
+            });
+          }
         } else {
           setState(() {
             isLoading = false;
           });
           buildErrorDialog(context, 'Error', "Internet Required");
         }
+
       });
     }
   }

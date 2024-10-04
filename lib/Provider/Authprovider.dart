@@ -1397,21 +1397,26 @@ class authprovider with ChangeNotifier {
 
 
   //request medical form
-  Future<http.Response> requestmediformap(Map<String, String> bodyData) async {
-    const url = "$baseUrl/requestmedicine";
-    print('Req Med = $url');
-    var responseJson;
-    final response = await http
-        .post( Uri.parse(url),body: bodyData,headers: headers)
-        .timeout(
-      const Duration(seconds: 30),
-      onTimeout: () {
-        throw const SocketException('Something went wrong');
-      },
-    );
-    responseJson = responses(response);
-    return responseJson;
+
+
+
+
+  Future<http.Response> requestmediformap(String bodyData, Map<String, String> headers) async {
+  const url = "$baseUrl/requestmedicine";
+  var responseJson;
+  final response = await http
+      .post(Uri.parse(url), body: bodyData, headers: headers)
+      .timeout(
+  const Duration(seconds: 30),
+  onTimeout: () {
+  throw const SocketException('Something went wrong');
+  },
+  );
+  responseJson = responses(response);
+  return responseJson;
   }
+
+
 
   // refillform
   // Future<http.Response> refillformap(Map<String, String> bodyData) async {

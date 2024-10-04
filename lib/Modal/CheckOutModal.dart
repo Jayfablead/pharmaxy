@@ -2,6 +2,7 @@ class CheckOutModal {
   String? message;
   String? status;
   CartDetails? cartDetails;
+  String? invoicePdf;
   String? finalTotal;
   String? totalTax;
   String? finalTotalWithTax;
@@ -10,6 +11,7 @@ class CheckOutModal {
       {this.message,
         this.status,
         this.cartDetails,
+        this.invoicePdf,
         this.finalTotal,
         this.totalTax,
         this.finalTotalWithTax});
@@ -20,6 +22,7 @@ class CheckOutModal {
     cartDetails = json['cart_details'] != null
         ? new CartDetails.fromJson(json['cart_details'])
         : null;
+    invoicePdf = json['invoice_pdf'];
     finalTotal = json['final_total'];
     totalTax = json['total_tax'];
     finalTotalWithTax = json['final_total_with_tax'];
@@ -32,6 +35,7 @@ class CheckOutModal {
     if (this.cartDetails != null) {
       data['cart_details'] = this.cartDetails!.toJson();
     }
+    data['invoice_pdf'] = this.invoicePdf;
     data['final_total'] = this.finalTotal;
     data['total_tax'] = this.totalTax;
     data['final_total_with_tax'] = this.finalTotalWithTax;
@@ -52,7 +56,7 @@ class CartDetails {
   String? zipcode;
   String? orderDate;
   int? orderNumber;
-  double? totalAmount;
+  int? totalAmount;
   String? payment;
   String? orderStatus;
 
@@ -86,11 +90,10 @@ class CartDetails {
     zipcode = json['zipcode'];
     orderDate = json['OrderDate'];
     orderNumber = json['OrderNumber'];
-    totalAmount = json['TotalAmount'] != null ? json['TotalAmount'].toDouble() : null; // Convert int or double to double
+    totalAmount = json['TotalAmount'];
     payment = json['payment'];
     orderStatus = json['OrderStatus'];
   }
-
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

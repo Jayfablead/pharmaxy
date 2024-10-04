@@ -14,9 +14,10 @@ import 'package:sizer/sizer.dart';
 
 class ThankyouPage extends StatefulWidget {
   String? uid;
-  String? orderid;
 
-  ThankyouPage({super.key, this.uid,required this.orderid});
+  String? url;
+
+  ThankyouPage({super.key, this.uid,this.url});
 
   @override
   State<ThankyouPage> createState() => _ThankyouPageState();
@@ -146,13 +147,14 @@ class _ThankyouPageState extends State<ThankyouPage> {
               padding: EdgeInsets.only(left: 70.w,top: 5.h),
               child: FloatingActionButton(
                 onPressed: () async{
-                  // var file = await OpenPdfUtil().loadPdfFromNetwork("https://pharmato.fableadtechnolabs.com/admin/invoice/79");
-                  // String url1 = "https://pharmato.fableadtechnolabs.com/admin/invoice/79";
-                  // print("55555555${url1}");
+                  var file = await OpenPdfUtil().loadPdfFromNetwork(widget.url.toString());
+                  String url1 = widget.url.toString();
+                  print("55555555${url1}");
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => Privacy_Policy(
-
+                      builder: (context) => OpenPDF(
+                        file: file,
+                        url: url1,
                       ),
                     ),
                   );
@@ -182,7 +184,6 @@ class _ThankyouPageState extends State<ThankyouPage> {
               checkoutmodal?.status == "success") {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => ThankyouPage(
-              orderid: "79",
             )));
             print(checkoutmodal?.status);
             print("Reti na dhagala ni jay hooo......");
