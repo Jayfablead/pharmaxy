@@ -468,7 +468,7 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
                         ),
                         Container(
                           width: 95.w,
-                          height: 11.h,
+                          height: 20.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Color(0xffffffff),
@@ -592,6 +592,7 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
                       fontFamily: "task"),
                 ),
               ),
+
             ],
           ),
         ),

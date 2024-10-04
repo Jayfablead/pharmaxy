@@ -45,7 +45,9 @@ class OrderDetails {
   String? variationTableId;
   String? productColor;
   String? productSize;
-  String? variationDetails;
+  Null? variationDetails;
+  Null? packageDate;
+  Null? expriceDate;
   String? createdAt;
   String? updatedAt;
   String? productName;
@@ -59,6 +61,7 @@ class OrderDetails {
   String? phoneno;
   String? address1;
   String? zipcode;
+  String? invoicePdf;
   String? cityName;
   String? stateName;
   String? countryName;
@@ -73,6 +76,8 @@ class OrderDetails {
         this.productColor,
         this.productSize,
         this.variationDetails,
+        this.packageDate,
+        this.expriceDate,
         this.createdAt,
         this.updatedAt,
         this.productName,
@@ -86,6 +91,7 @@ class OrderDetails {
         this.phoneno,
         this.address1,
         this.zipcode,
+        this.invoicePdf,
         this.cityName,
         this.stateName,
         this.countryName});
@@ -100,6 +106,8 @@ class OrderDetails {
     productColor = json['product_color'];
     productSize = json['product_size'];
     variationDetails = json['variation_details'];
+    packageDate = json['package_date'];
+    expriceDate = json['exprice_date'];
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
     productName = json['product_name'];
@@ -113,6 +121,7 @@ class OrderDetails {
     phoneno = json['phoneno'];
     address1 = json['address1'];
     zipcode = json['zipcode'];
+    invoicePdf = json['invoice_pdf'];
     cityName = json['city_name'];
     stateName = json['state_name'];
     countryName = json['country_name'];
@@ -129,6 +138,8 @@ class OrderDetails {
     data['product_color'] = this.productColor;
     data['product_size'] = this.productSize;
     data['variation_details'] = this.variationDetails;
+    data['package_date'] = this.packageDate;
+    data['exprice_date'] = this.expriceDate;
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     data['product_name'] = this.productName;
@@ -142,6 +153,7 @@ class OrderDetails {
     data['phoneno'] = this.phoneno;
     data['address1'] = this.address1;
     data['zipcode'] = this.zipcode;
+    data['invoice_pdf'] = this.invoicePdf;
     data['city_name'] = this.cityName;
     data['state_name'] = this.stateName;
     data['country_name'] = this.countryName;
@@ -171,6 +183,9 @@ class UserDetail {
   String? totalAmount;
   String? payment;
   String? orderStatus;
+  String? expriceDate;
+  String? packageDate;
+  String? invoicePdf;
   String? createdAt;
   String? updatedAt;
 
@@ -196,6 +211,9 @@ class UserDetail {
         this.totalAmount,
         this.payment,
         this.orderStatus,
+        this.expriceDate,
+        this.packageDate,
+        this.invoicePdf,
         this.createdAt,
         this.updatedAt});
 
@@ -221,6 +239,9 @@ class UserDetail {
     totalAmount = json['TotalAmount'];
     payment = json['payment'];
     orderStatus = json['OrderStatus'];
+    expriceDate = json['exprice_date'];
+    packageDate = json['package_date'];
+    invoicePdf = json['invoice_pdf'];
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
   }
@@ -248,6 +269,9 @@ class UserDetail {
     data['TotalAmount'] = this.totalAmount;
     data['payment'] = this.payment;
     data['OrderStatus'] = this.orderStatus;
+    data['exprice_date'] = this.expriceDate;
+    data['package_date'] = this.packageDate;
+    data['invoice_pdf'] = this.invoicePdf;
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     return data;

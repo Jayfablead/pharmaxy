@@ -61,15 +61,15 @@ class CartDetails {
   String? productType;
   String? categoryID;
   String? subCategoryID;
-  Null? variationTypeID;
-  Null? variationID;
+  String? variationTypeID;
+  String? variationID;
   String? brandID;
   String? tagID;
   String? shippingID;
   String? productName;
   String? productPrice;
   String? saleProductPrice;
-  Null? productCartDesc;
+  String? productCartDesc;
   String? productShortDesc;
   String? productLongDesc;
   String? productImage;
@@ -84,6 +84,7 @@ class CartDetails {
   String? isTaxable;
   String? taxClassId;
   String? slug;
+  String? batch;
   String? package;
   String? expriceDate;
   String? createdAt;
@@ -122,6 +123,7 @@ class CartDetails {
         this.isTaxable,
         this.taxClassId,
         this.slug,
+        this.batch,
         this.package,
         this.expriceDate,
         this.createdAt,
@@ -160,6 +162,7 @@ class CartDetails {
     isTaxable = json['is_taxable'];
     taxClassId = json['tax_class_id'];
     slug = json['slug'];
+    batch = json['batch'];
     package = json['package'];
     expriceDate = json['exprice_date'];
     createdAt = json['Created_at'];
@@ -200,6 +203,7 @@ class CartDetails {
     data['is_taxable'] = this.isTaxable;
     data['tax_class_id'] = this.taxClassId;
     data['slug'] = this.slug;
+    data['batch'] = this.batch;
     data['package'] = this.package;
     data['exprice_date'] = this.expriceDate;
     data['Created_at'] = this.createdAt;
