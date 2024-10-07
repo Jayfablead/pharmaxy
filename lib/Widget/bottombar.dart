@@ -43,7 +43,7 @@ class _bottombarState extends State<bottombar> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: Colors.white),
-      height: Platform.isAndroid ? 8.7.h : 8.h,
+      height: Platform.isAndroid ? 8.7.h : 9.8.h,
       margin: EdgeInsets.only(
         right: 1.w,
         left: 1.w,
@@ -228,7 +228,7 @@ class _bottombarState extends State<bottombar> {
                     child: Padding(
                       padding: Platform.isAndroid
                           ? EdgeInsets.only(bottom: 1.h)
-                          : EdgeInsets.only(bottom: 3.5.h),
+                          : EdgeInsets.only(bottom: 1.h),
                       child: Column(
                         children: [
                           Icon(

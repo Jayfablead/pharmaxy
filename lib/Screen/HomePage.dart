@@ -2143,10 +2143,7 @@ class _HomePageState extends State<HomePage> {
                                               );
                                             },
                                             childCount:
-
-
                                             // items1.length,
-
                                             _isLoading
                                                 ? bestsellerproductmodal
                                                     ?.productData?.length
@@ -2252,7 +2249,6 @@ class _HomePageState extends State<HomePage> {
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: (){
-
                                   Navigator.of(context).push(
                                       MaterialPageRoute(builder: (context) => Blogdetailspage(
                                         iteamid: blogmodel?.data?[index].id ?? '',

@@ -94,7 +94,8 @@ class _CartPageState extends State<CartPage> {
     super.initState();
     ViewCartApi();
     getDeviceInfoandStore();
-print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserModel?.handlingCharge).toString()}");
+    ViewCartwithoutloginAp();
+    print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserModel?.handlingCharge).toString()}");
     setState(() {
       isLoading = true;
       cpupon = false;
@@ -120,7 +121,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<CartProvider>(context);
+    // final cart = Provider.of<CartProvider>(context);
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
@@ -787,7 +788,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                         child: Column(
                           children: [
                             Container(
-                              height: 40.h,
+                              height: Platform.isAndroid ?40.h:36.h,
                               child: ListView.builder(
                                 padding: EdgeInsets.zero,
                                 itemCount: viewwithoutuserModel
@@ -1220,7 +1221,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                     children: [
                                       Container(
                                         width: 61.w,
-                                        padding: EdgeInsets.symmetric(horizontal: 3.w),
+
                                         decoration: BoxDecoration(
                                           color: Colors.grey.shade50,
                                           borderRadius: BorderRadius.circular(10),
@@ -2144,7 +2145,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
                                                 children: [
                                                   Container(
                                                     width: 61.w,
-                                                    padding: EdgeInsets.symmetric(horizontal: 3.w),
+
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey.shade50,
                                                       borderRadius: BorderRadius.circular(10),
@@ -2680,7 +2681,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
   ViewCartwithoutloginAp() async {
     final Map<String, String> data = {};
     data['device_id'] = deviceName.toString();
-    print(data);
+    print("Cart ma data nathi aaavta ${data}");
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().viewcartwithoutloginapi(data).then((response) async {
@@ -2988,11 +2989,9 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
           if (response.statusCode == 200 &&
               couponmodel?.status == "success") {
             EasyLoading.showSuccess("Coupon Applied");
-
             setState(() {
               cpupon =true;
             });
-
             ViewCartApi();
             print('ADD');
             setState(() {
@@ -3039,7 +3038,7 @@ print("(viewwithoutuserModel?.handlingCharge).toString(),${   (viewwithoutuserMo
               isLoading = false;
             });
           } else {
-            EasyLoading.showError("Coupon cannot be applied. Please check the conditions");
+            EasyLoading.showError(couponmodel?.message ?? "");
             setState(() {
               isLoading = false;
             });
