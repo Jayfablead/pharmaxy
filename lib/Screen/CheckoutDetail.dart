@@ -2196,6 +2196,25 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           SizedBox(
                                             height: 2.h,
                                           ),
+                                          Text(
+                                            "You will receive call by",
+                                            style: TextStyle(
+                                                fontSize: 10.sp,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey,
+                                                fontFamily: "task"),
+                                          ),
+                                          SizedBox(
+                                            height: 1.h,
+                                          ),
+                                          Text(
+                                            "8.22 PM Today",
+                                            style: TextStyle(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.primary,
+                                                fontFamily: "task"),
+                                          ),
                                           // Row(
                                           //   children: [
                                           //     Container(
