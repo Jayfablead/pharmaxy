@@ -27,6 +27,7 @@ import 'package:ecommerce/Modal/ColorShowModal.dart';
 import 'package:ecommerce/Modal/CountryModal.dart';
 import 'package:ecommerce/Modal/CouponModel.dart';
 import 'package:ecommerce/Modal/DeleteReviewModal.dart';
+import 'package:ecommerce/Modal/DeleteUserModel.dart';
 import 'package:ecommerce/Modal/DeliveredOrderModal.dart';
 import 'package:ecommerce/Modal/DisIncrementModal.dart';
 import 'package:ecommerce/Modal/EditShippingAdd.dart';
@@ -100,7 +101,8 @@ class AppColors {
 }
 
 // const String baseUrl = 'https://ecomweb.fableadtechnolabs.com/api';
-const String baseUrl = 'https://pharmato.fableadtechnolabs.com/api/';
+// const String baseUrl = 'https://pharmato.fableadtechnolabs.com/api/';
+const String baseUrl = 'https://pharmaxy.org/api';
 
 SignupModal? signupmodal;
 UserModal? usermodal;
@@ -183,6 +185,7 @@ RequestformModel? requestformModel;
 PrescriptionformModel?prescriptionformModel;
 RequestMedicineModel?requestMedicineModel;
 RefillModel? refillModel;
+DeleteUserModel?deleteuserModel;
 
 
 

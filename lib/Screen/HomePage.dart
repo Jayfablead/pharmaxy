@@ -43,6 +43,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   int? sel;
@@ -164,6 +165,14 @@ List cate = [
   "https://www.pngall.com/wp-content/uploads/5/Baby-Toy-PNG-Free-Download.png",
 ];
 
+
+void _makePhoneCall(String phoneNumber) async {
+  final Uri launchUri = Uri(
+    scheme: 'tel',
+    path: phoneNumber,
+  );
+  await launchUrl(launchUri);
+}
 final GlobalKey<ScaffoldState> _scaffoldKeyhome = GlobalKey<ScaffoldState>();
 
 int sel = -1;
@@ -429,7 +438,7 @@ class _HomePageState extends State<HomePage> {
                                 margin: EdgeInsets.only(right: 2.w),
                                 alignment: Alignment.center,
                                 height: 18.h,
-                                width: 84.w,
+                                width:  allcouponmodal?.data?.length==1?91.w:84.w,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: AppColors.primary,
@@ -979,20 +988,24 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(
                                     10), // Rounded corners
                               ),
-                              child: Row(
+                              child:Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.call,
-                                      color: AppColors.primary, size: 24),
-                                  // Button icon
+                                  Icon(Icons.call, color: AppColors.primary, size: 24),
                                   SizedBox(width: 8),
-                                  Text(
-                                    "Call Us",
-                                    style: TextStyle(
+                                  GestureDetector(
+                                    onTap: () {
+                                      _makePhoneCall('9051294444'); // Replace with the actual phone number
+                                    },
+                                    child: Text(
+                                      "Call Us",
+                                      style: TextStyle(
                                         color: AppColors.primary,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 12.sp,
-                                        fontFamily: 'task'),
+                                        fontFamily: 'task',
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -1016,13 +1029,31 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   // Icon(Icons.facebook_sharp,color:AppColors.primary, size: 24), // Button icon
                                   SizedBox(width: 8),
-                                  Text(
-                                    "Whatsapp",
-                                    style: TextStyle(
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12.sp,
-                                        fontFamily: 'task'),
+                                  GestureDetector(
+                                    onTap: () {
+
+                                    },
+                                    child:GestureDetector(
+                                      onTap: () async {
+                                        final String phoneNumber = "919051294444"; // Replace with your actual number in the correct format
+                                        final String whatsappUrl = "https://wa.me/$phoneNumber"; // Construct the WhatsApp URL
+
+                                        if (await canLaunch(whatsappUrl)) {
+                                          await launch(whatsappUrl);
+                                        } else {
+                                          throw 'Could not launch $whatsappUrl';
+                                        }
+                                      },
+                                      child: Text(
+                                        "Whatsapp",
+                                        style: TextStyle(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12.sp,
+                                            fontFamily: 'task'),
+                                      ),
+                                    ),
+
                                   ),
                                 ],
                               ),
@@ -2239,7 +2270,13 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                         ),
                       ):SliverToBoxAdapter(
-                        child: SizedBox(
+                        child: blogmodel?.data?.length==null||blogmodel?.data?.length==""?Container(
+                          child: Center(child: Text("No Blog Avaliable",style: TextStyle(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "task",
+                          ),)),
+                        ):SizedBox(
                           height: 19.h,
                           width: 60.w,
                           child: ListView.builder(

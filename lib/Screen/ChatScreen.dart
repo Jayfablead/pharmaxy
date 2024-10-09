@@ -76,7 +76,7 @@ class _ChatscreenState extends State<Chatscreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Pharmato Support",style: TextStyle(
+                  Text("Pharmaxy Support",style: TextStyle(
                       fontSize: 15.0,
                       fontWeight: FontWeight.bold,
                       fontFamily: "task"

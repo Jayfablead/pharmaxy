@@ -9,6 +9,7 @@
 #include <file_selector_windows/file_selector_windows.h>
 #include <fl_downloader/fl_downloader_plugin_c_api.h>
 #include <modal_progress_hud_nsn/modal_progress_hud_nsn_plugin_c_api.h>
+#include <url_launcher_windows/url_launcher_windows.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   FileSelectorWindowsRegisterWithRegistrar(
@@ -17,4 +18,6 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("FlDownloaderPluginCApi"));
   ModalProgressHudNsnPluginCApiRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("ModalProgressHudNsnPluginCApi"));
+  UrlLauncherWindowsRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("UrlLauncherWindows"));
 }

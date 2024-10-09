@@ -280,16 +280,16 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                             child: Text(
                                                               myoederdetailmodal
                                                                   ?.orderDetails
-                                                                  ?[index]?.productName ==
+                                                                  ?[index].productName ==
                                                                   '' ||
                                                                   myoederdetailmodal
                                                                       ?.orderDetails
-                                                                  ?[index]?.productName ==
+                                                                  ?[index].productName ==
                                                                       null
                                                                   ? 'N/A'
                                                                   : myoederdetailmodal
                                                                   ?.orderDetails
-                                                              ?[index]?.productName ??
+                                                              ?[index].productName ??
                                                                   '',
                                                               style: TextStyle(
                                                                   color: Colors.black,
@@ -323,17 +323,17 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                               Text(
                                                                 myoederdetailmodal
                                                                     ?.orderDetails
-                                                                ?[index]?.price ==
+                                                                ?[index].price ==
                                                                     "" ||
                                                                     myoederdetailmodal
                                                                         ?.orderDetails
-                                                                    ?[index]?.price ==
+                                                                    ?[index].price ==
                                                                         null
                                                                     ? "N/A"
                                                                     : '₹' +
                                                                     (myoederdetailmodal
                                                                         ?.orderDetails
-                                                                    ?[index]?.price)
+                                                                    ?[index].price)
                                                                         .toString(),
                                                                 style: TextStyle(
                                                                   fontSize: 11.sp,
@@ -370,16 +370,16 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                            Text(
                                                              myoederdetailmodal
                                                                  ?.orderDetails
-                                                             ?[index]?.orderStatus ==
+                                                             ?[index].orderStatus ==
                                                                     '' ||
                                                                  myoederdetailmodal
                                                                      ?.orderDetails
-                                                                 ?[index]?.orderStatus ==
+                                                                 ?[index].orderStatus ==
                                                                         null
                                                                     ? 'N/A'
                                                                     : myoederdetailmodal
                                                                  ?.orderDetails
-                                                             ?[index]?.orderStatus ?? '',
+                                                             ?[index].orderStatus ?? '',
                                                                 maxLines: 1,
                                                                 overflow: TextOverflow.ellipsis,
                                                                 style: TextStyle(
@@ -389,23 +389,23 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                   FontWeight.bold,
                                                                   color: myoederdetailmodal
                                                                       ?.orderDetails
-                                                                  ?[index]?.orderStatus =='Pending'
+                                                                  ?[index].orderStatus =='Pending'
                                                                       ? Colors.orange
                                                                       : myoederdetailmodal
                                                                       ?.orderDetails
-                                                                  ?[index]?.orderStatus == "Cancelled"
+                                                                  ?[index].orderStatus == "Cancelled"
                                                                       ? Colors.red
                                                                       : myoederdetailmodal
                                                                       ?.orderDetails
-                                                                  ?[index]?.orderStatus == "Completed"
+                                                                  ?[index].orderStatus == "Completed"
                                                                       ? Colors.green :
                                                                   myoederdetailmodal
                                                                       ?.orderDetails
-                                                                  ?[index]?.orderStatus == "Placed"
+                                                                  ?[index].orderStatus == "Placed"
                                                                       ?Colors.green
                                                                       :  myoederdetailmodal
                                                                       ?.orderDetails
-                                                                  ?[index]?.orderStatus == "Paid"
+                                                                  ?[index].orderStatus == "Paid"
                                                                       ?Colors.green:AppColors.primary
                                                                 ),
                                                               ),
@@ -561,13 +561,14 @@ class _OrderSummaryState extends State<OrderSummary> {
                                         SizedBox(
                                           height: 2.h,
                                         ),
-                                        if (myoederdetailmodal?.userDetail?.orderStatus =='Completed'||myoederdetailmodal?.userDetail?.orderStatus =='Cancelled') SizedBox() else InkWell(
+                                        if (myoederdetailmodal?.userDetail?.orderStatus =='Completed'||myoederdetailmodal?.userDetail?.orderStatus =='Cancelled') SizedBox() else
+                                          InkWell(
                                           onTap: () {
                                             AlertDialog alertDialog = AlertDialog(
                                               title: Text("Cancel Order",style: TextStyle(
                                                   fontFamily: "task",
                                                 fontSize: 13.sp,
-                      
+
                                               ),),
                                               content: Text("Are you sure want cancel this order?",style: TextStyle(
                                                   fontFamily: "task",
@@ -577,8 +578,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                               // contentPadding: EdgeInsets.all(10.0),
                                               actions: [
                                                ElevatedButton(
-                                                   onPressed: (){
-                                                     ordercancelledap();
+                                                   onPressed: ()async{
+                                                    await ordercancelledap();
                                                    },
                                                    child: Text("Yes",style: TextStyle(
                                                      fontSize: 10.sp,

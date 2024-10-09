@@ -808,7 +808,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Prescribe Medicine",
+                                  "Prescribe Medicine(optional)",
                                   style: TextStyle(
                                       color: Colors.black87,
                                       fontFamily: "task",
@@ -1035,17 +1035,18 @@ class _PrescriptionformState extends State<Prescriptionform> {
   }
   preformap() async {
     if (_formKey.currentState!.validate()) {
+      EasyLoading.show(status: 'Please Wait ...');
       final Map<String, String> data = {};
       data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
           ?deviceName.toString():usermodal?.userId ?? "";
-      data['Patientfname'] = _firstname.text.toString();
-      data['Patientemail'] = _email.text.toString();
-      data['Patientaddress'] = _Address.text.toString();
+      // data['Patientfname'] = _firstname.text.toString();
+      // data['Patientemail'] = _email.text.toString();
+      // data['Patientaddress'] = _Address.text.toString();
       //data['Zipcode'] = widget.ZipCode;
-      data['Phone'] = _phone.text.toString();
-      data['Gender'] = selected ;
+      // data['Phone'] = _phone.text.toString();
+      // data['Gender'] = selected ;
       data['Patientage'] = _age.text.toString();
-      data['Physiciansfname'] = _doctorfname.text.toString();
+      // data['Physiciansfname'] = _doctorfname.text.toString();
       data['Prescribedmedicine'] = _medicine.text.toString();
       data['image'] = _pickedFile == null ?'':_pickedFile?.path ?? '';
       print(data);
@@ -1055,6 +1056,9 @@ class _PrescriptionformState extends State<Prescriptionform> {
             prescriptionformModel = PrescriptionformModel.fromJson(json.decode(response.body));
             print(prescriptionformModel?.status);
             if (response.statusCode == 200 && prescriptionformModel?.status == "success") {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => HomePage(sel: 1),
+              ));
               setState(() {
                 isLoading = true;
               });

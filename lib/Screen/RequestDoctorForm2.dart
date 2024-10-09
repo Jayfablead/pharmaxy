@@ -498,6 +498,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
   }
   Requestformap() async {
     if (_formKey.currentState!.validate()) {
+      EasyLoading.show(status: 'Please Wait ...');
       final Map<String, String> data = {};
       data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
           ?deviceName.toString():usermodal?.userId ?? "";
@@ -514,6 +515,9 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
           authprovider().requestformap(data).then((response) async {
             requestformModel = RequestformModel.fromJson(json.decode(response.body));
             if (response.statusCode == 200 && requestformModel?.status == "success") {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => HomePage(sel: 1),
+              ));
               setState(() {
                 isLoading = true;
               });

@@ -855,20 +855,7 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
-  Future<http.Response> checkoutcodapi(Map<String, String> bodyData) async {
-    const url = "$baseUrl/checkout";
-    var responseJson;
-    final response = await http
-        .post(Uri.parse(url), body: bodyData, headers: headers)
-        .timeout(
-      const Duration(seconds: 30),
-      onTimeout: () {
-        throw const SocketException('Something went wrong');
-      },
-    );
-    responseJson = responses(response);
-    return responseJson;
-  }
+
 
   Future<http.Response> myorderlistapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/my_orders";
@@ -1117,6 +1104,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> cancelorderapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/cancelled_myorders";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1296,7 +1284,7 @@ class authprovider with ChangeNotifier {
 
 
   Future<http.Response> sendmessgesapi(userid,adminid ,orderid,Map<String, String> bodyData,) async {
-    String url = 'https://pharmato.fableadtechnolabs.com/api/sendMessage/${userid}/${adminid}/${orderid}';
+    String url = 'https://pharmaxy.org/api/sendMessage/${userid}/${adminid}/${orderid}';
     var responseJson;
     if (bodyData['mType'] == "1") {
       final response = await http
@@ -1377,7 +1365,8 @@ class authprovider with ChangeNotifier {
         throw FetchDataException('No Internet connection');
       }
       return responseJson;
-    } else {
+    }
+    else {
       print("a helllooo");
       final response = await http
           .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1393,12 +1382,50 @@ class authprovider with ChangeNotifier {
       return responseJson;
     }
   }
+  Future<http.Response> checkoutcodapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/checkout";
+    var responseJson;
+    if (bodyData['image'] != "") {
+      try {
+        final imageUploadRequest =
+        http.MultipartRequest('POST', Uri.parse(url));
+        imageUploadRequest.headers.addAll(headers);
+        if (bodyData['image']?.isNotEmpty ?? false) {
+          final file = await http.MultipartFile.fromPath(
+              'image', bodyData['image'] ?? '');
 
+          imageUploadRequest.files.add(file);
+        }
+        imageUploadRequest.fields.addAll(bodyData);
+        print(imageUploadRequest.files);
+        final streamResponse = await imageUploadRequest.send();
+        print(streamResponse.statusCode);
+        responseJson =
+            responses(await http.Response.fromStream(streamResponse));
+        print(responseJson);
+      } on SocketException {
+        throw FetchDataException('No Internet connection');
+      }
+      return responseJson;
+    }
+    else{
+      final response = await http
+          .post(Uri.parse(url), body: bodyData, headers: headers)
+          .timeout(
+        const Duration(seconds: 30),
+        onTimeout: () {
+          throw const SocketException('Something went wrong');
+        },
+      );
+      responseJson = responses(response);
+      print(responseJson);
+      return responseJson;
+    }
+
+  }
 
 
   //request medical form
-
-
 
 
   Future<http.Response> requestmediformap(String bodyData, Map<String, String> headers) async {
@@ -1447,8 +1474,19 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
-
-
-
-
+  Future<http.Response> deleteuserap(Map<String, String> bodyData) async {
+    const url = "$baseUrl/userdelete";
+    print('deleteuser${url}');
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
 }
