@@ -1278,7 +1278,7 @@ class _CartPageState extends State<CartPage> {
                                         },
                                         child: Container(
                                           padding: EdgeInsets.symmetric(horizontal: 0.w,vertical: 1.h),
-                                          width: 27.w,
+                                          width: 25.w,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
                                               borderRadius:
@@ -1502,18 +1502,15 @@ class _CartPageState extends State<CartPage> {
                                                 )
                                               ]
                                           ),
-                                          width: 20.w,
+                                          width: 22.w,
                                           height: 4.h,
                                           alignment: Alignment.center,
-                                          child: Padding(
-                                            padding:  EdgeInsets.only(left: 1.w),
-                                            child: Text("All Coupons",overflow: TextOverflow.ellipsis,style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 10.sp,
-                                              fontFamily: 'task',
-                                              color: AppColors.primary,
-                                            ),),
-                                          ),
+                                          child: Text("All Coupon",overflow: TextOverflow.ellipsis,style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 8.sp,
+                                            fontFamily: 'task',
+                                            color: AppColors.primary,
+                                          ),),
                                         ),
                                       )
 
@@ -2416,7 +2413,7 @@ class _CartPageState extends State<CartPage> {
                                                     },
                                                     child: Container(
                                                       padding: EdgeInsets.symmetric(vertical: 1.h),
-                                                      width: 27.w,
+                                                      width: 25.w,
                                                      // alignment: Alignment.center,
                                                       decoration: BoxDecoration(
                                                           borderRadius:
@@ -2642,18 +2639,15 @@ class _CartPageState extends State<CartPage> {
                                                         ]
 
                                                       ),
-                                                      width: 20.w,
+                                                      width: 22.w,
                                                       height: 4.h,
                                                       alignment: Alignment.center,
-                                                      child: Padding(
-                                                        padding:  EdgeInsets.only(left: 1.w),
-                                                        child: Text("All Coupons",overflow: TextOverflow.ellipsis,style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 10.sp,
-                                                          fontFamily: 'task',
-                                                          color: AppColors.primary,
-                                                        ),),
-                                                      ),
+                                                      child: Text("All Coupon",overflow: TextOverflow.ellipsis,style: TextStyle(
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 8.sp,
+                                                        fontFamily: 'task',
+                                                        color: AppColors.primary,
+                                                      ),),
                                                     ),
                                                     // child: TextButton(
                                                     //   onPressed: () {

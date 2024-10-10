@@ -1142,7 +1142,8 @@ class _HomePageState extends State<HomePage> {
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4, // 4 items per row
+                                    crossAxisCount: 4,
+                                        // 4 items per row
                                     mainAxisSpacing:
                                         1.0, // spacing between rows
                                     crossAxisSpacing:
@@ -1252,7 +1253,8 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     );
                                   },
-                                  itemCount: allcatmodal?.categories?.length,
+                                    itemCount: 8,
+                                  // itemCount: allcatmodal?.categories?.length,
                                 ),
                         ),
                       ),

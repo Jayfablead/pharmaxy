@@ -722,10 +722,12 @@ class _Refill_AlertState extends State<Refill_Alert> {
                               GestureDetector(
                                 onTap: () async {
                                   setState(() {
-                                    addbutton = true;
                                     Setbutton= false;
                                   });
                                   if (_formKey.currentState!.validate()) {
+                                    setState(() {
+                                      Setbutton= true;
+                                    });
                                     await Refillformap();
 
                                   }

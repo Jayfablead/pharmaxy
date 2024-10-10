@@ -579,10 +579,12 @@ class _Request_MedicineState extends State<Request_Medicine> {
                               GestureDetector(
                                 onTap: () async{
                                   setState(() {
-                                    addbutton = true;
                                     Setbutton= false;
                                   });
                                   if (_formKey.currentState!.validate()) {
+                                    setState(() {
+                                      Setbutton= true;
+                                    });
                                     await Requestmediformap();
 
                                     print(medicines);
