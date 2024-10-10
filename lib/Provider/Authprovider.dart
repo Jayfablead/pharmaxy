@@ -274,11 +274,12 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> brandswiceproductapi( Map<String, String> bodyData) async {
     const url = "$baseUrl/Brands_wise_product";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
         .timeout(
-      const Duration(seconds: 30),
+      const Duration(seconds: 40),
       onTimeout: () {
         throw const SocketException('Something went wrong');
       },
@@ -293,6 +294,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> brandswiceproductsearchapi( Map<String, String> bodyData) async {
     const url = "$baseUrl/Brands_wise_product_search";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -310,6 +312,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> filterserchapi( Map<String, String> bodyData) async {
     const url = "$baseUrl/filter_low_to_high";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -330,6 +333,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> shortsearchapi( Map<String, String> bodyData) async {
     const url = "$baseUrl/filter_a_to_z";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -347,6 +351,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> applycouponapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/view_cart_list_test";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -365,6 +370,7 @@ class authprovider with ChangeNotifier {
   // chekoutdetailsend api
   Future<http.Response> chekoutdetailsendapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/checkout_price";
+    print(url);
     var responseJson;
     final response = await http.post(Uri.parse(url), body: bodyData, headers: headers)
         .timeout(
@@ -381,6 +387,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> catwiceproductapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/category_wice_product";
+    print(url);
     var responseJson;
     final response = await http.post(Uri.parse(url), body: bodyData, headers: headers)
         .timeout(
@@ -396,6 +403,7 @@ class authprovider with ChangeNotifier {
   Future<http.Response> subcatwiceallproductapi(
       Map<String, String> bodyData) async {
     const url = "$baseUrl/subcategory_wice_product";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -411,6 +419,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> serapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/searchProducts";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -426,6 +435,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> userwishlistapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/userWishList";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -441,6 +451,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> subcatserchapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/searchproduct_by_subcategory";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -456,6 +467,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> addtowishlistapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/addToWishList";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -471,6 +483,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> removewishlistapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/removeFromWishList";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -486,6 +499,7 @@ class authprovider with ChangeNotifier {
   // add to cart user login
   Future<http.Response> addcartapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/addtocart";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -504,6 +518,7 @@ class authprovider with ChangeNotifier {
   // add to cart without user  login
   Future<http.Response> addcartwithoutloginapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/withoutlogingaddtocart";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -520,6 +535,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> addReviewApi(Map<String, String> bodyData) async {
     const url = "$baseUrl/add_review";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -535,6 +551,7 @@ class authprovider with ChangeNotifier {
   // view cart list api user wice
   Future<http.Response> viewcartapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/view_cart_list";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -553,6 +570,7 @@ class authprovider with ChangeNotifier {
   // view cart list api with out user
   Future<http.Response> viewcartwithoutloginapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/withoutlogin_view_cart_list";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -571,6 +589,7 @@ class authprovider with ChangeNotifier {
   // remove cart user wice
   Future<http.Response> removecartapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/remove_cart";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -590,6 +609,7 @@ class authprovider with ChangeNotifier {
   // remove cart without login
   Future<http.Response> removecarwithoutlogintapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/withoutpoginremove_cart";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -605,6 +625,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> ChangePasswordapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/change_client_password";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -620,6 +641,7 @@ class authprovider with ChangeNotifier {
   // user wice increment
   Future<http.Response> incrementapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/increment_quantity";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -639,6 +661,7 @@ class authprovider with ChangeNotifier {
   //   increment without login
   Future<http.Response> incrementwithoutloginapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/withoutpogin_increment_quantity";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -658,6 +681,7 @@ class authprovider with ChangeNotifier {
   //   increment without login
   Future<http.Response> decrementwithoutloginapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/withoutpogin_decrement_quantity";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -673,6 +697,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> disincrementapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/decrement_quantity";
+    print(url);
     var responseJson;
 
     final response = await http
@@ -689,6 +714,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> productdetailapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/product_details";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -705,6 +731,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> colorapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/product_color";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -720,6 +747,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> sizeapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/product_size";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -735,6 +763,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> selectcolorapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/product_data_get_from_color";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -750,6 +779,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> colormatchapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/product_data_match_with_coler_size";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -765,6 +795,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> contryapi() async {
     const url = "$baseUrl/countries";
+    print(url);
     var responseJson;
     final response = await http
         .get(
@@ -782,6 +813,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> stateapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/states";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -797,6 +829,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> cityapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/cities";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -812,6 +845,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> checkoutapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/checkout_details";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -828,6 +862,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> checkoutpaypalapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/success_paypal";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers).timeout(
@@ -842,6 +877,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> checkoutstripeapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/stripe_payment ";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -859,6 +895,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> myorderlistapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/my_orders";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -874,6 +911,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> myorderdetailapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/order_details";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -889,6 +927,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> salesproductapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/sales_price_product";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -904,6 +943,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> salesproductlistapi( Map<String, String> bodyData) async {
     const url = "$baseUrl/all_sales_list_product";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -920,6 +960,7 @@ class authprovider with ChangeNotifier {
   Future<http.Response> bestsellerproductapi(
       Map<String, String> bodyData) async {
     const url = "$baseUrl/best_selling_product";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -934,6 +975,7 @@ class authprovider with ChangeNotifier {
   }
   Future<http.Response> coponapi(   Map<String, String> bodyData) async {
     const url = "$baseUrl/coupons";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -953,6 +995,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> carttotalcountapi( Map<String, String> bodyData) async {
     const url = "$baseUrl/cart_count";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -968,6 +1011,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> shippingaddapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/change_shipping_address";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -983,6 +1027,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> userallshippingapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/user_all_shipping_address";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -998,6 +1043,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> userselectapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/user_select_shipping_address";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1013,6 +1059,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> editshippingapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/edit_shipping_address";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1029,6 +1076,7 @@ class authprovider with ChangeNotifier {
   Future<http.Response> removeshippingadressapi(
       Map<String, String> bodyData) async {
     const url = "$baseUrl/delete_shipping_address";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1044,6 +1092,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> bestsalesserchapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/search_best_selling_product";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1059,6 +1108,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> salesserchapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/search_all_sales_list_product";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1074,6 +1124,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> deliveredapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/complete_myorders";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1089,6 +1140,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> pendingorderapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/pending_myorders";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1105,6 +1157,22 @@ class authprovider with ChangeNotifier {
   Future<http.Response> cancelorderapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/cancelled_myorders";
     print(url);
+    print(url);
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+  Future<http.Response> Cancelorderapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/cancel_order";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1120,11 +1188,11 @@ class authprovider with ChangeNotifier {
 
 
 
-
   // orderplaced api
 
   Future<http.Response> orderplacedapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/Placed_myorders";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1142,6 +1210,7 @@ class authprovider with ChangeNotifier {
   // orderpaid api
   Future<http.Response> orderpaidapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/Paid_myorders";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1158,6 +1227,7 @@ class authprovider with ChangeNotifier {
   // ordershipped api
   Future<http.Response> ordershippedapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/Shipped_myorders";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1173,6 +1243,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> forgotapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/forgot_password_app";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1188,6 +1259,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> viewreviewapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/view_Review";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1203,6 +1275,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> deletereviewapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/delete_review";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1222,6 +1295,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> testcateapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/category";
+    print(url);
     var responseJson;
     final response = await http
         .get(
@@ -1239,6 +1313,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> bestsellerapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/best_selling_product";
+    print(url);
     var responseJson;
     final response = await http
         .post( Uri.parse(url),body: bodyData,headers: headers)
@@ -1253,6 +1328,7 @@ class authprovider with ChangeNotifier {
   }
   Future<http.Response> Chatapi( userId, adminID, orderId) async {
     String url = "${baseUrl}/fullChat/${userId}/${adminID}/${orderId}";
+    print(url);
     var responseJson;
     final response = await http.get( Uri.parse(url)).timeout(
       const Duration(seconds: 30),
@@ -1285,6 +1361,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> sendmessgesapi(userid,adminid ,orderid,Map<String, String> bodyData,) async {
     String url = 'https://pharmaxy.org/api/sendMessage/${userid}/${adminid}/${orderid}';
+    print(url);
     var responseJson;
     if (bodyData['mType'] == "1") {
       final response = await http
@@ -1326,6 +1403,7 @@ class authprovider with ChangeNotifier {
 //   reqwestdoctor api
   Future<http.Response> requestformap(Map<String, String> bodyData) async {
     const url = "$baseUrl/create_appointments";
+    print(url);
     var responseJson;
     final response = await http
         .post( Uri.parse(url),body: bodyData,headers: headers)
@@ -1343,6 +1421,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> prescriptionformap(Map<String, String> bodyData) async {
     const url = "$baseUrl/create_prescription";
+    print(url);
     var responseJson;
     if (bodyData['image'] != "") {
       try {
@@ -1384,6 +1463,7 @@ class authprovider with ChangeNotifier {
   }
   Future<http.Response> checkoutcodapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/checkout";
+    print(url);
     var responseJson;
     if (bodyData['image'] != "") {
       try {
@@ -1430,6 +1510,7 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response> requestmediformap(String bodyData, Map<String, String> headers) async {
   const url = "$baseUrl/requestmedicine";
+  print(url);
   var responseJson;
   final response = await http
       .post(Uri.parse(url), body: bodyData, headers: headers)
@@ -1462,6 +1543,7 @@ class authprovider with ChangeNotifier {
   // }
   Future<http.Response> refillformap(String bodyData, Map<String, String> headers) async {
     const url = "$baseUrl/RefillAlert";
+    print(url);
     var responseJson;
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)

@@ -35,7 +35,7 @@ class _ChatscreenState extends State<Chatscreen> {
   String adminID = "6";
   TextEditingController _sendmeasssges = TextEditingController();
   Timer? _timer;
-  int type = 1;
+  int type = 0;
   bool send = false;
   @override
   void initState() {

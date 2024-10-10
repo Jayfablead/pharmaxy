@@ -34,9 +34,7 @@ class Data {
   String? createdBy;
   String? createdAt;
   String? updatedAt;
-  String? comments;
-  String? name;
-  String? email;
+  List<Comments>? comments;
 
   Data(
       {this.id,
@@ -48,9 +46,7 @@ class Data {
         this.createdBy,
         this.createdAt,
         this.updatedAt,
-        this.comments,
-        this.name,
-        this.email});
+        this.comments});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -62,9 +58,12 @@ class Data {
     createdBy = json['created_by'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    comments = json['comments'];
-    name = json['name'];
-    email = json['email'];
+    if (json['comments'] != null) {
+      comments = <Comments>[];
+      json['comments'].forEach((v) {
+        comments!.add(new Comments.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -78,7 +77,29 @@ class Data {
     data['created_by'] = this.createdBy;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
-    data['comments'] = this.comments;
+    if (this.comments != null) {
+      data['comments'] = this.comments!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Comments {
+  String? comment;
+  String? name;
+  String? email;
+
+  Comments({this.comment, this.name, this.email});
+
+  Comments.fromJson(Map<String, dynamic> json) {
+    comment = json['comment'];
+    name = json['name'];
+    email = json['email'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['comment'] = this.comment;
     data['name'] = this.name;
     data['email'] = this.email;
     return data;

@@ -3377,16 +3377,13 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
 
   checkoutcodap() {
     final Map<String, String> data = {};
+    EasyLoading.show(status: 'Please Wait ...');
     data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
         ? deviceName.toString()
         : usermodal?.userId ?? "";
     data['payment'] = 'online';
     data['shipping_address_id'] = widget.addid.toString();
-    data['image'] = Options == 'option2'
-        ? ''
-        : _pickedFile == null
-            ? ''
-            : _pickedFile?.path ?? '';
+    data['image'] = Options == 'option2' ? '' : _pickedFile == null ? '' : _pickedFile?.path ?? '';
     data['not_prescription'] = 'false';
     print(data);
     checkInternet().then((internet) async {
@@ -3395,6 +3392,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
           checkoutmodal = CheckOutModal.fromJson(json.decode(response.body));
           if (response.statusCode == 200 &&
               checkoutmodal?.status == "success") {
+            EasyLoading.showSuccess('success');
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => ThankyouPage(
                       uid: (checkoutmodal?.cartDetails?.orderNumber).toString(),

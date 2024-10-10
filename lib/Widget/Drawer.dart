@@ -1302,24 +1302,25 @@ class _drawer1State extends State<drawer1> {
           profilemodal = ProfileModal.fromJson(json.decode(response.body));
           if (response.statusCode == 200 && profilemodal?.status == "success") {
             print(profilemodal?.status);
-            setState(() {
-              // isLoading = false;
-            });
+            // setState(() {
+            //   // isLoading = false;
+            // });
           } else {
-            setState(() {
-              // isLoading = false;
-            });
+            // setState(() {
+            //   // isLoading = false;
+            // });
           }
         });
       } else {
-        setState(() {
-          // isLoading = false;
-        });
+        // setState(() {
+        //   // isLoading = false;
+        // });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
     });
   }
   Deleteuser() {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['id'] = (usermodal?.userId).toString();
     print(data);

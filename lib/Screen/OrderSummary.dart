@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:ecommerce/Modal/CancelOrderModel.dart';
 import 'package:ecommerce/Modal/OrderCancelModal.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/MyOederDetailModal.dart';
@@ -14,6 +15,7 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 class OrderSummary extends StatefulWidget {
@@ -579,7 +581,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                               actions: [
                                                ElevatedButton(
                                                    onPressed: ()async{
-                                                    await ordercancelledap();
+                                                    await Ordercancelledap();
+                                                    Navigator.of(context).pop();
                                                    },
                                                    child: Text("Yes",style: TextStyle(
                                                      fontSize: 10.sp,
@@ -655,13 +658,13 @@ class _OrderSummaryState extends State<OrderSummary> {
                                     //         'cod'
                                     //     ?
 
-                                    Container(
+                                    myoederdetailmodal?.userDetail
+                                        ?.orderStatus ==
+                                        'Cancelled'?SizedBox():Container(
                                       alignment: Alignment.center,
                                       height: 12.5.h,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                      
+                                                borderRadius: BorderRadius.circular(10),
                                                 color: Colors.white),
                                             child:
                                                 myoederdetailmodal?.userDetail
@@ -991,21 +994,26 @@ class _OrderSummaryState extends State<OrderSummary> {
     });
   }
 
-  ordercancelledap() async {
+  Ordercancelledap() async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
+    data['OrderID'] = myoederdetailmodal?.userDetail?.orderID ?? '';
+    print(data);
     checkInternet().then((internet) async {
       if (internet) {
-        authprovider().cancelorderapi(data).then((response) async {
-          ordercancelmodal =
-              OrderCancelModal.fromJson(json.decode(response.body));
+        authprovider().Cancelorderapi(data).then((response) async {
+          cancelOrderModel =
+              CancelOrderModel.fromJson(json.decode(response.body));
           print(ordercancelmodal?.status);
-          if (response.statusCode == 200 && ordercancelmodal?.status == "success") {
+          if (response.statusCode == 200 && cancelOrderModel?.status == "success") {
+            EasyLoading.showSuccess(cancelOrderModel!.status.toString());
             print('EE Thay Gyu Hooooo !^_^! ');
             setState(() {
               isLoading = false;
             });
           } else {
+            EasyLoading.showError(cancelOrderModel!.status.toString());
             setState(() {
               isLoading = false;
             });

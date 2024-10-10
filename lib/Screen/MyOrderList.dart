@@ -2854,6 +2854,7 @@ class _MyOrderListState extends State<MyOrderList> {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
     checkInternet().then((internet) async {
+      print("my order");
       if (internet) {
         authprovider().cancelorderapi(data).then((response) async {
           ordercancelmodal =
@@ -2861,7 +2862,8 @@ class _MyOrderListState extends State<MyOrderList> {
           print(ordercancelmodal?.status);
           if (response.statusCode == 200 &&
               ordercancelmodal?.status == "success") {
-            print('EE Thay Gyu Hooooo ! ^_^');
+            print("my order 55555" );
+
             setState(() {
               isLoading = false;
             });

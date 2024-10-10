@@ -115,12 +115,15 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: CachedNetworkImage(
-                                imageUrl: blocdetailsModal?.data?[index].image ?? "",
+                                imageUrl: blocdetailsModal?.data?.image ?? "",
                                 width: MediaQuery.of(context).size.width,
                                 height: 30.h,
                                 fit: BoxFit.cover,
                                 placeholder: (context, url) {
                                   return Icon(Icons.error_rounded, color: Colors.blue);
+                                },
+                                errorWidget: (context, url, error) {
+                                  return Image.asset("assets/deim.png");
                                 },
                               ),
                             ),
@@ -129,10 +132,10 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                             height: 2.h,
                           ),
                           Text(
-                            blocdetailsModal?.data?[index].title?.isEmpty ??
+                            blocdetailsModal?.data?.title?.isEmpty ??
                                 true
                                 ? "N/A"
-                                : blocdetailsModal?.data?[index].title ?? "",
+                                : blocdetailsModal?.data?.title ?? "",
                             style: TextStyle(
                               fontFamily: "task",
                               fontSize: 12.sp,
@@ -144,10 +147,10 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                           ),
                           Text(
                             blocdetailsModal
-                                ?.data?[index].createdAt?.isEmpty ??
+                                ?.data?.createdAt?.isEmpty ??
                                 true
                                 ? "N/A"
-                                : blocdetailsModal?.data?[index].createdAt ??
+                                : blocdetailsModal?.data?.createdAt ??
                                 "",
                             style: TextStyle(
                               fontFamily: "task",
@@ -160,11 +163,11 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                           ),
                           ReadMoreText(
                             blocdetailsModal
-                                ?.data?[index].description?.isEmpty ??
+                                ?.data?.description?.isEmpty ??
                                 true
                                 ? "N/A"
                                 : blocdetailsModal
-                                ?.data?[index].description ??
+                                ?.data?.description ??
                                 "",
                             trimLines: 3,
                             trimMode: TrimMode.Line,
@@ -192,7 +195,8 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                         ],
                       );
                     },
-                    childCount: blocdetailsModal?.data?.length ?? 0,
+                    childCount: 1
+                    // childCount: blocdetailsModal?.data?. ?? 0,
                   ),
                 ),
               ),

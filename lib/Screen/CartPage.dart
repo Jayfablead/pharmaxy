@@ -1224,7 +1224,7 @@ class _CartPageState extends State<CartPage> {
                                   Row(
                                     children: [
                                       Container(
-                                        width: 45.w,
+                                        width: 41.w,
                                         decoration: BoxDecoration(
                                           color: Colors.grey.shade50,
                                           borderRadius: BorderRadius.circular(10),
@@ -1276,9 +1276,9 @@ class _CartPageState extends State<CartPage> {
                                             applycoupon1();
                                           });
                                         },
-                                        child:   Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 3.w,vertical: 1.5.h),
-                                          width: 25.w,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(horizontal: 0.w,vertical: 1.h),
+                                          width: 27.w,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
                                               borderRadius:
@@ -1289,13 +1289,16 @@ class _CartPageState extends State<CartPage> {
                                             children: [
                                               // Button icon
                                               SizedBox(width: 8),
-                                              Text(
-                                                "Apply",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 11.sp,
-                                                    fontFamily: 'task'),
+                                              Padding(
+                                                padding: EdgeInsets.only(right: 1.w),
+                                                child: Text(
+                                                  "Apply",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 11.sp,
+                                                      fontFamily: 'task'),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -1486,12 +1489,32 @@ class _CartPageState extends State<CartPage> {
                                           );
 
                                         },
-                                        child: Text("Show all",style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 11.sp,
-                                          fontFamily: 'task',
-                                          color: AppColors.primary,
-                                        ),),
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 1.h),
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(8.0),
+                                              color: Color(0xffFFFFFF),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey,
+                                                  blurRadius: 1.0,
+                                                  offset: Offset(1, 1)
+                                                )
+                                              ]
+                                          ),
+                                          width: 20.w,
+                                          height: 4.h,
+                                          alignment: Alignment.center,
+                                          child: Padding(
+                                            padding:  EdgeInsets.only(left: 1.w),
+                                            child: Text("All Coupons",overflow: TextOverflow.ellipsis,style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                              fontFamily: 'task',
+                                              color: AppColors.primary,
+                                            ),),
+                                          ),
+                                        ),
                                       )
 
                                     ],
@@ -2339,7 +2362,7 @@ class _CartPageState extends State<CartPage> {
                                               Row(
                                                 children: [
                                                   Container(
-                                                    width: 45.w,
+                                                    width: 41.w,
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey.shade50,
                                                       borderRadius: BorderRadius.circular(10),
@@ -2391,10 +2414,10 @@ class _CartPageState extends State<CartPage> {
                                                         applycoupon();
                                                       });
                                                     },
-                                                    child:   Container(
-                                                      padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.5.h),
-                                                      width: 25.w,
-                                                      alignment: Alignment.center,
+                                                    child: Container(
+                                                      padding: EdgeInsets.symmetric(vertical: 1.h),
+                                                      width: 27.w,
+                                                     // alignment: Alignment.center,
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                           BorderRadius.circular(10),
@@ -2404,19 +2427,22 @@ class _CartPageState extends State<CartPage> {
                                                         children: [
                                                           // Button icon
                                                           SizedBox(width: 8),
-                                                          Text(
-                                                            "Apply",
-                                                            style: TextStyle(
-                                                                color: Colors.white,
-                                                                fontWeight: FontWeight.bold,
-                                                                fontSize: 11.sp,
-                                                                fontFamily: 'task'),
+                                                          Padding(
+                                                            padding:  EdgeInsets.only(right: 1.w),
+                                                            child: Text(
+                                                              "Apply",
+                                                              style: TextStyle(
+                                                                  color: Colors.white,
+                                                                  fontWeight: FontWeight.bold,
+                                                                  fontSize: 11.sp,
+                                                                  fontFamily: 'task'),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(width: 3.w),
+                                                  SizedBox(width: 2.w),
                                                   InkWell(
                                                     onTap: () {
                                                       showModalBottomSheet(
@@ -2457,7 +2483,7 @@ class _CartPageState extends State<CartPage> {
                                                                         margin: EdgeInsets.only(left:2.w,top: 1.h),
                                                                         alignment: Alignment.center,
                                                                         height: 15.h,
-                                                                        width: 70.w,
+                                                                        width: 68.w,
                                                                         decoration: BoxDecoration(
                                                                           borderRadius: BorderRadius.circular(10),
                                                                           color: Colors.blue.shade100,
@@ -2601,22 +2627,40 @@ class _CartPageState extends State<CartPage> {
                                                       );
 
                                                     },
-                                                    // child: Container(
-                                                    //   decoration: BoxDecoration(
-                                                    //     borderRadius: BorderRadius.circular(10.0),
-                                                    //     color: AppColors.primary
-                                                    //   ),
-                                                    //   width: 15.w,
-                                                    //   height: 5.h,
-                                                    //   alignment: Alignment.center,
-                                                    //   child: Icon(Icons.visibility,color: Colors.white,),
+                                                    child: Container(
+                                                      padding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 1.h),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(8.0),
+                                                        color: Color(0xffFFFFFF),
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: Colors.grey,
+                                                            blurRadius: 1.0,
+                                                            offset: Offset(1, 1)
+
+                                                          )
+                                                        ]
+
+                                                      ),
+                                                      width: 20.w,
+                                                      height: 4.h,
+                                                      alignment: Alignment.center,
+                                                      child: Padding(
+                                                        padding:  EdgeInsets.only(left: 1.w),
+                                                        child: Text("All Coupons",overflow: TextOverflow.ellipsis,style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 10.sp,
+                                                          fontFamily: 'task',
+                                                          color: AppColors.primary,
+                                                        ),),
+                                                      ),
+                                                    ),
+                                                    // child: TextButton(
+                                                    //   onPressed: () {
+                                                    //
+                                                    //   },
+                                                    //   child:
                                                     // ),
-                                                    child: Text("Show all",style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 11.sp,
-                                                        fontFamily: 'task',
-                                                       color: AppColors.primary,
-                                                    ),),
                                                   ),
 
                                                 ],

@@ -12,6 +12,7 @@ import 'package:ecommerce/Modal/BlogModel.dart';
 import 'package:ecommerce/Modal/BrandModel.dart';
 import 'package:ecommerce/Modal/BrandWiceProductModel.dart';
 import 'package:ecommerce/Modal/BrandWiceProductsearchModel.dart';
+import 'package:ecommerce/Modal/CancelOrderModel.dart';
 
 import 'package:ecommerce/Modal/CartcountModel.dart';
 import 'package:ecommerce/Modal/CatWiceProductModal.dart';
@@ -186,7 +187,7 @@ PrescriptionformModel?prescriptionformModel;
 RequestMedicineModel?requestMedicineModel;
 RefillModel? refillModel;
 DeleteUserModel?deleteuserModel;
-
+CancelOrderModel?cancelOrderModel;
 
 
 // without user Apis

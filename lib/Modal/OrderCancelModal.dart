@@ -29,6 +29,7 @@ class Data {
   String? orderNumber;
   String? orderStatus;
   String? totalAmount;
+  String? invoicePdf;
   String? firstImage;
 
   Data(
@@ -36,6 +37,7 @@ class Data {
         this.orderNumber,
         this.orderStatus,
         this.totalAmount,
+        this.invoicePdf,
         this.firstImage});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -43,6 +45,7 @@ class Data {
     orderNumber = json['order_number'];
     orderStatus = json['order_status'];
     totalAmount = json['total_amount'];
+    invoicePdf = json['invoice_pdf'];
     firstImage = json['first_image'];
   }
 
@@ -52,6 +55,7 @@ class Data {
     data['order_number'] = this.orderNumber;
     data['order_status'] = this.orderStatus;
     data['total_amount'] = this.totalAmount;
+    data['invoice_pdf'] = this.invoicePdf;
     data['first_image'] = this.firstImage;
     return data;
   }

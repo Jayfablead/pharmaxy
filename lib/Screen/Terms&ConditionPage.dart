@@ -56,8 +56,88 @@ class _TermConditionState extends State<TermCondition> {
                   ],
                 ),
                 SizedBox(
-                  height: 1.h,
+                  height: 2.h,
                 ),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 5.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("This document (“Terms”) is an "
+                          "electronic record in terms of Information Technology Act,"
+                          " 2000 and rules thereunder, as"
+                          " applicable and the amended"
+                          " provisions pertaining to electronic"
+                          " records in various statutes"
+                          ", as amended from time to time by"
+                          " the Information Technology Act, 2000."
+                          " This electronic record is generated"
+                          " by a computer system and does"
+                          " not require any physical or digital signatures.",style: TextStyle(
+                        fontSize: 12.sp,
+                        fontFamily: "task",
+                      ),),
+                      SizedBox(height: 2.h,),
+                      Text("1. GENERAL",style: TextStyle(
+                        fontSize: 14.sp,
+                        fontFamily: "task",
+                        decoration: TextDecoration.underline
+                      ),),
+                      SizedBox(height: 2.h,),
+                      Text("The Company reserves the right to"
+                          " change or modify these Terms or"
+                          " any policy or guideline of the"
+                          " Website including the Privacy Policy"
+                          ", at any time and in its sole"
+                          " discretion. Any changes or"
+                          " modifications will be effective"
+                          " immediately upon posting the"
+                          " revisions on the Website and You"
+                          " waive any right You may have to"
+                          " receive specific notice of such"
+                          " changes or modifications,"
+                          " provided however that, We will"
+                          " inform You of such "
+                          "changes within such timelines as may"
+                          " be specified under the applicable laws."
+                          " Your continued use of the Website will"
+                          " confirm Your acceptance of such changes"
+                          " or modifications; therefore, You should"
+                          " frequently review these Terms and applicable"
+                          " policies to understand the terms and conditions"
+                          " that apply to Your use of the app.",style: TextStyle(
+                        fontSize: 12.sp,
+                        fontFamily: "task",
+                      ),),
+                      SizedBox(height: 2.h,),
+                      Text("2. PRODUCTS AND SERVICES",style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: "task",
+                          decoration: TextDecoration.underline
+                      ),),
+                      SizedBox(height: 2.h,),
+                      Text("The App is a platform that"
+                          "facilitates, as an intermediary,"
+                          "the online requisition by the User for"
+                          "purchase of medicines and wellness / health"
+                          "related products and services offered by Company's"
+                          " various registered third-party/ies "
+                          "(third parties shall for the purpose of this Terms,"
+                          " include without limitation, third party retail pharmacies,"
+                          " third-party labs et al) . The sale & purchase / transaction"
+                          " between the registered third parties and You,"
+                          " of Products and Services, facilitated by the"
+                          " requisition placed by You on the Website shall"
+                          " be governed by these Terms. Company is not and"
+                          " cannot be a party to or save as except as may be"
+                          " provided in these Terms, control in any manner,"
+                          " any transaction between You and the third parties.",style: TextStyle(
+                          fontSize: 12.sp,
+                          fontFamily: "task",
+                      ),)
+                    ],
+                  ),
+                )
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 //   children: [
