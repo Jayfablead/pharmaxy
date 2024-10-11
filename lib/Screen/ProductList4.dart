@@ -673,8 +673,9 @@ class _ProductList4State extends State<ProductList4> {
                           ],
                         );
                       },
-                      childCount: shortbymodel
-                          ?.searchResults?.length,
+                      childCount: 10,
+                      // childCount: shortbymodel
+                      //     ?.searchResults?.length,
                     ),
                   ):short=="2"? SliverGrid(
                     gridDelegate:
@@ -1003,8 +1004,9 @@ class _ProductList4State extends State<ProductList4> {
                           ],
                         );
                       },
-                      childCount: shortbymodel
-                          ?.searchResults?.length,
+                      childCount: 10
+                      // childCount: shortbymodel
+                      //     ?.searchResults?.length,
                     ),
                   ): type1=="1"? SliverGrid(
                     gridDelegate:
@@ -1333,8 +1335,9 @@ class _ProductList4State extends State<ProductList4> {
                           ],
                         );
                       },
-                      childCount: filterbymodel
-                          ?.searchResults?.length,
+                      childCount: 10
+                      // childCount: filterbymodel
+                      //     ?.searchResults?.length,
                     ),
                   ):type1=="2"? SliverGrid(
                     gridDelegate:
@@ -1663,8 +1666,9 @@ class _ProductList4State extends State<ProductList4> {
                           ],
                         );
                       },
-                      childCount: filterbymodel
-                          ?.searchResults?.length,
+                      childCount: 10
+                      // childCount: filterbymodel
+                      //     ?.searchResults?.length,
                     ),
                   ):_serch2.text == ''
                       ? bestsellerproductmodal?.productData?.length ==
@@ -2000,8 +2004,9 @@ class _ProductList4State extends State<ProductList4> {
                           ],
                         );
                       },
-                      childCount: allproductmodal
-                          ?.allProducts?.length
+                      childCount: 10
+                      // childCount: allproductmodal
+                      //     ?.allProducts?.length
 
                     ),
                   )
@@ -2346,8 +2351,9 @@ class _ProductList4State extends State<ProductList4> {
                           ],
                         );
                       },
-                      childCount: searchbestsaleModal
-                          ?.productData?.length,
+                        childCount: 10
+                      // childCount: searchbestsaleModal
+                      //     ?.productData?.length,
                     ),
                   ),
                   SliverToBoxAdapter(

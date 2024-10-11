@@ -3415,7 +3415,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
         ? deviceName.toString()
         : usermodal?.userId ?? "";
-    data['payment'] = 'online';
+    data['payment'] = 'Pay after bill generation';
     data['shipping_address_id'] = widget.addid.toString();
     data['image'] = Options == 'option2' ? '' : _pickedFile == null ? '' : _pickedFile?.path ?? '';
     data['not_prescription'] = 'false';

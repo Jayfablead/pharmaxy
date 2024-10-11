@@ -408,7 +408,7 @@ class authprovider with ChangeNotifier {
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
         .timeout(
-      const Duration(seconds: 30),
+      const Duration(seconds: 10),
       onTimeout: () {
         throw const SocketException('Something went wrong');
       },

@@ -22,7 +22,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
     super.initState();
     getdata();
     Timer(
-        Duration(seconds: 5),
+        Duration(seconds: 2),
         () =>  Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

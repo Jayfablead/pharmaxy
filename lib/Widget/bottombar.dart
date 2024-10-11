@@ -496,8 +496,8 @@ class _bottombarState extends State<bottombar> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 3.w, vertical: 2.h),
                                       child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        // mainAxisAlignment:
+                                        //     MainAxisAlignment.start,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
@@ -506,11 +506,14 @@ class _bottombarState extends State<bottombar> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                "Are You Sure Want To Logout ?",
-                                                style: TextStyle(
-                                                    fontSize: 13.sp,
-                                                    fontFamily: 'task'),
+                                              Padding(
+                                                padding:  EdgeInsets.only(left: 2.w),
+                                                child: Text(
+                                                  "Are You Sure Want To Logout ?",
+                                                  style: TextStyle(
+                                                      fontSize: 13.sp,
+                                                      fontFamily: 'task'),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -592,7 +595,8 @@ class _bottombarState extends State<bottombar> {
                                     ),
                                   ),
                                   Positioned(
-                                    left: 89.w,
+                                    left: 86.w,
+
                                     child: IconButton(
                                         icon: Icon(
                                           Icons.highlight_remove,

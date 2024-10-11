@@ -550,7 +550,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                         ? GestureDetector(
                                             onTap: () {
                                               _showDialog(context,
-                                                  'Your item is already add in cart');
+                                                   'Your item is already add in cart');
                                             },
                                             child: Container(
                                               child: Row(
@@ -670,7 +670,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                       ),
 
                                       Text(
-                                        'You\'ve got free shipping for ',
+                                        'You\'ve got free shipping for below',
                                         style: TextStyle(
                                             fontSize: 10.sp,
                                             fontFamily: "task",
