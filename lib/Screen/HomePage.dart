@@ -1125,7 +1125,7 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                           ),
-                          height: 38.h,
+                          height: 35.h,
                           child: allcatmodal?.categories?.length == 0
                               ? Center(
                                   child: Text(

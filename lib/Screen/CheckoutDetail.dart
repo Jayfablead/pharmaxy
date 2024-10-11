@@ -1867,16 +1867,16 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                   widget.page == "1"
                                                       ? userselectaddmodal
                                                                       ?.selectShippingAddress
-                                                                      ?.lastName ==
+                                                                      ?.firstName ==
                                                                   '' ||
                                                               userselectaddmodal
                                                                       ?.selectShippingAddress
-                                                                      ?.lastName ==
+                                                                      ?.firstName ==
                                                                   null
                                                           ? ''
                                                           : (userselectaddmodal
                                                                   ?.selectShippingAddress
-                                                                  ?.lastName)
+                                                                  ?.firstName)
                                                               .toString()
                                                       : widget.address == '' ||
                                                               widget.address ==
@@ -3045,6 +3045,28 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                       SizedBox(
                         height: 3.h,
                       ),
+                      _pickedFile == '' || _pickedFile== null?GestureDetector(
+                        onTap: () {
+                          buildErrorDialog(
+                              context, '', "Please Upload Prescription");
+                        },
+                        child: Container(
+                            margin:
+                            EdgeInsets.only(right: 7.w, left: 7.w),
+                            alignment: Alignment.center,
+                            height: 6.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Color(0xff0061b0)),
+                            child: Text(
+                              "Pay Now",
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "task"),
+                            )),
+                      ):
                       userselectaddmodal?.selectShippingAddress?.address ==
                                   '' ||
                               userselectaddmodal
@@ -3127,7 +3149,21 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         }
                                       : selectedpayment == 2
                                           ? () {
+                                            if(_pickedFile == null){
+                                             buildErrorDialog(context, '', "Please Upload Prescription");
+                                            }
+                                            else{
                                               checkoutcodap();
+                                            }
+                                            if(Options == null){
+                                              buildErrorDialog(context, '', "Please Select Upload Prescription");
+
+                                              }
+                                            else{
+                                              checkoutcodap();
+                                            }
+
+
                                             }
                                           : selectedpayment == 1
                                               ? () {
@@ -3311,12 +3347,10 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                           "No payment method available at this time");
                                                     }
                                                   : () {
-                                                      buildErrorDialog(
-                                                          context,
-                                                          '',
-                                                          "Please choose your payment method");
+                                                      buildErrorDialog(context, '', "Please choose your payment method");
                                                     },
-                              child: Container(
+
+                                child: Container(
                                   margin:
                                       EdgeInsets.only(right: 7.w, left: 7.w),
                                   alignment: Alignment.center,

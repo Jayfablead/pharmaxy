@@ -720,6 +720,7 @@ class _CartPageState extends State<CartPage> {
                   //     },
                   //   ),
                   // )
+
                   //  logout
                   Column(
                     children: [
@@ -1390,50 +1391,100 @@ class _CartPageState extends State<CartPage> {
                                                                         ),
                                                                       ),
                                                                       SizedBox(height: 1.h),
-                                                                      GestureDetector(
-                                                                        onTap: () {
-                                                                          // Copy coupon code to clipboard
-                                                                          String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
-                                                                          Clipboard.setData(ClipboardData(text: couponCode));
+                                                                      Row(
+                                                                        children: [
+                                                                          GestureDetector(
+                                                                            onTap: () {
+                                                                              // Copy coupon code to clipboard
+                                                                              String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
+                                                                              Clipboard.setData(ClipboardData(text: couponCode));
 
-                                                                          // Set the copied code to the TextField controller
-                                                                          setState(() {
-                                                                            _searchController.text = couponCode;
-                                                                          });
+                                                                              // Set the copied code to the TextField controller
+                                                                              setState(() {
+                                                                                _searchController.text = couponCode;
+                                                                              });
 
-                                                                          // Show snackbar confirmation
-                                                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                                            SnackBar(
-                                                                              content: Text('Coupon code copied: $couponCode'),
-                                                                              behavior: SnackBarBehavior.floating,
-                                                                            ),
-                                                                          );
-                                                                          Navigator.of(context).pop();
-                                                                        },
-                                                                        child: Container(
-                                                                          margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                                                                          decoration: BoxDecoration(
-                                                                            color: Colors.white,
-                                                                            borderRadius: BorderRadius.circular(10),
-                                                                            boxShadow: [
-                                                                              BoxShadow(
-                                                                                color: Colors.black12,
-                                                                                blurRadius: 5,
-                                                                                spreadRadius: 2,
+                                                                              // Show snackbar confirmation
+                                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                                                SnackBar(
+                                                                                  content: Text('Coupon code copied: $couponCode'),
+                                                                                  behavior: SnackBarBehavior.floating,
+                                                                                ),
+                                                                              );
+                                                                              Navigator.of(context).pop();
+                                                                            },
+                                                                            child: Container(
+                                                                              margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                                                              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                              decoration: BoxDecoration(
+                                                                                color: Colors.white,
+                                                                                borderRadius: BorderRadius.circular(10),
+                                                                                boxShadow: [
+                                                                                  BoxShadow(
+                                                                                    color: Colors.black12,
+                                                                                    blurRadius: 5,
+                                                                                    spreadRadius: 2,
+                                                                                  ),
+                                                                                ],
                                                                               ),
-                                                                            ],
-                                                                          ),
-                                                                          child: Text(
-                                                                            "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                            style: TextStyle(
-                                                                              color: Colors.black,
-                                                                              fontWeight: FontWeight.bold,
-                                                                              fontSize: 9.5.sp,
-                                                                              fontFamily: 'task',
+                                                                              child: Text(
+                                                                                "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                                style: TextStyle(
+                                                                                  color: Colors.black,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontSize: 9.5.sp,
+                                                                                  fontFamily: 'task',
+                                                                                ),
+                                                                              ),
                                                                             ),
                                                                           ),
-                                                                        ),
+                                                                          SizedBox(width: 5.w,),
+                                                                          GestureDetector(
+                                                                            onTap: () {
+                                                                              // Copy coupon code to clipboard
+                                                                              String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
+                                                                              Clipboard.setData(ClipboardData(text: couponCode));
+
+                                                                              // Set the copied code to the TextField controller
+                                                                              setState(() {
+                                                                                _searchController.text = couponCode;
+                                                                              });
+
+                                                                              // Show snackbar confirmation
+                                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                                                SnackBar(
+                                                                                  content: Text('Coupon code copied: $couponCode'),
+                                                                                  behavior: SnackBarBehavior.floating,
+                                                                                ),
+                                                                              );
+                                                                              Navigator.of(context).pop();
+                                                                            },
+                                                                            child: Container(
+                                                                              margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                                                              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                              decoration: BoxDecoration(
+                                                                                color: AppColors.primary,
+                                                                                borderRadius: BorderRadius.circular(10),
+                                                                                boxShadow: [
+                                                                                  BoxShadow(
+                                                                                    color: Colors.black12,
+                                                                                    blurRadius: 5,
+                                                                                    spreadRadius: 2,
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              child: Text("Apply Coupon",
+                                                                                //"Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                                style: TextStyle(
+                                                                                  color: Colors.white,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontSize: 9.5.sp,
+                                                                                  fontFamily: 'task',
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
                                                                       ),
 
                                                                       // GestureDetector(
@@ -2525,50 +2576,100 @@ class _CartPageState extends State<CartPage> {
                                                                                     ),
                                                                                   ),
                                                                                   SizedBox(height: 1.h),
-                                                                                  GestureDetector(
-                                                                                    onTap: () {
-                                                                                      // Copy coupon code to clipboard
-                                                                                      String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
-                                                                                      Clipboard.setData(ClipboardData(text: couponCode));
+                                                                                  Row(
+                                                                                    children: [
+                                                                                      GestureDetector(
+                                                                                        onTap: () {
+                                                                                          // Copy coupon code to clipboard
+                                                                                          String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
+                                                                                          Clipboard.setData(ClipboardData(text: couponCode));
 
-                                                                                      // Set the copied code to the TextField controller
-                                                                                      setState(() {
-                                                                                        _searchController.text = couponCode;
-                                                                                      });
+                                                                                          // Set the copied code to the TextField controller
+                                                                                          setState(() {
+                                                                                            _searchController.text = couponCode;
+                                                                                          });
 
-                                                                                      // Show snackbar confirmation
-                                                                                      ScaffoldMessenger.of(context).showSnackBar(
-                                                                                        SnackBar(
-                                                                                          content: Text('Coupon code copied: $couponCode'),
-                                                                                          behavior: SnackBarBehavior.floating,
-                                                                                        ),
-                                                                                      );
-                                                                                      Navigator.of(context).pop();
-                                                                                    },
-                                                                                    child: Container(
-                                                                                      margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                                      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                                                                                      decoration: BoxDecoration(
-                                                                                        color: Colors.white,
-                                                                                        borderRadius: BorderRadius.circular(10),
-                                                                                        boxShadow: [
-                                                                                          BoxShadow(
-                                                                                            color: Colors.black12,
-                                                                                            blurRadius: 5,
-                                                                                            spreadRadius: 2,
+                                                                                          // Show snackbar confirmation
+                                                                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                                                            SnackBar(
+                                                                                              content: Text('Coupon code copied: $couponCode'),
+                                                                                              behavior: SnackBarBehavior.floating,
+                                                                                            ),
+                                                                                          );
+                                                                                          Navigator.of(context).pop();
+                                                                                        },
+                                                                                        child: Container(
+                                                                                          margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                                                                          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                                          decoration: BoxDecoration(
+                                                                                            color: Colors.white,
+                                                                                            borderRadius: BorderRadius.circular(10),
+                                                                                            boxShadow: [
+                                                                                              BoxShadow(
+                                                                                                color: Colors.black12,
+                                                                                                blurRadius: 5,
+                                                                                                spreadRadius: 2,
+                                                                                              ),
+                                                                                            ],
                                                                                           ),
-                                                                                        ],
-                                                                                      ),
-                                                                                      child: Text(
-                                                                                        "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                                        style: TextStyle(
-                                                                                          color: Colors.black,
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                          fontSize: 9.5.sp,
-                                                                                          fontFamily: 'task',
+                                                                                          child: Text(
+                                                                                            "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                                            style: TextStyle(
+                                                                                              color: Colors.black,
+                                                                                              fontWeight: FontWeight.bold,
+                                                                                              fontSize: 9.5.sp,
+                                                                                              fontFamily: 'task',
+                                                                                            ),
+                                                                                          ),
                                                                                         ),
                                                                                       ),
-                                                                                    ),
+                                                                                      SizedBox(width: 5.w,),
+                                                                                      GestureDetector(
+                                                                                        onTap: () {
+                                                                                          // Copy coupon code to clipboard
+                                                                                          String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
+                                                                                          Clipboard.setData(ClipboardData(text: couponCode));
+
+                                                                                          // Set the copied code to the TextField controller
+                                                                                          setState(() {
+                                                                                            _searchController.text = couponCode;
+                                                                                          });
+
+                                                                                          // Show snackbar confirmation
+                                                                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                                                            SnackBar(
+                                                                                              content: Text('Coupon code copied: $couponCode'),
+                                                                                              behavior: SnackBarBehavior.floating,
+                                                                                            ),
+                                                                                          );
+                                                                                          Navigator.of(context).pop();
+                                                                                        },
+                                                                                        child: Container(
+                                                                                          margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                                                                          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                                          decoration: BoxDecoration(
+                                                                                            color: AppColors.primary,
+                                                                                            borderRadius: BorderRadius.circular(10),
+                                                                                            boxShadow: [
+                                                                                              BoxShadow(
+                                                                                                color: Colors.black12,
+                                                                                                blurRadius: 5,
+                                                                                                spreadRadius: 2,
+                                                                                              ),
+                                                                                            ],
+                                                                                          ),
+                                                                                          child: Text("Apply Coupon",
+                                                                                            //"Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                                            style: TextStyle(
+                                                                                              color: Colors.white,
+                                                                                              fontWeight: FontWeight.bold,
+                                                                                              fontSize: 9.5.sp,
+                                                                                              fontFamily: 'task',
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
                                                                                   ),
 
                                                                                   // GestureDetector(

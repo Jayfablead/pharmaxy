@@ -51,6 +51,7 @@ class _OrderSummaryState extends State<OrderSummary> {
       isLoading = true;
     });
     myorderdetailap();
+    Ordercancelledap();
   }
 
   @override
