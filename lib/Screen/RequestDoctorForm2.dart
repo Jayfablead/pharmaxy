@@ -469,7 +469,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                     EdgeInsets.only(right: 7.w, left: 7.w),
                                     alignment: Alignment.center,
                                     height: 6.h,
-                                    width: 85.w,
+                                    width: 86.w,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: Color(0xff0061b0)),
@@ -502,12 +502,18 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
       final Map<String, String> data = {};
       data['UserId'] = usermodal?.userId == "" || usermodal?.userId == null
           ?deviceName.toString():usermodal?.userId ?? "";
-      data['fname'] = widget.firstname;
-      data['email'] = widget.email;
-      data['address'] = widget.address;
+
+      data['fname'] = usermodal?.userId == "" || usermodal?.userId == null? widget.firstname:
+            profilemodal?.profileDetails?.userFirstName?? '';
+
+      data['email'] = usermodal?.userId == "" || usermodal?.userId == null?widget.email :
+      profilemodal?.profileDetails?.userEmail?? '';
+      data['address'] = usermodal?.userId == "" || usermodal?.userId == null? widget.address
+      : profilemodal?.profileDetails?.userAddress?? '';
       data['specialist'] = _selectdoctor.text.toString();
       data['zipcode'] = _ZipCode.text.toString();
-      data['phone'] = widget.phone;
+      data['phone'] =  usermodal?.userId == "" || usermodal?.userId == null? widget.phone
+      : profilemodal?.profileDetails?.userPhone?? '';
       data['appointmentdate'] = _date.text.toString();
       print('form $data');
       checkInternet().then((internet) async {

@@ -1,6 +1,11 @@
+import 'dart:convert';
+
+import 'package:ecommerce/Modal/ProfileModal.dart';
+import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/RequestDoctorForm2.dart';
 import 'package:ecommerce/Widget/Const.dart';
+import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -27,6 +32,45 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
   TextEditingController _city = TextEditingController();
   TextEditingController _state = TextEditingController();
   TextEditingController _date = TextEditingController();
+  viewap() {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().ViewProfile(data).then((response) async {
+          profilemodal = ProfileModal.fromJson(json.decode(response.body));
+          if (response.statusCode == 200 && profilemodal?.status == "success") {
+            print(profilemodal?.status);
+            setState(() {
+              // Assign values to controllers
+              _phone.text = profilemodal?.profileDetails?.userPhone ?? "";
+              _firstname.text = profilemodal?.profileDetails?.userFirstName ?? "";
+              _email.text = profilemodal?.profileDetails?.userEmail ?? "";
+              _Address.text = profilemodal?.profileDetails?.userAddress ?? "";
+              // Add more fields as needed
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewap();
+  }
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -153,6 +197,11 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
                                         }
                                         return null;
                                       },
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _firstname.text = value;
+                                        });
+                                      },
                                       keyboardType: TextInputType.text,
                                       style: TextStyle(height: 1),
                                       controller: _firstname,
@@ -277,9 +326,13 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
                                       return "Please Enter valid email address";
                                     }
                                     return null;
-                                    return null;
                                   },
                                   controller: _email,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _email.text = value;
+                                    });
+                                  },
                                   style: TextStyle(height: 1),
                                   decoration: InputDecoration(
                                     enabledBorder: OutlineInputBorder(
@@ -335,6 +388,11 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
                                     if (value!.isEmpty) {
                                       return "Please Enter The Address";
                                     }
+                                  },
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _Address.text = value;
+                                    });
                                   },
                                   keyboardType: TextInputType.text,
                                   controller: _Address,
@@ -396,6 +454,11 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
                                       return "Please Enter Valid Phone Number";
                                     }
                                     return null;
+                                  },
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _phone.text = value;
+                                    });
                                   },
                                   keyboardType: TextInputType.phone,
                                   controller: _phone,

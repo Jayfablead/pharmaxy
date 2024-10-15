@@ -1,11 +1,9 @@
 
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RequestMedicineModel.dart';
-import 'package:ecommerce/Modal/RequestformModel.dart';
-
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -81,8 +79,8 @@ class _Request_MedicineState extends State<Request_Medicine> {
           child: Container(
             //margin: EdgeInsets.only(top: 2.5.h),
             alignment: Alignment.center,
-            height: 6.5.h,
-            width: 15.w,
+            height: 7.h,
+            width: 16.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Color(0xff0061b0),
@@ -98,6 +96,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    viewap();
     getDeviceInfoandStore();
   }
   Widget _buildAddedMedicinesList() {
@@ -235,8 +234,8 @@ class _Request_MedicineState extends State<Request_Medicine> {
                   child: Container(
                     // margin: EdgeInsets.only(top: 1.h),
                     alignment: Alignment.center,
-                    height: 6.5.h,
-                    width: 15.w,
+                    height: 7.h,
+                    width: 16.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Color(0xff0061b0),
@@ -349,6 +348,11 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                             }
                                             return null;
                                           },
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _firstname.text = value;
+                                            });
+                                          },
                                           keyboardType: TextInputType.text,
                                           style: TextStyle(height: 1),
                                           controller: _firstname,
@@ -410,6 +414,12 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                         }
                                         return null;
                                       },
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _phone.text = value;
+                                        });
+                                      },
+
                                       keyboardType: TextInputType.phone,
                                       controller: _phone,
                                       style: TextStyle(height: 1),
@@ -554,7 +564,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                                   BorderRadius.circular(10),
                                                   borderSide:
                                                   BorderSide(color: Colors.grey)),
-                                              hintText: 'Quantity',
+                                              hintText: 'Qty',
                                               hintStyle: TextStyle(
                                                   color: Colors.black.withOpacity(0.4),
                                                   fontSize: 11.sp,
@@ -789,8 +799,10 @@ class _Request_MedicineState extends State<Request_Medicine> {
       final Map<String, dynamic> data = {
         "user_id": usermodal?.userId == "" || usermodal?.userId == null
             ? deviceName.toString():usermodal?.userId ?? "",
-        "name":  _firstname.text.toString(),
-        "mobile_number":_phone.text.toString(),
+        "name": usermodal?.userId == "" || usermodal?.userId == null?_firstname.text.toString()
+            :profilemodal?.profileDetails?.userFirstName,
+        "mobile_number": usermodal?.userId == "" || usermodal?.userId == null?_phone.text.toString()
+            :profilemodal?.profileDetails?.userPhone,
       };
       // Construct the medicines list as a list of maps
       List<Map<String, dynamic>> medicinesList = [];
@@ -853,7 +865,37 @@ class _Request_MedicineState extends State<Request_Medicine> {
       });
     }
   }
-
+  viewap() {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().ViewProfile(data).then((response) async {
+          profilemodal = ProfileModal.fromJson(json.decode(response.body));
+          if (response.statusCode == 200 && profilemodal?.status == "success") {
+            print(profilemodal?.status);
+            setState(() {
+              // Assign values to controllers
+              _phone.text = profilemodal?.profileDetails?.userPhone ?? "";
+              _firstname.text = profilemodal?.profileDetails?.userFirstName ?? "";
+              // Add more fields as needed
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
   Future<void> getDeviceInfoandStore() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
@@ -874,5 +916,6 @@ class _Request_MedicineState extends State<Request_Medicine> {
     print('Device Name: $deviceName');
     print('Device OS: $deviceOS');
   }
+
 
 }

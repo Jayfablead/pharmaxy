@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RefillModel.dart';
 import 'package:ecommerce/Modal/RequestformModel.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
@@ -82,8 +83,8 @@ class _Refill_AlertState extends State<Refill_Alert> {
           child: Container(
             //margin: EdgeInsets.only(top: 2.5.h),
             alignment: Alignment.center,
-            height: 6.5.h,
-            width: 15.w,
+            height: 7.h,
+            width: 16.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Color(0xff0061b0),
@@ -98,6 +99,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    viewap();
     getDeviceInfoandStore();
   }
   Widget _buildAddedMedicinesList() {
@@ -218,8 +220,8 @@ class _Refill_AlertState extends State<Refill_Alert> {
                   child: Container(
                     // margin: EdgeInsets.only(top: 1.h),
                     alignment: Alignment.center,
-                    height: 6.5.h,
-                    width: 15.w,
+                    height: 7.h,
+                    width: 16.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Color(0xff0061b0),
@@ -345,8 +347,12 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                             }
                                             return null;
                                           },
-                                          keyboardType:
-                                          TextInputType.text,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _firstname.text = value;
+                                            });
+                                          },
+                                          keyboardType: TextInputType.text,
                                           style: TextStyle(height: 1),
                                           controller: _firstname,
                                           decoration: InputDecoration(
@@ -423,6 +429,11 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                           return "Please Enter Your Phone";
                                         }
                                         return null;
+                                      },
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _phone.text = value;
+                                        });
                                       },
                                       keyboardType: TextInputType.phone,
                                       controller: _phone,
@@ -619,7 +630,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                                   borderSide: BorderSide(
                                                       color:
                                                       Colors.grey)),
-                                              hintText: 'Quantity',
+                                              hintText: 'Qty',
                                               hintStyle: TextStyle(
                                                   color: Colors.black
                                                       .withOpacity(0.4),
@@ -918,8 +929,10 @@ class _Refill_AlertState extends State<Refill_Alert> {
       final Map<String, dynamic> data = {
         "user_id": usermodal?.userId == "" || usermodal?.userId == null
             ? deviceName.toString():usermodal?.userId ?? "",
-        "name":  _firstname.text.toString(),
-        "mobile_number":_phone.text.toString(),
+        "name":  usermodal?.userId == "" || usermodal?.userId == null?_firstname.text.toString()
+          :profilemodal?.profileDetails?.userFirstName,
+        "mobile_number": usermodal?.userId == "" || usermodal?.userId == null?_phone.text.toString()
+          :profilemodal?.profileDetails?.userPhone,
         "date": _days.text.toString(),
       };
 
@@ -986,12 +999,6 @@ class _Refill_AlertState extends State<Refill_Alert> {
     }
   }
 
-
-
-
-
-
-
   Future<void> getDeviceInfoandStore() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
@@ -1012,6 +1019,36 @@ class _Refill_AlertState extends State<Refill_Alert> {
     print('Device Name: $deviceName');
     print('Device OS: $deviceOS');
   }
-
+  viewap() {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().ViewProfile(data).then((response) async {
+          profilemodal = ProfileModal.fromJson(json.decode(response.body));
+          if (response.statusCode == 200 && profilemodal?.status == "success") {
+            print(profilemodal?.status);
+            setState(() {
+              // Assign values to controllers
+              _phone.text = profilemodal?.profileDetails?.userPhone ?? "";
+              _firstname.text = profilemodal?.profileDetails?.userFirstName ?? "";
+              // Add more fields as needed
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
 
 }
