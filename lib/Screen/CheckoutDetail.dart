@@ -2045,17 +2045,17 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           SizedBox(
                                             height: 1.h,
                                           ),
-                                          Text(
-                                            "What is valid prescription?",
-                                            style: TextStyle(
-                                                fontSize: 10.sp,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.grey,
-                                                fontFamily: "task"),
-                                          ),
-                                          SizedBox(
-                                            height: 2.h,
-                                          ),
+                                          // Text(
+                                          //   "What is valid prescription?",
+                                          //   style: TextStyle(
+                                          //       fontSize: 10.sp,
+                                          //       fontWeight: FontWeight.bold,
+                                          //       color: Colors.grey,
+                                          //       fontFamily: "task"),
+                                          // ),
+                                          // SizedBox(
+                                          //   height: 2.h,
+                                          // ),
                                           Text(
                                             "Add Photos",
                                             style: TextStyle(
@@ -2196,25 +2196,25 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           SizedBox(
                                             height: 2.h,
                                           ),
-                                          Text(
-                                            "You will receive call by",
-                                            style: TextStyle(
-                                                fontSize: 10.sp,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.grey,
-                                                fontFamily: "task"),
-                                          ),
-                                          SizedBox(
-                                            height: 1.h,
-                                          ),
-                                          Text(
-                                            "8.22 PM Today",
-                                            style: TextStyle(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.primary,
-                                                fontFamily: "task"),
-                                          ),
+                                          // Text(
+                                          //   "You will receive call by",
+                                          //   style: TextStyle(
+                                          //       fontSize: 10.sp,
+                                          //       fontWeight: FontWeight.bold,
+                                          //       color: Colors.grey,
+                                          //       fontFamily: "task"),
+                                          // ),
+                                          // SizedBox(
+                                          //   height: 1.h,
+                                          // ),
+                                          // Text(
+                                          //   "8.22 PM Today",
+                                          //   style: TextStyle(
+                                          //       fontSize: 12.sp,
+                                          //       fontWeight: FontWeight.bold,
+                                          //       color: AppColors.primary,
+                                          //       fontFamily: "task"),
+                                          // ),
                                           // Row(
                                           //   children: [
                                           //     Container(
@@ -3045,7 +3045,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                       SizedBox(
                         height: 3.h,
                       ),
-                      _pickedFile == '' || _pickedFile== null?GestureDetector(
+                      _pickedFile == '' || _pickedFile== null && Options=="option1"?GestureDetector(
                         onTap: () {
                           buildErrorDialog(
                               context, '', "Please Upload Prescription");
@@ -3067,13 +3067,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                   fontFamily: "task"),
                             )),
                       ):
-                      userselectaddmodal?.selectShippingAddress?.address ==
-                                  '' ||
+                      userselectaddmodal?.selectShippingAddress?.address == '' ||
                               userselectaddmodal
                                       ?.selectShippingAddress?.address ==
                                   null ||
                               widget.address == '' ||
-                              widget.address == null
+                              widget.address == null && Options == "option2"
                           ? GestureDetector(
                               onTap: () {
                                 buildErrorDialog(
@@ -3149,19 +3148,20 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         }
                                       : selectedpayment == 2
                                           ? () {
-                                            if(_pickedFile == null){
-                                             buildErrorDialog(context, '', "Please Upload Prescription");
-                                            }
-                                            else{
                                               checkoutcodap();
-                                            }
-                                            if(Options == null){
-                                              buildErrorDialog(context, '', "Please Select Upload Prescription");
-
-                                              }
-                                            else{
-                                              checkoutcodap();
-                                            }
+                                            // if(_pickedFile == null){
+                                            //  buildErrorDialog(context, '', "Please Upload Prescription");
+                                            // }
+                                            // else{
+                                            //   checkoutcodap();
+                                            // }
+                                            // if(Options == null){
+                                            //   buildErrorDialog(context, '', "Please Select Upload Prescription");
+                                            //
+                                            //   }
+                                            // else{
+                                            //
+                                            // }
 
 
                                             }

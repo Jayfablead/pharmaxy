@@ -5,8 +5,10 @@ import 'package:ecommerce/Modal/Addtocart_withoutuser_Model.dart';
 import 'package:ecommerce/Modal/AllCatModal.dart';
 import 'package:ecommerce/Modal/AllCouponModal.dart';
 import 'package:ecommerce/Modal/AllProductModal.dart';
+import 'package:ecommerce/Modal/AllProductSerchModel.dart';
 import 'package:ecommerce/Modal/AllSubcatWiceProduct.dart';
 import 'package:ecommerce/Modal/AllUserAddModal.dart';
+import 'package:ecommerce/Modal/BannerModel.dart';
 import 'package:ecommerce/Modal/BestSellerProductModal.dart';
 import 'package:ecommerce/Modal/BlogModel.dart';
 import 'package:ecommerce/Modal/BrandModel.dart';
@@ -36,10 +38,12 @@ import 'package:ecommerce/Modal/EditprofileModal.dart';
 import 'package:ecommerce/Modal/FilterbyModel.dart';
 import 'package:ecommerce/Modal/ForgotModal.dart';
 import 'package:ecommerce/Modal/IncrementModal.dart';
+import 'package:ecommerce/Modal/LogoutCardCount.dart';
 import 'package:ecommerce/Modal/MainCatModal.dart';
 import 'package:ecommerce/Modal/MyOederDetailModal.dart';
 import 'package:ecommerce/Modal/MyOrderListModal.dart';
 import 'package:ecommerce/Modal/OrderCancelModal.dart';
+import 'package:ecommerce/Modal/PaginationModel.dart';
 import 'package:ecommerce/Modal/PaidOrderModel.dart';
 import 'package:ecommerce/Modal/PaymentMthodsModal.dart';
 import 'package:ecommerce/Modal/PaypalModal.dart';
@@ -180,6 +184,8 @@ RecentBlogModel?recentblogModel;
 CartcountModel?cartcountmodel;
 FilterbyModel?filterbymodel;
 ShortbyModel?shortbymodel;
+AllProductSerachModel?allProductserachModel;
+BannerModel?bannermodel;
 
 //Prit Api
 RequestformModel? requestformModel;
@@ -188,7 +194,8 @@ RequestMedicineModel?requestMedicineModel;
 RefillModel? refillModel;
 DeleteUserModel?deleteuserModel;
 CancelOrderModel?cancelOrderModel;
-
+LogoutCardCount?logoutCardCount;
+PaginationModel? paginationModel;
 
 // without user Apis
 

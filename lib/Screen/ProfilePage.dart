@@ -370,7 +370,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-            profilemodal?.profileDetails?.referCode=="1"?Positioned(
+            profilemodal?.profileDetails?.referCode =="1"?Positioned(
               top: 25.h,
               right: 4.w,
               child: Container(

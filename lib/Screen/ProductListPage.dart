@@ -544,29 +544,29 @@ class _ProductListPageState extends State<ProductListPage> {
                                               children: [
                                                 Row(
                                                   children: [
-                                                    Text(
-                                                      '₹' +
-                                                          (shortbymodel
-                                                              ?.searchResults?[
-                                                          index]
-                                                              .saleProductPrice)
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 11.sp,
-                                                        fontFamily:
-                                                        'task',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .bold,
-                                                        letterSpacing:
-                                                        1,
-                                                        color: Colors
-                                                            .black,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 1.w,
-                                                    ),
+                                                    // Text(
+                                                    //   '₹' +
+                                                    //       (shortbymodel
+                                                    //           ?.searchResults?[
+                                                    //       index]
+                                                    //           .saleProductPrice)
+                                                    //           .toString(),
+                                                    //   style: TextStyle(
+                                                    //     fontSize: 11.sp,
+                                                    //     fontFamily:
+                                                    //     'task',
+                                                    //     fontWeight:
+                                                    //     FontWeight
+                                                    //         .bold,
+                                                    //     letterSpacing:
+                                                    //     1,
+                                                    //     color: Colors
+                                                    //         .black,
+                                                    //   ),
+                                                    // ),
+                                                    // SizedBox(
+                                                    //   width: 1.w,
+                                                    // ),
                                                     Text(
                                                       '₹' +
                                                           (shortbymodel
@@ -575,9 +575,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                               .productPrice)
                                                               .toString(),
                                                       style: TextStyle(
-                                                        decoration:
-                                                        TextDecoration
-                                                            .lineThrough,
+                                                        // decoration:
+                                                        // TextDecoration
+                                                        //     .lineThrough,
                                                         fontSize: 12.sp,
                                                         fontFamily:
                                                         'task',
@@ -874,29 +874,29 @@ class _ProductListPageState extends State<ProductListPage> {
                                               children: [
                                                 Row(
                                                   children: [
-                                                    Text(
-                                                      '₹' +
-                                                          (shortbymodel
-                                                              ?.searchResults?[
-                                                          index]
-                                                              .saleProductPrice)
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 11.sp,
-                                                        fontFamily:
-                                                        'task',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .bold,
-                                                        letterSpacing:
-                                                        1,
-                                                        color: Colors
-                                                            .black,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 1.w,
-                                                    ),
+                                                    // Text(
+                                                    //   '₹' +
+                                                    //       (shortbymodel
+                                                    //           ?.searchResults?[
+                                                    //       index]
+                                                    //           .saleProductPrice)
+                                                    //           .toString(),
+                                                    //   style: TextStyle(
+                                                    //     fontSize: 11.sp,
+                                                    //     fontFamily:
+                                                    //     'task',
+                                                    //     fontWeight:
+                                                    //     FontWeight
+                                                    //         .bold,
+                                                    //     letterSpacing:
+                                                    //     1,
+                                                    //     color: Colors
+                                                    //         .black,
+                                                    //   ),
+                                                    // ),
+                                                    // SizedBox(
+                                                    //   width: 1.w,
+                                                    // ),
                                                     Text(
                                                       '₹' +
                                                           (shortbymodel
@@ -905,9 +905,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                               .productPrice)
                                                               .toString(),
                                                       style: TextStyle(
-                                                        decoration:
-                                                        TextDecoration
-                                                            .lineThrough,
+                                                        // decoration:
+                                                        // TextDecoration
+                                                        //     .lineThrough,
                                                         fontSize: 12.sp,
                                                         fontFamily:
                                                         'task',
@@ -1204,29 +1204,29 @@ class _ProductListPageState extends State<ProductListPage> {
                                               children: [
                                                 Row(
                                                   children: [
-                                                    Text(
-                                                      '₹' +
-                                                          (filterbymodel
-                                                              ?.searchResults?[
-                                                          index]
-                                                              .saleProductPrice)
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 11.sp,
-                                                        fontFamily:
-                                                        'task',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .bold,
-                                                        letterSpacing:
-                                                        1,
-                                                        color: Colors
-                                                            .black,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 1.w,
-                                                    ),
+                                                    // Text(
+                                                    //   '₹' +
+                                                    //       (filterbymodel
+                                                    //           ?.searchResults?[
+                                                    //       index]
+                                                    //           .saleProductPrice)
+                                                    //           .toString(),
+                                                    //   style: TextStyle(
+                                                    //     fontSize: 11.sp,
+                                                    //     fontFamily:
+                                                    //     'task',
+                                                    //     fontWeight:
+                                                    //     FontWeight
+                                                    //         .bold,
+                                                    //     letterSpacing:
+                                                    //     1,
+                                                    //     color: Colors
+                                                    //         .black,
+                                                    //   ),
+                                                    // ),
+                                                    // SizedBox(
+                                                    //   width: 1.w,
+                                                    // ),
                                                     Text(
                                                       '₹' +
                                                           (filterbymodel
@@ -1235,9 +1235,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                               .productPrice)
                                                               .toString(),
                                                       style: TextStyle(
-                                                        decoration:
-                                                        TextDecoration
-                                                            .lineThrough,
+                                                        // decoration:
+                                                        // TextDecoration
+                                                        //     .lineThrough,
                                                         fontSize: 12.sp,
                                                         fontFamily:
                                                         'task',
@@ -1534,29 +1534,29 @@ class _ProductListPageState extends State<ProductListPage> {
                                               children: [
                                                 Row(
                                                   children: [
-                                                    Text(
-                                                      '₹' +
-                                                          (filterbymodel
-                                                              ?.searchResults?[
-                                                          index]
-                                                              .saleProductPrice)
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 11.sp,
-                                                        fontFamily:
-                                                        'task',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .bold,
-                                                        letterSpacing:
-                                                        1,
-                                                        color: Colors
-                                                            .black,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 1.w,
-                                                    ),
+                                                    // Text(
+                                                    //   '₹' +
+                                                    //       (filterbymodel
+                                                    //           ?.searchResults?[
+                                                    //       index]
+                                                    //           .saleProductPrice)
+                                                    //           .toString(),
+                                                    //   style: TextStyle(
+                                                    //     fontSize: 11.sp,
+                                                    //     fontFamily:
+                                                    //     'task',
+                                                    //     fontWeight:
+                                                    //     FontWeight
+                                                    //         .bold,
+                                                    //     letterSpacing:
+                                                    //     1,
+                                                    //     color: Colors
+                                                    //         .black,
+                                                    //   ),
+                                                    // ),
+                                                    // SizedBox(
+                                                    //   width: 1.w,
+                                                    // ),
                                                     Text(
                                                       '₹' +
                                                           (filterbymodel
@@ -1565,9 +1565,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                               .productPrice)
                                                               .toString(),
                                                       style: TextStyle(
-                                                        decoration:
-                                                        TextDecoration
-                                                            .lineThrough,
+                                                        // decoration:
+                                                        // TextDecoration
+                                                        //     .lineThrough,
                                                         fontSize: 12.sp,
                                                         fontFamily:
                                                         'task',
@@ -1882,29 +1882,29 @@ class _ProductListPageState extends State<ProductListPage> {
                                                         children: [
                                                           Row(
                                                             children: [
-                                                              Text(
-                                                                '₹' +
-                                                                    (subcatserchmodal
-                                                                            ?.searchResults?[
-                                                                                index]
-                                                                            .saleProductPrice)
-                                                                        .toString(),
-                                                                style: TextStyle(
-                                                                  fontSize: 11.sp,
-                                                                  fontFamily:
-                                                                      'task',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  letterSpacing:
-                                                                      1,
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 0.5.w,
-                                                              ),
+                                                              // Text(
+                                                              //   '₹' +
+                                                              //       (subcatserchmodal
+                                                              //               ?.searchResults?[
+                                                              //                   index]
+                                                              //               .saleProductPrice)
+                                                              //           .toString(),
+                                                              //   style: TextStyle(
+                                                              //     fontSize: 11.sp,
+                                                              //     fontFamily:
+                                                              //         'task',
+                                                              //     fontWeight:
+                                                              //         FontWeight
+                                                              //             .bold,
+                                                              //     letterSpacing:
+                                                              //         1,
+                                                              //     color: Colors
+                                                              //         .black,
+                                                              //   ),
+                                                              // ),
+                                                              // SizedBox(
+                                                              //   width: 0.5.w,
+                                                              // ),
                                                               Padding(
                                                                 padding: EdgeInsets
                                                                     .only(
@@ -1918,9 +1918,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                           .toString(),
                                                                   style:
                                                                       TextStyle(
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .lineThrough,
+                                                                    // decoration:
+                                                                    //     TextDecoration
+                                                                    //         .lineThrough,
                                                                     fontSize:
                                                                         11.sp,
                                                                     fontFamily:
@@ -2264,29 +2264,29 @@ class _ProductListPageState extends State<ProductListPage> {
                                               children: [
                                                 Row(
                                                   children: [
-                                                    Text(
-                                                      '₹' +
-                                                          (allsubcatwiceproduct
-                                                              ?.subcategoriesWiseProduct?[
-                                                          index]
-                                                              .saleProductPrice)
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 11.sp,
-                                                        fontFamily:
-                                                        'task',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .bold,
-                                                        letterSpacing:
-                                                        1,
-                                                        color: Colors
-                                                            .black,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 0.5.w,
-                                                    ),
+                                                    // Text(
+                                                    //   '₹' +
+                                                    //       (allsubcatwiceproduct
+                                                    //           ?.subcategoriesWiseProduct?[
+                                                    //       index]
+                                                    //           .saleProductPrice)
+                                                    //           .toString(),
+                                                    //   style: TextStyle(
+                                                    //     fontSize: 11.sp,
+                                                    //     fontFamily:
+                                                    //     'task',
+                                                    //     fontWeight:
+                                                    //     FontWeight
+                                                    //         .bold,
+                                                    //     letterSpacing:
+                                                    //     1,
+                                                    //     color: Colors
+                                                    //         .black,
+                                                    //   ),
+                                                    // ),
+                                                    // SizedBox(
+                                                    //   width: 0.5.w,
+                                                    // ),
                                                     Padding(
                                                       padding: EdgeInsets
                                                           .only(
@@ -2300,9 +2300,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                 .toString(),
                                                         style:
                                                         TextStyle(
-                                                          decoration:
-                                                          TextDecoration
-                                                              .lineThrough,
+                                                          // decoration:
+                                                          // TextDecoration
+                                                          //     .lineThrough,
                                                           fontSize:
                                                           11.sp,
                                                           fontFamily:

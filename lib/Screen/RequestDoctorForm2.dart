@@ -157,7 +157,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                 TextFormField(
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Please Enter Doctor Name";
+                                      return "Please Enter Doctor Speciality";
                                     }
                                     return null;
                                   },
@@ -185,7 +185,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                         BorderRadius.circular(10),
                                         borderSide:
                                         BorderSide(color: Colors.grey)),
-                                    hintText: 'Enter Doctor Name',
+                                    hintText: 'Enter Doctor Speciality(e.g Cardiologist)',
                                     hintStyle: TextStyle(
                                         color: Colors.black.withOpacity(0.4),
                                         fontSize: 11.sp,
@@ -311,7 +311,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Zip Code(PostalCode)",
+                                        "Zip Code(Optional)",
                                         style: TextStyle(
                                             color: Colors.black87,
                                             fontFamily: "task",
@@ -320,12 +320,12 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                       ),
                                       SizedBox(height: 0.5.h,),
                                       TextFormField(
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return "Please Enter The Zip Code";
-                                          }
-                                          return null;
-                                        },
+                                        // validator: (value) {
+                                        //   if (value!.isEmpty) {
+                                        //     return "Please Enter The Zip Code";
+                                        //   }
+                                        //   return null;
+                                        // },
                                         keyboardType: TextInputType.number,
                                         controller: _ZipCode,
                                         style: TextStyle(height: 1),
@@ -393,7 +393,7 @@ class _Requestdoctorform2State extends State<Requestdoctorform2> {
                                               DateTime? datepicker = await showDatePicker(
                                                   context: context,
                                                   initialDate: DateTime.now(),
-                                                  firstDate: DateTime(2024,1),
+                                                  firstDate: DateTime.now(),
                                                   lastDate: DateTime(2040,12));
                                               if(datepicker!= null)
                                               {

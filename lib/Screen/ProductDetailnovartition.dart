@@ -59,6 +59,7 @@ TextEditingController _rating = TextEditingController();
 final controller = PageController(viewportFraction: 0.8, keepPage: true);
 List pages = [];
 bool h = false;
+int quantity = 1; // Initialize the quantity variable
 
 DatabaseHelper databaseHelper = DatabaseHelper();
 
@@ -105,7 +106,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     // TODO: implement initState
     super.initState();
 
-
+    quantity = 1;
     productdetail2ap();
     getDeviceInfoandStore();
     setState(() {
@@ -328,7 +329,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                     ),
                                     Container(
                                       alignment: Alignment.center,
-                                      height: 32.h,
+                                      height: 34.h,
                                       margin: EdgeInsets.symmetric(horizontal: 1.w),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -419,6 +420,29 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   ],
                                                 ),
                                                 SizedBox(
+                                                  height: 0.5.h,
+                                                ),
+                                            Text(
+                                              productdetail2modal
+                                                  ?.productData
+                                                  ?.productWeight ==
+                                                  '' ||
+                                                  productdetail2modal
+                                                      ?.productData
+                                                      ?.productWeight ==
+                                                      null
+                                                  ? 'N/A'
+                                                  : productdetail2modal
+                                                  ?.productData
+                                                  ?.productWeight ??
+                                                  '',style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal,
+                                              fontFamily: "task",
+                                            ),
+                                            ),
+                                                SizedBox(
                                                   height: 0.7.h,
                                                 ),
                                                 ReadMoreText(
@@ -483,147 +507,177 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 ),
                               ),
 
-                              Positioned(
-                                left: 4.w,
-                                bottom: 1.h,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 5.h,
-                                      width: 42.w,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          border: Border.all(width: 0.5,color: AppColors.primary),
-                                          color: Colors.white38),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                '₹${productdetail2modal?.productData?.saleProductPrice ?? ''}',
-                                                style: TextStyle(
-                                                  fontSize: 13.sp,
-                                                  fontFamily: 'task',
-                                                  fontWeight: FontWeight.bold,
-                                                  letterSpacing: 1,
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 0.5.w,
-                                              ),
-                                              //--------*******SALES PRICE********------
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 0.4.h),
-                                                child: Text(
-                                                  '₹${productdetail2modal?.productData?.productPrice ?? ''}',
-                                                  style: TextStyle(
-                                                    decoration: TextDecoration
-                                                        .lineThrough,
-                                                    decorationThickness: 2,
-                                                    decorationColor:
-                                                        Colors.black,
-                                                    fontSize: 11.sp,
-                                                    fontFamily: 'task',
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    letterSpacing: 1,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 5.w,
-                                    ),
-                                    productdetail2modal
-                                                ?.productData?.cartlist ==
-                                            1
-                                        ? GestureDetector(
-                                            onTap: () {
-                                              _showDialog(context,
-                                                   'Your item is already add in cart');
-                                            },
-                                            child: Container(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Container(
-                                                    alignment: Alignment.center,
-                                                    height: 5.h,
-                                                    width: 42.w,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        color:
-                                                            Color(0xffbababa)),
-                                                    child: Text(
-                                                      "Added To Cart",
-                                                      style: TextStyle(
-                                                          fontSize: 11.sp,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          letterSpacing: 1,
-                                                          fontFamily: "task"),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          )
-                                        : GestureDetector(
-                                            onTap: () {
-                                              print(usermodal?.userId);
-                                              usermodal?.userId == "" ||
-                                                      usermodal?.userId == null
-                                                  ? addtocartwithoutlogin()
-                                                  : addcartap();
-                                            },
-                                            child: Container(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Container(
-                                                    alignment: Alignment.center,
-                                                    height: 5.h,
-                                                    width: 42.w,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        color:
-                                                            Color(0xff0061b0)),
-                                                    child: Text(
-                                                      "Add To Cart",
-                                                      style: TextStyle(
-                                                          fontSize: 11.5.sp,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          letterSpacing: 1,
-                                                          fontFamily: "task"),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                  ],
-                                ),
-                              ),
-                            ],
+
+
+      Positioned(
+      left: 4.w,
+        bottom: 1.h,
+        child: Row(
+          children: [
+            Container(
+              height: 5.h,
+              width: 26.w,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(width: 0.5, color: AppColors.primary),
+                  color: Colors.white38),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 0.4.h),
+                    child: Text(
+                      '₹${productdetail2modal?.productData?.productPrice ?? ''}',
+                      style: TextStyle(
+                        fontSize: 13.sp,
+                        fontFamily: 'task',
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 2.w,
+            ),
+            productdetail2modal?.productData?.cartlist == 1
+                ? GestureDetector(
+              onTap: () {
+                _showDialog(context, 'Your item is already added to cart');
+              },
+              child: Container(
+                alignment: Alignment.center,
+                height: 5.h,
+                width: 30.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color(0xffbababa),
+                ),
+                child: Text(
+                  "Added To Cart",
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                    fontFamily: "task",
+                  ),
+                ),
+              ),
+            )
+                : GestureDetector(
+              onTap: () {
+                print(usermodal?.userId);
+                usermodal?.userId == "" || usermodal?.userId == null
+                    ? addtocartwithoutlogin()
+                    : addcartap();
+              },
+              child: Container(
+                alignment: Alignment.center,
+                height: 5.h,
+                width: 30.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color(0xff0061b0),
+                ),
+                child: Text(
+                  "Add To Cart",
+                  style: TextStyle(
+                    fontSize: 11.5.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                    fontFamily: "task",
+                  ),
+                ),
+              ),
+            ),
+
+            SizedBox(
+              width: 2.w,
+            ),
+            Row(
+              children: [
+                // Minus button
+                GestureDetector(
+                  onTap: () {
+                    if (quantity > 1) {
+                      setState(() {
+                        quantity--;
+                      });
+                    }
+                  },
+                  child: Container(
+
+                    alignment: Alignment.center,
+                    height: 9.5.w,
+                    width: 9.5.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: AppColors.primary
+                    ),
+                    child: Text(
+                      "-",
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 1.5.w),
+                // Quantity display
+                Container(
+
+                  alignment: Alignment.center,
+                  height: 7.w,
+                  width: 7.w,
+                  child: Text(
+                    "$quantity",
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 1.5.w),
+                // Plus button
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      quantity++;
+                    });
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 9.5.w,
+                    width: 9.5.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: AppColors.primary
+                    ),
+                    child: Text(
+                      "+",
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      )
+
+      ],
                           ),
                           SizedBox(height: 2.h),
                           Padding(
@@ -676,8 +730,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             fontFamily: "task",
                                             color: Color(0xff0061b0)),
                                       ),
-                                      Text(
-                                        '\₹ 1500',
+                                      Text(productdetail2modal?.shipping?.amount?? '',
                                         style: TextStyle(
                                             fontSize: 11.sp,
                                             fontFamily: "task",
@@ -1491,8 +1544,10 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
 
   productdetail2ap() async {
     final Map<String, String> data = {};
-    data['product_id'] = widget.productid.toString();
-    data['user_id'] = (usermodal?.userId).toString();
+    data['product_id'] =  widget.productid.toString();
+    data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
+        ? deviceName.toString()
+        :(usermodal?.userId).toString();
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().productdetail2api(data).then((response) async {
@@ -1649,9 +1704,9 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     data['productID'] = widget.productid.toString();
     data['variation_tbl_id'] = "0";
     data['product_color'] = "0";
-    data['product_quantity'] = '1';
+    data['product_quantity'] =quantity.toString();
     data['product_price'] =
-        (productdetail2modal?.productData?.saleProductPrice).toString();
+        (productdetail2modal?.productData?.productPrice).toString();
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().addcartapi(data).then((response) async {
@@ -1686,9 +1741,9 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     final Map<String, String> data = {};
     data['device_id'] = deviceName.toString();
     data['productID'] = widget.productid.toString();
-    data['product_quantity'] = '1';
+    data['product_quantity'] =quantity.toString();
     data['product_price'] =
-        (productdetail2modal?.productData?.saleProductPrice).toString();
+        (productdetail2modal?.productData?.productPrice).toString();
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().addcartwithoutloginapi(data).then((response) async {

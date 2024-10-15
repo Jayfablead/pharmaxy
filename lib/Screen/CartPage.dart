@@ -30,6 +30,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Databasehandler.dart';
 import '../Modal/AllUserAddModal.dart';
@@ -90,7 +91,13 @@ List<order> cat = [
 class _CartPageState extends State<CartPage> {
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<CartItem> cartItems = [];
-
+  void _makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launchUrl(launchUri);
+  }
   @override
   void initState() {
     super.initState();
@@ -116,11 +123,11 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
-  @override
-  void dispose() {
-    _searchController.dispose(); // Dispose of controller to avoid memory leaks
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _searchController.dispose(); // Dispose of controller to avoid memory leaks
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -3059,6 +3066,8 @@ class _CartPageState extends State<CartPage> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
+
+                                                _makePhoneCall('9051294444');
 
                                               },
                                               child:   Container(

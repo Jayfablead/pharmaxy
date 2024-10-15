@@ -2,16 +2,24 @@ class ProductDetail2Modal {
   String? status;
   String? message;
   ProductData? productData;
+  Shipping? shipping;
   List<RelatedProducts>? relatedProducts;
 
   ProductDetail2Modal(
-      {this.status, this.message, this.productData, this.relatedProducts});
+      {this.status,
+        this.message,
+        this.productData,
+        this.shipping,
+        this.relatedProducts});
 
   ProductDetail2Modal.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     productData = json['product_data'] != null
         ? new ProductData.fromJson(json['product_data'])
+        : null;
+    shipping = json['Shipping'] != null
+        ? new Shipping.fromJson(json['Shipping'])
         : null;
     if (json['related_products'] != null) {
       relatedProducts = <RelatedProducts>[];
@@ -27,6 +35,9 @@ class ProductDetail2Modal {
     data['message'] = this.message;
     if (this.productData != null) {
       data['product_data'] = this.productData!.toJson();
+    }
+    if (this.shipping != null) {
+      data['Shipping'] = this.shipping!.toJson();
     }
     if (this.relatedProducts != null) {
       data['related_products'] =
@@ -49,6 +60,7 @@ class ProductData {
   String? productPrice;
   String? saleProductPrice;
   String? productStock;
+  String? productWeight;
   int? wishlist;
   int? cartlist;
   List<String>? allimage;
@@ -67,6 +79,7 @@ class ProductData {
         this.productPrice,
         this.saleProductPrice,
         this.productStock,
+        this.productWeight,
         this.wishlist,
         this.cartlist,
         this.allimage,
@@ -85,6 +98,7 @@ class ProductData {
     productPrice = json['ProductPrice'];
     saleProductPrice = json['Sale_ProductPrice'];
     productStock = json['ProductStock'];
+    productWeight = json['product_weight'];
     wishlist = json['wishlist'];
     cartlist = json['cartlist'];
     allimage = json['allimage'].cast<String>();
@@ -105,10 +119,48 @@ class ProductData {
     data['ProductPrice'] = this.productPrice;
     data['Sale_ProductPrice'] = this.saleProductPrice;
     data['ProductStock'] = this.productStock;
+    data['product_weight'] = this.productWeight;
     data['wishlist'] = this.wishlist;
     data['cartlist'] = this.cartlist;
     data['allimage'] = this.allimage;
     data['single_product_price'] = this.singleProductPrice;
+    return data;
+  }
+}
+
+class Shipping {
+  String? id;
+  String? shippingName;
+  String? amount;
+  String? shippingRate;
+  String? createdAt;
+  String? updatedAt;
+
+  Shipping(
+      {this.id,
+        this.shippingName,
+        this.amount,
+        this.shippingRate,
+        this.createdAt,
+        this.updatedAt});
+
+  Shipping.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    shippingName = json['shipping_name'];
+    amount = json['amount'];
+    shippingRate = json['shipping_rate'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['shipping_name'] = this.shippingName;
+    data['amount'] = this.amount;
+    data['shipping_rate'] = this.shippingRate;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }

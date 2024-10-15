@@ -2,14 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/AllCatModal.dart';
 import 'package:ecommerce/Modal/AllCouponModal.dart';
+import 'package:ecommerce/Modal/AllProductSerchModel.dart';
+import 'package:ecommerce/Modal/BannerModel.dart';
 import 'package:ecommerce/Modal/BestSellerProductModal.dart';
 import 'package:ecommerce/Modal/BlogModel.dart';
 import 'package:ecommerce/Modal/BrandModel.dart';
 import 'package:ecommerce/Modal/CartcountModel.dart';
 import 'package:ecommerce/Modal/CatWiceProductModal.dart';
+import 'package:ecommerce/Modal/LogoutCardCount.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/SalesProductModal.dart';
@@ -17,6 +21,7 @@ import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/All_Blog.dart';
 import 'package:ecommerce/Screen/All_Brands.dart';
+
 import 'package:ecommerce/Screen/BlogdetailsPage.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
@@ -194,11 +199,14 @@ class _HomePageState extends State<HomePage> {
     blogap();
     brandap();
     carttotal();
+    bannerap();
+    getDeviceInfoandStore();
     setState(() {
       isLoading = true;
     });
   }
-
+  String? deviceName;
+  String? deviceOS;
   @override
   Widget build(BuildContext context) {
     return commanScreen(
@@ -334,9 +342,56 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                              usermodal?.userId == "" ||
-                                  usermodal?.userId == null
-                                  ?Container():Positioned(
+                              usermodal?.userId == "" || usermodal?.userId == null
+                                  ?Positioned(
+                                  bottom:2.8.h, // Adjust the value based on your layout
+                                  right: 15.5.w, // Adjust the value based on your layout
+                                  child: GestureDetector(
+                                      onTap: () {
+                                        // Handle the tap on the cart icon
+                                      },
+                                      child: Container(
+                                          width: 5.w,
+                                          height: 5.w,
+                                          child: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              Positioned(
+                                                top: 0,
+                                                right: 0,
+                                                child:  logoutCardCount
+                                                    ?.cartCount == 0?
+                                                Container(): Container(
+                                                  width: 5.w,
+                                                  height: 5.w,
+                                                  alignment: Alignment.center,
+                                                  padding: EdgeInsets.all(2),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.red,
+                                                    borderRadius: BorderRadius.circular(100),
+                                                  ),
+                                                  constraints: BoxConstraints(
+                                                    minWidth: 18,
+                                                    minHeight: 18,
+                                                  ),
+                                                  child: Text(
+                                                    logoutCardCount?.cartCount == 0 || logoutCardCount?.cartCount == null ? "0"
+                                                        : (logoutCardCount
+                                                        ?.cartCount)
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 12,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                      )
+                                  )
+                              ):Positioned(
                                   bottom:2.8.h, // Adjust the value based on your layout
                                   right: 15.5.w, // Adjust the value based on your layout
                                   child: GestureDetector(
@@ -353,8 +408,7 @@ class _HomePageState extends State<HomePage> {
                                                 top: 0,
                                                 right: 0,
                                                 child:  cartcountmodel
-                                                    ?.cartCount ==
-                                                    0?
+                                                    ?.cartCount == 0?
                                                  Container(): Container(
                                                   width: 5.w,
                                                   height: 5.w,
@@ -369,13 +423,7 @@ class _HomePageState extends State<HomePage> {
                                                     minHeight: 18,
                                                   ),
                                                   child: Text(
-                                                    cartcountmodel
-                                                        ?.cartCount ==
-                                                        null ||
-                                                        cartcountmodel
-                                                            ?.cartCount ==
-                                                            ""
-                                                        ? "0"
+                                                    cartcountmodel?.cartCount == 0 || cartcountmodel?.cartCount == null ? "0"
                                                         : (cartcountmodel
                                                         ?.cartCount)
                                                         .toString(),
@@ -424,107 +472,47 @@ class _HomePageState extends State<HomePage> {
                  name?SliverToBoxAdapter(
                    child: Container(
                    ),
-                 ):  allcouponmodal?.data?.length==""||allcouponmodal?.data?.length==null?SliverToBoxAdapter(
+                 ): bannermodel?.data?.length==""||bannermodel?.data?.length==null?SliverToBoxAdapter(
                    child: Container(),
                  ):SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 18.h,
+                          height: 16.h,
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
                             scrollDirection: Axis.horizontal,
-                            itemCount: allcouponmodal?.data?.length,  // Dynamic list length
+                            itemCount: bannermodel?.data?.length,  // Change to use dynamic list length
                             itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.only(right: 2.w),
-                                alignment: Alignment.center,
-                                height: 18.h,
-                                width:  allcouponmodal?.data?.length==1?91.w:84.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: AppColors.primary,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Image.network(
-                                      'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
-                                      fit: BoxFit.cover,
-                                      width: 110,
-                                      height: 110,
+                              return Card(
+                                color: Colors.blue.shade50,
+                                elevation: 0,
+                                child: Container(
+                                  width: 90.w,  // Set the same width for the container
+                                  height: 14.5.h,  // Set the same height for the container
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white,
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                      10
+
                                     ),
-                                    SizedBox(width: 2.w),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 3.5.w),
-                                            child: Text(
-                                              "FLAT ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
-                                              style: TextStyle(
-                                                fontSize: 10.5.sp,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: "task",
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(height: 1.5.h),
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 3.5.w),
-                                            child: Text(
-                                              "on your first order",
-                                              style: TextStyle(
-                                                fontSize: 11.sp,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: 'task',
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(height: 1.5.h),
-                                          GestureDetector(
-                                            onTap: () {
-                                              // Copy coupon code to clipboard
-                                              Clipboard.setData(ClipboardData(text: allcouponmodal?.data?[index].couponCode ?? ""));
-                                              // Show snackbar confirmation
-                                              ScaffoldMessenger.of(context).showSnackBar(
-                                                SnackBar(content: Text('Coupon code copied: ${allcouponmodal?.data?[index].couponCode ?? ""}')),
-                                              );
-                                            },
-                                            child: Container(
-                                              margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.circular(10),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.black12,
-                                                    blurRadius: 5,
-                                                    spreadRadius: 2,
-                                                  ),
-                                                ],
-                                              ),
-                                              child: Text(
-                                                "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 9.5.sp,
-                                                  fontFamily: 'task',
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                    child: CachedNetworkImage(
+                                      fit: BoxFit.cover,  // This will ensure the image covers the container
+                                      imageUrl: bannermodel?.data?[index].bannerImg ?? '',
+                                      width: 60.w,  // Same width as the container
+                                      height: 14.5.h,  // Same height as the container
+                                      progressIndicatorBuilder: (context, url, progress) =>
+                                          Center(child: CircularProgressIndicator()),
+                                      errorWidget: (context, url, error) =>
+                                          Image.asset('assets/my.png', color: AppColors.primary),
                                     ),
-                                  ],
+                                  ),
                                 ),
                               );
                             },
                           ),
+
                         ),
                       ),
                       name?SliverToBoxAdapter(
@@ -533,7 +521,7 @@ class _HomePageState extends State<HomePage> {
                       ):
                       SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 2.h,
+                          height: 1.h,
                         ),
                       ),
                       name?SliverToBoxAdapter(
@@ -549,6 +537,7 @@ class _HomePageState extends State<HomePage> {
                               child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [
+                                  // upload prescription
                                   InkWell(
                                     onTap: (){
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -576,7 +565,7 @@ class _HomePageState extends State<HomePage> {
                                                   SizedBox(
                                                     width: 110,
                                                     child: Text(
-                                                      'Request Prescription',
+                                                      'Upload Prescription',
                                                       style: TextStyle(
                                                           fontSize: 11.sp,
                                                           // Adjust the font size
@@ -623,76 +612,6 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   SizedBox(
                                     width: 1.w,
-                                  ),
-                                  InkWell(
-                                    onTap: (){
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => Requestdoctorform()));
-                                    },
-                                    child: Card(
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(10)),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.white,
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Row(
-                                                children: [
-                                                  SizedBox(
-                                                    width: 110,
-                                                    child: Text(
-                                                      'Request Doctors',
-                                                      style: TextStyle(
-                                                          fontSize: 11.sp,
-                                                          // Adjust the font size
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          fontFamily: 'task'),
-                                                    ),
-                                                  ),
-                                                  Image.network(
-                                                    'https://static.vecteezy.com/system/resources/previews/036/485/041/original/3d-doctor-character-talking-on-phone-call-suitable-for-medical-content-free-png.png',
-                                                    width: 70,
-                                                    height: 70,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Container(
-                                              height: 30,
-                                              width: 200,
-                                              alignment: Alignment.centerLeft,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.only(
-                                                      bottomLeft:
-                                                      Radius.circular(10),
-                                                      bottomRight:
-                                                      Radius.circular(10)),
-                                                  color: Colors.red.shade50),
-                                              child: Padding(
-                                                padding:
-                                                const EdgeInsets.only(left: 15),
-                                                child: Text(
-                                                  'UPTO 24% OFF',
-                                                  style: TextStyle(
-                                                      color: Colors.red,
-                                                      fontSize: 9.sp,
-                                                      fontFamily: 'task'),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
                                   ),
                                   // refill alert
                                   InkWell(
@@ -767,6 +686,7 @@ class _HomePageState extends State<HomePage> {
                                   SizedBox(
                                     width: 1.w,
                                   ),
+                                  // request medicine
                                   InkWell(
                                     onTap: (){
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -839,6 +759,7 @@ class _HomePageState extends State<HomePage> {
                                   SizedBox(
                                     width: 1.w,
                                   ),
+                                  // order medicine
                                   InkWell(
                                     onTap: (){
                                       Navigator.of(context).push(MaterialPageRoute(
@@ -910,6 +831,77 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   SizedBox(
                                     width: 1.w,
+                                  ),
+                                  // request doctor
+                                  InkWell(
+                                    onTap: (){
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => Requestdoctorform()));
+                                    },
+                                    child: Card(
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10)),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.white,
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 110,
+                                                    child: Text(
+                                                      'Request Doctors',
+                                                      style: TextStyle(
+                                                          fontSize: 11.sp,
+                                                          // Adjust the font size
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontFamily: 'task'),
+                                                    ),
+                                                  ),
+                                                  Image.network(
+                                                    'https://static.vecteezy.com/system/resources/previews/036/485/041/original/3d-doctor-character-talking-on-phone-call-suitable-for-medical-content-free-png.png',
+                                                    width: 70,
+                                                    height: 70,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 30,
+                                              width: 200,
+                                              alignment: Alignment.centerLeft,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                      bottomLeft:
+                                                      Radius.circular(10),
+                                                      bottomRight:
+                                                      Radius.circular(10)),
+                                                  color: Colors.red.shade50),
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets.only(left: 15),
+                                                child: Text(
+                                                  'UPTO 24% OFF',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 9.sp,
+                                                      fontFamily: 'task'),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -1125,13 +1117,13 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                           ),
-                          height: 35.h,
+                          height: 17.h,
                           child: allcatmodal?.categories?.length == 0
                               ? Center(
                                   child: Text(
                                     "No Category Available",
                                     style: TextStyle(
-                                      fontSize: 18.sp,
+                                      fontSize: 16.sp,
                                       fontFamily: 'task',
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -1253,7 +1245,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     );
                                   },
-                                    itemCount: 8,
+                                    itemCount: allcatmodal?.categories?.length,
                                   // itemCount: allcatmodal?.categories?.length,
                                 ),
                         ),
@@ -1271,7 +1263,8 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                         ),
                       ): SliverToBoxAdapter(
-                        child: Row(
+                        child: brandmodel?.data?.length==0||brandmodel?.data?.length==''||brandmodel?.data?.length==null
+                            ?Container():Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
@@ -1289,7 +1282,7 @@ class _HomePageState extends State<HomePage> {
                                     builder: (context) => All_Brands()));
                               },
                               child: Container(
-                                child: allcatmodal?.categories?.length == 0
+                                child: brandmodel?.data?.length == 0
                                     ? Text("")
                                     : Text(
                                         "View All",
@@ -1498,8 +1491,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       _serch.text == ''
                           ? SliverToBoxAdapter()
-                          : searchbestsaleModal?.productData?.length == 0 ||
-                                  searchbestsaleModal?.productData?.length ==
+                          : allProductserachModel?.searchResults?.length == 0 ||
+                          allProductserachModel?.searchResults?.length ==
                                       null
                               ? SliverToBoxAdapter(
                                   child: Container(
@@ -1539,8 +1532,8 @@ class _HomePageState extends State<HomePage> {
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             productdetailnovartion(
-                                                              productid: searchbestsaleModal
-                                                                      ?.productData?[
+                                                              productid: allProductserachModel
+                                                                      ?.searchResults?[
                                                                           index]
                                                                       .productID ??
                                                                   '',
@@ -1565,10 +1558,10 @@ class _HomePageState extends State<HomePage> {
                                                   Container(
                                                     child: CachedNetworkImage(
                                                       imageUrl:
-                                                          searchbestsaleModal
-                                                                  ?.productData?[
+                                                      allProductserachModel
+                                                                  ?.searchResults?[
                                                                       index]
-                                                                  .imgData ??
+                                                                  .allImages? [0] ??
                                                               '',
                                                       height: 9.5.h,
                                                       width: 25.w,
@@ -1624,19 +1617,19 @@ class _HomePageState extends State<HomePage> {
                                                                     TextOverflow
                                                                         .ellipsis,
                                                                 maxLines: 1,
-                                                                searchbestsaleModal
-                                                                                ?.productData?[
+                                                                allProductserachModel
+                                                                                ?.searchResults?[
                                                                                     index]
                                                                                 .productName ==
                                                                             "" ||
-                                                                        searchbestsaleModal
-                                                                                ?.productData?[
+                                                                    allProductserachModel
+                                                                                ?.searchResults?[
                                                                                     index]
                                                                                 .productName ==
                                                                             null
                                                                     ? "N/A"
-                                                                    : searchbestsaleModal
-                                                                            ?.productData?[
+                                                                    : allProductserachModel
+                                                                            ?.searchResults?[
                                                                                 index]
                                                                             .productName ??
                                                                         '',
@@ -1665,40 +1658,40 @@ class _HomePageState extends State<HomePage> {
                                                     children: [
                                                       Row(
                                                         children: [
-                                                          Text(
-                                                            '₹' +
-                                                                (searchbestsaleModal
-                                                                        ?.productData?[
-                                                                            index]
-                                                                        .saleProductPrice)
-                                                                    .toString(),
-                                                            style: TextStyle(
-                                                              fontSize: 11.sp,
-                                                              fontFamily: 'task',
-                                                              fontWeight:
-                                                                  FontWeight.bold,
-                                                              letterSpacing: 1,
-                                                              color: Colors.black,
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            width: 0.5.h,
-                                                          ),
+                                                          // Text(
+                                                          //   '₹' +
+                                                          //       (allProductserachModel
+                                                          //               ?.searchResults?[
+                                                          //                   index]
+                                                          //               .saleProductPrice)
+                                                          //           .toString(),
+                                                          //   style: TextStyle(
+                                                          //     fontSize: 11.sp,
+                                                          //     fontFamily: 'task',
+                                                          //     fontWeight:
+                                                          //         FontWeight.bold,
+                                                          //     letterSpacing: 1,
+                                                          //     color: Colors.black,
+                                                          //   ),
+                                                          // ),
+                                                          // SizedBox(
+                                                          //   width: 0.5.h,
+                                                          // ),
                                                           Padding(
                                                             padding:
                                                                 EdgeInsets.only(
                                                                     top: 0.5.h),
                                                             child: Text(
                                                               '₹' +
-                                                                  (searchbestsaleModal
-                                                                          ?.productData?[
+                                                                  (allProductserachModel
+                                                                          ?.searchResults?[
                                                                               index]
                                                                           .productPrice)
                                                                       .toString(),
                                                               style: TextStyle(
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .lineThrough,
+                                                                // decoration:
+                                                                //     TextDecoration
+                                                                //         .lineThrough,
                                                                 fontSize: 11.sp,
                                                                 fontFamily:
                                                                     'task',
@@ -1726,7 +1719,7 @@ class _HomePageState extends State<HomePage> {
                                                                       (context) =>
                                                                           productdetailnovartion(
                                                                             productid:
-                                                                                searchbestsaleModal?.productData?[index].productID ?? '',
+                                                                            allProductserachModel?.searchResults?[index].productID ?? '',
                                                                           )));
 
                                                     },
@@ -1765,35 +1758,35 @@ class _HomePageState extends State<HomePage> {
                                                         .push(MaterialPageRoute(
                                                             builder: (context) =>
                                                                 LoginPage2()))
-                                                    : searchbestsaleModal
-                                                                ?.productData?[
+                                                    : allProductserachModel
+                                                                ?.searchResults?[
                                                                     index]
                                                                 .wishlist ==
                                                             1
                                                         ? removewishlistap(
-                                                            (searchbestsaleModal
-                                                                    ?.productData?[
+                                                            (allProductserachModel
+                                                                    ?.searchResults?[
                                                                         index]
                                                                     .productID)
                                                                 .toString())
                                                         : addwishlistap(
-                                                            (searchbestsaleModal
-                                                                    ?.productData?[
+                                                            (allProductserachModel
+                                                                    ?.searchResults?[
                                                                         index]
                                                                     .productID)
                                                                 .toString());
                                               },
                                               child: Icon(
-                                                searchbestsaleModal
-                                                            ?.productData?[
+                                                allProductserachModel
+                                                            ?.searchResults?[
                                                                 index]
                                                             .wishlist ==
                                                         1
                                                     ? Icons.favorite
                                                     : Icons.favorite_outline,
                                                 size: 20.sp,
-                                                color: searchbestsaleModal
-                                                            ?.productData?[
+                                                color: allProductserachModel
+                                                            ?.searchResults?[
                                                                 index]
                                                             .wishlist ==
                                                         1
@@ -1804,8 +1797,8 @@ class _HomePageState extends State<HomePage> {
                                       ],
                                     );
                                   },
-                                      childCount: searchbestsaleModal
-                                          ?.productData?.length
+                                      childCount: allProductserachModel
+                                          ?.searchResults?.length
                                       // Replace
 
                                       ),
@@ -2030,34 +2023,34 @@ class _HomePageState extends State<HomePage> {
                                                               children: [
                                                                 Row(
                                                                   children: [
-                                                                    Text(
-                                                                      bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                                  "" ||
-                                                                              bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                                  null
-                                                                          ? "N/A"
-                                                                          : '₹' +
-                                                                              (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
-                                                                      // "\$500",
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            11.sp,
-                                                                        fontFamily:
-                                                                            'task',
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        letterSpacing:
-                                                                            1,
-                                                                        color: Colors
-                                                                            .black,
-                                                                      ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      width:
-                                                                          0.5.w,
-                                                                    ),
+                                                                    // Text(
+                                                                    //   bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                                    //               "" ||
+                                                                    //           bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                                    //               null
+                                                                    //       ? "N/A"
+                                                                    //       : '₹' +
+                                                                    //           (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
+                                                                    //   // "\$500",
+                                                                    //   style:
+                                                                    //       TextStyle(
+                                                                    //     fontSize:
+                                                                    //         11.sp,
+                                                                    //     fontFamily:
+                                                                    //         'task',
+                                                                    //     fontWeight:
+                                                                    //         FontWeight
+                                                                    //             .bold,
+                                                                    //     letterSpacing:
+                                                                    //         1,
+                                                                    //     color: Colors
+                                                                    //         .black,
+                                                                    //   ),
+                                                                    // ),
+                                                                    // SizedBox(
+                                                                    //   width:
+                                                                    //       0.5.w,
+                                                                    // ),
                                                                     Padding(
                                                                       padding: EdgeInsets.only(
                                                                           top: 0.4
@@ -2072,8 +2065,8 @@ class _HomePageState extends State<HomePage> {
                                                                        // "\$580",
                                                                         style:
                                                                             TextStyle(
-                                                                          decoration:
-                                                                              TextDecoration.lineThrough,
+                                                                          // decoration:
+                                                                          //     TextDecoration.lineThrough,
                                                                           fontSize:
                                                                               11.sp,
                                                                           fontFamily:
@@ -2400,7 +2393,7 @@ class _HomePageState extends State<HomePage> {
               wait = true;
             });
           }
-          bestsalesserchap(_serch.text);
+          allproductserchap(_serch.text);
         },
         style: TextStyle(color: Colors.black, fontFamily: 'task'),
         decoration: InputDecoration(
@@ -2587,6 +2580,39 @@ class _HomePageState extends State<HomePage> {
           print(searchbestsaleModal?.status);
           if (response.statusCode == 200 &&
               searchbestsaleModal?.status == "success") {
+            print('EE Thay Gyu Hooooo ! ^_^');
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
+
+  allproductserchap(String value) async {
+    final Map<String, String> data = {};
+    data['searchText'] = value.toString();
+    data['user_id'] = (usermodal?.userId).toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().allproductsearchapi(data).then((response) async {
+          allProductserachModel =
+              AllProductSerachModel.fromJson(json.decode(response.body));
+          print(allProductserachModel?.status);
+          if (response.statusCode == 200 &&
+              allProductserachModel?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
               isLoading = false;
@@ -2869,5 +2895,85 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  logoutcarttotal() async {
+    final Map<String, String> data = {};
+    data['user_id'] = deviceName.toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().logoutcarttotalcountapi(data).then((response) async {
+          logoutCardCount =
+              LogoutCardCount.fromJson(json.decode(response.body));
+          print(logoutCardCount?.status);
+          if (response.statusCode == 200 &&
+              logoutCardCount?.status == "success") {
+            print('EE Thay Gyu Hooooo ! ^_^');
 
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              wait = false;
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          wait = false;
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+  bannerap() async {
+    final Map<String, String> data = {};
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().bannnerapi(data).then((response) async {
+          bannermodel = BannerModel.fromJson(json.decode(response.body));
+          print(bannermodel?.status);
+          if (response.statusCode == 200 && bannermodel?.status == "success") {
+            setState(() {
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+  Future<void> getDeviceInfoandStore() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      setState(() {
+        deviceName =
+            androidInfo.model; // Device name
+        deviceOS = 'Android ${androidInfo.version.release}';
+      });
+      logoutcarttotal();
+
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      setState(() {
+        deviceName = iosInfo.name; // Device name
+        deviceOS = 'iOS ${iosInfo.systemVersion}';
+      });
+    }
+    print('Device Name: $deviceName');
+    print('Device OS: $deviceOS');
+  }
 }

@@ -5,6 +5,7 @@ import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/AllProductModal.dart';
 import 'package:ecommerce/Modal/BestSellerProductModal.dart';
 import 'package:ecommerce/Modal/FilterbyModel.dart';
+import 'package:ecommerce/Modal/PaginationModel.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
@@ -37,6 +38,8 @@ bool name = false;
 String? type1;
 String? short;
 
+
+
 TextEditingController _serch2 = TextEditingController();
 
 final GlobalKey<ScaffoldState> _scaffoldKeylist3 = GlobalKey<ScaffoldState>();
@@ -46,11 +49,22 @@ bool _issearch = false;
 bool isLoading = true;
 
 class _ProductList4State extends State<ProductList4> {
+
+  final scrollController = ScrollController();
+  List posts = [];
+  bool isloding = true;
+  int page = 1;
+  bool isloadingMore = false;
+
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     allproductap();
+    scrollController.addListener(_scrollListener);
+    paginationapi();
     setState(() {
       _serch2.text = '';
       setState(() {
@@ -74,7 +88,7 @@ class _ProductList4State extends State<ProductList4> {
           padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
           child: Stack(
             children: [
-              CustomScrollView(
+              CustomScrollView(controller: scrollController,
                 slivers: [
                   SliverToBoxAdapter(
                     child: Column(
@@ -525,29 +539,29 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              Text(
-                                                '₹' +
-                                                    (shortbymodel
-                                                        ?.searchResults?[
-                                                    index]
-                                                        .saleProductPrice)
-                                                        .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 11.sp,
-                                                  fontFamily:
-                                                  'task',
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold,
-                                                  letterSpacing:
-                                                  1,
-                                                  color: Colors
-                                                      .black,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 1.w,
-                                              ),
+                                              // Text(
+                                              //   '₹' +
+                                              //       (shortbymodel
+                                              //           ?.searchResults?[
+                                              //       index]
+                                              //           .saleProductPrice)
+                                              //           .toString(),
+                                              //   style: TextStyle(
+                                              //     fontSize: 11.sp,
+                                              //     fontFamily:
+                                              //     'task',
+                                              //     fontWeight:
+                                              //     FontWeight
+                                              //         .bold,
+                                              //     letterSpacing:
+                                              //     1,
+                                              //     color: Colors
+                                              //         .black,
+                                              //   ),
+                                              // ),
+                                              // SizedBox(
+                                              //   width: 1.w,
+                                              // ),
                                               Text(
                                                 '₹' +
                                                     (shortbymodel
@@ -556,9 +570,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  decoration:
-                                                  TextDecoration
-                                                      .lineThrough,
+                                                  // decoration:
+                                                  // TextDecoration
+                                                  //     .lineThrough,
                                                   fontSize: 12.sp,
                                                   fontFamily:
                                                   'task',
@@ -677,7 +691,8 @@ class _ProductList4State extends State<ProductList4> {
                       // childCount: shortbymodel
                       //     ?.searchResults?.length,
                     ),
-                  ):short=="2"? SliverGrid(
+                  ):
+                  short=="2"? SliverGrid(
                     gridDelegate:
                     SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent:
@@ -856,29 +871,29 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              Text(
-                                                '₹' +
-                                                    (shortbymodel
-                                                        ?.searchResults?[
-                                                    index]
-                                                        .saleProductPrice)
-                                                        .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 11.sp,
-                                                  fontFamily:
-                                                  'task',
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold,
-                                                  letterSpacing:
-                                                  1,
-                                                  color: Colors
-                                                      .black,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 1.w,
-                                              ),
+                                              // Text(
+                                              //   '₹' +
+                                              //       (shortbymodel
+                                              //           ?.searchResults?[
+                                              //       index]
+                                              //           .saleProductPrice)
+                                              //           .toString(),
+                                              //   style: TextStyle(
+                                              //     fontSize: 11.sp,
+                                              //     fontFamily:
+                                              //     'task',
+                                              //     fontWeight:
+                                              //     FontWeight
+                                              //         .bold,
+                                              //     letterSpacing:
+                                              //     1,
+                                              //     color: Colors
+                                              //         .black,
+                                              //   ),
+                                              // ),
+                                              // SizedBox(
+                                              //   width: 1.w,
+                                              // ),
                                               Text(
                                                 '₹' +
                                                     (shortbymodel
@@ -887,9 +902,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  decoration:
-                                                  TextDecoration
-                                                      .lineThrough,
+                                                  // decoration:
+                                                  // TextDecoration
+                                                  //     .lineThrough,
                                                   fontSize: 12.sp,
                                                   fontFamily:
                                                   'task',
@@ -1008,7 +1023,8 @@ class _ProductList4State extends State<ProductList4> {
                       // childCount: shortbymodel
                       //     ?.searchResults?.length,
                     ),
-                  ): type1=="1"? SliverGrid(
+                  ):
+                  type1=="1"? SliverGrid(
                     gridDelegate:
                     SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent:
@@ -1187,26 +1203,26 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              Text(
-                                                '₹' +
-                                                    (filterbymodel
-                                                        ?.searchResults?[
-                                                    index]
-                                                        .saleProductPrice)
-                                                        .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 11.sp,
-                                                  fontFamily:
-                                                  'task',
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold,
-                                                  letterSpacing:
-                                                  1,
-                                                  color: Colors
-                                                      .black,
-                                                ),
-                                              ),
+                                              // Text(
+                                              //   '₹' +
+                                              //       (filterbymodel
+                                              //           ?.searchResults?[
+                                              //       index]
+                                              //           .saleProductPrice)
+                                              //           .toString(),
+                                              //   style: TextStyle(
+                                              //     fontSize: 11.sp,
+                                              //     fontFamily:
+                                              //     'task',
+                                              //     fontWeight:
+                                              //     FontWeight
+                                              //         .bold,
+                                              //     letterSpacing:
+                                              //     1,
+                                              //     color: Colors
+                                              //         .black,
+                                              //   ),
+                                              // ),
                                               SizedBox(
                                                 width: 1.w,
                                               ),
@@ -1218,9 +1234,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  decoration:
-                                                  TextDecoration
-                                                      .lineThrough,
+                                                  // decoration:
+                                                  // TextDecoration
+                                                  //     .lineThrough,
                                                   fontSize: 12.sp,
                                                   fontFamily:
                                                   'task',
@@ -1339,7 +1355,8 @@ class _ProductList4State extends State<ProductList4> {
                       // childCount: filterbymodel
                       //     ?.searchResults?.length,
                     ),
-                  ):type1=="2"? SliverGrid(
+                  ):
+                  type1=="2"? SliverGrid(
                     gridDelegate:
                     SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent:
@@ -1518,29 +1535,29 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              Text(
-                                                '₹' +
-                                                    (filterbymodel
-                                                        ?.searchResults?[
-                                                    index]
-                                                        .saleProductPrice)
-                                                        .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 11.sp,
-                                                  fontFamily:
-                                                  'task',
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold,
-                                                  letterSpacing:
-                                                  1,
-                                                  color: Colors
-                                                      .black,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 1.w,
-                                              ),
+                                              // Text(
+                                              //   '₹' +
+                                              //       (filterbymodel
+                                              //           ?.searchResults?[
+                                              //       index]
+                                              //           .saleProductPrice)
+                                              //           .toString(),
+                                              //   style: TextStyle(
+                                              //     fontSize: 11.sp,
+                                              //     fontFamily:
+                                              //     'task',
+                                              //     fontWeight:
+                                              //     FontWeight
+                                              //         .bold,
+                                              //     letterSpacing:
+                                              //     1,
+                                              //     color: Colors
+                                              //         .black,
+                                              //   ),
+                                              // ),
+                                              // SizedBox(
+                                              //   width: 1.w,
+                                              // ),
                                               Text(
                                                 '₹' +
                                                     (filterbymodel
@@ -1549,9 +1566,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  decoration:
-                                                  TextDecoration
-                                                      .lineThrough,
+                                                  // decoration:
+                                                  // TextDecoration
+                                                  //     .lineThrough,
                                                   fontSize: 12.sp,
                                                   fontFamily:
                                                   'task',
@@ -1671,10 +1688,10 @@ class _ProductList4State extends State<ProductList4> {
                       //     ?.searchResults?.length,
                     ),
                   ):_serch2.text == ''
-                      ? bestsellerproductmodal?.productData?.length ==
+                      ? allproductmodal?.allProducts?.length ==
                       0 ||
-                      bestsellerproductmodal
-                          ?.productData?.length ==
+                      allproductmodal
+                          ?.allProducts?.length ==
                           null
                       ? SliverToBoxAdapter(
                     child: Container(
@@ -1690,7 +1707,9 @@ class _ProductList4State extends State<ProductList4> {
                           )),
                     ),
                   )
-                      : SliverGrid(
+                      : isloding == true
+                      ? SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()))
+                      :  SliverGrid(
                     gridDelegate:
                     SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent:
@@ -1704,307 +1723,297 @@ class _ProductList4State extends State<ProductList4> {
                     ),
                     delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
-                        return Stack(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        productdetailnovartion(
-                                          productid: allproductmodal?.allProducts?[index].productID ?? ''
-                                        )));
+                            if (index < posts.length)
+                              {
+                                final post = posts[index];
+                                    return Stack(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                productdetailnovartion(
+                                                    productid:("${post['ProductID']}")
+                                                )));
 
-                              },
-                              child: Card(
-                                color: Colors.white,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10)
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Container(
-                                        child: CachedNetworkImage(
-                                          imageUrl: allproductmodal?.allProducts?[index].allProductImage?[0] ?? '',
-                                          height: 9.5.h,
-                                          width: 25.w,
-                                          imageBuilder: (context,
-                                              imageProvider) =>
-                                              Container(
-                                                decoration:
-                                                BoxDecoration(
-                                                  // borderRadius: BorderRadius.circular(10),
-                                                  image:
-                                                  DecorationImage(
-                                                    filterQuality:
-                                                    FilterQuality
-                                                        .high,
-                                                    image:
-                                                    imageProvider,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
-                                          placeholder: (context,
-                                              url) =>
-                                              Center(
-                                                  child:
-                                                  CircularProgressIndicator()),
-                                          errorWidget: (context,
-                                              url, error) =>
-                                              Icon(Icons.error),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 1.h,
-                                      ),
-                                      Padding(
-                                        padding:
-                                        EdgeInsets.symmetric(
-                                            horizontal: 1.w),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .center,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .center,
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment
-                                                  .center,
-                                              children: [
-                                                SizedBox(
-                                                  width: 30.w,
-                                                  child: Text(
-                                                    textAlign:
-                                                    TextAlign
-                                                        .center,
-                                                    overflow:
-                                                    TextOverflow
-                                                        .ellipsis,
-                                                    maxLines: 1,
-                                                    allproductmodal
-                                                        ?.allProducts?[index]
-                                                        .productName ??
-                                                        '',
-                                                    style: TextStyle(
-                                                        fontSize:
-                                                        11
-                                                            .sp,
-                                                        fontFamily:
-                                                        'task',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .bold,
-                                                        letterSpacing:
-                                                        1,
-                                                        color: Colors
-                                                            .black),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      // Padding(
-                                      //   padding:
-                                      //       EdgeInsets.symmetric(
-                                      //     horizontal: 1.5.w,
-                                      //   ),
-                                      //   child: SizedBox(
-                                      //     width: 35.w,
-                                      //     child: Text(
-                                      //       textAlign:
-                                      //           TextAlign.center,
-                                      //       overflow: TextOverflow
-                                      //           .ellipsis,
-                                      //       maxLines: 2,
-                                      //       bestsellerproductmodal
-                                      //               ?.productData?[
-                                      //                   index]
-                                      //               .productShortDesc ??
-                                      //           '',
-                                      //       style: TextStyle(
-                                      //         fontSize: 12.sp,
-                                      //         fontFamily: 'task',
-                                      //         fontWeight:
-                                      //             FontWeight
-                                      //                 .normal,
-                                      //         letterSpacing: 1,
-                                      //         color: Colors.black,
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment
-                                            .center,
-                                        children: [
-                                          Row(
+                                      },
+                                      child: Card(
+                                        color: Colors.white,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.circular(10)
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                             children: [
-                                              Text(
-                                                '₹' +
-                                                    (allproductmodal
-                                                        ?.allProducts?[
-                                                    index]
-                                                        .saleProductPrice)
-                                                        .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 11.sp,
-                                                  fontFamily:
-                                                  'task',
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold,
-                                                  letterSpacing:
-                                                  1,
-                                                  color: Colors
-                                                      .black,
+                                              SizedBox(
+                                                height: 2.h,
+                                              ),
+                                              Container(
+                                                child: CachedNetworkImage(
+                                                  imageUrl: allproductmodal
+                                                      ?.allProducts?[index]
+                                                      .allProductImage?[0] ??
+                                                      '',
+                                                  height: 9.5.h,
+                                                  width: 25.w,
+                                                  imageBuilder: (context,
+                                                      imageProvider) =>
+                                                      Container(
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          // borderRadius: BorderRadius.circular(10),
+                                                          image:
+                                                          DecorationImage(
+                                                            filterQuality:
+                                                            FilterQuality
+                                                                .high,
+                                                            image:
+                                                            imageProvider,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                  placeholder: (context,
+                                                      url) =>
+                                                      Center(
+                                                          child:
+                                                          CircularProgressIndicator()),
+                                                  errorWidget: (context,
+                                                      url, error) =>
+                                                      Icon(Icons.error),
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 0.5.w,
+                                                height: 1.h,
                                               ),
                                               Padding(
-                                                padding: EdgeInsets
-                                                    .only(
-                                                    top: 0.4
-                                                        .h),
-                                                child: Text(
-                                                  '₹' +
-                                                      (allproductmodal
-                                                          ?.allProducts?[index]
-                                                          .productPrice)
-                                                          .toString(),
-                                                  style:
-                                                  TextStyle(
-                                                    decoration:
-                                                    TextDecoration
-                                                        .lineThrough,
-                                                    fontSize:
-                                                    11.sp,
-                                                    fontFamily:
-                                                    'task',
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .normal,
-                                                    letterSpacing:
-                                                    1,
-                                                    color: Colors
-                                                        .black,
+                                                padding:
+                                                EdgeInsets.symmetric(
+                                                    horizontal: 1.w),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .center,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .center,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .center,
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 30.w,
+                                                          child: Text(
+                                                            textAlign:
+                                                            TextAlign
+                                                                .center,
+                                                            overflow:
+                                                            TextOverflow
+                                                                .ellipsis,
+                                                            maxLines: 1,
+                                                            allproductmodal
+                                                                ?.allProducts?[index]
+                                                                .productName ??
+                                                                '',
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                11
+                                                                    .sp,
+                                                                fontFamily:
+                                                                'task',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                                letterSpacing:
+                                                                1,
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .center,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      // Text(
+                                                      //   '₹' +
+                                                      //       (allproductmodal
+                                                      //           ?.allProducts?[
+                                                      //       index]
+                                                      //           .saleProductPrice)
+                                                      //           .toString(),
+                                                      //
+                                                      //
+                                                      //
+                                                      //   style: TextStyle(
+                                                      //     fontSize: 11.sp,
+                                                      //     fontFamily:
+                                                      //     'task',
+                                                      //     fontWeight:
+                                                      //     FontWeight
+                                                      //         .bold,
+                                                      //     letterSpacing:
+                                                      //     1,
+                                                      //     color: Colors
+                                                      //         .black,
+                                                      //   ),
+                                                      // ),
+
+                                          // Text("${post['ProductName']}"),
+
+                                                      // SizedBox(
+                                                      //   width: 0.5.w,
+                                                      // ),
+                                                      Padding(
+                                                        padding: EdgeInsets
+                                                            .only(
+                                                            top: 0.4
+                                                                .h),
+                                                        child:
+                                                        Text(
+                                                          '₹' +
+                                                              (allproductmodal
+                                                                  ?.allProducts?[index]
+                                                                  .productPrice)
+                                                                  .toString(),
+                                                          style:
+                                                          TextStyle(
+                                                            // decoration:
+                                                            // TextDecoration
+                                                            //     .lineThrough,
+                                                            fontSize:
+                                                            11.sp,
+                                                            fontFamily:
+                                                            'task',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .normal,
+                                                            letterSpacing:
+                                                            1,
+                                                            color: Colors
+                                                                .black,
+                                                          ),
+                                                        ),
+
+                                                        // Text("₹ ${post['ProductPrice']}"),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 1.h,
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder:
+                                                              (context) =>
+                                                              productdetailnovartion(
+                                                                  productid:("${post['ProductID']}")
+                                                              )));
+
+                                                },
+                                                child: Container(
+                                                  alignment:
+                                                  Alignment.center,
+                                                  height: 4.h,
+                                                  width: 32.w,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                      BorderRadius
+                                                          .circular(
+                                                          10),
+                                                      color: Color(0xff0061b0)),
+                                                  child: Text(
+                                                    "View Product",
+                                                    style: TextStyle(
+                                                        fontSize: 11.sp,
+                                                        color:
+                                                        Colors.white),
                                                   ),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 1.h,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder:
-                                                      (context) =>
-                                                      productdetailnovartion(
-                                                        productid: allproductmodal?.allProducts?[index].productID ?? '',
-                                                      )));
-
-                                        },
-                                        child: Container(
-                                          alignment:
-                                          Alignment.center,
-                                          height: 4.h,
-                                          width: 32.w,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius
-                                                  .circular(
-                                                  10),
-                                              color: Color(0xff0061b0)),
-                                          child: Text(
-                                            "View Product",
-                                            style: TextStyle(
-                                                fontSize: 11.sp,
-                                                color:
-                                                Colors.white),
-                                          ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                                left: 37.w,
-                                top: 1.h,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    usermodal?.userId == "" ||
-                                        usermodal?.userId ==
-                                            null
-                                        ? Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                        builder:
-                                            (context) =>
-                                            LoginPage2()))
-                                        : allproductmodal
-                                        ?.allProducts?[
-                                    index]
-                                        .wishlist ==
-                                        1
-                                        ? removewishlistap(
-                                        (allproductmodal
-                                            ?.allProducts?[
-                                        index]
-                                            .productID)
-                                            .toString())
-                                        : addwishlistap(
-                                        (allproductmodal
-                                            ?.allProducts?[
-                                        index]
-                                            .productID)
-                                            .toString());
-                                  },
-                                  child: Icon(
-                                    allproductmodal
-                                        ?.allProducts?[
-                                    index]
-                                        .wishlist ==
-                                        1
-                                        ? Icons.favorite
-                                        : Icons
-                                        .favorite_outline,
-                                    size: 20.sp,
-                                    color: allproductmodal
-                                        ?.allProducts?[
-                                    index]
-                                        .wishlist ==
-                                        1
-                                        ? Colors.red
-                                        : Colors.black,
-                                  ),
-                                )),
-                          ],
-                        );
+                                    ),
+                                    Positioned(
+                                        left: 37.w,
+                                        top: 1.h,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            usermodal?.userId == "" ||
+                                                usermodal?.userId ==
+                                                    null
+                                                ? Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                                builder:
+                                                    (context) =>
+                                                    LoginPage2()))
+                                                : allproductmodal
+                                                ?.allProducts?[
+                                            index]
+                                                .wishlist ==
+                                                1
+                                                ? removewishlistap(
+                                                (allproductmodal
+                                                    ?.allProducts?[
+                                                index]
+                                                    .productID)
+                                                    .toString())
+                                                : addwishlistap(
+                                                (allproductmodal
+                                                    ?.allProducts?[
+                                                index]
+                                                    .productID)
+                                                    .toString());
+                                          },
+                                          child: Icon(
+                                            allproductmodal
+                                                ?.allProducts?[
+                                            index]
+                                                .wishlist ==
+                                                1
+                                                ? Icons.favorite
+                                                : Icons
+                                                .favorite_outline,
+                                            size: 20.sp,
+                                            color: allproductmodal
+                                                ?.allProducts?[
+                                            index]
+                                                .wishlist ==
+                                                1
+                                                ? Colors.red
+                                                : Colors.black,
+                                          ),
+                                        )),
+                                  ],
+                                );
+                              }
+                            else {
+                              return Center(child: SizedBox());
+                            }
+
                       },
-                      childCount: 10
+                      childCount: isloadingMore ? posts.length + 1 : posts.length,
                       // childCount: allproductmodal
                       //     ?.allProducts?.length
 
@@ -2203,29 +2212,29 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              Text(
-                                                '₹' +
-                                                    (searchbestsaleModal
-                                                        ?.productData?[
-                                                    index]
-                                                        .saleProductPrice)
-                                                        .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 11.sp,
-                                                  fontFamily:
-                                                  'task',
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold,
-                                                  letterSpacing:
-                                                  1,
-                                                  color: Colors
-                                                      .black,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 1.h,
-                                              ),
+                                              // Text(
+                                              //   '₹' +
+                                              //       (searchbestsaleModal
+                                              //           ?.productData?[
+                                              //       index]
+                                              //           .saleProductPrice)
+                                              //           .toString(),
+                                              //   style: TextStyle(
+                                              //     fontSize: 11.sp,
+                                              //     fontFamily:
+                                              //     'task',
+                                              //     fontWeight:
+                                              //     FontWeight
+                                              //         .bold,
+                                              //     letterSpacing:
+                                              //     1,
+                                              //     color: Colors
+                                              //         .black,
+                                              //   ),
+                                              // ),
+                                              // SizedBox(
+                                              //   width: 1.h,
+                                              // ),
                                               Text(
                                                 '₹' +
                                                     (searchbestsaleModal
@@ -2234,9 +2243,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  decoration:
-                                                  TextDecoration
-                                                      .lineThrough,
+                                                  // decoration:
+                                                  // TextDecoration
+                                                  //     .lineThrough,
                                                   fontSize: 11.sp,
                                                   fontFamily:
                                                   'task',
@@ -2361,43 +2370,7 @@ class _ProductList4State extends State<ProductList4> {
                       height: 1.h,
                     ),
                   ),
-                  // SliverToBoxAdapter(
-                  //     child: _serch2.text == ''
-                  //         ? Row(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         GestureDetector(
-                  //           onTap: () {
-                  //             setState(() {
-                  //               _isLoading = !_isLoading;
-                  //             });
-                  //           },
-                  //           child: (bestsellerproductmodal
-                  //               ?.productData?.length ??
-                  //               0) <
-                  //               4
-                  //               ? Container()
-                  //               : Container(
-                  //               alignment: Alignment.center,
-                  //               height: 4.h,
-                  //               width: 30.w,
-                  //               decoration: BoxDecoration(
-                  //                   borderRadius:
-                  //                   BorderRadius.circular(
-                  //                       30),
-                  //                   color: Color(0xff0061b0)),
-                  //               child: Text(
-                  //                 _isLoading
-                  //                     ? "View Less.."
-                  //                     : "View More..",
-                  //                 style: TextStyle(
-                  //                     fontSize: 12.sp,
-                  //                     color: Colors.white),
-                  //               )),
-                  //         )
-                  //       ],
-                  //     )
-                  //         : Container()),
+
                   SliverToBoxAdapter(
                     child: SizedBox(
                       height: 1.5.h,
@@ -2424,9 +2397,9 @@ class _ProductList4State extends State<ProductList4> {
       if (internet) {
         authprovider().allproductapi(data).then((response) async {
           allproductmodal = AllProductModal.fromJson(json.decode(response.body));
-          print(bestsellerproductmodal?.status);
+          print(allproductmodal?.status);
           if (response.statusCode == 200 &&
-              bestsellerproductmodal?.status == "success") {
+              allproductmodal?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
               isLoading = false;
@@ -2666,8 +2639,6 @@ class _ProductList4State extends State<ProductList4> {
     });
   }
 
-
-
   shortbyap(String value) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -2708,4 +2679,99 @@ class _ProductList4State extends State<ProductList4> {
     });
   }
 
+
+
+  paginationapi() async {
+    final Map<String, String> data = {};
+    data['user_id'] = (usermodal?.userId).toString();
+    data['page'] = "$page";
+    data['limit'] = "10";
+    checkInternet().then((internet) async {
+      print( "555555555555555");
+      if (internet) {
+        authprovider().paginationap(data).then((response) async {
+          paginationModel = PaginationModel.fromJson(json.decode(response.body));
+          print(paginationModel?.status);
+          if (response.statusCode == 200 &&
+              paginationModel?.status == "success") {
+            print( "6666666666666");
+
+            final jsonResponse = jsonDecode(response.body);
+            final jsonAppointments = jsonResponse['data'];
+            List<dynamic> currentNames = posts.map((post) => post['ProductID']).toList();
+
+// Filter out appointments with names that already exist in the posts list
+            final uniqueAppointments = jsonAppointments.where((appointment) {
+              return !currentNames.contains(appointment['ProductID']);
+            }).toList();
+
+            setState(() {
+              posts = posts + jsonAppointments;
+              isloding = false;
+            });
+
+            print('EE Thay Gyu Hooooo ${posts.length} ! ^_^');
+            // setState(() {
+            //   isLoading = false;
+            //   type1= "";
+            //   short= "";
+            // });
+          } else {
+            setState(() {
+              isLoading = false;
+              type1= "";
+              short= "";
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+          type1= "";
+          short= "";
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
+
+
+  // Future<void> fetchPosts() async {
+  //   final url =
+  //       "https://techcrunch.com/wp-json/wp/v2/posts?context=embed&per_page=5&page=$page";
+  //   print("$url");
+  //   final uri = Uri.parse(url);
+  //   final response = await http.get(uri);
+  //   if (response.statusCode == 200) {
+  //     final json = jsonDecode(response.body) as List;
+  //     setState(() {
+  //       posts = posts + json;
+  //       isloding = false;
+  //     });
+  //   } else {
+  //     print("eroor unexpected");
+  //   }
+  // }
+
+
+
+  Future<void> _scrollListener() async {
+    if (isloadingMore) return;
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      setState(() {
+        isloadingMore = true;
+      });
+      page = page + 1;
+      print("$page");
+      await paginationapi();
+      setState(() {
+        isloadingMore = false;
+      });
+    }
+  }
 }
+
+

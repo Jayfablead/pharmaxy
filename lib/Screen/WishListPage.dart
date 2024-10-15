@@ -356,29 +356,29 @@ class _WishListPageState extends State<WishListPage> {
                                                                   left: 1.w),
                                                           child: Row(
                                                             children: [
-                                                              Text(
-                                                                '₹' +
-                                                                    (userwishlIstmodal
-                                                                            ?.wishList?[
-                                                                                index]
-                                                                            .saleProductPrice)
-                                                                        .toString(),
-                                                                style: TextStyle(
-                                                                  fontSize: 11.sp,
-                                                                  fontFamily:
-                                                                      'task',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  letterSpacing:
-                                                                      1,
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 0.5.w,
-                                                              ),
+                                                              // Text(
+                                                              //   '₹' +
+                                                              //       (userwishlIstmodal
+                                                              //               ?.wishList?[
+                                                              //                   index]
+                                                              //               .saleProductPrice)
+                                                              //           .toString(),
+                                                              //   style: TextStyle(
+                                                              //     fontSize: 11.sp,
+                                                              //     fontFamily:
+                                                              //         'task',
+                                                              //     fontWeight:
+                                                              //         FontWeight
+                                                              //             .bold,
+                                                              //     letterSpacing:
+                                                              //         1,
+                                                              //     color: Colors
+                                                              //         .black,
+                                                              //   ),
+                                                              // ),
+                                                              // SizedBox(
+                                                              //   width: 0.5.w,
+                                                              // ),
                                                               Padding(
                                                                 padding: EdgeInsets
                                                                     .only(
@@ -392,9 +392,9 @@ class _WishListPageState extends State<WishListPage> {
                                                                           .toString(),
                                                                   style:
                                                                       TextStyle(
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .lineThrough,
+                                                                    // decoration:
+                                                                    //     TextDecoration
+                                                                    //         .lineThrough,
                                                                     fontSize:
                                                                         11.sp,
                                                                     fontFamily:

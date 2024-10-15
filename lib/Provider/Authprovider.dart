@@ -59,6 +59,39 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
+
+  Future<http.Response> allproductsearchapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/searchProducts";
+    print(url);
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+  Future<http.Response> bannnerapi(Map<String, String> bodyData) async {
+    const url = "$baseUrl/banar";
+    var responseJson;
+    final response = await http
+        .get(
+      Uri.parse(url),
+    )
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
   Future<http.Response> ViewProfile(Map<String, String> bodyData) async {
     const url = "$baseUrl/userProfile";
     var responseJson;
@@ -1009,6 +1042,23 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
+  // logout cart total
+  Future<http.Response> logoutcarttotalcountapi( Map<String, String> bodyData) async {
+    const url = "$baseUrl/withoutlogin_cart_count";
+    print(url);
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
   Future<http.Response> shippingaddapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/change_shipping_address";
     print(url);
@@ -1571,4 +1621,36 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
+  Future<http.Response> paginationap(Map<String, String> bodyData) async {
+    const url = "$baseUrl/getPaginatedProducts";
+    print(url);
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+  // Future<http.Response> paginationap(Map<String, String> bodyData) async {
+  //   const url = "$baseUrl/getPaginatedProducts";
+  //   print(url);
+  //   var responseJson;
+  //   final response = await http
+  //       .get(
+  //     Uri.parse(url), headers: headers
+  //   )
+  //       .timeout(
+  //     const Duration(seconds: 30),
+  //     onTimeout: () {
+  //       throw const SocketException('Something went wrong');
+  //     },
+  //   );
+  //   responseJson = responses(response);
+  //   return responseJson;
+  // }
 }

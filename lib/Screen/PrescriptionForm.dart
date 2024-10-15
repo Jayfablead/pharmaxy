@@ -870,6 +870,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                 InkWell(
                                   onTap: () {
                                     selectfile();
+
                                   },
                                   child: Container(
                                     width: 85.w,
@@ -911,10 +912,14 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           GestureDetector(
                             onTap: () async{
                               if (_formKey.currentState!.validate()) {
-                                await preformap();
-                                Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) => HomePage(sel: 1,),)
-                                );
+
+                               if(_pickedFile == '' || _pickedFile== null){
+                                 buildErrorDialog(
+                                     context, '', "Please Upload Prescription");
+                               }
+                               else{
+                                 await preformap();
+                               }
                               }
                             },
                             child: Row(
@@ -1056,21 +1061,22 @@ class _PrescriptionformState extends State<Prescriptionform> {
             prescriptionformModel = PrescriptionformModel.fromJson(json.decode(response.body));
             print(prescriptionformModel?.status);
             if (response.statusCode == 200 && prescriptionformModel?.status == "success") {
+              EasyLoading.showSuccess('Submit Successfully');
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => HomePage(sel: 1),
               ));
-              setState(() {
-                isLoading = true;
-              });
-              EasyLoading.showSuccess('Submit Successfully');
-              setState(() {
-                isLoading = false;
-              });
+              // setState(() {
+              //   isLoading = true;
+              // });
+
+              // setState(() {
+              //   isLoading = false;
+              // });
             } else {
               EasyLoading.showError('Submit Failed');
-              setState(() {
-                isLoading = false;
-              });
+              // setState(() {
+              //   isLoading = false;
+              // });
             }
           });
         } else {
