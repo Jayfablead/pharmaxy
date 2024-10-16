@@ -601,36 +601,35 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.spaceBetween,
                                                   children: [
-                                                    Text(
-                                                      'Sub Total : ',
-                                                      style: TextStyle(
-                                                        fontFamily: 'task',
-                                                        fontSize: 12.sp,
-                                                        color: Colors.grey.shade800,
-                                                        fontWeight: FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      // "\$50",
-                                                      chekoutdetailmodal?.checkoutData?[0]
-                                                          .finalTotal ==
-                                                          null ||
-                                                          chekoutdetailmodal
-                                                              ?.checkoutData?[0]
-                                                              .finalTotal ==
-                                                              ""
-                                                          ? "N/A"
-                                                          : '₹' +
-                                                          (chekoutdetailmodal
-                                                              ?.checkoutData?[0]
-                                                              .finalTotal)
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                          fontFamily: 'task',
-                                                          fontSize: 12.sp,
-                                                          fontWeight: FontWeight.normal,
-                                                          color: Colors.black),
-                                                    ),
+                                                    // Text(
+                                                    //   'Sub Total : ',
+                                                    //   style: TextStyle(
+                                                    //     fontFamily: 'task',
+                                                    //     fontSize: 12.sp,
+                                                    //     color: Colors.grey.shade800,
+                                                    //     fontWeight: FontWeight.bold,
+                                                    //   ),
+                                                    // ),
+                                                    // Text(
+                                                    //   // "\$50",
+                                                    //   myoederdetailmodal?.userDetai?.totalAmount ==
+                                                    //       null ||
+                                                    //       myoederdetailmodal
+                                                    //           ?.orderDetails?[0]
+                                                    //           .totalAmount ==
+                                                    //           ""
+                                                    //       ? "N/A"
+                                                    //       : '₹' +
+                                                    //       (myoederdetailmodal
+                                                    //           ?.orderDetails?[0]
+                                                    //           .totalAmount)
+                                                    //           .toString(),
+                                                    //   style: TextStyle(
+                                                    //       fontFamily: 'task',
+                                                    //       fontSize: 12.sp,
+                                                    //       fontWeight: FontWeight.normal,
+                                                    //       color: Colors.black),
+                                                    // ),
                                                   ],
                                                 ),
                                                 SizedBox(
@@ -651,18 +650,14 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      chekoutdetailmodal?.checkoutData?[0]
-                                                          .totalTax ==
+                                                      myoederdetailmodal?.userDetail?.totalTax
+                                                           ==
                                                           null ||
-                                                          chekoutdetailmodal
-                                                              ?.checkoutData?[0]
-                                                              .totalTax ==
+                                                          myoederdetailmodal?.userDetail?.totalTax ==
                                                               ""
                                                           ? "N/A"
                                                           : '₹' +
-                                                          (chekoutdetailmodal
-                                                              ?.checkoutData?[0]
-                                                              .totalTax)
+                                                          (myoederdetailmodal?.userDetail?.totalTax)
                                                               .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
@@ -701,18 +696,14 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      chekoutdetailmodal?.checkoutData?[0]
-                                                          .shippingTax ==
-                                                          null ||
-                                                          chekoutdetailmodal
-                                                              ?.checkoutData?[0]
-                                                              .shippingTax ==
-                                                              ""
+                                                      myoederdetailmodal?.userDetail?.totalShipingCost
+                                                          ==
+                                                          null||
+                                                          myoederdetailmodal?.userDetail?.totalShipingCost==""
                                                           ? "N/A"
                                                           : '₹' +
-                                                          (chekoutdetailmodal
-                                                              ?.checkoutData?[0]
-                                                              .shippingTax)
+                                                          (myoederdetailmodal
+                                                              ?.userDetail?.totalShipingCost)
                                                               .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
@@ -740,18 +731,14 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      chekoutdetailmodal?.checkoutData?[0]
-                                                          .discount ==
-                                                          null ||
-                                                          chekoutdetailmodal
-                                                              ?.checkoutData?[0]
-                                                              .discount ==
+                                                      myoederdetailmodal?.userDetail?.totalDiscount
+                                                          ==
+                                                          null||
+                                                          myoederdetailmodal?.userDetail?.totalDiscount ==
                                                               ""
                                                           ? "\₹ 0"
                                                           : '₹' +
-                                                          (chekoutdetailmodal
-                                                              ?.checkoutData?[0]
-                                                              .discount)
+                                                          ( myoederdetailmodal?.userDetail?.totalDiscount)
                                                               .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
@@ -782,24 +769,15 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      chekoutdetailmodal
-                                                          ?.checkoutData?[
-                                                      0]
-                                                          .referral ==
-                                                          null ||
-                                                          chekoutdetailmodal
-                                                              ?.checkoutData?[
-                                                          0]
-                                                              .referral ==
-                                                              ""
-                                                          ? "N/A"
+                                                      myoederdetailmodal?.userDetail?.referDis
+                                                          ==
+                                                          null||
+                                                          myoederdetailmodal?.userDetail?.referDis==""
+                                                          ? "\₹ 0 "
                                                           : '₹' +
-                                                          (chekoutdetailmodal
-                                                              ?.checkoutData?[
-                                                          0]
-                                                              .referral)
-                                                              .toString(),
-                                                      style: TextStyle(
+                                                          (myoederdetailmodal
+                                                              ?.userDetail?.referDis)
+                                                              .toString(), style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 12.sp,
                                                         fontWeight: FontWeight.normal,
@@ -840,17 +818,14 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  chekoutdetailmodal?.checkoutData?[0]
-                                                      .total ==
+                                                  myoederdetailmodal ?.userDetail?.totalAmount
+                                                      ==
                                                       null ||
-                                                      chekoutdetailmodal
-                                                          ?.checkoutData?[0]
-                                                          .total ==
+                                                      myoederdetailmodal ?.userDetail?.totalAmount ==
                                                           ""
                                                       ? "N/A"
                                                       : '₹' +
-                                                      (chekoutdetailmodal
-                                                          ?.checkoutData?[0].total)
+                                                      (myoederdetailmodal ?.userDetail?.totalAmount)
                                                           .toString(),
                                                   style: TextStyle(
                                                     fontFamily: 'task',
