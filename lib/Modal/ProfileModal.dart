@@ -36,6 +36,7 @@ class ProfileDetails {
   String? userAddress;
   String? userAddress2;
   String? referCode;
+  String? referType;
 
   ProfileDetails(
       {this.profileimage,
@@ -48,7 +49,8 @@ class ProfileDetails {
         this.userState,
         this.userAddress,
         this.userAddress2,
-        this.referCode});
+        this.referCode,
+        this.referType});
 
   ProfileDetails.fromJson(Map<String, dynamic> json) {
     profileimage = json['Profileimage'];
@@ -62,6 +64,7 @@ class ProfileDetails {
     userAddress = json['UserAddress'];
     userAddress2 = json['UserAddress2'];
     referCode = json['refer_code'];
+    referType = json['refer_type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -77,6 +80,7 @@ class ProfileDetails {
     data['UserAddress'] = this.userAddress;
     data['UserAddress2'] = this.userAddress2;
     data['refer_code'] = this.referCode;
+    data['refer_type'] = this.referType;
     return data;
   }
 }

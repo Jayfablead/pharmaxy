@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/AllCatModal.dart';
@@ -21,7 +22,6 @@ import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/All_Blog.dart';
 import 'package:ecommerce/Screen/All_Brands.dart';
-
 import 'package:ecommerce/Screen/BlogdetailsPage.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
@@ -30,8 +30,6 @@ import 'package:ecommerce/Screen/PrescriptionForm.dart';
 import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
 import 'package:ecommerce/Screen/ProductList3.dart';
 import 'package:ecommerce/Screen/ProductList4.dart';
-import 'package:ecommerce/Screen/ProductListPage.dart';
-import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/Refill_Alert.dart';
 import 'package:ecommerce/Screen/RequestDoctorForm.dart';
@@ -45,8 +43,6 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -60,7 +56,7 @@ class HomePage extends StatefulWidget {
 }
 
 Future<void> _launchUrl(String url) async {
-  if (!await launchUrl(Uri.parse(url),mode: LaunchMode.externalApplication)) {
+  if (!await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication)) {
     throw Exception('Could not launch $url');
   }
 }
@@ -530,74 +526,99 @@ class _HomePageState extends State<HomePage> {
                               : SliverToBoxAdapter(
                                   child: SizedBox(
                                     height: 16.h,
-                                    child: bannermodel?.data?.length == 0 ? Center(
-                                      child: Text(
-                                        "No Banner Available",
-                                        style: TextStyle(
-                                          fontSize: 13.sp,
-                                          fontFamily: 'task',
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ) :ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: bannermodel?.data?.length,
-                                      // Change to use dynamic list length
-                                      itemBuilder: (context, index) {
-                                        return InkWell(
-                                          onTap: () {
-                                         // bannermodel?.data?.type == 'url'?
-                                            _launchUrl(bannermodel?.data?[index].bannerUrl ?? '')
-                                            // : bannermodel?.data?.type == 'brand'? navigate kr brands ma : navigate kr product ma
-                                            ;
-                                          },
-                                          child: Card(
-                                            color: Colors.blue.shade50,
-                                            elevation: 0,
-                                            child: Container(
-                                              width: 90.w,
-                                              // Set the same width for the container
-                                              height: 14.5.h,
-                                              // Set the same height for the container
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: Colors.white,
-                                              ),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                child: CachedNetworkImage(
-                                                  fit: BoxFit.cover,
-                                                  // This will ensure the image covers the container
-                                                  imageUrl: bannermodel
-                                                          ?.data?[index]
-                                                          .bannerImg ??
-                                                      '',
-                                                  width: 60.w,
-                                                  // Same width as the container
-                                                  height: 14.5.h,
-                                                  // Same height as the container
-                                                  progressIndicatorBuilder:
-                                                      (context, url,
-                                                              progress) =>
-                                                          Center(
-                                                              child:
-                                                                  CircularProgressIndicator()),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          Image.asset(
-                                                              'assets/my.png',
-                                                              color: AppColors
-                                                                  .primary),
-                                                ),
+                                    child: bannermodel?.data?.length == 0
+                                        ? Center(
+                                            child: Text(
+                                              "No Banner Available",
+                                              style: TextStyle(
+                                                fontSize: 13.sp,
+                                                fontFamily: 'task',
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
+                                          )
+                                        : CarouselSlider.builder(
+                                            options: CarouselOptions(
+                                              height: 18.h,
+                                              // Carousel height
+                                              autoPlay: true,
+                                              // Enable auto-scrolling
+                                              autoPlayInterval:
+                                                  Duration(seconds: 2),
+                                              // Scroll every 1 second
+                                              enlargeCenterPage: true,
+                                              // Optional: enlarge the center item
+                                              viewportFraction: 1,
+                                              // Fraction of screen width to show
+                                              aspectRatio: 16 / 9,
+
+                                              // Aspect ratio of the slider
+                                            ),
+                                            //padding: EdgeInsets.zero,
+                                            // scrollDirection: Axis.horizontal,
+                                            itemCount:
+                                                bannermodel?.data?.length,
+                                            // Change to use dynamic list length
+                                            itemBuilder:
+                                                (context, index, realIdx) {
+                                              return InkWell(
+                                                onTap: () {
+                                                  // bannermodel?.data?.type == 'url'?
+                                                  _launchUrl(bannermodel
+                                                              ?.data?[index]
+                                                              .bannerUrl ??
+                                                          '')
+                                                      // : bannermodel?.data?.type == 'brand'? navigate kr brands ma : navigate kr product ma
+                                                      ;
+                                                },
+                                                child: Card(
+                                                  color: Colors.blue.shade50,
+                                                  elevation: 0,
+                                                  child: Container(
+                                                    width: 90.w,
+                                                    // Set the same width for the container
+                                                    height: 15.h,
+                                                    // Set the same height for the container
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: Colors.white,
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: CachedNetworkImage(
+                                                        fit: BoxFit.fill,
+                                                        // This will ensure the image covers the container
+                                                        imageUrl: bannermodel
+                                                                ?.data?[index]
+                                                                .bannerImg ??
+                                                            '',
+                                                        width: 60.w,
+                                                        // Same width as the container
+                                                        height: 15.h,
+                                                        // Same height as the container
+                                                        progressIndicatorBuilder:
+                                                            (context, url,
+                                                                    progress) =>
+                                                                Center(
+                                                                    child:
+                                                                        CircularProgressIndicator()),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Image.asset(
+                                                                'assets/my.png',
+                                                                color: AppColors
+                                                                    .primary),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
                                           ),
-                                        );
-                                      },
-                                    ),
                                   ),
                                 ),
                       name
@@ -1285,11 +1306,13 @@ class _HomePageState extends State<HomePage> {
                             )
                           : SliverToBoxAdapter(
                               child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 3.w, vertical: 2.h),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.white,
                                 ),
-                                height: 17.h,
+                                height: 19.h,
                                 child: allcatmodal?.categories?.length == 0
                                     ? Center(
                                         child: Text(
@@ -1312,127 +1335,122 @@ class _HomePageState extends State<HomePage> {
                                               1.0, // spacing between rows
                                           crossAxisSpacing:
                                               1.0, // spacing between items in a row
-                                          childAspectRatio: 0.6 /
+                                          childAspectRatio: 0.5 /
                                               1, // adjust based on desired item aspect ratio
                                         ),
                                         itemBuilder: (context, index) {
-                                          return Container(
-                                            child: Center(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        sel = index;
-                                                        selected = allcatmodal
-                                                            ?.categories?[index]
-                                                            .categoryID
-                                                            .toString();
-                                                        Navigator.of(context)
-                                                            .push(
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                SubCateGoryPage(
-                                                              catid: selected,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      });
-                                                      catwiceproductap();
-                                                    },
-                                                    child: Container(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors
-                                                            .grey.shade100,
-                                                        border: Border.all(
-                                                          width: 1,
-                                                          color: Colors.grey,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                      ),
-                                                      margin:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 2.w),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          height: 18.w,
-                                                          width: 18.w,
-                                                          imageUrl: allcatmodal
-                                                                  ?.categories?[
-                                                                      index]
-                                                                  .catagoryimage ??
-                                                              '',
-                                                          fit: BoxFit.cover,
-                                                          progressIndicatorBuilder:
-                                                              (context, url,
-                                                                      progress) =>
-                                                                  Center(
-                                                                      child:
-                                                                          CircularProgressIndicator()),
-                                                          errorWidget: (context,
-                                                                  url, error) =>
-                                                              Icon(Icons
-                                                                  .error_outline_outlined),
+                                          return Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  setState(() {
+                                                    sel = index;
+                                                    selected = allcatmodal
+                                                        ?.categories?[index]
+                                                        .categoryID
+                                                        .toString();
+                                                    Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            SubCateGoryPage(
+                                                          catid: selected,
                                                         ),
                                                       ),
+                                                    );
+                                                  });
+                                                  catwiceproductap();
+                                                },
+                                                child: Container(
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey.shade100,
+                                                    border: Border.all(
+                                                      width: 1,
+                                                      color: Colors.grey,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  margin: EdgeInsets.symmetric(
+                                                      horizontal: 2.w),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    child: CachedNetworkImage(
+                                                      height: 16.w,
+                                                      width: 16.w,
+                                                      imageUrl: allcatmodal
+                                                              ?.categories?[
+                                                                  index]
+                                                              .catagoryimage ??
+                                                          '',
+                                                      fit: BoxFit.cover,
+                                                      progressIndicatorBuilder:
+                                                          (context, url,
+                                                                  progress) =>
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Icon(Icons
+                                                              .error_outline_outlined),
                                                     ),
                                                   ),
-                                                  name
-                                                      ? SliverToBoxAdapter(
-                                                          child: Container(),
-                                                        )
-                                                      : SizedBox(
-                                                          height: 1.h,
-                                                        ),
-                                                  SizedBox(
-                                                    width: 16.w,
-                                                    child: Text(
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      allcatmodal
-                                                                      ?.categories?[
-                                                                          index]
-                                                                      .categoryName ==
-                                                                  '' ||
-                                                              allcatmodal
-                                                                      ?.categories?[
-                                                                          index]
-                                                                      .categoryName ==
-                                                                  null
-                                                          ? 'N/A'
-                                                          : allcatmodal
-                                                                  ?.categories?[
-                                                                      index]
-                                                                  .categoryName ??
-                                                              '',
-                                                      style: TextStyle(
-                                                        fontSize: 10.sp,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontFamily: "task",
-                                                        color: Colors.black,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                                ),
                                               ),
-                                            ),
+                                              name
+                                                  ? SliverToBoxAdapter(
+                                                      child: Container(),
+                                                    )
+                                                  : SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                              SizedBox(
+                                                width: 20.w,
+                                                child: Text(
+                                                  textAlign: TextAlign.center,
+                                                  allcatmodal
+                                                                  ?.categories?[
+                                                                      index]
+                                                                  .categoryName ==
+                                                              '' ||
+                                                          allcatmodal
+                                                                  ?.categories?[
+                                                                      index]
+                                                                  .categoryName ==
+                                                              null
+                                                      ? 'N/A'
+                                                      : allcatmodal
+                                                              ?.categories?[
+                                                                  index]
+                                                              .categoryName ??
+                                                          '',
+                                                  style: TextStyle(
+                                                    fontSize: 9.sp,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: "task",
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           );
                                         },
                                         itemCount:
-                                            allcatmodal?.categories?.length,
+                                            ((allcatmodal?.categories?.length ??
+                                                        0) <=
+                                                    4
+                                                ? (allcatmodal
+                                                        ?.categories?.length ??
+                                                    0)
+                                                : 4),
                                         // itemCount: allcatmodal?.categories?.length,
                                       ),
                               ),
@@ -1443,208 +1461,208 @@ class _HomePageState extends State<HomePage> {
                             )
                           : SliverToBoxAdapter(
                               child: SizedBox(
-                                height: 3.h,
-                              ),
-                            ),
-                      name
-                          ? SliverToBoxAdapter(
-                              child: Container(),
-                            )
-                          : SliverToBoxAdapter(
-                              child: brandmodel?.data?.length == 0 ||
-                                      brandmodel?.data?.length == '' ||
-                                      brandmodel?.data?.length == null
-                                  ? Container()
-                                  : Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          child: Text(
-                                            "Featured Brands",
-                                            style: TextStyle(
-                                                fontSize: 11.sp,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: "task"),
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        All_Brands()));
-                                          },
-                                          child: Container(
-                                            child: brandmodel?.data?.length == 0
-                                                ? Text("")
-                                                : Text(
-                                                    "View All",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 10.sp,
-                                                        color:
-                                                            AppColors.primary,
-                                                        fontFamily: "task"),
-                                                  ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                            ),
-                      name
-                          ? SliverToBoxAdapter(
-                              child: Container(),
-                            )
-                          : SliverToBoxAdapter(
-                              child: SizedBox(
                                 height: 1.h,
                               ),
                             ),
-                      name
-                          ? SliverToBoxAdapter(
-                              child: Container(),
-                            )
-                          : SliverToBoxAdapter(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                ),
-                                height: 15.h,
-                                child: brandmodel?.data?.length == 0
-                                    ? Center(
-                                        child: Text(
-                                          "No Brands Available",
-                                          style: TextStyle(
-                                            fontSize: 13.sp,
-                                            fontFamily: 'task',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      )
-                                    : ListView.builder(
-                                        scrollDirection: Axis.horizontal,
-                                        padding: EdgeInsets.zero,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 2.w),
-                                            child: Center(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        sel = index;
-                                                        selected = brandmodel
-                                                            ?.data?[index]
-                                                            .brandID
-                                                            .toString();
-                                                        Navigator.of(context).push(
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        ProductListPage2(
-                                                                          allcatid:
-                                                                              brandmodel?.data?[index]?.brandID ?? "",
-                                                                          name: brandmodel?.data?[index]?.brandName ??
-                                                                              "",
-                                                                        )));
-                                                      });
-                                                      catwiceproductap();
-                                                    },
-                                                    child: Container(
-                                                      height: 19.w,
-                                                      width: 19.w,
-                                                      alignment:
-                                                          Alignment.center,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors
-                                                            .grey.shade100,
-                                                        border: Border.all(
-                                                          width: 1,
-                                                          color: Colors.grey,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                10), // More rounded corners
-                                                      ),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        // Same rounded corners for the image
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          height: 19.w,
-                                                          width: 19.w,
-                                                          imageUrl: brandmodel
-                                                                  ?.data?[index]
-                                                                  .image ??
-                                                              '',
-                                                          fit: BoxFit.cover,
-                                                          progressIndicatorBuilder:
-                                                              (context, url,
-                                                                      progress) =>
-                                                                  Center(
-                                                                      child:
-                                                                          CircularProgressIndicator()),
-                                                          errorWidget: (context,
-                                                                  url, error) =>
-                                                              Icon(Icons
-                                                                  .error_outline_outlined),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 1.h,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 16.w,
-                                                    child: Text(
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 1,
-                                                      brandmodel?.data?[index]
-                                                                      .brandName ==
-                                                                  '' ||
-                                                              brandmodel
-                                                                      ?.data?[
-                                                                          index]
-                                                                      .brandName ==
-                                                                  null
-                                                          ? 'N/A'
-                                                          : brandmodel
-                                                                  ?.data?[index]
-                                                                  .brandName ??
-                                                              '',
-                                                      style: TextStyle(
-                                                        fontSize: 10.sp,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontFamily: "task",
-                                                        color: Colors.black,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        itemCount: brandmodel?.data?.length,
-                                      ),
-                              ),
-                            ),
+                      // name
+                      //     ? SliverToBoxAdapter(
+                      //         child: Container(),
+                      //       )
+                      //     : SliverToBoxAdapter(
+                      //         child: brandmodel?.data?.length == 0 ||
+                      //                 brandmodel?.data?.length == '' ||
+                      //                 brandmodel?.data?.length == null
+                      //             ? Container()
+                      //             : Row(
+                      //                 mainAxisAlignment:
+                      //                     MainAxisAlignment.spaceBetween,
+                      //                 children: [
+                      //                   SizedBox(
+                      //                     child: Text(
+                      //                       "Featured Brands",
+                      //                       style: TextStyle(
+                      //                           fontSize: 11.sp,
+                      //                           fontWeight: FontWeight.bold,
+                      //                           fontFamily: "task"),
+                      //                     ),
+                      //                   ),
+                      //                   GestureDetector(
+                      //                     onTap: () {
+                      //                       Navigator.of(context).push(
+                      //                           MaterialPageRoute(
+                      //                               builder: (context) =>
+                      //                                   All_Brands()));
+                      //                     },
+                      //                     child: Container(
+                      //                       child: brandmodel?.data?.length == 0
+                      //                           ? Text("")
+                      //                           : Text(
+                      //                               "View All",
+                      //                               style: TextStyle(
+                      //                                   fontWeight:
+                      //                                       FontWeight.bold,
+                      //                                   fontSize: 10.sp,
+                      //                                   color:
+                      //                                       AppColors.primary,
+                      //                                   fontFamily: "task"),
+                      //                             ),
+                      //                     ),
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //       ),
+                      // name
+                      //     ? SliverToBoxAdapter(
+                      //         child: Container(),
+                      //       )
+                      //     : SliverToBoxAdapter(
+                      //         child: SizedBox(
+                      //           height: 1.h,
+                      //         ),
+                      //       ),
+                      // name
+                      //     ? SliverToBoxAdapter(
+                      //         child: Container(),
+                      //       )
+                      //     : SliverToBoxAdapter(
+                      //         child: Container(
+                      //           decoration: BoxDecoration(
+                      //             borderRadius: BorderRadius.circular(10),
+                      //             color: Colors.white,
+                      //           ),
+                      //           height: 15.h,
+                      //           child: brandmodel?.data?.length == 0
+                      //               ? Center(
+                      //                   child: Text(
+                      //                     "No Brands Available",
+                      //                     style: TextStyle(
+                      //                       fontSize: 13.sp,
+                      //                       fontFamily: 'task',
+                      //                       fontWeight: FontWeight.bold,
+                      //                     ),
+                      //                   ),
+                      //                 )
+                      //               : ListView.builder(
+                      //                   scrollDirection: Axis.horizontal,
+                      //                   padding: EdgeInsets.zero,
+                      //                   itemBuilder: (context, index) {
+                      //                     return Container(
+                      //                       margin: EdgeInsets.symmetric(
+                      //                           horizontal: 2.w),
+                      //                       child: Center(
+                      //                         child: Column(
+                      //                           crossAxisAlignment:
+                      //                               CrossAxisAlignment.center,
+                      //                           mainAxisAlignment:
+                      //                               MainAxisAlignment.center,
+                      //                           children: [
+                      //                             InkWell(
+                      //                               onTap: () {
+                      //                                 setState(() {
+                      //                                   sel = index;
+                      //                                   selected = brandmodel
+                      //                                       ?.data?[index]
+                      //                                       .brandID
+                      //                                       .toString();
+                      //                                   Navigator.of(context).push(
+                      //                                       MaterialPageRoute(
+                      //                                           builder:
+                      //                                               (context) =>
+                      //                                                   ProductListPage2(
+                      //                                                     allcatid:
+                      //                                                         brandmodel?.data?[index]?.brandID ?? "",
+                      //                                                     name: brandmodel?.data?[index]?.brandName ??
+                      //                                                         "",
+                      //                                                   )));
+                      //                                 });
+                      //                                 catwiceproductap();
+                      //                               },
+                      //                               child: Container(
+                      //                                 height: 19.w,
+                      //                                 width: 19.w,
+                      //                                 alignment:
+                      //                                     Alignment.center,
+                      //                                 decoration: BoxDecoration(
+                      //                                   color: Colors
+                      //                                       .grey.shade100,
+                      //                                   border: Border.all(
+                      //                                     width: 1,
+                      //                                     color: Colors.grey,
+                      //                                   ),
+                      //                                   borderRadius:
+                      //                                       BorderRadius.circular(
+                      //                                           10), // More rounded corners
+                      //                                 ),
+                      //                                 child: ClipRRect(
+                      //                                   borderRadius:
+                      //                                       BorderRadius
+                      //                                           .circular(10),
+                      //                                   // Same rounded corners for the image
+                      //                                   child:
+                      //                                       CachedNetworkImage(
+                      //                                     height: 19.w,
+                      //                                     width: 19.w,
+                      //                                     imageUrl: brandmodel
+                      //                                             ?.data?[index]
+                      //                                             .image ??
+                      //                                         '',
+                      //                                     fit: BoxFit.cover,
+                      //                                     progressIndicatorBuilder:
+                      //                                         (context, url,
+                      //                                                 progress) =>
+                      //                                             Center(
+                      //                                                 child:
+                      //                                                     CircularProgressIndicator()),
+                      //                                     errorWidget: (context,
+                      //                                             url, error) =>
+                      //                                         Icon(Icons
+                      //                                             .error_outline_outlined),
+                      //                                   ),
+                      //                                 ),
+                      //                               ),
+                      //                             ),
+                      //                             SizedBox(
+                      //                               height: 1.h,
+                      //                             ),
+                      //                             SizedBox(
+                      //                               width: 16.w,
+                      //                               child: Text(
+                      //                                 textAlign:
+                      //                                     TextAlign.center,
+                      //                                 overflow:
+                      //                                     TextOverflow.ellipsis,
+                      //                                 maxLines: 1,
+                      //                                 brandmodel?.data?[index]
+                      //                                                 .brandName ==
+                      //                                             '' ||
+                      //                                         brandmodel
+                      //                                                 ?.data?[
+                      //                                                     index]
+                      //                                                 .brandName ==
+                      //                                             null
+                      //                                     ? 'N/A'
+                      //                                     : brandmodel
+                      //                                             ?.data?[index]
+                      //                                             .brandName ??
+                      //                                         '',
+                      //                                 style: TextStyle(
+                      //                                   fontSize: 10.sp,
+                      //                                   fontWeight:
+                      //                                       FontWeight.bold,
+                      //                                   fontFamily: "task",
+                      //                                   color: Colors.black,
+                      //                                 ),
+                      //                               ),
+                      //                             ),
+                      //                           ],
+                      //                         ),
+                      //                       ),
+                      //                     );
+                      //                   },
+                      //                   itemCount: brandmodel?.data?.length,
+                      //                 ),
+                      //         ),
+                      //       ),
                       name
                           ? SliverToBoxAdapter(
                               child: SizedBox(

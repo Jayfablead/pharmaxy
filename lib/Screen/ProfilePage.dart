@@ -197,6 +197,61 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
+
+                SizedBox(
+                  height: 3.h,
+                ),
+                profilemodal?.profileDetails?.referCode == '' ||
+                    profilemodal
+                        ?.profileDetails?.referCode ==
+                        null
+                    ? Container():   SizedBox(
+                  width: 90.w,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.qr_code_scanner,
+                        size: 24,
+                        color: Colors.black.withOpacity(0.4),
+                      ),
+                      SizedBox(
+                        width: 3.w,
+                      ),
+                   Container(
+                        width: 75.w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Referred Code",
+                              style: TextStyle(
+                                  color: Colors.black.withOpacity(0.6),
+                                  fontSize: 18,
+                                  fontFamily: "task"),
+                            ),
+                            Text(
+                              profilemodal?.profileDetails?.referCode == '' ||
+                                  profilemodal
+                                      ?.profileDetails?.referCode ==
+                                      null
+                                  ? 'N/A'
+                                  : profilemodal?.profileDetails?.referCode ??
+                                  '',
+                              style: TextStyle(
+                                  color: Colors.black87,
+                                  fontFamily: "task",
+                                  fontSize: 16),
+                            ),
+                            Divider(
+                              endIndent: 10,
+                              indent: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: 3.h,
                 ),
@@ -370,7 +425,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-            profilemodal?.profileDetails?.referCode =="1"?Positioned(
+            profilemodal?.profileDetails?.referType =="1"?Positioned(
               top: 25.h,
               right: 4.w,
               child: Container(

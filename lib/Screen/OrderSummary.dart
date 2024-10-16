@@ -453,7 +453,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                               SizedBox(
                                 height: 1.h,
                               ),
-                      
+
                               // payment method
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 2.w),
@@ -564,6 +564,309 @@ class _OrderSummaryState extends State<OrderSummary> {
                                         SizedBox(
                                           height: 2.h,
                                         ),
+
+
+
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Amount",
+                                              style: TextStyle(
+                                                fontSize: 13.sp,
+                                                fontFamily: "task",
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 1.80.h,
+                                        ),
+                                        Container(
+                                          width: 95.w,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Color(0xffffffff),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 3.w, vertical: 2.h),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Sub Total : ',
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        color: Colors.grey.shade800,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      // "\$50",
+                                                      chekoutdetailmodal?.checkoutData?[0]
+                                                          .finalTotal ==
+                                                          null ||
+                                                          chekoutdetailmodal
+                                                              ?.checkoutData?[0]
+                                                              .finalTotal ==
+                                                              ""
+                                                          ? "N/A"
+                                                          : '₹' +
+                                                          (chekoutdetailmodal
+                                                              ?.checkoutData?[0]
+                                                              .finalTotal)
+                                                              .toString(),
+                                                      style: TextStyle(
+                                                          fontFamily: 'task',
+                                                          fontSize: 12.sp,
+                                                          fontWeight: FontWeight.normal,
+                                                          color: Colors.black),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 1.h,
+                                                ),
+                                                Row(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Handling Charge : ',
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        color: Colors.grey.shade800,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      chekoutdetailmodal?.checkoutData?[0]
+                                                          .totalTax ==
+                                                          null ||
+                                                          chekoutdetailmodal
+                                                              ?.checkoutData?[0]
+                                                              .totalTax ==
+                                                              ""
+                                                          ? "N/A"
+                                                          : '₹' +
+                                                          (chekoutdetailmodal
+                                                              ?.checkoutData?[0]
+                                                              .totalTax)
+                                                              .toString(),
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        fontWeight: FontWeight.normal,
+                                                      ),
+                                                    )
+                                                    // Text(
+                                                    //   "\₹5",
+                                                    //   chekoutdetailmodal?.checkoutData?[0].totalTax == null||chekoutdetailmodal?.checkoutData?[0].totalTax == ""
+                                                    //       ? "N/A"
+                                                    //       : '₹' + (chekoutdetailmodal?.checkoutData?[0].totalTax).toString(),
+                                                    //   style: TextStyle(
+                                                    //     fontFamily: 'task',
+                                                    //     fontSize: 12.sp,
+                                                    //     fontWeight: FontWeight.normal,
+                                                    //   ),
+                                                    // ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 1.h,
+                                                ),
+                                                Row(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Shipping Fees : ',
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        color: Colors.grey.shade800,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      chekoutdetailmodal?.checkoutData?[0]
+                                                          .shippingTax ==
+                                                          null ||
+                                                          chekoutdetailmodal
+                                                              ?.checkoutData?[0]
+                                                              .shippingTax ==
+                                                              ""
+                                                          ? "N/A"
+                                                          : '₹' +
+                                                          (chekoutdetailmodal
+                                                              ?.checkoutData?[0]
+                                                              .shippingTax)
+                                                              .toString(),
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        fontWeight: FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 1.h,
+                                                ),
+                                                Row(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Discount Applied: ',
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        color: Colors.grey.shade800,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      chekoutdetailmodal?.checkoutData?[0]
+                                                          .discount ==
+                                                          null ||
+                                                          chekoutdetailmodal
+                                                              ?.checkoutData?[0]
+                                                              .discount ==
+                                                              ""
+                                                          ? "\₹ 0"
+                                                          : '₹' +
+                                                          (chekoutdetailmodal
+                                                              ?.checkoutData?[0]
+                                                              .discount)
+                                                              .toString(),
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        fontWeight: FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 1.h,
+                                                ),
+                                                usermodal?.userId == "" ||
+                                                    usermodal?.userId == null
+                                                    ? Container()
+                                                    : Row(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Agent Discount: ',
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        color: Colors.grey.shade800,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      chekoutdetailmodal
+                                                          ?.checkoutData?[
+                                                      0]
+                                                          .referral ==
+                                                          null ||
+                                                          chekoutdetailmodal
+                                                              ?.checkoutData?[
+                                                          0]
+                                                              .referral ==
+                                                              ""
+                                                          ? "N/A"
+                                                          : '₹' +
+                                                          (chekoutdetailmodal
+                                                              ?.checkoutData?[
+                                                          0]
+                                                              .referral)
+                                                              .toString(),
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        fontWeight: FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 1.h,
+                                        ),
+                                        Container(
+                                          width: 93.w,
+                                          height: 8.h,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Color(0xffffffff),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 3.w, vertical: 2.h),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Total Amount : ',
+                                                  style: TextStyle(
+                                                    fontFamily: 'task',
+                                                    fontSize: 12.sp,
+                                                    color: Colors.grey.shade800,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  chekoutdetailmodal?.checkoutData?[0]
+                                                      .total ==
+                                                      null ||
+                                                      chekoutdetailmodal
+                                                          ?.checkoutData?[0]
+                                                          .total ==
+                                                          ""
+                                                      ? "N/A"
+                                                      : '₹' +
+                                                      (chekoutdetailmodal
+                                                          ?.checkoutData?[0].total)
+                                                          .toString(),
+                                                  style: TextStyle(
+                                                    fontFamily: 'task',
+                                                    fontSize: 12.sp,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 2.h,
+                                        ),
+
+
+
                                         if (myoederdetailmodal?.userDetail?.orderStatus =='Completed'||myoederdetailmodal?.userDetail?.orderStatus =='Cancelled') SizedBox() else
                                           InkWell(
                                           onTap: () {

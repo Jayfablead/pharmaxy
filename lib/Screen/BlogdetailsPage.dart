@@ -123,7 +123,7 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                                   return Icon(Icons.error_rounded, color: Colors.blue);
                                 },
                                 errorWidget: (context, url, error) {
-                                  return Image.asset("assets/deim.png");
+                                  return Image.asset('assets/my.png',color: AppColors.primary,);
                                 },
                               ),
                             ),

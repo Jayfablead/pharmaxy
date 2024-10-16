@@ -1285,7 +1285,7 @@ class _CartPageState extends State<CartPage> {
                                           });
                                         },
                                         child: Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 0.w,vertical: 1.h),
+                                          padding: EdgeInsets.symmetric(horizontal: 0.w,vertical: 1.6.h),
                                           width: 25.w,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
@@ -1561,9 +1561,9 @@ class _CartPageState extends State<CartPage> {
                                               ]
                                           ),
                                           width: 22.w,
-                                          height: 4.h,
+                                          height: 5.4.h,
                                           alignment: Alignment.center,
-                                          child: Text("All Coupon",overflow: TextOverflow.ellipsis,style: TextStyle(
+                                          child: Text("All Coupons",overflow: TextOverflow.ellipsis,style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 8.sp,
                                             fontFamily: 'task',
@@ -2470,7 +2470,7 @@ class _CartPageState extends State<CartPage> {
                                                       });
                                                     },
                                                     child: Container(
-                                                      padding: EdgeInsets.symmetric(vertical: 1.h),
+                                                      padding: EdgeInsets.symmetric(vertical: 1.6.h),
                                                       width: 25.w,
                                                      // alignment: Alignment.center,
                                                       decoration: BoxDecoration(
@@ -2652,8 +2652,7 @@ class _CartPageState extends State<CartPage> {
                                                                                           Navigator.of(context).pop();
                                                                                         },
                                                                                         child: Container(
-                                                                                          margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                                          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                                          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.6.h),
                                                                                           decoration: BoxDecoration(
                                                                                             color: AppColors.primary,
                                                                                             borderRadius: BorderRadius.circular(10),
@@ -2748,9 +2747,9 @@ class _CartPageState extends State<CartPage> {
 
                                                       ),
                                                       width: 22.w,
-                                                      height: 4.h,
+                                                      height: 5.4.h,
                                                       alignment: Alignment.center,
-                                                      child: Text("All Coupon",overflow: TextOverflow.ellipsis,style: TextStyle(
+                                                      child: Text("All Coupons",overflow: TextOverflow.ellipsis,style: TextStyle(
                                                         fontWeight: FontWeight.bold,
                                                         fontSize: 8.sp,
                                                         fontFamily: 'task',

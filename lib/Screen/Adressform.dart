@@ -448,110 +448,7 @@ class _AdressformState extends State<Adressform> {
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              height: 2.5.h,
-                            ),
-                            Container(
-                              width: 85.w,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Country",
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontFamily: "task",
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  // TextFormField(
-                                  //   validator: (value) {
-                                  //     if (value!.isEmpty) {
-                                  //       return "Please Enter Country";
-                                  //     }
-                                  //     return null;
-                                  //   },
-                                  //   keyboardType: TextInputType.text,
-                                  //   controller: _country,
-                                  //   style: TextStyle(height: 1),
-                                  //   decoration: InputDecoration(
-                                  //     enabledBorder: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     disabledBorder: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     focusedBorder: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     border: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     hintText: 'Enter Country',
-                                  //     hintStyle: TextStyle(
-                                  //         color: Colors.black.withOpacity(0.4),
-                                  //         fontSize: 11.sp,
-                                  //         fontFamily: "task"),
-                                  //   ),
-                                  // ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          width: 1, color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 5.0, vertical: 0.5.h),
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        hint: Text(
-                                          'Select Country',
-                                          style: TextStyle(
-                                              color:
-                                                  Colors.black.withOpacity(0.4),
-                                              fontSize: 11.sp,
-                                              fontFamily: "task"),
-                                        ),
-                                        // Not necessary for Option 1
-                                        value: countryValue,
-                                        onChanged: (newValue) {
-                                          setState(() {
-                                            countryValue = newValue.toString();
-                                            print(countryValue);
-                                            stateap(countryValue ?? '');
-                                          });
-                                        },
-                                        items: countrymodal?.countries
-                                            ?.map((location) {
-                                          return DropdownMenuItem(
-                                            child: Text(
-                                              location.countryName ?? '',
-                                              style: TextStyle(
-                                                  color: Colors.black87,
-                                                  fontFamily: 'task',
-                                                  fontSize: 14.sp),
-                                            ),
-                                            value: location.countryID,
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+
                             SizedBox(
                               height: 2.5.h,
                             ),
@@ -565,92 +462,48 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 13.sp,
+                                        fontSize: 11.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  // TextFormField(
-                                  //   validator: (value) {
-                                  //     if (value!.isEmpty) {
-                                  //       return "Please Enter state";
-                                  //     }
-                                  //     return null;
-                                  //   },
-                                  //   keyboardType: TextInputType.text,
-                                  //   controller: _state,
-                                  //   style: TextStyle(height: 1),
-                                  //   decoration: InputDecoration(
-                                  //     enabledBorder: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     disabledBorder: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     focusedBorder: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     border: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     hintText: 'Enter state',
-                                  //     hintStyle: TextStyle(
-                                  //         color: Colors.black.withOpacity(0.4),
-                                  //         fontSize: 11.sp,
-                                  //         fontFamily: "task"),
-                                  //   ),
-                                  // ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          width: 1, color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 5.0, vertical: 0.5.h),
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        hint: Text(
-                                          'Select State',
-                                          style: TextStyle(
-                                              color:
-                                                  Colors.black.withOpacity(0.4),
-                                              fontSize: 11.sp,
-                                              fontFamily: "task"),
-                                        ),
-                                        // Not necessary for Option 1
-                                        value: stateValue,
-                                        onChanged: (newValue) {
-                                          setState(() {
-                                            stateValue = newValue.toString();
-                                            print(stateValue);
-                                            cityap(stateValue ?? '');
-                                          });
-                                        },
-                                        items:
-                                            statemodal?.states?.map((location) {
-                                          return DropdownMenuItem(
-                                            child: Text(
-                                              location.stateName ?? '',
-                                              style: TextStyle(
-                                                  color: Colors.black87,
-                                                  fontFamily: 'task',
-                                                  fontSize: 14.sp),
-                                            ),
-                                            value: location.stateID,
-                                          );
-                                        }).toList(),
-                                      ),
+                                  TextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Please Enter The State";
+                                      }
+                                      return null;
+                                    },
+                                    keyboardType: TextInputType.text,
+                                    controller: _state,
+                                    style: TextStyle(height: 1),
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      disabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      hintText: 'Enter Your State',
+                                      hintStyle: TextStyle(
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 11.sp,
+                                          fontFamily: "task"),
                                     ),
                                   ),
                                 ],
@@ -659,6 +512,7 @@ class _AdressformState extends State<Adressform> {
                             SizedBox(
                               height: 2.5.h,
                             ),
+
                             Container(
                               width: 85.w,
                               child: Column(
@@ -669,91 +523,48 @@ class _AdressformState extends State<Adressform> {
                                     style: TextStyle(
                                         color: Colors.black87,
                                         fontFamily: "task",
-                                        fontSize: 12.sp,
+                                        fontSize: 11.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  // TextFormField(
-                                  //   validator: (value) {
-                                  //     if (value!.isEmpty) {
-                                  //       return "Please Enter City";
-                                  //     }
-                                  //     return null;
-                                  //   },
-                                  //   keyboardType: TextInputType.text,
-                                  //   controller: _city,
-                                  //   style: TextStyle(height: 1),
-                                  //   decoration: InputDecoration(
-                                  //     enabledBorder: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     disabledBorder: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     focusedBorder: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     border: OutlineInputBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(10),
-                                  //         borderSide:
-                                  //         BorderSide(color: Colors.grey)),
-                                  //     hintText: 'Enter City',
-                                  //     hintStyle: TextStyle(
-                                  //         color: Colors.black.withOpacity(0.4),
-                                  //         fontSize: 11.sp,
-                                  //         fontFamily: "task"),
-                                  //   ),
-                                  // ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          width: 1, color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 5.0, vertical: 0.5.h),
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        hint: Text(
-                                          'Select City',
-                                          style: TextStyle(
-                                              color:
-                                                  Colors.black.withOpacity(0.4),
-                                              fontSize: 11.sp,
-                                              fontFamily: "task"),
-                                        ),
-                                        // Not necessary for Option 1
-                                        value: cityValue,
-                                        onChanged: (newValue) {
-                                          setState(() {
-                                            cityValue = newValue.toString();
-                                            print(cityValue);
-                                          });
-                                        },
-                                        items:
-                                            citymodal?.cities?.map((location) {
-                                          return DropdownMenuItem(
-                                            child: Text(
-                                              location.cityName ?? '',
-                                              style: TextStyle(
-                                                  color: Colors.black87,
-                                                  fontFamily: 'task',
-                                                  fontSize: 14.sp),
-                                            ),
-                                            value: location.cityID,
-                                          );
-                                        }).toList(),
-                                      ),
+                                  TextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Please Enter The city";
+                                      }
+                                      return null;
+                                    },
+                                    keyboardType: TextInputType.text,
+                                    controller: _city,
+                                    style: TextStyle(height: 1),
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      disabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey)),
+                                      hintText: 'Enter Your City',
+                                      hintStyle: TextStyle(
+                                          color: Colors.black.withOpacity(0.4),
+                                          fontSize: 11.sp,
+                                          fontFamily: "task"),
                                     ),
                                   ),
                                 ],
@@ -832,18 +643,6 @@ class _AdressformState extends State<Adressform> {
                         GestureDetector(
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
-                              countryValue == null &&
-                                      cityValue == null &&
-                                      stateValue == null
-                                  ? buildErrorDialog(context, 'Field Error',
-                                      'Country, State & City Required')
-                                  : cityValue == null && stateValue == null
-                                      ? buildErrorDialog(context, 'Field Error',
-                                          'State & City Required')
-                                      : cityValue == null
-                                          ? buildErrorDialog(context,
-                                              'Field Error', 'City Required')
-                                          :
                               shippingap();
                               print(selected?.title);
                             }
@@ -888,9 +687,9 @@ class _AdressformState extends State<Adressform> {
       data['first_name'] = _firstname.text.toString();
       data['last_name'] = _lastname.text.toString();
       data['email'] = _email.text.toString();
-      data['city'] = cityValue ?? "";
-      data['state'] = stateValue ?? "";
-      data['country'] = countryValue ?? "";
+      data['city'] = _city.text.toString();
+      data['state'] = _state.text.toString();
+      data['country'] = "india";
       data['zipcode'] = _ZipCode.text.toString();
       data['address'] = _Address.text.toString();
       data['phone'] = _phone.text.toString();

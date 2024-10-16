@@ -26,6 +26,7 @@ import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
@@ -546,7 +547,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
             productdetail2modal?.productData?.cartlist == 1
                 ? GestureDetector(
               onTap: () {
-                _showDialog(context, 'Your item is already added to cart');
+                EasyLoading.showSuccess('Your item is Added in Cart');
               },
               child: Container(
                 alignment: Alignment.center,
@@ -1700,6 +1701,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
 
   addcartap() async {
     final Map<String, String> data = {};
+    EasyLoading.show(status: 'Please Wait ...');
     data['userId'] = (usermodal?.userId).toString();
     data['productID'] = widget.productid.toString();
     data['variation_tbl_id'] = "0";
@@ -1714,7 +1716,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
           print(addcartmodal?.status);
           if (response.statusCode == 200 && addcartmodal?.status == "success") {
             productdetail2ap();
-            buildErrorDialog(context, '', 'Your item is Added in Cart');
+            EasyLoading.showSuccess('Your item is Added in Cart');
 
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
@@ -1739,6 +1741,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
 
   addtocartwithoutlogin() async {
     final Map<String, String> data = {};
+    EasyLoading.show(status: 'Please Wait ...');
     data['device_id'] = deviceName.toString();
     data['productID'] = widget.productid.toString();
     data['product_quantity'] =quantity.toString();
@@ -1751,7 +1754,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
           print(addtocartwithoutuserModel?.status);
           if (response.statusCode == 200 && addtocartwithoutuserModel?.status == "success") {
             productdetail2ap();
-            buildErrorDialog(context, '', 'Your item is Added in Cart');
+            EasyLoading.showSuccess('Your item is Added in Cart');
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
               // isLoading = false;
