@@ -2271,9 +2271,8 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold,
                             fontFamily: "task",
                           ),)),
-                        ):SizedBox(
+                        ):Container(
                           height: 19.h,
-                          width: 60.w,
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
                             scrollDirection: Axis.horizontal,
@@ -2298,7 +2297,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Column(
                                       children: [
                                         Container(
-                                          width: 60.w,
+                                          width: blogmodel?.data?.length==1?90.w:60.w,
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(10),
@@ -2310,7 +2309,6 @@ class _HomePageState extends State<HomePage> {
                                                   ?.data?[index]
                                                   .image ??
                                                   '',
-                                              width: 50.w,
                                               height: 10.h,
                                               progressIndicatorBuilder: (context, url, progress) =>
                                                   Center(child: CircularProgressIndicator()),
@@ -2319,7 +2317,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 60.w,
+                                          width: blogmodel?.data?.length==1?90.w:60.w,
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
                                             child: Text(

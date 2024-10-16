@@ -843,7 +843,8 @@ class _AdressformState extends State<Adressform> {
                                       : cityValue == null
                                           ? buildErrorDialog(context,
                                               'Field Error', 'City Required')
-                                          : shippingap();
+                                          :
+                              shippingap();
                               print(selected?.title);
                             }
                           },

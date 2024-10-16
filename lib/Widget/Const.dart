@@ -18,6 +18,7 @@ import 'package:ecommerce/Modal/CancelOrderModel.dart';
 
 import 'package:ecommerce/Modal/CartcountModel.dart';
 import 'package:ecommerce/Modal/CatWiceProductModal.dart';
+import 'package:ecommerce/Modal/CateWisePageViewModel.dart';
 import 'package:ecommerce/Modal/ChangePasswordModal.dart';
 import 'package:ecommerce/Modal/ChatModel.dart';
 import 'package:ecommerce/Modal/CheckOutModal.dart';
@@ -82,6 +83,7 @@ import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:ecommerce/Modal/View_withoutuser_Model.dart';
 import 'package:ecommerce/Modal/bestsellerModel.dart';
+import 'package:ecommerce/Modal/brandwicePageViewModel.dart';
 import 'package:ecommerce/Modal/cateModel.dart';
 import 'package:ecommerce/Modal/increment_without_login_model.dart';
 import 'package:ecommerce/Screen/BlocdetailModel.dart';
@@ -186,6 +188,8 @@ FilterbyModel?filterbymodel;
 ShortbyModel?shortbymodel;
 AllProductSerachModel?allProductserachModel;
 BannerModel?bannermodel;
+CateWisePageViewModel?catewisePageViewModel;
+BrandwicePageViewModel?brandwicePageviewmodel;
 
 //Prit Api
 RequestformModel? requestformModel;

@@ -1621,6 +1621,9 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
+
+
+
   Future<http.Response> paginationap(Map<String, String> bodyData) async {
     const url = "$baseUrl/getPaginatedProducts";
     print(url);
@@ -1636,6 +1639,54 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
+
+
+
+
+  Future<http.Response> catewicepage(Map<String, String> bodyData) async {
+    const url = "$baseUrl/pagination_category_wise_product";
+    print(url);
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+
+  Future<http.Response> brandwicepage(Map<String, String> bodyData) async {
+    const url = "$baseUrl/pagi_Brands_wise_product";
+    print(url);
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
+
+
+
+
+
+
+
+
   // Future<http.Response> paginationap(Map<String, String> bodyData) async {
   //   const url = "$baseUrl/getPaginatedProducts";
   //   print(url);

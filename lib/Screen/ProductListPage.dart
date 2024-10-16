@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/AddToWishLIstModal.dart';
 import 'package:ecommerce/Modal/AllSubcatWiceProduct.dart';
+import 'package:ecommerce/Modal/CateWisePageViewModel.dart';
 import 'package:ecommerce/Modal/FilterbyModel.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
@@ -41,6 +42,8 @@ bool name = false;
 String? type1;
 String? short;
 
+
+
 TextEditingController _serch = TextEditingController();
 
 final GlobalKey<ScaffoldState> _scaffoldKeylist1 = GlobalKey<ScaffoldState>();
@@ -59,11 +62,21 @@ class book {
 }
 
 class _ProductListPageState extends State<ProductListPage> {
+
+  final scrollController = ScrollController();
+  List posts = [];
+  bool isloding = true;
+  int page = 1;
+  bool isloadingMore = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    scrollController.addListener(_scrollListener);
+    caateeicepageapi();
     subcatwiceallproductap();
+
     setState(() {
       _serch.text = '';
       setState(() {
@@ -87,6 +100,7 @@ class _ProductListPageState extends State<ProductListPage> {
                 child: Stack(
                   children: [
                     CustomScrollView(
+                      controller: scrollController,
                       slivers: [
                         SliverToBoxAdapter(
                           child: Column(
@@ -695,7 +709,8 @@ class _ProductListPageState extends State<ProductListPage> {
                             childCount: shortbymodel
                                 ?.searchResults?.length,
                           ),
-                        ):short=="2"? SliverGrid(
+                        ):
+                        short=="2"? SliverGrid(
                           gridDelegate:
                           SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent:
@@ -1025,7 +1040,8 @@ class _ProductListPageState extends State<ProductListPage> {
                             childCount: shortbymodel
                                 ?.searchResults?.length,
                           ),
-                        ): type1=="1"? SliverGrid(
+                        ):
+                        type1=="1"? SliverGrid(
                           gridDelegate:
                           SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent:
@@ -1355,7 +1371,8 @@ class _ProductListPageState extends State<ProductListPage> {
                             childCount: filterbymodel
                                 ?.searchResults?.length,
                           ),
-                        ):type1=="2"? SliverGrid(
+                        ):
+                        type1=="2"? SliverGrid(
                           gridDelegate:
                           SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent:
@@ -1685,7 +1702,8 @@ class _ProductListPageState extends State<ProductListPage> {
                             childCount: filterbymodel
                                 ?.searchResults?.length,
                           ),
-                        ):_serch.text != ''
+                        ):
+                        _serch.text != ''
                             ?
                         subcatserchmodal?.searchResults?.length == 0 ||
                                     subcatserchmodal?.searchResults?.length ==
@@ -2069,6 +2087,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                 )),
                           ),
                         )
+                            :isloding == true
+                            ? SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()))
                             : SliverGrid(
                           gridDelegate:
                           SliverGridDelegateWithMaxCrossAxisExtent(
@@ -2083,423 +2103,379 @@ class _ProductListPageState extends State<ProductListPage> {
                           ),
                           delegate: SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
-                              return Stack(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      allsubcatwiceproduct
-                                          ?.subcategoriesWiseProduct?[
-                                      index]
-                                          .productType ==
-                                          '1'
-                                          ? Navigator.of(context)
-                                          .push(
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              productdetailnovartion(
-                                                productid: allsubcatwiceproduct
-                                                    ?.subcategoriesWiseProduct?[
-                                                index]
-                                                    .productID ??
-                                                    '',
-                                              ),
-                                        ),
-                                      )
-                                          : Navigator.of(context)
-                                          .push(
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              productdetailnovartion(
-                                                productid: allsubcatwiceproduct
-                                                    ?.subcategoriesWiseProduct?[
-                                                index]
-                                                    .productID ??
-                                                    '',
-                                              ),
-                                        ),
-                                      );
-                                    },
-                                    child: Card(
-
-                                      child: Container(
-
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.white,
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                          children: [
-                                            SizedBox(
-                                              height: 2.h,
-                                            ),
-                                            Container(
-                                              child: CachedNetworkImage(
-                                                imageUrl: allsubcatwiceproduct
-                                                    ?.subcategoriesWiseProduct?[
-                                                index]
-                                                    .productImage1 ??
-                                                    '',
-                                                fit: BoxFit.cover,
-                                                height: 9.5.h,
-                                                width: 25.w,
-                                                imageBuilder: (context,
-                                                    imageProvider) =>
-                                                    Container(
-                                                      decoration:
-                                                      BoxDecoration(
-                                                        // borderRadius: BorderRadius.circular(10),
-                                                        image:
-                                                        DecorationImage(
-                                                          filterQuality:
-                                                          FilterQuality
-                                                              .high,
-                                                          image:
-                                                          imageProvider,
-                                                        ),
-                                                      ),
+                                  if (index < posts.length)
+                                  {
+                                    final post = posts[index];
+                                    return Stack(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            allsubcatwiceproduct
+                                                ?.subcategoriesWiseProduct?[
+                                            index]
+                                                .productType ==
+                                                '1'
+                                                ? Navigator.of(context)
+                                                .push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    productdetailnovartion(
+                                                      productid: allsubcatwiceproduct
+                                                          ?.subcategoriesWiseProduct?[
+                                                      index]
+                                                          .productID ??
+                                                          '',
                                                     ),
-                                                placeholder: (context,
-                                                    url) =>
-                                                    Center(
-                                                        child:
-                                                        CircularProgressIndicator()),
-                                                errorWidget: (context,
-                                                    url, error) =>
-                                                    Icon(Icons.error),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: 1.h,
-                                            ),
-                                            Padding(
-                                              padding:
-                                              EdgeInsets.symmetric(
-                                                  horizontal: 1.w),
-                                              child: Row(
+                                            )
+                                                : Navigator.of(context)
+                                                .push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    productdetailnovartion(
+                                                      productid: allsubcatwiceproduct
+                                                          ?.subcategoriesWiseProduct?[
+                                                      index]
+                                                          .productID ??
+                                                          '',
+                                                    ),
+                                              ),
+                                            );
+                                          },
+                                          child: Card(
+
+                                            child: Container(
+
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10),
+                                                color: Colors.white,
+                                              ),
+                                              child: Column(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .center,
+                                                MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.center,
                                                 children: [
-                                                  Column(
+                                                  SizedBox(
+                                                    height: 2.h,
+                                                  ),
+                                                  Container(
+                                                    child: CachedNetworkImage(
+                                                      imageUrl: allsubcatwiceproduct
+                                                          ?.subcategoriesWiseProduct?[
+                                                      index]
+                                                          .productImage1 ??
+                                                          '',
+                                                      fit: BoxFit.cover,
+                                                      height: 9.5.h,
+                                                      width: 25.w,
+                                                      imageBuilder: (context,
+                                                          imageProvider) =>
+                                                          Container(
+                                                            decoration:
+                                                            BoxDecoration(
+                                                              // borderRadius: BorderRadius.circular(10),
+                                                              image:
+                                                              DecorationImage(
+                                                                filterQuality:
+                                                                FilterQuality
+                                                                    .high,
+                                                                image:
+                                                                imageProvider,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                      placeholder: (context,
+                                                          url) =>
+                                                          Center(
+                                                              child:
+                                                              CircularProgressIndicator()),
+                                                      errorWidget: (context,
+                                                          url, error) =>
+                                                          Icon(Icons.error),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 1.h,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 1.w),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .center,
+                                                      children: [
+                                                        Column(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                          children: [
+                                                            SizedBox(
+                                                              width: 30.w,
+                                                              child: Text(
+                                                                textAlign:
+                                                                TextAlign
+                                                                    .center,
+                                                                overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                                maxLines: 1,
+                                                                allsubcatwiceproduct
+                                                                    ?.subcategoriesWiseProduct?[
+                                                                index]
+                                                                    .productName ??
+                                                                    '',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    11
+                                                                        .sp,
+                                                                    fontFamily:
+                                                                    'task',
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                    letterSpacing:
+                                                                    1,
+                                                                    color: Colors
+                                                                        .black),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  // Padding(
+                                                  //   padding:
+                                                  //       EdgeInsets.symmetric(
+                                                  //     horizontal: 1.5.w,
+                                                  //   ),
+                                                  //   child: SizedBox(
+                                                  //     width: 35.w,
+                                                  //     child: Text(
+                                                  //       textAlign:
+                                                  //           TextAlign.center,
+                                                  //       overflow: TextOverflow
+                                                  //           .ellipsis,
+                                                  //       maxLines: 2,
+                                                  //       allsubcatwiceproduct
+                                                  //               ?.subcategoriesWiseProduct?[
+                                                  //                   index]
+                                                  //               .productShortDesc ??
+                                                  //           '',
+                                                  //       style: TextStyle(
+                                                  //         fontSize: 12.sp,
+                                                  //         fontFamily: 'task',
+                                                  //         fontWeight:
+                                                  //             FontWeight
+                                                  //                 .normal,
+                                                  //         letterSpacing: 1,
+                                                  //         color: Colors.black,
+                                                  //       ),
+                                                  //     ),
+                                                  //   ),
+                                                  // ),
+                                                  Row(
                                                     mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .center,
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .center,
                                                     children: [
-                                                      SizedBox(
-                                                        width: 30.w,
-                                                        child: Text(
-                                                          textAlign:
-                                                          TextAlign
-                                                              .center,
-                                                          overflow:
-                                                          TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 1,
-                                                          allsubcatwiceproduct
-                                                              ?.subcategoriesWiseProduct?[
-                                                          index]
-                                                              .productName ??
-                                                              '',
-                                                          style: TextStyle(
-                                                              fontSize:
-                                                              11
-                                                                  .sp,
-                                                              fontFamily:
-                                                              'task',
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .bold,
-                                                              letterSpacing:
-                                                              1,
-                                                              color: Colors
-                                                                  .black),
-                                                        ),
+                                                      Row(
+                                                        children: [
+                                                          // Text(
+                                                          //   '₹' +
+                                                          //       (allsubcatwiceproduct
+                                                          //           ?.subcategoriesWiseProduct?[
+                                                          //       index]
+                                                          //           .saleProductPrice)
+                                                          //           .toString(),
+                                                          //   style: TextStyle(
+                                                          //     fontSize: 11.sp,
+                                                          //     fontFamily:
+                                                          //     'task',
+                                                          //     fontWeight:
+                                                          //     FontWeight
+                                                          //         .bold,
+                                                          //     letterSpacing:
+                                                          //     1,
+                                                          //     color: Colors
+                                                          //         .black,
+                                                          //   ),
+                                                          // ),
+                                                          // SizedBox(
+                                                          //   width: 0.5.w,
+                                                          // ),
+                                                          Padding(
+                                                            padding: EdgeInsets
+                                                                .only(
+                                                                top: 0.4
+                                                                    .h),
+                                                            child: Text(
+                                                              '₹' +
+                                                                  (allsubcatwiceproduct
+                                                                      ?.subcategoriesWiseProduct?[index]
+                                                                      .productPrice)
+                                                                      .toString(),
+                                                              style:
+                                                              TextStyle(
+                                                                // decoration:
+                                                                // TextDecoration
+                                                                //     .lineThrough,
+                                                                fontSize:
+                                                                11.sp,
+                                                                fontFamily:
+                                                                'task',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                                letterSpacing:
+                                                                1,
+                                                                color: Colors
+                                                                    .black,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 1.h,
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      allsubcatwiceproduct
+                                                          ?.subcategoriesWiseProduct?[
+                                                      index]
+                                                          .productType ==
+                                                          '1'
+                                                          ? Navigator.of(
+                                                          context)
+                                                          .push(
+                                                        MaterialPageRoute(
+                                                          builder:
+                                                              (context) =>
+                                                              productdetailnovartion(
+                                                                productid: allsubcatwiceproduct
+                                                                    ?.subcategoriesWiseProduct?[index]
+                                                                    .productID ??
+                                                                    '',
+                                                              ),
+                                                        ),
+                                                      )
+                                                          : Navigator.of(
+                                                          context)
+                                                          .push(
+                                                        MaterialPageRoute(
+                                                          builder:
+                                                              (context) =>
+                                                              productdetailnovartion(
+                                                                productid: allsubcatwiceproduct
+                                                                    ?.subcategoriesWiseProduct?[index]
+                                                                    .productID ??
+                                                                    '',
+                                                              ),
+                                                        ),
+                                                      );
+                                                      //ADD CART API
+                                                      // addtocartapi((allsubcatwiceproduct
+                                                      //     ?.subcategoriesWiseProduct?[
+                                                      // index]
+                                                      //     .productID ??
+                                                      //     ''));
+                                                    },
+                                                    child: Container(
+                                                      alignment:
+                                                      Alignment.center,
+                                                      height: 4.h,
+                                                      width: 32.w,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                              10),
+                                                          color: Color(0xff0061b0)),
+                                                      child: Text(
+                                                        "View Product",
+                                                        style: TextStyle(
+                                                            fontSize: 11.sp,
+                                                            color:
+                                                            Colors.white,fontFamily: 'task'),
+                                                      ),
+                                                    ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                            // Padding(
-                                            //   padding:
-                                            //       EdgeInsets.symmetric(
-                                            //     horizontal: 1.5.w,
-                                            //   ),
-                                            //   child: SizedBox(
-                                            //     width: 35.w,
-                                            //     child: Text(
-                                            //       textAlign:
-                                            //           TextAlign.center,
-                                            //       overflow: TextOverflow
-                                            //           .ellipsis,
-                                            //       maxLines: 2,
-                                            //       allsubcatwiceproduct
-                                            //               ?.subcategoriesWiseProduct?[
-                                            //                   index]
-                                            //               .productShortDesc ??
-                                            //           '',
-                                            //       style: TextStyle(
-                                            //         fontSize: 12.sp,
-                                            //         fontFamily: 'task',
-                                            //         fontWeight:
-                                            //             FontWeight
-                                            //                 .normal,
-                                            //         letterSpacing: 1,
-                                            //         color: Colors.black,
-                                            //       ),
-                                            //     ),
-                                            //   ),
-                                            // ),
-                                            Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .center,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    // Text(
-                                                    //   '₹' +
-                                                    //       (allsubcatwiceproduct
-                                                    //           ?.subcategoriesWiseProduct?[
-                                                    //       index]
-                                                    //           .saleProductPrice)
-                                                    //           .toString(),
-                                                    //   style: TextStyle(
-                                                    //     fontSize: 11.sp,
-                                                    //     fontFamily:
-                                                    //     'task',
-                                                    //     fontWeight:
-                                                    //     FontWeight
-                                                    //         .bold,
-                                                    //     letterSpacing:
-                                                    //     1,
-                                                    //     color: Colors
-                                                    //         .black,
-                                                    //   ),
-                                                    // ),
-                                                    // SizedBox(
-                                                    //   width: 0.5.w,
-                                                    // ),
-                                                    Padding(
-                                                      padding: EdgeInsets
-                                                          .only(
-                                                          top: 0.4
-                                                              .h),
-                                                      child: Text(
-                                                        '₹' +
-                                                            (allsubcatwiceproduct
-                                                                ?.subcategoriesWiseProduct?[index]
-                                                                .productPrice)
-                                                                .toString(),
-                                                        style:
-                                                        TextStyle(
-                                                          // decoration:
-                                                          // TextDecoration
-                                                          //     .lineThrough,
-                                                          fontSize:
-                                                          11.sp,
-                                                          fontFamily:
-                                                          'task',
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .normal,
-                                                          letterSpacing:
-                                                          1,
-                                                          color: Colors
-                                                              .black,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 1.h,
-                                            ),
-                                            GestureDetector(
+                                          ),
+                                        ),
+                                        Positioned(
+                                            left: 37.w,
+                                            top: 1.h,
+                                            child: GestureDetector(
                                               onTap: () {
+                                                usermodal?.userId == "" ||
+                                                    usermodal?.userId ==
+                                                        null
+                                                    ? Navigator.of(context)
+                                                    .push(MaterialPageRoute(
+                                                    builder:
+                                                        (context) =>
+                                                        LoginPage2()))
+                                                    : allsubcatwiceproduct
+                                                    ?.subcategoriesWiseProduct?[
+                                                index]
+                                                    .wishlist ==
+                                                    1
+                                                    ? removewishlistap(
+                                                    (allsubcatwiceproduct
+                                                        ?.subcategoriesWiseProduct?[
+                                                    index]
+                                                        .productID)
+                                                        .toString())
+                                                    : addwishlistap(
+                                                    (allsubcatwiceproduct
+                                                        ?.subcategoriesWiseProduct?[
+                                                    index]
+                                                        .productID)
+                                                        .toString());
+                                              },
+                                              child: Icon(
                                                 allsubcatwiceproduct
                                                     ?.subcategoriesWiseProduct?[
                                                 index]
-                                                    .productType ==
-                                                    '1'
-                                                    ? Navigator.of(
-                                                    context)
-                                                    .push(
-                                                  MaterialPageRoute(
-                                                    builder:
-                                                        (context) =>
-                                                        productdetailnovartion(
-                                                          productid: allsubcatwiceproduct
-                                                              ?.subcategoriesWiseProduct?[index]
-                                                              .productID ??
-                                                              '',
-                                                        ),
-                                                  ),
-                                                )
-                                                    : Navigator.of(
-                                                    context)
-                                                    .push(
-                                                  MaterialPageRoute(
-                                                    builder:
-                                                        (context) =>
-                                                        productdetailnovartion(
-                                                          productid: allsubcatwiceproduct
-                                                              ?.subcategoriesWiseProduct?[index]
-                                                              .productID ??
-                                                              '',
-                                                        ),
-                                                  ),
-                                                );
-                                                //ADD CART API
-                                                // addtocartapi((allsubcatwiceproduct
-                                                //     ?.subcategoriesWiseProduct?[
-                                                // index]
-                                                //     .productID ??
-                                                //     ''));
-                                              },
-                                              child: Container(
-                                                alignment:
-                                                Alignment.center,
-                                                height: 4.h,
-                                                width: 32.w,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius
-                                                        .circular(
-                                                        10),
-                                                    color: Color(0xff0061b0)),
-                                                child: Text(
-                                                  "View Product",
-                                                  style: TextStyle(
-                                                      fontSize: 11.sp,
-                                                      color:
-                                                      Colors.white,fontFamily: 'task'),
-                                                ),
+                                                    .wishlist ==
+                                                    1
+                                                    ? Icons.favorite
+                                                    : Icons
+                                                    .favorite_outline,
+                                                size: 20.sp,
+                                                color: allsubcatwiceproduct
+                                                    ?.subcategoriesWiseProduct?[
+                                                index]
+                                                    .wishlist ==
+                                                    1
+                                                    ? Colors.red
+                                                    : Colors.black,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                      left: 37.w,
-                                      top: 1.h,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          usermodal?.userId == "" ||
-                                              usermodal?.userId ==
-                                                  null
-                                              ? Navigator.of(context)
-                                              .push(MaterialPageRoute(
-                                              builder:
-                                                  (context) =>
-                                                  LoginPage2()))
-                                              : allsubcatwiceproduct
-                                              ?.subcategoriesWiseProduct?[
-                                          index]
-                                              .wishlist ==
-                                              1
-                                              ? removewishlistap(
-                                              (allsubcatwiceproduct
-                                                  ?.subcategoriesWiseProduct?[
-                                              index]
-                                                  .productID)
-                                                  .toString())
-                                              : addwishlistap(
-                                              (allsubcatwiceproduct
-                                                  ?.subcategoriesWiseProduct?[
-                                              index]
-                                                  .productID)
-                                                  .toString());
-                                        },
-                                        child: Icon(
-                                          allsubcatwiceproduct
-                                              ?.subcategoriesWiseProduct?[
-                                          index]
-                                              .wishlist ==
-                                              1
-                                              ? Icons.favorite
-                                              : Icons
-                                              .favorite_outline,
-                                          size: 20.sp,
-                                          color: allsubcatwiceproduct
-                                              ?.subcategoriesWiseProduct?[
-                                          index]
-                                              .wishlist ==
-                                              1
-                                              ? Colors.red
-                                              : Colors.black,
-                                        ),
-                                      )),
-                                ],
-                              );
-                            },
-                            childCount: _isLoading
-                                ? allsubcatwiceproduct
-                                ?.subcategoriesWiseProduct?.length
-                                : (allsubcatwiceproduct
-                                ?.subcategoriesWiseProduct
-                                ?.length ??
-                                0) <
-                                5
-                                ? allsubcatwiceproduct
-                                ?.subcategoriesWiseProduct
-                                ?.length
-                                : 4, // Replace with the number of grid items you want
+                                            )),
+                                      ],
+                                    );
+                                  }
+                                  else {
+                                    return Center(child: SizedBox());
+                                  }
+
+                                },
+                            childCount: isloadingMore ? posts.length + 1 : posts.length, // Replace with the number of grid items you want
                           ),
                         ),
 
-                        SliverToBoxAdapter(
-                          child: SizedBox(
-                            height: 1.h,
-                          ),
-                        ),
-                        SliverToBoxAdapter(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _isLoading = !_isLoading;
-                                  });
-                                },
-                                child: (allsubcatwiceproduct
-                                                ?.subcategoriesWiseProduct
-                                                ?.length ??
-                                            0) <
-                                        5
-                                    ? Container()
-                                    : Container(
-                                        alignment: Alignment.center,
-                                        height: 4.h,
-                                        width: 30.w,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                            color: Color(0xff0061b0)),
-                                        child: Text(
-                                          _isLoading
-                                              ? "View less.."
-                                              : "View More..",
-                                          style: TextStyle(
-                                              fontSize: 12.sp,
-                                              color: Colors.white),
-                                        )),
-                              )
-                            ],
-                          ),
-                        ),
                         SliverToBoxAdapter(
                           child: SizedBox(
                             height: 1.5.h,
@@ -2569,7 +2545,6 @@ class _ProductListPageState extends State<ProductListPage> {
           if (response.statusCode == 200 &&
               allsubcatwiceproduct?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
-
             setState(() {
               isLoading = false;
               type1= "";
@@ -2815,4 +2790,76 @@ class _ProductListPageState extends State<ProductListPage> {
       }
     });
   }
+
+
+  caateeicepageapi() async {
+    final Map<String, String> data = {};
+    data['user_id'] = (usermodal?.userId).toString();
+    data['page'] = "$page";
+    data['category_id'] = widget.subcatid.toString();
+    data['limit'] = "5";
+    checkInternet().then((internet) async {
+      print( "555555555555555");
+      if (internet) {
+        authprovider().catewicepage(data).then((response) async {
+          catewisePageViewModel = CateWisePageViewModel.fromJson(json.decode(response.body));
+          print(catewisePageViewModel?.status);
+          if (response.statusCode == 200 &&
+              catewisePageViewModel?.status == "success") {
+            print( "6666666666666");
+            final jsonResponse = jsonDecode(response.body);
+            final jsonAppointments = jsonResponse['data'];
+            List<dynamic> currentNames = posts.map((post) => post['ProductID']).toList();
+
+     // Filter out appointments with names that already exist in the posts list
+            final uniqueAppointments = jsonAppointments.where((appointment) {
+              return !currentNames.contains(appointment['ProductID']);
+            }).toList();
+
+            setState(() {
+              posts = posts + jsonAppointments;
+              isloding = false;
+            });
+
+            print('EE Thay Gyu Hooooo ${posts.length} ! ^_^');
+            // setState(() {
+            //   isLoading = false;
+            //   type1= "";
+            //   short= "";
+            // });
+          } else {
+            setState(() {
+              isLoading = false;
+              type1= "";
+              short= "";
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+          type1= "";
+          short= "";
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+  Future<void> _scrollListener() async {
+    if (isloadingMore) return;
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      setState(() {
+        isloadingMore = true;
+      });
+      page = page + 1;
+      print("$page");
+      await caateeicepageapi();
+      setState(() {
+        isloadingMore = false;
+      });
+    }
+  }
+
 }
