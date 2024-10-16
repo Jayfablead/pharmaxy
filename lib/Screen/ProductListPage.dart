@@ -2797,7 +2797,7 @@ class _ProductListPageState extends State<ProductListPage> {
     data['user_id'] = (usermodal?.userId).toString();
     data['page'] = "$page";
     data['category_id'] = widget.subcatid.toString();
-    data['limit'] = "5";
+    data['limit'] = "6";
     checkInternet().then((internet) async {
       print( "555555555555555");
       if (internet) {

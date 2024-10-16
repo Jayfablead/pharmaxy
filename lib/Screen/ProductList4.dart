@@ -56,8 +56,6 @@ class _ProductList4State extends State<ProductList4> {
   int page = 1;
   bool isloadingMore = false;
 
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -2685,7 +2683,7 @@ class _ProductList4State extends State<ProductList4> {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
     data['page'] = "$page";
-    data['limit'] = "10";
+    data['limit'] = "6";
     checkInternet().then((internet) async {
       print( "555555555555555");
       if (internet) {
