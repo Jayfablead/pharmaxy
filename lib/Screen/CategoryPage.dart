@@ -215,8 +215,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                                   ProductListPage(
                                                     catid: allcatmodal?.categories?[index].categoryID ?? '',
                                                     name:allcatmodal?.categories?[index].categoryName ?? '',
-                                                    subcatid: allcatmodal?.categories?[index].categoryID,
-                                                    allcatid: allcatmodal?.categories?[index].categoryID,
+                                                    subcatid: allcatmodal?.categories?[index].categoryID ?? "",
+                                                    allcatid: allcatmodal?.categories?[index].categoryID ?? "",
                                                   )));
                                     },
                                     child: Card(

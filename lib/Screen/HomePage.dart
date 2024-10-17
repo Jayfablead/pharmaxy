@@ -1355,15 +1355,14 @@ class _HomePageState extends State<HomePage> {
                                                         builder: (context) =>
                                                             ProductListPage(
                                                           catid: selected,
-                                                          subcatid: selected,
+                                                          // subcatid: selected,
                                                           allcatid: allcatmodal?.categories?[index].categoryID,
                                                           name: allcatmodal?.categories?[index].categoryName,
-
                                                         ),
                                                       ),
                                                     );
                                                   });
-                                                  catwiceproductap();
+
                                                 },
                                                 child: Container(
                                                   alignment: Alignment.center,

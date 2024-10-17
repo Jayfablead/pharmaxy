@@ -2614,7 +2614,7 @@ class _ProductListPageState extends State<ProductListPage> {
   // }
   catwiceproductap() async {
     final Map<String, String> data = {};
-    data['category_id'] = selected.toString();
+    data['category_id'] = widget.catid.toString();
     data['user_id'] = (usermodal?.userId).toString();
     print(data);
     checkInternet().then((internet) async {
@@ -2876,7 +2876,7 @@ class _ProductListPageState extends State<ProductListPage> {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
     data['page'] = "$page";
-    data['category_id'] = widget.subcatid.toString();
+    data['category_id'] = widget.catid.toString();
     data['limit'] = "6";
     checkInternet().then((internet) async {
       print( "555555555555555");
