@@ -2,6 +2,7 @@ import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Provider/cartProvider.dart';
 import 'package:ecommerce/Screen/CheckoutDetail.dart';
 import 'package:ecommerce/Screen/SpleshScreen.dart';
+import 'package:ecommerce/Screen/ThankyouPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';

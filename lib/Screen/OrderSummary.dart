@@ -862,6 +862,11 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                    onPressed: ()async{
                                                     await Ordercancelledap();
                                                     Navigator.of(context).pop();
+                                                    setState(() {
+                                                      myorderdetailap();
+                                                    });
+                                                    myorderdetailap();
+
                                                    },
                                                    child: Text("Yes",style: TextStyle(
                                                      fontSize: 10.sp,

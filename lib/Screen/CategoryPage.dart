@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce/Modal/AllCatModal.dart';
 import 'package:ecommerce/Modal/MainCatModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
+import 'package:ecommerce/Screen/ProductListPage.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/SubCateGoryPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -80,7 +82,7 @@ class _CategoryPageState extends State<CategoryPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    maincatap();
+    allcatap();
     viewap();
     setState(() {
       isLoading = true;
@@ -183,8 +185,8 @@ class _CategoryPageState extends State<CategoryPage> {
                       SizedBox(
                         height: 2.h,
                       ),
-                      maincatmodal?.categories?.length == 0 ||
-                              maincatmodal?.categories?.length == null
+                      allcatmodal?.categories?.length == 0 ||
+                          allcatmodal?.categories?.length == null
                           ? Container(
                               height: 80.h,
                               child: Center(
@@ -201,7 +203,7 @@ class _CategoryPageState extends State<CategoryPage> {
                               height: 80.h,
                               child: ListView.builder(
                                 padding: EdgeInsets.only(top: 1.h),
-                                itemCount: maincatmodal?.categories?.length,
+                                itemCount: allcatmodal?.categories?.length,
                                 // The number of items in the grid
                                 itemBuilder: (BuildContext context, int index) {
                                   // Build each item in the grid
@@ -210,17 +212,16 @@ class _CategoryPageState extends State<CategoryPage> {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  SubCateGoryPage(
-                                                    catid: maincatmodal
-                                                            ?.categories?[index]
-                                                            .categoryID ??
-                                                        '',
+                                                  ProductListPage(
+                                                    catid: allcatmodal?.categories?[index].categoryID ?? '',
+                                                    name:allcatmodal?.categories?[index].categoryName ?? '',
+                                                    subcatid: allcatmodal?.categories?[index].categoryID,
+                                                    allcatid: allcatmodal?.categories?[index].categoryID,
                                                   )));
                                     },
                                     child: Card(
                                         // color: Colors.white,
                                         child: Container(
-
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(10),
                                             color: Colors.white,
@@ -251,7 +252,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                       padding:
                                                           EdgeInsets.symmetric(horizontal: 1.w),
                                                       child: CachedNetworkImage(
-                                                        imageUrl: maincatmodal
+                                                        imageUrl: allcatmodal
                                                                 ?.categories?[
                                                                     index]
                                                                 .catagoryimage ??
@@ -286,7 +287,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                       ),
                                                     ),
                                                   ),
-
+                                                  SizedBox(width: 5.w,),
                                                   Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
@@ -303,7 +304,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                 .start,
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
-                                                                .center,
+                                                                .start,
                                                         children: [
                                                           Padding(
                                                             padding:
@@ -312,12 +313,12 @@ class _CategoryPageState extends State<CategoryPage> {
                                                             child: SizedBox(
                                                               width: 45.w,
                                                               child: Text(
-                                                                maincatmodal?.categories?[index].categoryName ==
+                                                                allcatmodal?.categories?[index].categoryName ==
                                                                             "" ||
-                                                                        maincatmodal?.categories?[index].categoryName ==
+                                                                    allcatmodal?.categories?[index].categoryName ==
                                                                             null
                                                                     ? "N/A"
-                                                                    : maincatmodal
+                                                                    : allcatmodal
                                                                             ?.categories?[index]
                                                                             .categoryName ??
                                                                         '',
@@ -358,11 +359,11 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                               .ellipsis,
                                                                       maxLines:
                                                                           1,
-                                                                      maincatmodal?.categories?[index].categoryDesc == "" ||
-                                                                              maincatmodal?.categories?[index].categoryDesc ==
+                                                                      allcatmodal?.categories?[index].categoryDesc == "" ||
+                                                                          allcatmodal?.categories?[index].categoryDesc ==
                                                                                   null
                                                                           ? "N/A"
-                                                                          : maincatmodal?.categories?[index].categoryDesc ??
+                                                                          : allcatmodal?.categories?[index].categoryDesc ??
                                                                               '',
                                                                       style: TextStyle(
                                                                           color: Colors
@@ -390,8 +391,12 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                   Navigator.of(
                                                                           context)
                                                                       .push(MaterialPageRoute(
-                                                                          builder: (context) => SubCateGoryPage(
-                                                                                catid: maincatmodal?.categories?[index].categoryID ?? '',
+                                                                          builder: (context) => ProductListPage(
+                                                                            catid: allcatmodal?.categories?[index].categoryID ?? '',
+                                                                            name:allcatmodal?.categories?[index].categoryName ?? '',
+                                                                            subcatid: allcatmodal?.categories?[index].categoryID,
+                                                                            allcatid: allcatmodal?.categories?[index].categoryID,
+                                                                            // selid: selected.toString(),
                                                                               )));
                                                                 },
                                                                 child:
@@ -407,7 +412,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                                               10),
                                                                       color: Color(0xff0061b0)),
                                                                   child: Text(
-                                                                    "View Sub Category",
+                                                                    "View Products",
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
@@ -449,17 +454,15 @@ class _CategoryPageState extends State<CategoryPage> {
     );
   }
 
-  maincatap() async {
+  allcatap() async {
     final Map<String, String> data = {};
     print(data);
     checkInternet().then((internet) async {
       if (internet) {
-        authprovider().maincatapi(data).then((response) async {
-          maincatmodal = MainCatModal.fromJson(json.decode(response.body));
-          print(maincatmodal?.status);
-          if (response.statusCode == 200 && maincatmodal?.status == "success") {
-            print('EE Thay Gyu Hooooo ! ^_^');
-            // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MainPage()));
+        authprovider().allcatapi(data).then((response) async {
+          allcatmodal = AllCatModal.fromJson(json.decode(response.body));
+          print(allcatmodal?.status);
+          if (response.statusCode == 200 && allcatmodal?.status == "success") {
             setState(() {
               isLoading = false;
             });

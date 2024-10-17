@@ -2180,7 +2180,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           Text(
                                             "Get a FREE consultation ",
                                             style: TextStyle(
-                                                fontSize: 10.sp,
+                                                fontSize: 9.sp,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.grey,
                                                 fontFamily: "task"),
@@ -2188,7 +2188,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                           Text(
                                             "by a licensed third-party doctor",
                                             style: TextStyle(
-                                                fontSize: 10.sp,
+                                                fontSize: 9.sp,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.grey,
                                                 fontFamily: "task"),

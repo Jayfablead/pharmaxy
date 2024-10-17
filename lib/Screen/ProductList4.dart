@@ -2324,6 +2324,19 @@ class _ProductList4State extends State<ProductList4> {
             maxHeight: 20,
             minWidth: 25,
           ),
+          suffixIcon: _serch2.text.isNotEmpty // Conditionally show the close icon
+              ? InkWell(
+            onTap: () {
+              setState(() {
+                _serch2.text = '';
+                bestsalesserchap(_serch2.text); // Call API with empty search
+                // name = false;  // Reset name and wait state
+                // wait = false;
+              });
+            },
+            child: Icon(Icons.close, size: 13),
+          )
+              : null,
           border: InputBorder.none,
           hintText: 'Search Products',
           hintStyle: TextStyle(color: Colors.black, fontFamily: 'task',fontSize: 12.sp),

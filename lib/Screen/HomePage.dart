@@ -30,6 +30,7 @@ import 'package:ecommerce/Screen/PrescriptionForm.dart';
 import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
 import 'package:ecommerce/Screen/ProductList3.dart';
 import 'package:ecommerce/Screen/ProductList4.dart';
+import 'package:ecommerce/Screen/ProductListPage.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/Refill_Alert.dart';
 import 'package:ecommerce/Screen/RequestDoctorForm.dart';
@@ -525,7 +526,7 @@ class _HomePageState extends State<HomePage> {
                                 )
                               : SliverToBoxAdapter(
                                   child: SizedBox(
-                                    height: 16.h,
+                                    height: 20.h,
                                     child: bannermodel?.data?.length == 0
                                         ? Center(
                                             child: Text(
@@ -539,7 +540,7 @@ class _HomePageState extends State<HomePage> {
                                           )
                                         : CarouselSlider.builder(
                                             options: CarouselOptions(
-                                              height: 18.h,
+                                              height: 40.h,
                                               // Carousel height
                                               autoPlay: true,
                                               // Enable auto-scrolling
@@ -550,7 +551,7 @@ class _HomePageState extends State<HomePage> {
                                               // Optional: enlarge the center item
                                               viewportFraction: 1,
                                               // Fraction of screen width to show
-                                              aspectRatio: 16 / 9,
+                                              aspectRatio: 16 / 20,
 
                                               // Aspect ratio of the slider
                                             ),
@@ -571,48 +572,44 @@ class _HomePageState extends State<HomePage> {
                                                       // : bannermodel?.data?.type == 'brand'? navigate kr brands ma : navigate kr product ma
                                                       ;
                                                 },
-                                                child: Card(
-                                                  color: Colors.blue.shade50,
-                                                  elevation: 0,
-                                                  child: Container(
-                                                    width: 90.w,
-                                                    // Set the same width for the container
-                                                    height: 15.h,
-                                                    // Set the same height for the container
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      color: Colors.white,
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: CachedNetworkImage(
-                                                        fit: BoxFit.fill,
-                                                        // This will ensure the image covers the container
-                                                        imageUrl: bannermodel
-                                                                ?.data?[index]
-                                                                .bannerImg ??
-                                                            '',
-                                                        width: 60.w,
-                                                        // Same width as the container
-                                                        height: 15.h,
-                                                        // Same height as the container
-                                                        progressIndicatorBuilder:
-                                                            (context, url,
-                                                                    progress) =>
-                                                                Center(
-                                                                    child:
-                                                                        CircularProgressIndicator()),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Image.asset(
-                                                                'assets/my.png',
-                                                                color: AppColors
-                                                                    .primary),
-                                                      ),
+                                                child: Container(
+                                                  width: 90.w,
+                                                  // Set the same width for the container
+                                                  height: 25.h,
+                                                  // Set the same height for the container
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: Colors.white,
+                                                  ),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    child: CachedNetworkImage(
+                                                      fit: BoxFit.fill,
+                                                      // This will ensure the image covers the container
+                                                      imageUrl: bannermodel
+                                                              ?.data?[index]
+                                                              .bannerImg ??
+                                                          '',
+                                                      width: 60.w,
+                                                      // Same width as the container
+                                                      height: 15.h,
+                                                      // Same height as the container
+                                                      progressIndicatorBuilder:
+                                                          (context, url,
+                                                                  progress) =>
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Image.asset(
+                                                              'assets/my.png',
+                                                              color: AppColors
+                                                                  .primary),
                                                     ),
                                                   ),
                                                 ),
@@ -1167,7 +1164,7 @@ class _HomePageState extends State<HomePage> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Icon(Icons.call,
-                                            color: AppColors.primary, size: 24),
+                                            color: AppColors.primary, size: 20),
                                         SizedBox(width: 8),
                                         GestureDetector(
                                           onTap: () {
@@ -1356,8 +1353,12 @@ class _HomePageState extends State<HomePage> {
                                                     Navigator.of(context).push(
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            SubCateGoryPage(
+                                                            ProductListPage(
                                                           catid: selected,
+                                                          subcatid: selected,
+                                                          allcatid: allcatmodal?.categories?[index].categoryID,
+                                                          name: allcatmodal?.categories?[index].categoryName,
+
                                                         ),
                                                       ),
                                                     );
@@ -2672,6 +2673,28 @@ class _HomePageState extends State<HomePage> {
         style: TextStyle(color: Colors.black, fontFamily: 'task'),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(0),
+          suffixIcon: _serch.text.isNotEmpty // Conditionally show the close icon
+              ? InkWell(
+            onTap: () {
+              setState(() {
+                _serch.text = '';
+                allproductserchap(_serch.text); // Call API with empty search
+                name = false;  // Reset name and wait state
+                wait = false;
+              });
+            },
+            child: Icon(Icons.close, size: 20),
+          )
+              : null,
+          // suffixIcon: InkWell(
+          //   onTap: () {
+          //     setState(() {
+          //       _serch.text = '';
+          //       allproductserchap(_serch.text);
+          //     });
+          //   },
+          //     child: Icon(Icons.close,size: 20,)
+          // ),
           prefixIcon: Icon(
             Icons.search,
             color: Colors.black,

@@ -1298,7 +1298,7 @@ class _CartPageState extends State<CartPage> {
                                                           margin: EdgeInsets.only(left:2.w,top: 1.h),
                                                           alignment: Alignment.center,
                                                           height: 15.h,
-                                                          width: 68.w,
+                                                          width: 70.w,
                                                           decoration: BoxDecoration(
                                                             borderRadius: BorderRadius.circular(10),
                                                             color: Colors.blue.shade100,
@@ -1311,7 +1311,7 @@ class _CartPageState extends State<CartPage> {
                                                                 width: 80,
                                                                 height: 80,
                                                               ),
-                                                              SizedBox(width: 2.w),
+                                                              //SizedBox(width: 1.w),
                                                               Expanded(
                                                                 child: Column(
                                                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1390,7 +1390,7 @@ class _CartPageState extends State<CartPage> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        SizedBox(width: 5.w,),
+                                                                         SizedBox(width: 1.w,),
                                                                         GestureDetector(
                                                                           onTap: () {
                                                                             // Copy coupon code to clipboard
@@ -1744,6 +1744,7 @@ class _CartPageState extends State<CartPage> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
+                                    _makePhoneCall('9051294444');
 
                                   },
                                   child:   Container(
@@ -2817,6 +2818,18 @@ class _CartPageState extends State<CartPage> {
                                              Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                      size: 15.sp,
+                                    ),
+                                    onPressed:(){
+                                      setState(() {
+                                        removecouponap();
+                                      });
+                                    }
+                                  ),
                                   Padding(
                                     padding: EdgeInsets.only(right: 8.0),
                                     child: Text(
@@ -2833,18 +2846,6 @@ class _CartPageState extends State<CartPage> {
                                         color: Colors.black87,
                                       ),
                                     ),
-                                  ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                      size: 15.sp,
-                                    ),
-                                    onPressed:(){
-                                      setState(() {
-                                        removecouponap();
-                                      });
-                                    }
                                   ),
                                 ],
                               ),

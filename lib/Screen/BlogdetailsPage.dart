@@ -123,7 +123,7 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                                   return Icon(Icons.error_rounded, color: Colors.blue);
                                 },
                                 errorWidget: (context, url, error) {
-                                  return Image.asset('assets/my.png',color: AppColors.primary,);
+                                  return Image.asset('assets/mylogo.png',color: AppColors.primary,);
                                 },
                               ),
                             ),
@@ -276,7 +276,7 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                                       height: 15.h,
                                       progressIndicatorBuilder: (context, url, progress) =>
                                           Center(child: CircularProgressIndicator()),
-                                      errorWidget: (context, url, error) => Image.asset('assets/my.png',color: AppColors.primary,),
+                                      errorWidget: (context, url, error) => Image.asset('assets/mylogo.png',color: AppColors.primary,),
                                     ),
                                   ),
                                 ),

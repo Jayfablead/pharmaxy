@@ -2382,6 +2382,22 @@ class _ProductListPageState extends State<ProductListPage2> {
             maxHeight: 20,
             minWidth: 25,
           ),
+          suffixIcon: _serch2.text.isNotEmpty
+              ? IconButton(
+            icon: Icon(
+              Icons.close,
+              color: Colors.black,
+              size: 13.sp,
+            ),
+            onPressed: () {
+              setState(() {
+                _serch2.clear(); // Clear the text in the TextField
+                 //_issearch = false; // Reset the search state if needed
+              });
+              brandwiceproductserach(_serch2.text); // Call the API with empty search
+            },
+          )
+              : null,
           border: InputBorder.none,
           hintText: 'Search Products',
           hintStyle: TextStyle(color: Colors.black, fontFamily: 'task',fontSize: 12.sp),
