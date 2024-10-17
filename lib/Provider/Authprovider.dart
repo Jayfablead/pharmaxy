@@ -483,7 +483,7 @@ class authprovider with ChangeNotifier {
   }
 
   Future<http.Response> subcatserchapi(Map<String, String> bodyData) async {
-    const url = "$baseUrl/searchproduct_by_subcategory";
+    const url = "$baseUrl/search_category_wice_product";
     print(url);
     var responseJson;
     final response = await http

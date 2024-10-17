@@ -1612,7 +1612,9 @@ class _CartPageState extends State<CartPage> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  Divider(
+                                  couponmodel
+                                      ?.discountApplied==null||couponmodel
+                                      ?.discountApplied==""?Container():Divider(
                                     height: 1,
                                     color: Colors.grey.shade200,
                                     indent: 3.w,
@@ -1621,7 +1623,9 @@ class _CartPageState extends State<CartPage> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  Row(
+                                  couponmodel
+                                      ?.discountApplied==null||couponmodel
+                                      ?.discountApplied==""?Container(): Row(
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -1662,7 +1666,7 @@ class _CartPageState extends State<CartPage> {
                                               ),
                                             ),
                                           ),
-                                          IconButton(
+                                          cpupon? IconButton(
                                               icon: Icon(
                                                 Icons.delete,
                                                 color: Colors.red,
@@ -1671,14 +1675,17 @@ class _CartPageState extends State<CartPage> {
                                               onPressed:(){
                                                 setState(() {
                                                   removecouponap();
+                                                  cpupon =false;
                                                 });
                                               }
-                                          ),
+                                          ):Container(),
                                         ],
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  couponmodel
+                                      ?.discountApplied==null||couponmodel
+                                      ?.discountApplied==""?Container(): SizedBox(
                                     height: 1.h,
                                   ),
                                   SizedBox(
@@ -2787,16 +2794,22 @@ class _CartPageState extends State<CartPage> {
                                               SizedBox(
                                                 height: 1.h,
                                               ),
-                                              Divider(
+                                              couponmodel
+                                                  ?.discountApplied==null||couponmodel
+                                                  ?.discountApplied==""?Container():Divider(
                                                 height: 1,
                                                 color: Colors.grey.shade200,
                                                 indent: 3.w,
                                                 endIndent: 3.w,
                                               ),
-                                              SizedBox(
+                                              couponmodel
+                                                  ?.discountApplied==null||couponmodel
+                                                  ?.discountApplied==""?Container(): SizedBox(
                                                 height: 1.h,
                                               ),
-                                              Row(
+                                              couponmodel
+                                                  ?.discountApplied==null||couponmodel
+                                                  ?.discountApplied==""?Container():Row(
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -2818,7 +2831,7 @@ class _CartPageState extends State<CartPage> {
                                              Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  IconButton(
+                                  cpupon? IconButton(
                                     icon: Icon(
                                       Icons.delete,
                                       color: Colors.red,
@@ -2827,9 +2840,10 @@ class _CartPageState extends State<CartPage> {
                                     onPressed:(){
                                       setState(() {
                                         removecouponap();
+                                        cpupon =false;
                                       });
                                     }
-                                  ),
+                                  ):Container(),
                                   Padding(
                                     padding: EdgeInsets.only(right: 8.0),
                                     child: Text(
@@ -2857,7 +2871,7 @@ class _CartPageState extends State<CartPage> {
                                               SizedBox(
                                                 height: 1.h,
                                               ),
-                                              Divider(
+                                               Divider(
                                                 height: 1,
                                                 color: Colors.grey.shade200,
                                                 indent: 3.w,
@@ -3426,6 +3440,7 @@ class _CartPageState extends State<CartPage> {
             EasyLoading.showSuccess("Coupon Applied");
             setState(() {
               cpupon =true;
+
               cpn =value.toString();
               print("787878${cpn}");
             });
@@ -3434,6 +3449,7 @@ class _CartPageState extends State<CartPage> {
             print('ADD');
             setState(() {
               isLoading = false;
+
             });
           } else {
             EasyLoading.showError(couponmodel?.message ?? "");

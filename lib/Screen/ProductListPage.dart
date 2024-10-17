@@ -1707,8 +1707,8 @@ class _ProductListPageState extends State<ProductListPage> {
                         ):
                         _serch.text != ''
                             ?
-                        subcatserchmodal?.searchResults?.length == 0 ||
-                                    subcatserchmodal?.searchResults?.length ==
+                        subcatserchmodal?.categoriesWiseProduct?.length == 0 ||
+                                    subcatserchmodal?.categoriesWiseProduct?.length ==
                                         null
                                 ? SliverToBoxAdapter(
                                     child: Container(
@@ -1748,7 +1748,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                           builder: (context) =>
                                                               productdetailnovartion(
                                                             productid: subcatserchmodal
-                                                                    ?.searchResults?[
+                                                                    ?.categoriesWiseProduct?[
                                                                         index]
                                                                     .productID ??
                                                                 '',
@@ -1776,9 +1776,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                       Container(
                                                         child: CachedNetworkImage(
                                                           imageUrl: subcatserchmodal
-                                                                  ?.searchResults?[
+                                                                  ?.categoriesWiseProduct?[
                                                                       index]
-                                                                  .allImages ??
+                                                                  .productImage ??
                                                               '',
                                                           fit: BoxFit.cover,
                                                           height: 9.5.h,
@@ -1841,7 +1841,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                             .ellipsis,
                                                                     maxLines: 1,
                                                                     subcatserchmodal
-                                                                            ?.searchResults?[
+                                                                            ?.categoriesWiseProduct?[
                                                                                 index]
                                                                             .productName ??
                                                                         '',
@@ -1933,7 +1933,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                 child: Text(
                                                                   '₹' +
                                                                       (subcatserchmodal
-                                                                              ?.searchResults?[index]
+                                                                              ?.categoriesWiseProduct?[index]
                                                                               .productPrice)
                                                                           .toString(),
                                                                   style:
@@ -1972,7 +1972,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                         (context) =>
                                                                             productdetailnovartion(
                                                                       productid: subcatserchmodal
-                                                                              ?.searchResults?[index]
+                                                                              ?.categoriesWiseProduct?[index]
                                                                               .productID ??
                                                                           '',
                                                                     ),
@@ -2025,26 +2025,26 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                     (context) =>
                                                                         LoginPage2()))
                                                         : subcatserchmodal
-                                                                    ?.searchResults?[
+                                                                    ?.categoriesWiseProduct?[
                                                                         index]
                                                                     .wishlist ==
                                                                 1
                                                             ? removewishlistap(
                                                                 (subcatserchmodal
-                                                                        ?.searchResults?[
+                                                                        ?.categoriesWiseProduct?[
                                                                             index]
                                                                         .productID)
                                                                     .toString())
                                                             : addwishlistap(
                                                                 (subcatserchmodal
-                                                                        ?.searchResults?[
+                                                                        ?.categoriesWiseProduct?[
                                                                             index]
                                                                         .productID)
                                                                     .toString());
                                                   },
                                                   child: Icon(
                                                     subcatserchmodal
-                                                                ?.searchResults?[
+                                                                ?.categoriesWiseProduct?[
                                                                     index]
                                                                 .wishlist ==
                                                             1
@@ -2053,7 +2053,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                             .favorite_outline,
                                                     size: 20.sp,
                                                     color: subcatserchmodal
-                                                                ?.searchResults?[
+                                                                ?.categoriesWiseProduct?[
                                                                     index]
                                                                 .wishlist ==
                                                             1
@@ -2065,7 +2065,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                         );
                                       },
                                       childCount: subcatserchmodal
-                                          ?.searchResults?.length,
+                                          ?.categoriesWiseProduct?.length,
                                     ),
                                   )
                             :catwiceproductmodal?.categoriesWiseProduct
@@ -2648,9 +2648,8 @@ class _ProductListPageState extends State<ProductListPage> {
   }
   subcatserchap(String value) async {
     final Map<String, String> data = {};
-    data['searchText'] = value.toString();
+    data['search_term'] = value.toString();
     data['category_id'] = widget.catid.toString();
-    data['subcategory_id'] = widget.subcatid.toString();
     data['User_id'] = (usermodal?.userId).toString();
     print("aaavi gaya${data}");
     checkInternet().then((internet) async {
