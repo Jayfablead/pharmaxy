@@ -57,6 +57,7 @@ import 'package:ecommerce/Modal/RecentBlogModel.dart';
 import 'package:ecommerce/Modal/RefillModel.dart';
 import 'package:ecommerce/Modal/RemoveAddressModal.dart';
 import 'package:ecommerce/Modal/RemoveCartModal.dart';
+import 'package:ecommerce/Modal/RemoveCouponModel.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/Remove_cart_withoutlogin_Model.dart';
 import 'package:ecommerce/Modal/RequestMedicineModel.dart';
@@ -190,6 +191,7 @@ AllProductSerachModel?allProductserachModel;
 BannerModel?bannermodel;
 CateWisePageViewModel?catewisePageViewModel;
 BrandwicePageViewModel?brandwicePageviewmodel;
+RemoveCouponModel?removecouponModel;
 
 //Prit Api
 RequestformModel? requestformModel;

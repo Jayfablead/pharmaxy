@@ -1023,6 +1023,24 @@ class authprovider with ChangeNotifier {
   }
 
 
+  // remove copun discount
+  Future<http.Response> removecoponapi(   Map<String, String> bodyData) async {
+    const url = "$baseUrl/remove_coupen";
+    print(url);
+    var responseJson;
+    final response = await http
+        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+
 
   // cart total
 

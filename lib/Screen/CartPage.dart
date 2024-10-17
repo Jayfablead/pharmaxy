@@ -10,6 +10,7 @@ import 'package:ecommerce/Modal/DisIncrementModal.dart';
 import 'package:ecommerce/Modal/IncrementModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveCartModal.dart';
+import 'package:ecommerce/Modal/RemoveCouponModel.dart';
 import 'package:ecommerce/Modal/Remove_cart_withoutlogin_Model.dart';
 import 'package:ecommerce/Modal/ViewCartModal.dart';
 import 'package:ecommerce/Modal/View_withoutuser_Model.dart';
@@ -28,6 +29,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -68,7 +70,7 @@ int pricetag = 0;
 
 bool isLoading = true;
 bool cpupon = false;
-
+String? cpn;
 String? coponapplend=_searchController.text.toString();
 late TextEditingController _searchController;
 
@@ -800,7 +802,7 @@ class _CartPageState extends State<CartPage> {
                         child: Column(
                           children: [
                             Container(
-                              height: Platform.isAndroid ?40.h:36.h,
+                              height: Platform.isAndroid ?36.5.h:36.h,
                               child: ListView.builder(
                                 padding: EdgeInsets.zero,
                                 itemCount: viewwithoutuserModel
@@ -1229,350 +1231,263 @@ class _CartPageState extends State<CartPage> {
                             Container(
                               child: Column(
                                 children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 41.w,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade50,
-                                          borderRadius: BorderRadius.circular(10),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 5,
+                                          offset: Offset(0, 3), // changes position of shadow
                                         ),
-                                        child: TextField(
-                                          controller: _searchController,
-                                          onTap: () {
-                                            // Tap event handled here (optional)
-                                          },
-                                          onChanged: (value) {
-                                            // When text changes, handle it here (optional)
-                                          },
-                                          style: TextStyle(color: Colors.black, fontFamily: 'task'),
-                                          textAlign: TextAlign.center, // Center the text input
-                                          decoration: InputDecoration(
-                                            contentPadding: EdgeInsets.all(0),
-                                            prefixIconConstraints: BoxConstraints(
-                                              maxHeight: 20,
-                                              minWidth: 25,
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(10),
-                                              borderSide: BorderSide(color: Colors.grey.shade300), // Default border color
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(10),
-                                              borderSide: BorderSide(color: Colors.grey.shade400), // Border color when enabled
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(10),
-                                              borderSide: BorderSide(color: AppColors.primary, width: 2), // Border color when focused
-                                            ),
-                                            hintText: 'Enter Coupon Code',
-                                            hintStyle: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'task',
-                                              fontSize: 11.sp,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-
-                                      SizedBox(
-                                        width: 2.w,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            applycoupon1();
-                                          });
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 0.w,vertical: 1.6.h),
-                                          width: 25.w,
-                                          alignment: Alignment.center,
+                                      ],
+                                    ),
+                                    child: ListTile(
+                                      leading: Container(
+                                          padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 0.7.h),
                                           decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(10),
-                                              color: Color(0xff0061b0)),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              // Button icon
-                                              SizedBox(width: 8),
-                                              Padding(
-                                                padding: EdgeInsets.only(right: 1.w),
-                                                child: Text(
-                                                  "Apply",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Color(0xff0061b0),
+                                          ),
+                                          child: Icon(Icons.percent, color: Colors.white)),
+                                      title: Text('Apply coupon',style: TextStyle(
+                                          fontFamily: "task",
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12.sp,
+                                          color: Colors.black
+                                      ),),
+                                      trailing: Icon(Icons.arrow_forward_ios, color: Colors.black),
+                                      onTap: () {
+                                        showModalBottomSheet(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(15.0),
+                                          ),
+                                          context: context,
+                                          backgroundColor: Colors.grey.shade100,
+                                          builder: (context) {
+                                            return Column(
+                                              children: [
+                                                SizedBox(height: 1.h,),
+                                                Center(
+                                                  child: Padding(
+                                                    padding:  EdgeInsets.only(top: 1.h),
+                                                    child: Text("All Coupons Offer",style: TextStyle(
+                                                      fontSize: 13.sp,
                                                       fontWeight: FontWeight.bold,
-                                                      fontSize: 11.sp,
-                                                      fontFamily: 'task'),
+                                                      fontFamily: "task",
+                                                    ),),
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 3.w),
-                                      InkWell(
-                                        onTap: () {
-                                          showModalBottomSheet(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(15.0),
-                                            ),
-                                            context: context,
-                                            backgroundColor: Colors.grey.shade100,
-                                            builder: (context) {
-                                              return Column(
-                                                children: [
-                                                  SizedBox(height: 2.h,),
-                                                  Center(
-                                                    child: Padding(
-                                                      padding:  EdgeInsets.only(top: 1.h),
-                                                      child: Text("All Coupons Offer",style: TextStyle(
-                                                        fontSize: 13.sp,
-                                                        fontWeight: FontWeight.bold,
-                                                        fontFamily: "task",
-                                                      ),),
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 1.h,),
-                                                  Expanded(
-                                                    child:allcouponmodal?.data?.length==""||allcouponmodal?.data?.length==null?Container(
-                                                      child: Center(child: Text("No Coupons Avaliable",style: TextStyle(
-                                                        fontSize: 13.sp,
-                                                        fontWeight: FontWeight.bold,
-                                                        fontFamily: "task",
-                                                      ),)),
-                                                    ):Padding(
-                                                      padding: EdgeInsets.all(8),
-                                                      child: ListView.builder(
-                                                        // padding: EdgeInsets.only(top: 1.h),
-                                                        itemCount: allcouponmodal?.data?.length,  // Dynamic list length
-                                                        itemBuilder: (context, index) {
-                                                          return Container(
-                                                            margin: EdgeInsets.only(left:2.w,top: 1.h),
-                                                            alignment: Alignment.center,
-                                                            height: 15.h,
-                                                            width: 70.w,
-                                                            decoration: BoxDecoration(
-                                                              borderRadius: BorderRadius.circular(10),
-                                                              color: Colors.blue.shade100,
-                                                            ),
-                                                            child: Row(
-                                                              children: [
-                                                                Image.network(
-                                                                  'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
-                                                                  fit: BoxFit.cover,
-                                                                  width: 80,
-                                                                  height: 80,
-                                                                ),
-                                                                SizedBox(width: 2.w),
-                                                                Expanded(
-                                                                  child: Column(
-                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsets.only(left: 3.5.w),
-                                                                        child: Text(
-                                                                          "FLAT ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
-                                                                          style: TextStyle(
-                                                                            fontSize: 10.5.sp,
-                                                                            fontWeight: FontWeight.bold,
-                                                                            fontFamily: "task",
-                                                                            // color: Colors.white,
-                                                                          ),
+                                                SizedBox(height: 1.h,),
+                                                Expanded(
+                                                  child:allcouponmodal?.data?.length==""||allcouponmodal?.data?.length==null?Container(
+                                                    child: Center(child: Text("No Coupons Avaliable",style: TextStyle(
+                                                      fontSize: 13.sp,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: "task",
+                                                    ),)),
+                                                  ):Padding(
+                                                    padding: EdgeInsets.all(8),
+                                                    child: ListView.builder(
+                                                      // padding: EdgeInsets.only(top: 1.h),
+                                                      itemCount: allcouponmodal?.data?.length,  // Dynamic list length
+                                                      itemBuilder: (context, index) {
+                                                        return Container(
+                                                          margin: EdgeInsets.only(left:2.w,top: 1.h),
+                                                          alignment: Alignment.center,
+                                                          height: 15.h,
+                                                          width: 68.w,
+                                                          decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius.circular(10),
+                                                            color: Colors.blue.shade100,
+                                                          ),
+                                                          child: Row(
+                                                            children: [
+                                                              Image.network(
+                                                                'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
+                                                                fit: BoxFit.cover,
+                                                                width: 80,
+                                                                height: 80,
+                                                              ),
+                                                              SizedBox(width: 2.w),
+                                                              Expanded(
+                                                                child: Column(
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsets.only(left: 3.5.w),
+                                                                      child: Text(
+                                                                        "FLAT ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
+                                                                        style: TextStyle(
+                                                                          fontSize: 10.5.sp,
+                                                                          fontWeight: FontWeight.bold,
+                                                                          fontFamily: "task",
+                                                                          // color: Colors.white,
                                                                         ),
                                                                       ),
-                                                                      SizedBox(height: 1.h),
-                                                                      Padding(
-                                                                        padding: EdgeInsets.only(left: 3.5.w),
-                                                                        child: Text(
-                                                                          "on your first order",
-                                                                          style: TextStyle(
-                                                                            fontSize: 11.sp,
-                                                                            fontWeight: FontWeight.bold,
-                                                                            fontFamily: 'task',
-                                                                            // color: Colors.white,
-                                                                          ),
+                                                                    ),
+                                                                    SizedBox(height: 1.h),
+                                                                    Padding(
+                                                                      padding: EdgeInsets.only(left: 3.5.w),
+                                                                      child: Text(
+                                                                        "on your first order",
+                                                                        style: TextStyle(
+                                                                          fontSize: 11.sp,
+                                                                          fontWeight: FontWeight.bold,
+                                                                          fontFamily: 'task',
+                                                                          // color: Colors.white,
                                                                         ),
                                                                       ),
-                                                                      SizedBox(height: 1.h),
-                                                                      Row(
-                                                                        children: [
-                                                                          GestureDetector(
-                                                                            onTap: () {
-                                                                              // Copy coupon code to clipboard
-                                                                              String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
-                                                                              Clipboard.setData(ClipboardData(text: couponCode));
+                                                                    ),
+                                                                    SizedBox(height: 1.h),
+                                                                    Row(
+                                                                      children: [
+                                                                        GestureDetector(
+                                                                          onTap: () {
+                                                                            // Copy coupon code to clipboard
+                                                                            String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
+                                                                            Clipboard.setData(ClipboardData(text: couponCode));
 
-                                                                              // Set the copied code to the TextField controller
-                                                                              setState(() {
-                                                                                _searchController.text = couponCode;
-                                                                              });
+                                                                            // Set the copied code to the TextField controller
+                                                                            setState(() {
+                                                                              _searchController.text = couponCode;
+                                                                            });
 
-                                                                              // Show snackbar confirmation
-                                                                              ScaffoldMessenger.of(context).showSnackBar(
-                                                                                SnackBar(
-                                                                                  content: Text('Coupon code copied: $couponCode'),
-                                                                                  behavior: SnackBarBehavior.floating,
+                                                                            // Show snackbar confirmation
+                                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                                              SnackBar(
+                                                                                content: Text('Coupon code copied: $couponCode'),
+                                                                                behavior: SnackBarBehavior.floating,
+                                                                              ),
+                                                                            );
+                                                                            Navigator.of(context).pop();
+                                                                          },
+                                                                          child: Container(
+                                                                            margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                                                            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                            decoration: BoxDecoration(
+                                                                              color: Colors.white,
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                              boxShadow: [
+                                                                                BoxShadow(
+                                                                                  color: Colors.black12,
+                                                                                  blurRadius: 5,
+                                                                                  spreadRadius: 2,
                                                                                 ),
-                                                                              );
-                                                                              Navigator.of(context).pop();
-                                                                            },
-                                                                            child: Container(
-                                                                              margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                                                                              decoration: BoxDecoration(
+                                                                              ],
+                                                                            ),
+                                                                            child: Text(
+                                                                              "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                              style: TextStyle(
+                                                                                color: Colors.black,
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontSize: 9.5.sp,
+                                                                                fontFamily: 'task',
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(width: 5.w,),
+                                                                        GestureDetector(
+                                                                          onTap: () {
+                                                                            // Copy coupon code to clipboard
+                                                                            // String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
+                                                                            // Clipboard.setData(ClipboardData(text: couponCode));
+                                                                            //
+                                                                            // // Set the copied code to the TextField controller
+                                                                            // setState(() {
+                                                                            //   _searchController.text = couponCode;
+                                                                            // });
+                                                                            setState(() {
+                                                                              applycoupon1(allcouponmodal?.data?[index].couponCode ?? "");
+                                                                            });
+
+
+                                                                            Navigator.of(context).pop();
+                                                                          },
+                                                                          child: Container(
+                                                                            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.6.h),
+                                                                            decoration: BoxDecoration(
+                                                                              color: AppColors.primary,
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                              boxShadow: [
+                                                                                BoxShadow(
+                                                                                  color: Colors.black12,
+                                                                                  blurRadius: 5,
+                                                                                  spreadRadius: 2,
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                            child: Text("Apply Coupon",
+                                                                              //"Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                              style: TextStyle(
                                                                                 color: Colors.white,
-                                                                                borderRadius: BorderRadius.circular(10),
-                                                                                boxShadow: [
-                                                                                  BoxShadow(
-                                                                                    color: Colors.black12,
-                                                                                    blurRadius: 5,
-                                                                                    spreadRadius: 2,
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              child: Text(
-                                                                                "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                                style: TextStyle(
-                                                                                  color: Colors.black,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  fontSize: 9.5.sp,
-                                                                                  fontFamily: 'task',
-                                                                                ),
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontSize: 9.5.sp,
+                                                                                fontFamily: 'task',
                                                                               ),
                                                                             ),
                                                                           ),
-                                                                          SizedBox(width: 5.w,),
-                                                                          GestureDetector(
-                                                                            onTap: () {
-                                                                              // Copy coupon code to clipboard
-                                                                              String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
-                                                                              Clipboard.setData(ClipboardData(text: couponCode));
+                                                                        ),
+                                                                      ],
+                                                                    ),
 
-                                                                              // Set the copied code to the TextField controller
-                                                                              setState(() {
-                                                                                _searchController.text = couponCode;
-                                                                              });
-
-                                                                              // Show snackbar confirmation
-                                                                              ScaffoldMessenger.of(context).showSnackBar(
-                                                                                SnackBar(
-                                                                                  content: Text('Coupon code copied: $couponCode'),
-                                                                                  behavior: SnackBarBehavior.floating,
-                                                                                ),
-                                                                              );
-                                                                              Navigator.of(context).pop();
-                                                                            },
-                                                                            child: Container(
-                                                                              margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                                                                              decoration: BoxDecoration(
-                                                                                color: AppColors.primary,
-                                                                                borderRadius: BorderRadius.circular(10),
-                                                                                boxShadow: [
-                                                                                  BoxShadow(
-                                                                                    color: Colors.black12,
-                                                                                    blurRadius: 5,
-                                                                                    spreadRadius: 2,
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              child: Text("Apply Coupon",
-                                                                                //"Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                                style: TextStyle(
-                                                                                  color: Colors.white,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  fontSize: 9.5.sp,
-                                                                                  fontFamily: 'task',
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-
-                                                                      // GestureDetector(
-                                                                      //   onTap: () {
-                                                                      //     // Copy coupon code to clipboard
-                                                                      //     Clipboard.setData(ClipboardData(text: allcouponmodal?.data?[index].couponCode ?? ""));
-                                                                      //     // Show snackbar confirmation
-                                                                      //     ScaffoldMessenger.of(context).showSnackBar(
-                                                                      //       SnackBar(
-                                                                      //           content: Text('Coupon code copied: ${allcouponmodal?.data?[index].couponCode ?? ""}',),
-                                                                      //         behavior: SnackBarBehavior.floating,
-                                                                      //       ),
-                                                                      //     );
-                                                                      //   },
-                                                                      //   child: Container(
-                                                                      //     margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                      //     padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                                                                      //     decoration: BoxDecoration(
-                                                                      //       color: Colors.white,
-                                                                      //       borderRadius: BorderRadius.circular(10),
-                                                                      //       boxShadow: [
-                                                                      //         BoxShadow(
-                                                                      //           color: Colors.black12,
-                                                                      //           blurRadius: 5,
-                                                                      //           spreadRadius: 2,
-                                                                      //         ),
-                                                                      //       ],
-                                                                      //     ),
-                                                                      //     child: Text(
-                                                                      //       "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                      //       style: TextStyle(
-                                                                      //         color: Colors.black,
-                                                                      //         fontWeight: FontWeight.bold,
-                                                                      //         fontSize: 9.5.sp,
-                                                                      //         fontFamily: 'task',
-                                                                      //       ),
-                                                                      //     ),
-                                                                      //   ),
-                                                                      // ),
-                                                                    ],
-                                                                  ),
+                                                                    // GestureDetector(
+                                                                    //   onTap: () {
+                                                                    //     // Copy coupon code to clipboard
+                                                                    //     Clipboard.setData(ClipboardData(text: allcouponmodal?.data?[index].couponCode ?? ""));
+                                                                    //     // Show snackbar confirmation
+                                                                    //     ScaffoldMessenger.of(context).showSnackBar(
+                                                                    //       SnackBar(
+                                                                    //           content: Text('Coupon code copied: ${allcouponmodal?.data?[index].couponCode ?? ""}',),
+                                                                    //         behavior: SnackBarBehavior.floating,
+                                                                    //       ),
+                                                                    //     );
+                                                                    //   },
+                                                                    //   child: Container(
+                                                                    //     margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                                                    //     padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                    //     decoration: BoxDecoration(
+                                                                    //       color: Colors.white,
+                                                                    //       borderRadius: BorderRadius.circular(10),
+                                                                    //       boxShadow: [
+                                                                    //         BoxShadow(
+                                                                    //           color: Colors.black12,
+                                                                    //           blurRadius: 5,
+                                                                    //           spreadRadius: 2,
+                                                                    //         ),
+                                                                    //       ],
+                                                                    //     ),
+                                                                    //     child: Text(
+                                                                    //       "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                    //       style: TextStyle(
+                                                                    //         color: Colors.black,
+                                                                    //         fontWeight: FontWeight.bold,
+                                                                    //         fontSize: 9.5.sp,
+                                                                    //         fontFamily: 'task',
+                                                                    //       ),
+                                                                    //     ),
+                                                                    //   ),
+                                                                    // ),
+                                                                  ],
                                                                 ),
-                                                              ],
-                                                            ),
-                                                          );
-                                                        },
-                                                      ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      },
                                                     ),
                                                   ),
-                                                ],
-                                              );
-                                            },
-                                          );
-
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 1.h),
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(8.0),
-                                              color: Color(0xffFFFFFF),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.grey,
-                                                  blurRadius: 1.0,
-                                                  offset: Offset(1, 1)
-                                                )
-                                              ]
-                                          ),
-                                          width: 22.w,
-                                          height: 5.4.h,
-                                          alignment: Alignment.center,
-                                          child: Text("All Coupons",overflow: TextOverflow.ellipsis,style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 8.sp,
-                                            fontFamily: 'task',
-                                            color: AppColors.primary,
-                                          ),),
-                                        ),
-                                      )
-
-                                    ],
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
@@ -1725,25 +1640,41 @@ class _CartPageState extends State<CartPage> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          right: 3.w,
-                                        ),
-                                        child: Text(
-                                          cpupon?  '₹ ' +
-                                              (couponmodel
-                                                  ?.discountApplied)
-                                                  .toString():'₹ ' +
-                                              ("0")
-                                                  .toString(),
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              right: 3.w,
+                                            ),
+                                            child: Text(
+                                              cpupon?  '₹ ' +
+                                                  (couponmodel
+                                                      ?.discountApplied)
+                                                      .toString():'₹ ' +
+                                                  ("0")
+                                                      .toString(),
 
-                                          style: TextStyle(
-                                              fontFamily: 'task',
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black87
+                                              style: TextStyle(
+                                                  fontFamily: 'task',
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black87
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          IconButton(
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Colors.red,
+                                                size: 15.sp,
+                                              ),
+                                              onPressed:(){
+                                                setState(() {
+                                                  removecouponap();
+                                                });
+                                              }
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -1970,7 +1901,7 @@ class _CartPageState extends State<CartPage> {
                             viewcartmodal?.cartDetails?.length == 0 ||
                                     viewcartmodal?.cartDetails?.length == null
                                 ? Container(
-                                    height: 75.h,
+                                    height: 70.h,
                                     alignment: Alignment.center,
                                     child: Text(
                                       "No Data Available",
@@ -1985,7 +1916,7 @@ class _CartPageState extends State<CartPage> {
                                     child: Column(
                                       children: [
                                         Container(
-                                          height: 36.5.h,
+                                          height: 32.5.h,
                                           child: ListView.builder(
                                             padding: EdgeInsets.zero,
                                             itemCount: viewcartmodal
@@ -2414,358 +2345,264 @@ class _CartPageState extends State<CartPage> {
                                         Container(
                                           child: Column(
                                             children: [
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width: 41.w,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.grey.shade50,
-                                                      borderRadius: BorderRadius.circular(10),
-                                                    ),
-                                                    child: TextField(
-                                                      controller: _searchController,
-                                                      onTap: () {
-                                                        // Tap event handled here (optional)
-                                                      },
-                                                      onChanged: (value) {
-                                                        // When text changes, handle it here (optional)
-                                                      },
-                                                      style: TextStyle(color: Colors.black, fontFamily: 'task'),
-                                                      textAlign: TextAlign.center, // Center the text input
-                                                      decoration: InputDecoration(
-                                                        contentPadding: EdgeInsets.all(0),
-                                                        prefixIconConstraints: BoxConstraints(
-                                                          maxHeight: 20,
-                                                          minWidth: 25,
-                                                        ),
-                                                        border: OutlineInputBorder(
-                                                          borderRadius: BorderRadius.circular(10),
-                                                          borderSide: BorderSide(color: Colors.grey.shade300), // Default border color
-                                                        ),
-                                                        enabledBorder: OutlineInputBorder(
-                                                          borderRadius: BorderRadius.circular(10),
-                                                          borderSide: BorderSide(color: Colors.grey.shade400), // Border color when enabled
-                                                        ),
-                                                        focusedBorder: OutlineInputBorder(
-                                                          borderRadius: BorderRadius.circular(10),
-                                                          borderSide: BorderSide(color: AppColors.primary, width: 2), // Border color when focused
-                                                        ),
-                                                        hintText: 'Enter Coupon Code',
-                                                        hintStyle: TextStyle(
-                                                          color: Colors.black,
-                                                          fontFamily: 'task',
-                                                          fontSize: 11.sp,
-                                                        ),
-                                                      ),
-                                                    ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(8.0),
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey.withOpacity(0.5),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 5,
+                                                  offset: Offset(0, 3), // changes position of shadow
+                                                ),
+                                              ],
+                                            ),
+                                            child: ListTile(
+                                              leading: Container(
+                                                padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 0.7.h),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  color: Color(0xff0061b0),
+                                                ),
+                                                  child: Icon(Icons.percent, color: Colors.white)),
+                                              title: Text('Apply coupon',style: TextStyle(
+                                                fontFamily: "task",
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12.sp,
+                                                color: Colors.black
+                                              ),),
+                                              trailing: Icon(Icons.arrow_forward_ios, color: Colors.black),
+                                              onTap: () {
+                                                showModalBottomSheet(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(15.0),
                                                   ),
-
-                                                  SizedBox(
-                                                    width: 2.w,
-                                                  ),
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        applycoupon();
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      padding: EdgeInsets.symmetric(vertical: 1.6.h),
-                                                      width: 25.w,
-                                                     // alignment: Alignment.center,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                          BorderRadius.circular(10),
-                                                          color: Color(0xff0061b0)),
-                                                      child: Row(
-                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                        children: [
-                                                          // Button icon
-                                                          SizedBox(width: 8),
-                                                          Padding(
-                                                            padding:  EdgeInsets.only(right: 1.w),
-                                                            child: Text(
-                                                              "Apply",
-                                                              style: TextStyle(
-                                                                  color: Colors.white,
-                                                                  fontWeight: FontWeight.bold,
-                                                                  fontSize: 11.sp,
-                                                                  fontFamily: 'task'),
-                                                            ),
+                                                  context: context,
+                                                  backgroundColor: Colors.grey.shade100,
+                                                  builder: (context) {
+                                                    return Column(
+                                                      children: [
+                                                        SizedBox(height: 1.h,),
+                                                        Center(
+                                                          child: Padding(
+                                                            padding:  EdgeInsets.only(top: 1.h),
+                                                            child: Text("All Coupons Offer",style: TextStyle(
+                                                              fontSize: 13.sp,
+                                                              fontWeight: FontWeight.bold,
+                                                              fontFamily: "task",
+                                                            ),),
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 2.w),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      showModalBottomSheet(
-                                                        shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(15.0),
                                                         ),
-                                                        context: context,
-                                                        backgroundColor: Colors.grey.shade100,
-                                                        builder: (context) {
-                                                          return Column(
-                                                            children: [
-                                                              SizedBox(height: 1.h,),
-                                                              Center(
-                                                                child: Padding(
-                                                                  padding:  EdgeInsets.only(top: 1.h),
-                                                                  child: Text("All Coupons Offer",style: TextStyle(
-                                                                    fontSize: 13.sp,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontFamily: "task",
-                                                                  ),),
-                                                                ),
-                                                              ),
-                                                              SizedBox(height: 1.h,),
-                                                              Expanded(
-                                                                child:allcouponmodal?.data?.length==""||allcouponmodal?.data?.length==null?Container(
-                                                                  child: Center(child: Text("No Coupons Avaliable",style: TextStyle(
-                                                                    fontSize: 13.sp,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontFamily: "task",
-                                                                  ),)),
-                                                                ):Padding(
-                                                                  padding: EdgeInsets.all(8),
-                                                                  child: ListView.builder(
-                                                                   // padding: EdgeInsets.only(top: 1.h),
-                                                                    itemCount: allcouponmodal?.data?.length,  // Dynamic list length
-                                                                    itemBuilder: (context, index) {
-                                                                      return Container(
-                                                                        margin: EdgeInsets.only(left:2.w,top: 1.h),
-                                                                        alignment: Alignment.center,
-                                                                        height: 15.h,
-                                                                        width: 68.w,
-                                                                        decoration: BoxDecoration(
-                                                                          borderRadius: BorderRadius.circular(10),
-                                                                          color: Colors.blue.shade100,
-                                                                        ),
-                                                                        child: Row(
+                                                        SizedBox(height: 1.h,),
+                                                        Expanded(
+                                                          child:allcouponmodal?.data?.length==""||allcouponmodal?.data?.length==null?Container(
+                                                            child: Center(child: Text("No Coupons Avaliable",style: TextStyle(
+                                                              fontSize: 13.sp,
+                                                              fontWeight: FontWeight.bold,
+                                                              fontFamily: "task",
+                                                            ),)),
+                                                          ):Padding(
+                                                            padding: EdgeInsets.all(8),
+                                                            child: ListView.builder(
+                                                              // padding: EdgeInsets.only(top: 1.h),
+                                                              itemCount: allcouponmodal?.data?.length,  // Dynamic list length
+                                                              itemBuilder: (context, index) {
+                                                                return Container(
+                                                                  margin: EdgeInsets.only(left:2.w,top: 1.h),
+                                                                  alignment: Alignment.center,
+                                                                  height: 15.h,
+                                                                  width: 68.w,
+                                                                  decoration: BoxDecoration(
+                                                                    borderRadius: BorderRadius.circular(10),
+                                                                    color: Colors.blue.shade100,
+                                                                  ),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Image.network(
+                                                                        'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
+                                                                        fit: BoxFit.cover,
+                                                                        width: 80,
+                                                                        height: 80,
+                                                                      ),
+                                                                      SizedBox(width: 2.w),
+                                                                      Expanded(
+                                                                        child: Column(
+                                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                                           children: [
-                                                                            Image.network(
-                                                                              'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
-                                                                              fit: BoxFit.cover,
-                                                                              width: 80,
-                                                                              height: 80,
-                                                                            ),
-                                                                            SizedBox(width: 2.w),
-                                                                            Expanded(
-                                                                              child: Column(
-                                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: EdgeInsets.only(left: 3.5.w),
-                                                                                    child: Text(
-                                                                                      "FLAT ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
-                                                                                      style: TextStyle(
-                                                                                        fontSize: 10.5.sp,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                        fontFamily: "task",
-                                                                                        // color: Colors.white,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  SizedBox(height: 1.h),
-                                                                                  Padding(
-                                                                                    padding: EdgeInsets.only(left: 3.5.w),
-                                                                                    child: Text(
-                                                                                      "on your first order",
-                                                                                      style: TextStyle(
-                                                                                        fontSize: 11.sp,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                        fontFamily: 'task',
-                                                                                        // color: Colors.white,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  SizedBox(height: 1.h),
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      GestureDetector(
-                                                                                        onTap: () {
-                                                                                          // Copy coupon code to clipboard
-                                                                                          String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
-                                                                                          Clipboard.setData(ClipboardData(text: couponCode));
-
-                                                                                          // Set the copied code to the TextField controller
-                                                                                          setState(() {
-                                                                                            _searchController.text = couponCode;
-                                                                                          });
-
-                                                                                          // Show snackbar confirmation
-                                                                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                                                            SnackBar(
-                                                                                              content: Text('Coupon code copied: $couponCode'),
-                                                                                              behavior: SnackBarBehavior.floating,
-                                                                                            ),
-                                                                                          );
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                        child: Container(
-                                                                                          margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                                          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.white,
-                                                                                            borderRadius: BorderRadius.circular(10),
-                                                                                            boxShadow: [
-                                                                                              BoxShadow(
-                                                                                                color: Colors.black12,
-                                                                                                blurRadius: 5,
-                                                                                                spreadRadius: 2,
-                                                                                              ),
-                                                                                            ],
-                                                                                          ),
-                                                                                          child: Text(
-                                                                                            "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                                            style: TextStyle(
-                                                                                              color: Colors.black,
-                                                                                              fontWeight: FontWeight.bold,
-                                                                                              fontSize: 9.5.sp,
-                                                                                              fontFamily: 'task',
-                                                                                            ),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      SizedBox(width: 5.w,),
-                                                                                      GestureDetector(
-                                                                                        onTap: () {
-                                                                                          // Copy coupon code to clipboard
-                                                                                          String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
-                                                                                          Clipboard.setData(ClipboardData(text: couponCode));
-
-                                                                                          // Set the copied code to the TextField controller
-                                                                                          setState(() {
-                                                                                            _searchController.text = couponCode;
-                                                                                          });
-
-                                                                                          // Show snackbar confirmation
-                                                                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                                                            SnackBar(
-                                                                                              content: Text('Coupon code copied: $couponCode'),
-                                                                                              behavior: SnackBarBehavior.floating,
-                                                                                            ),
-                                                                                          );
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.6.h),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: AppColors.primary,
-                                                                                            borderRadius: BorderRadius.circular(10),
-                                                                                            boxShadow: [
-                                                                                              BoxShadow(
-                                                                                                color: Colors.black12,
-                                                                                                blurRadius: 5,
-                                                                                                spreadRadius: 2,
-                                                                                              ),
-                                                                                            ],
-                                                                                          ),
-                                                                                          child: Text("Apply Coupon",
-                                                                                            //"Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                                            style: TextStyle(
-                                                                                              color: Colors.white,
-                                                                                              fontWeight: FontWeight.bold,
-                                                                                              fontSize: 9.5.sp,
-                                                                                              fontFamily: 'task',
-                                                                                            ),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-
-                                                                                  // GestureDetector(
-                                                                                  //   onTap: () {
-                                                                                  //     // Copy coupon code to clipboard
-                                                                                  //     Clipboard.setData(ClipboardData(text: allcouponmodal?.data?[index].couponCode ?? ""));
-                                                                                  //     // Show snackbar confirmation
-                                                                                  //     ScaffoldMessenger.of(context).showSnackBar(
-                                                                                  //       SnackBar(
-                                                                                  //           content: Text('Coupon code copied: ${allcouponmodal?.data?[index].couponCode ?? ""}',),
-                                                                                  //         behavior: SnackBarBehavior.floating,
-                                                                                  //       ),
-                                                                                  //     );
-                                                                                  //   },
-                                                                                  //   child: Container(
-                                                                                  //     margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                                  //     padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                                                                                  //     decoration: BoxDecoration(
-                                                                                  //       color: Colors.white,
-                                                                                  //       borderRadius: BorderRadius.circular(10),
-                                                                                  //       boxShadow: [
-                                                                                  //         BoxShadow(
-                                                                                  //           color: Colors.black12,
-                                                                                  //           blurRadius: 5,
-                                                                                  //           spreadRadius: 2,
-                                                                                  //         ),
-                                                                                  //       ],
-                                                                                  //     ),
-                                                                                  //     child: Text(
-                                                                                  //       "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                                  //       style: TextStyle(
-                                                                                  //         color: Colors.black,
-                                                                                  //         fontWeight: FontWeight.bold,
-                                                                                  //         fontSize: 9.5.sp,
-                                                                                  //         fontFamily: 'task',
-                                                                                  //       ),
-                                                                                  //     ),
-                                                                                  //   ),
-                                                                                  // ),
-                                                                                ],
+                                                                            Padding(
+                                                                              padding: EdgeInsets.only(left: 3.5.w),
+                                                                              child: Text(
+                                                                                "FLAT ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
+                                                                                style: TextStyle(
+                                                                                  fontSize: 10.5.sp,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontFamily: "task",
+                                                                                  // color: Colors.white,
+                                                                                ),
                                                                               ),
                                                                             ),
+                                                                            SizedBox(height: 1.h),
+                                                                            Padding(
+                                                                              padding: EdgeInsets.only(left: 3.5.w),
+                                                                              child: Text(
+                                                                                "on your first order",
+                                                                                style: TextStyle(
+                                                                                  fontSize: 11.sp,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontFamily: 'task',
+                                                                                  // color: Colors.white,
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(height: 1.h),
+                                                                            Row(
+                                                                              children: [
+                                                                                GestureDetector(
+                                                                                  onTap: () {
+                                                                                    // Copy coupon code to clipboard
+                                                                                    String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
+                                                                                    Clipboard.setData(ClipboardData(text: couponCode));
+
+                                                                                    // Set the copied code to the TextField controller
+                                                                                    setState(() {
+                                                                                      _searchController.text = couponCode;
+                                                                                    });
+
+                                                                                    // Show snackbar confirmation
+                                                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                                                      SnackBar(
+                                                                                        content: Text('Coupon code copied: $couponCode'),
+                                                                                        behavior: SnackBarBehavior.floating,
+                                                                                      ),
+                                                                                    );
+                                                                                    Navigator.of(context).pop();
+                                                                                  },
+                                                                                  child: Container(
+                                                                                    margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                                                                    padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                                    decoration: BoxDecoration(
+                                                                                      color: Colors.white,
+                                                                                      borderRadius: BorderRadius.circular(10),
+                                                                                      boxShadow: [
+                                                                                        BoxShadow(
+                                                                                          color: Colors.black12,
+                                                                                          blurRadius: 5,
+                                                                                          spreadRadius: 2,
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                    child: Text(
+                                                                                      "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                                      style: TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        fontWeight: FontWeight.bold,
+                                                                                        fontSize: 9.5.sp,
+                                                                                        fontFamily: 'task',
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                SizedBox(width: 5.w,),
+                                                                                GestureDetector(
+                                                                                  onTap: () {
+                                                                                    // Copy coupon code to clipboard
+                                                                                    // String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
+                                                                                    // Clipboard.setData(ClipboardData(text: couponCode));
+                                                                                    //
+                                                                                    // // Set the copied code to the TextField controller
+                                                                                    // setState(() {
+                                                                                    //   _searchController.text = couponCode;
+                                                                                    // });
+                                                                                    setState(() {
+                                                                                      applycoupon(allcouponmodal?.data?[index].couponCode ?? "");
+                                                                                    });
+
+
+                                                                                    Navigator.of(context).pop();
+                                                                                  },
+                                                                                  child: Container(
+                                                                                    padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.6.h),
+                                                                                    decoration: BoxDecoration(
+                                                                                      color: AppColors.primary,
+                                                                                      borderRadius: BorderRadius.circular(10),
+                                                                                      boxShadow: [
+                                                                                        BoxShadow(
+                                                                                          color: Colors.black12,
+                                                                                          blurRadius: 5,
+                                                                                          spreadRadius: 2,
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                    child: Text("Apply Coupon",
+                                                                                      //"Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                                      style: TextStyle(
+                                                                                        color: Colors.white,
+                                                                                        fontWeight: FontWeight.bold,
+                                                                                        fontSize: 9.5.sp,
+                                                                                        fontFamily: 'task',
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+
+                                                                            // GestureDetector(
+                                                                            //   onTap: () {
+                                                                            //     // Copy coupon code to clipboard
+                                                                            //     Clipboard.setData(ClipboardData(text: allcouponmodal?.data?[index].couponCode ?? ""));
+                                                                            //     // Show snackbar confirmation
+                                                                            //     ScaffoldMessenger.of(context).showSnackBar(
+                                                                            //       SnackBar(
+                                                                            //           content: Text('Coupon code copied: ${allcouponmodal?.data?[index].couponCode ?? ""}',),
+                                                                            //         behavior: SnackBarBehavior.floating,
+                                                                            //       ),
+                                                                            //     );
+                                                                            //   },
+                                                                            //   child: Container(
+                                                                            //     margin: EdgeInsets.symmetric(horizontal: 2.w),
+                                                                            //     padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                            //     decoration: BoxDecoration(
+                                                                            //       color: Colors.white,
+                                                                            //       borderRadius: BorderRadius.circular(10),
+                                                                            //       boxShadow: [
+                                                                            //         BoxShadow(
+                                                                            //           color: Colors.black12,
+                                                                            //           blurRadius: 5,
+                                                                            //           spreadRadius: 2,
+                                                                            //         ),
+                                                                            //       ],
+                                                                            //     ),
+                                                                            //     child: Text(
+                                                                            //       "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                            //       style: TextStyle(
+                                                                            //         color: Colors.black,
+                                                                            //         fontWeight: FontWeight.bold,
+                                                                            //         fontSize: 9.5.sp,
+                                                                            //         fontFamily: 'task',
+                                                                            //       ),
+                                                                            //     ),
+                                                                            //   ),
+                                                                            // ),
                                                                           ],
                                                                         ),
-                                                                      );
-                                                                    },
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-
-                                                    },
-                                                    child: Container(
-                                                      padding: EdgeInsets.symmetric(vertical: 1.h,horizontal: 1.h),
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(8.0),
-                                                        color: Color(0xffFFFFFF),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color: Colors.grey,
-                                                            blurRadius: 1.0,
-                                                            offset: Offset(1, 1)
-
-                                                          )
-                                                        ]
-
-                                                      ),
-                                                      width: 22.w,
-                                                      height: 5.4.h,
-                                                      alignment: Alignment.center,
-                                                      child: Text("All Coupons",overflow: TextOverflow.ellipsis,style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 8.sp,
-                                                        fontFamily: 'task',
-                                                        color: AppColors.primary,
-                                                      ),),
-                                                    ),
-                                                    // child: TextButton(
-                                                    //   onPressed: () {
-                                                    //
-                                                    //   },
-                                                    //   child:
-                                                    // ),
-                                                  ),
-
-                                                ],
-                                              ),
+                                                                );
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
+                                          ),
                                             ],
                                           ),
                                         ),
@@ -2977,26 +2814,40 @@ class _CartPageState extends State<CartPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      right: 3.w,
-                                                    ),
-                                                    child: Text(
-                                                      cpupon?  '₹ ' +
-                                                          (couponmodel
-                                                              ?.discountApplied)
-                                                              .toString():'₹ ' +
-                                                          ("0")
-                                                              .toString(),
-
-                                                      style: TextStyle(
-                                                        fontFamily: 'task',
-                                                        fontSize: 12.sp,
-                                                          fontWeight: FontWeight.w600,
-                                                          color: Colors.black87
-                                                      ),
-                                                    ),
-                                                  ),
+                                             Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 8.0),
+                                    child: Text(
+                                      cpupon?  '₹ ' +
+                                          (couponmodel
+                                              ?.discountApplied)
+                                              .toString():'₹ ' +
+                                          ("0")
+                                              .toString(),
+                                      style: TextStyle(
+                                        fontFamily: 'task',
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                      size: 15.sp,
+                                    ),
+                                    onPressed:(){
+                                      setState(() {
+                                        removecouponap();
+                                      });
+                                    }
+                                  ),
+                                ],
+                              ),
                                                 ],
                                               ),
                                               SizedBox(
@@ -3517,11 +3368,11 @@ class _CartPageState extends State<CartPage> {
   }
 
 
-  applycoupon() async {
+  applycoupon(value) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
-    data['Coupon'] = _searchController.text.toString();
+    data['Coupon'] = value.toString();
     print("cart incre $data");
     checkInternet().then((internet) async {
       if (internet) {
@@ -3533,6 +3384,7 @@ class _CartPageState extends State<CartPage> {
             EasyLoading.showSuccess("Coupon Applied");
             setState(() {
               cpupon =true;
+              cpn =value.toString();
             });
             ViewCartApi();
             print('ADD');
@@ -3542,6 +3394,7 @@ class _CartPageState extends State<CartPage> {
           } else {
             EasyLoading.showError(couponmodel?.message ?? '');
             setState(() {
+              cpupon =false;
               isLoading = false;
             });
           }
@@ -3556,11 +3409,11 @@ class _CartPageState extends State<CartPage> {
   }
 
 
-  applycoupon1() async {
+  applycoupon1(value) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = deviceName.toString();
-    data['Coupon'] = _searchController.text.toString();
+    data['Coupon'] = value.toString();
     print("cart incre $data");
     checkInternet().then((internet) async {
       if (internet) {
@@ -3572,6 +3425,8 @@ class _CartPageState extends State<CartPage> {
             EasyLoading.showSuccess("Coupon Applied");
             setState(() {
               cpupon =true;
+              cpn =value.toString();
+              print("787878${cpn}");
             });
             ViewCartApi();
             ViewCartwithoutloginAp();
@@ -3582,6 +3437,7 @@ class _CartPageState extends State<CartPage> {
           } else {
             EasyLoading.showError(couponmodel?.message ?? "");
             setState(() {
+              cpupon =false;
               isLoading = false;
             });
           }
@@ -3602,7 +3458,7 @@ class _CartPageState extends State<CartPage> {
     data['final_total'] = cpupon?(viewcartmodal ?.finalTotal).toString():(viewcartmodal ?.finalTotal).toString();
     data['total_tax'] = cpupon?(couponmodel ?.handlingCharge).toString():(viewcartmodal ?.headingCharge).toString();
     data['final_total_with_tax'] = cpupon?(couponmodel ?.handlingCharge).toString():(viewcartmodal ?.finalTotalWithCharge).toString();
-    data['coupon'] = _searchController.text==null||_searchController.text==""?"":_searchController.text.trim().toString();
+    data['coupon'] = cpn==null||cpn==""?"":cpn.toString();
     data['discount'] = cpupon?(couponmodel?.discountApplied).toString():"";
     data['referral'] =cpupon?(couponmodel ?.agentDiscountApplied).toString():(viewcartmodal ?.referralDiscountAmount).toString();
     print("sdfdsfsdsfdsf${data}");
@@ -3620,6 +3476,7 @@ class _CartPageState extends State<CartPage> {
             setState(() {
               isLoading = false;
               _searchController.clear();
+              cpn=null;
             });
           } else {
             setState(() {
@@ -3645,7 +3502,7 @@ class _CartPageState extends State<CartPage> {
     data['final_total'] = cpupon?(viewwithoutuserModel ?.finalTotal).toString():(viewwithoutuserModel ?.finalTotal).toString();
     data['total_tax'] = cpupon?(couponmodel ?.handlingCharge).toString():(viewwithoutuserModel ?.handlingCharge).toString();
     data['final_total_with_tax'] = cpupon?(couponmodel ?.finalTotalWithHandlingCharge).toString():(viewwithoutuserModel ?.finalTotalWithTax).toString();
-    data['coupon'] = _searchController.text==null||_searchController.text==""?"":_searchController.text.trim().toString();
+    data['coupon'] = cpn==null||cpn==""?"":cpn.toString();
     data['discount'] = cpupon?(couponmodel?.discountApplied).toString():"";
     data['referral'] =cpupon?(couponmodel ?.agentDiscountApplied).toString():(viewcartmodal ?.referralDiscountAmount).toString();
 
@@ -3664,7 +3521,9 @@ class _CartPageState extends State<CartPage> {
             setState(() {
               isLoading = false;
               _searchController.clear();
+              cpn=null;
             });
+
           } else {
             setState(() {
               EasyLoading.showError("No Data Found");
@@ -3701,6 +3560,8 @@ class _CartPageState extends State<CartPage> {
     print('Device Name: $deviceName');
     print('Device OS: $deviceOS');
   }
+
+
   allcoupon() async {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
@@ -3734,6 +3595,51 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
+
+
+
+
+  removecouponap() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    final Map<String, String> data = {};
+    data['userId'] =  usermodal?.userId == "" || usermodal?.userId == null
+        ?deviceName.toString():(usermodal?.userId).toString();
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().removecoponapi(data).then((response) async {
+          removecouponModel =
+              RemoveCouponModel.fromJson(json.decode(response.body));
+          print(removecouponModel?.status);
+          if (response.statusCode == 200 &&
+              removecouponModel?.status == "success") {
+            EasyLoading.showSuccess("Remove Coupon");
+            print('EE Thay Gyu Hooooo ! ^_^');
+
+            setState(() {
+              // wait = false;
+              isLoading = false;
+              cpupon= false;
+            });
+          } else {
+            setState(() {
+              EasyLoading.showError("fail");
+              // wait = false;
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          //wait = false;
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
+
 
 
 }
