@@ -15,6 +15,7 @@ import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/ViewReviewModal.dart';
 import 'package:ecommerce/Modal/addReviewModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
@@ -600,7 +601,36 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
             SizedBox(
               width: 2.w,
             ),
-            Row(
+            productdetail2modal?.productData?.cartlist == 1
+                ?GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder:
+                            (context) =>
+                            CartPage(
+                            )));
+              },
+                  child: Container(
+                                alignment: Alignment.center,
+                                height: 5.h,
+                                width: 30.w,
+                                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color(0xff0061b0),
+                                ),
+                                child: Text(
+                  "View Cart",
+                  style: TextStyle(
+                    fontSize: 11.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                    fontFamily: "task",
+                  ),
+                                ),
+                              ),
+                ):  Row(
               children: [
                 // Minus button
                 GestureDetector(
@@ -681,72 +711,50 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       ],
                           ),
                           SizedBox(height: 2.h),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 2.w),
-                            child: Container(
-                              height: 10.h,
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Colors.white),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Container(
-                                    child: Icon(
-                                      Icons.add,
-                                      color: Colors.white,
-                                      size: 13.sp,
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            height: 10.h,
+                            alignment: Alignment.center,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.white),
+                            child: Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 1.h,
                                     ),
-                                    decoration: BoxDecoration(
-                                        color: Color(0xff0061b0),
-                                        borderRadius:
-                                            BorderRadius.circular(20.0)),
-                                    height: 22.0,
-                                    width: 22.0,
-                                  ),
-                                  // SizedBox(width: 20.w,),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 1.h,
+                                    Text(
+                                      "Free Delivery",
+                                      style: TextStyle(
+                                        fontSize: 11.sp,
+                                        fontFamily: "task",
+                                        fontWeight: FontWeight.bold
                                       ),
-                                      Text(
-                                        "Free Shipping",
-                                        style: TextStyle(
+                                    ),
+
+                                    Text(
+                                      'YOU GET FREE DELIVERY ON ORDER ABOVE',
+                                      style: TextStyle(
+                                          fontSize: 10.sp,
+                                          fontFamily: "task",
+                                          color: Color(0xff0061b0)),
+                                    ),
+                                    Text(
+                                      productdetail2modal?.shipping?.amount?? '',
+                                      style: TextStyle(
                                           fontSize: 11.sp,
                                           fontFamily: "task",
-                                          fontWeight: FontWeight.bold
-                                        ),
-                                      ),
-
-                                      Text(
-                                        'You\'ve got free shipping for below',
-                                        style: TextStyle(
-                                            fontSize: 10.sp,
-                                            fontFamily: "task",
-                                            color: Color(0xff0061b0)),
-                                      ),
-                                      Text(productdetail2modal?.shipping?.amount?? '',
-                                        style: TextStyle(
-                                            fontSize: 11.sp,
-                                            fontFamily: "task",
-                                            color: Color(0xff0061b0)),
-                                      ),
-                                    ],
-                                  ),
-                                  //SizedBox(width: 30.w,),
-                                  Icon(
-                                    Icons.arrow_forward_ios_outlined,
-                                    size: 15.sp,
-                                    color: Color(0xff0061b0),
-                                  )
-                                ],
-                              ),
+                                          color: Color(0xff0061b0)),
+                                    ),
+                                  ],
+                                ),
+                                //SizedBox(width: 30.w,),
+                              ],
                             ),
                           ),
                           SizedBox(height: 2.h),

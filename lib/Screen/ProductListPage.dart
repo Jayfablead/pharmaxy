@@ -267,13 +267,58 @@ class _ProductListPageState extends State<ProductListPage> {
                                         ),
                                       ),
                                       SizedBox(width: 10.0),
-                                      Text(
-                                        "Sort By",
-                                        style: TextStyle(
-                                          fontFamily: "task",
-                                          fontSize: 15.0,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xff0061b0),
+                                      PopupMenuButton<String>(
+                                        onSelected: (value) {
+                                          // Select action based on the value chosen
+                                          if (value == "A to Z") {
+                                            print("Sort by A to Z");
+                                          }
+                                        },
+                                        itemBuilder: (context) => [
+                                          PopupMenuItem(
+                                            value: "A to Z",onTap: (){
+                                            setState(() {
+                                              shortbyap("A to Z");
+                                              short="2";
+                                            });
+                                          },
+                                            child: Text(
+                                              "A to Z",
+                                              style: TextStyle(
+                                                  fontFamily: "task",
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          ),
+                                          PopupMenuItem(
+                                            value: "Z to A",onTap: (){
+                                            setState(() {
+                                              shortbyap("Z to A");
+                                              short="1";
+                                            });
+                                          },
+                                            child: Text(
+                                              "Z to A",
+                                              style: TextStyle(
+                                                  fontFamily: "task",
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  color:Colors.white
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        color: AppColors.primary,
+                                        child: Text(
+                                          "Sort By",
+                                          style: TextStyle(
+                                            fontFamily: "task",
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff0061b0),
+                                          ),
                                         ),
                                       ),
                                       SizedBox(width: 20.0),
@@ -342,13 +387,58 @@ class _ProductListPageState extends State<ProductListPage> {
                                         ),
                                       ),
                                       SizedBox(width: 10.0),
-                                      Text(
-                                        "Filter By",
-                                        style: TextStyle(
-                                          fontFamily: "task",
-                                          fontSize: 15.0,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xff0061b0),
+                                      PopupMenuButton<String>(
+                                        onSelected: (value) {
+                                          if (value == "Price High to Low") {
+                                            print("Filter by Price High to Low");
+                                          }
+                                        },
+                                        itemBuilder: (context) => [
+                                          PopupMenuItem(
+                                            value: "Price High to Low",onTap: (){
+                                            setState(() {
+                                              filterbysearch("Price High to Low");
+                                              type1="2";
+                                            });
+                                          },
+                                            child: Text(
+                                              "Price High to Low",
+                                              style: TextStyle(
+                                                  fontFamily: "task",
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  color:Colors.white
+                                              ),
+                                            ),
+                                          ),
+                                          PopupMenuItem(
+                                            value: "Price Low to High",
+                                            onTap: (){
+                                              setState(() {
+                                                filterbysearch("Price Low to High");
+                                                type1="1";
+                                              });
+                                            },
+                                            child: Text(
+                                              "Price Low to High",
+                                              style: TextStyle(
+                                                  fontFamily: "task",
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.white
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        color: AppColors.primary,
+                                        child: Text(
+                                          "Filter By",
+                                          style: TextStyle(
+                                            fontFamily: "task",
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff0061b0),
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -1715,7 +1805,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                       height: 60.h,
                                       child: Center(
                                           child: Text(
-                                        'No Products Available',
+                                        'No Medicine Available',
                                         style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontFamily: 'task',
@@ -2080,7 +2170,7 @@ class _ProductListPageState extends State<ProductListPage> {
                             height: 70.h,
                             child: Center(
                                 child: Text(
-                                  'No Products Available',
+                                  'No Medicine Available',
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontFamily: 'task',
@@ -2527,7 +2617,9 @@ class _ProductListPageState extends State<ProductListPage> {
         style: TextStyle(color: Colors.black, fontFamily: 'task',fontSize: 12.
         sp),
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(0),
+          isDense: true,
+          contentPadding: EdgeInsets.symmetric(vertical: 10),
+          //contentPadding: EdgeInsets.all(0),
           suffixIcon: _serch.text.isNotEmpty // Conditionally show the close icon
               ? InkWell(
             onTap: () {

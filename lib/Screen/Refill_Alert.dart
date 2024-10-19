@@ -428,6 +428,9 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                         if (value!.isEmpty) {
                                           return "Please Enter Your Phone";
                                         }
+                                        else if(value.length != 10){
+                                          return "Please Enter valid Phone number";
+                                        }
                                         return null;
                                       },
                                       onChanged: (value) {

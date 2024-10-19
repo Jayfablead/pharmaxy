@@ -222,7 +222,10 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: bgcolor,
         key: _scaffoldKeyhome,
         drawer: drawer1(),
-        bottomNavigationBar: bottombar(selected: sel),
+        bottomNavigationBar: SizedBox(
+          height: 9.h,
+
+            child: bottombar(selected: sel)),
         body: WillPopScope(
           onWillPop: dialog,
           child: isLoading
@@ -357,9 +360,9 @@ class _HomePageState extends State<HomePage> {
                               usermodal?.userId == "" ||
                                       usermodal?.userId == null
                                   ? Positioned(
-                                      bottom: 2.8.h,
-                                      // Adjust the value based on your layout
-                                      right: 15.5.w,
+                                  bottom: 2.8.h,
+                                  // Adjust the value based on your layout
+                                  right: 9.9.w,
                                       // Adjust the value based on your layout
                                       child: GestureDetector(
                                           onTap: () {
@@ -713,7 +716,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'UPTO 24% OFF',
+                                                        'Fast Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -800,7 +803,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'UPTO 24% OFF',
+                                                        'Fast Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -887,7 +890,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'UPTO 24% OFF',
+                                                        'Fast Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -974,7 +977,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'UPTO 24% OFF',
+                                                        'Fast Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -1062,7 +1065,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'UPTO 24% OFF',
+                                                        'Fast Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -1730,12 +1733,43 @@ class _HomePageState extends State<HomePage> {
                                     alignment: Alignment.center,
                                     height: 50.h,
                                     child: Center(
-                                      child: Text(
-                                        "No Products Available",
-                                        style: TextStyle(
-                                            fontSize: 14.sp,
-                                            fontFamily: 'task',
-                                            fontWeight: FontWeight.bold),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "No Medicine Available",
+                                            style: TextStyle(
+                                                fontSize: 14.sp,
+                                                fontFamily: 'task',
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(height: 5.h,),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.of(context).pushReplacement(
+                                                MaterialPageRoute(builder: (context) => Request_Medicine(),)
+                                              );
+                                            },
+                                            child: Container(
+                                                margin:
+                                                EdgeInsets.only(right: 7.w, left: 7.w),
+                                                alignment: Alignment.center,
+                                                height: 5.h,
+                                                width: 60.w,
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(10),
+                                                    color: Color(0xff0061b0)),
+                                                child: Text(
+                                                  "Request Medicine",
+                                                  style: TextStyle(
+                                                      fontSize: 12.sp,
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: "task"),
+                                                )),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -2047,7 +2081,7 @@ class _HomePageState extends State<HomePage> {
                                     : 2.h,
                               ),
                             ),
-                      wait
+                      name
                           ? SliverToBoxAdapter(child: Container())
                           : bestsellerproductmodal?.productData?.length == 0 ||
                                   bestsellerproductmodal?.productData?.length ==
@@ -2393,7 +2427,8 @@ class _HomePageState extends State<HomePage> {
                                                 child: Icon(
                                                   Icons.favorite_outline,
                                                   size: 20.sp,
-                                                  color: Colors.black,
+                                                  color: bestsellerproductmodal?.productData?[index].wishlist == 1?
+                                                      Colors.red: Colors.black,
                                                 ),
                                               )),
                                         ],

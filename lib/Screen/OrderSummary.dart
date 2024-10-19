@@ -51,7 +51,6 @@ class _OrderSummaryState extends State<OrderSummary> {
       isLoading = true;
     });
     myorderdetailap();
-    Ordercancelledap();
   }
 
   @override
@@ -612,7 +611,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                     // ),
                                                     // Text(
                                                     //   // "\$50",
-                                                    //   myoederdetailmodal?.userDetai?.totalAmount ==
+                                                    //   myoederdetailmodal?.orderDetails?[0].totalAmount ==
                                                     //       null ||
                                                     //       myoederdetailmodal
                                                     //           ?.orderDetails?[0]
@@ -716,7 +715,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                 SizedBox(
                                                   height: 1.h,
                                                 ),
-                                                Row(
+                                                  myoederdetailmodal?.userDetail?.totalDiscount == "0" ?SizedBox() :Row(
                                                   mainAxisSize: MainAxisSize.max,
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.spaceBetween,
@@ -1049,7 +1048,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                           ],
                                                         ),
                                                       ),
-                                          ),
+                                                    ),
 
                                             // : Padding(
                                             //     padding: EdgeInsets.symmetric(

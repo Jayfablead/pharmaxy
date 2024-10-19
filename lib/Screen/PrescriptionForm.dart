@@ -3,11 +3,14 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Modal/PrescriptionModel.dart';
+import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/PrescriptionForm2.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
@@ -38,10 +41,16 @@ class _PrescriptionformState extends State<Prescriptionform> {
   File? _pickedFile = null;
   String? deviceName;
   String? deviceOS;
+  void removeImage() {
+    setState(() {
+      _pickedFile = null;  // Clear the selected file
+    });
+  }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    viewap();
     getDeviceInfoandStore();
   }
   @override
@@ -745,6 +754,66 @@ class _PrescriptionformState extends State<Prescriptionform> {
                               ],
                             ),
                           ),
+                          SizedBox(height: 2.5.h,),
+                         // Phone
+                          Container(
+                            width: 85.w,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Phone Number",
+                                  style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: "task",
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 0.5.h,),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please Enter Phone Number";
+                                    }
+                                    else if(value.length != 10){
+                                      return "Please Enter valid Phone number";
+                                    }
+                                    return null;
+                                  },
+                                  keyboardType: TextInputType.phone,
+                                  controller: _phone,
+                                  style: TextStyle(height: 1),
+                                  decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    disabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10),
+                                        borderSide:
+                                        BorderSide(color: Colors.grey)),
+                                    hintText: 'Enter Your Phone Number',
+                                    hintStyle: TextStyle(
+                                        color: Colors.black.withOpacity(0.4),
+                                        fontSize: 11.sp,
+                                        fontFamily: "task"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           // SizedBox(height: 2.5.h,),
                           // Container(
                           //   width: 85.w,
@@ -892,17 +961,44 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                   ),
                                 ),
                                 SizedBox(height: 1.h,),
-                                Column(
+                                _pickedFile==null?SizedBox():Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      width: 8.h,
-                                      height: 8.h,
-                                      child: _pickedFile==null?Container():Image.file(_pickedFile!,fit: BoxFit.cover,),
-                                    )
+                                    Stack(
+                                      children: [
+                                        Container(
+                                          width: 10.h,
+                                          height: 10.h,
+                                          child: _pickedFile==null?Container():Image.file(_pickedFile!,fit: BoxFit.cover,),
+                                        ),
+                                        Positioned(
+                                          right: 0,
+                                          child: InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                removeImage();
+                                              });
+                                            },
+                                              child: Container(
+                                                height: 20,
+                                                width: 20,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(3),
+                                                  color: Colors.blue.shade200,
+                                                ),
+                                                child: Icon(
+                                                    CupertinoIcons.delete,size: 12.sp,color: Colors.red,
+                                                ),
+                                              )
+                                          ),
+                                        )
+
+                                      ],
+                                    ),
+
                                   ],
                                 )
-
                               ],
                             ),
                           ),
@@ -1012,7 +1108,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
                           Navigator.of(context).pop();
                         },
                         icon: Icon(
-                          Icons.browse_gallery,
+                          Icons.image,
                           size: 15.sp,
                           color: Color(0xff0061b0),
                         )),
@@ -1026,6 +1122,35 @@ class _PrescriptionformState extends State<Prescriptionform> {
                     ),
                   ],
                 ),
+                // Column(
+                //   children: [
+                //     IconButton(
+                //         onPressed: () async {
+                //           // Pick a PDF file using FilePicker
+                //           FilePickerResult? result = await FilePicker.platform
+                //               .pickFiles(type: FileType.custom, allowedExtensions: ['pdf']);
+                //           if (result != null) {
+                //             setState(() {
+                //               _pickedFile = File(result.files.single.path!);
+                //             });
+                //           }
+                //           Navigator.of(context).pop();
+                //         },
+                //         icon: Icon(
+                //           Icons.picture_as_pdf,
+                //           size: 15.sp,
+                //           color: Color(0xff0061b0),
+                //         )),
+                //     Text(
+                //       "PDF",
+                //       style: TextStyle(
+                //           color: Colors.black,
+                //           fontSize: 13.sp,
+                //           fontFamily: "task",
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ],
@@ -1038,6 +1163,37 @@ class _PrescriptionformState extends State<Prescriptionform> {
           return alert;
         });
   }
+  viewap() {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().ViewProfile(data).then((response) async {
+          profilemodal = ProfileModal.fromJson(json.decode(response.body));
+          if (response.statusCode == 200 && profilemodal?.status == "success") {
+            print(profilemodal?.status);
+            setState(() {
+              // Assign values to controllers
+              _phone.text = profilemodal?.profileDetails?.userPhone ?? "";
+              //_firstname.text = profilemodal?.profileDetails?.userFirstName ?? "";
+              // Add more fields as needed
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
   preformap() async {
     if (_formKey.currentState!.validate()) {
       EasyLoading.show(status: 'Please Wait ...');
@@ -1048,7 +1204,8 @@ class _PrescriptionformState extends State<Prescriptionform> {
       // data['Patientemail'] = _email.text.toString();
       // data['Patientaddress'] = _Address.text.toString();
       //data['Zipcode'] = widget.ZipCode;
-      // data['Phone'] = _phone.text.toString();
+       data['Phone'] = usermodal?.userId == "" || usermodal?.userId == null? _phone.text.toString()
+           :profilemodal?.profileDetails?.userPhone??'';
       // data['Gender'] = selected ;
       data['Patientage'] = _age.text.toString();
       // data['Physiciansfname'] = _doctorfname.text.toString();

@@ -13,6 +13,7 @@ import 'package:ecommerce/Modal/ShortbyModel.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
+import 'package:ecommerce/Screen/Request_Medicine.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/bottombar.dart';
@@ -246,14 +247,60 @@ class _ProductList4State extends State<ProductList4> {
                                   ),
                                 ),
                                 SizedBox(width: 10.0),
-                                Text(
-                                  "Sort By",
-                                  style: TextStyle(
-                                    fontFamily: "task",
-                                    fontSize: 15.0,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff0061b0),
+                                PopupMenuButton<String>(
+                                  child: Text(
+                                    "Sort By",
+                                    style: TextStyle(
+                                      fontFamily: "task",
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0xff0061b0),
+                                    ),
                                   ),
+                                  onSelected: (value) {
+                                    // Select action based on the value chosen
+                                    if (value == "A to Z") {
+                                      print("Sort by A to Z");
+                                    }
+                                  },
+                                  itemBuilder: (context) => [
+                                    PopupMenuItem(
+                                      value: "A to Z",onTap: (){
+                                      setState(() {
+                                        shortbyap("A to Z");
+                                        short="2";
+                                      });
+                                    },
+                                      child: Text(
+                                        "A to Z",
+                                        style: TextStyle(
+                                            fontFamily: "task",
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white
+                                        ),
+                                      ),
+                                    ),
+                                    PopupMenuItem(
+                                      value: "Z to A",onTap: (){
+                                      setState(() {
+                                        shortbyap("Z to A");
+                                        short="1";
+                                      });
+                                    },
+                                      child: Text(
+                                        "Z to A",
+                                        style: TextStyle(
+                                            fontFamily: "task",
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.w600,
+                                            color:Colors.white
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                  color: AppColors.primary,
+
                                 ),
                                 SizedBox(width: 20.0),
                                 VerticalDivider(
@@ -321,13 +368,58 @@ class _ProductList4State extends State<ProductList4> {
                                   ),
                                 ),
                                 SizedBox(width: 10.0),
-                                Text(
-                                  "Filter By",
-                                  style: TextStyle(
-                                    fontFamily: "task",
-                                    fontSize: 15.0,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff0061b0),
+                                PopupMenuButton<String>(
+                                  onSelected: (value) {
+                                    if (value == "Price High to Low") {
+                                      print("Filter by Price High to Low");
+                                    }
+                                  },
+                                  itemBuilder: (context) => [
+                                    PopupMenuItem(
+                                      value: "Price High to Low",onTap: (){
+                                      setState(() {
+                                        filterbysearch("Price High to Low");
+                                        type1="2";
+                                      });
+                                    },
+                                      child: Text(
+                                        "Price High to Low",
+                                        style: TextStyle(
+                                            fontFamily: "task",
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.w600,
+                                            color:Colors.white
+                                        ),
+                                      ),
+                                    ),
+                                    PopupMenuItem(
+                                      value: "Price Low to High",
+                                      onTap: (){
+                                        setState(() {
+                                          filterbysearch("Price Low to High");
+                                          type1="1";
+                                        });
+                                      },
+                                      child: Text(
+                                        "Price Low to High",
+                                        style: TextStyle(
+                                            fontFamily: "task",
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                  color: AppColors.primary,
+                                  child: Text(
+                                    "Filter By",
+                                    style: TextStyle(
+                                      fontFamily: "task",
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0xff0061b0),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -1714,14 +1806,51 @@ class _ProductList4State extends State<ProductList4> {
                     ),
                     delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
+                            if (index % 5 == 0 && index != 0) {
+                              if (isloadingMore && index == posts.length) {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.blue,
+                                  ),
+                                );
+                              }
+                            }
+                            // if (index % 5 == 0 && index != 0 && isloadingMore && index == posts.length) {
+                            //   return Center(
+                            //     child: CircularProgressIndicator(
+                            //       color: Colors.blue,
+                            //     ),
+                            //   );
+                            // }
+                            // if (index > 0 && index % 6 == 0 && isloadingMore) {
+                            //   return Center(
+                            //     child: CircularProgressIndicator(
+                            //       color: Colors.blue,
+                            //     ),
+                            //   );
+                            // }
+                            // if (index % 6 == 0 && index != 0 && isloadingMore) {
+                            //   return Center(
+                            //     child: CircularProgressIndicator(
+                            //       color: Colors.blue,
+                            //     ),
+                            //   );
+                            // }
+                            // if (index != 0 && index % 6 == 0) {
+                            //   return Center(
+                            //     child: CircularProgressIndicator(
+                            //       color: Colors.blue,
+                            //     ),
+                            //   );
+                            // }
                         // Check if we're at the end and loading more items
-                        if (index == posts.length) {
-                          return Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.blue,
-                            ),
-                          );
-                        }
+                        // if (index == posts.length) {
+                        //   return Center(
+                        //     child: CircularProgressIndicator(
+                        //       color: Colors.blue,
+                        //     ),
+                        //   );
+                        // }
 
                         // Show the post items
                         if (index < posts.length) {
@@ -1883,26 +2012,65 @@ class _ProductList4State extends State<ProductList4> {
                             ],
                           );
                         }
+                        //     if (index % 5 == 0 && isloadingMore) {
+                        //       return Center(
+                        //         child: CircularProgressIndicator(
+                        //           color: Colors.blue,
+                        //         ),
+                        //       );
+                        //     }
+                        // return null;
                       },
                       // Set childCount to posts.length + 1 to account for the loader
-                      childCount: posts.length + (isloadingMore ? 1 : 0),
+                      childCount: posts.length + (isloadingMore ? (posts.length ~/ 5) : 0),
+                      //posts.length + (isloadingMore ? (posts.length ~/ 6) : 0),
+                      //posts.length + (isloadingMore ? 1 : 0),
                     ),
                   )
 
-                      : searchbestsaleModal?.productData?.length == 0 ||
-                      searchbestsaleModal?.productData?.length ==
+                      : allProductserachModel?.searchResults?.length == 0 ||
+                      allProductserachModel?.searchResults?.length ==
                           null
                       ? SliverToBoxAdapter(
                     child: Container(
                       height: 70.h,
                       child: Center(
-                          child: Text(
-                            'No Products Available',
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontFamily: 'task',
-                              fontSize: 15.sp,
-                            ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'No Medicine Available',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily: 'task',
+                                  fontSize: 15.sp,
+                                ),
+                              ),
+                              SizedBox(height: 5.h,),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(builder: (context) => Request_Medicine(),)
+                                  );
+                                },
+                                child: Container(
+                                    margin:
+                                    EdgeInsets.only(right: 7.w, left: 7.w),
+                                    alignment: Alignment.center,
+                                    height: 5.h,
+                                    width: 60.w,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Color(0xff0061b0)),
+                                    child: Text(
+                                      "Request Medicine",
+                                      style: TextStyle(
+                                          fontSize: 12.sp,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "task"),
+                                    )),
+                              ),
+                            ],
                           )),
                     ),
                   )
@@ -1928,8 +2096,8 @@ class _ProductList4State extends State<ProductList4> {
                                     .push(MaterialPageRoute(
                                     builder: (context) =>
                                         productdetailnovartion(
-                                          productid: searchbestsaleModal
-                                              ?.productData?[
+                                          productid: allProductserachModel
+                                              ?.searchResults?[
                                           index]
                                               .productID ??
                                               '',
@@ -1954,12 +2122,12 @@ class _ProductList4State extends State<ProductList4> {
                                       ),
                                       Container(
                                         child: CachedNetworkImage(
-                                          imageUrl:
-                                          searchbestsaleModal
-                                              ?.productData?[
-                                          index]
-                                              .imgData ??
-                                              '',
+
+                                          imageUrl: allProductserachModel
+                                            ?.searchResults?[
+                                        index]
+                                            .allImages?[0] ??
+                                          '',
                                           fit: BoxFit.cover,
                                           height: 9.5.h,
                                           width: 25.w,
@@ -2020,8 +2188,8 @@ class _ProductList4State extends State<ProductList4> {
                                                     TextOverflow
                                                         .ellipsis,
                                                     maxLines: 1,
-                                                    searchbestsaleModal
-                                                        ?.productData?[
+                                                    allProductserachModel
+                                                        ?.searchResults?[
                                                     index]
                                                         .productName ??
                                                         '',
@@ -2107,8 +2275,8 @@ class _ProductList4State extends State<ProductList4> {
                                               // ),
                                               Text(
                                                 '₹' +
-                                                    (searchbestsaleModal
-                                                        ?.productData?[
+                                                    (allProductserachModel
+                                                        ?.searchResults?[
                                                     index]
                                                         .productPrice)
                                                         .toString(),
@@ -2142,7 +2310,7 @@ class _ProductList4State extends State<ProductList4> {
                                                   builder:
                                                       (context) =>
                                                       productdetailnovartion(
-                                                        productid: searchbestsaleModal?.productData?[index].productID ?? '',
+                                                        productid: allProductserachModel?.searchResults?[index].productID ?? '',
                                                       )));
 
                                           //ADD CART API
@@ -2190,27 +2358,27 @@ class _ProductList4State extends State<ProductList4> {
                                         builder:
                                             (context) =>
                                             LoginPage2()))
-                                        : searchbestsaleModal
-                                        ?.productData?[
+                                        : allProductserachModel
+                                        ?.searchResults?[
                                     index]
                                         .wishlist ==
                                         1
                                         ? removewishlistap(
-                                        (searchbestsaleModal
-                                            ?.productData?[
+                                        (allProductserachModel
+                                            ?.searchResults?[
                                         index]
                                             .productID)
                                             .toString())
                                         : addwishlistap(
-                                        (searchbestsaleModal
-                                            ?.productData?[
+                                        (allProductserachModel
+                                            ?.searchResults?[
                                         index]
                                             .productID)
                                             .toString());
                                   },
                                   child: Icon(
-                                    searchbestsaleModal
-                                        ?.productData?[
+                                    allProductserachModel
+                                        ?.searchResults?[
                                     index]
                                         .wishlist ==
                                         1
@@ -2218,8 +2386,8 @@ class _ProductList4State extends State<ProductList4> {
                                         : Icons
                                         .favorite_outline,
                                     size: 20.sp,
-                                    color: searchbestsaleModal
-                                        ?.productData?[
+                                    color: allProductserachModel
+                                        ?.searchResults?[
                                     index]
                                         .wishlist ==
                                         1
@@ -2231,8 +2399,8 @@ class _ProductList4State extends State<ProductList4> {
                         );
                       },
                         // childCount: 10
-                      childCount: searchbestsaleModal
-                          ?.productData?.length,
+                      childCount: allProductserachModel
+                          ?.searchResults?.length,
                     ),
                   ),
                   SliverToBoxAdapter(
@@ -2314,7 +2482,8 @@ class _ProductList4State extends State<ProductList4> {
         },
         style: TextStyle(color: Colors.black, fontFamily: 'task'),
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(0),
+          isDense: true,
+          contentPadding: EdgeInsets.symmetric(vertical: 10),
           prefixIcon: Icon(
             Icons.search,
             color: Colors.black,
@@ -2328,13 +2497,13 @@ class _ProductList4State extends State<ProductList4> {
               ? InkWell(
             onTap: () {
               setState(() {
-                _serch2.text = '';
+                _serch2.clear();
                 bestsalesserchap(_serch2.text); // Call API with empty search
                 // name = false;  // Reset name and wait state
                 // wait = false;
               });
             },
-            child: Icon(Icons.close, size: 13),
+            child: Icon(Icons.close, size: 20),
           )
               : null,
           border: InputBorder.none,

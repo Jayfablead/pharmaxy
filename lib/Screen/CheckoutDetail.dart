@@ -1560,6 +1560,7 @@ import 'package:ecommerce/Screen/ThankyouPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_paypal/flutter_paypal.dart';
@@ -1632,6 +1633,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    checkoutap();
     getDeviceInfoandStore();
     void _handlePaymentSuccess(PaymentSuccessResponse response) {
       Fluttertoast.showToast(
@@ -1733,7 +1735,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                           Navigator.of(context).pop();
                         },
                         icon: Icon(
-                          Icons.browse_gallery,
+                          Icons.photo,
                           size: 15.sp,
                           color: Color(0xff0061b0),
                         )),
@@ -1762,6 +1764,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
 
   ImagePicker _picker = ImagePicker();
   File? _pickedFile = null;
+  void removeImage() {
+    setState(() {
+      _pickedFile = null;  // Clear the selected file
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -2071,16 +2078,40 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                               ? SizedBox(
                                                   height: 0.h,
                                                 )
-                                              : Container(
-                                                  width: 6.h,
-                                                  height: 6.h,
-                                                  child: _pickedFile == null
-                                                      ? Container()
-                                                      : Image.file(
-                                                          _pickedFile!,
-                                                          fit: BoxFit.cover,
-                                                        ),
+                                              : Stack(
+                                            children: [
+                                              Container(
+                                                width: 7.h,
+                                                height: 7.h,
+                                                child: _pickedFile == null
+                                                    ? Container()
+                                                    : Image.file(
+                                                  _pickedFile!,
+                                                  fit: BoxFit.cover,
                                                 ),
+                                              ),
+                                              Positioned(
+                                                right: 0,
+                                                  top: 1,
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      removeImage();
+                                                    },
+                                                    child: Container(
+                                                        height: 15,
+                                                        width: 15,
+                                                        alignment: Alignment.center,
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(2),
+                                                          color: Colors.blue.shade200,
+                                                        ),
+                                                        child: Icon(CupertinoIcons.delete,color: Colors.red,size: 13,)
+                                                    ),
+                                                  )
+                                              )
+                                            ],
+
+                                              ),
                                           SizedBox(
                                             height: 1.h,
                                           ),
@@ -2903,7 +2934,13 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    Row(
+                                    chekoutdetailmodal?.checkoutData?[0]
+                                        .discount ==
+                                        null ||chekoutdetailmodal?.checkoutData?[0]
+                                        .discount ==
+                                        0 ||chekoutdetailmodal?.checkoutData?[0]
+                                        .discount ==
+                                        "" ?Container(): Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -2939,7 +2976,13 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    chekoutdetailmodal?.checkoutData?[0]
+                                        .discount ==
+                                        null ||chekoutdetailmodal?.checkoutData?[0]
+                                        .discount ==
+                                        0 ||chekoutdetailmodal?.checkoutData?[0]
+                                        .discount ==
+                                        "" ?Container(): SizedBox(
                                       height: 1.h,
                                     ),
                                     usermodal?.userId == "" ||
@@ -3040,6 +3083,20 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 1.h,
+                      ),
+                      Center(
+                        child: Text(
+                          "Price may vary depending on the product batch*",
+                          style: TextStyle(
+                            fontSize: 10.sp,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "task",
+                          ),
                         ),
                       ),
                       SizedBox(

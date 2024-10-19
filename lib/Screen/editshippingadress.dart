@@ -813,7 +813,7 @@ class _editshippingadressState extends State<editshippingadress> {
                                       EdgeInsets.only(right: 7.w, left: 7.w),
                                   alignment: Alignment.center,
                                   height: 6.h,
-                                  width: 80.w,
+                                  width: 85.w,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Color(0xff0061b0)),
@@ -839,7 +839,7 @@ class _editshippingadressState extends State<editshippingadress> {
   }
 
   shippingap() async {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState?.validate() ?? false) {
       final Map<String, String> data = {};
       data['userId'] = (usermodal?.userId).toString();
       data['first_name'] = _firstname.text.toString();
@@ -886,7 +886,7 @@ class _editshippingadressState extends State<editshippingadress> {
   }
 
   editshippingap() async {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState?.validate() ?? false) {
       final Map<String, String> data = {};
       data['first_name'] = _firstname.text.toString();
       data['last_name'] = _lastname.text.toString();

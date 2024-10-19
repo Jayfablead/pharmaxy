@@ -11,6 +11,7 @@ import 'package:ecommerce/Widget/bottombar.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 class AllAddpage extends StatefulWidget {
@@ -302,17 +303,20 @@ class _AllAddpageState extends State<AllAddpage> {
                                                           width: 10.w,
                                                           child: GestureDetector(
                                                             onTap: () {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pushReplacement(
-                                                                      MaterialPageRoute(
-                                                                          builder: (context) =>
-                                                                              editshippingadress(
-                                                                                addid: alluseraddmodal?.allShippingAddress?[index].id,
-                                                                              )));
+                                                              Navigator.of(context).push(
+                                                                MaterialPageRoute(builder: (context) =>editshippingadress(
+                                                                  addid: alluseraddmodal?.allShippingAddress?[index].id,
+                                                                ) ,)
+                                                              );
+                                                              // Navigator.of(
+                                                              //         context)
+                                                              //     .pop();
+                                                              // Navigator.of(context).push(
+                                                              //         MaterialPageRoute(
+                                                              //             builder: (context) =>
+                                                              //                 editshippingadress(
+                                                              //                   addid: alluseraddmodal?.allShippingAddress?[index].id,
+                                                              //                 )));
                                                             },
                                                             child: Text(
                                                               "Edit",
@@ -457,6 +461,7 @@ class _AllAddpageState extends State<AllAddpage> {
   }
 
   removeadressap(String value) {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['shipping_address_id'] = value.toString();
     print(data);
@@ -467,6 +472,7 @@ class _AllAddpageState extends State<AllAddpage> {
               RemoveAddressModal.fromJson(json.decode(response.body));
           if (response.statusCode == 200 &&
               removeaddressmodal?.status == "success") {
+            EasyLoading.showSuccess( 'Delete Address Sucessfully');
             alluseraddapi();
             print(removeaddressmodal?.status);
             print(response.statusCode);
@@ -474,6 +480,7 @@ class _AllAddpageState extends State<AllAddpage> {
               isLoading = false;
             });
           } else {
+            EasyLoading.showError( 'fail');
             setState(() {
               isLoading = false;
             });

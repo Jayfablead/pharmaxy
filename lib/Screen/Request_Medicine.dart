@@ -412,6 +412,9 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                         if (value!.isEmpty) {
                                           return "Please Enter The Phone";
                                         }
+                                        else if(value.length != 10){
+                                          return "Please Enter valid Phone number";
+                                        }
                                         return null;
                                       },
                                       onChanged: (value) {
@@ -419,7 +422,6 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                           _phone.text = value;
                                         });
                                       },
-
                                       keyboardType: TextInputType.phone,
                                       controller: _phone,
                                       style: TextStyle(height: 1),

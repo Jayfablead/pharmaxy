@@ -790,7 +790,7 @@ class _CartPageState extends State<CartPage> {
                           height: 75.h,
                           alignment: Alignment.center,
                           child: Text(
-                            "No Data Available",
+                            "Cart Is Empty !",
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -1028,8 +1028,8 @@ class _CartPageState extends State<CartPage> {
                                                                           ),
                                                                           InkWell(
                                                                             onTap: () {
-                                                                              int.parse((viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString() ?? '') >= 5
-                                                                                  ? buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 5')
+                                                                              int.parse((viewwithoutuserModel?.cartDetails?[index].cartProductQuantity).toString() ?? '') >= 10
+                                                                                  ? buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 10')
                                                                                   : incrementwithoutlogin(
                                                                                 (viewwithoutuserModel?.cartDetails?[index].cartTblId).toString(),
                                                                               );
@@ -1297,8 +1297,8 @@ class _CartPageState extends State<CartPage> {
                                                         return Container(
                                                           margin: EdgeInsets.only(left:2.w,top: 1.h),
                                                           alignment: Alignment.center,
-                                                          height: 15.h,
-                                                          width: 70.w,
+                                                       padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
+                                                          width: 75.w,
                                                           decoration: BoxDecoration(
                                                             borderRadius: BorderRadius.circular(10),
                                                             color: Colors.blue.shade100,
@@ -1308,19 +1308,21 @@ class _CartPageState extends State<CartPage> {
                                                               Image.network(
                                                                 'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
                                                                 fit: BoxFit.cover,
-                                                                width: 80,
-                                                                height: 80,
+                                                                width: 70,
+                                                                height: 70,
                                                               ),
                                                               //SizedBox(width: 1.w),
                                                               Expanded(
                                                                 child: Column(
                                                                   mainAxisAlignment: MainAxisAlignment.center,
-                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                                  mainAxisSize: MainAxisSize.min,
                                                                   children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsets.only(left: 3.5.w),
+                                                                    SizedBox(
+                                                                      width: 60.w,
                                                                       child: Text(
-                                                                        "FLAT ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
+                                                                        // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
+                                                                        allcouponmodal?.data?[index].couponName ?? "",
                                                                         style: TextStyle(
                                                                           fontSize: 10.5.sp,
                                                                           fontWeight: FontWeight.bold,
@@ -1330,19 +1332,7 @@ class _CartPageState extends State<CartPage> {
                                                                       ),
                                                                     ),
                                                                     SizedBox(height: 1.h),
-                                                                    Padding(
-                                                                      padding: EdgeInsets.only(left: 3.5.w),
-                                                                      child: Text(
-                                                                        "on your first order",
-                                                                        style: TextStyle(
-                                                                          fontSize: 11.sp,
-                                                                          fontWeight: FontWeight.bold,
-                                                                          fontFamily: 'task',
-                                                                          // color: Colors.white,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    SizedBox(height: 1.h),
+
                                                                     Row(
                                                                       children: [
                                                                         GestureDetector(
@@ -1367,30 +1357,25 @@ class _CartPageState extends State<CartPage> {
                                                                           },
                                                                           child: Container(
                                                                             margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                            padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
                                                                             decoration: BoxDecoration(
                                                                               color: Colors.white,
                                                                               borderRadius: BorderRadius.circular(10),
-                                                                              boxShadow: [
-                                                                                BoxShadow(
-                                                                                  color: Colors.black12,
-                                                                                  blurRadius: 5,
-                                                                                  spreadRadius: 2,
-                                                                                ),
-                                                                              ],
                                                                             ),
-                                                                            child: Text(
-                                                                              "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                              style: TextStyle(
-                                                                                color: Colors.black,
-                                                                                fontWeight: FontWeight.bold,
-                                                                                fontSize: 9.5.sp,
-                                                                                fontFamily: 'task',
+                                                                            child: SizedBox(
+                                                                              width: 30.w,
+                                                                              child: Text(
+                                                                                "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                                style: TextStyle(
+                                                                                  color: Colors.black,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontSize: 9.5.sp,
+                                                                                  fontFamily: 'task',
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                         SizedBox(width: 1.w,),
                                                                         GestureDetector(
                                                                           onTap: () {
                                                                             // Copy coupon code to clipboard
@@ -1409,17 +1394,10 @@ class _CartPageState extends State<CartPage> {
                                                                             Navigator.of(context).pop();
                                                                           },
                                                                           child: Container(
-                                                                            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.6.h),
+                                                                            padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
                                                                             decoration: BoxDecoration(
                                                                               color: AppColors.primary,
                                                                               borderRadius: BorderRadius.circular(10),
-                                                                              boxShadow: [
-                                                                                BoxShadow(
-                                                                                  color: Colors.black12,
-                                                                                  blurRadius: 5,
-                                                                                  spreadRadius: 2,
-                                                                                ),
-                                                                              ],
                                                                             ),
                                                                             child: Text("Apply Coupon",
                                                                               //"Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
@@ -1646,6 +1624,19 @@ class _CartPageState extends State<CartPage> {
                                       ),
                                       Row(
                                         children: [
+                                          cpupon? IconButton(
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Colors.red,
+                                                size: 15.sp,
+                                              ),
+                                              onPressed:(){
+                                                setState(() {
+                                                  removecouponap();
+                                                  cpupon =false;
+                                                });
+                                              }
+                                          ):Container(),
                                           Padding(
                                             padding: EdgeInsets.only(
                                               right: 3.w,
@@ -1666,19 +1657,6 @@ class _CartPageState extends State<CartPage> {
                                               ),
                                             ),
                                           ),
-                                          cpupon? IconButton(
-                                              icon: Icon(
-                                                Icons.delete,
-                                                color: Colors.red,
-                                                size: 15.sp,
-                                              ),
-                                              onPressed:(){
-                                                setState(() {
-                                                  removecouponap();
-                                                  cpupon =false;
-                                                });
-                                              }
-                                          ):Container(),
                                         ],
                                       ),
                                     ],
@@ -1912,7 +1890,7 @@ class _CartPageState extends State<CartPage> {
                                     height: 70.h,
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "No Data Available",
+                                      "Cart Is Empty !",
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -2150,8 +2128,8 @@ class _CartPageState extends State<CartPage> {
                                                                                       ),
                                                                                       InkWell(
                                                                                         onTap: () {
-                                                                                          int.parse((viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() ?? '') >= 5
-                                                                                              ? buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 5')
+                                                                                          int.parse((viewcartmodal?.cartDetails?[index].cartProductQuantity).toString() ?? '') >= 10
+                                                                                              ? buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 10')
                                                                                               : increment(
                                                                                                   (viewcartmodal?.cartDetails?[index].cartTblId).toString(),
                                                                                                 );
@@ -2419,8 +2397,8 @@ class _CartPageState extends State<CartPage> {
                                                                 return Container(
                                                                   margin: EdgeInsets.only(left:2.w,top: 1.h),
                                                                   alignment: Alignment.center,
-                                                                  height: 15.h,
-                                                                  width: 68.w,
+                                                                  padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 1.h),
+                                                                  width: 75.w,
                                                                   decoration: BoxDecoration(
                                                                     borderRadius: BorderRadius.circular(10),
                                                                     color: Colors.blue.shade100,
@@ -2430,19 +2408,21 @@ class _CartPageState extends State<CartPage> {
                                                                       Image.network(
                                                                         'https://static.vecteezy.com/system/resources/thumbnails/024/585/326/small/3d-happy-cartoon-doctor-cartoon-doctor-on-transparent-background-generative-ai-png.png',
                                                                         fit: BoxFit.cover,
-                                                                        width: 80,
-                                                                        height: 80,
+                                                                        width: 70,
+                                                                        height: 70,
                                                                       ),
                                                                       SizedBox(width: 2.w),
-                                                                      Expanded(
+                                                                      SizedBox(
                                                                         child: Column(
                                                                           mainAxisAlignment: MainAxisAlignment.center,
-                                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                                          mainAxisSize: MainAxisSize.min,
                                                                           children: [
-                                                                            Padding(
-                                                                              padding: EdgeInsets.only(left: 3.5.w),
+                                                                            SizedBox(
+                                                                              width: 60.w,
                                                                               child: Text(
-                                                                                "FLAT ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} OFF",
+                                                                                // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
+                                                                                allcouponmodal?.data?[index].couponName ?? "",
                                                                                 style: TextStyle(
                                                                                   fontSize: 10.5.sp,
                                                                                   fontWeight: FontWeight.bold,
@@ -2452,19 +2432,7 @@ class _CartPageState extends State<CartPage> {
                                                                               ),
                                                                             ),
                                                                             SizedBox(height: 1.h),
-                                                                            Padding(
-                                                                              padding: EdgeInsets.only(left: 3.5.w),
-                                                                              child: Text(
-                                                                                "on your first order",
-                                                                                style: TextStyle(
-                                                                                  fontSize: 11.sp,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  fontFamily: 'task',
-                                                                                  // color: Colors.white,
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(height: 1.h),
+
                                                                             Row(
                                                                               children: [
                                                                                 GestureDetector(
@@ -2488,31 +2456,27 @@ class _CartPageState extends State<CartPage> {
                                                                                     Navigator.of(context).pop();
                                                                                   },
                                                                                   child: Container(
-                                                                                    margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                                    padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+                                                                                   padding: EdgeInsets.symmetric(horizontal: 2.w,vertical:1.h),
                                                                                     decoration: BoxDecoration(
                                                                                       color: Colors.white,
                                                                                       borderRadius: BorderRadius.circular(10),
-                                                                                      boxShadow: [
-                                                                                        BoxShadow(
-                                                                                          color: Colors.black12,
-                                                                                          blurRadius: 5,
-                                                                                          spreadRadius: 2,
-                                                                                        ),
-                                                                                      ],
+
                                                                                     ),
-                                                                                    child: Text(
-                                                                                      "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                                      style: TextStyle(
-                                                                                        color: Colors.black,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                        fontSize: 9.5.sp,
-                                                                                        fontFamily: 'task',
+                                                                                    child: SizedBox(
+                                                                                     width: 30.w ,
+                                                                                      child: Text(
+                                                                                        "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
+                                                                                        style: TextStyle(
+                                                                                          color: Colors.black,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                          fontSize: 9.5.sp,
+                                                                                          fontFamily: 'task',
+                                                                                        ),
                                                                                       ),
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                                SizedBox(width: 5.w,),
+                                                                                SizedBox(width: 1.5.w,),
                                                                                 GestureDetector(
                                                                                   onTap: () {
                                                                                     // Copy coupon code to clipboard
@@ -2531,7 +2495,7 @@ class _CartPageState extends State<CartPage> {
                                                                                     Navigator.of(context).pop();
                                                                                   },
                                                                                   child: Container(
-                                                                                    padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.6.h),
+                                                                                    padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
                                                                                     decoration: BoxDecoration(
                                                                                       color: AppColors.primary,
                                                                                       borderRadius: BorderRadius.circular(10),
@@ -2557,43 +2521,7 @@ class _CartPageState extends State<CartPage> {
                                                                               ],
                                                                             ),
 
-                                                                            // GestureDetector(
-                                                                            //   onTap: () {
-                                                                            //     // Copy coupon code to clipboard
-                                                                            //     Clipboard.setData(ClipboardData(text: allcouponmodal?.data?[index].couponCode ?? ""));
-                                                                            //     // Show snackbar confirmation
-                                                                            //     ScaffoldMessenger.of(context).showSnackBar(
-                                                                            //       SnackBar(
-                                                                            //           content: Text('Coupon code copied: ${allcouponmodal?.data?[index].couponCode ?? ""}',),
-                                                                            //         behavior: SnackBarBehavior.floating,
-                                                                            //       ),
-                                                                            //     );
-                                                                            //   },
-                                                                            //   child: Container(
-                                                                            //     margin: EdgeInsets.symmetric(horizontal: 2.w),
-                                                                            //     padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                                                                            //     decoration: BoxDecoration(
-                                                                            //       color: Colors.white,
-                                                                            //       borderRadius: BorderRadius.circular(10),
-                                                                            //       boxShadow: [
-                                                                            //         BoxShadow(
-                                                                            //           color: Colors.black12,
-                                                                            //           blurRadius: 5,
-                                                                            //           spreadRadius: 2,
-                                                                            //         ),
-                                                                            //       ],
-                                                                            //     ),
-                                                                            //     child: Text(
-                                                                            //       "Code: ${allcouponmodal?.data?[index].couponCode ?? ""}",
-                                                                            //       style: TextStyle(
-                                                                            //         color: Colors.black,
-                                                                            //         fontWeight: FontWeight.bold,
-                                                                            //         fontSize: 9.5.sp,
-                                                                            //         fontFamily: 'task',
-                                                                            //       ),
-                                                                            //     ),
-                                                                            //   ),
-                                                                            // ),
+
                                                                           ],
                                                                         ),
                                                                       ),
@@ -2655,7 +2583,7 @@ class _CartPageState extends State<CartPage> {
                                                       'Sub Total Amount : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 11.sp,
+                                                        fontSize: 12.sp,
                                                         color: Colors.grey.shade800,
                                                         fontWeight: FontWeight.bold,
                                                       ),
@@ -2675,7 +2603,7 @@ class _CartPageState extends State<CartPage> {
                                                               .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 10.sp,
+                                                        fontSize: 12.sp,
                                                         fontWeight: FontWeight.w600,
                                                         color: Colors.black87
                                                       ),
@@ -2708,7 +2636,7 @@ class _CartPageState extends State<CartPage> {
                                                       'Handling Charge : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 11.sp,
+                                                        fontSize: 12.sp,
                                                         color: Colors.grey.shade800,
                                                         fontWeight: FontWeight.bold,
                                                       ),
@@ -2729,7 +2657,7 @@ class _CartPageState extends State<CartPage> {
 
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 10.sp,
+                                                        fontSize: 12.sp,
                                                           fontWeight: FontWeight.w600,
                                                           color: Colors.black87
                                                       ),
@@ -2762,7 +2690,7 @@ class _CartPageState extends State<CartPage> {
                                                       'Referred Code : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 11.sp,
+                                                        fontSize: 12.sp,
                                                         color: Colors.grey.shade800,
                                                         fontWeight: FontWeight.bold,
                                                       ),
@@ -2783,7 +2711,7 @@ class _CartPageState extends State<CartPage> {
 
                                                       style: TextStyle(
                                                           fontFamily: "task",
-                                                          fontSize: 10.sp,
+                                                          fontSize: 12.sp,
                                                           fontWeight: FontWeight.w600,
                                                           color: Colors.black87
                                                       ),
@@ -2829,9 +2757,9 @@ class _CartPageState extends State<CartPage> {
                                                     ),
                                                   ),
                                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  cpupon? IconButton(
+                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                               children: [
+                                                 cpupon? IconButton(
                                     icon: Icon(
                                       Icons.delete,
                                       color: Colors.red,
@@ -2844,25 +2772,26 @@ class _CartPageState extends State<CartPage> {
                                       });
                                     }
                                   ):Container(),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 8.0),
-                                    child: Text(
-                                      cpupon?  '₹ ' +
-                                          (couponmodel
-                                              ?.discountApplied)
-                                              .toString():'₹ ' +
-                                          ("0")
-                                              .toString(),
-                                      style: TextStyle(
-                                        fontFamily: 'task',
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.black87,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                                 Padding(
+                                                   padding: EdgeInsets.only(right: 8.0),
+                                                   child: Text(
+                                                     cpupon?  '₹ ' +
+                                                         (couponmodel
+                                                             ?.discountApplied)
+                                                             .toString():'₹ ' +
+                                                         ("0")
+                                                             .toString(),
+                                                     style: TextStyle(
+                                                       fontFamily: 'task',
+                                                       fontSize: 12.0,
+                                                       fontWeight: FontWeight.w600,
+                                                       color: Colors.black87,
+                                                     ),
+                                                   ),
+                                                 ),
+
+                                                ],
+                                             ),
                                                 ],
                                               ),
                                               SizedBox(
@@ -2896,7 +2825,7 @@ class _CartPageState extends State<CartPage> {
                                                         fontSize: 12.sp,
                                                         color: Colors.grey.shade800,
                                                         fontWeight: FontWeight.bold,
-                                                      ),
+                                                       ),
                                                     ),
                                                   ),
                                                   Padding(
@@ -2914,7 +2843,7 @@ class _CartPageState extends State<CartPage> {
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 12.sp,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
                                                     ),
                                                   ),
@@ -3119,6 +3048,7 @@ class _CartPageState extends State<CartPage> {
   }
 
   removecart(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
     data['product_id'] = value.toString();
@@ -3131,6 +3061,7 @@ class _CartPageState extends State<CartPage> {
           print(removecartmodal?.status);
           if (response.statusCode == 200 &&
               removecartmodal?.status == "success") {
+            EasyLoading.showSuccess('Remove From Cart Sucessfully');
             ViewCartApi();
 
             print('mer');
@@ -3138,6 +3069,7 @@ class _CartPageState extends State<CartPage> {
               isLoading = false;
             });
           } else {
+            EasyLoading.showSuccess('Remove From Cart Not Sucessfully');
             setState(() {
               isLoading = false;
             });
@@ -3154,6 +3086,7 @@ class _CartPageState extends State<CartPage> {
 
 
   removecartwithoutlogin(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['device_id'] = deviceName.toString();
     data['product_id'] = value.toString();
@@ -3166,12 +3099,14 @@ class _CartPageState extends State<CartPage> {
           print(removecartwithoutloginModel?.status);
           if (response.statusCode == 200 &&
               removecartwithoutloginModel?.status == "success") {
+            EasyLoading.showSuccess('Remove From Cart Sucessfully');
             ViewCartwithoutloginAp();
             print('mer');
             setState(() {
               isLoading = false;
             });
           } else {
+            EasyLoading.showSuccess('Remove From Cart Not Sucessfully');
             setState(() {
               isLoading = false;
             });
@@ -3188,6 +3123,7 @@ class _CartPageState extends State<CartPage> {
 
 
   increment(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
     data['cart_tbl_id'] = value.toString();
@@ -3199,6 +3135,7 @@ class _CartPageState extends State<CartPage> {
           print(incrementmodal?.status);
           if (response.statusCode == 200 &&
               incrementmodal?.status == "success") {
+            EasyLoading.showSuccess( 'Update quantity');
             ViewCartApi();
             print('ADD');
             setState(() {
@@ -3221,6 +3158,7 @@ class _CartPageState extends State<CartPage> {
 
 
   incrementwithoutlogin(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['cart_tbl_id'] = value.toString();
     print("cart incre $data");
@@ -3231,6 +3169,7 @@ class _CartPageState extends State<CartPage> {
           print(Incrementwithoutloginmodel?.status);
           if (response.statusCode == 200 &&
               Incrementwithoutloginmodel?.status == "success") {
+            EasyLoading.showSuccess( 'Update quantity');
             ViewCartApi();
             ViewCartwithoutloginAp();
 
@@ -3255,6 +3194,7 @@ class _CartPageState extends State<CartPage> {
 
 
   decrementwithoutlogin(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['cart_tbl_id'] = value.toString();
     print("cart incre $data");
@@ -3265,6 +3205,7 @@ class _CartPageState extends State<CartPage> {
           print(Decrementwithoutlogin?.status);
           if (response.statusCode == 200 &&
               Decrementwithoutlogin?.status == "success") {
+            EasyLoading.showSuccess( 'Update quantity');
             ViewCartApi();
             ViewCartwithoutloginAp();
 
@@ -3289,6 +3230,7 @@ class _CartPageState extends State<CartPage> {
 
 
   decrement(String value) async {
+    EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
     data['cart_tbl_id'] = value.toString();
@@ -3301,8 +3243,8 @@ class _CartPageState extends State<CartPage> {
           print(disincrementmodal?.status);
           if (response.statusCode == 200 &&
               disincrementmodal?.status == "success") {
+            EasyLoading.showSuccess( 'Update quantity');
             ViewCartApi();
-
             setState(() {
               isLoading = false;
             });

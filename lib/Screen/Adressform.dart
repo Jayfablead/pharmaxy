@@ -412,6 +412,9 @@ class _AdressformState extends State<Adressform> {
                                       if (value!.isEmpty) {
                                         return "Please Enter The Phone";
                                       }
+                                      else if (value.length != 10) {
+                                        return "Please Enter valid phone number";
+                                      }
                                       return null;
                                     },
                                     keyboardType: TextInputType.phone,
@@ -651,10 +654,10 @@ class _AdressformState extends State<Adressform> {
                             children: [
                               Container(
                                   margin:
-                                      EdgeInsets.only(right: 7.w, left: 10.w),
+                                      EdgeInsets.only(right: 7.w, left: 8.w),
                                   alignment: Alignment.center,
                                   height: 6.h,
-                                  width: 80.w,
+                                  width: 85.w,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Color(0xff0061b0)),

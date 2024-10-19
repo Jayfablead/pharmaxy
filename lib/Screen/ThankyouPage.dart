@@ -38,13 +38,13 @@ class _ThankyouPageState extends State<ThankyouPage> {
     super.initState();
     print(widget.uid);
     checkoutpayap();
-    Timer(
-        Duration(seconds: 5),
-            () =>  Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>  HomePage(sel: 0),
-            )));
+    // Timer(
+    //     Duration(seconds: 5),
+    //         () =>  Navigator.pushReplacement(
+    //         context,
+    //         MaterialPageRoute(
+    //           builder: (context) =>  HomePage(sel: 0),
+    //         )));
   }
 
   @override
@@ -133,39 +133,39 @@ class _ThankyouPageState extends State<ThankyouPage> {
                 ),
               ],
             ),
-            // SizedBox(
-            //   height: 3.h,
-            // ),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.of(context).pushReplacement(MaterialPageRoute(
-            //         builder: (context) => HomePage(
-            //               sel: 0,
-            //             )));
-            //   },
-            //   child: Container(
-            //       margin: EdgeInsets.only(right: 7.w, left: 7.w),
-            //       alignment: Alignment.center,
-            //       height: 6.h,
-            //       decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(10),
-            //           color: AppColors.primary),
-            //       child: Text(
-            //         "Continue Shopping",
-            //         style: TextStyle(
-            //             fontSize: 14.sp,
-            //             color: Colors.white,
-            //             fontWeight: FontWeight.bold,
-            //             fontFamily: 'task'),
-            //       )),
-            // ),
+            SizedBox(
+              height: 3.h,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => HomePage(
+                          sel: 0,
+                        )));
+              },
+              child: Container(
+                  margin: EdgeInsets.only(right: 7.w, left: 7.w),
+                  alignment: Alignment.center,
+                  height: 6.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.primary),
+                  child: Text(
+                    "Continue Shopping",
+                    style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'task'),
+                  )),
+            ),
             SizedBox(
               height: 2.h,
             ),
             Text(
-              'if you have any issue with order kindly contact',
+              'if you have any issue with the order kindly contact',
               style: TextStyle(
-                  fontSize: 11.sp,
+                  fontSize: 10.sp,
                   // color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'task'),
@@ -177,8 +177,7 @@ class _ThankyouPageState extends State<ThankyouPage> {
               height: 40,
               width: 43.w, // Height of the button
               decoration: BoxDecoration(
-                color: Colors
-                    .white, // Button background color
+                color:  AppColors.primary, // Button background color
                 borderRadius: BorderRadius.circular(
                     10), // Rounded corners
               ),
@@ -187,7 +186,7 @@ class _ThankyouPageState extends State<ThankyouPage> {
                 MainAxisAlignment.center,
                 children: [
                   Icon(Icons.call,
-                      color: AppColors.primary, size: 20.sp),
+                      color: Colors.white, size: 20.sp),
                   SizedBox(width: 8),
                   GestureDetector(
                     onTap: () {
@@ -197,7 +196,7 @@ class _ThankyouPageState extends State<ThankyouPage> {
                     child: Text(
                       "Call Us",
                       style: TextStyle(
-                        color: AppColors.primary,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 12.sp,
                         fontFamily: 'task',
