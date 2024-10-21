@@ -1797,8 +1797,8 @@ class _ProductListPageState extends State<ProductListPage> {
                         ):
                         _serch.text != ''
                             ?
-                        subcatserchmodal?.categoriesWiseProduct?.length == 0 ||
-                                    subcatserchmodal?.categoriesWiseProduct?.length ==
+                        catSerchModal?.categoriesWiseProduct?.length == 0 ||
+                            catSerchModal?.categoriesWiseProduct?.length ==
                                         null
                                 ? SliverToBoxAdapter(
                                     child: Container(
@@ -1837,7 +1837,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                         MaterialPageRoute(
                                                           builder: (context) =>
                                                               productdetailnovartion(
-                                                            productid: subcatserchmodal
+                                                            productid: catSerchModal
                                                                     ?.categoriesWiseProduct?[
                                                                         index]
                                                                     .productID ??
@@ -1865,10 +1865,10 @@ class _ProductListPageState extends State<ProductListPage> {
                                                       ),
                                                       Container(
                                                         child: CachedNetworkImage(
-                                                          imageUrl: subcatserchmodal
+                                                          imageUrl: catSerchModal
                                                                   ?.categoriesWiseProduct?[
                                                                       index]
-                                                                  .productImage ??
+                                                                  .productImage1 ??
                                                               '',
                                                           fit: BoxFit.cover,
                                                           height: 9.5.h,
@@ -1930,7 +1930,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                         TextOverflow
                                                                             .ellipsis,
                                                                     maxLines: 1,
-                                                                    subcatserchmodal
+                                                                    catSerchModal
                                                                             ?.categoriesWiseProduct?[
                                                                                 index]
                                                                             .productName ??
@@ -2022,7 +2022,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                             .h),
                                                                 child: Text(
                                                                   '₹' +
-                                                                      (subcatserchmodal
+                                                                      (catSerchModal
                                                                               ?.categoriesWiseProduct?[index]
                                                                               .productPrice)
                                                                           .toString(),
@@ -2061,7 +2061,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                     builder:
                                                                         (context) =>
                                                                             productdetailnovartion(
-                                                                      productid: subcatserchmodal
+                                                                      productid: catSerchModal
                                                                               ?.categoriesWiseProduct?[index]
                                                                               .productID ??
                                                                           '',
@@ -2114,26 +2114,26 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                 builder:
                                                                     (context) =>
                                                                         LoginPage2()))
-                                                        : subcatserchmodal
+                                                        : catSerchModal
                                                                     ?.categoriesWiseProduct?[
                                                                         index]
                                                                     .wishlist ==
                                                                 1
                                                             ? removewishlistap(
-                                                                (subcatserchmodal
+                                                                (catSerchModal
                                                                         ?.categoriesWiseProduct?[
                                                                             index]
                                                                         .productID)
                                                                     .toString())
                                                             : addwishlistap(
-                                                                (subcatserchmodal
+                                                                (catSerchModal
                                                                         ?.categoriesWiseProduct?[
                                                                             index]
                                                                         .productID)
                                                                     .toString());
                                                   },
                                                   child: Icon(
-                                                    subcatserchmodal
+                                                    catSerchModal
                                                                 ?.categoriesWiseProduct?[
                                                                     index]
                                                                 .wishlist ==
@@ -2142,7 +2142,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                         : Icons
                                                             .favorite_outline,
                                                     size: 20.sp,
-                                                    color: subcatserchmodal
+                                                    color: catSerchModal
                                                                 ?.categoriesWiseProduct?[
                                                                     index]
                                                                 .wishlist ==
@@ -2154,7 +2154,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                           ],
                                         );
                                       },
-                                      childCount: subcatserchmodal
+                                      childCount: catSerchModal
                                           ?.categoriesWiseProduct?.length,
                                     ),
                                   )
@@ -2612,7 +2612,7 @@ class _ProductListPageState extends State<ProductListPage> {
               wait = true;
             });
           }
-          subcatserchap(_serch.text);
+          catserchap(_serch.text);
         },
         style: TextStyle(color: Colors.black, fontFamily: 'task',fontSize: 12.
         sp),
@@ -2625,7 +2625,7 @@ class _ProductListPageState extends State<ProductListPage> {
             onTap: () {
               setState(() {
                 _serch.text = '';
-                subcatserchap(_serch.text); // Call API with empty search
+                catserchap(_serch.text); // Call API with empty search
                 name = false;  // Reset name and wait state
                 wait = false;
               });
@@ -2738,7 +2738,7 @@ class _ProductListPageState extends State<ProductListPage> {
       }
     });
   }
-  subcatserchap(String value) async {
+  catserchap(String value) async {
     final Map<String, String> data = {};
     data['search_term'] = value.toString();
     data['category_id'] = widget.catid.toString();
@@ -2746,12 +2746,12 @@ class _ProductListPageState extends State<ProductListPage> {
     print("aaavi gaya${data}");
     checkInternet().then((internet) async {
       if (internet) {
-        authprovider().subcatserchapi(data).then((response) async {
-          subcatserchmodal =
-              SubCatSerchModal.fromJson(json.decode(response.body));
-          print(subcatserchmodal?.status);
+        authprovider().catserchapi(data).then((response) async {
+          catSerchModal =
+              CatSerchModal.fromJson(json.decode(response.body));
+          print(catSerchModal?.status);
           if (response.statusCode == 200 &&
-              subcatserchmodal?.status == "success") {
+              catSerchModal?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
             print('EE Thay ${response.body.toString()}');
 
@@ -2778,6 +2778,46 @@ class _ProductListPageState extends State<ProductListPage> {
       }
     });
   }
+  // subcatserchap(String value) async {
+  //   final Map<String, String> data = {};
+  //   data['search_term'] = value.toString();
+  //   data['category_id'] = widget.catid.toString();
+  //   data['User_id'] = (usermodal?.userId).toString();
+  //   print("aaavi gaya${data}");
+  //   checkInternet().then((internet) async {
+  //     if (internet) {
+  //       authprovider().subcatserchapi(data).then((response) async {
+  //         subcatserchmodal =
+  //             SubCatSerchModal.fromJson(json.decode(response.body));
+  //         print(subcatserchmodal?.status);
+  //         if (response.statusCode == 200 &&
+  //             subcatserchmodal?.status == "success") {
+  //           print('EE Thay Gyu Hooooo ! ^_^');
+  //           print('EE Thay ${response.body.toString()}');
+  //
+  //           setState(() {
+  //             isLoading = false;
+  //             type1= "";
+  //             short= "";
+  //           });
+  //         } else {
+  //           setState(() {
+  //             isLoading = false;
+  //             type1= "";
+  //             short= "";
+  //           });
+  //         }
+  //       });
+  //     } else {
+  //       setState(() {
+  //         isLoading = false;
+  //         type1= "";
+  //         short= "";
+  //       });
+  //       buildErrorDialog(context, 'Error', "Internet Required");
+  //     }
+  //   });
+  // }
 
   addwishlistap(String value) async {
     final Map<String, String> data = {};
@@ -2794,7 +2834,7 @@ class _ProductListPageState extends State<ProductListPage> {
               addtowishlIstmodal?.status == "success") {
             catwiceproductap();
             //subcatwiceallproductap();
-            subcatserchap(_serch.text);
+            catserchap(_serch.text);
             buildErrorDialog(context, '', "Your item is added in wishlist");
             print('adddd');
             setState(() {
@@ -2830,7 +2870,7 @@ class _ProductListPageState extends State<ProductListPage> {
             catwiceproductap();
             //subcatwiceallproductap();
 
-            subcatserchap(_serch.text);
+            catserchap(_serch.text);
             buildErrorDialog(context, '', "Your item is removed from wishlist");
             setState(() {
               isLoading = false;

@@ -98,7 +98,7 @@ class _drawer1State extends State<drawer1> {
                                       children: [
                                         Icon(
                                           CupertinoIcons.home,
-                                          size: 19.sp,
+                                          size: 14.sp,
                                           color: AppColors.primary,
                                         ),
                                         SizedBox(
@@ -181,14 +181,16 @@ class _drawer1State extends State<drawer1> {
                       ),
                       InkWell(
                         onTap: () {
-                          setState(() async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Prescriptionform(),
-                                ));
-                          });
                           Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Prescriptionform(),
+                              ));
+                          // setState(() async {
+                          //
+                          // });
+
                         },
                           child: Container(
                             child: Row(
@@ -237,14 +239,16 @@ class _drawer1State extends State<drawer1> {
                       ),
                       InkWell(
                         onTap: () {
-                          setState(() async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Requestdoctorform(),
-                                ));
-                          });
                           Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Requestdoctorform(),
+                              ));
+                          // setState(() async {
+                          //
+                          // });
+
                         },
                         child: Container(
                           child: Row(
@@ -293,14 +297,16 @@ class _drawer1State extends State<drawer1> {
                       ),
                       InkWell(
                         onTap: () {
-                          setState(() async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Refill_Alert(),
-                                ));
-                          });
                           Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Refill_Alert(),
+                              ));
+                          // setState(() async {
+                          //
+                          // });
+
                         },
                         child: Container(
                           child: Row(
@@ -349,14 +355,16 @@ class _drawer1State extends State<drawer1> {
                       ),
                       InkWell(
                         onTap: () {
-                          setState(() async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Request_Medicine(),
-                                ));
-                          });
                           Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Request_Medicine(),
+                              ));
+                          // setState(() async {
+                          //
+                          // });
+
                         },
                         child: Container(
                           child: Row(
@@ -405,14 +413,16 @@ class _drawer1State extends State<drawer1> {
                       ),
                       InkWell(
                         onTap: () {
-                          setState(() async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoginPage2(),
-                                ));
-                          });
                           Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage2(),
+                              ));
+                          // setState(() async {
+                          //
+                          // });
+
                         },
                         child: Container(
                           child: Row(

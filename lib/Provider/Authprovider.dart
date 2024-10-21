@@ -482,7 +482,7 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
-  Future<http.Response> subcatserchapi(Map<String, String> bodyData) async {
+  Future<http.Response> catserchapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/search_category_wice_product";
     print(url);
     var responseJson;

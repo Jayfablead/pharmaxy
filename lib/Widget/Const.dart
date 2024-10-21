@@ -124,7 +124,7 @@ CatWiceProductModal? catwiceproductmodal;
 AllSubcatWiceProduct? allsubcatwiceproduct;
 SearchModal? searchmodal;
 UserWishLIstModal? userwishlIstmodal;
-SubCatSerchModal? subcatserchmodal;
+//SubCatSerchModal? subcatserchmodal;
 AddToWishLIstModal? addtowishlIstmodal;
 RemoveWishListModal? removewishlistmodal;
 AddCartModal? addcartmodal;
@@ -171,6 +171,7 @@ bestsellerModel?bestselllermodel;
 ChatModel? chatviewmodal;
 SendMessage?sendmessagesmodal;
 AllCouponModal? allcouponmodal;
+CatSerchModal? catSerchModal;
 
 // Ram Api
 BlogModel?blogmodel;

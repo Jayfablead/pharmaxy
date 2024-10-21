@@ -21,7 +21,6 @@ class Requestdoctorform extends StatefulWidget {
 class _RequestdoctorformState extends State<Requestdoctorform> {
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
-
   String selected = 'please select';
   TextEditingController _firstname = TextEditingController();
   TextEditingController _lastname = TextEditingController();

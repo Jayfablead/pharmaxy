@@ -36,6 +36,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
   TextEditingController _age = TextEditingController();
   TextEditingController _doctorfname= TextEditingController();
   TextEditingController _medicine = TextEditingController();
+
   String selected = 'please select';
   ImagePicker _picker = ImagePicker();
   File? _pickedFile = null;
@@ -46,35 +47,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
       _pickedFile = null;  // Clear the selected file
     });
   }
-  viewap() {
-    final Map<String, String> data = {};
-    data['userId'] = (usermodal?.userId).toString();
-    print(data);
-    checkInternet().then((internet) async {
-      if (internet) {
-        authprovider().ViewProfile(data).then((response) async {
-          profilemodal = ProfileModal.fromJson(json.decode(response.body));
-          if (response.statusCode == 200 && profilemodal?.status == "success") {
-            print(profilemodal?.status);
-            setState(() {
-              // Assign values to controllers
-              _phone.text = profilemodal?.profileDetails?.userPhone ?? "";
-              isLoading = false;
-            });
-          } else {
-            setState(() {
-              isLoading = false;
-            });
-          }
-        });
-      } else {
-        setState(() {
-          isLoading = false;
-        });
-        buildErrorDialog(context, 'Error', "Internet Required");
-      }
-    });
-  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -1208,7 +1181,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
       // data['Patientemail'] = _email.text.toString();
       // data['Patientaddress'] = _Address.text.toString();
       //data['Zipcode'] = widget.ZipCode;
-       data['Phone'] = usermodal?.userId == "" || usermodal?.userId == null? _phone.text.toString()
+       data['phone'] = usermodal?.userId == "" || usermodal?.userId == null? _phone.text.toString()
            :profilemodal?.profileDetails?.userPhone??'';
       // data['Gender'] = selected ;
       data['Patientage'] = _age.text.toString();
@@ -1269,4 +1242,44 @@ class _PrescriptionformState extends State<Prescriptionform> {
     print('Device Name: $deviceName');
     print('Device OS: $deviceOS');
   }
+
+
+  viewap() {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().ViewProfile(data).then((response) async {
+          profilemodal = ProfileModal.fromJson(json.decode(response.body));
+          if (response.statusCode == 200 && profilemodal?.status == "success") {
+            print("my name is back") ;
+            print(profilemodal?.status);
+            setState(() {
+              // Assign values to controllers
+              _phone.text = profilemodal?.profileDetails?.userPhone ?? "";
+              _firstname.text = profilemodal?.profileDetails?.userFirstName ?? "";
+              // Add more fields as needed
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
+
+
+
+
+
+
 }

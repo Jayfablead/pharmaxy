@@ -2424,8 +2424,8 @@ class _HomePageState extends State<HomePage> {
                                                                       .productID)
                                                                   .toString());
                                                 },
-                                                child: Icon(
-                                                  Icons.favorite_outline,
+                                                child: Icon(bestsellerproductmodal?.productData?[index].wishlist == 1?
+                                                  Icons.favorite:Icons.favorite_outline,
                                                   size: 20.sp,
                                                   color: bestsellerproductmodal?.productData?[index].wishlist == 1?
                                                       Colors.red: Colors.black,
