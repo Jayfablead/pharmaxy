@@ -46,6 +46,35 @@ class _PrescriptionformState extends State<Prescriptionform> {
       _pickedFile = null;  // Clear the selected file
     });
   }
+  viewap() {
+    final Map<String, String> data = {};
+    data['userId'] = (usermodal?.userId).toString();
+    print(data);
+    checkInternet().then((internet) async {
+      if (internet) {
+        authprovider().ViewProfile(data).then((response) async {
+          profilemodal = ProfileModal.fromJson(json.decode(response.body));
+          if (response.statusCode == 200 && profilemodal?.status == "success") {
+            print(profilemodal?.status);
+            setState(() {
+              // Assign values to controllers
+              _phone.text = profilemodal?.profileDetails?.userPhone ?? "";
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+            });
+          }
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        buildErrorDialog(context, 'Error', "Internet Required");
+      }
+    });
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -780,6 +809,11 @@ class _PrescriptionformState extends State<Prescriptionform> {
                                     }
                                     return null;
                                   },
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _phone.text = value;
+                                    });
+                                  },
                                   keyboardType: TextInputType.phone,
                                   controller: _phone,
                                   style: TextStyle(height: 1),
@@ -1163,37 +1197,7 @@ class _PrescriptionformState extends State<Prescriptionform> {
           return alert;
         });
   }
-  viewap() {
-    final Map<String, String> data = {};
-    data['userId'] = (usermodal?.userId).toString();
-    print(data);
-    checkInternet().then((internet) async {
-      if (internet) {
-        authprovider().ViewProfile(data).then((response) async {
-          profilemodal = ProfileModal.fromJson(json.decode(response.body));
-          if (response.statusCode == 200 && profilemodal?.status == "success") {
-            print(profilemodal?.status);
-            setState(() {
-              // Assign values to controllers
-              _phone.text = profilemodal?.profileDetails?.userPhone ?? "";
-              //_firstname.text = profilemodal?.profileDetails?.userFirstName ?? "";
-              // Add more fields as needed
-              isLoading = false;
-            });
-          } else {
-            setState(() {
-              isLoading = false;
-            });
-          }
-        });
-      } else {
-        setState(() {
-          isLoading = false;
-        });
-        buildErrorDialog(context, 'Error', "Internet Required");
-      }
-    });
-  }
+
   preformap() async {
     if (_formKey.currentState!.validate()) {
       EasyLoading.show(status: 'Please Wait ...');

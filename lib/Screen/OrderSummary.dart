@@ -1168,47 +1168,47 @@ class _OrderSummaryState extends State<OrderSummary> {
                                 height: 2.h,
                               ),
                               // Chat with us
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 2.w),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) => Chatscreen(
-                                         orderId: myoederdetailmodal?.userDetail?.orderID ?? '',
-                                      ),)
-                                    );
-                                  },
-                                  child: Card(
-                                    elevation: 2,
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff0061b0),
-                                          borderRadius: BorderRadius.circular(8.0)
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        // crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            CupertinoIcons.chat_bubble_2,
-                                            size: 25.sp,
-                                            color: Colors.white,
-                                            // color: Color(0xfff7941d),
-                                          ),
-                                          SizedBox(width: 5.0,),
-                                          Text("Chats with us",style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                            fontSize: 11.sp,
-                                          ),)
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              // Padding(
+                              //   padding: EdgeInsets.symmetric(horizontal: 2.w),
+                              //   child: InkWell(
+                              //     onTap: () {
+                              //       Navigator.of(context).push(
+                              //         MaterialPageRoute(builder: (context) => Chatscreen(
+                              //            orderId: myoederdetailmodal?.userDetail?.orderID ?? '',
+                              //         ),)
+                              //       );
+                              //     },
+                              //     child: Card(
+                              //       elevation: 2,
+                              //       child: Container(
+                              //         width: MediaQuery.of(context).size.width,
+                              //         height: 50,
+                              //         decoration: BoxDecoration(
+                              //             color: Color(0xff0061b0),
+                              //             borderRadius: BorderRadius.circular(8.0)
+                              //         ),
+                              //         child: Row(
+                              //           mainAxisAlignment: MainAxisAlignment.center,
+                              //           // crossAxisAlignment: CrossAxisAlignment.center,
+                              //           children: [
+                              //             Icon(
+                              //               CupertinoIcons.chat_bubble_2,
+                              //               size: 25.sp,
+                              //               color: Colors.white,
+                              //               // color: Color(0xfff7941d),
+                              //             ),
+                              //             SizedBox(width: 5.0,),
+                              //             Text("Chats with us",style: TextStyle(
+                              //               fontWeight: FontWeight.bold,
+                              //               color: Colors.white,
+                              //               fontSize: 11.sp,
+                              //             ),)
+                              //           ],
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                           
