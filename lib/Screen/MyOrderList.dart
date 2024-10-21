@@ -957,28 +957,28 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                           width:
                                                                           4.w,
                                                                         ),
-                                                                        // GestureDetector(
-                                                                        //   onTap:
-                                                                        //       () {
-                                                                        //     Navigator.of(context).push(
-                                                                        //       MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                        //         orderId: paidorderModel?.data?[index].orderId??"",
-                                                                        //       ),)
-                                                                        //     );
-                                                                        //    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
-                                                                        //   },
-                                                                        //   child: Container(
-                                                                        //       alignment: Alignment.center,
-                                                                        //       height: 4.h,
-                                                                        //       width: 13.w,
-                                                                        //       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
-                                                                        //       child:  Icon(
-                                                                        //         CupertinoIcons.chat_bubble_fill,
-                                                                        //         size: 13.sp,
-                                                                        //         color: Color(0xff0061b0),
-                                                                        //      )
-                                                                        //   ),
-                                                                        // ),
+                                                                        GestureDetector(
+                                                                          onTap:
+                                                                              () {
+                                                                            Navigator.of(context).push(
+                                                                              MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                                orderId: paidorderModel?.data?[index].orderId??"",
+                                                                              ),)
+                                                                            );
+                                                                           // Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderSummary(iteamid: deliveredordermodal?.cartDetails?[index].orderitemid)));
+                                                                          },
+                                                                          // child: Container(
+                                                                          //     alignment: Alignment.center,
+                                                                          //     height: 4.h,
+                                                                          //     width: 13.w,
+                                                                          //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
+                                                                          //     child:  Icon(
+                                                                          //       CupertinoIcons.chat_bubble_fill,
+                                                                          //       size: 13.sp,
+                                                                          //       color: Color(0xff0061b0),
+                                                                          //    )
+                                                                          // ),
+                                                                        ),
                                                                         SizedBox(
                                                                           width:
                                                                               4.w,
@@ -1292,32 +1292,32 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                               width:
                                                                               2.5.w,
                                                                             ),
-                                                                            // GestureDetector(
-                                                                            //   onTap: () {
-                                                                            //     Navigator.of(context).push(
-                                                                            //       MaterialPageRoute(builder: (context) => Chatscreen(
-                                                                            //         orderId: shippedorderModel?.data?[index].orderId??"",
-                                                                            //       ),)
-                                                                            //     );
-                                                                            //     // Navigator.of(
-                                                                            //     //     context)
-                                                                            //     //     .push(
-                                                                            //     //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                                            //   },
-                                                                            //   child: Container(
-                                                                            //       alignment: Alignment.center,
-                                                                            //       padding: EdgeInsets.symmetric(
-                                                                            //           horizontal: 1.w,vertical: 0.8.h
-                                                                            //       ),
-                                                                            //       width: 13.w,
-                                                                            //       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
-                                                                            //       child: Icon(
-                                                                            //         CupertinoIcons.chat_bubble_fill,
-                                                                            //         size: 13.sp,
-                                                                            //         color: Color(0xff0061b0),
-                                                                            //       )
-                                                                            //   ),
-                                                                            // ),
+                                                                            GestureDetector(
+                                                                              onTap: () {
+                                                                                Navigator.of(context).push(
+                                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                                    orderId: shippedorderModel?.data?[index].orderId??"",
+                                                                                  ),)
+                                                                                );
+                                                                                // Navigator.of(
+                                                                                //     context)
+                                                                                //     .push(
+                                                                                //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                                              },
+                                                                              // child: Container(
+                                                                              //     alignment: Alignment.center,
+                                                                              //     padding: EdgeInsets.symmetric(
+                                                                              //         horizontal: 1.w,vertical: 0.8.h
+                                                                              //     ),
+                                                                              //     width: 13.w,
+                                                                              //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                                              //     child: Icon(
+                                                                              //       CupertinoIcons.chat_bubble_fill,
+                                                                              //       size: 13.sp,
+                                                                              //       color: Color(0xff0061b0),
+                                                                              //     )
+                                                                              // ),
+                                                                            ),
                                                                             SizedBox(
                                                                               width:
                                                                                   4.w,
@@ -1628,32 +1628,32 @@ class _MyOrderListState extends State<MyOrderList> {
                                                             width:
                                                             2.5.w,
                                                           ),
-                                                          // GestureDetector(
-                                                          //   onTap: () {
-                                                          //     Navigator.of(context).push(
-                                                          //         MaterialPageRoute(builder: (context) => Chatscreen(
-                                                          //           orderId: placedorderModel?.data?[index].orderId??"",
-                                                          //         ),)
-                                                          //     );
-                                                          //     // Navigator.of(
-                                                          //     //     context)
-                                                          //     //     .push(
-                                                          //     //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                          //   },
-                                                          //   child: Container(
-                                                          //       alignment: Alignment.center,
-                                                          //       padding: EdgeInsets.symmetric(
-                                                          //           horizontal: 1.w,vertical: 0.8.h
-                                                          //       ),
-                                                          //       width: 13.w,
-                                                          //       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
-                                                          //       child: Icon(
-                                                          //         CupertinoIcons.chat_bubble_fill,
-                                                          //         size: 13.sp,
-                                                          //         color: Color(0xff0061b0),
-                                                          //       )
-                                                          //   ),
-                                                          // ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                    orderId: placedorderModel?.data?[index].orderId??"",
+                                                                  ),)
+                                                              );
+                                                              // Navigator.of(
+                                                              //     context)
+                                                              //     .push(
+                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                            },
+                                                            // child: Container(
+                                                            //     alignment: Alignment.center,
+                                                            //     padding: EdgeInsets.symmetric(
+                                                            //         horizontal: 1.w,vertical: 0.8.h
+                                                            //     ),
+                                                            //     width: 13.w,
+                                                            //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                            //     child: Icon(
+                                                            //       CupertinoIcons.chat_bubble_fill,
+                                                            //       size: 13.sp,
+                                                            //       color: Color(0xff0061b0),
+                                                            //     )
+                                                            // ),
+                                                          ),
                                                           SizedBox(
                                                             width:
                                                             4.w,
@@ -1977,32 +1977,32 @@ class _MyOrderListState extends State<MyOrderList> {
                                                             width:
                                                             2.5.w,
                                                           ),
-                                                          // GestureDetector(
-                                                          //   onTap: () {
-                                                          //     Navigator.of(context).push(
-                                                          //         MaterialPageRoute(builder: (context) => Chatscreen(
-                                                          //           orderId: pendingordermodal?.data?[index].orderId??"",
-                                                          //         ),)
-                                                          //     );
-                                                          //     // Navigator.of(
-                                                          //     //     context)
-                                                          //     //     .push(
-                                                          //     //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                          //   },
-                                                          //   child: Container(
-                                                          //       alignment: Alignment.center,
-                                                          //       padding: EdgeInsets.symmetric(
-                                                          //           horizontal: 1.w,vertical: 0.8.h
-                                                          //       ),
-                                                          //       width: 13.w,
-                                                          //       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
-                                                          //       child: Icon(
-                                                          //         CupertinoIcons.chat_bubble_fill,
-                                                          //         size: 13.sp,
-                                                          //         color: Color(0xff0061b0),
-                                                          //       )
-                                                          //   ),
-                                                          // ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                    orderId: pendingordermodal?.data?[index].orderId??"",
+                                                                  ),)
+                                                              );
+                                                              // Navigator.of(
+                                                              //     context)
+                                                              //     .push(
+                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                            },
+                                                            // child: Container(
+                                                            //     alignment: Alignment.center,
+                                                            //     padding: EdgeInsets.symmetric(
+                                                            //         horizontal: 1.w,vertical: 0.8.h
+                                                            //     ),
+                                                            //     width: 13.w,
+                                                            //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                            //     child: Icon(
+                                                            //       CupertinoIcons.chat_bubble_fill,
+                                                            //       size: 13.sp,
+                                                            //       color: Color(0xff0061b0),
+                                                            //     )
+                                                            // ),
+                                                          ),
                                                           SizedBox(
                                                             width:
                                                             4.w,
@@ -2326,32 +2326,32 @@ class _MyOrderListState extends State<MyOrderList> {
                                                             width:
                                                             2.5.w,
                                                           ),
-                                                          // GestureDetector(
-                                                          //   onTap: () {
-                                                          //     Navigator.of(context).push(
-                                                          //         MaterialPageRoute(builder: (context) => Chatscreen(
-                                                          //           orderId: deliveredordermodal?.data?[index].orderId??"",
-                                                          //         ),)
-                                                          //     );
-                                                          //     // Navigator.of(
-                                                          //     //     context)
-                                                          //     //     .push(
-                                                          //     //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                          //   },
-                                                          //   child: Container(
-                                                          //       alignment: Alignment.center,
-                                                          //       padding: EdgeInsets.symmetric(
-                                                          //           horizontal: 1.w,vertical: 0.8.h
-                                                          //       ),
-                                                          //       width: 13.w,
-                                                          //       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
-                                                          //       child: Icon(
-                                                          //         CupertinoIcons.chat_bubble_fill,
-                                                          //         size: 13.sp,
-                                                          //         color: Color(0xff0061b0),
-                                                          //       )
-                                                          //   ),
-                                                          // ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                    orderId: deliveredordermodal?.data?[index].orderId??"",
+                                                                  ),)
+                                                              );
+                                                              // Navigator.of(
+                                                              //     context)
+                                                              //     .push(
+                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                            },
+                                                            // child: Container(
+                                                            //     alignment: Alignment.center,
+                                                            //     padding: EdgeInsets.symmetric(
+                                                            //         horizontal: 1.w,vertical: 0.8.h
+                                                            //     ),
+                                                            //     width: 13.w,
+                                                            //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                            //     child: Icon(
+                                                            //       CupertinoIcons.chat_bubble_fill,
+                                                            //       size: 13.sp,
+                                                            //       color: Color(0xff0061b0),
+                                                            //     )
+                                                            // ),
+                                                          ),
                                                           SizedBox(
                                                             width:
                                                             4.w,
@@ -2674,32 +2674,32 @@ class _MyOrderListState extends State<MyOrderList> {
                                                             width:
                                                             2.5.w,
                                                           ),
-                                                          // GestureDetector(
-                                                          //   onTap: () {
-                                                          //     Navigator.of(context).push(
-                                                          //         MaterialPageRoute(builder: (context) => Chatscreen(
-                                                          //           orderId: ordercancelmodal?.data?[index].orderId??"",
-                                                          //         ),)
-                                                          //     );
-                                                          //     // Navigator.of(
-                                                          //     //     context)
-                                                          //     //     .push(
-                                                          //     //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
-                                                          //   },
-                                                          //   child: Container(
-                                                          //       alignment: Alignment.center,
-                                                          //       padding: EdgeInsets.symmetric(
-                                                          //           horizontal: 1.w,vertical: 0.8.h
-                                                          //       ),
-                                                          //       width: 13.w,
-                                                          //       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
-                                                          //       child: Icon(
-                                                          //         CupertinoIcons.chat_bubble_fill,
-                                                          //         size: 13.sp,
-                                                          //         color: Color(0xff0061b0),
-                                                          //       )
-                                                          //   ),
-                                                          // ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(builder: (context) => Chatscreen(
+                                                                    orderId: ordercancelmodal?.data?[index].orderId??"",
+                                                                  ),)
+                                                              );
+                                                              // Navigator.of(
+                                                              //     context)
+                                                              //     .push(
+                                                              //     MaterialPageRoute(builder: (context) => cha(iteamid: myorderlistmodal?.cartDetails?[index].orderitemid)));
+                                                            },
+                                                            // child: Container(
+                                                            //     alignment: Alignment.center,
+                                                            //     padding: EdgeInsets.symmetric(
+                                                            //         horizontal: 1.w,vertical: 0.8.h
+                                                            //     ),
+                                                            //     width: 13.w,
+                                                            //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,border: Border.all(color: AppColors.primary,width: 0.5) ),
+                                                            //     child: Icon(
+                                                            //       CupertinoIcons.chat_bubble_fill,
+                                                            //       size: 13.sp,
+                                                            //       color: Color(0xff0061b0),
+                                                            //     )
+                                                            // ),
+                                                          ),
                                                           SizedBox(
                                                             width:
                                                             4.w,
