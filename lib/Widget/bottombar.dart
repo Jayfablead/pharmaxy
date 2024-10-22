@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
+import 'package:ecommerce/Screen/Ofline_Cart.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/WishListPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -114,7 +115,7 @@ class _bottombarState extends State<bottombar> {
                   onTap: () {
                     setState(() {
                       Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => CartPage()));
+                          MaterialPageRoute(builder: (context) => Ofline_cart()));
                       selected = 2;
                     });
                   },

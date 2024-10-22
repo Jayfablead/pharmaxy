@@ -18,6 +18,7 @@ import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
+import 'package:ecommerce/Screen/Ofline_Cart.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -603,13 +604,18 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
             ),
             productdetail2modal?.productData?.cartlist == 1
                 ?GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder:
-                            (context) =>
-                            CartPage(
-                            )));
+              onTap: () {
+                usermodal?.userId == "" ||
+                    usermodal?.userId == null
+                    ?Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Ofline_cart(),
+                  ),
+                ): Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CartPage(),
+                  ),
+                );
               },
                   child: Container(
                                 alignment: Alignment.center,

@@ -26,6 +26,7 @@ import 'package:ecommerce/Screen/BlogdetailsPage.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
+import 'package:ecommerce/Screen/Ofline_Cart.dart';
 import 'package:ecommerce/Screen/PrescriptionForm.dart';
 import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
 import 'package:ecommerce/Screen/ProductList3.dart';
@@ -224,7 +225,6 @@ class _HomePageState extends State<HomePage> {
         drawer: drawer1(),
         bottomNavigationBar: SizedBox(
           height: 9.h,
-
             child: bottombar(selected: sel)),
         body: WillPopScope(
           onWillPop: dialog,
@@ -276,7 +276,13 @@ class _HomePageState extends State<HomePage> {
                                       // Cart Icon
                                       IconButton(
                                         onPressed: () {
-                                          Navigator.of(context).push(
+                                          usermodal?.userId == "" ||
+                                              usermodal?.userId == null
+                                              ?Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) => Ofline_cart(),
+                                            ),
+                                          ): Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) => CartPage(),
                                             ),
@@ -293,20 +299,20 @@ class _HomePageState extends State<HomePage> {
                                         padding: EdgeInsets.only(right: 2.w),
                                         child: GestureDetector(
                                           onTap: () {
-                                            usermodal?.userId == "" ||
-                                                    usermodal?.userId == null
-                                                ? Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          LoginPage2(),
-                                                    ),
-                                                  )
-                                                : Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          ProfilePage(),
-                                                    ),
-                                                  );
+                                            // usermodal?.userId == "" ||
+                                            //         usermodal?.userId == null
+                                            //     ? Navigator.of(context).push(
+                                            //         MaterialPageRoute(
+                                            //           builder: (context) =>
+                                            //               LoginPage2(),
+                                            //         ),
+                                            //       )
+                                            //     : Navigator.of(context).push(
+                                            //         MaterialPageRoute(
+                                            //           builder: (context) =>
+                                            //               ProfilePage(),
+                                            //         ),
+                                            //       );
                                           },
                                           child: usermodal?.userId == "" ||
                                                   usermodal?.userId == null
@@ -366,7 +372,11 @@ class _HomePageState extends State<HomePage> {
                                       // Adjust the value based on your layout
                                       child: GestureDetector(
                                           onTap: () {
-                                            // Handle the tap on the cart icon
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) => Ofline_cart(),
+                                              ),
+                                            );
                                           },
                                           child: Container(
                                               width: 5.w,
@@ -432,7 +442,11 @@ class _HomePageState extends State<HomePage> {
                                       // Adjust the value based on your layout
                                       child: GestureDetector(
                                           onTap: () {
-                                            // Handle the tap on the cart icon
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) => CartPage(),
+                                              ),
+                                            );
                                           },
                                           child: Container(
                                               width: 5.w,
