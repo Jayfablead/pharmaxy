@@ -3066,21 +3066,18 @@ class _CartPageState extends State<CartPage> {
 
             print('mer');
             setState(() {
-              cpupon =true;
               isLoading = false;
             });
           } else {
             EasyLoading.showSuccess('Remove From Cart Not Sucessfully');
             setState(() {
               isLoading = false;
-              cpupon =false;
             });
           }
         });
       } else {
         setState(() {
           isLoading = false;
-          cpupon =false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }

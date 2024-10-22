@@ -496,6 +496,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                     fontFamily: "task",
                                                   ),
                                                 ),
+
                                               ],
                                             ),
                                           ),
@@ -510,206 +511,225 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 ),
                               ),
 
-
-
       Positioned(
-      left: 4.w,
-        bottom: 1.h,
-        child: Row(
+      left: 2.5.w,
+        bottom: 5.h,
+        child: Column(
           children: [
-            Container(
-              height: 5.h,
-              width: 26.w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(width: 0.5, color: AppColors.primary),
-                  color: Colors.white38),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 0.4.h),
+            Row(
+              children: [
+                Container(
+                  height: 5.h,
+                  width: 27.w,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(width: 0.5, color: AppColors.primary),
+                      color: Colors.white38),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 0.4.h),
+                        child: Text(
+                          '₹${productdetail2modal?.productData?.saleProductPrice ?? ''}',
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            fontFamily: 'task',
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 1.w,),
+                      Padding(
+                        padding: EdgeInsets.only(top: 0.4.h),
+                        child: Text(
+                          '₹${productdetail2modal?.productData?.productPrice ?? ''}',
+                          style: TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            fontSize: 13.sp,
+                            fontFamily: 'task',
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 2.w,
+                ),
+                productdetail2modal?.productData?.cartlist == 1
+                    ? GestureDetector(
+                  onTap: () {
+                    EasyLoading.showSuccess('Your item is Added in Cart');
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 5.h,
+                    width: 30.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xffbababa),
+                    ),
                     child: Text(
-                      '₹${productdetail2modal?.productData?.productPrice ?? ''}',
+                      "Added To Cart",
                       style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: 'task',
+                        fontSize: 10.sp,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1,
-                        color: Colors.black,
+                        fontFamily: "task",
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: 2.w,
-            ),
-            productdetail2modal?.productData?.cartlist == 1
-                ? GestureDetector(
-              onTap: () {
-                EasyLoading.showSuccess('Your item is Added in Cart');
-              },
-              child: Container(
-                alignment: Alignment.center,
-                height: 5.h,
-                width: 30.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0xffbababa),
-                ),
-                child: Text(
-                  "Added To Cart",
-                  style: TextStyle(
-                    fontSize: 10.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
-                    fontFamily: "task",
-                  ),
-                ),
-              ),
-            )
-                : GestureDetector(
-              onTap: () {
-                print(usermodal?.userId);
-                usermodal?.userId == "" || usermodal?.userId == null
-                    ? addtocartwithoutlogin()
-                    : addcartap();
-              },
-              child: Container(
-                alignment: Alignment.center,
-                height: 5.h,
-                width: 30.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0xff0061b0),
-                ),
-                child: Text(
-                  "Add To Cart",
-                  style: TextStyle(
-                    fontSize: 11.5.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
-                    fontFamily: "task",
-                  ),
-                ),
-              ),
-            ),
-
-            SizedBox(
-              width: 2.w,
-            ),
-            productdetail2modal?.productData?.cartlist == 1
-                ?GestureDetector(
-              onTap: () {
-                usermodal?.userId == "" ||
-                    usermodal?.userId == null
-                    ?Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Ofline_cart(),
-                  ),
-                ): Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => CartPage(),
-                  ),
-                );
-              },
-                  child: Container(
-                                alignment: Alignment.center,
-                                height: 5.h,
-                                width: 30.w,
-                                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0xff0061b0),
-                                ),
-                                child: Text(
-                  "View Cart",
-                  style: TextStyle(
-                    fontSize: 11.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
-                    fontFamily: "task",
-                  ),
-                                ),
-                              ),
-                ):  Row(
-              children: [
-                // Minus button
-                GestureDetector(
+                )
+                    : GestureDetector(
                   onTap: () {
-                    if (quantity > 1) {
-                      setState(() {
-                        quantity--;
-                      });
-                    }
-                  },
-                  child: Container(
-
-                    alignment: Alignment.center,
-                    height: 9.5.w,
-                    width: 9.5.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: AppColors.primary
-                    ),
-                    child: Text(
-                      "-",
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 1.5.w),
-                // Quantity display
-                Container(
-
-                  alignment: Alignment.center,
-                  height: 7.w,
-                  width: 7.w,
-                  child: Text(
-                    "$quantity",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 1.5.w),
-                // Plus button
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      quantity++;
-                    });
+                    print(usermodal?.userId);
+                    usermodal?.userId == "" || usermodal?.userId == null
+                        ? addtocartwithoutlogin()
+                        : addcartap();
                   },
                   child: Container(
                     alignment: Alignment.center,
-                    height: 9.5.w,
-                    width: 9.5.w,
+                    height: 5.h,
+                    width: 30.w,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: AppColors.primary
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xff0061b0),
                     ),
                     child: Text(
-                      "+",
+                      "Add To Cart",
                       style: TextStyle(
-                        fontSize: 16.sp,
+                        fontSize: 11.5.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
+                        fontFamily: "task",
                       ),
                     ),
                   ),
+                ),
+            
+                SizedBox(
+                  width: 2.w,
+                ),
+                productdetail2modal?.productData?.cartlist == 1
+                    ?GestureDetector(
+                  onTap: () {
+                    usermodal?.userId == "" ||
+                        usermodal?.userId == null
+                        ?Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Ofline_cart(),
+                      ),
+                    ): Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => CartPage(),
+                      ),
+                    );
+                  },
+                      child: Container(
+                                    alignment: Alignment.center,
+                                    height: 5.h,
+                                    width: 30.w,
+                                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xff0061b0),
+                                    ),
+                                    child: Text(
+                      "View Cart",
+                      style: TextStyle(
+                        fontSize: 11.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
+                        fontFamily: "task",
+                      ),
+                                    ),
+                                  ),
+                    ):  Row(
+                  children: [
+                    // Minus button
+                    GestureDetector(
+                      onTap: () {
+                        if (quantity > 1) {
+                          setState(() {
+                            quantity--;
+                          });
+                        }
+                      },
+                      child: Container(
+            
+                        alignment: Alignment.center,
+                        height: 9.5.w,
+                        width: 9.5.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: AppColors.primary
+                        ),
+                        child: Text(
+                          "-",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 1.5.w),
+                    // Quantity display
+                    Container(
+            
+                      alignment: Alignment.center,
+                      height: 7.w,
+                      width: 7.w,
+                      child: Text(
+                        "$quantity",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 1.5.w),
+                    // Plus button
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          quantity++;
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 9.5.w,
+                        width: 9.5.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: AppColors.primary
+                        ),
+                        child: Text(
+                          "+",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
+            SizedBox(height: 1.h,),
+            Text("Save ")
           ],
         ),
       )
@@ -1438,7 +1458,6 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                         ?.relatedProducts?[
                                                     index]
                                                         .productPrice).toString(),
-
                                             style:
                                             TextStyle(
                                               decoration:

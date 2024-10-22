@@ -1751,17 +1751,26 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            "No Medicine Available",
-                                            style: TextStyle(
-                                                fontSize: 14.sp,
-                                                fontFamily: 'task',
-                                                fontWeight: FontWeight.bold),
-                                          ),
+                                          Image.asset('assets/no-results.png',
+                                            width: 120,height: 100,fit: BoxFit.cover,),
+                                          SizedBox(height: 2.h,),
+                                          Text("Oops No Serch Available ${_serch.text.toString()}",style: TextStyle(
+                                              fontSize: 12.sp,
+                                              fontFamily: 'task',
+                                              fontWeight: FontWeight.w500
+                                          ),),
+                                          // Text(
+                                          //   "No Medicine Available",
+                                          //   style: TextStyle(
+                                          //       fontSize: 14.sp,
+                                          //       fontFamily: 'task',
+                                          //       fontWeight: FontWeight.bold),
+                                          // ),
                                           SizedBox(height: 5.h,),
                                           Container(
                                             width: 85.w,
                                             alignment: Alignment.center,
+                                            padding: EdgeInsets.symmetric(vertical: 2.h),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(10),
                                               border: Border.all(
@@ -1771,9 +1780,9 @@ class _HomePageState extends State<HomePage> {
                                             child: Column(
                                               children: [
                                                 Text('Get in touch with us',style: TextStyle(
-                                                    fontSize: 12.sp,
+                                                    fontSize: 13.sp,
                                                     fontFamily: 'task',
-                                                    //fontWeight: FontWeight.bold
+                                                    fontWeight: FontWeight.w500
                                                 ),),
                                                 SizedBox(height: 1.h,),
                                                 InkWell(
@@ -1988,25 +1997,25 @@ class _HomePageState extends State<HomePage> {
                                                     children: [
                                                       Row(
                                                         children: [
-                                                          // Text(
-                                                          //   '₹' +
-                                                          //       (allProductserachModel
-                                                          //               ?.searchResults?[
-                                                          //                   index]
-                                                          //               .saleProductPrice)
-                                                          //           .toString(),
-                                                          //   style: TextStyle(
-                                                          //     fontSize: 11.sp,
-                                                          //     fontFamily: 'task',
-                                                          //     fontWeight:
-                                                          //         FontWeight.bold,
-                                                          //     letterSpacing: 1,
-                                                          //     color: Colors.black,
-                                                          //   ),
-                                                          // ),
-                                                          // SizedBox(
-                                                          //   width: 0.5.h,
-                                                          // ),
+                                                          Text(
+                                                            '₹' +
+                                                                (allProductserachModel
+                                                                        ?.searchResults?[
+                                                                            index]
+                                                                        .saleProductPrice)
+                                                                    .toString(),
+                                                            style: TextStyle(
+                                                              fontSize: 11.sp,
+                                                              fontFamily: 'task',
+                                                              fontWeight:
+                                                                  FontWeight.bold,
+                                                              letterSpacing: 1,
+                                                              color: Colors.black,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: 0.5.h,
+                                                          ),
                                                           Padding(
                                                             padding:
                                                                 EdgeInsets.only(
@@ -2019,9 +2028,9 @@ class _HomePageState extends State<HomePage> {
                                                                           .productPrice)
                                                                       .toString(),
                                                               style: TextStyle(
-                                                                // decoration:
-                                                                //     TextDecoration
-                                                                //         .lineThrough,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .lineThrough,
                                                                 fontSize: 11.sp,
                                                                 fontFamily:
                                                                     'task',
@@ -2358,34 +2367,34 @@ class _HomePageState extends State<HomePage> {
                                                       children: [
                                                         Row(
                                                           children: [
-                                                            // Text(
-                                                            //   bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                            //               "" ||
-                                                            //           bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                            //               null
-                                                            //       ? "N/A"
-                                                            //       : '₹' +
-                                                            //           (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
-                                                            //   // "\$500",
-                                                            //   style:
-                                                            //       TextStyle(
-                                                            //     fontSize:
-                                                            //         11.sp,
-                                                            //     fontFamily:
-                                                            //         'task',
-                                                            //     fontWeight:
-                                                            //         FontWeight
-                                                            //             .bold,
-                                                            //     letterSpacing:
-                                                            //         1,
-                                                            //     color: Colors
-                                                            //         .black,
-                                                            //   ),
-                                                            // ),
-                                                            // SizedBox(
-                                                            //   width:
-                                                            //       0.5.w,
-                                                            // ),
+                                                            Text(
+                                                              bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                                          "" ||
+                                                                      bestsellerproductmodal?.productData?[index].saleProductPrice ==
+                                                                          null
+                                                                  ? "N/A"
+                                                                  : '₹' +
+                                                                      (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
+                                                              // "\$500",
+                                                              style:
+                                                                  TextStyle(
+                                                                fontSize:
+                                                                    11.sp,
+                                                                fontFamily:
+                                                                    'task',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                letterSpacing:
+                                                                    1,
+                                                                color: Colors
+                                                                    .black,
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              width:
+                                                                  0.5.w,
+                                                            ),
                                                             Padding(
                                                               padding: EdgeInsets
                                                                   .only(
@@ -2403,8 +2412,8 @@ class _HomePageState extends State<HomePage> {
                                                                 // "\$580",
                                                                 style:
                                                                     TextStyle(
-                                                                  // decoration:
-                                                                  //     TextDecoration.lineThrough,
+                                                                  decoration:
+                                                                      TextDecoration.lineThrough,
                                                                   fontSize:
                                                                       11.sp,
                                                                   fontFamily:

@@ -629,29 +629,29 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   '₹' +
-                                              //       (shortbymodel
-                                              //           ?.searchResults?[
-                                              //       index]
-                                              //           .saleProductPrice)
-                                              //           .toString(),
-                                              //   style: TextStyle(
-                                              //     fontSize: 11.sp,
-                                              //     fontFamily:
-                                              //     'task',
-                                              //     fontWeight:
-                                              //     FontWeight
-                                              //         .bold,
-                                              //     letterSpacing:
-                                              //     1,
-                                              //     color: Colors
-                                              //         .black,
-                                              //   ),
-                                              // ),
-                                              // SizedBox(
-                                              //   width: 1.w,
-                                              // ),
+                                              Text(
+                                                '₹' +
+                                                    (shortbymodel
+                                                        ?.searchResults?[
+                                                    index]
+                                                        .saleProductPrice)
+                                                        .toString(),
+                                                style: TextStyle(
+                                                  fontSize: 11.sp,
+                                                  fontFamily:
+                                                  'task',
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  letterSpacing:
+                                                  1,
+                                                  color: Colors
+                                                      .black,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 1.w,
+                                              ),
                                               Text(
                                                 '₹' +
                                                     (shortbymodel
@@ -660,9 +660,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  // decoration:
-                                                  // TextDecoration
-                                                  //     .lineThrough,
+                                                  decoration:
+                                                  TextDecoration
+                                                      .lineThrough,
                                                   fontSize: 12.sp,
                                                   fontFamily:
                                                   'task',
@@ -961,29 +961,29 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   '₹' +
-                                              //       (shortbymodel
-                                              //           ?.searchResults?[
-                                              //       index]
-                                              //           .saleProductPrice)
-                                              //           .toString(),
-                                              //   style: TextStyle(
-                                              //     fontSize: 11.sp,
-                                              //     fontFamily:
-                                              //     'task',
-                                              //     fontWeight:
-                                              //     FontWeight
-                                              //         .bold,
-                                              //     letterSpacing:
-                                              //     1,
-                                              //     color: Colors
-                                              //         .black,
-                                              //   ),
-                                              // ),
-                                              // SizedBox(
-                                              //   width: 1.w,
-                                              // ),
+                                              Text(
+                                                '₹' +
+                                                    (shortbymodel
+                                                        ?.searchResults?[
+                                                    index]
+                                                        .saleProductPrice)
+                                                        .toString(),
+                                                style: TextStyle(
+                                                  fontSize: 11.sp,
+                                                  fontFamily:
+                                                  'task',
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  letterSpacing:
+                                                  1,
+                                                  color: Colors
+                                                      .black,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 1.w,
+                                              ),
                                               Text(
                                                 '₹' +
                                                     (shortbymodel
@@ -992,9 +992,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  // decoration:
-                                                  // TextDecoration
-                                                  //     .lineThrough,
+                                                  decoration:
+                                                  TextDecoration
+                                                      .lineThrough,
                                                   fontSize: 12.sp,
                                                   fontFamily:
                                                   'task',
@@ -1293,26 +1293,26 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   '₹' +
-                                              //       (filterbymodel
-                                              //           ?.searchResults?[
-                                              //       index]
-                                              //           .saleProductPrice)
-                                              //           .toString(),
-                                              //   style: TextStyle(
-                                              //     fontSize: 11.sp,
-                                              //     fontFamily:
-                                              //     'task',
-                                              //     fontWeight:
-                                              //     FontWeight
-                                              //         .bold,
-                                              //     letterSpacing:
-                                              //     1,
-                                              //     color: Colors
-                                              //         .black,
-                                              //   ),
-                                              // ),
+                                              Text(
+                                                '₹' +
+                                                    (filterbymodel
+                                                        ?.searchResults?[
+                                                    index]
+                                                        .saleProductPrice)
+                                                        .toString(),
+                                                style: TextStyle(
+                                                  fontSize: 11.sp,
+                                                  fontFamily:
+                                                  'task',
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  letterSpacing:
+                                                  1,
+                                                  color: Colors
+                                                      .black,
+                                                ),
+                                              ),
                                               SizedBox(
                                                 width: 1.w,
                                               ),
@@ -1324,9 +1324,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  // decoration:
-                                                  // TextDecoration
-                                                  //     .lineThrough,
+                                                  decoration:
+                                                  TextDecoration
+                                                      .lineThrough,
                                                   fontSize: 12.sp,
                                                   fontFamily:
                                                   'task',
@@ -1625,29 +1625,29 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   '₹' +
-                                              //       (filterbymodel
-                                              //           ?.searchResults?[
-                                              //       index]
-                                              //           .saleProductPrice)
-                                              //           .toString(),
-                                              //   style: TextStyle(
-                                              //     fontSize: 11.sp,
-                                              //     fontFamily:
-                                              //     'task',
-                                              //     fontWeight:
-                                              //     FontWeight
-                                              //         .bold,
-                                              //     letterSpacing:
-                                              //     1,
-                                              //     color: Colors
-                                              //         .black,
-                                              //   ),
-                                              // ),
-                                              // SizedBox(
-                                              //   width: 1.w,
-                                              // ),
+                                              Text(
+                                                '₹' +
+                                                    (filterbymodel
+                                                        ?.searchResults?[
+                                                    index]
+                                                        .saleProductPrice)
+                                                        .toString(),
+                                                style: TextStyle(
+                                                  fontSize: 11.sp,
+                                                  fontFamily:
+                                                  'task',
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  letterSpacing:
+                                                  1,
+                                                  color: Colors
+                                                      .black,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 1.w,
+                                              ),
                                               Text(
                                                 '₹' +
                                                     (filterbymodel
@@ -1656,9 +1656,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  // decoration:
-                                                  // TextDecoration
-                                                  //     .lineThrough,
+                                                  decoration:
+                                                  TextDecoration
+                                                      .lineThrough,
                                                   fontSize: 12.sp,
                                                   fontFamily:
                                                   'task',
@@ -1941,7 +1941,7 @@ class _ProductList4State extends State<ProductList4> {
                                                   child: Text(
                                                     '₹' +
                                                         (allproductmodal?.allProducts?[index]
-                                                            .productPrice)
+                                                            .saleProductPrice)
                                                             .toString(),
                                                     style: TextStyle(
                                                       fontSize: 11.sp,
@@ -1952,6 +1952,27 @@ class _ProductList4State extends State<ProductList4> {
                                                     ),
                                                   ),
                                                 ),
+                                                SizedBox(width: 1.w,),
+                                                Padding(
+                                                  padding:  EdgeInsets.only(top: 0.4.h),
+                                                  child: Text(
+                                                    '₹' +
+                                                        (allproductmodal?.allProducts?[index]
+                                                            .productPrice)
+                                                            .toString(),
+                                                    style: TextStyle(
+                                                      decoration: TextDecoration.lineThrough,
+                                                      fontSize: 11.sp,
+                                                      fontFamily: 'task',
+                                                      fontWeight: FontWeight.normal,
+                                                      letterSpacing: 1,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+
+
+
                                               ],
                                             ),
                                           ],
@@ -2250,29 +2271,29 @@ class _ProductList4State extends State<ProductList4> {
                                         children: [
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   '₹' +
-                                              //       (searchbestsaleModal
-                                              //           ?.productData?[
-                                              //       index]
-                                              //           .saleProductPrice)
-                                              //           .toString(),
-                                              //   style: TextStyle(
-                                              //     fontSize: 11.sp,
-                                              //     fontFamily:
-                                              //     'task',
-                                              //     fontWeight:
-                                              //     FontWeight
-                                              //         .bold,
-                                              //     letterSpacing:
-                                              //     1,
-                                              //     color: Colors
-                                              //         .black,
-                                              //   ),
-                                              // ),
-                                              // SizedBox(
-                                              //   width: 1.h,
-                                              // ),
+                                              Text(
+                                                '₹' +
+                                                    (searchbestsaleModal
+                                                        ?.productData?[
+                                                    index]
+                                                        .saleProductPrice)
+                                                        .toString(),
+                                                style: TextStyle(
+                                                  fontSize: 11.sp,
+                                                  fontFamily:
+                                                  'task',
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  letterSpacing:
+                                                  1,
+                                                  color: Colors
+                                                      .black,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 1.h,
+                                              ),
                                               Text(
                                                 '₹' +
                                                     (allProductserachModel
@@ -2281,9 +2302,9 @@ class _ProductList4State extends State<ProductList4> {
                                                         .productPrice)
                                                         .toString(),
                                                 style: TextStyle(
-                                                  // decoration:
-                                                  // TextDecoration
-                                                  //     .lineThrough,
+                                                  decoration:
+                                                  TextDecoration
+                                                      .lineThrough,
                                                   fontSize: 11.sp,
                                                   fontFamily:
                                                   'task',

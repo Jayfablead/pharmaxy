@@ -172,21 +172,28 @@ class _bottombarState extends State<bottombar> {
                           ? Navigator.of(context).pushReplacement(MaterialPageRoute(
                               builder: (context) => LoginPage2()))
                           : Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => WishListPage()));
+                              builder: (context) => ProductList4()));
                       selected = 4;
                     });
                   },
                   child: Column(
                     children: [
                       Icon(
-                        CupertinoIcons.heart,
-                        size: 22.sp,
-                        color: selected == 4
-                            ? AppColors.primary
-                            : Colors.black
+                          Icons.local_offer_outlined,
+                          size: 22.sp,
+                          color: selected == 4
+                              ? AppColors.primary
+                              : Colors.black
                       ),
+                      // Icon(
+                      //   CupertinoIcons.heart,
+                      //   size: 22.sp,
+                      //   color: selected == 4
+                      //       ? AppColors.primary
+                      //       : Colors.black
+                      // ),
                       Text(
-                        "WishList",
+                        "Offer",
                         style: TextStyle(
                           fontSize: 9.sp,
                           fontWeight: FontWeight.bold,

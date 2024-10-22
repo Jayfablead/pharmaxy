@@ -2911,13 +2911,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         ),
                                         Text(
                                           chekoutdetailmodal?.checkoutData?[0]
-                                                          .shippingTax ==
-                                                      null ||
+                                                          .shippingTax == null ||
                                                   chekoutdetailmodal
                                                           ?.checkoutData?[0]
-                                                          .shippingTax ==
-                                                      ""
-                                              ? "Free"
+                                                          .shippingTax == ""
+                                              ? "N/A"
                                               : '₹' +
                                                   (chekoutdetailmodal
                                                           ?.checkoutData?[0]
