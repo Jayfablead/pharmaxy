@@ -3066,18 +3066,21 @@ class _CartPageState extends State<CartPage> {
 
             print('mer');
             setState(() {
+              cpupon =true;
               isLoading = false;
             });
           } else {
             EasyLoading.showSuccess('Remove From Cart Not Sucessfully');
             setState(() {
               isLoading = false;
+              cpupon =false;
             });
           }
         });
       } else {
         setState(() {
           isLoading = false;
+          cpupon =false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -3349,7 +3352,7 @@ class _CartPageState extends State<CartPage> {
               isLoading = false;
             });
           } else {
-            EasyLoading.showError(couponmodel?.message ?? '');
+            EasyLoading.showError('Sorry This Coupons Is Not Applicable Present In Your Cart');
             setState(() {
               cpupon =false;
               isLoading = false;
@@ -3394,7 +3397,7 @@ class _CartPageState extends State<CartPage> {
 
             });
           } else {
-            EasyLoading.showError(couponmodel?.message ?? "");
+            EasyLoading.showError('Sorry This Coupons Is Not Applicable Present In Your Cart');
             setState(() {
               cpupon =false;
               isLoading = false;

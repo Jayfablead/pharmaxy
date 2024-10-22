@@ -750,8 +750,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                           fontFamily: "task",
                                           color: Color(0xff0061b0)),
                                     ),
-                                    Text(
-                                      productdetail2modal?.shipping?.amount?? '',
+                                    Text("₹"+(productdetail2modal?.shipping?.amount).toString(),
                                       style: TextStyle(
                                           fontSize: 11.sp,
                                           fontFamily: "task",

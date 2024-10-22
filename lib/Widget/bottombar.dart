@@ -4,6 +4,7 @@ import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/Ofline_Cart.dart';
+import 'package:ecommerce/Screen/ProductList4.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/WishListPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -359,21 +360,22 @@ class _bottombarState extends State<bottombar> {
                           ? Navigator.of(context).pushReplacement(MaterialPageRoute(
                               builder: (context) => LoginPage2()))
                           : Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => WishListPage()));
+                              builder: (context) => ProductList4()));
                       selected = 4;
                     });
                   },
                   child: Column(
                     children: [
                       Icon(
-                        CupertinoIcons.heart,
+                        Icons.local_offer_outlined,
+                       // CupertinoIcons.heart,
                         size: 22.sp,
                         color: selected == 4
                             ? AppColors.primary
                             : Colors.black
                       ),
                       Text(
-                        "WishList",
+                        "Offer",
                         style: TextStyle(
                           fontSize: 9.sp,
                           fontWeight: FontWeight.bold,

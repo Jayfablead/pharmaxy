@@ -163,7 +163,7 @@ class _ThankyouPageState extends State<ThankyouPage> {
               height: 2.h,
             ),
             Text(
-              'if you have any issue with the order kindly contact',
+              'If You Have Any Issue With The Order Kindly Contact',
               style: TextStyle(
                   fontSize: 10.sp,
                   // color: Colors.white,

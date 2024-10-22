@@ -1759,30 +1759,85 @@ class _HomePageState extends State<HomePage> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           SizedBox(height: 5.h,),
-                                          InkWell(
-                                            onTap: () {
-                                              Navigator.of(context).pushReplacement(
-                                                MaterialPageRoute(builder: (context) => Request_Medicine(),)
-                                              );
-                                            },
-                                            child: Container(
-                                                margin:
-                                                EdgeInsets.only(right: 7.w, left: 7.w),
-                                                alignment: Alignment.center,
-                                                height: 5.h,
-                                                width: 60.w,
-                                                decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(10),
-                                                    color: Color(0xff0061b0)),
-                                                child: Text(
-                                                  "Request Medicine",
-                                                  style: TextStyle(
-                                                      fontSize: 12.sp,
-                                                      color: Colors.white,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontFamily: "task"),
-                                                )),
-                                          ),
+                                          Container(
+                                            width: 85.w,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(10),
+                                              border: Border.all(
+                                                color: AppColors.primary
+                                              )
+                                            ) ,
+                                            child: Column(
+                                              children: [
+                                                Text('Get in touch with us',style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    fontFamily: 'task',
+                                                    //fontWeight: FontWeight.bold
+                                                ),),
+                                                SizedBox(height: 1.h,),
+                                                InkWell(
+                                                  onTap: () {
+                                                    Navigator.of(context).pushReplacement(
+                                                        MaterialPageRoute(builder: (context) => Request_Medicine(),)
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                      margin:
+                                                      EdgeInsets.only(right: 7.w, left: 7.w),
+                                                      alignment: Alignment.center,
+                                                      height: 5.h,
+                                                      width: 60.w,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          color: Color(0xff0061b0)),
+                                                      child: Text(
+                                                        "Request Medicine",
+                                                        style: TextStyle(
+                                                            fontSize: 12.sp,
+                                                            color: Colors.white,
+                                                            fontWeight: FontWeight.bold,
+                                                            fontFamily: "task"),
+                                                      )),
+                                                ),
+                                                SizedBox(height: 1.h,),
+                                                Container(
+                                                  height: 40,
+                                                  width: 43.w, // Height of the button
+                                                  decoration: BoxDecoration(
+                                                    color:  AppColors.primary, // Button background color
+                                                    borderRadius: BorderRadius.circular(
+                                                        10), // Rounded corners
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                    children: [
+                                                      Icon(Icons.call,
+                                                          color: Colors.white, size: 20.sp),
+                                                      SizedBox(width: 8),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          _makePhoneCall(
+                                                              '9051294444'); // Replace with the actual phone number
+                                                        },
+                                                        child: Text(
+                                                          "Call Us",
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 12.sp,
+                                                            fontFamily: 'task',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+
                                         ],
                                       ),
                                     ),

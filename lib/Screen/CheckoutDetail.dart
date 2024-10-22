@@ -2917,7 +2917,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                           ?.checkoutData?[0]
                                                           .shippingTax ==
                                                       ""
-                                              ? "N/A"
+                                              ? "Free"
                                               : '₹' +
                                                   (chekoutdetailmodal
                                                           ?.checkoutData?[0]
