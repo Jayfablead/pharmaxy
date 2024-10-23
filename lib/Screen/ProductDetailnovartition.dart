@@ -795,32 +795,32 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   GestureDetector(
                                                     onTap: () {
                                                       setState(() {
-                                                        quantity++;
+                                                        if (quantity <10) {
+                                                          quantity++;
+                                                        }else{
+                                                          buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 10');
+                                                        }
                                                       });
                                                     },
                                                     child: Container(
-                                                      alignment:
-                                                          Alignment.center,
+                                                      alignment: Alignment.center,
                                                       height: 9.5.w,
                                                       width: 9.5.w,
                                                       decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      100),
-                                                          color: AppColors
-                                                              .primary),
+                                                        borderRadius: BorderRadius.circular(100),
+                                                        color: AppColors.primary,
+                                                      ),
                                                       child: Text(
                                                         "+",
                                                         style: TextStyle(
                                                           fontSize: 16.sp,
                                                           color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                          fontWeight: FontWeight.bold,
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
+                                                  )
+
                                                 ],
                                               ),
                                       ],

@@ -364,20 +364,20 @@ class _HomePageState extends State<HomePage> {
                                         padding: EdgeInsets.only(right: 2.w),
                                         child: GestureDetector(
                                           onTap: () {
-                                            // usermodal?.userId == "" ||
-                                            //         usermodal?.userId == null
-                                            //     ? Navigator.of(context).push(
-                                            //         MaterialPageRoute(
-                                            //           builder: (context) =>
-                                            //               LoginPage2(),
-                                            //         ),
-                                            //       )
-                                            //     : Navigator.of(context).push(
-                                            //         MaterialPageRoute(
-                                            //           builder: (context) =>
-                                            //               ProfilePage(),
-                                            //         ),
-                                            //       );
+                                            usermodal?.userId == "" ||
+                                                    usermodal?.userId == null
+                                                ? Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          LoginPage2(),
+                                                    ),
+                                                  )
+                                                : Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ProfilePage(),
+                                                    ),
+                                                  );
                                           },
                                           child: usermodal?.userId == "" ||
                                                   usermodal?.userId == null

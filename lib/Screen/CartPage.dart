@@ -119,6 +119,7 @@ class _CartPageState extends State<CartPage> {
     // Calculate the percentage off
     return ((productPrice - saleProductPrice) / productPrice) * 100;
   }
+
   double calculatePercentageOffviewcartwithoutlogin(int index) {
     // Debugging: Print the index and check if the product exists
     print('Index: $index');
@@ -165,6 +166,9 @@ class _CartPageState extends State<CartPage> {
   @override
   void initState() {
     super.initState();
+    setState(() {
+      cpn = null;
+    });
     _loadSharedPrefs().then((value) => print('Shp Prefs Initialized'));
     ViewCartApi();
     getDeviceInfoandStore();
@@ -179,43 +183,43 @@ class _CartPageState extends State<CartPage> {
     alluseraddapi();
     print('kaaaa${prefs?.getBool('is_coupon')}');
     prefs?.getBool('is_coupon') ?? true && prefs?.getBool('is_coupon') != null
-        ?  usermodal?.userId == "" ||
-        usermodal?.userId == null
-        ?applycouponnoloader(prefs?.getString('coupon_value'), () {
-            setState(() {
-              cpupon = true;
-              cpn = cpn.toString();
-            });
-            EasyLoading.dismiss();
-            ViewCartApi();
-            print('ADD');
-            setState(() {
-              isLoading = false;
-            });
-          }, () {
-            setState(() {
-              cpupon = false;
-              isLoading = false;
-            });
-            EasyLoading.dismiss();
-          }):applycoupon1noloader(prefs?.getString('coupon_value'), () {
-            setState(() {
-              cpupon = true;
-              cpn = cpn.toString();
-            });
-            EasyLoading.dismiss();
-            ViewCartApi();
-            print('ADD');
-            setState(() {
-              isLoading = false;
-            });
-          }, () {
-            setState(() {
-              cpupon = false;
-              isLoading = false;
-            });
-            EasyLoading.dismiss();
-          })
+        ? usermodal?.userId != "" || usermodal?.userId != null
+            ? applycouponnoloader(prefs?.getString('coupon_value'), () {
+                setState(() {
+                  cpupon = true;
+                  cpn = cpn.toString();
+                });
+                EasyLoading.dismiss();
+                ViewCartApi();
+                print('ADD');
+                setState(() {
+                  isLoading = false;
+                });
+              }, () {
+                setState(() {
+                  cpupon = false;
+                  isLoading = false;
+                });
+                EasyLoading.dismiss();
+              })
+            : applycoupon1noloader(prefs?.getString('coupon_value'), () {
+                setState(() {
+                  cpupon = true;
+                  cpn = cpn.toString();
+                });
+                EasyLoading.dismiss();
+                ViewCartApi();
+                print('ADD');
+                setState(() {
+                  isLoading = false;
+                });
+              }, () {
+                setState(() {
+                  cpupon = false;
+                  isLoading = false;
+                });
+                EasyLoading.dismiss();
+              })
         : print('Coupon Pela Add kr');
     _searchController = TextEditingController();
   }
@@ -837,7 +841,7 @@ class _CartPageState extends State<CartPage> {
                       // )
 
                       //  logout
-                  /// logout
+                      /// logout
                       Column(
                           children: [
                             SizedBox(
@@ -919,10 +923,9 @@ class _CartPageState extends State<CartPage> {
                                             // The number of items in the grid
                                             itemBuilder: (BuildContext context,
                                                 int index) {
-                                              double
-                                              percentageOffValue =
-                                              calculatePercentageOffviewcartwithoutlogin(
-                                                  index);
+                                              double percentageOffValue =
+                                                  calculatePercentageOffviewcartwithoutlogin(
+                                                      index);
                                               // Build each item in the grid
                                               return Stack(
                                                 children: [
@@ -1156,15 +1159,13 @@ class _CartPageState extends State<CartPage> {
                                                                             SizedBox(
                                                                               width: 1.w,
                                                                             ),
-
                                                                           ],
-
                                                                         ),
                                                                         Row(
                                                                           mainAxisAlignment:
-                                                                          MainAxisAlignment.center,
+                                                                              MainAxisAlignment.center,
                                                                           crossAxisAlignment:
-                                                                          CrossAxisAlignment.center,
+                                                                              CrossAxisAlignment.center,
                                                                           children: [
                                                                             Row(
                                                                               children: [
@@ -1205,19 +1206,19 @@ class _CartPageState extends State<CartPage> {
                                                                                 percentageOffValue == null || percentageOffValue == 0
                                                                                     ? Container()
                                                                                     : Padding(
-                                                                                  padding:  EdgeInsets.only(top: 0.4.h),
-                                                                                  child: Container(
-                                                                                    padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                                    decoration: BoxDecoration(
-                                                                                      borderRadius: BorderRadius.circular(5),
-                                                                                      color: Colors.red.shade400,
-                                                                                    ),
-                                                                                    child: Text(
-                                                                                      '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                                      style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 9.sp),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
+                                                                                        padding: EdgeInsets.only(top: 0.4.h),
+                                                                                        child: Container(
+                                                                                          padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                                                          decoration: BoxDecoration(
+                                                                                            borderRadius: BorderRadius.circular(5),
+                                                                                            color: Colors.red.shade400,
+                                                                                          ),
+                                                                                          child: Text(
+                                                                                            '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                                            style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 9.sp),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
                                                                               ],
                                                                             ),
                                                                           ],
@@ -1610,11 +1611,12 @@ class _CartPageState extends State<CartPage> {
                                                                                                     setState(() {
                                                                                                       cpupon = true;
                                                                                                       cpn = allcouponmodal?.data?[index].couponCode.toString();
-                                                                                                      print("787878${cpn}");
+                                                                                                      print("maru name ${cpn}");
+                                                                                                      prefs?.setBool('is_coupon', true);
+                                                                                                      prefs?.setString('coupon_value', cpn.toString());
+                                                                                                      print("maru name ${prefs?.getBool("is_coupon")}");
                                                                                                     });
-
                                                                                                     ViewCartApi();
-                                                                                                    ViewCartwithoutloginAp();
                                                                                                     print('ADD');
                                                                                                     setState(() {
                                                                                                       isLoading = false;
@@ -1920,7 +1922,8 @@ class _CartPageState extends State<CartPage> {
                                                                             setState(() {
                                                                               // wait = false;
                                                                               isLoading = false;
-                                                                              cpupon = false;
+                                                                              cpupon = false;prefs?.remove('is_coupon');
+                                                                              prefs?.remove('coupon_value');cpn = null;
                                                                             });
                                                                           },
                                                                           () {
@@ -2137,6 +2140,7 @@ class _CartPageState extends State<CartPage> {
                                   ),
                           ],
                         )
+
                       /// Login
                       : Column(
                           children: [
@@ -2634,6 +2638,7 @@ class _CartPageState extends State<CartPage> {
                                                                             GestureDetector(
                                                                               onTap: () {
                                                                                 removecart((viewcartmodal?.cartDetails?[index].productID).toString());
+                                                                                print("Cart length${viewcartmodal?.cartDetails?.length}");
                                                                                 Navigator.of(context).pop();
                                                                               },
                                                                               child: Container(
@@ -2919,8 +2924,10 @@ class _CartPageState extends State<CartPage> {
                                                                                                     setState(() {
                                                                                                       cpupon = true;
                                                                                                       cpn = allcouponmodal?.data?[index].couponCode.toString();
+                                                                                                      print("maru name ${cpn}");
                                                                                                       prefs?.setBool('is_coupon', true);
                                                                                                       prefs?.setString('coupon_value', cpn.toString());
+                                                                                                      print("maru name ${prefs?.getBool("is_coupon")}");
                                                                                                     });
                                                                                                     ViewCartApi();
                                                                                                     print('ADD');
@@ -3271,7 +3278,8 @@ class _CartPageState extends State<CartPage> {
                                                                             setState(() {
                                                                               // wait = false;
                                                                               isLoading = false;
-                                                                              cpupon = false;
+                                                                              cpupon = false; prefs?.remove('is_coupon');
+                                                                              prefs?.remove('coupon_value');cpn = null;
                                                                             });
                                                                           },
                                                                           () {
@@ -3532,13 +3540,21 @@ class _CartPageState extends State<CartPage> {
               viewcartmodal?.status == "success") {
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
-
+            print('aa lenth ${viewcartmodal?.cartDetails?.length}');
+            if (viewcartmodal?.cartDetails?.length == 0) {
+              prefs?.remove('is_coupon');
+              prefs?.remove('coupon_value');
+              print('Prefs Cleared');
+            }
             setState(() {
               isLoading = false;
             });
           } else {
             setState(() {
               isLoading = false;
+              prefs?.remove('is_coupon');
+              prefs?.remove('coupon_value');
+              print('Prefs Cleared');
             });
           }
         });
@@ -3564,6 +3580,11 @@ class _CartPageState extends State<CartPage> {
           if (response.statusCode == 200 &&
               viewwithoutuserModel?.status == "success") {
             // applycoupon();
+            if (viewwithoutuserModel?.cartDetails?.length == 0) {
+              prefs?.remove('is_coupon');
+              prefs?.remove('coupon_value');
+              print('Prefs Cleared');
+            }
             print('EE Thay Gyu Hooooo ! ^_^');
             print(viewcartmodal?.finalTotalWithCharge);
             setState(() {
@@ -3572,6 +3593,9 @@ class _CartPageState extends State<CartPage> {
           } else {
             setState(() {
               isLoading = false;
+              prefs?.remove('is_coupon');
+              prefs?.remove('coupon_value');
+              print('Prefs Cleared');
             });
           }
         });
@@ -3725,6 +3749,7 @@ class _CartPageState extends State<CartPage> {
             EasyLoading.showSuccess('Update quantity');
             ViewCartApi();
             setState(() {
+              print("Ramla mer${cpn}");
               applycoupon(
                 cpn.toString(),
                 () {
@@ -3867,6 +3892,9 @@ class _CartPageState extends State<CartPage> {
                     EasyLoading.dismiss();
                     cpupon = false;
                     isLoading = false;
+                    cpn = null;
+                    prefs?.remove('is_coupon');
+                    prefs?.remove('coupon_value');
                   });
                 },
               );
@@ -3929,6 +3957,9 @@ class _CartPageState extends State<CartPage> {
                   setState(() {
                     cpupon = false;
                     isLoading = false;
+                    cpn = null;
+                    prefs?.remove('is_coupon');
+                    prefs?.remove('coupon_value');
                     EasyLoading.dismiss();
                   });
                 },
@@ -4014,7 +4045,8 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
-  applycoupon(value, final Function() IsSuccess, final Function() IsFail) async {
+  applycoupon(
+      value, final Function() IsSuccess, final Function() IsFail) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
@@ -4039,8 +4071,9 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
-  applycouponnoloader(value, final Function() IsSuccess, final Function() IsFail) async {
 
+  applycouponnoloader(
+      value, final Function() IsSuccess, final Function() IsFail) async {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
     data['Coupon'] = value.toString();
@@ -4065,7 +4098,8 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
-  applycoupon1(value, final Function() IsSuccess, final Function() IsFail) async {
+  applycoupon1(
+      value, final Function() IsSuccess, final Function() IsFail) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = deviceName.toString();
@@ -4090,7 +4124,9 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
-  applycoupon1noloader(value, final Function() IsSuccess, final Function() IsFail) async {
+
+  applycoupon1noloader(
+      value, final Function() IsSuccess, final Function() IsFail) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = deviceName.toString();
@@ -4289,7 +4325,7 @@ class _CartPageState extends State<CartPage> {
           if (response.statusCode == 200 &&
               removecouponModel?.status == "success") {
             IsSuccess();
-            prefs?.clear();
+
           } else {
             IsFail();
           }
