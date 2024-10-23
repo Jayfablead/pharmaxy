@@ -60,15 +60,15 @@ class CartDetails {
   String? productType;
   String? categoryID;
   String? subCategoryID;
-  Null? variationTypeID;
-  Null? variationID;
+  String? variationTypeID;
+  String? variationID;
   String? brandID;
   String? tagID;
   String? shippingID;
   String? productName;
   String? productPrice;
   String? saleProductPrice;
-  Null? productCartDesc;
+  String? productCartDesc;
   String? productShortDesc;
   String? productLongDesc;
   String? productImage;
@@ -91,7 +91,7 @@ class CartDetails {
   int? cartProductQuantity;
   String? productColor;
   String? productSize;
-  int? productPriceMain;
+  num? productPriceMain;
   String? variationTblId;
   String? cartTblId;
   String? allImages;

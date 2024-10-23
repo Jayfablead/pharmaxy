@@ -60,6 +60,40 @@ int total = 0;
 class _Ofline_cartState extends State<Ofline_cart> {
 
 
+
+
+  double calculatePercentageOffviewcartwithoutlogin(int index) {
+    // Debugging: Print the index and check if the product exists
+    print('Index: $index');
+
+    // Access the product price
+    double? productPrice = double.tryParse(
+        viewwithoutuserModel?.cartDetails?[index].productPrice ?? '0');
+
+    // Debugging: Print the product price
+    print('Product Price: $productPrice');
+
+    // Access the sale product price
+    double? saleProductPrice = double.tryParse(
+        viewwithoutuserModel?.cartDetails?[index].saleProductPrice ?? '0');
+
+    // Debugging: Print the sale product price
+    print('Sale Product Price: $saleProductPrice');
+
+    // Check if any values are null or zero
+    if (productPrice == null || saleProductPrice == null || productPrice == 0) {
+      return 0.0; // Avoid division by zero
+    }
+
+    // Check if productPrice is greater than saleProductPrice
+    if (productPrice <= saleProductPrice) {
+      return 0.0; // No discount, so return 0%
+    }
+
+    // Calculate the percentage off
+    return ((productPrice - saleProductPrice) / productPrice) * 100;
+  }
+
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<CartItem> cartItems = [];
   void _makePhoneCall(String phoneNumber) async {
@@ -189,6 +223,10 @@ class _Ofline_cartState extends State<Ofline_cart> {
                           // The number of items in the grid
                           itemBuilder: (BuildContext context,
                               int index) {
+                            double
+                            percentageOffValue =
+                            calculatePercentageOffviewcartwithoutlogin(
+                                index);
                             // Build each item in the grid
                             return Stack(
                               children: [
@@ -429,22 +467,68 @@ class _Ofline_cartState extends State<Ofline_cart> {
                                                                   ],
                                                                 ),
                                                               ),
-                                                              SizedBox(
-                                                                width:
-                                                                1.w,
-                                                              ),
-                                                              Text(
-                                                                (viewwithoutuserModel?.cartDetails?[index].productPriceMain) == null
-                                                                    ? "N/A"
-                                                                    : '₹' + (viewwithoutuserModel?.cartDetails?[index].productPriceMain).toString(),
-                                                                style:
-                                                                TextStyle(
-                                                                  fontSize: 14.sp,
-                                                                  fontFamily: 'task',
-                                                                  fontWeight: FontWeight.normal,
-                                                                  letterSpacing: 1,
-                                                                  color: Colors.black,
-                                                                ),
+                                                            ],
+                                                          ),
+
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment.center,
+                                                            crossAxisAlignment:
+                                                            CrossAxisAlignment.center,
+                                                            children: [
+                                                              Row(
+                                                                children: [
+                                                                  if (viewwithoutuserModel?.cartDetails?[index].saleProductPrice != viewwithoutuserModel?.cartDetails?[index].productPrice)
+                                                                    Padding(
+                                                                      padding: EdgeInsets.only(top: 0.4.h),
+                                                                      child: Text(
+                                                                        '₹' + (viewwithoutuserModel?.cartDetails?[index].saleProductPrice).toString(),
+                                                                        style: TextStyle(
+                                                                          fontSize: 11.sp,
+                                                                          fontFamily: 'task',
+                                                                          fontWeight: FontWeight.normal,
+                                                                          letterSpacing: 1,
+                                                                          color: Colors.black,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  SizedBox(
+                                                                    width: 1.w,
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.only(top: 0.4.h),
+                                                                    child: Text(
+                                                                      '₹' + (viewwithoutuserModel?.cartDetails?[index].productPrice).toString(),
+                                                                      style: TextStyle(
+                                                                        decoration: viewwithoutuserModel?.cartDetails?[index].saleProductPrice != viewwithoutuserModel?.cartDetails?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
+                                                                        fontSize: 11.sp,
+                                                                        fontFamily: 'task',
+                                                                        fontWeight: FontWeight.normal,
+                                                                        letterSpacing: 1,
+                                                                        color: Colors.black,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 1.w,
+                                                                  ),
+                                                                  percentageOffValue == null || percentageOffValue == 0
+                                                                      ? Container()
+                                                                      : Padding(
+                                                                    padding:  EdgeInsets.only(top: 0.4.h),
+                                                                    child: Container(
+                                                                      padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(5),
+                                                                        color: Colors.red.shade400,
+                                                                      ),
+                                                                      child: Text(
+                                                                        '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                        style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 9.sp),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ],
                                                           ),
@@ -1290,6 +1374,7 @@ class _Ofline_cartState extends State<Ofline_cart> {
               removecartwithoutloginModel?.status == "success") {
             EasyLoading.showSuccess('Remove From Cart Sucessfully');
             ViewCartwithoutloginAp();
+            applycoupon1(cpn);
             print('mer');
             setState(() {
               isLoading = false;
@@ -1329,7 +1414,7 @@ class _Ofline_cartState extends State<Ofline_cart> {
             EasyLoading.showSuccess( 'Update quantity');
 
             ViewCartwithoutloginAp();
-
+            applycoupon1(cpn);
             print('ADD');
             setState(() {
               isLoading = false;
@@ -1363,9 +1448,8 @@ class _Ofline_cartState extends State<Ofline_cart> {
           if (response.statusCode == 200 &&
               Decrementwithoutlogin?.status == "success") {
             EasyLoading.showSuccess( 'Update quantity');
-
             ViewCartwithoutloginAp();
-
+            applycoupon1(cpn);
             print('ADD');
             setState(() {
               isLoading = false;

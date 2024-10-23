@@ -338,49 +338,49 @@ class _CategoryPageState extends State<CategoryPage> {
                                                           SizedBox(
                                                             height: 0.8.h,
                                                           ),
-                                                          SizedBox(
-                                                            width: 50.w,
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Container(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          left:
-                                                                              1.w),
-                                                                  child:
-                                                                      Container(
-                                                                    width: 47.w,
-                                                                    child: Text(
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      maxLines:
-                                                                          1,
-                                                                      allcatmodal?.categories?[index].categoryDesc == "" ||
-                                                                          allcatmodal?.categories?[index].categoryDesc ==
-                                                                                  null
-                                                                          ? "N/A"
-                                                                          : allcatmodal?.categories?[index].categoryDesc ??
-                                                                              '',
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .black,
-                                                                          fontSize: 11
-                                                                              .sp,
-                                                                          fontWeight: FontWeight
-                                                                              .normal,
-                                                                          fontFamily:
-                                                                              "task"),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          SizedBox(height: 1.h),
+                                                          // SizedBox(
+                                                          //   width: 50.w,
+                                                          //   child: Row(
+                                                          //     mainAxisAlignment:
+                                                          //         MainAxisAlignment
+                                                          //             .spaceBetween,
+                                                          //     children: [
+                                                          //       Container(
+                                                          //         padding: EdgeInsets
+                                                          //             .only(
+                                                          //                 left:
+                                                          //                     1.w),
+                                                          //         child:
+                                                          //             Container(
+                                                          //           width: 47.w,
+                                                          //           child: Text(
+                                                          //             overflow:
+                                                          //                 TextOverflow
+                                                          //                     .ellipsis,
+                                                          //             maxLines:
+                                                          //                 1,
+                                                          //             allcatmodal?.categories?[index].categoryDesc == "" ||
+                                                          //                 allcatmodal?.categories?[index].categoryDesc ==
+                                                          //                         null
+                                                          //                 ? "N/A"
+                                                          //                 : allcatmodal?.categories?[index].categoryDesc ??
+                                                          //                     '',
+                                                          //             style: TextStyle(
+                                                          //                 color: Colors
+                                                          //                     .black,
+                                                          //                 fontSize: 11
+                                                          //                     .sp,
+                                                          //                 fontWeight: FontWeight
+                                                          //                     .normal,
+                                                          //                 fontFamily:
+                                                          //                     "task"),
+                                                          //           ),
+                                                          //         ),
+                                                          //       ),
+                                                          //     ],
+                                                          //   ),
+                                                          // ),
+                                                          // SizedBox(height: 1.h),
                                                           Row(
                                                             children: [
                                                               SizedBox(

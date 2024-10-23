@@ -192,6 +192,77 @@ String? selected;
 bool _isLoading = false;
 
 class _HomePageState extends State<HomePage> {
+
+
+
+
+
+
+  double calculatePercentageOffbestsellproduct(int index) {
+    // Debugging: Print the index and check if the product exists
+    print('Index: $index');
+
+    // Access the product price
+    double? productPrice = double.tryParse(
+        bestsellerproductmodal?.productData?[index].productPrice ?? '0');
+
+    // Debugging: Print the product price
+    print('Product Price: $productPrice');
+
+    // Access the sale product price
+    double? saleProductPrice = double.tryParse(
+        bestsellerproductmodal?.productData?[index].saleProductPrice ?? '0');
+
+    // Debugging: Print the sale product price
+    print('Sale Product Price: $saleProductPrice');
+
+    // Check if any values are null or zero
+    if (productPrice == null || saleProductPrice == null || productPrice == 0) {
+      return 0.0; // Avoid division by zero
+    }
+
+    // Check if productPrice is greater than saleProductPrice
+    if (productPrice <= saleProductPrice) {
+      return 0.0; // No discount, so return 0%
+    }
+
+    // Calculate the percentage off
+    return ((productPrice - saleProductPrice) / productPrice) * 100;
+  }
+
+
+  double calculatePercentageOffallproductserach(int index) {
+    // Debugging: Print the index and check if the product exists
+    print('Index: $index');
+
+    // Access the product price
+    double? productPrice = double.tryParse(
+        allProductserachModel?.searchResults?[index].productPrice ?? '0');
+
+    // Debugging: Print the product price
+    print('Product Price: $productPrice');
+
+    // Access the sale product price
+    double? saleProductPrice = double.tryParse(
+        allProductserachModel?.searchResults?[index].saleProductPrice ?? '0');
+
+    // Debugging: Print the sale product price
+    print('Sale Product Price: $saleProductPrice');
+
+    // Check if any values are null or zero
+    if (productPrice == null || saleProductPrice == null || productPrice == 0) {
+      return 0.0; // Avoid division by zero
+    }
+
+    // Check if productPrice is greater than saleProductPrice
+    if (productPrice <= saleProductPrice) {
+      return 0.0; // No discount, so return 0%
+    }
+
+    // Calculate the percentage off
+    return ((productPrice - saleProductPrice) / productPrice) * 100;
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -199,7 +270,7 @@ class _HomePageState extends State<HomePage> {
     allcoupon();
     allcatap();
     viewap();
-    salesproductap();
+
     bestsellerproductap();
     blogap();
     brandap();
@@ -276,13 +347,7 @@ class _HomePageState extends State<HomePage> {
                                       // Cart Icon
                                       IconButton(
                                         onPressed: () {
-                                          usermodal?.userId == "" ||
-                                              usermodal?.userId == null
-                                              ?Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) => Ofline_cart(),
-                                            ),
-                                          ): Navigator.of(context).push(
+                                          Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) => CartPage(),
                                             ),
@@ -374,7 +439,7 @@ class _HomePageState extends State<HomePage> {
                                           onTap: () {
                                             Navigator.of(context).push(
                                               MaterialPageRoute(
-                                                builder: (context) => Ofline_cart(),
+                                                builder: (context) => CartPage(),
                                               ),
                                             );
                                           },
@@ -730,7 +795,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'Fast Delivery',
+                                                        'Timely Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -817,7 +882,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'Fast Delivery',
+                                                        'Timely Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -904,7 +969,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'Fast Delivery',
+                                                        'Timely Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -991,7 +1056,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'Fast Delivery',
+                                                        'Timely Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -1079,7 +1144,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'Fast Delivery',
+                                                        'Confirmed appointments',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -1862,10 +1927,14 @@ class _HomePageState extends State<HomePage> {
                                           crossAxisSpacing:
                                               0.0, // Adjust as needed
                                           childAspectRatio:
-                                              6.5 / 7.9 // Adjust as needed
+                                              6.5 / 8.5 // Adjust as needed
                                           ),
                                   delegate: SliverChildBuilderDelegate(
                                       (BuildContext context, int index) {
+                                        double
+                                        percentageOffValue =
+                                        calculatePercentageOffallproductserach(
+                                            index);
                                     return Stack(
                                       children: [
                                         GestureDetector(
@@ -1992,55 +2061,59 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                   Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                    MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
                                                     children: [
                                                       Row(
                                                         children: [
-                                                          Text(
-                                                            '₹' +
-                                                                (allProductserachModel
-                                                                        ?.searchResults?[
-                                                                            index]
-                                                                        .saleProductPrice)
-                                                                    .toString(),
-                                                            style: TextStyle(
-                                                              fontSize: 11.sp,
-                                                              fontFamily: 'task',
-                                                              fontWeight:
-                                                                  FontWeight.bold,
-                                                              letterSpacing: 1,
-                                                              color: Colors.black,
+                                                          if (allProductserachModel?.searchResults?[index].saleProductPrice != allProductserachModel?.searchResults?[index].productPrice)
+                                                            Padding(
+                                                              padding: EdgeInsets.only(top: 0.4.h),
+                                                              child: Text(
+                                                                '₹' + (allProductserachModel?.searchResults?[index].saleProductPrice).toString(),
+                                                                style: TextStyle(
+                                                                  fontSize: 9.sp,
+                                                                  fontFamily: 'task',
+                                                                  fontWeight: FontWeight.normal,
+                                                                  letterSpacing: 1,
+                                                                  color: Colors.black,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          SizedBox(
+                                                            width: 1.w,
+                                                          ),
+                                                          Padding(
+                                                            padding: EdgeInsets.only(top: 0.4.h),
+                                                            child: Text(
+                                                              '₹' + (allProductserachModel?.searchResults?[index].productPrice).toString(),
+                                                              style: TextStyle(
+                                                                decoration: allProductserachModel?.searchResults?[index].saleProductPrice != allProductserachModel?.searchResults?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
+                                                                fontSize: 9.sp,
+                                                                fontFamily: 'task',
+                                                                fontWeight: FontWeight.normal,
+                                                                letterSpacing: 1,
+                                                                color: Colors.black,
+                                                              ),
                                                             ),
                                                           ),
                                                           SizedBox(
-                                                            width: 0.5.h,
+                                                            width: 1.w,
                                                           ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 0.5.h),
-                                                            child: Text(
-                                                              '₹' +
-                                                                  (allProductserachModel
-                                                                          ?.searchResults?[
-                                                                              index]
-                                                                          .productPrice)
-                                                                      .toString(),
-                                                              style: TextStyle(
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .lineThrough,
-                                                                fontSize: 11.sp,
-                                                                fontFamily:
-                                                                    'task',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                                letterSpacing:
-                                                                    1,
-                                                                color: Colors
-                                                                    .black,
+                                                          percentageOffValue == null || percentageOffValue == 0
+                                                              ? Container()
+                                                              : Padding(
+                                                            padding:  EdgeInsets.only(top: 0.4.h),
+                                                            child: Container(
+                                                              padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                              decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(5),
+                                                                color: Colors.red.shade400,
+                                                              ),
+                                                              child: Text(
+                                                                '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
                                                               ),
                                                             ),
                                                           ),
@@ -2049,8 +2122,8 @@ class _HomePageState extends State<HomePage> {
                                                     ],
                                                   ),
                                                   SizedBox(
-                                                    height: 1.h,
-                                                  ),
+                                                      height:
+                                                      0.5.h),
                                                   GestureDetector(
                                                     onTap: () {
                                                       Navigator.of(context).push(
@@ -2188,10 +2261,14 @@ class _HomePageState extends State<HomePage> {
                                           crossAxisSpacing:
                                               0.0, // Adjust as needed
                                           childAspectRatio:
-                                              6.5 / 7.5 // Adjust as needed
+                                              6.5 / 8.5 // Adjust as needed
                                           ),
                                   delegate: SliverChildBuilderDelegate(
                                     (BuildContext context, int index) {
+                                      double
+                                      percentageOffValue =
+                                      calculatePercentageOffbestsellproduct(
+                                          index);
                                       return Stack(
                                         children: [
                                           GestureDetector(
@@ -2303,8 +2380,6 @@ class _HomePageState extends State<HomePage> {
                                                                             ?.productData?[index]
                                                                             .productName ??
                                                                         '',
-
-                                                                // items1[index]['title']!,
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         10.sp,
@@ -2323,108 +2398,61 @@ class _HomePageState extends State<HomePage> {
                                                         ),
                                                       ],
                                                     ),
-                                                    // SizedBox(
-                                                    //   width: 35.w,
-                                                    //   child: Text(
-                                                    //     textAlign:
-                                                    //         TextAlign
-                                                    //             .center,
-                                                    //     overflow:
-                                                    //         TextOverflow
-                                                    //             .ellipsis,
-                                                    //     maxLines: 2,
-                                                    //     // bestsellerproductmodal?.productData?[index].productShortDesc ==
-                                                    //     //             "" ||
-                                                    //     //         bestsellerproductmodal?.productData?[index].productShortDesc ==
-                                                    //     //             null
-                                                    //     //     ? "N/A"
-                                                    //     //     : bestsellerproductmodal
-                                                    //     //             ?.productData?[index]
-                                                    //     //             .productShortDesc ??
-                                                    //     //         '',
-                                                    //             "",
-                                                    //     // "This Is The Antibiotic Product And Body",
-                                                    //     style:
-                                                    //         TextStyle(
-                                                    //       fontSize:
-                                                    //           12.sp,
-                                                    //       fontFamily:
-                                                    //           'task',
-                                                    //       fontWeight:
-                                                    //           FontWeight
-                                                    //               .normal,
-                                                    //       letterSpacing:
-                                                    //           1,
-                                                    //       color: Colors
-                                                    //           .black,
-                                                    //     ),
-                                                    //   ),
-                                                    // ),
                                                     Row(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
+                                                      MainAxisAlignment.center,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                       children: [
                                                         Row(
                                                           children: [
-                                                            Text(
-                                                              bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                          "" ||
-                                                                      bestsellerproductmodal?.productData?[index].saleProductPrice ==
-                                                                          null
-                                                                  ? "N/A"
-                                                                  : '₹' +
-                                                                      (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
-                                                              // "\$500",
-                                                              style:
-                                                                  TextStyle(
-                                                                fontSize:
-                                                                    11.sp,
-                                                                fontFamily:
-                                                                    'task',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                letterSpacing:
-                                                                    1,
-                                                                color: Colors
-                                                                    .black,
+                                                            if (bestsellerproductmodal?.productData?[index].saleProductPrice != bestsellerproductmodal?.productData?[index].productPrice)
+                                                              Padding(
+                                                                padding: EdgeInsets.only(top: 0.4.h),
+                                                                child: Text(
+                                                                  '₹' + (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
+                                                                  style: TextStyle(
+                                                                    fontSize: 9.sp,
+                                                                    fontFamily: 'task',
+                                                                    fontWeight: FontWeight.normal,
+                                                                    letterSpacing: 1,
+                                                                    color: Colors.black,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            SizedBox(
+                                                              width: 1.w,
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets.only(top: 0.4.h),
+                                                              child: Text(
+                                                                '₹' + (bestsellerproductmodal?.productData?[index].productPrice).toString(),
+                                                                style: TextStyle(
+                                                                  decoration: bestsellerproductmodal?.productData?[index].saleProductPrice != bestsellerproductmodal?.productData?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
+                                                                  fontSize: 9.sp,
+                                                                  fontFamily: 'task',
+                                                                  fontWeight: FontWeight.normal,
+                                                                  letterSpacing: 1,
+                                                                  color: Colors.black,
+                                                                ),
                                                               ),
                                                             ),
                                                             SizedBox(
-                                                              width:
-                                                                  0.5.w,
+                                                              width: 1.w,
                                                             ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      top: 0.4
-                                                                          .h),
-                                                              child: Text(
-                                                                bestsellerproductmodal?.productData?[index].productPrice ==
-                                                                            "" ||
-                                                                        bestsellerproductmodal?.productData?[index].productPrice ==
-                                                                            null
-                                                                    ? "N/A"
-                                                                    : '₹' +
-                                                                        (bestsellerproductmodal?.productData?[index].productPrice)
-                                                                            .toString(),
-                                                                // "\$580",
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration.lineThrough,
-                                                                  fontSize:
-                                                                      11.sp,
-                                                                  fontFamily:
-                                                                      'task',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  letterSpacing:
-                                                                      1,
-                                                                  color: Colors
-                                                                      .black,
+                                                            percentageOffValue == null || percentageOffValue == 0
+                                                                ? Container()
+                                                                : Padding(
+                                                              padding:  EdgeInsets.only(top: 0.4.h),
+                                                              child: Container(
+                                                                padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(5),
+                                                                  color: Colors.red.shade400,
+                                                                ),
+                                                                child: Text(
+                                                                  '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                  style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
                                                                 ),
                                                               ),
                                                             ),
@@ -2433,8 +2461,8 @@ class _HomePageState extends State<HomePage> {
                                                       ],
                                                     ),
                                                     SizedBox(
-                                                      height: 1.h,
-                                                    ),
+                                                        height:
+                                                        0.5.h),
                                                     GestureDetector(
                                                       onTap: () {
                                                         Navigator.of(context).push(
@@ -3111,37 +3139,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  salesproductap() async {
-    final Map<String, String> data = {};
-    checkInternet().then((internet) async {
-      if (internet) {
-        authprovider().salesproductapi(data).then((response) async {
-          salesproductmodal =
-              SalesProductModal.fromJson(json.decode(response.body));
-          print(salesproductmodal?.status);
-          if (response.statusCode == 200 &&
-              salesproductmodal?.status == "success") {
-            print('EE Thay Gyu Hooooo ! ^_^');
-            setState(() {
-              wait = false;
-              isLoading = false;
-            });
-          } else {
-            setState(() {
-              wait = false;
-              isLoading = false;
-            });
-          }
-        });
-      } else {
-        setState(() {
-          wait = false;
-          isLoading = false;
-        });
-        buildErrorDialog(context, 'Error', "Internet Required");
-      }
-    });
-  }
 
   bestsellerproductap() async {
     final Map<String, String> data = {};

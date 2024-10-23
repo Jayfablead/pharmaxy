@@ -82,7 +82,7 @@ class CartDetails {
   String? createdAt;
   String? updatedAt;
   int? cartProductQuantity;
-  int? productPriceMain;
+  num? productPriceMain;
   String? cartTblId;
   String? allImages;
 

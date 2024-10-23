@@ -142,7 +142,7 @@ ChekOutDetailModal? chekoutdetailmodal;
 CheckOutModal? checkoutmodal;
 MyOrderListModal? myorderlistmodal;
 MyOederDetailModal? myoederdetailmodal;
-SalesProductModal? salesproductmodal;
+// SalesProductModal? salesproductmodal;
 SalesProductListModal? salesproductlistmodal;
 BestSellerProductModal? bestsellerproductmodal;
 ShippingAddModal? shippingaddmodal;

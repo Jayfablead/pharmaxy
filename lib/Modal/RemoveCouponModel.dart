@@ -91,7 +91,7 @@ class CartDetails {
   int? cartProductQuantity;
   String? productColor;
   String? productSize;
-  int? productPriceMain;
+  num? productPriceMain;
   String? variationTblId;
   String? cartTblId;
   String? allImages;

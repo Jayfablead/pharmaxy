@@ -116,7 +116,7 @@ class _bottombarState extends State<bottombar> {
                   onTap: () {
                     setState(() {
                       Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => Ofline_cart()));
+                          MaterialPageRoute(builder: (context) => CartPage()));
                       selected = 2;
                     });
                   },
