@@ -933,7 +933,7 @@ class _ProductList3State extends State<ProductList3> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
-                                              '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                              '${percentageOffValue.toStringAsFixed(2)}%',
                                               style: TextStyle(
                                                   color: Colors.white, // Text color
                                                   fontSize: 7.sp,
@@ -1168,7 +1168,7 @@ class _ProductList3State extends State<ProductList3> {
                                                           color: Colors.red.shade400,
                                                         ),
                                                         child: Text(
-                                                          '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                          '${percentageOffValue.toStringAsFixed(2)}%',
                                                           style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
                                                         ),
                                                       ),
@@ -1528,7 +1528,7 @@ class _ProductList3State extends State<ProductList3> {
                                                           color: Colors.red.shade400,
                                                         ),
                                                         child: Text(
-                                                          '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                          '${percentageOffValue.toStringAsFixed(2)}%',
                                                           style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
                                                         ),
                                                       ),
@@ -1652,7 +1652,7 @@ class _ProductList3State extends State<ProductList3> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
-                                              '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                              '${percentageOffValue.toStringAsFixed(2)}%',
                                               style: TextStyle(
                                                   color: Colors.white, // Text color
                                                   fontSize: 7.sp,
@@ -1881,7 +1881,7 @@ class _ProductList3State extends State<ProductList3> {
                                                           color: Colors.red.shade400,
                                                         ),
                                                         child: Text(
-                                                          '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                          '${percentageOffValue.toStringAsFixed(2)}%',
                                                           style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
                                                         ),
                                                       ),
@@ -2005,7 +2005,7 @@ class _ProductList3State extends State<ProductList3> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
-                                              '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                              '${percentageOffValue.toStringAsFixed(2)}%',
                                               style: TextStyle(
                                                   color: Colors.white, // Text color
                                                   fontSize: 7.sp,
@@ -2366,7 +2366,7 @@ class _ProductList3State extends State<ProductList3> {
                                                     mainAxisSize: MainAxisSize.min,
                                                     children: [
                                                       Text(
-                                                        '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                        '${percentageOffValue.toStringAsFixed(2)}%',
                                                         style: TextStyle(
                                                             color: Colors.white, // Text color
                                                             fontSize: 7.sp,
@@ -2739,7 +2739,7 @@ class _ProductList3State extends State<ProductList3> {
                                                     mainAxisSize: MainAxisSize.min,
                                                     children: [
                                                       Text(
-                                                        '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                        '${percentageOffValue.toStringAsFixed(2)}%',
                                                         style: TextStyle(
                                                             color: Colors.white, // Text color
                                                             fontSize: 7.sp,

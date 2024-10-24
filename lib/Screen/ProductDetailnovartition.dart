@@ -545,55 +545,28 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 ),
                               ),
                               Positioned(
-                                left: 2.5.w,
+                                left: 3.w,
                                 bottom: 3.h,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
                                       children: [
-                                        Container(
-                                          height: 5.h,
-                                          width: 45.w,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              border: Border.all(
-                                                  width: 0.5,
-                                                  color: AppColors.primary),
-                                              color: Colors.white38),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  if (productdetail2modal?.productData?.saleProductPrice != productdetail2modal?.productData?.productPrice)
-                                                    Padding(
-                                                      padding: EdgeInsets.only(top: 0.4.h),
-                                                      child: Text(
-                                                        '₹' + (productdetail2modal?.productData?.saleProductPrice).toString(),
-                                                        style: TextStyle(
-                                                          fontSize: 11.sp,
-                                                          fontFamily: 'task',
-                                                          fontWeight: FontWeight.normal,
-                                                          letterSpacing: 1,
-                                                          color: Colors.black,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  SizedBox(
-                                                    width: 1.w,
-                                                  ),
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                if (productdetail2modal?.productData?.saleProductPrice != productdetail2modal?.productData?.productPrice)
                                                   Padding(
                                                     padding: EdgeInsets.only(top: 0.4.h),
                                                     child: Text(
-                                                      '₹' + (productdetail2modal?.productData?.productPrice).toString(),
+                                                      '₹' + (productdetail2modal?.productData?.saleProductPrice).toString(),
                                                       style: TextStyle(
-                                                        decoration: productdetail2modal?.productData?.saleProductPrice != productdetail2modal?.productData?.productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                        fontSize: 11.sp,
+                                                        fontSize: 14.sp,
                                                         fontFamily: 'task',
                                                         fontWeight: FontWeight.normal,
                                                         letterSpacing: 1,
@@ -601,29 +574,45 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                    width: 1.w,
-                                                  ),
-                                                  percentageOffValue == null || percentageOffValue == 0
-                                                      ? Container()
-                                                      : Padding(
-                                                    padding:  EdgeInsets.only(top: 0.4.h),
-                                                    child: Container(
-                                                      padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(5),
-                                                        color: Colors.red.shade400,
-                                                      ),
-                                                      child: Text(
-                                                        '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                        style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                      ),
+                                                SizedBox(
+                                                  width: 1.w,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(top: 0.4.h),
+                                                  child: Text(
+                                                    '₹' + (productdetail2modal?.productData?.productPrice).toString(),
+                                                    style: TextStyle(
+                                                      decoration: productdetail2modal?.productData?.saleProductPrice != productdetail2modal?.productData?.productPrice ? TextDecoration.lineThrough : TextDecoration.none,
+                                                      fontSize: 14.sp,
+                                                      fontFamily: 'task',
+                                                      fontWeight: FontWeight.normal,
+                                                      letterSpacing: 1,
+                                                      color: Colors.black,
                                                     ),
                                                   ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
+                                                ),
+                                                SizedBox(
+                                                  width: 1.w,
+                                                ),
+                                                percentageOffValue == null || percentageOffValue == 0
+                                                    ? Container()
+                                                    : Padding(
+                                                  padding:  EdgeInsets.only(top: 0.4.h),
+                                                  child: Container(
+                                                    padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(5),
+                                                      color: Colors.red.shade400,
+                                                    ),
+                                                    child: Text(
+                                                      '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                      style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                         SizedBox(
                                           width: 2.w,

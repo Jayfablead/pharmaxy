@@ -795,7 +795,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'Timely Delivery',
+                                                        'Fast Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -2230,7 +2230,7 @@ class _HomePageState extends State<HomePage> {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Text(
-                                                    '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                    '${percentageOffValue.toStringAsFixed(2)}%',
                                                     style: TextStyle(
                                                         color: Colors.white, // Text color
                                                         fontSize: 7.sp,
@@ -2482,22 +2482,22 @@ class _HomePageState extends State<HomePage> {
                                                             SizedBox(
                                                               width: 1.w,
                                                             ),
-                                                            percentageOffValue == null || percentageOffValue == 0
-                                                                ? Container()
-                                                                : Padding(
-                                                              padding:  EdgeInsets.only(top: 0.4.h),
-                                                              child: Container(
-                                                                padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.circular(5),
-                                                                  color: Colors.red.shade400,
-                                                                ),
-                                                                child: Text(
-                                                                  '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                  style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                ),
-                                                              ),
-                                                            ),
+                                                            // percentageOffValue == null || percentageOffValue == 0
+                                                            //     ? Container()
+                                                            //     : Padding(
+                                                            //   padding:  EdgeInsets.only(top: 0.4.h),
+                                                            //   child: Container(
+                                                            //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                            //     decoration: BoxDecoration(
+                                                            //       borderRadius: BorderRadius.circular(5),
+                                                            //       color: Colors.red.shade400,
+                                                            //     ),
+                                                            //     child: Text(
+                                                            //       '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                            //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                            //     ),
+                                                            //   ),
+                                                            // ),
                                                           ],
                                                         ),
                                                       ],
@@ -2600,7 +2600,7 @@ class _HomePageState extends State<HomePage> {
                                                   mainAxisSize: MainAxisSize.min,
                                                   children: [
                                                     Text(
-                                                      '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                      '${percentageOffValue.toStringAsFixed(2)}%',
                                                       style: TextStyle(
                                                           color: Colors.white, // Text color
                                                           fontSize: 7.sp,

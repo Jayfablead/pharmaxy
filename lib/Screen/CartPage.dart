@@ -1726,7 +1726,7 @@ class _CartPageState extends State<CartPage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          height: 1.h,
+                                          height: 2.h,
                                         ),
                                         Text(
                                           "Price may vary depending on the product batch*",
@@ -1738,7 +1738,7 @@ class _CartPageState extends State<CartPage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          height: 1.h,
+                                          height: 3.h,
                                         ),
                                         Container(
                                           width:
@@ -1771,7 +1771,7 @@ class _CartPageState extends State<CartPage> {
                                                       'Sub Total Amount : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 1.sp,
+                                                        fontSize: 12.sp,
                                                         color: Colors
                                                             .grey.shade800,
                                                         fontWeight:
@@ -1831,7 +1831,7 @@ class _CartPageState extends State<CartPage> {
                                                       'Handling Charge : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 11.sp,
+                                                        fontSize: 12.sp,
                                                         color: Colors
                                                             .grey.shade800,
                                                         fontWeight:
@@ -1850,7 +1850,7 @@ class _CartPageState extends State<CartPage> {
                                                               .toString(),
                                                       style: TextStyle(
                                                           fontFamily: 'task',
-                                                          fontSize: 10.sp,
+                                                          fontSize: 12.sp,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           color:
@@ -1989,7 +1989,7 @@ class _CartPageState extends State<CartPage> {
                                                           ""
                                                   ? Container()
                                                   : SizedBox(
-                                                      height: 1.h,
+                                                      height: 0.h,
                                                     ),
                                               SizedBox(
                                                 height: 1.h,
@@ -2018,7 +2018,7 @@ class _CartPageState extends State<CartPage> {
                                                       'Final Total Amount : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 12.sp,
+                                                        fontSize: 13.sp,
                                                         color: Colors
                                                             .grey.shade800,
                                                         fontWeight:
@@ -2042,7 +2042,7 @@ class _CartPageState extends State<CartPage> {
                                                                   .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 12.sp,
+                                                        fontSize: 13.sp,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -3022,7 +3022,7 @@ class _CartPageState extends State<CartPage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          height: 1.h,
+                                          height: 2.h,
                                         ),
                                         Text(
                                           "Price may vary depending on the product batch*",
@@ -3243,7 +3243,7 @@ class _CartPageState extends State<CartPage> {
                                                           ""
                                                   ? Container()
                                                   : SizedBox(
-                                                      height: 1.h,
+                                                      height: 0.h,
                                                     ),
                                               couponmodel?.discountApplied ==
                                                           null ||
@@ -3383,7 +3383,7 @@ class _CartPageState extends State<CartPage> {
                                                       'Final Total Amount : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 12.sp,
+                                                        fontSize: 13.sp,
                                                         color: Colors
                                                             .grey.shade800,
                                                         fontWeight:
@@ -3407,7 +3407,7 @@ class _CartPageState extends State<CartPage> {
                                                                   .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 12.sp,
+                                                        fontSize: 13.sp,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -3419,7 +3419,7 @@ class _CartPageState extends State<CartPage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          height: 2.h,
+                                          height: 3.h,
                                         ),
                                         Row(
                                           mainAxisAlignment:

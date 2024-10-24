@@ -963,7 +963,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
-                                              '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                              '${percentageOffValue.toStringAsFixed(2)}%',
                                               style: TextStyle(
                                                   color: Colors.white, // Text color
                                                   fontSize: 7.sp,
@@ -1316,7 +1316,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
-                                              '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                              '${percentageOffValue.toStringAsFixed(2)}%',
                                               style: TextStyle(
                                                   color: Colors.white, // Text color
                                                   fontSize: 7.sp,
@@ -1668,7 +1668,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
-                                              '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                              '${percentageOffValue.toStringAsFixed(2)}%',
                                               style: TextStyle(
                                                   color: Colors.white, // Text color
                                                   fontSize: 7.sp,
@@ -2020,7 +2020,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
-                                              '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                              '${percentageOffValue.toStringAsFixed(2)}%',
                                               style: TextStyle(
                                                   color: Colors.white, // Text color
                                                   fontSize: 7.sp,
@@ -2397,7 +2397,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                     mainAxisSize: MainAxisSize.min,
                                                     children: [
                                                       Text(
-                                                        '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                        '${percentageOffValue.toStringAsFixed(2)}%',
                                                         style: TextStyle(
                                                             color: Colors.white, // Text color
                                                             fontSize: 7.sp,
@@ -2815,7 +2815,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Text(
-                                                    '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                    '${percentageOffValue.toStringAsFixed(2)}% ',
                                                     style: TextStyle(
                                                         color: Colors.white, // Text color
                                                         fontSize: 7.sp,

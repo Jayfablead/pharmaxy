@@ -168,10 +168,7 @@ class _bottombarState extends State<bottombar> {
                 GestureDetector(
                   onTap: () async {
                     setState(() {
-                      usermodal?.userId == "" || usermodal?.userId == null
-                          ? Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => LoginPage2()))
-                          : Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
                               builder: (context) => ProductList4()));
                       selected = 4;
                     });
