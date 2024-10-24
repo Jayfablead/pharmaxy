@@ -34,6 +34,7 @@ class Data {
   String? productID;
   String? userID;
   String? couponName;
+  String? couponDesc;
   String? productSpecification;
   String? couponCode;
   String? couponType;
@@ -54,6 +55,7 @@ class Data {
         this.productID,
         this.userID,
         this.couponName,
+        this.couponDesc,
         this.productSpecification,
         this.couponCode,
         this.couponType,
@@ -74,6 +76,7 @@ class Data {
     productID = json['ProductID'];
     userID = json['UserID'];
     couponName = json['CouponName'];
+    couponDesc = json['coupon_desc'];
     productSpecification = json['ProductSpecification'];
     couponCode = json['CouponCode'];
     couponType = json['CouponType'];
@@ -96,6 +99,7 @@ class Data {
     data['ProductID'] = this.productID;
     data['UserID'] = this.userID;
     data['CouponName'] = this.couponName;
+    data['coupon_desc'] = this.couponDesc;
     data['ProductSpecification'] = this.productSpecification;
     data['CouponCode'] = this.couponCode;
     data['CouponType'] = this.couponType;

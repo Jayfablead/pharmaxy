@@ -1006,7 +1006,7 @@ class authprovider with ChangeNotifier {
     responseJson = responses(response);
     return responseJson;
   }
-  Future<http.Response> coponapi(   Map<String, String> bodyData) async {
+  Future<http.Response> coponapi(  Map<String, String> bodyData) async {
     const url = "$baseUrl/coupons";
     print(url);
     var responseJson;

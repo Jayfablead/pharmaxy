@@ -1548,8 +1548,21 @@ class _CartPageState extends State<CartPage> {
                                                                                           ),
                                                                                         ),
                                                                                       ),
+                                                                                      allcouponmodal?.data?[index].couponDesc == ""?Container():
+                                                                                      SizedBox(
+                                                                                        width: 60.w,
+                                                                                        child: Text(
+                                                                                          // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
+                                                                                          allcouponmodal?.data?[index].couponDesc ?? "",
+                                                                                          style: TextStyle(
+                                                                                            fontSize: 10.5.sp,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            fontFamily: "task",
+                                                                                            // color: Colors.white,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
                                                                                       SizedBox(height: 1.h),
-
                                                                                       Row(
                                                                                         children: [
                                                                                           GestureDetector(
@@ -2855,6 +2868,20 @@ class _CartPageState extends State<CartPage> {
                                                                                           style: TextStyle(
                                                                                             fontSize: 10.5.sp,
                                                                                             fontWeight: FontWeight.bold,
+                                                                                            fontFamily: "task",
+                                                                                            // color: Colors.white,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                      allcouponmodal?.data?[index].couponDesc == ""?Container():
+                                                                                      SizedBox(
+                                                                                        width: 60.w,
+                                                                                        child: Text(
+                                                                                          // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
+                                                                                          allcouponmodal?.data?[index].couponDesc ?? "",
+                                                                                          style: TextStyle(
+                                                                                            fontSize: 10.5.sp,
+                                                                                            fontWeight: FontWeight.normal,
                                                                                             fontFamily: "task",
                                                                                             // color: Colors.white,
                                                                                           ),
