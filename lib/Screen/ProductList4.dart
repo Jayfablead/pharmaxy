@@ -782,7 +782,7 @@ class _ProductList4State extends State<ProductList4> {
                                                               child: Text(
                                                                 '₹' + (shortbymodel?.searchResults?[index].saleProductPrice).toString(),
                                                                 style: TextStyle(
-                                                                  fontSize: 9.sp,
+                                                                  fontSize:11.sp,
                                                                   fontFamily: 'task',
                                                                   fontWeight: FontWeight.normal,
                                                                   letterSpacing: 1,
@@ -799,7 +799,7 @@ class _ProductList4State extends State<ProductList4> {
                                                               '₹' + (shortbymodel?.searchResults?[index].productPrice).toString(),
                                                               style: TextStyle(
                                                                 decoration: shortbymodel?.searchResults?[index].saleProductPrice != shortbymodel?.searchResults?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                fontSize: 9.sp,
+                                                                fontSize: 11.sp,
                                                                 fontFamily: 'task',
                                                                 fontWeight: FontWeight.normal,
                                                                 letterSpacing: 1,
@@ -810,22 +810,22 @@ class _ProductList4State extends State<ProductList4> {
                                                           SizedBox(
                                                             width: 1.w,
                                                           ),
-                                                          percentageOffValue == null || percentageOffValue == 0
-                                                              ? Container()
-                                                              : Padding(
-                                                            padding:  EdgeInsets.only(top: 0.4.h),
-                                                            child: Container(
-                                                              padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.circular(5),
-                                                                color: Colors.red.shade400,
-                                                              ),
-                                                              child: Text(
-                                                                '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                              ),
-                                                            ),
-                                                          ),
+                                                          // percentageOffValue == null || percentageOffValue == 0
+                                                          //     ? Container()
+                                                          //     : Padding(
+                                                          //   padding:  EdgeInsets.only(top: 0.4.h),
+                                                          //   child: Container(
+                                                          //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                          //     decoration: BoxDecoration(
+                                                          //       borderRadius: BorderRadius.circular(5),
+                                                          //       color: Colors.red.shade400,
+                                                          //     ),
+                                                          //     child: Text(
+                                                          //       '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                          //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                          //     ),
+                                                          //   ),
+                                                          // ),
                                                         ],
                                                       ),
                                                     ],
@@ -925,6 +925,47 @@ class _ProductList4State extends State<ProductList4> {
                                                     : Colors.black,
                                               ),
                                             )),
+                                        percentageOffValue == null || percentageOffValue == 0
+                                            ? Container():Positioned(
+                                            right: 29.w,
+                                            top: 0.7.h,
+                                            child:
+                                            Container(
+                                              padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                                              decoration: BoxDecoration(
+                                                color: Colors.red,
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(0),
+                                                  topRight: Radius.circular(0),
+                                                  bottomLeft: Radius.circular(15),
+                                                  bottomRight: Radius.circular(15),
+                                                ),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Text(
+                                                    '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                    style: TextStyle(
+                                                        color: Colors.white, // Text color
+                                                        fontSize: 7.sp,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontFamily: "task"
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'OFF',
+                                                    style: TextStyle(
+                                                        color: Colors.white, // Text color
+                                                        fontSize: 7.sp,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontFamily: "task"
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                        ),
                                       ],
                                     );
                                   },
@@ -1096,7 +1137,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                 child: Text(
                                                                   '₹' + (shortbymodel?.searchResults?[index].saleProductPrice).toString(),
                                                                   style: TextStyle(
-                                                                    fontSize: 9.sp,
+                                                                    fontSize: 11.sp,
                                                                     fontFamily: 'task',
                                                                     fontWeight: FontWeight.normal,
                                                                     letterSpacing: 1,
@@ -1113,7 +1154,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                 '₹' + (shortbymodel?.searchResults?[index].productPrice).toString(),
                                                                 style: TextStyle(
                                                                   decoration: shortbymodel?.searchResults?[index].saleProductPrice != shortbymodel?.searchResults?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                  fontSize: 9.sp,
+                                                                  fontSize: 11.sp,
                                                                   fontFamily: 'task',
                                                                   fontWeight: FontWeight.normal,
                                                                   letterSpacing: 1,
@@ -1124,22 +1165,22 @@ class _ProductList4State extends State<ProductList4> {
                                                             SizedBox(
                                                               width: 1.w,
                                                             ),
-                                                            percentageOffValue == null || percentageOffValue == 0
-                                                                ? Container()
-                                                                : Padding(
-                                                              padding:  EdgeInsets.only(top: 0.4.h),
-                                                              child: Container(
-                                                                padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.circular(5),
-                                                                  color: Colors.red.shade400,
-                                                                ),
-                                                                child: Text(
-                                                                  '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                  style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                ),
-                                                              ),
-                                                            ),
+                                                            // percentageOffValue == null || percentageOffValue == 0
+                                                            //     ? Container()
+                                                            //     : Padding(
+                                                            //   padding:  EdgeInsets.only(top: 0.4.h),
+                                                            //   child: Container(
+                                                            //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                            //     decoration: BoxDecoration(
+                                                            //       borderRadius: BorderRadius.circular(5),
+                                                            //       color: Colors.red.shade400,
+                                                            //     ),
+                                                            //     child: Text(
+                                                            //       '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                            //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                            //     ),
+                                                            //   ),
+                                                            // ),
                                                           ],
                                                         ),
                                                       ],
@@ -1239,6 +1280,47 @@ class _ProductList4State extends State<ProductList4> {
                                                       : Colors.black,
                                                 ),
                                               )),
+                                          percentageOffValue == null || percentageOffValue == 0
+                                              ? Container():Positioned(
+                                              right: 29.w,
+                                              top: 0.7.h,
+                                              child:
+                                              Container(
+                                                padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(0),
+                                                    topRight: Radius.circular(0),
+                                                    bottomLeft: Radius.circular(15),
+                                                    bottomRight: Radius.circular(15),
+                                                  ),
+                                                ),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    Text(
+                                                      '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                      style: TextStyle(
+                                                          color: Colors.white, // Text color
+                                                          fontSize: 7.sp,
+                                                          fontWeight: FontWeight.bold,
+                                                          fontFamily: "task"
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'OFF',
+                                                      style: TextStyle(
+                                                          color: Colors.white, // Text color
+                                                          fontSize: 7.sp,
+                                                          fontWeight: FontWeight.bold,
+                                                          fontFamily: "task"
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                          ),
                                         ],
                                       );
                                     },  childCount: shortbymodel
@@ -1415,7 +1497,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                     child: Text(
                                                                       '₹' + (filterbymodel?.searchResults?[index].saleProductPrice).toString(),
                                                                       style: TextStyle(
-                                                                        fontSize: 9.sp,
+                                                                        fontSize:11.sp,
                                                                         fontFamily: 'task',
                                                                         fontWeight: FontWeight.normal,
                                                                         letterSpacing: 1,
@@ -1432,7 +1514,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                     '₹' + (filterbymodel?.searchResults?[index].productPrice).toString(),
                                                                     style: TextStyle(
                                                                       decoration: filterbymodel?.searchResults?[index].saleProductPrice != filterbymodel?.searchResults?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                      fontSize: 9.sp,
+                                                                      fontSize: 11.sp,
                                                                       fontFamily: 'task',
                                                                       fontWeight: FontWeight.normal,
                                                                       letterSpacing: 1,
@@ -1443,22 +1525,22 @@ class _ProductList4State extends State<ProductList4> {
                                                                 SizedBox(
                                                                   width: 1.w,
                                                                 ),
-                                                                percentageOffValue == null || percentageOffValue == 0
-                                                                    ? Container()
-                                                                    : Padding(
-                                                                  padding:  EdgeInsets.only(top: 0.4.h),
-                                                                  child: Container(
-                                                                    padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                    decoration: BoxDecoration(
-                                                                      borderRadius: BorderRadius.circular(5),
-                                                                      color: Colors.red.shade400,
-                                                                    ),
-                                                                    child: Text(
-                                                                      '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                      style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                    ),
-                                                                  ),
-                                                                ),
+                                                                // percentageOffValue == null || percentageOffValue == 0
+                                                                //     ? Container()
+                                                                //     : Padding(
+                                                                //   padding:  EdgeInsets.only(top: 0.4.h),
+                                                                //   child: Container(
+                                                                //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                                //     decoration: BoxDecoration(
+                                                                //       borderRadius: BorderRadius.circular(5),
+                                                                //       color: Colors.red.shade400,
+                                                                //     ),
+                                                                //     child: Text(
+                                                                //       '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                                //     ),
+                                                                //   ),
+                                                                // ),
                                                               ],
                                                             ),
                                                           ],
@@ -1560,6 +1642,47 @@ class _ProductList4State extends State<ProductList4> {
                                                           : Colors.black,
                                                     ),
                                                   )),
+                                              percentageOffValue == null || percentageOffValue == 0
+                                                  ? Container():Positioned(
+                                                  right: 29.w,
+                                                  top: 0.7.h,
+                                                  child:
+                                                  Container(
+                                                    padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.red,
+                                                      borderRadius: BorderRadius.only(
+                                                        topLeft: Radius.circular(0),
+                                                        topRight: Radius.circular(0),
+                                                        bottomLeft: Radius.circular(15),
+                                                        bottomRight: Radius.circular(15),
+                                                      ),
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      children: [
+                                                        Text(
+                                                          '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                          style: TextStyle(
+                                                              color: Colors.white, // Text color
+                                                              fontSize: 7.sp,
+                                                              fontWeight: FontWeight.bold,
+                                                              fontFamily: "task"
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          'OFF',
+                                                          style: TextStyle(
+                                                              color: Colors.white, // Text color
+                                                              fontSize: 7.sp,
+                                                              fontWeight: FontWeight.bold,
+                                                              fontFamily: "task"
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )
+                                              ),
                                             ],
                                           );
                                         }, childCount: filterbymodel
@@ -1761,7 +1884,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                         child: Text(
                                                                           '₹' + (filterbymodel?.searchResults?[index].saleProductPrice).toString(),
                                                                           style: TextStyle(
-                                                                            fontSize: 9.sp,
+                                                                            fontSize:11.sp,
                                                                             fontFamily: 'task',
                                                                             fontWeight: FontWeight.normal,
                                                                             letterSpacing: 1,
@@ -1778,7 +1901,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                         '₹' + (filterbymodel?.searchResults?[index].productPrice).toString(),
                                                                         style: TextStyle(
                                                                           decoration: filterbymodel?.searchResults?[index].saleProductPrice != filterbymodel?.searchResults?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                          fontSize: 9.sp,
+                                                                          fontSize:11.sp,
                                                                           fontFamily: 'task',
                                                                           fontWeight: FontWeight.normal,
                                                                           letterSpacing: 1,
@@ -1789,22 +1912,22 @@ class _ProductList4State extends State<ProductList4> {
                                                                     SizedBox(
                                                                       width: 1.w,
                                                                     ),
-                                                                    percentageOffValue == null || percentageOffValue == 0
-                                                                        ? Container()
-                                                                        : Padding(
-                                                                      padding:  EdgeInsets.only(top: 0.4.h),
-                                                                      child: Container(
-                                                                        padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                        decoration: BoxDecoration(
-                                                                          borderRadius: BorderRadius.circular(5),
-                                                                          color: Colors.red.shade400,
-                                                                        ),
-                                                                        child: Text(
-                                                                          '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                          style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                        ),
-                                                                      ),
-                                                                    ),
+                                                                    // percentageOffValue == null || percentageOffValue == 0
+                                                                    //     ? Container()
+                                                                    //     : Padding(
+                                                                    //   padding:  EdgeInsets.only(top: 0.4.h),
+                                                                    //   child: Container(
+                                                                    //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                                    //     decoration: BoxDecoration(
+                                                                    //       borderRadius: BorderRadius.circular(5),
+                                                                    //       color: Colors.red.shade400,
+                                                                    //     ),
+                                                                    //     child: Text(
+                                                                    //       '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                    //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                                    //     ),
+                                                                    //   ),
+                                                                    // ),
                                                                   ],
                                                                 ),
                                                               ],
@@ -1905,6 +2028,47 @@ class _ProductList4State extends State<ProductList4> {
                                                               : Colors.black,
                                                         ),
                                                       )),
+                                                  percentageOffValue == null || percentageOffValue == 0
+                                                      ? Container():Positioned(
+                                                      right: 29.w,
+                                                      top: 0.7.h,
+                                                      child:
+                                                      Container(
+                                                        padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.red,
+                                                          borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(0),
+                                                            topRight: Radius.circular(0),
+                                                            bottomLeft: Radius.circular(15),
+                                                            bottomRight: Radius.circular(15),
+                                                          ),
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisSize: MainAxisSize.min,
+                                                          children: [
+                                                            Text(
+                                                              '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                              style: TextStyle(
+                                                                  color: Colors.white, // Text color
+                                                                  fontSize: 7.sp,
+                                                                  fontWeight: FontWeight.bold,
+                                                                  fontFamily: "task"
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              'OFF',
+                                                              style: TextStyle(
+                                                                  color: Colors.white, // Text color
+                                                                  fontSize: 7.sp,
+                                                                  fontWeight: FontWeight.bold,
+                                                                  fontFamily: "task"
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )
+                                                  ),
                                                 ],
                                               );
                                             },  childCount: filterbymodel
@@ -2079,7 +2243,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                                     child: Text(
                                                                                       '₹' + (allproductmodal?.allProducts?[index].saleProductPrice).toString(),
                                                                                       style: TextStyle(
-                                                                                        fontSize: 9.sp,
+                                                                                        fontSize: 11.sp,
                                                                                         fontFamily: 'task',
                                                                                         fontWeight: FontWeight.normal,
                                                                                         letterSpacing: 1,
@@ -2096,7 +2260,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                                     '₹' + (allproductmodal?.allProducts?[index].productPrice).toString(),
                                                                                     style: TextStyle(
                                                                                       decoration: allproductmodal?.allProducts?[index].saleProductPrice != allproductmodal?.allProducts?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                                      fontSize: 9.sp,
+                                                                                      fontSize: 11.sp,
                                                                                       fontFamily: 'task',
                                                                                       fontWeight: FontWeight.normal,
                                                                                       letterSpacing: 1,
@@ -2107,22 +2271,22 @@ class _ProductList4State extends State<ProductList4> {
                                                                                 SizedBox(
                                                                                   width: 1.w,
                                                                                 ),
-                                                                                percentageOffValue == null || percentageOffValue == 0
-                                                                                    ? Container()
-                                                                                    : Padding(
-                                                                                        padding:  EdgeInsets.only(top: 0.4.h),
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                                          decoration: BoxDecoration(
-                                                                                            borderRadius: BorderRadius.circular(5),
-                                                                                            color: Colors.red.shade400,
-                                                                                          ),
-                                                                                          child: Text(
-                                                                                            '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
+                                                                                // percentageOffValue == null || percentageOffValue == 0
+                                                                                //     ? Container()
+                                                                                //     : Padding(
+                                                                                //         padding:  EdgeInsets.only(top: 0.4.h),
+                                                                                //         child: Container(
+                                                                                //           padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                                                //           decoration: BoxDecoration(
+                                                                                //             borderRadius: BorderRadius.circular(5),
+                                                                                //             color: Colors.red.shade400,
+                                                                                //           ),
+                                                                                //           child: Text(
+                                                                                //             '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                                //             style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                                                //           ),
+                                                                                //         ),
+                                                                                //       ),
                                                                               ],
                                                                             ),
                                                                           ],
@@ -2191,6 +2355,48 @@ class _ProductList4State extends State<ProductList4> {
                                                                             .black,
                                                                   ),
                                                                 ),
+                                                              ),
+                                                              percentageOffValue == null || percentageOffValue == 0
+                                                                  ? Container()
+                                                                  :Positioned(
+                                                                  right: 29.w,
+                                                                  top: 0.7.h,
+                                                                  child:
+                                                                  Container(
+                                                                    padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                                                                    decoration: BoxDecoration(
+                                                                      color: Colors.red,
+                                                                      borderRadius: BorderRadius.only(
+                                                                        topLeft: Radius.circular(0),
+                                                                        topRight: Radius.circular(0),
+                                                                        bottomLeft: Radius.circular(15),
+                                                                        bottomRight: Radius.circular(15),
+                                                                      ),
+                                                                    ),
+                                                                    child: Column(
+                                                                      mainAxisSize: MainAxisSize.min,
+                                                                      children: [
+                                                                        Text(
+                                                                          '${percentageOffValue.toStringAsFixed(2)}%',
+                                                                          style: TextStyle(
+                                                                            color: Colors.white, // Text color
+                                                                            fontSize: 7.sp,
+                                                                            fontWeight: FontWeight.bold,
+                                                                              fontFamily: "task"
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          'OFF',
+                                                                          style: TextStyle(
+                                                                            color: Colors.white, // Text color
+                                                                            fontSize: 7.sp,
+                                                                            fontWeight: FontWeight.bold,
+                                                                            fontFamily: "task"
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  )
                                                               ),
                                                             ],
                                                           );
@@ -2497,7 +2703,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                                   child: Text(
                                                                                     '₹' + (allProductserachModel?.searchResults?[index].saleProductPrice).toString(),
                                                                                     style: TextStyle(
-                                                                                      fontSize: 9.sp,
+                                                                                      fontSize: 11.sp,
                                                                                       fontFamily: 'task',
                                                                                       fontWeight: FontWeight.normal,
                                                                                       letterSpacing: 1,
@@ -2514,7 +2720,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                                   '₹' + (allProductserachModel?.searchResults?[index].productPrice).toString(),
                                                                                   style: TextStyle(
                                                                                     decoration: allProductserachModel?.searchResults?[index].saleProductPrice != allProductserachModel?.searchResults?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                                    fontSize: 9.sp,
+                                                                                    fontSize: 11.sp,
                                                                                     fontFamily: 'task',
                                                                                     fontWeight: FontWeight.normal,
                                                                                     letterSpacing: 1,
@@ -2525,22 +2731,22 @@ class _ProductList4State extends State<ProductList4> {
                                                                               SizedBox(
                                                                                 width: 1.w,
                                                                               ),
-                                                                              percentageOffValue == null || percentageOffValue == 0
-                                                                                  ? Container()
-                                                                                  : Padding(
-                                                                                padding:  EdgeInsets.only(top: 0.4.h),
-                                                                                child: Container(
-                                                                                  padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(5),
-                                                                                    color: Colors.red.shade400,
-                                                                                  ),
-                                                                                  child: Text(
-                                                                                    '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                                    style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
+                                                                              // percentageOffValue == null || percentageOffValue == 0
+                                                                              //     ? Container()
+                                                                              //     : Padding(
+                                                                              //   padding:  EdgeInsets.only(top: 0.4.h),
+                                                                              //   child: Container(
+                                                                              //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                                              //     decoration: BoxDecoration(
+                                                                              //       borderRadius: BorderRadius.circular(5),
+                                                                              //       color: Colors.red.shade400,
+                                                                              //     ),
+                                                                              //     child: Text(
+                                                                              //       '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                              //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                                              //     ),
+                                                                              //   ),
+                                                                              // ),
                                                                             ],
                                                                           ),
                                                                         ],
@@ -2621,6 +2827,49 @@ class _ProductList4State extends State<ProductList4> {
                                                                             .black,
                                                                   ),
                                                                 )),
+                                                            percentageOffValue == null || percentageOffValue == 0
+                                                                ? Container():Positioned(
+                                                                right: 29.w,
+                                                                top: 0.7.h,
+                                                                child:
+                                                                Container(
+                                                                  padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                                                                  decoration: BoxDecoration(
+                                                                    color: Colors.red,
+                                                                    borderRadius: BorderRadius.only(
+                                                                      topLeft: Radius.circular(0),
+                                                                      topRight: Radius.circular(0),
+                                                                      bottomLeft: Radius.circular(15),
+                                                                      bottomRight: Radius.circular(15),
+                                                                    ),
+                                                                  ),
+                                                                  child: Column(
+                                                                    mainAxisSize: MainAxisSize.min,
+                                                                    children: [
+                                                                      Text(
+                                                                        '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                        style: TextStyle(
+                                                                            color: Colors.white, // Text color
+                                                                            fontSize: 7.sp,
+                                                                            fontWeight: FontWeight.bold,
+                                                                            fontFamily: "task"
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        'OFF',
+                                                                        style: TextStyle(
+                                                                            color: Colors.white, // Text color
+                                                                            fontSize: 7.sp,
+                                                                            fontWeight: FontWeight.bold,
+                                                                            fontFamily: "task"
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                            ),
+
+
                                                           ],
                                                         );
                                                       },

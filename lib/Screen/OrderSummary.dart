@@ -611,17 +611,17 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                     ),
                                                     Text(
                                                       // "\$50",
-                                                      myoederdetailmodal?.orderDetails?[0].totalAmount ==
+                                                      myoederdetailmodal?.orderDetails?[0].subtotal ==
                                                           null ||
                                                           myoederdetailmodal
                                                               ?.orderDetails?[0]
-                                                              .totalAmount ==
+                                                              .subtotal ==
                                                               ""
                                                           ? "N/A"
                                                           : '₹' +
                                                           (myoederdetailmodal
                                                               ?.orderDetails?[0]
-                                                              .totalAmount)
+                                                              .subtotal)
                                                               .toString(),
                                                       style: TextStyle(
                                                           fontFamily: 'task',
