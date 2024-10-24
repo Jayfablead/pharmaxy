@@ -969,7 +969,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'Timely Delivery',
+                                                        'Fast Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
@@ -1056,7 +1056,7 @@ class _HomePageState extends State<HomePage> {
                                                           const EdgeInsets.only(
                                                               left: 15),
                                                       child: Text(
-                                                        'Timely Delivery',
+                                                        'Fast Delivery',
                                                         style: TextStyle(
                                                             color: Colors.red,
                                                             fontSize: 9.sp,
