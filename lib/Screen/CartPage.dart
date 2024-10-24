@@ -3250,7 +3250,7 @@ class _CartPageState extends State<CartPage> {
                                                       couponmodel
                                                               ?.discountApplied ==
                                                           ""
-                                                  ? Container()
+                                                   ? Container()
                                                   : Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
