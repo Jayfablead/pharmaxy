@@ -600,35 +600,35 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.spaceBetween,
                                                   children: [
-                                                    // Text(
-                                                    //   'Sub Total : ',
-                                                    //   style: TextStyle(
-                                                    //     fontFamily: 'task',
-                                                    //     fontSize: 12.sp,
-                                                    //     color: Colors.grey.shade800,
-                                                    //     fontWeight: FontWeight.bold,
-                                                    //   ),
-                                                    // ),
-                                                    // Text(
-                                                    //   // "\$50",
-                                                    //   myoederdetailmodal?.orderDetails?[0].totalAmount ==
-                                                    //       null ||
-                                                    //       myoederdetailmodal
-                                                    //           ?.orderDetails?[0]
-                                                    //           .totalAmount ==
-                                                    //           ""
-                                                    //       ? "N/A"
-                                                    //       : '₹' +
-                                                    //       (myoederdetailmodal
-                                                    //           ?.orderDetails?[0]
-                                                    //           .totalAmount)
-                                                    //           .toString(),
-                                                    //   style: TextStyle(
-                                                    //       fontFamily: 'task',
-                                                    //       fontSize: 12.sp,
-                                                    //       fontWeight: FontWeight.normal,
-                                                    //       color: Colors.black),
-                                                    // ),
+                                                    Text(
+                                                      'Sub Total : ',
+                                                      style: TextStyle(
+                                                        fontFamily: 'task',
+                                                        fontSize: 12.sp,
+                                                        color: Colors.grey.shade800,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      // "\$50",
+                                                      myoederdetailmodal?.orderDetails?[0].totalAmount ==
+                                                          null ||
+                                                          myoederdetailmodal
+                                                              ?.orderDetails?[0]
+                                                              .totalAmount ==
+                                                              ""
+                                                          ? "N/A"
+                                                          : '₹' +
+                                                          (myoederdetailmodal
+                                                              ?.orderDetails?[0]
+                                                              .totalAmount)
+                                                              .toString(),
+                                                      style: TextStyle(
+                                                          fontFamily: 'task',
+                                                          fontSize: 12.sp,
+                                                          fontWeight: FontWeight.normal,
+                                                          color: Colors.black),
+                                                    ),
                                                   ],
                                                 ),
                                                 SizedBox(
@@ -715,7 +715,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                 SizedBox(
                                                   height: 1.h,
                                                 ),
-                                                  myoederdetailmodal?.userDetail?.totalDiscount == "0" ?SizedBox() :Row(
+                                                  myoederdetailmodal?.userDetail?.totalDiscount == "0" ?SizedBox()
+                                                      :Row(
                                                   mainAxisSize: MainAxisSize.max,
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.spaceBetween,

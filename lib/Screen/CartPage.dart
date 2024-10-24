@@ -167,7 +167,7 @@ class _CartPageState extends State<CartPage> {
   void initState() {
     super.initState();
     setState(() {
-      cpn = null;
+      prefs?.getBool('is_coupon') ?? true && prefs?.getBool('is_coupon') != null?print("aaavi jajo"):cpn = null;
     });
     _loadSharedPrefs().then((value) => print('Shp Prefs Initialized'));
     ViewCartApi();
@@ -4256,6 +4256,7 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
+
 
   Future<void> getDeviceInfoandStore() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
