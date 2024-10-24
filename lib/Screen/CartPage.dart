@@ -1771,7 +1771,7 @@ class _CartPageState extends State<CartPage> {
                                                       'Sub Total Amount : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
-                                                        fontSize: 11.sp,
+                                                        fontSize: 1.sp,
                                                         color: Colors
                                                             .grey.shade800,
                                                         fontWeight:

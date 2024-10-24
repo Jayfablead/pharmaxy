@@ -2073,7 +2073,7 @@ class _HomePageState extends State<HomePage> {
                                                               child: Text(
                                                                 '₹' + (allProductserachModel?.searchResults?[index].saleProductPrice).toString(),
                                                                 style: TextStyle(
-                                                                  fontSize: 9.sp,
+                                                                  fontSize: 11.sp,
                                                                   fontFamily: 'task',
                                                                   fontWeight: FontWeight.normal,
                                                                   letterSpacing: 1,
@@ -2090,7 +2090,7 @@ class _HomePageState extends State<HomePage> {
                                                               '₹' + (allProductserachModel?.searchResults?[index].productPrice).toString(),
                                                               style: TextStyle(
                                                                 decoration: allProductserachModel?.searchResults?[index].saleProductPrice != allProductserachModel?.searchResults?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                fontSize: 9.sp,
+                                                                fontSize: 11.sp,
                                                                 fontFamily: 'task',
                                                                 fontWeight: FontWeight.normal,
                                                                 letterSpacing: 1,
@@ -2101,22 +2101,22 @@ class _HomePageState extends State<HomePage> {
                                                           SizedBox(
                                                             width: 1.w,
                                                           ),
-                                                          percentageOffValue == null || percentageOffValue == 0
-                                                              ? Container()
-                                                              : Padding(
-                                                            padding:  EdgeInsets.only(top: 0.4.h),
-                                                            child: Container(
-                                                              padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.circular(5),
-                                                                color: Colors.red.shade400,
-                                                              ),
-                                                              child: Text(
-                                                                '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                              ),
-                                                            ),
-                                                          ),
+                                                          // percentageOffValue == null || percentageOffValue == 0
+                                                          //     ? Container()
+                                                          //     : Padding(
+                                                          //   padding:  EdgeInsets.only(top: 0.4.h),
+                                                          //   child: Container(
+                                                          //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                          //     decoration: BoxDecoration(
+                                                          //       borderRadius: BorderRadius.circular(5),
+                                                          //       color: Colors.red.shade400,
+                                                          //     ),
+                                                          //     child: Text(
+                                                          //       '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                          //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                          //     ),
+                                                          //   ),
+                                                          // ),
                                                         ],
                                                       ),
                                                     ],
@@ -2209,6 +2209,48 @@ class _HomePageState extends State<HomePage> {
                                                     : Colors.black,
                                               ),
                                             )),
+                                        percentageOffValue == null || percentageOffValue == 0
+                                            ? Container()
+                                            :Positioned(
+                                            right: 27.w,
+                                            top: 0.7.h,
+                                            child:
+                                            Container(
+                                              padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                                              decoration: BoxDecoration(
+                                                color: Colors.red,
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(0),
+                                                  topRight: Radius.circular(0),
+                                                  bottomLeft: Radius.circular(15),
+                                                  bottomRight: Radius.circular(15),
+                                                ),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Text(
+                                                    '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                    style: TextStyle(
+                                                        color: Colors.white, // Text color
+                                                        fontSize: 7.sp,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontFamily: "task"
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'OFF',
+                                                    style: TextStyle(
+                                                        color: Colors.white, // Text color
+                                                        fontSize: 7.sp,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontFamily: "task"
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                        ),
                                       ],
                                     );
                                   },
@@ -2412,7 +2454,7 @@ class _HomePageState extends State<HomePage> {
                                                                 child: Text(
                                                                   '₹' + (bestsellerproductmodal?.productData?[index].saleProductPrice).toString(),
                                                                   style: TextStyle(
-                                                                    fontSize: 9.sp,
+                                                                    fontSize: 11.sp,
                                                                     fontFamily: 'task',
                                                                     fontWeight: FontWeight.normal,
                                                                     letterSpacing: 1,
@@ -2429,7 +2471,7 @@ class _HomePageState extends State<HomePage> {
                                                                 '₹' + (bestsellerproductmodal?.productData?[index].productPrice).toString(),
                                                                 style: TextStyle(
                                                                   decoration: bestsellerproductmodal?.productData?[index].saleProductPrice != bestsellerproductmodal?.productData?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                  fontSize: 9.sp,
+                                                                  fontSize: 11.sp,
                                                                   fontFamily: 'task',
                                                                   fontWeight: FontWeight.normal,
                                                                   letterSpacing: 1,
@@ -2537,6 +2579,48 @@ class _HomePageState extends State<HomePage> {
                                                       Colors.red: Colors.black,
                                                 ),
                                               )),
+                                          percentageOffValue == null || percentageOffValue == 0
+                                              ? Container()
+                                              :Positioned(
+                                              right: 27.w,
+                                              top: 0.7.h,
+                                              child:
+                                              Container(
+                                                padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(0),
+                                                    topRight: Radius.circular(0),
+                                                    bottomLeft: Radius.circular(15),
+                                                    bottomRight: Radius.circular(15),
+                                                  ),
+                                                ),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    Text(
+                                                      '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                      style: TextStyle(
+                                                          color: Colors.white, // Text color
+                                                          fontSize: 7.sp,
+                                                          fontWeight: FontWeight.bold,
+                                                          fontFamily: "task"
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'OFF',
+                                                      style: TextStyle(
+                                                          color: Colors.white, // Text color
+                                                          fontSize: 7.sp,
+                                                          fontWeight: FontWeight.bold,
+                                                          fontFamily: "task"
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                          ),
                                         ],
                                       );
                                     },

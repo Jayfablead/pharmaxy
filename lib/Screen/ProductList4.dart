@@ -927,7 +927,7 @@ class _ProductList4State extends State<ProductList4> {
                                             )),
                                         percentageOffValue == null || percentageOffValue == 0
                                             ? Container():Positioned(
-                                            right: 29.w,
+                                            right: 27.w,
                                             top: 0.7.h,
                                             child:
                                             Container(
@@ -1282,7 +1282,7 @@ class _ProductList4State extends State<ProductList4> {
                                               )),
                                           percentageOffValue == null || percentageOffValue == 0
                                               ? Container():Positioned(
-                                              right: 29.w,
+                                              right: 27.w,
                                               top: 0.7.h,
                                               child:
                                               Container(
@@ -1644,7 +1644,7 @@ class _ProductList4State extends State<ProductList4> {
                                                   )),
                                               percentageOffValue == null || percentageOffValue == 0
                                                   ? Container():Positioned(
-                                                  right: 29.w,
+                                                  right: 27.w,
                                                   top: 0.7.h,
                                                   child:
                                                   Container(
@@ -2359,7 +2359,7 @@ class _ProductList4State extends State<ProductList4> {
                                                               percentageOffValue == null || percentageOffValue == 0
                                                                   ? Container()
                                                                   :Positioned(
-                                                                  right: 29.w,
+                                                                  right: 27.w,
                                                                   top: 0.7.h,
                                                                   child:
                                                                   Container(
@@ -2829,7 +2829,7 @@ class _ProductList4State extends State<ProductList4> {
                                                                 )),
                                                             percentageOffValue == null || percentageOffValue == 0
                                                                 ? Container():Positioned(
-                                                                right: 29.w,
+                                                                right: 27.w,
                                                                 top: 0.7.h,
                                                                 child:
                                                                 Container(
