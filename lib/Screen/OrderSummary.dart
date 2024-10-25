@@ -760,7 +760,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     Text(
-                                                      'Agent Discount: ',
+                                                      'Referral Discount: ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 12.sp,

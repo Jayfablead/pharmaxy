@@ -4207,6 +4207,7 @@ class _CartPageState extends State<CartPage> {
           print(checkOutsendModel?.status);
           if (response.statusCode == 200 &&
               checkOutsendModel?.status == "success") {
+            print("haryo aavi ajaje${cpn}");
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
             _searchController.clear();
@@ -4258,6 +4259,7 @@ class _CartPageState extends State<CartPage> {
           print(checkOutsendModel?.status);
           if (response.statusCode == 200 &&
               checkOutsendModel?.status == "success") {
+
             EasyLoading.showSuccess("success");
             print("data on${data}");
             // applycoupon();
