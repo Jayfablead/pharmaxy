@@ -698,8 +698,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                       myoederdetailmodal?.userDetail?.totalShipingCost
                                                           ==
                                                           null||
-                                                          myoederdetailmodal?.userDetail?.totalShipingCost==""
-                                                          ? "N/A"
+                                                          myoederdetailmodal?.userDetail?.totalShipingCost=="" ||  myoederdetailmodal?.userDetail?.totalShipingCost== "0.00"
+                                                          ? "Free"
                                                           : '₹' +
                                                           (myoederdetailmodal
                                                               ?.userDetail?.totalShipingCost)

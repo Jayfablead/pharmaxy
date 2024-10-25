@@ -10,6 +10,7 @@ import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/ShortbyModel.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Screen/Request_Medicine.dart';
@@ -240,7 +241,10 @@ class _ProductList4State extends State<ProductList4> {
                                   children: [
                                     IconButton(
                                         onPressed: () {
-                                          Navigator.pop(context);
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(builder: (context) => HomePage(sel: 3),)
+                                            );
+                                          // Navigator.pop(context);
                                         },
                                         icon: Icon(
                                           Icons.arrow_back_ios,
@@ -2048,7 +2052,7 @@ class _ProductList4State extends State<ProductList4> {
                                                           mainAxisSize: MainAxisSize.min,
                                                           children: [
                                                             Text(
-                                                              '${percentageOffValue.toStringAsFixed(2)}% ',
+                                                              '${percentageOffValue.toStringAsFixed(2)}%',
                                                               style: TextStyle(
                                                                   color: Colors.white, // Text color
                                                                   fontSize: 7.sp,

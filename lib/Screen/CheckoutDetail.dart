@@ -2994,7 +2994,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                'Agent Discount: ',
+                                                'Referal Discount: ',
                                                 style: TextStyle(
                                                   fontFamily: 'task',
                                                   fontSize: 12.sp,
