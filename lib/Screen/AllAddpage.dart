@@ -299,25 +299,25 @@ class _AllAddpageState extends State<AllAddpage> {
                                             itemBuilder: (_) =>
                                                 <PopupMenuItem<String>>[
                                                   PopupMenuItem<String>(
-                                                      child: Container(
-                                                          width: 10.w,
-                                                          child: GestureDetector(
-                                                            onTap: () {
-                                                              Navigator.of(context).push(
-                                                                MaterialPageRoute(builder: (context) =>editshippingadress(
-                                                                  addid: alluseraddmodal?.allShippingAddress?[index].id,
-                                                                ) ,)
-                                                              );
-                                                              // Navigator.of(
-                                                              //         context)
-                                                              //     .pop();
-                                                              // Navigator.of(context).push(
-                                                              //         MaterialPageRoute(
-                                                              //             builder: (context) =>
-                                                              //                 editshippingadress(
-                                                              //                   addid: alluseraddmodal?.allShippingAddress?[index].id,
-                                                              //                 )));
-                                                            },
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          Navigator.of(context).push(
+                                                              MaterialPageRoute(builder: (context) =>editshippingadress(
+                                                                addid: alluseraddmodal?.allShippingAddress?[index].id,
+                                                              ) ,)
+                                                          );
+                                                          // Navigator.of(
+                                                          //         context)
+                                                          //     .pop();
+                                                          // Navigator.of(context).push(
+                                                          //         MaterialPageRoute(
+                                                          //             builder: (context) =>
+                                                          //                 editshippingadress(
+                                                          //                   addid: alluseraddmodal?.allShippingAddress?[index].id,
+                                                          //                 )));
+                                                        },
+                                                        child: Container(
+                                                            width: 10.w,
                                                             child: Text(
                                                               "Edit",
                                                               style: TextStyle(
@@ -327,24 +327,24 @@ class _AllAddpageState extends State<AllAddpage> {
                                                                 fontFamily:
                                                                     'task',
                                                               ),
-                                                            ),
-                                                          )),
+                                                            )),
+                                                      ),
                                                       value: 'report'),
                                                   PopupMenuItem<String>(
-                                                      child: Container(
-                                                          width: 14.w,
-                                                          child: GestureDetector(
-                                                            onTap: () {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                              removeadressap(
-                                                                  (alluseraddmodal
-                                                                          ?.allShippingAddress?[
-                                                                              index]
-                                                                          .id)
-                                                                      .toString());
-                                                            },
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          Navigator.of(
+                                                              context)
+                                                              .pop();
+                                                          removeadressap(
+                                                              (alluseraddmodal
+                                                                  ?.allShippingAddress?[
+                                                              index]
+                                                                  .id)
+                                                                  .toString());
+                                                        },
+                                                        child: Container(
+                                                            width: 14.w,
                                                             child: Text(
                                                               "Delete",
                                                               style: TextStyle(
@@ -354,8 +354,8 @@ class _AllAddpageState extends State<AllAddpage> {
                                                                 fontFamily:
                                                                     'task',
                                                               ),
-                                                            ),
-                                                          )),
+                                                            )),
+                                                      ),
                                                       value: 'report'),
                                                 ],
                                             onSelected: (index) async {
