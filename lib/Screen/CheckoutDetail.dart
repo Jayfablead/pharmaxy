@@ -37,6 +37,7 @@ class CheckoutDetail extends StatefulWidget {
   String? addid;
   String? page;
 
+
   String? name;
   String? cvv;
   String? em;
@@ -54,7 +55,8 @@ class CheckoutDetail extends StatefulWidget {
       this.em,
       this.ey,
       this.cn,
-      required this.addid});
+      required this.addid,
+      });
 
   @override
   State<CheckoutDetail> createState() => _CheckoutDetailState();
@@ -94,8 +96,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    setState(() {
+      isLoading = true;
+    });
     getDeviceInfoandStore();
-    checkoutap();
+
     void _handlePaymentSuccess(PaymentSuccessResponse response) {
       Fluttertoast.showToast(
           msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
@@ -136,6 +141,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     print('Address : ${widget.address}');
     Paymethod();
     userselectaddap();
+    checkoutap();
   }
 
   selectfile() {
@@ -1893,6 +1899,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
   }
 
   checkoutap() {
+   EasyLoading.show();
     final Map<String, String> data = {};
     data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
         ? deviceName.toString()
@@ -1906,6 +1913,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
               ChekOutDetailModal.fromJson(json.decode(response.body));
           if (response.statusCode == 200 &&
               chekoutdetailmodal?.status == "success") {
+            EasyLoading.dismiss();
             print("55555555${data}");
             setState(() {
               isLoading = false;
@@ -2070,17 +2078,17 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
           if (response.statusCode == 200 && paymethodmodal?.status == true) {
             print(paymethodmodal?.data);
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           } else {
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
+          // isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -2100,17 +2108,17 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
           if (response.statusCode == 200 &&
               userselectaddmodal?.status == "success") {
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           } else {
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
+          // isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }

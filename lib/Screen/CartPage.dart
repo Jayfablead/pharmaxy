@@ -167,7 +167,9 @@ class _CartPageState extends State<CartPage> {
   void initState() {
     super.initState();
     setState(() {
-      prefs?.getBool('is_coupon') ?? true && prefs?.getBool('is_coupon') != null?print("aaavi jajo"):cpn = null;
+      prefs?.getBool('is_coupon') ?? true && prefs?.getBool('is_coupon') != null
+          ? print("aaavi jajo")
+          : cpn = null;
     });
     _loadSharedPrefs().then((value) => print('Shp Prefs Initialized'));
     ViewCartApi();
@@ -1548,20 +1550,21 @@ class _CartPageState extends State<CartPage> {
                                                                                           ),
                                                                                         ),
                                                                                       ),
-                                                                                      allcouponmodal?.data?[index].couponDesc == ""?Container():
-                                                                                      SizedBox(
-                                                                                        width: 60.w,
-                                                                                        child: Text(
-                                                                                          // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
-                                                                                          allcouponmodal?.data?[index].couponDesc ?? "",
-                                                                                          style: TextStyle(
-                                                                                            fontSize: 10.5.sp,
-                                                                                            fontWeight: FontWeight.normal,
-                                                                                            fontFamily: "task",
-                                                                                            // color: Colors.white,
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
+                                                                                      allcouponmodal?.data?[index].couponDesc == ""
+                                                                                          ? Container()
+                                                                                          : SizedBox(
+                                                                                              width: 60.w,
+                                                                                              child: Text(
+                                                                                                // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
+                                                                                                allcouponmodal?.data?[index].couponDesc ?? "",
+                                                                                                style: TextStyle(
+                                                                                                  fontSize: 10.5.sp,
+                                                                                                  fontWeight: FontWeight.normal,
+                                                                                                  fontFamily: "task",
+                                                                                                  // color: Colors.white,
+                                                                                                ),
+                                                                                              ),
+                                                                                            ),
                                                                                       SizedBox(height: 1.h),
                                                                                       Row(
                                                                                         children: [
@@ -1935,8 +1938,10 @@ class _CartPageState extends State<CartPage> {
                                                                             setState(() {
                                                                               // wait = false;
                                                                               isLoading = false;
-                                                                              cpupon = false;prefs?.remove('is_coupon');
-                                                                              prefs?.remove('coupon_value');cpn = null;
+                                                                              cpupon = false;
+                                                                              prefs?.remove('is_coupon');
+                                                                              prefs?.remove('coupon_value');
+                                                                              cpn = null;
                                                                             });
                                                                           },
                                                                           () {
@@ -2873,20 +2878,21 @@ class _CartPageState extends State<CartPage> {
                                                                                           ),
                                                                                         ),
                                                                                       ),
-                                                                                      allcouponmodal?.data?[index].couponDesc == ""?Container():
-                                                                                      SizedBox(
-                                                                                        width: 60.w,
-                                                                                        child: Text(
-                                                                                          // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
-                                                                                          allcouponmodal?.data?[index].couponDesc ?? "",
-                                                                                          style: TextStyle(
-                                                                                            fontSize: 10.5.sp,
-                                                                                            fontWeight: FontWeight.normal,
-                                                                                            fontFamily: "task",
-                                                                                            // color: Colors.white,
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
+                                                                                      allcouponmodal?.data?[index].couponDesc == ""
+                                                                                          ? Container()
+                                                                                          : SizedBox(
+                                                                                              width: 60.w,
+                                                                                              child: Text(
+                                                                                                // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
+                                                                                                allcouponmodal?.data?[index].couponDesc ?? "",
+                                                                                                style: TextStyle(
+                                                                                                  fontSize: 10.5.sp,
+                                                                                                  fontWeight: FontWeight.normal,
+                                                                                                  fontFamily: "task",
+                                                                                                  // color: Colors.white,
+                                                                                                ),
+                                                                                              ),
+                                                                                            ),
                                                                                       SizedBox(height: 1.h),
                                                                                       Row(
                                                                                         children: [
@@ -3250,7 +3256,7 @@ class _CartPageState extends State<CartPage> {
                                                       couponmodel
                                                               ?.discountApplied ==
                                                           ""
-                                                   ? Container()
+                                                  ? Container()
                                                   : Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -3305,8 +3311,10 @@ class _CartPageState extends State<CartPage> {
                                                                             setState(() {
                                                                               // wait = false;
                                                                               isLoading = false;
-                                                                              cpupon = false; prefs?.remove('is_coupon');
-                                                                              prefs?.remove('coupon_value');cpn = null;
+                                                                              cpupon = false;
+                                                                              prefs?.remove('is_coupon');
+                                                                              prefs?.remove('coupon_value');
+                                                                              cpn = null;
                                                                             });
                                                                           },
                                                                           () {
@@ -4201,12 +4209,12 @@ class _CartPageState extends State<CartPage> {
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().chekoutdetailsendapi(data).then((response) async {
-          EasyLoading.showSuccess("success");
           checkOutsendModel =
               CheckOutSendModel.fromJson(json.decode(response.body));
           print(checkOutsendModel?.status);
           if (response.statusCode == 200 &&
               checkOutsendModel?.status == "success") {
+            EasyLoading.dismiss();
             print("haryo aavi ajaje${cpn}");
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
@@ -4259,7 +4267,6 @@ class _CartPageState extends State<CartPage> {
           print(checkOutsendModel?.status);
           if (response.statusCode == 200 &&
               checkOutsendModel?.status == "success") {
-
             EasyLoading.showSuccess("success");
             print("data on${data}");
             // applycoupon();
@@ -4285,7 +4292,6 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
-
 
   Future<void> getDeviceInfoandStore() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
@@ -4355,7 +4361,6 @@ class _CartPageState extends State<CartPage> {
           if (response.statusCode == 200 &&
               removecouponModel?.status == "success") {
             IsSuccess();
-
           } else {
             IsFail();
           }

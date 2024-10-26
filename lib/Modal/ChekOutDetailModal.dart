@@ -101,6 +101,7 @@ class CheckoutData {
   String? createdAt;
   String? updatedAt;
   String? shippingTax;
+  String? totalwithoutshipping;
   String? total;
 
   CheckoutData(
@@ -116,6 +117,7 @@ class CheckoutData {
         this.createdAt,
         this.updatedAt,
         this.shippingTax,
+        this.totalwithoutshipping,
         this.total});
 
   CheckoutData.fromJson(Map<String, dynamic> json) {
@@ -131,6 +133,7 @@ class CheckoutData {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     shippingTax = json['shipping_tax'];
+    totalwithoutshipping = json['totalwithoutshipping'];
     total = json['total'];
   }
 
@@ -148,6 +151,7 @@ class CheckoutData {
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['shipping_tax'] = this.shippingTax;
+    data['totalwithoutshipping'] = this.totalwithoutshipping;
     data['total'] = this.total;
     return data;
   }
