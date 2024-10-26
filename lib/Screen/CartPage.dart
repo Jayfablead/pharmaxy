@@ -915,9 +915,7 @@ class _CartPageState extends State<CartPage> {
                                     child: Column(
                                       children: [
                                         Container(
-                                          height: Platform.isAndroid
-                                              ? 36.5.h
-                                              : 36.h,
+                                          height: 34.5.h,
                                           child: ListView.builder(
                                             padding: EdgeInsets.zero,
                                             itemCount: viewwithoutuserModel
@@ -2104,28 +2102,7 @@ class _CartPageState extends State<CartPage> {
                                             ),
                                             GestureDetector(
                                               onTap: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder:
-                                                            (context) =>
-                                                                CheckoutDetail(
-                                                                  addid: alluseraddmodal
-                                                                      ?.allShippingAddress?[
-                                                                          0]
-                                                                      .id,
-                                                                  firstname: alluseraddmodal
-                                                                      ?.allShippingAddress?[
-                                                                          0]
-                                                                      .firstName,
-                                                                  lastname: alluseraddmodal
-                                                                      ?.allShippingAddress?[
-                                                                          0]
-                                                                      .lastName,
-                                                                  address: alluseraddmodal
-                                                                      ?.allShippingAddress?[
-                                                                          0]
-                                                                      .address,
-                                                                )));
+
                                                 chekoutsenddetail1();
                                                 print(
                                                     "Wow${alluseraddmodal?.allShippingAddress?[0].firstName}");
@@ -4267,8 +4244,30 @@ class _CartPageState extends State<CartPage> {
           print(checkOutsendModel?.status);
           if (response.statusCode == 200 &&
               checkOutsendModel?.status == "success") {
-            EasyLoading.showSuccess("success");
+            EasyLoading.dismiss();
             print("data on${data}");
+            Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder:
+                        (context) =>
+                        CheckoutDetail(
+                          addid: alluseraddmodal
+                              ?.allShippingAddress?[
+                          0]
+                              .id,
+                          firstname: alluseraddmodal
+                              ?.allShippingAddress?[
+                          0]
+                              .firstName,
+                          lastname: alluseraddmodal
+                              ?.allShippingAddress?[
+                          0]
+                              .lastName,
+                          address: alluseraddmodal
+                              ?.allShippingAddress?[
+                          0]
+                              .address,
+                        )));
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
             _searchController.clear();

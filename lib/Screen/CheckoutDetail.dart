@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -8,7 +7,6 @@ import 'package:ecommerce/Modal/CheckOutModal.dart';
 import 'package:ecommerce/Modal/ChekOutDetailModal.dart';
 import 'package:ecommerce/Modal/PaymentMthodsModal.dart';
 import 'package:ecommerce/Modal/PaypalModal.dart';
-import 'package:ecommerce/Modal/PrescriptionModel.dart';
 import 'package:ecommerce/Modal/StripeModal.dart';
 import 'package:ecommerce/Modal/UserSelectAddModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
@@ -37,26 +35,25 @@ class CheckoutDetail extends StatefulWidget {
   String? addid;
   String? page;
 
-
   String? name;
   String? cvv;
   String? em;
   String? ey;
   String? cn;
 
-  CheckoutDetail(
-      {super.key,
-      this.page,
-      this.address,
-      this.firstname,
-      this.lastname,
-      this.name,
-      this.cvv,
-      this.em,
-      this.ey,
-      this.cn,
-      required this.addid,
-      });
+  CheckoutDetail({
+    super.key,
+    this.page,
+    this.address,
+    this.firstname,
+    this.lastname,
+    this.name,
+    this.cvv,
+    this.em,
+    this.ey,
+    this.cn,
+    required this.addid,
+  });
 
   @override
   State<CheckoutDetail> createState() => _CheckoutDetailState();
@@ -230,9 +227,10 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
 
   ImagePicker _picker = ImagePicker();
   File? _pickedFile = null;
+
   void removeImage() {
     setState(() {
-      _pickedFile = null;  // Clear the selected file
+      _pickedFile = null; // Clear the selected file
     });
   }
 
@@ -545,39 +543,50 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                                   height: 0.h,
                                                 )
                                               : Stack(
-                                            children: [
-                                              Container(
-                                                width: 7.h,
-                                                height: 7.h,
-                                                child: _pickedFile == null
-                                                    ? Container()
-                                                    : Image.file(
-                                                  _pickedFile!,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                right: 0,
-                                                  top: 1,
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      removeImage();
-                                                    },
-                                                    child: Container(
-                                                        height: 15,
-                                                        width: 15,
-                                                        alignment: Alignment.center,
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(2),
-                                                          color: Colors.blue.shade200,
-                                                        ),
-                                                        child: Icon(CupertinoIcons.delete,color: Colors.red,size: 13,)
+                                                  children: [
+                                                    Container(
+                                                      width: 7.h,
+                                                      height: 7.h,
+                                                      child: _pickedFile == null
+                                                          ? Container()
+                                                          : Image.file(
+                                                              _pickedFile!,
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                     ),
-                                                  )
-                                              )
-                                            ],
-
-                                              ),
+                                                    Positioned(
+                                                        right: 0,
+                                                        top: 1,
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            removeImage();
+                                                          },
+                                                          child: Container(
+                                                              height: 15,
+                                                              width: 15,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            2),
+                                                                color: Colors
+                                                                    .blue
+                                                                    .shade200,
+                                                              ),
+                                                              child: Icon(
+                                                                CupertinoIcons
+                                                                    .delete,
+                                                                color:
+                                                                    Colors.red,
+                                                                size: 13,
+                                                              )),
+                                                        ))
+                                                  ],
+                                                ),
                                           SizedBox(
                                             height: 1.h,
                                           ),
@@ -1267,7 +1276,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                               ),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 3.w, vertical: 2.h),
+                                    horizontal: 3.w, vertical: 1.5.h),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -1361,96 +1370,70 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Shipping Fees : ',
-                                          style: TextStyle(
-                                            fontFamily: 'task',
-                                            fontSize: 12.sp,
-                                            color: Colors.grey.shade800,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          chekoutdetailmodal?.checkoutData?[0]
-                                                          .shippingTax == null ||
-                                                  chekoutdetailmodal
-                                                          ?.checkoutData?[0]
-                                                          .shippingTax == ""|| chekoutdetailmodal
-                                              ?.checkoutData?[0]
-                                              .shippingTax =="0.00"
-                                              ? "Free"
-                                              : '₹' +
-                                                  (chekoutdetailmodal
-                                                          ?.checkoutData?[0]
-                                                          .shippingTax)
-                                                      .toString(),
-                                          style: TextStyle(
-                                            fontFamily: 'task',
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 1.h,
-                                    ),
+
                                     chekoutdetailmodal?.checkoutData?[0]
-                                        .discount ==
-                                        null ||chekoutdetailmodal?.checkoutData?[0]
-                                        .discount ==
-                                        0 ||chekoutdetailmodal?.checkoutData?[0]
-                                        .discount ==
-                                        "" ?Container(): Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Discount Applied: ',
-                                          style: TextStyle(
-                                            fontFamily: 'task',
-                                            fontSize: 12.sp,
-                                            color: Colors.grey.shade800,
-                                            fontWeight: FontWeight.bold,
+                                                    .discount ==
+                                                null ||
+                                            chekoutdetailmodal?.checkoutData?[0]
+                                                    .discount ==
+                                                0 ||
+                                            chekoutdetailmodal?.checkoutData?[0]
+                                                    .discount ==
+                                                ""
+                                        ? Container()
+                                        : Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Discount Applied: ',
+                                                style: TextStyle(
+                                                  fontFamily: 'task',
+                                                  fontSize: 12.sp,
+                                                  color: Colors.grey.shade800,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Text(
+                                                chekoutdetailmodal
+                                                                ?.checkoutData?[
+                                                                    0]
+                                                                .discount ==
+                                                            null ||
+                                                        chekoutdetailmodal
+                                                                ?.checkoutData?[
+                                                                    0]
+                                                                .discount ==
+                                                            ""
+                                                    ? "\₹ 0"
+                                                    : '₹' +
+                                                        (chekoutdetailmodal
+                                                                ?.checkoutData?[
+                                                                    0]
+                                                                .discount)
+                                                            .toString(),
+                                                style: TextStyle(
+                                                  fontFamily: 'task',
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        Text(
-                                          chekoutdetailmodal?.checkoutData?[0]
-                                                          .discount ==
-                                                      null ||
-                                                  chekoutdetailmodal
-                                                          ?.checkoutData?[0]
-                                                          .discount ==
-                                                      ""
-                                              ? "\₹ 0"
-                                              : '₹' +
-                                                  (chekoutdetailmodal
-                                                          ?.checkoutData?[0]
-                                                          .discount)
-                                                      .toString(),
-                                          style: TextStyle(
-                                            fontFamily: 'task',
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
                                     chekoutdetailmodal?.checkoutData?[0]
-                                        .discount ==
-                                        null ||chekoutdetailmodal?.checkoutData?[0]
-                                        .discount ==
-                                        0 ||chekoutdetailmodal?.checkoutData?[0]
-                                        .discount ==
-                                        "" ?Container(): SizedBox(
-                                      height: 1.h,
-                                    ),
+                                                    .discount ==
+                                                null ||
+                                            chekoutdetailmodal?.checkoutData?[0]
+                                                    .discount ==
+                                                0 ||
+                                            chekoutdetailmodal?.checkoutData?[0]
+                                                    .discount ==
+                                                ""
+                                        ? Container()
+                                        : SizedBox(
+                                            height: 1.h,
+                                          ),
                                     usermodal?.userId == "" ||
                                             usermodal?.userId == null
                                         ? Container()
@@ -1495,6 +1478,103 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                             ],
                                           ),
                                   ],
+                                ),
+                              ),
+                            ),SizedBox(
+                              height: 1.h,
+                            ),
+                            Container(
+                              width: 95.w,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Color(0xffffffff),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 3.w, vertical: 1.5.h),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                 children: [
+                                   Row(
+                                   mainAxisSize: MainAxisSize.max,
+                                   mainAxisAlignment:
+                                   MainAxisAlignment.spaceBetween,
+                                   children: [
+                                     Text(
+                                       'Order Sub Total : ',
+                                       style: TextStyle(
+                                         fontFamily: 'task',
+                                         fontSize: 12.sp,
+                                         color: Colors.grey.shade800,
+                                         fontWeight: FontWeight.bold,
+                                       ),
+                                     ),
+                                     Text(
+                                       chekoutdetailmodal?.checkoutData?[0]
+                                           .totalwithoutshipping ==
+                                           null ||
+                                           chekoutdetailmodal
+                                               ?.checkoutData?[0]
+                                               .totalwithoutshipping ==
+                                               ""
+                                           ? "N/A"
+                                           : '₹' +
+                                           (chekoutdetailmodal
+                                               ?.checkoutData?[0]
+                                               .totalwithoutshipping)
+                                               .toString(),
+                                       style: TextStyle(
+                                         fontFamily: 'task',
+                                         fontSize: 12.sp,
+                                         fontWeight: FontWeight.normal,
+                                       ),
+                                     ),
+                                   ],
+                                 ),
+                                   SizedBox(
+                                     height: 1.h,
+                                   ),  Row(
+                                     mainAxisSize: MainAxisSize.max,
+                                     mainAxisAlignment:
+                                     MainAxisAlignment.spaceBetween,
+                                     children: [
+                                       Text(
+                                         'Shipping Fees : ',
+                                         style: TextStyle(
+                                           fontFamily: 'task',
+                                           fontSize: 12.sp,
+                                           color: Colors.grey.shade800,
+                                           fontWeight: FontWeight.bold,
+                                         ),
+                                       ),
+                                       Text(
+                                         chekoutdetailmodal?.checkoutData?[0]
+                                             .shippingTax ==
+                                             null ||
+                                             chekoutdetailmodal
+                                                 ?.checkoutData?[0]
+                                                 .shippingTax ==
+                                                 "" ||
+                                             chekoutdetailmodal
+                                                 ?.checkoutData?[0]
+                                                 .shippingTax ==
+                                                 "0.00"
+                                             ? "Free"
+                                             : '₹' +
+                                             (chekoutdetailmodal
+                                                 ?.checkoutData?[0]
+                                                 .shippingTax)
+                                                 .toString(),
+                                         style: TextStyle(
+                                           fontFamily: 'task',
+                                           fontSize: 12.sp,
+                                           fontWeight: FontWeight.normal,
+                                         ),
+                                       ),
+                                     ],
+                                   ),
+                                 ],
                                 ),
                               ),
                             ),
@@ -1568,38 +1648,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                       SizedBox(
                         height: 3.h,
                       ),
-                      _pickedFile == '' || _pickedFile== null && Options=="option1"?GestureDetector(
-                        onTap: () {
-                          buildErrorDialog(
-                              context, '', "Please Upload Prescription");
-                        },
-                        child: Container(
-                            margin:
-                            EdgeInsets.only(right: 7.w, left: 7.w),
-                            alignment: Alignment.center,
-                            height: 6.h,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff0061b0)),
-                            child: Text(
-                              "Pay Now",
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "task"),
-                            )),
-                      ):
-                      userselectaddmodal?.selectShippingAddress?.address == '' ||
-                              userselectaddmodal
-                                      ?.selectShippingAddress?.address ==
-                                  null ||
-                              widget.address == '' ||
-                              widget.address == null && Options == "option2"
+                      _pickedFile == '' ||
+                              _pickedFile == null && Options == "option1"
                           ? GestureDetector(
                               onTap: () {
                                 buildErrorDialog(
-                                    context, '', "Please use valid Address");
+                                    context, '', "Please Upload Prescription");
                               },
                               child: Container(
                                   margin:
@@ -1618,278 +1672,302 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                                         fontFamily: "task"),
                                   )),
                             )
-                          : GestureDetector(
-                              onTap: selectedpayment == 4
-                                  ? () {
-                                      MakePayment(name, name1);
-                                    }
-                                  : selectedpayment == 3
+                          : userselectaddmodal
+                                          ?.selectShippingAddress?.address ==
+                                      '' ||
+                                  userselectaddmodal
+                                          ?.selectShippingAddress?.address ==
+                                      null ||
+                                  widget.address == '' ||
+                                  widget.address == null && Options == "option2"
+                              ? GestureDetector(
+                                  onTap: () {
+                                    buildErrorDialog(context, '',
+                                        "Please use valid Address");
+                                  },
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          right: 7.w, left: 7.w),
+                                      alignment: Alignment.center,
+                                      height: 6.h,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Color(0xff0061b0)),
+                                      child: Text(
+                                        "Pay Now",
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: "task"),
+                                      )),
+                                )
+                              : GestureDetector(
+                                  onTap: selectedpayment == 4
                                       ? () {
-                                          widget.name == '' ||
-                                                  widget.name == null &&
-                                                      widget.cvv == '' ||
-                                                  widget.cvv == null &&
-                                                      widget.em == '' ||
-                                                  widget.em == null &&
-                                                      widget.ey == '' ||
-                                                  widget.ey == null &&
-                                                      widget.cn == '' ||
-                                                  widget.cn == null
-                                              ? Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        AddCardPage(
-                                                            addid: widget.addid,
-                                                            firstname: widget.page == "1"
-                                                                ? (userselectaddmodal?.selectShippingAddress?.firstName)
-                                                                    .toString()
-                                                                : widget.firstname
-                                                                    .toString(),
-                                                            address: widget.page ==
-                                                                    "1"
-                                                                ? userselectaddmodal?.selectShippingAddress?.address == '' ||
-                                                                        userselectaddmodal?.selectShippingAddress?.address ==
-                                                                            null
-                                                                    ? 'N/A'
-                                                                    : (userselectaddmodal?.selectShippingAddress?.address)
-                                                                        .toString()
-                                                                : widget.address == '' ||
-                                                                        widget.address ==
-                                                                            null
-                                                                    ? 'N/A'
-                                                                    : widget.address
-                                                                        .toString(),
-                                                            lastname: widget.page == "1"
-                                                                ? (userselectaddmodal
-                                                                        ?.selectShippingAddress
-                                                                        ?.lastName)
-                                                                    .toString()
-                                                                : widget.lastname.toString()),
-                                                  ))
-                                              : checkoutStipeap();
+                                          MakePayment(name, name1);
                                         }
-                                      : selectedpayment == 2
+                                      : selectedpayment == 3
                                           ? () {
-                                              checkoutcodap();
-                                            // if(_pickedFile == null){
-                                            //  buildErrorDialog(context, '', "Please Upload Prescription");
-                                            // }
-                                            // else{
-                                            //   checkoutcodap();
-                                            // }
-                                            // if(Options == null){
-                                            //   buildErrorDialog(context, '', "Please Select Upload Prescription");
-                                            //
-                                            //   }
-                                            // else{
-                                            //
-                                            // }
-
-
-                                            }
-                                          : selectedpayment == 1
-                                              ? () {
-                                                  double total = double.parse(
-                                                      (chekoutdetailmodal
-                                                              ?.checkoutData?[0]
-                                                              .finalTotalWithTax)
-                                                          .toString());
-                                                  String formattedNumber =
-                                                      total.toStringAsFixed(2);
-                                                  String add = widget.page ==
-                                                          "1"
-                                                      ? (userselectaddmodal
-                                                              ?.selectShippingAddress
-                                                              ?.address)
-                                                          .toString()
-                                                      : widget.address
-                                                          .toString();
-                                                  String name = widget.page ==
-                                                          "1"
-                                                      ? (userselectaddmodal
-                                                              ?.selectShippingAddress
-                                                              ?.firstName)
-                                                          .toString()
-                                                      : widget.firstname
-                                                          .toString();
-
-                                                  print(total);
-                                                  print(formattedNumber);
-                                                  Navigator.push(
+                                              widget.name == '' ||
+                                                      widget.name == null &&
+                                                          widget.cvv == '' ||
+                                                      widget.cvv == null &&
+                                                          widget.em == '' ||
+                                                      widget.em == null &&
+                                                          widget.ey == '' ||
+                                                      widget.ey == null &&
+                                                          widget.cn == '' ||
+                                                      widget.cn == null
+                                                  ? Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            UsePaypal(
-                                                                sandboxMode: paymethodmodal
+                                                            AddCardPage(
+                                                                addid: widget
+                                                                    .addid,
+                                                                firstname: widget.page == "1"
+                                                                    ? (userselectaddmodal?.selectShippingAddress?.firstName)
+                                                                        .toString()
+                                                                    : widget.firstname
+                                                                        .toString(),
+                                                                address: widget.page ==
+                                                                        "1"
+                                                                    ? userselectaddmodal?.selectShippingAddress?.address == '' ||
+                                                                            userselectaddmodal?.selectShippingAddress?.address ==
+                                                                                null
+                                                                        ? 'N/A'
+                                                                        : (userselectaddmodal?.selectShippingAddress?.address)
+                                                                            .toString()
+                                                                    : widget.address == '' ||
+                                                                            widget.address ==
+                                                                                null
+                                                                        ? 'N/A'
+                                                                        : widget.address
+                                                                            .toString(),
+                                                                lastname: widget.page == "1"
+                                                                    ? (userselectaddmodal?.selectShippingAddress?.lastName)
+                                                                        .toString()
+                                                                    : widget.lastname.toString()),
+                                                      ))
+                                                  : checkoutStipeap();
+                                            }
+                                          : selectedpayment == 2
+                                              ? () {
+                                                  checkoutcodap();
+                                                  // if(_pickedFile == null){
+                                                  //  buildErrorDialog(context, '', "Please Upload Prescription");
+                                                  // }
+                                                  // else{
+                                                  //   checkoutcodap();
+                                                  // }
+                                                  // if(Options == null){
+                                                  //   buildErrorDialog(context, '', "Please Select Upload Prescription");
+                                                  //
+                                                  //   }
+                                                  // else{
+                                                  //
+                                                  // }
+                                                }
+                                              : selectedpayment == 1
+                                                  ? () {
+                                                      double total = double.parse(
+                                                          (chekoutdetailmodal
+                                                                  ?.checkoutData?[
+                                                                      0]
+                                                                  .finalTotalWithTax)
+                                                              .toString());
+                                                      String formattedNumber =
+                                                          total.toStringAsFixed(
+                                                              2);
+                                                      String add = widget
+                                                                  .page ==
+                                                              "1"
+                                                          ? (userselectaddmodal
+                                                                  ?.selectShippingAddress
+                                                                  ?.address)
+                                                              .toString()
+                                                          : widget.address
+                                                              .toString();
+                                                      String name = widget
+                                                                  .page ==
+                                                              "1"
+                                                          ? (userselectaddmodal
+                                                                  ?.selectShippingAddress
+                                                                  ?.firstName)
+                                                              .toString()
+                                                          : widget.firstname
+                                                              .toString();
+
+                                                      print(total);
+                                                      print(formattedNumber);
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                UsePaypal(
+                                                                    sandboxMode: paymethodmodal?.data?.paypal?.liveSts ==
+                                                                            "1"
+                                                                        ? false
+                                                                        : true,
+                                                                    clientId: paymethodmodal
                                                                             ?.data
                                                                             ?.paypal
-                                                                            ?.liveSts ==
-                                                                        "1"
-                                                                    ? false
-                                                                    : true,
-                                                                clientId: paymethodmodal
-                                                                        ?.data
-                                                                        ?.paypal
-                                                                        ?.clientID ??
-                                                                    '',
-                                                                secretKey: paymethodmodal
-                                                                        ?.data
-                                                                        ?.paypal
-                                                                        ?.secretKey ??
-                                                                    '',
-                                                                returnURL:
-                                                                    "https://samplesite.com/return",
-                                                                cancelURL:
-                                                                    "https://samplesite.com/cancel",
-                                                                transactions: [
-                                                                  {
-                                                                    "amount": {
-                                                                      "total":
-                                                                          formattedNumber,
-                                                                      "currency":
-                                                                          "USD",
-                                                                      "details":
-                                                                          {
-                                                                        "subtotal":
-                                                                            formattedNumber,
-                                                                        "shipping":
-                                                                            '0',
-                                                                        "shipping_discount":
-                                                                            0
+                                                                            ?.clientID ??
+                                                                        '',
+                                                                    secretKey: paymethodmodal
+                                                                            ?.data
+                                                                            ?.paypal
+                                                                            ?.secretKey ??
+                                                                        '',
+                                                                    returnURL:
+                                                                        "https://samplesite.com/return",
+                                                                    cancelURL:
+                                                                        "https://samplesite.com/cancel",
+                                                                    transactions: [
+                                                                      {
+                                                                        "amount":
+                                                                            {
+                                                                          "total":
+                                                                              formattedNumber,
+                                                                          "currency":
+                                                                              "USD",
+                                                                          "details":
+                                                                              {
+                                                                            "subtotal":
+                                                                                formattedNumber,
+                                                                            "shipping":
+                                                                                '0',
+                                                                            "shipping_discount":
+                                                                                0
+                                                                          }
+                                                                        },
+                                                                        "description":
+                                                                            "The payment transaction description.",
+                                                                        "item_list":
+                                                                            {
+                                                                          "items":
+                                                                              [],
+                                                                          "shipping_address":
+                                                                              {
+                                                                            "recipient_name":
+                                                                                name,
+                                                                            "line1":
+                                                                                add,
+                                                                            "line2":
+                                                                                "",
+                                                                            "city":
+                                                                                "Austin",
+                                                                            "country_code":
+                                                                                "US",
+                                                                            "postal_code":
+                                                                                "73301",
+                                                                            "phone":
+                                                                                "+00000000",
+                                                                            "state":
+                                                                                "Texas"
+                                                                          },
+                                                                        }
                                                                       }
+                                                                    ],
+                                                                    note:
+                                                                        "Contact us for any questions on your order.",
+                                                                    onSuccess: (Map
+                                                                        params) async {
+                                                                      EasyLoading.show(
+                                                                          status: 'Processing Your Payment ..',
+                                                                          indicator: CircularProgressIndicator(
+                                                                            backgroundColor:
+                                                                                Color(0xfff7941d),
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ));
+                                                                      print(
+                                                                          "onSuccess:- Uid: ${usermodal?.userId} , Add Id: ${widget.addid} , PaymenId: ${params['paymentId']} , type : paypal");
+                                                                      checkoutpaypalap(
+                                                                          params[
+                                                                              'paymentId']);
                                                                     },
-                                                                    "description":
-                                                                        "The payment transaction description.",
-                                                                    "item_list":
-                                                                        {
-                                                                      "items":
-                                                                          [],
-                                                                      "shipping_address":
-                                                                          {
-                                                                        "recipient_name":
-                                                                            name,
-                                                                        "line1":
-                                                                            add,
-                                                                        "line2":
-                                                                            "",
-                                                                        "city":
-                                                                            "Austin",
-                                                                        "country_code":
-                                                                            "US",
-                                                                        "postal_code":
-                                                                            "73301",
-                                                                        "phone":
-                                                                            "+00000000",
-                                                                        "state":
-                                                                            "Texas"
-                                                                      },
-                                                                    }
-                                                                  }
-                                                                ],
-                                                                note:
-                                                                    "Contact us for any questions on your order.",
-                                                                onSuccess: (Map
-                                                                    params) async {
-                                                                  EasyLoading
-                                                                      .show(
-                                                                          status:
-                                                                              'Processing Your Payment ..',
-                                                                          indicator:
-                                                                              CircularProgressIndicator(
+                                                                    onError:
+                                                                        (error) {
+                                                                      EasyLoading.show(
+                                                                          status: 'Processing Your Payment ..',
+                                                                          indicator: CircularProgressIndicator(
                                                                             backgroundColor:
                                                                                 Color(0xfff7941d),
                                                                             color:
                                                                                 Colors.white,
                                                                           ));
-                                                                  print(
-                                                                      "onSuccess:- Uid: ${usermodal?.userId} , Add Id: ${widget.addid} , PaymenId: ${params['paymentId']} , type : paypal");
-                                                                  checkoutpaypalap(
-                                                                      params[
-                                                                          'paymentId']);
-                                                                },
-                                                                onError:
-                                                                    (error) {
-                                                                  EasyLoading
-                                                                      .show(
-                                                                          status:
-                                                                              'Processing Your Payment ..',
-                                                                          indicator:
-                                                                              CircularProgressIndicator(
-                                                                            backgroundColor:
-                                                                                Color(0xfff7941d),
-                                                                            color:
-                                                                                Colors.white,
-                                                                          ));
-                                                                  checkoutpaypalap(
-                                                                      '');
-                                                                  print(
-                                                                      "onError: $error");
-                                                                  EasyLoading
-                                                                      .showError(
-                                                                    "Payment Error",
-                                                                  );
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                },
-                                                                onCancel:
-                                                                    (params) {
-                                                                  EasyLoading
-                                                                      .show(
-                                                                          status:
-                                                                              'Processing Your Payment ..',
-                                                                          indicator:
-                                                                              CircularProgressIndicator(
+                                                                      checkoutpaypalap(
+                                                                          '');
+                                                                      print(
+                                                                          "onError: $error");
+                                                                      EasyLoading
+                                                                          .showError(
+                                                                        "Payment Error",
+                                                                      );
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    },
+                                                                    onCancel:
+                                                                        (params) {
+                                                                      EasyLoading.show(
+                                                                          status: 'Processing Your Payment ..',
+                                                                          indicator: CircularProgressIndicator(
                                                                             backgroundColor:
                                                                                 Color(0xfff7941d),
                                                                             color:
                                                                                 Colors.white,
                                                                           ));
 
-                                                                  print(
-                                                                      'cancelled: $params');
-                                                                  EasyLoading
-                                                                      .showError(
-                                                                    "Payment Cancelled",
-                                                                  );
-                                                                }),
-                                                      ));
-                                                }
-                                              : paymethodmodal?.data?.cod
-                                                              ?.status ==
-                                                          false &&
-                                                      paymethodmodal
-                                                              ?.data
-                                                              ?.paypal
-                                                              ?.status ==
-                                                          false
-                                                  ? () {
-                                                      buildErrorDialog(
-                                                          context,
-                                                          '',
-                                                          "No payment method available at this time");
+                                                                      print(
+                                                                          'cancelled: $params');
+                                                                      EasyLoading
+                                                                          .showError(
+                                                                        "Payment Cancelled",
+                                                                      );
+                                                                    }),
+                                                          ));
                                                     }
-                                                  : () {
-                                                      buildErrorDialog(context, '', "Please choose your payment method");
-                                                    },
-
-                                child: Container(
-                                  margin:
-                                      EdgeInsets.only(right: 7.w, left: 7.w),
-                                  alignment: Alignment.center,
-                                  height: 6.h,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Color(0xff0061b0)),
-                                  child: Text(
-                                    "Pay Now",
-                                    style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "task"),
-                                  )),
-                            ),
+                                                  : paymethodmodal?.data?.cod
+                                                                  ?.status ==
+                                                              false &&
+                                                          paymethodmodal
+                                                                  ?.data
+                                                                  ?.paypal
+                                                                  ?.status ==
+                                                              false
+                                                      ? () {
+                                                          buildErrorDialog(
+                                                              context,
+                                                              '',
+                                                              "No payment method available at this time");
+                                                        }
+                                                      : () {
+                                                          buildErrorDialog(
+                                                              context,
+                                                              '',
+                                                              "Please choose your payment method");
+                                                        },
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          right: 7.w, left: 7.w),
+                                      alignment: Alignment.center,
+                                      height: 6.h,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Color(0xff0061b0)),
+                                      child: Text(
+                                        "Pay Now",
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: "task"),
+                                      )),
+                                ),
                     ],
                   ),
                 ),
@@ -1899,7 +1977,6 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
   }
 
   checkoutap() {
-   EasyLoading.show();
     final Map<String, String> data = {};
     data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
         ? deviceName.toString()
@@ -1913,7 +1990,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
               ChekOutDetailModal.fromJson(json.decode(response.body));
           if (response.statusCode == 200 &&
               chekoutdetailmodal?.status == "success") {
-            EasyLoading.dismiss();
+            ;
             print("55555555${data}");
             setState(() {
               isLoading = false;
@@ -1942,7 +2019,11 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
         : usermodal?.userId ?? "";
     data['payment'] = 'Pay after bill generation';
     data['shipping_address_id'] = widget.addid.toString();
-    data['image'] = Options == 'option2' ? '' : _pickedFile == null ? '' : _pickedFile?.path ?? '';
+    data['image'] = Options == 'option2'
+        ? ''
+        : _pickedFile == null
+            ? ''
+            : _pickedFile?.path ?? '';
     data['not_prescription'] = 'false';
     print(data);
     checkInternet().then((internet) async {
