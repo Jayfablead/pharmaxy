@@ -3449,28 +3449,7 @@ class _CartPageState extends State<CartPage> {
                                             ),
                                             GestureDetector(
                                               onTap: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder:
-                                                            (context) =>
-                                                                CheckoutDetail(
-                                                                  addid: alluseraddmodal
-                                                                      ?.allShippingAddress?[
-                                                                          0]
-                                                                      .id,
-                                                                  firstname: alluseraddmodal
-                                                                      ?.allShippingAddress?[
-                                                                          0]
-                                                                      .firstName,
-                                                                  lastname: alluseraddmodal
-                                                                      ?.allShippingAddress?[
-                                                                          0]
-                                                                      .lastName,
-                                                                  address: alluseraddmodal
-                                                                      ?.allShippingAddress?[
-                                                                          0]
-                                                                      .address,
-                                                                )));
+
                                                 chekoutsenddetail();
                                               },
                                               child: Container(
@@ -4193,6 +4172,28 @@ class _CartPageState extends State<CartPage> {
               checkOutsendModel?.status == "success") {
             EasyLoading.dismiss();
             print("haryo aavi ajaje${cpn}");
+            Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder:
+                        (context) =>
+                        CheckoutDetail(
+                          addid: alluseraddmodal
+                              ?.allShippingAddress?[
+                          0]
+                              .id,
+                          firstname: alluseraddmodal
+                              ?.allShippingAddress?[
+                          0]
+                              .firstName,
+                          lastname: alluseraddmodal
+                              ?.allShippingAddress?[
+                          0]
+                              .lastName,
+                          address: alluseraddmodal
+                              ?.allShippingAddress?[
+                          0]
+                              .address,
+                        )));
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
             _searchController.clear();
