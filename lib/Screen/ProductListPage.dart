@@ -232,7 +232,7 @@ class _ProductListPageState extends State<ProductListPage> {
         backgroundColor: bgcolor,
         key: _scaffoldKeylist1,
         drawer: drawer1(),
-        bottomNavigationBar: bottombar(),
+        bottomNavigationBar: bottombar(selected: 0,),
         body: isLoading
             ? Container()
             : Padding(

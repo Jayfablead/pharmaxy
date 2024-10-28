@@ -233,7 +233,7 @@ class _ProductList3State extends State<ProductList3> {
         backgroundColor: bgcolor,
         key: _scaffoldKeylist3,
         drawer: drawer1(),
-        bottomNavigationBar: bottombar(),
+        bottomNavigationBar: bottombar(selected: 0,),
         body: isLoading
             ? Container()
             : Padding(

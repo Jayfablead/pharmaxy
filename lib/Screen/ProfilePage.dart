@@ -31,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: bottombar(selected: 5,),
+      bottomNavigationBar: bottombar(selected: 4,),
       body: SingleChildScrollView(
         child: Stack(
           children: [

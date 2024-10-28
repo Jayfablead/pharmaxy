@@ -217,7 +217,7 @@ class _ProductList4State extends State<ProductList4> {
         backgroundColor: bgcolor,
         key: _scaffoldKeylist3,
         drawer: drawer1(),
-        bottomNavigationBar: bottombar(),
+        bottomNavigationBar: bottombar(selected: 3,),
         body: isLoading
             ? Container()
             : Padding(
@@ -2877,11 +2877,11 @@ class _ProductList4State extends State<ProductList4> {
                                                           ],
                                                         );
                                                       },
-                                                      // childCount: 10
-                                                      childCount:
-                                                          allProductserachModel
-                                                              ?.searchResults
-                                                              ?.length,
+                                                      childCount: 10
+                                                      // childCount:
+                                                      //     allProductserachModel
+                                                      //         ?.searchResults
+                                                      //         ?.length,
                                                     ),
                                                   ),
                         SliverToBoxAdapter(
@@ -2912,6 +2912,7 @@ class _ProductList4State extends State<ProductList4> {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
     checkInternet().then((internet) async {
+      print('banga 111');
       if (internet) {
         authprovider().allproductapi(data).then((response) async {
           allproductmodal =
@@ -2920,6 +2921,8 @@ class _ProductList4State extends State<ProductList4> {
           if (response.statusCode == 200 &&
               allproductmodal?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
+            print('banga');
+
             setState(() {
               isLoading = false;
               type1 = "";

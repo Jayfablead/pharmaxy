@@ -80,7 +80,7 @@ class _ProductListPageState extends State<ProductListPage2> {
         backgroundColor: bgcolor,
         key: _scaffoldKeylist2,
         drawer: drawer1(),
-        bottomNavigationBar: bottombar(),
+        bottomNavigationBar: bottombar(selected: 0,),
         body: isLoading
             ? Container()
             : Padding(

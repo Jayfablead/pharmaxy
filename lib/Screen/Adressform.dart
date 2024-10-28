@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ecommerce/Modal/CityModal.dart';
 import 'package:ecommerce/Modal/CountryModal.dart';
 import 'package:ecommerce/Modal/ShippingAddModal.dart';
@@ -163,7 +162,6 @@ class _AdressformState extends State<Adressform> {
                                       SizedBox(
                                         height: 1.h,
                                       ),
-
                                       TextFormField(
                                         validator: (value) {
                                           if (value!.isEmpty) {
@@ -271,7 +269,6 @@ class _AdressformState extends State<Adressform> {
                             SizedBox(
                               height: 2.5.h,
                             ),
-
                             Container(
                               width: 85.w,
                               child: Column(
@@ -290,40 +287,47 @@ class _AdressformState extends State<Adressform> {
                                   ),
                                   TextFormField(
                                     validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Please Enter The Email";
+                                      if (value == null || value.isEmpty) {
+                                        return "Please enter the email";
+                                      }
+                                      // Regular expression for email validation
+                                      final emailRegex = RegExp(
+                                          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                                      if (!emailRegex.hasMatch(value)) {
+                                        return "Please enter a valid email";
                                       }
                                       return null;
                                     },
-                                    keyboardType: TextInputType.text,
+                                    keyboardType: TextInputType.emailAddress,
                                     controller: _email,
                                     style: TextStyle(height: 1),
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(10),
-                                          borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      ),
                                       disabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(10),
-                                          borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      ),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(10),
-                                          borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      ),
                                       border: OutlineInputBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(10),
-                                          borderSide:
-                                          BorderSide(color: Colors.grey)),
-                                      hintText: 'Please Enter The Email',
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                      ),
+                                      hintText: 'Please enter the email',
                                       hintStyle: TextStyle(
-                                          color: Colors.black.withOpacity(0.4),
-                                          fontSize: 11.sp,
-                                          fontFamily: "task"),
+                                        color: Colors.black.withOpacity(0.4),
+                                        fontSize: 11.sp,
+                                        fontFamily: "task",
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -412,8 +416,7 @@ class _AdressformState extends State<Adressform> {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Please Enter The Phone";
-                                      }
-                                      else if (value.length != 10) {
+                                      } else if (value.length != 10) {
                                         return "Please Enter valid phone number";
                                       }
                                       return null;
@@ -452,7 +455,6 @@ class _AdressformState extends State<Adressform> {
                                 ],
                               ),
                             ),
-
                             SizedBox(
                               height: 2.5.h,
                             ),
@@ -485,24 +487,24 @@ class _AdressformState extends State<Adressform> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your State',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
@@ -516,7 +518,6 @@ class _AdressformState extends State<Adressform> {
                             SizedBox(
                               height: 2.5.h,
                             ),
-
                             Container(
                               width: 85.w,
                               child: Column(
@@ -546,24 +547,24 @@ class _AdressformState extends State<Adressform> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your City',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
@@ -684,10 +685,12 @@ class _AdressformState extends State<Adressform> {
   }
 
   shippingap() async {
+    EasyLoading.show(status: 'Please Wait');
     if (_formKey.currentState!.validate()) {
       final Map<String, String> data = {};
       data['userId'] = usermodal?.userId == "" || usermodal?.userId == null
-          ?deviceName.toString():(usermodal?.userId).toString();
+          ? deviceName.toString()
+          : (usermodal?.userId).toString();
       data['first_name'] = _firstname.text.toString();
       data['last_name'] = _lastname.text.toString();
       data['email'] = _email.text.toString();
@@ -706,6 +709,7 @@ class _AdressformState extends State<Adressform> {
             print(shippingaddmodal?.status);
             if (response.statusCode == 200 &&
                 shippingaddmodal?.status == "success") {
+              EasyLoading.dismiss();
               update(context, 'Address', 'Address Save Successfully',
                   callback: () {
                 Navigator.pop(context);

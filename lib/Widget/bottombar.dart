@@ -3,10 +3,8 @@ import 'dart:io';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
-import 'package:ecommerce/Screen/Ofline_Cart.dart';
 import 'package:ecommerce/Screen/ProductList4.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
-import 'package:ecommerce/Screen/WishListPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/sharedpreferance.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +14,7 @@ import 'package:sizer/sizer.dart';
 class bottombar extends StatefulWidget {
   int? selected;
 
-  bottombar({super.key, this.selected});
+  bottombar({super.key, required this.selected});
 
   @override
   State<bottombar> createState() => _bottombarState();
@@ -68,20 +66,20 @@ class _bottombarState extends State<bottombar> {
                   },
                   child: Column(
                     children: [
-                      Icon(
-                        CupertinoIcons.home,
-                        size: 22.sp,
-                        color: selected == 1
-                            ? AppColors.primary
-                            : Colors.black
-                      ),
+                      Icon(CupertinoIcons.home,
+                          size: 22.sp,
+                          color: widget.selected == 1
+                              ? AppColors.primary
+                              : Colors.black),
                       Text(
                         "Home",
                         style: TextStyle(
                           fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
-                          color: selected == 1 ? AppColors.primary : Colors.black,
+                          color: widget.selected == 1
+                              ? AppColors.primary
+                              : Colors.black,
                         ),
                       ),
                       SizedBox(
@@ -92,7 +90,7 @@ class _bottombarState extends State<bottombar> {
                         width: 4.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: selected == 1
+                          color: widget.selected == 1
                               ? AppColors.primary
                               : Colors.transparent,
                         ),
@@ -117,25 +115,25 @@ class _bottombarState extends State<bottombar> {
                     setState(() {
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => CartPage()));
-                      selected = 2;
+                      widget.selected = 2;
                     });
                   },
                   child: Column(
                     children: [
-                      Icon(
-                        CupertinoIcons.shopping_cart,
-                        size: 22.sp,
-                        color: selected == 2
-                            ? AppColors.primary
-                            : Colors.black
-                      ),
+                      Icon(CupertinoIcons.shopping_cart,
+                          size: 22.sp,
+                          color: widget.selected == 2
+                              ? AppColors.primary
+                              : Colors.black),
                       Text(
                         "Cart",
                         style: TextStyle(
                           fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
-                          color: selected == 2 ? AppColors.primary : Colors.black,
+                          color: widget.selected == 2
+                              ? AppColors.primary
+                              : Colors.black,
                         ),
                       ),
                       SizedBox(
@@ -146,7 +144,7 @@ class _bottombarState extends State<bottombar> {
                         width: 4.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: selected == 2
+                          color: widget.selected == 2
                               ? AppColors.primary
                               : Colors.transparent,
                         ),
@@ -168,20 +166,18 @@ class _bottombarState extends State<bottombar> {
                 GestureDetector(
                   onTap: () async {
                     setState(() {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => ProductList4()));
-                      selected = 4;
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => ProductList4()));
+                      widget.selected = 3;
                     });
                   },
                   child: Column(
                     children: [
-                      Icon(
-                          Icons.local_offer_outlined,
+                      Icon(Icons.local_offer_outlined,
                           size: 22.sp,
-                          color: selected == 4
+                          color: widget.selected == 3
                               ? AppColors.primary
-                              : Colors.black
-                      ),
+                              : Colors.black),
                       // Icon(
                       //   CupertinoIcons.heart,
                       //   size: 22.sp,
@@ -195,7 +191,9 @@ class _bottombarState extends State<bottombar> {
                           fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
-                          color: selected == 4? AppColors.primary : Colors.black,
+                          color: widget.selected == 3
+                              ? AppColors.primary
+                              : Colors.black,
                         ),
                       ),
                       SizedBox(
@@ -206,7 +204,7 @@ class _bottombarState extends State<bottombar> {
                         width: 4.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: selected == 4
+                          color: widget.selected == 3
                               ? AppColors.primary
                               : Colors.transparent,
                         ),
@@ -237,20 +235,20 @@ class _bottombarState extends State<bottombar> {
                           : EdgeInsets.only(bottom: 1.h),
                       child: Column(
                         children: [
-                          Icon(
-                              CupertinoIcons.person_add,
+                          Icon(CupertinoIcons.person_add,
                               size: 21.sp,
-                              color: selected == 5
+                              color: widget.selected == 5
                                   ? AppColors.primary
-                                  : Colors.black
-                          ),
+                                  : Colors.black),
                           Text(
                             "Login",
                             style: TextStyle(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                               fontFamily: "task",
-                              color: selected == 5? AppColors.primary : Colors.black,
+                              color: widget.selected == 5
+                                  ? AppColors.primary
+                                  : Colors.black,
                             ),
                           ),
                         ],
@@ -267,7 +265,7 @@ class _bottombarState extends State<bottombar> {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => HomePage(sel: 0),
                       ));
-                      selected = 1;
+                      widget.selected = 1;
                     });
                   },
                   child: Column(
@@ -275,16 +273,19 @@ class _bottombarState extends State<bottombar> {
                       Icon(
                         CupertinoIcons.home,
                         size: 22.sp,
-                        color: selected == 1 ? AppColors.primary : Colors.black,
+                        color: widget.selected == 1
+                            ? AppColors.primary
+                            : Colors.black,
                       ),
-
                       Text(
                         "Home",
                         style: TextStyle(
                           fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
-                          color: selected == 1 ? AppColors.primary : Colors.black,
+                          color: widget.selected == 1
+                              ? AppColors.primary
+                              : Colors.black,
                         ),
                       ),
                       SizedBox(
@@ -295,38 +296,38 @@ class _bottombarState extends State<bottombar> {
                         width: 4.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: selected == 1 ? AppColors.primary : Colors.transparent,
+                          color: widget.selected == 1
+                              ? AppColors.primary
+                              : Colors.transparent,
                         ),
                       ),
-
                     ],
                   ),
                 ),
-
                 GestureDetector(
                   onTap: () {
                     setState(() {
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => CartPage()));
-                      selected = 2;
+                      widget.selected = 2;
                     });
                   },
                   child: Column(
                     children: [
-                      Icon(
-                        CupertinoIcons.shopping_cart,
-                        size: 22.sp,
-                        color: selected == 2
-                            ? AppColors.primary
-                            : Colors.black
-                      ),
+                      Icon(CupertinoIcons.shopping_cart,
+                          size: 22.sp,
+                          color: widget.selected == 2
+                              ? AppColors.primary
+                              : Colors.black),
                       Text(
                         "Cart",
                         style: TextStyle(
                           fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
-                          color: selected == 2 ? AppColors.primary : Colors.black,
+                          color: widget.selected == 2
+                              ? AppColors.primary
+                              : Colors.black,
                         ),
                       ),
                       SizedBox(
@@ -338,7 +339,7 @@ class _bottombarState extends State<bottombar> {
                         width: 4.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: selected == 2
+                          color: widget.selected == 2
                               ? AppColors.primary
                               : Colors.transparent,
                         ),
@@ -361,30 +362,32 @@ class _bottombarState extends State<bottombar> {
                   onTap: () async {
                     setState(() {
                       usermodal?.userId == "" || usermodal?.userId == null
-                          ? Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => LoginPage2()))
-                          : Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => ProductList4()));
-                      selected = 4;
+                          ? Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage2()))
+                          : Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => ProductList4()));
+                      widget.selected = 3;
                     });
                   },
                   child: Column(
                     children: [
-                      Icon(
-                        Icons.local_offer_outlined,
-                       // CupertinoIcons.heart,
-                        size: 22.sp,
-                        color: selected == 4
-                            ? AppColors.primary
-                            : Colors.black
-                      ),
+                      Icon(Icons.local_offer_outlined,
+                          // CupertinoIcons.heart,
+                          size: 22.sp,
+                          color: widget.selected == 3
+                              ? AppColors.primary
+                              : Colors.black),
                       Text(
                         "Offer",
                         style: TextStyle(
                           fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: "task",
-                          color: selected == 4 ? AppColors.primary : Colors.black,
+                          color: widget.selected == 3
+                              ? AppColors.primary
+                              : Colors.black,
                         ),
                       ),
                       SizedBox(
@@ -395,7 +398,7 @@ class _bottombarState extends State<bottombar> {
                         width: 6.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: selected == 4
+                          color: widget.selected == 3
                               ? AppColors.primary
                               : Colors.transparent,
                         ),
@@ -418,8 +421,9 @@ class _bottombarState extends State<bottombar> {
                 usermodal?.userId == "" || usermodal?.userId == null
                     ? GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => LoginPage2()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage2()));
                         },
                         child: Padding(
                           padding: Platform.isAndroid
@@ -439,30 +443,32 @@ class _bottombarState extends State<bottombar> {
                         onTap: () async {
                           setState(() {
                             usermodal?.userId == "" || usermodal?.userId == null
-                                ? Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                    builder: (context) => LoginPage2()))
-                                : Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                    builder: (context) => ProfilePage()));
-                            selected = 5;
+                                ? Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage2()))
+                                : Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => ProfilePage()));
+                            widget.selected = 4;
                           });
                           // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage(),));
                         },
                         child: Column(
                           children: [
-                            Icon(
-                              CupertinoIcons.person,
-                              size: 22.sp,
-                              color: selected == 5
-                                  ? AppColors.primary
-                                  : Colors.black
-                            ),
+                            Icon(CupertinoIcons.person,
+                                size: 22.sp,
+                                color: widget.selected == 4
+                                    ? AppColors.primary
+                                    : Colors.black),
                             Text(
                               "Profile",
                               style: TextStyle(
                                 fontSize: 9.sp,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "task",
-                                color: selected == 5 ? AppColors.primary : Colors.black,
+                                color: widget.selected == 4
+                                    ? AppColors.primary
+                                    : Colors.black,
                               ),
                             ),
                             SizedBox(
@@ -473,7 +479,7 @@ class _bottombarState extends State<bottombar> {
                               width: 5.h,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
-                                color: selected == 5
+                                color: widget.selected == 4
                                     ? AppColors.primary
                                     : Colors.transparent,
                               ),
@@ -514,7 +520,8 @@ class _bottombarState extends State<bottombar> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding:  EdgeInsets.only(left: 2.w),
+                                                padding:
+                                                    EdgeInsets.only(left: 2.w),
                                                 child: Text(
                                                   "Are You Sure Want To Logout ?",
                                                   style: TextStyle(
@@ -603,7 +610,6 @@ class _bottombarState extends State<bottombar> {
                                   ),
                                   Positioned(
                                     left: 86.w,
-
                                     child: IconButton(
                                         icon: Icon(
                                           Icons.highlight_remove,
@@ -644,7 +650,9 @@ class _bottombarState extends State<bottombar> {
                                 fontSize: 9.sp,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "task",
-                                color: selected == 5 ? AppColors.primary : Colors.red,
+                                color: widget.selected == 5
+                                    ? AppColors.primary
+                                    : Colors.red,
                               ),
                             ),
                             SizedBox(

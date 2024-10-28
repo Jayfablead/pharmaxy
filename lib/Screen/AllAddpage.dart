@@ -45,11 +45,11 @@ class _AllAddpageState extends State<AllAddpage> {
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: Colors.grey.shade100,
-        bottomNavigationBar: bottombar(),
+        bottomNavigationBar: bottombar(selected: 0,),
         body: isLoading
             ? Container()
             : SingleChildScrollView(
-              child: Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -92,8 +92,9 @@ class _AllAddpageState extends State<AllAddpage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => Adressform()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => Adressform()));
                         },
                         child: Container(
                           height: 6.h,
@@ -146,7 +147,8 @@ class _AllAddpageState extends State<AllAddpage> {
                         ),
                       ),
                       alluseraddmodal?.allShippingAddress?.length == 0 ||
-                              alluseraddmodal?.allShippingAddress?.length == null
+                              alluseraddmodal?.allShippingAddress?.length ==
+                                  null
                           ? Container(
                               height: 62.h,
                               child: Center(
@@ -216,7 +218,8 @@ class _AllAddpageState extends State<AllAddpage> {
                                                       MainAxisAlignment.start,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
-                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: [
                                                     Row(
                                                       mainAxisAlignment:
@@ -232,8 +235,10 @@ class _AllAddpageState extends State<AllAddpage> {
                                                           style: TextStyle(
                                                               fontSize: 13.sp,
                                                               fontWeight:
-                                                                  FontWeight.bold,
-                                                              fontFamily: "task"),
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontFamily:
+                                                                  "task"),
                                                         ),
                                                         SizedBox(
                                                           width: 1.w,
@@ -247,8 +252,10 @@ class _AllAddpageState extends State<AllAddpage> {
                                                           style: TextStyle(
                                                               fontSize: 13.sp,
                                                               fontWeight:
-                                                                  FontWeight.bold,
-                                                              fontFamily: "task"),
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontFamily:
+                                                                  "task"),
                                                         ),
                                                       ],
                                                     ),
@@ -267,8 +274,8 @@ class _AllAddpageState extends State<AllAddpage> {
                                                                 "",
                                                             style: TextStyle(
                                                                 fontSize: 12.sp,
-                                                                color:
-                                                                    Colors.black,
+                                                                color: Colors
+                                                                    .black,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -292,70 +299,62 @@ class _AllAddpageState extends State<AllAddpage> {
                                             color: Colors.white,
                                             icon: Icon(
                                               Icons.more_vert,
-                                              color:AppColors.primary,
+                                              color: AppColors.primary,
                                               size: 18.sp,
                                             ),
                                             // add this line
                                             itemBuilder: (_) =>
                                                 <PopupMenuItem<String>>[
                                                   PopupMenuItem<String>(
-                                                      child: GestureDetector(
-                                                        onTap: () {
-                                                          Navigator.of(context).push(
-                                                              MaterialPageRoute(builder: (context) =>editshippingadress(
-                                                                addid: alluseraddmodal?.allShippingAddress?[index].id,
-                                                              ) ,)
-                                                          );
-                                                          // Navigator.of(
-                                                          //         context)
-                                                          //     .pop();
-                                                          // Navigator.of(context).push(
-                                                          //         MaterialPageRoute(
-                                                          //             builder: (context) =>
-                                                          //                 editshippingadress(
-                                                          //                   addid: alluseraddmodal?.allShippingAddress?[index].id,
-                                                          //                 )));
-                                                        },
-                                                        child: Container(
-                                                            width: 10.w,
-                                                            child: Text(
-                                                              "Edit",
-                                                              style: TextStyle(
-                                                                color:
-                                                                    Colors.black,
-                                                                fontSize: 12.sp,
-                                                                fontFamily:
-                                                                    'task',
-                                                              ),
-                                                            )),
-                                                      ),
+                                                      onTap: () {
+                                                        Navigator.of(context)
+                                                            .pushReplacement(
+                                                                MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              editshippingadress(
+                                                            addid: alluseraddmodal
+                                                                ?.allShippingAddress?[
+                                                                    index]
+                                                                .id,
+                                                          ),
+                                                        ));
+                                                      },
+                                                      child: Container(
+                                                          width: 10.w,
+                                                          child: Text(
+                                                            "Edit",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 12.sp,
+                                                              fontFamily:
+                                                                  'task',
+                                                            ),
+                                                          )),
                                                       value: 'report'),
                                                   PopupMenuItem<String>(
-                                                      child: GestureDetector(
-                                                        onTap: () {
-                                                          Navigator.of(
-                                                              context)
-                                                              .pop();
-                                                          removeadressap(
-                                                              (alluseraddmodal
-                                                                  ?.allShippingAddress?[
-                                                              index]
-                                                                  .id)
-                                                                  .toString());
-                                                        },
-                                                        child: Container(
-                                                            width: 14.w,
-                                                            child: Text(
-                                                              "Delete",
-                                                              style: TextStyle(
-                                                                color:
-                                                                    Colors.black,
-                                                                fontSize: 12.sp,
-                                                                fontFamily:
-                                                                    'task',
-                                                              ),
-                                                            )),
-                                                      ),
+                                                      onTap: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                        removeadressap(
+                                                            (alluseraddmodal
+                                                                    ?.allShippingAddress?[
+                                                                        index]
+                                                                    .id)
+                                                                .toString());
+                                                      },
+                                                      child: Container(
+                                                          width: 14.w,
+                                                          child: Text(
+                                                            "Delete",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 12.sp,
+                                                              fontFamily:
+                                                                  'task',
+                                                            ),
+                                                          )),
                                                       value: 'report'),
                                                 ],
                                             onSelected: (index) async {
@@ -376,29 +375,33 @@ class _AllAddpageState extends State<AllAddpage> {
                       GestureDetector(
                         onTap: () {
                           print(alluseraddmodal?.allShippingAddress?[sell].id);
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => CheckoutDetail(
-                                    address: alluseraddmodal
-                                            ?.allShippingAddress?[sell].address ??
-                                        "",
-                                    firstname: alluseraddmodal
-                                            ?.allShippingAddress?[sell]
-                                            .firstName ??
-                                        "",
-                                    lastname: alluseraddmodal
-                                            ?.allShippingAddress?[sell]
-                                            .lastName ??
-                                        "",
-                                    addid: alluseraddmodal
-                                            ?.allShippingAddress?[sell].id ??
-                                        "",
-                                    page: "1",
-                                  )));
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                                  builder: (context) => CheckoutDetail(
+                                        address: alluseraddmodal
+                                                ?.allShippingAddress?[sell]
+                                                .address ??
+                                            "",
+                                        firstname: alluseraddmodal
+                                                ?.allShippingAddress?[sell]
+                                                .firstName ??
+                                            "",
+                                        lastname: alluseraddmodal
+                                                ?.allShippingAddress?[sell]
+                                                .lastName ??
+                                            "",
+                                        addid: alluseraddmodal
+                                                ?.allShippingAddress?[sell]
+                                                .id ??
+                                            "",
+                                        page: "1",
+                                      )));
                         },
                         child: Row(
                           children: [
                             alluseraddmodal?.allShippingAddress?.length == 0 ||
-                                    alluseraddmodal?.allShippingAddress?.length ==
+                                    alluseraddmodal
+                                            ?.allShippingAddress?.length ==
                                         null
                                 ? Container()
                                 : Container(
@@ -424,7 +427,7 @@ class _AllAddpageState extends State<AllAddpage> {
                     ],
                   ),
                 ),
-            ),
+              ),
       ),
     );
   }
@@ -432,7 +435,8 @@ class _AllAddpageState extends State<AllAddpage> {
   alluseraddapi() async {
     final Map<String, String> data = {};
     data['userId'] = usermodal?.userId == "" || usermodal?.userId == null
-        ?deviceName.toString():(usermodal?.userId).toString();
+        ? deviceName.toString()
+        : (usermodal?.userId).toString();
     print(data);
     checkInternet().then((internet) async {
       if (internet) {
@@ -442,9 +446,10 @@ class _AllAddpageState extends State<AllAddpage> {
           print(alluseraddmodal?.status);
           if (response.statusCode == 200 &&
               alluseraddmodal?.status == "success") {
-            setState(() {
-              isLoading = false;
-            });
+            if (mounted)
+              setState(() {
+                isLoading = false;
+              });
           } else {
             setState(() {
               isLoading = false;
@@ -472,7 +477,7 @@ class _AllAddpageState extends State<AllAddpage> {
               RemoveAddressModal.fromJson(json.decode(response.body));
           if (response.statusCode == 200 &&
               removeaddressmodal?.status == "success") {
-            EasyLoading.showSuccess( 'Delete Address Sucessfully');
+            EasyLoading.showSuccess('Delete Address Sucessfully');
             alluseraddapi();
             print(removeaddressmodal?.status);
             print(response.statusCode);
@@ -480,7 +485,7 @@ class _AllAddpageState extends State<AllAddpage> {
               isLoading = false;
             });
           } else {
-            EasyLoading.showError( 'fail');
+            EasyLoading.showError('fail');
             setState(() {
               isLoading = false;
             });

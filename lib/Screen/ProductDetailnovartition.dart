@@ -222,7 +222,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
         backgroundColor: Colors.grey.shade100,
         key: _scaffoldKeynovar,
         drawer: drawer1(),
-        bottomNavigationBar: bottombar(),
+        // bottomNavigationBar: bottombar(),
         body: isLoading
             ? Container()
             : Padding(

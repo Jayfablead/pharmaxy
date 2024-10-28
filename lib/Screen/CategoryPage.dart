@@ -97,7 +97,7 @@ class _CategoryPageState extends State<CategoryPage> {
         key: _scaffoldKeycate,
         drawer: drawer1(),
         backgroundColor: bgcolor,
-        bottomNavigationBar: bottombar(),
+        bottomNavigationBar: bottombar(selected: 0,),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),

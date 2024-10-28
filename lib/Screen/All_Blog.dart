@@ -40,7 +40,7 @@ class _All_blogsState extends State<All_blogs> {
         key: _scaffoldKeyblog,
         drawer: drawer1(),
         backgroundColor: bgcolor,
-        bottomNavigationBar: bottombar(),
+        bottomNavigationBar: bottombar(selected: 0,),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),

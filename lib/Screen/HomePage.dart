@@ -296,7 +296,7 @@ class _HomePageState extends State<HomePage> {
         drawer: drawer1(),
         bottomNavigationBar: SizedBox(
           height: 9.h,
-            child: bottombar(selected: sel)),
+            child: bottombar(selected: 1)),
         body: WillPopScope(
           onWillPop: dialog,
           child: isLoading

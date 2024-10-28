@@ -37,7 +37,8 @@ import '../Databasehandler.dart';
 import '../Modal/AllUserAddModal.dart';
 import '../Widget/bottombar.dart';
 import 'LoginPage2.dart';
-
+String? copunaveave;
+bool? isCoupon;
 class CartPage extends StatefulWidget {
   CartPage({super.key});
 
@@ -52,7 +53,6 @@ String? deviceName;
 String? deviceOS;
 final GlobalKey<ScaffoldState> _scaffoldKeycart1 = GlobalKey<ScaffoldState>();
 DatabaseHelper databaseHelper = DatabaseHelper();
-SharedPreferences? prefs;
 
 class order {
   String? image;
@@ -88,6 +88,8 @@ List<order> cat = [
 ];
 
 class _CartPageState extends State<CartPage> {
+
+
   double calculatePercentageOffviewcart(int index) {
     // Debugging: Print the index and check if the product exists
     print('Index: $index');
@@ -154,6 +156,7 @@ class _CartPageState extends State<CartPage> {
 
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<CartItem> cartItems = [];
+  SharedPreferences? StoreData;
 
   void _makePhoneCall(String phoneNumber) async {
     final Uri launchUri = Uri(
@@ -166,27 +169,30 @@ class _CartPageState extends State<CartPage> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      prefs?.getBool('is_coupon') ?? true && prefs?.getBool('is_coupon') != null
-          ? print("aaavi jajo")
-          : cpn = null;
+    initSharedPreferences().then((_) {
+      loadCouponData();
     });
-    _loadSharedPrefs().then((value) => print('Shp Prefs Initialized'));
-    ViewCartApi();
-    getDeviceInfoandStore();
-    ViewCartwithoutloginAp();
-    allcoupon();
-    print(
-        "(viewwithoutuserModel?.handlingCharge).toString(),${(viewwithoutuserModel?.handlingCharge).toString()}");
+    print("copunaveavecopunaveavecopunaveave1111111111${copunaveave}");
     setState(() {
       isLoading = true;
-      cpupon = false;
+      isLoading = true;
+
+      StoreData?.getBool('is_coupon') ??
+              true && StoreData?.getBool('is_coupon') != null
+          ? print("aaavi jajo")
+          : cpn = null;
+      StoreData?.getBool('is_coupon') ??
+              true && StoreData?.getBool('is_coupon') != null
+          ? print("aaavi jajo ho")
+          : cpupon = false;
     });
-    alluseraddapi();
-    print('kaaaa${prefs?.getBool('is_coupon')}');
-    prefs?.getBool('is_coupon') ?? true && prefs?.getBool('is_coupon') != null
+    print(
+        "(viewwithoutuserModel?.handlingCharge).toString(),${(viewwithoutuserModel?.handlingCharge).toString()}");
+    print('kaaaa${StoreData?.getBool('is_coupon')}');
+    StoreData?.getBool('is_coupon') ??
+            true && StoreData?.getBool('is_coupon') != null
         ? usermodal?.userId != "" || usermodal?.userId != null
-            ? applycouponnoloader(prefs?.getString('coupon_value'), () {
+            ? applycouponnoloader(copunaveave, () {
                 setState(() {
                   cpupon = true;
                   cpn = cpn.toString();
@@ -204,7 +210,7 @@ class _CartPageState extends State<CartPage> {
                 });
                 EasyLoading.dismiss();
               })
-            : applycoupon1noloader(prefs?.getString('coupon_value'), () {
+            : applycoupon1noloader(copunaveave, () {
                 setState(() {
                   cpupon = true;
                   cpn = cpn.toString();
@@ -224,6 +230,12 @@ class _CartPageState extends State<CartPage> {
               })
         : print('Coupon Pela Add kr');
     _searchController = TextEditingController();
+
+    getDeviceInfoandStore();
+    allcoupon();
+    alluseraddapi();
+    ViewCartwithoutloginAp();
+    ViewCartApi();
   }
 
   Future<void> _fetchCartItems() async {
@@ -233,8 +245,27 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
-  Future<void> _loadSharedPrefs() async {
-    prefs = await SharedPreferences.getInstance();
+  Future<void> initSharedPreferences() async {
+    StoreData = await SharedPreferences.getInstance();
+  }
+
+  void saveCouponData(String cpn) {
+    StoreData?.setBool('is_coupon', true);
+    StoreData?.setString('coupon_value', cpn);
+    print("Coupon saved with value: ${StoreData?.getString('coupon_value')}");
+    copunaveave=StoreData?.getString('coupon_value');
+    isCoupon=StoreData?.getBool('is_coupon');
+    print("copunaveavecopunaveavecopunaveavefsdgfsdhsdgfhsdgf${copunaveave}");
+    print("dfgjhbvnmnmvncmvnxcv${isCoupon}");
+  }
+
+  void loadCouponData() {
+    print("Coupon exists: ${StoreData?.getBool('is_coupon')}");
+    print("Coupon value: ${StoreData?.getString('coupon_value')}");
+   setState(() {
+
+   });
+
   }
 
   // @override
@@ -249,7 +280,9 @@ class _CartPageState extends State<CartPage> {
     return commanScreen(
       isLoading: isLoading,
       scaffold: Scaffold(
-        bottomNavigationBar: bottombar(),
+        bottomNavigationBar: bottombar(
+          selected: 2,
+        ),
         key: _scaffoldKeycart1,
         extendBody: true,
         drawer: drawer1(),
@@ -261,7 +294,589 @@ class _CartPageState extends State<CartPage> {
                   padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 3.w),
                   child: usermodal?.userId == "" || usermodal?.userId == null
                       ?
-                      // Container(
+                  // Container(
+                  //   child: FutureBuilder(
+                  //     future: cart.getdata(),
+                  //     builder: (context, snapshot) {
+                  //       if (snapshot.hasData) {
+                  //         return Column(
+                  //           children: [
+                  //             SizedBox(height: 4.h),
+                  //             Container(
+                  //               width: MediaQuery.of(context).size.width,
+                  //               child: Row(
+                  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //                 children: [
+                  //                   IconButton(
+                  //                       onPressed: () {
+                  //                         _scaffoldKeycart.currentState
+                  //                             ?.openDrawer();
+                  //                       },
+                  //                       icon: Icon(
+                  //                         Icons.menu_rounded,
+                  //                         size: 22.sp,
+                  //                       )),
+                  //                   Text(
+                  //                     "My Cart",
+                  //                     style: TextStyle(
+                  //                       fontSize: 13.sp,
+                  //                       fontFamily: "task",
+                  //                       fontWeight: FontWeight.bold,
+                  //                     ),
+                  //                   ),
+                  //                   GestureDetector(
+                  //                       onTap: () {
+                  //                         Navigator.of(context).push(
+                  //                             MaterialPageRoute(
+                  //                                 builder: (context) =>
+                  //                                     LoginPage2()));
+                  //                       },
+                  //                       child: Padding(
+                  //                         padding:
+                  //                         EdgeInsets.only(bottom: 1.h),
+                  //                         child:  Icon(
+                  //                             CupertinoIcons.person_add,
+                  //                             size: 21.sp,
+                  //                             color:  AppColors.primary
+                  //
+                  //                         ),
+                  //                       ))
+                  //                 ],
+                  //               ),
+                  //             ),
+                  //             //SizedBox(height: 1.h),
+                  //             snapshot.data!.length == 0 ||
+                  //                 snapshot.data!.length == null
+                  //                 ? Container(
+                  //                 height: 70.h,
+                  //                 alignment: Alignment.center,
+                  //                 child: Text(
+                  //                   "No Data Available",
+                  //                   style: TextStyle(
+                  //                     color: Colors.black,
+                  //                     fontWeight: FontWeight.bold,
+                  //                     fontFamily: 'task',
+                  //                     fontSize: 12.sp,
+                  //                   ),
+                  //                 ))
+                  //                 : Column(
+                  //               children: [
+                  //                 Container(
+                  //                   alignment: Alignment.center,
+                  //                   height: 51.h,
+                  //                   child: ListView.builder(
+                  //                       padding: EdgeInsets.zero,
+                  //                       itemCount:
+                  //                       snapshot.data!.length,
+                  //                       itemBuilder:
+                  //                           (BuildContext context,
+                  //                           int index) {
+                  //                         return Stack(
+                  //                           children: [
+                  //                             Card(
+                  //                                 color: Colors.white,
+                  //                                 child: Container(
+                  //                                   decoration: BoxDecoration(
+                  //                                       borderRadius: BorderRadius.circular(10),
+                  //                                       color: Colors.white
+                  //                                   ),
+                  //                                   child: Column(
+                  //                                     mainAxisAlignment:
+                  //                                     MainAxisAlignment
+                  //                                         .end,
+                  //                                     crossAxisAlignment:
+                  //                                     CrossAxisAlignment
+                  //                                         .center,
+                  //                                     children: [
+                  //                                       Row(
+                  //                                         mainAxisAlignment:
+                  //                                         MainAxisAlignment
+                  //                                             .start,
+                  //                                         crossAxisAlignment:
+                  //                                         CrossAxisAlignment
+                  //                                             .center,
+                  //                                         children: [
+                  //                                           SizedBox(
+                  //                                             width:
+                  //                                             2.w,
+                  //                                           ),
+                  //                                           Container(
+                  //                                             decoration: BoxDecoration(
+                  //                                               borderRadius: BorderRadius.all(Radius.circular(
+                  //                                                   20)),
+                  //                                             ),
+                  //                                             child:
+                  //                                             Padding(
+                  //                                               padding:
+                  //                                               EdgeInsets.all(3.0),
+                  //                                               child:
+                  //                                               CachedNetworkImage(
+                  //                                                 imageUrl:
+                  //                                                 snapshot.data![index].productImage ?? '',
+                  //                                                 fit: BoxFit
+                  //                                                     .cover,
+                  //                                                 height:
+                  //                                                 34.w,
+                  //                                                 width:
+                  //                                                 32.w,
+                  //                                                 imageBuilder: (context, imageProvider) =>
+                  //                                                     Container(
+                  //                                                       decoration:
+                  //                                                       BoxDecoration(
+                  //                                                         borderRadius: BorderRadius.circular(25),
+                  //                                                         image: DecorationImage(
+                  //                                                           image: imageProvider,
+                  //                                                           // fit: BoxFit.cover,
+                  //                                                         ),
+                  //                                                       ),
+                  //                                                     ),
+                  //                                                 placeholder: (context, url) =>
+                  //                                                     Center(child: CircularProgressIndicator()),
+                  //                                                 errorWidget: (context, url, error) =>
+                  //                                                     Icon(Icons.error),
+                  //                                               ),
+                  //                                             ),
+                  //                                           ),
+                  //                                           SizedBox(
+                  //                                             width:
+                  //                                             3.w,
+                  //                                           ),
+                  //                                           Padding(
+                  //                                             padding: EdgeInsets.symmetric(
+                  //                                                 vertical: 0.5
+                  //                                                     .h,
+                  //                                                 horizontal:
+                  //                                                 0.5.w),
+                  //                                             child:
+                  //                                             Column(
+                  //                                               mainAxisAlignment:
+                  //                                               MainAxisAlignment.start,
+                  //                                               crossAxisAlignment:
+                  //                                               CrossAxisAlignment.start,
+                  //                                               children: [
+                  //                                                 SizedBox(
+                  //                                                   height:
+                  //                                                   1.5.h,
+                  //                                                 ),
+                  //                                                 Column(
+                  //                                                   crossAxisAlignment:
+                  //                                                   CrossAxisAlignment.start,
+                  //                                                   mainAxisAlignment:
+                  //                                                   MainAxisAlignment.center,
+                  //                                                   children: [
+                  //                                                     Padding(
+                  //                                                       padding: EdgeInsets.only(left: 1.w),
+                  //                                                       child: SizedBox(
+                  //                                                         width: 45.w,
+                  //                                                         child: Text(
+                  //                                                           snapshot.data![index].productName ?? '',
+                  //                                                           style: TextStyle(color: Colors.black, fontSize: 12.sp, fontWeight: FontWeight.w600, fontFamily: "task"),
+                  //                                                         ),
+                  //                                                       ),
+                  //                                                     ),
+                  //                                                     SizedBox(
+                  //                                                       width: 50.w,
+                  //                                                       child: Row(
+                  //                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //                                                         children: [
+                  //                                                           Container(
+                  //                                                             padding: EdgeInsets.only(left: 1.w),
+                  //                                                             child: Container(
+                  //                                                               width: 47.w,
+                  //                                                               child: Text(
+                  //                                                                 overflow: TextOverflow.ellipsis,
+                  //                                                                 maxLines: 2,
+                  //                                                                 snapshot.data![index].productDescription ?? '',
+                  //                                                                 style: TextStyle(color: Colors.black87, fontSize: 11.sp, fontWeight: FontWeight.normal, fontFamily: "task"),
+                  //                                                               ),
+                  //                                                             ),
+                  //                                                           ),
+                  //                                                         ],
+                  //                                                       ),
+                  //                                                     ),
+                  //                                                     SizedBox(
+                  //                                                       height: 1.h,
+                  //                                                     ),
+                  //                                                     Row(
+                  //                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //                                                       children: [
+                  //                                                         Container(
+                  //                                                           alignment: Alignment.center,
+                  //                                                           width: 27.w,
+                  //                                                           height: 6.5.h,
+                  //                                                           decoration: BoxDecoration(
+                  //                                                             borderRadius: BorderRadius.circular(20),
+                  //                                                           ),
+                  //                                                           child: Row(
+                  //                                                             crossAxisAlignment: CrossAxisAlignment.center,
+                  //                                                             mainAxisAlignment: MainAxisAlignment.center,
+                  //                                                             children: [
+                  //                                                               InkWell(
+                  //                                                                 onTap: () {
+                  //                                                                   int quntity = snapshot.data![index].productQuantity!;
+                  //                                                                   int price = snapshot.data![index].initialPrice!.toInt();
+                  //                                                                   quntity--;
+                  //                                                                   if (quntity > 0) {
+                  //                                                                     int? newprice = price * quntity;
+                  //                                                                     databaseHelper
+                  //                                                                         .updateQuantityCartItems(
+                  //                                                                       CartItem(
+                  //                                                                         VariationTblId: snapshot.data![index].VariationTblId.toString(),
+                  //                                                                         Color: snapshot.data![index].Color.toString(),
+                  //                                                                         Size: snapshot.data![index].Size.toString(),
+                  //                                                                         productId: snapshot.data![index].productId.toString(),
+                  //                                                                         productDescription: snapshot.data![index].productDescription.toString(),
+                  //                                                                         id: snapshot.data![index].id,
+                  //                                                                         productName: snapshot.data![index].productName,
+                  //                                                                         productPrice: newprice.toDouble(),
+                  //                                                                         productQuantity: quntity,
+                  //                                                                         productImage: snapshot.data![index].productImage.toString(),
+                  //                                                                         initialPrice: snapshot.data![index].initialPrice,
+                  //                                                                       ),
+                  //                                                                     )
+                  //                                                                         .then((value) {
+                  //                                                                       pricetag = newprice;
+                  //                                                                       print(pricetag);
+                  //                                                                       cart.removeTotalPrice(double.parse(snapshot.data![index].initialPrice.toString()));
+                  //                                                                     }).onError((error, stackTrace) {
+                  //                                                                       print(error.toString());
+                  //                                                                     });
+                  //                                                                   }
+                  //                                                                   print("clik button");
+                  //                                                                 },
+                  //                                                                 child: Container(
+                  //                                                                     height: 7.5.w,
+                  //                                                                     width: 7.5.w,
+                  //                                                                     decoration: BoxDecoration(
+                  //                                                                       borderRadius: BorderRadius.circular(15),
+                  //                                                                       color: Color(0xff0061b0),
+                  //                                                                     ),
+                  //                                                                     child: Icon(
+                  //                                                                       Icons.remove,
+                  //                                                                       size: 20.sp,
+                  //                                                                       color: Colors.white,
+                  //                                                                     )),
+                  //                                                               ),
+                  //                                                               SizedBox(
+                  //                                                                 width: 2.5.w,
+                  //                                                               ),
+                  //                                                               Container(
+                  //                                                                 child: Row(
+                  //                                                                   children: [
+                  //                                                                     Container(
+                  //                                                                       child: Text(
+                  //                                                                         (snapshot.data![index].productQuantity).toString(),
+                  //                                                                         style: TextStyle(
+                  //                                                                           fontWeight: FontWeight.bold,
+                  //                                                                           fontFamily: "task",
+                  //                                                                           fontSize: 16.sp,
+                  //                                                                         ),
+                  //                                                                       ),
+                  //                                                                     )
+                  //                                                                   ],
+                  //                                                                 ),
+                  //                                                               ),
+                  //                                                               SizedBox(
+                  //                                                                 width: 2.5.w,
+                  //                                                               ),
+                  //                                                               InkWell(
+                  //                                                                 onTap: () {
+                  //                                                                   int quntity = snapshot.data![index].productQuantity!;
+                  //                                                                   int price = snapshot.data![index].initialPrice!.toInt();
+                  //                                                                   quntity++;
+                  //                                                                   int? newprice = price * quntity;
+                  //                                                                   databaseHelper
+                  //                                                                       .updateQuantityCartItems(
+                  //                                                                     CartItem(
+                  //                                                                       VariationTblId: snapshot.data![index].VariationTblId.toString(),
+                  //                                                                       Color: snapshot.data![index].Color.toString(),
+                  //                                                                       Size: snapshot.data![index].Size.toString(),
+                  //                                                                       productId: snapshot.data![index].productId.toString(),
+                  //                                                                       productDescription: snapshot.data![index].productDescription.toString(),
+                  //                                                                       id: snapshot.data![index].id,
+                  //                                                                       productName: snapshot.data![index].productName,
+                  //                                                                       productPrice: newprice.toDouble(),
+                  //                                                                       productQuantity: quntity,
+                  //                                                                       productImage: snapshot.data![index].productImage.toString(),
+                  //                                                                       initialPrice: snapshot.data![index].initialPrice,
+                  //                                                                     ),
+                  //                                                                   )
+                  //                                                                       .then((value) {
+                  //                                                                     pricetag = newprice;
+                  //                                                                     print(pricetag);
+                  //                                                                     cart.addTotalPrice(double.parse(snapshot.data![index].initialPrice.toString()));
+                  //                                                                   }).onError((error, stackTrace) {
+                  //                                                                     print(error.toString());
+                  //                                                                   });
+                  //                                                                   print("clik button");
+                  //                                                                 },
+                  //                                                                 child: Container(
+                  //                                                                     height: 7.5.w,
+                  //                                                                     width: 7.5.w,
+                  //                                                                     decoration: BoxDecoration(
+                  //                                                                       borderRadius: BorderRadius.circular(25),
+                  //                                                                       color: Color(0xff0061b0),
+                  //                                                                     ),
+                  //                                                                     child: Icon(
+                  //                                                                       Icons.add,
+                  //                                                                       size: 20.sp,
+                  //                                                                       color: Colors.white,
+                  //                                                                     )),
+                  //                                                               ),
+                  //                                                             ],
+                  //                                                           ),
+                  //                                                         ),
+                  //                                                         SizedBox(
+                  //                                                           width: 1.w,
+                  //                                                         ),
+                  //                                                         Text(
+                  //                                                           snapshot.data![index].initialPrice.toString(),
+                  //                                                           style: TextStyle(
+                  //                                                             fontSize: 15.sp,
+                  //                                                             fontFamily: 'task',
+                  //                                                             fontWeight: FontWeight.normal,
+                  //                                                             letterSpacing: 1,
+                  //                                                             color: Colors.black,
+                  //                                                           ),
+                  //                                                         ),
+                  //                                                       ],
+                  //                                                     ),
+                  //                                                   ],
+                  //                                                 ),
+                  //                                                 SizedBox(
+                  //                                                   height:
+                  //                                                   2.h,
+                  //                                                 ),
+                  //                                               ],
+                  //                                             ),
+                  //                                           )
+                  //                                         ],
+                  //                                       ),
+                  //                                     ],
+                  //                                   ),
+                  //                                 )),
+                  //                             Positioned(
+                  //                               left: 84.w,
+                  //                               child: IconButton(
+                  //                                 icon: Icon(
+                  //                                   Icons
+                  //                                       .highlight_remove,
+                  //                                   size: 20.sp,
+                  //                                   color:
+                  //                                   Colors.grey,
+                  //                                 ), // Icon to open the menu
+                  //                                 onPressed: () {
+                  //                                   print(pricetag);
+                  //                                   showBottomSheet(
+                  //                                     context:
+                  //                                     context,
+                  //                                     builder:
+                  //                                         (context) {
+                  //                                       return Stack(
+                  //                                         children: [
+                  //                                           Container(
+                  //                                             decoration: BoxDecoration(
+                  //                                                 borderRadius:
+                  //                                                 BorderRadius.circular(10),
+                  //                                                 color: Colors.white),
+                  //                                             height:
+                  //                                             23.h,
+                  //                                             width: double
+                  //                                                 .infinity,
+                  //                                             // Customize the bottom sheet content here
+                  //                                             child:
+                  //                                             Padding(
+                  //                                               padding: EdgeInsets.symmetric(
+                  //                                                   horizontal: 5.w,
+                  //                                                   vertical: 2.h),
+                  //                                               child:
+                  //                                               Column(
+                  //                                                 mainAxisAlignment:
+                  //                                                 MainAxisAlignment.start,
+                  //                                                 crossAxisAlignment:
+                  //                                                 CrossAxisAlignment.start,
+                  //                                                 mainAxisSize:
+                  //                                                 MainAxisSize.min,
+                  //                                                 children: [
+                  //                                                   Row(
+                  //                                                     children: [
+                  //                                                       Text(
+                  //                                                         "Remove From Cart?",
+                  //                                                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.sp, fontFamily: 'task'),
+                  //                                                       ),
+                  //                                                     ],
+                  //                                                   ),
+                  //                                                   Text(
+                  //                                                     "Are You Sure to delete this product from Cart?",
+                  //                                                     style: TextStyle(fontWeight: FontWeight.normal, fontSize: 12.sp, fontFamily: 'task'),
+                  //                                                   ),
+                  //                                                   SizedBox(
+                  //                                                     height: 2.h,
+                  //                                                   ),
+                  //                                                   Row(
+                  //                                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //                                                     children: [
+                  //                                                       GestureDetector(
+                  //                                                         onTap: () {
+                  //                                                           Navigator.of(context).pop();
+                  //                                                         },
+                  //                                                         child: Container(
+                  //                                                             alignment: Alignment.center,
+                  //                                                             height: 5.h,
+                  //                                                             width: 35.w,
+                  //                                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white70, border: Border.all(width: 0.5, color: Colors.grey)),
+                  //                                                             child: Text(
+                  //                                                               "Cancel",
+                  //                                                               style: TextStyle(fontSize: 13.sp, color: Colors.black, fontFamily: "task", fontWeight: FontWeight.bold),
+                  //                                                             )),
+                  //                                                       ),
+                  //                                                       GestureDetector(
+                  //                                                         onTap: () {
+                  //                                                           setState(() {
+                  //                                                             cart.removeTotalPrice(pricetag == 0 ? snapshot.data![index].initialPrice!.toDouble() : pricetag.toDouble());
+                  //                                                           });
+                  //                                                           databaseHelper.delete(
+                  //                                                             int.parse(snapshot.data![index].id.toString()),
+                  //                                                           );
+                  //                                                           Navigator.pop(context);
+                  //                                                         },
+                  //                                                         child: Container(
+                  //                                                             alignment: Alignment.center,
+                  //                                                             height: 5.h,
+                  //                                                             width: 35.w,
+                  //                                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.primary),
+                  //                                                             child: Text(
+                  //                                                               "Remove",
+                  //                                                               style: TextStyle(fontSize: 13.sp, color: Colors.white, fontFamily: "task"),
+                  //                                                             )),
+                  //                                                       ),
+                  //                                                     ],
+                  //                                                   ),
+                  //                                                   // Add more options as needed
+                  //                                                 ],
+                  //                                               ),
+                  //                                             ),
+                  //                                           ),
+                  //                                           Positioned(
+                  //                                             right:
+                  //                                             1.w,
+                  //                                             child: IconButton(
+                  //                                                 icon: Icon(
+                  //                                                   Icons.highlight_remove,
+                  //                                                   size: 25.sp,
+                  //                                                   color: Colors.grey,
+                  //                                                 ),
+                  //                                                 // Icon to open the menu
+                  //                                                 onPressed: () {
+                  //                                                   Navigator.of(context).pop();
+                  //                                                 } // We set onPressed to null to disable the button
+                  //                                             ),
+                  //                                           ),
+                  //                                         ],
+                  //                                       );
+                  //                                     },
+                  //                                   );
+                  //                                 }, // We set onPressed to null to disable the button
+                  //                               ),
+                  //                             ),
+                  //                           ],
+                  //                         );
+                  //                       }),
+                  //                 ),
+                  //                 SizedBox(
+                  //                   height: 1.h,
+                  //                 ),
+                  //                 Container(
+                  //                   width: 93.w,
+                  //                   height: 8.h,
+                  //                   decoration: BoxDecoration(
+                  //                     borderRadius:
+                  //                     BorderRadius.circular(10),
+                  //                     color: Color(0xffffffff),
+                  //                   ),
+                  //                   child: Row(
+                  //                     mainAxisSize: MainAxisSize.max,
+                  //                     mainAxisAlignment:
+                  //                     MainAxisAlignment
+                  //                         .spaceBetween,
+                  //                     children: [
+                  //                       Padding(
+                  //                         padding: EdgeInsets.only(
+                  //                           left: 3.w,
+                  //                         ),
+                  //                         child: Text(
+                  //                           'Sub Total Amount',
+                  //                           style: TextStyle(
+                  //                             fontFamily: 'task',
+                  //                             color: Colors
+                  //                                 .grey.shade800,
+                  //                             fontSize: 12.25.sp,
+                  //                             fontWeight:
+                  //                             FontWeight.bold,
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                       Padding(
+                  //                         padding: EdgeInsets.only(
+                  //                           right: 3.w,
+                  //                         ),
+                  //                         child: Text(
+                  //                           '₹ ${cart.getTOtalPrice().toString()}',
+                  //                           // '₹ ' +
+                  //                           //     '${snapshot.data![0].productQuantity == 1 ? snapshot.data![0].productPrice.toString() : newprice.toString()}',
+                  //                           style: TextStyle(
+                  //                             fontFamily: 'task',
+                  //                             fontSize: 12.sp,
+                  //                             fontWeight:
+                  //                             FontWeight.bold,
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                     ],
+                  //                   ),
+                  //                 ),
+                  //                 SizedBox(
+                  //                   height: 3.h,
+                  //                 ),
+                  //                 GestureDetector(
+                  //                   onTap: () {
+                  //                     Navigator.of(context).push(
+                  //                         MaterialPageRoute(
+                  //                             builder: (context) =>
+                  //                                 LoginPage2()));
+                  //                   },
+                  //                   child: Container(
+                  //                       margin: EdgeInsets.only(
+                  //                           right: 7.w, left: 7.w),
+                  //                       alignment: Alignment.center,
+                  //                       height: 6.h,
+                  //                       decoration: BoxDecoration(
+                  //                           borderRadius:
+                  //                           BorderRadius.circular(
+                  //                               10),
+                  //                           color:AppColors.primary),
+                  //                       child: Text(
+                  //                         "Login to Checkout",
+                  //                         style: TextStyle(
+                  //                             fontSize: 12.sp,
+                  //                             color: Colors.white,
+                  //                             fontWeight:
+                  //                             FontWeight.bold,
+                  //                             fontFamily: "task"),
+                  //                       )),
+                  //                 ),
+                  //               ],
+                  //             ),
+                  //           ],
+                  //         );
+                  //       }
+                  //       return Text('helloo');
+                  //     },
+                  //   ),
+                  // )
+
+                  //  logout
+                  // Container(
                       //   child: FutureBuilder(
                       //     future: cart.getdata(),
                       //     builder: (context, snapshot) {
@@ -1625,11 +2240,12 @@ class _CartPageState extends State<CartPage> {
                                                                                                     setState(() {
                                                                                                       cpupon = true;
                                                                                                       cpn = allcouponmodal?.data?[index].couponCode.toString();
+                                                                                                      copunaveave= allcouponmodal?.data?[index].couponCode.toString();
+                                                                                                      print("copunaveavecopunaveave${copunaveave}");
                                                                                                       print("maru name ${cpn}");
-                                                                                                      prefs?.setBool('is_coupon', true);
-                                                                                                      prefs?.setString('coupon_value', cpn.toString());
-                                                                                                      print("maru name ${prefs?.getBool("is_coupon")}");
                                                                                                     });
+                                                                                                    saveCouponData(cpn.toString());
+                                                                                                    print("maru name ${StoreData?.getBool("is_coupon")}");
                                                                                                     ViewCartApi();
                                                                                                     print('ADD');
                                                                                                     setState(() {
@@ -1637,7 +2253,7 @@ class _CartPageState extends State<CartPage> {
                                                                                                     });
                                                                                                   },
                                                                                                   () {
-                                                                                                    EasyLoading.showError('Sorry This Coupons Is Not Applicable Present In Your Cart');
+                                                                                                    EasyLoading.showError('Sorry This Coupons Is Not Applicable For Products Present In Your Cart');
                                                                                                     setState(() {
                                                                                                       cpupon = false;
                                                                                                       isLoading = false;
@@ -1937,8 +2553,8 @@ class _CartPageState extends State<CartPage> {
                                                                               // wait = false;
                                                                               isLoading = false;
                                                                               cpupon = false;
-                                                                              prefs?.remove('is_coupon');
-                                                                              prefs?.remove('coupon_value');
+                                                                              StoreData?.remove('is_coupon');
+                                                                              StoreData?.remove('coupon_value');
                                                                               cpn = null;
                                                                             });
                                                                           },
@@ -2102,7 +2718,6 @@ class _CartPageState extends State<CartPage> {
                                             ),
                                             GestureDetector(
                                               onTap: () {
-
                                                 chekoutsenddetail1();
                                                 print(
                                                     "Wow${alluseraddmodal?.allShippingAddress?[0].firstName}");
@@ -2135,7 +2750,6 @@ class _CartPageState extends State<CartPage> {
                                   ),
                           ],
                         )
-
                       /// Login
                       : Column(
                           children: [
@@ -2918,14 +3532,6 @@ class _CartPageState extends State<CartPage> {
                                                                                           ),
                                                                                           GestureDetector(
                                                                                             onTap: () {
-                                                                                              // Copy coupon code to clipboard
-                                                                                              // String couponCode = allcouponmodal?.data?[index].couponCode ?? "";
-                                                                                              // Clipboard.setData(ClipboardData(text: couponCode));
-                                                                                              //
-                                                                                              // // Set the copied code to the TextField controller
-                                                                                              // setState(() {
-                                                                                              //   _searchController.text = couponCode;
-                                                                                              // });
                                                                                               setState(() {
                                                                                                 applycoupon(
                                                                                                   allcouponmodal?.data?[index].couponCode ?? "",
@@ -2934,11 +3540,12 @@ class _CartPageState extends State<CartPage> {
                                                                                                     setState(() {
                                                                                                       cpupon = true;
                                                                                                       cpn = allcouponmodal?.data?[index].couponCode.toString();
+
                                                                                                       print("maru name ${cpn}");
-                                                                                                      prefs?.setBool('is_coupon', true);
-                                                                                                      prefs?.setString('coupon_value', cpn.toString());
-                                                                                                      print("maru name ${prefs?.getBool("is_coupon")}");
                                                                                                     });
+                                                                                                    saveCouponData(cpn.toString());
+                                                                                                    print("maru name ${StoreData?.getBool("is_coupon")}");
+
                                                                                                     ViewCartApi();
                                                                                                     print('ADD');
                                                                                                     setState(() {
@@ -2946,7 +3553,7 @@ class _CartPageState extends State<CartPage> {
                                                                                                     });
                                                                                                   },
                                                                                                   () {
-                                                                                                    EasyLoading.showError('Sorry This Coupons Is Not Applicable Present In Your Cart');
+                                                                                                    EasyLoading.showError('Sorry This Coupons Is Not Applicable For Products Present In Your Cart');
                                                                                                     setState(() {
                                                                                                       cpupon = false;
                                                                                                       isLoading = false;
@@ -3289,8 +3896,8 @@ class _CartPageState extends State<CartPage> {
                                                                               // wait = false;
                                                                               isLoading = false;
                                                                               cpupon = false;
-                                                                              prefs?.remove('is_coupon');
-                                                                              prefs?.remove('coupon_value');
+                                                                              StoreData?.remove('is_coupon');
+                                                                              StoreData?.remove('coupon_value');
                                                                               cpn = null;
                                                                             });
                                                                           },
@@ -3449,7 +4056,6 @@ class _CartPageState extends State<CartPage> {
                                             ),
                                             GestureDetector(
                                               onTap: () {
-
                                                 chekoutsenddetail();
                                               },
                                               child: Container(
@@ -3480,43 +4086,13 @@ class _CartPageState extends State<CartPage> {
                                   ),
                           ],
                         ),
+
                 ),
               ),
       ),
     );
   }
 
-  // Widget searchBox() {
-  //   return Container(
-  //     width: 61.w,
-  //     padding: EdgeInsets.symmetric(horizontal: 3.w),
-  //     decoration: BoxDecoration(
-  //       color: Colors.grey.shade50,
-  //       borderRadius: BorderRadius.circular(10),
-  //     ),
-  //     child: TextField(
-  //       controller: _searchController,
-  //       onTap: () {
-  //         // Tap event handled here (optional)
-  //       },
-  //       onChanged: (value) {
-  //         // When text changes, handle it here (optional)
-  //       },
-  //       style: TextStyle(color: Colors.black, fontFamily: 'task'),
-  //       decoration: InputDecoration(
-  //         contentPadding: EdgeInsets.all(0),
-  //         prefixIconConstraints: BoxConstraints(
-  //           maxHeight: 20,
-  //           minWidth: 25,
-  //         ),
-  //         border: InputBorder.none,
-  //         hintText: 'Enter Coupon Code',
-  //         hintStyle: TextStyle(
-  //             color: Colors.black, fontFamily: 'task', fontSize: 11.sp),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   ViewCartApi() async {
     final Map<String, String> data = {};
@@ -3533,9 +4109,9 @@ class _CartPageState extends State<CartPage> {
             print('EE Thay Gyu Hooooo ! ^_^');
             print('aa lenth ${viewcartmodal?.cartDetails?.length}');
             if (viewcartmodal?.cartDetails?.length == 0) {
-              prefs?.remove('is_coupon');
-              prefs?.remove('coupon_value');
-              print('Prefs Cleared');
+              StoreData?.remove('is_coupon');
+              StoreData?.remove('coupon_value');
+              print('StoreData Cleared');
             }
             setState(() {
               isLoading = false;
@@ -3543,9 +4119,9 @@ class _CartPageState extends State<CartPage> {
           } else {
             setState(() {
               isLoading = false;
-              prefs?.remove('is_coupon');
-              prefs?.remove('coupon_value');
-              print('Prefs Cleared');
+              StoreData?.remove('is_coupon');
+              StoreData?.remove('coupon_value');
+              print('StoreData Cleared');
             });
           }
         });
@@ -3572,9 +4148,9 @@ class _CartPageState extends State<CartPage> {
               viewwithoutuserModel?.status == "success") {
             // applycoupon();
             if (viewwithoutuserModel?.cartDetails?.length == 0) {
-              prefs?.remove('is_coupon');
-              prefs?.remove('coupon_value');
-              print('Prefs Cleared');
+              StoreData?.remove('is_coupon');
+              StoreData?.remove('coupon_value');
+              print('StoreData Cleared');
             }
             print('EE Thay Gyu Hooooo ! ^_^');
             print(viewcartmodal?.finalTotalWithCharge);
@@ -3584,9 +4160,9 @@ class _CartPageState extends State<CartPage> {
           } else {
             setState(() {
               isLoading = false;
-              prefs?.remove('is_coupon');
-              prefs?.remove('coupon_value');
-              print('Prefs Cleared');
+              StoreData?.remove('is_coupon');
+              StoreData?.remove('coupon_value');
+              print('StoreData Cleared');
             });
           }
         });
@@ -3884,8 +4460,8 @@ class _CartPageState extends State<CartPage> {
                     cpupon = false;
                     isLoading = false;
                     cpn = null;
-                    prefs?.remove('is_coupon');
-                    prefs?.remove('coupon_value');
+                    StoreData?.remove('is_coupon');
+                    StoreData?.remove('coupon_value');
                   });
                 },
               );
@@ -3949,8 +4525,8 @@ class _CartPageState extends State<CartPage> {
                     cpupon = false;
                     isLoading = false;
                     cpn = null;
-                    prefs?.remove('is_coupon');
-                    prefs?.remove('coupon_value');
+                    StoreData?.remove('is_coupon');
+                    StoreData?.remove('coupon_value');
                     EasyLoading.dismiss();
                   });
                 },
@@ -4019,25 +4595,24 @@ class _CartPageState extends State<CartPage> {
             print(
                 '====- Add : ${alluseraddmodal?.allShippingAddress?[0].address}');
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           } else {
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
+          // isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
     });
   }
 
-  applycoupon(
-      value, final Function() IsSuccess, final Function() IsFail) async {
+  applycoupon( value, final Function() IsSuccess, final Function() IsFail) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
@@ -4063,8 +4638,7 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
-  applycouponnoloader(
-      value, final Function() IsSuccess, final Function() IsFail) async {
+  applycouponnoloader( value, final Function() IsSuccess, final Function() IsFail) async {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
     data['Coupon'] = value.toString();
@@ -4089,8 +4663,7 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
-  applycoupon1(
-      value, final Function() IsSuccess, final Function() IsFail) async {
+  applycoupon1( value, final Function() IsSuccess, final Function() IsFail) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = deviceName.toString();
@@ -4116,8 +4689,7 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
-  applycoupon1noloader(
-      value, final Function() IsSuccess, final Function() IsFail) async {
+  applycoupon1noloader(  value, final Function() IsSuccess, final Function() IsFail) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['userId'] = deviceName.toString();
@@ -4172,28 +4744,15 @@ class _CartPageState extends State<CartPage> {
               checkOutsendModel?.status == "success") {
             EasyLoading.dismiss();
             print("haryo aavi ajaje${cpn}");
-            Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder:
-                        (context) =>
-                        CheckoutDetail(
-                          addid: alluseraddmodal
-                              ?.allShippingAddress?[
-                          0]
-                              .id,
-                          firstname: alluseraddmodal
-                              ?.allShippingAddress?[
-                          0]
-                              .firstName,
-                          lastname: alluseraddmodal
-                              ?.allShippingAddress?[
-                          0]
-                              .lastName,
-                          address: alluseraddmodal
-                              ?.allShippingAddress?[
-                          0]
-                              .address,
-                        )));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => CheckoutDetail(
+                      addid: alluseraddmodal?.allShippingAddress?[0].id,
+                      firstname:
+                          alluseraddmodal?.allShippingAddress?[0].firstName,
+                      lastname:
+                          alluseraddmodal?.allShippingAddress?[0].lastName,
+                      address: alluseraddmodal?.allShippingAddress?[0].address,
+                    )));
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
             _searchController.clear();
@@ -4247,28 +4806,15 @@ class _CartPageState extends State<CartPage> {
               checkOutsendModel?.status == "success") {
             EasyLoading.dismiss();
             print("data on${data}");
-            Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder:
-                        (context) =>
-                        CheckoutDetail(
-                          addid: alluseraddmodal
-                              ?.allShippingAddress?[
-                          0]
-                              .id,
-                          firstname: alluseraddmodal
-                              ?.allShippingAddress?[
-                          0]
-                              .firstName,
-                          lastname: alluseraddmodal
-                              ?.allShippingAddress?[
-                          0]
-                              .lastName,
-                          address: alluseraddmodal
-                              ?.allShippingAddress?[
-                          0]
-                              .address,
-                        )));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => CheckoutDetail(
+                      addid: alluseraddmodal?.allShippingAddress?[0].id,
+                      firstname:
+                          alluseraddmodal?.allShippingAddress?[0].firstName,
+                      lastname:
+                          alluseraddmodal?.allShippingAddress?[0].lastName,
+                      address: alluseraddmodal?.allShippingAddress?[0].address,
+                    )));
             // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
             _searchController.clear();
@@ -4327,19 +4873,19 @@ class _CartPageState extends State<CartPage> {
 
             setState(() {
               // wait = false;
-              isLoading = false;
+              // isLoading = false;
             });
           } else {
             setState(() {
               // wait = false;
-              isLoading = false;
+              // isLoading = false;
             });
           }
         });
       } else {
         setState(() {
           //wait = false;
-          isLoading = false;
+          // isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -4374,4 +4920,6 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
+
+
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Modal/CityModal.dart';
@@ -79,9 +79,12 @@ class _editshippingadressState extends State<editshippingadress> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    shippingap();
-    userselectaddap();
+    setState(() {
+      isLoading = true;
+    });
+
     contryap();
+    userselectaddap();
   }
 
   @override
@@ -272,8 +275,14 @@ class _editshippingadressState extends State<editshippingadress> {
                                   ),
                                   TextFormField(
                                     validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Please Enter The Email";
+                                      if (value == null || value.isEmpty) {
+                                        return "Please enter the email";
+                                      }
+                                      // Regular expression for email validation
+                                      final emailRegex = RegExp(
+                                          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                                      if (!emailRegex.hasMatch(value)) {
+                                        return "Please enter a valid email";
                                       }
                                       return null;
                                     },
@@ -283,24 +292,24 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your Email',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
@@ -426,192 +435,191 @@ class _editshippingadressState extends State<editshippingadress> {
                               ),
                             ),
 
-            //            Container(
-            //   width: 85.w,
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Text(
-            //         "Country",
-            //         style: TextStyle(
-            //           color: Colors.black87,
-            //           fontFamily: "task",
-            //           fontSize: 12.sp,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //       Container(
-            //         width: MediaQuery.of(context).size.width,
-            //         decoration: BoxDecoration(
-            //           border: Border.all(width: 1, color: Colors.grey),
-            //           borderRadius: BorderRadius.circular(10),
-            //         ),
-            //         padding: EdgeInsets.only(top: 0.5.h, bottom: 0.5.h, right: 5.w),
-            //         child: DropdownButtonHideUnderline(
-            //           child: DropdownButton2(
-            //             hint: Text(
-            //               'Select Country',
-            //               style: TextStyle(
-            //                 color: Colors.black.withOpacity(0.4),
-            //                 fontSize: 13.sp,
-            //                 fontFamily: "task",
-            //               ),
-            //             ),
-            //             value: countryValue,
-            //             onChanged: (newValue) {
-            //               setState(() {
-            //                 countryValue = newValue.toString();
-            //                 print(countryValue);
-            //                 stateap(countryValue ?? '');
-            //               });
-            //             },
-            //             items: countrymodal?.countries?.map((location) {
-            //               // Print each location's countryID to check for duplicates
-            //               print('Country ID: ${location.countryID}, Country Name: ${location.countryName}');
-            //               return DropdownMenuItem(
-            //                 child: Text(
-            //                   location.countryName ?? '',
-            //                   style: TextStyle(
-            //                     color: Colors.black87,
-            //                     fontFamily: 'task',
-            //                     fontSize: 14.sp,
-            //                   ),
-            //                 ),
-            //                 value: location.countryID,
-            //               );
-            //             }).toList(),
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            //                 SizedBox(
-            //                   height: 2.5.h,
-            //                 ),
-            //                 Container(
-            //                   width: 85.w,
-            //                   child: Column(
-            //                     crossAxisAlignment: CrossAxisAlignment.start,
-            //                     children: [
-            //                       Text(
-            //                         "State",
-            //                         style: TextStyle(
-            //                             color: Colors.black87,
-            //                             fontFamily: "task",
-            //                             fontSize: 12.sp,
-            //                             fontWeight: FontWeight.bold),
-            //                       ),
-            //                       Container(
-            //                         width: MediaQuery.of(context).size.width,
-            //                         decoration: BoxDecoration(
-            //                           border: Border.all(
-            //                               width: 1, color: Colors.grey),
-            //                           borderRadius: BorderRadius.circular(10),
-            //                         ),
-            //                         padding: EdgeInsets.only(
-            //                             top: 0.5.h, bottom: 0.5.h, right: 5.w),
-            //                         child: DropdownButtonHideUnderline(
-            //                           child: DropdownButton2(
-            //                             hint: Text(
-            //                               'Select State',
-            //                               style: TextStyle(
-            //                                   color:
-            //                                       Colors.black.withOpacity(0.4),
-            //                                   fontSize: 13.sp,
-            //                                   fontFamily: "task"),
-            //                             ),
-            //                             // Not necessary for Option 1
-            //                             value: stateValue,
-            //                             onChanged: (newValue) {
-            //                               setState(() {
-            //                                 stateValue = newValue.toString();
-            //                                 print(stateValue);
-            //                                 cityap(stateValue ?? '');
-            //                               });
-            //                             },
-            //                             items:
-            //                                 statemodal?.states?.map((location) {
-            //                               return DropdownMenuItem(
-            //                                 child: Text(
-            //                                   location.stateName ?? '',
-            //                                   style: TextStyle(
-            //                                       color: Colors.black87,
-            //                                       fontFamily: 'task',
-            //                                       fontSize: 14.sp),
-            //                                 ),
-            //                                 value: location.stateID,
-            //                               );
-            //                             }).toList(),
-            //                           ),
-            //                         ),
-            //                       ),
-            //                     ],
-            //                   ),
-            //                 ),
-            //                 SizedBox(
-            //                   height: 2.5.h,
-            //                 ),
-            //                 Container(
-            //                   width: 85.w,
-            //                   child: Column(
-            //                     crossAxisAlignment: CrossAxisAlignment.start,
-            //                     children: [
-            //                       Text(
-            //                         "City",
-            //                         style: TextStyle(
-            //                             color: Colors.black87,
-            //                             fontFamily: "task",
-            //                             fontSize: 12.sp,
-            //                             fontWeight: FontWeight.bold),
-            //                       ),
-            //                       Container(
-            //                         width: MediaQuery.of(context).size.width,
-            //                         decoration: BoxDecoration(
-            //                           border: Border.all(
-            //                               width: 1, color: Colors.grey),
-            //                           borderRadius: BorderRadius.circular(10),
-            //                         ),
-            //                         padding: EdgeInsets.only(
-            //                             top: 0.5.h, bottom: 0.5.h, right: 5.w),
-            //                         child: DropdownButtonHideUnderline(
-            //                           child: DropdownButton2(
-            //                             hint: Text(
-            //                               'Select City',
-            //                               style: TextStyle(
-            //                                   color:
-            //                                       Colors.black.withOpacity(0.4),
-            //                                   fontSize: 13.sp,
-            //                                   fontFamily: "task"),
-            //                             ),
-            //                             // Not necessary for Option 1
-            //                             value: cityValue,
-            //                             onChanged: (newValue) {
-            //                               setState(() {
-            //                                 cityValue = newValue.toString();
-            //                                 print(cityValue);
-            //                               });
-            //                             },
-            //                             items:
-            //                                 citymodal?.cities?.map((location) {
-            //                               return DropdownMenuItem(
-            //                                 child: Text(
-            //                                   location.cityName ?? '',
-            //                                   style: TextStyle(
-            //                                       color: Colors.black87,
-            //                                       fontFamily: 'task',
-            //                                       fontSize: 12.sp),
-            //                                 ),
-            //                                 value: location.cityID,
-            //                               );
-            //                             }).toList(),
-            //                           ),
-            //                         ),
-            //                       ),
-            //                     ],
-            //                   ),
-            //                 ),
-
+                            //            Container(
+                            //   width: 85.w,
+                            //   child: Column(
+                            //     crossAxisAlignment: CrossAxisAlignment.start,
+                            //     children: [
+                            //       Text(
+                            //         "Country",
+                            //         style: TextStyle(
+                            //           color: Colors.black87,
+                            //           fontFamily: "task",
+                            //           fontSize: 12.sp,
+                            //           fontWeight: FontWeight.bold,
+                            //         ),
+                            //       ),
+                            //       Container(
+                            //         width: MediaQuery.of(context).size.width,
+                            //         decoration: BoxDecoration(
+                            //           border: Border.all(width: 1, color: Colors.grey),
+                            //           borderRadius: BorderRadius.circular(10),
+                            //         ),
+                            //         padding: EdgeInsets.only(top: 0.5.h, bottom: 0.5.h, right: 5.w),
+                            //         child: DropdownButtonHideUnderline(
+                            //           child: DropdownButton2(
+                            //             hint: Text(
+                            //               'Select Country',
+                            //               style: TextStyle(
+                            //                 color: Colors.black.withOpacity(0.4),
+                            //                 fontSize: 13.sp,
+                            //                 fontFamily: "task",
+                            //               ),
+                            //             ),
+                            //             value: countryValue,
+                            //             onChanged: (newValue) {
+                            //               setState(() {
+                            //                 countryValue = newValue.toString();
+                            //                 print(countryValue);
+                            //                 stateap(countryValue ?? '');
+                            //               });
+                            //             },
+                            //             items: countrymodal?.countries?.map((location) {
+                            //               // Print each location's countryID to check for duplicates
+                            //               print('Country ID: ${location.countryID}, Country Name: ${location.countryName}');
+                            //               return DropdownMenuItem(
+                            //                 child: Text(
+                            //                   location.countryName ?? '',
+                            //                   style: TextStyle(
+                            //                     color: Colors.black87,
+                            //                     fontFamily: 'task',
+                            //                     fontSize: 14.sp,
+                            //                   ),
+                            //                 ),
+                            //                 value: location.countryID,
+                            //               );
+                            //             }).toList(),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
+                            //                 SizedBox(
+                            //                   height: 2.5.h,
+                            //                 ),
+                            //                 Container(
+                            //                   width: 85.w,
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text(
+                            //                         "State",
+                            //                         style: TextStyle(
+                            //                             color: Colors.black87,
+                            //                             fontFamily: "task",
+                            //                             fontSize: 12.sp,
+                            //                             fontWeight: FontWeight.bold),
+                            //                       ),
+                            //                       Container(
+                            //                         width: MediaQuery.of(context).size.width,
+                            //                         decoration: BoxDecoration(
+                            //                           border: Border.all(
+                            //                               width: 1, color: Colors.grey),
+                            //                           borderRadius: BorderRadius.circular(10),
+                            //                         ),
+                            //                         padding: EdgeInsets.only(
+                            //                             top: 0.5.h, bottom: 0.5.h, right: 5.w),
+                            //                         child: DropdownButtonHideUnderline(
+                            //                           child: DropdownButton2(
+                            //                             hint: Text(
+                            //                               'Select State',
+                            //                               style: TextStyle(
+                            //                                   color:
+                            //                                       Colors.black.withOpacity(0.4),
+                            //                                   fontSize: 13.sp,
+                            //                                   fontFamily: "task"),
+                            //                             ),
+                            //                             // Not necessary for Option 1
+                            //                             value: stateValue,
+                            //                             onChanged: (newValue) {
+                            //                               setState(() {
+                            //                                 stateValue = newValue.toString();
+                            //                                 print(stateValue);
+                            //                                 cityap(stateValue ?? '');
+                            //                               });
+                            //                             },
+                            //                             items:
+                            //                                 statemodal?.states?.map((location) {
+                            //                               return DropdownMenuItem(
+                            //                                 child: Text(
+                            //                                   location.stateName ?? '',
+                            //                                   style: TextStyle(
+                            //                                       color: Colors.black87,
+                            //                                       fontFamily: 'task',
+                            //                                       fontSize: 14.sp),
+                            //                                 ),
+                            //                                 value: location.stateID,
+                            //                               );
+                            //                             }).toList(),
+                            //                           ),
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //                 SizedBox(
+                            //                   height: 2.5.h,
+                            //                 ),
+                            //                 Container(
+                            //                   width: 85.w,
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text(
+                            //                         "City",
+                            //                         style: TextStyle(
+                            //                             color: Colors.black87,
+                            //                             fontFamily: "task",
+                            //                             fontSize: 12.sp,
+                            //                             fontWeight: FontWeight.bold),
+                            //                       ),
+                            //                       Container(
+                            //                         width: MediaQuery.of(context).size.width,
+                            //                         decoration: BoxDecoration(
+                            //                           border: Border.all(
+                            //                               width: 1, color: Colors.grey),
+                            //                           borderRadius: BorderRadius.circular(10),
+                            //                         ),
+                            //                         padding: EdgeInsets.only(
+                            //                             top: 0.5.h, bottom: 0.5.h, right: 5.w),
+                            //                         child: DropdownButtonHideUnderline(
+                            //                           child: DropdownButton2(
+                            //                             hint: Text(
+                            //                               'Select City',
+                            //                               style: TextStyle(
+                            //                                   color:
+                            //                                       Colors.black.withOpacity(0.4),
+                            //                                   fontSize: 13.sp,
+                            //                                   fontFamily: "task"),
+                            //                             ),
+                            //                             // Not necessary for Option 1
+                            //                             value: cityValue,
+                            //                             onChanged: (newValue) {
+                            //                               setState(() {
+                            //                                 cityValue = newValue.toString();
+                            //                                 print(cityValue);
+                            //                               });
+                            //                             },
+                            //                             items:
+                            //                                 citymodal?.cities?.map((location) {
+                            //                               return DropdownMenuItem(
+                            //                                 child: Text(
+                            //                                   location.cityName ?? '',
+                            //                                   style: TextStyle(
+                            //                                       color: Colors.black87,
+                            //                                       fontFamily: 'task',
+                            //                                       fontSize: 12.sp),
+                            //                                 ),
+                            //                                 value: location.cityID,
+                            //                               );
+                            //                             }).toList(),
+                            //                           ),
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
 
                             SizedBox(
                               height: 2.5.h,
@@ -645,24 +653,24 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your State',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
@@ -705,24 +713,24 @@ class _editshippingadressState extends State<editshippingadress> {
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(10),
+                                              BorderRadius.circular(10),
                                           borderSide:
-                                          BorderSide(color: Colors.grey)),
+                                              BorderSide(color: Colors.grey)),
                                       hintText: 'Enter Your City',
                                       hintStyle: TextStyle(
                                           color: Colors.black.withOpacity(0.4),
@@ -867,17 +875,17 @@ class _editshippingadressState extends State<editshippingadress> {
               });
               print('EE Thay Gyu Hooooo ! ^_^');
               setState(() {
-                isLoading = false;
+                // isLoading = false;
               });
             } else {
               setState(() {
-                isLoading = false;
+                // isLoading = false;
               });
             }
           });
         } else {
           setState(() {
-            isLoading = false;
+            // isLoading = false;
           });
           buildErrorDialog(context, 'Error', "Internet Required");
         }
@@ -886,14 +894,15 @@ class _editshippingadressState extends State<editshippingadress> {
   }
 
   editshippingap() async {
+    EasyLoading.show(status: 'Please Wait');
     if (_formKey.currentState?.validate() ?? false) {
       final Map<String, String> data = {};
       data['first_name'] = _firstname.text.toString();
       data['last_name'] = _lastname.text.toString();
       data['city'] = _city.text.toString();
       data['email'] = _email.text.toString();
-      data['state'] =_state.text.toString();
-      data['country'] =  "india";
+      data['state'] = _state.text.toString();
+      data['country'] = "india";
       data['zipcode'] = _ZipCode.text.toString();
       data['address'] = _Address.text.toString();
       data['phone'] = _phone.text.toString();
@@ -906,7 +915,8 @@ class _editshippingadressState extends State<editshippingadress> {
             print(editshippingadd?.status);
             if (response.statusCode == 200 &&
                 editshippingadd?.status == "success") {
-              update(context, '', 'Address Save Successfully', callback: () {
+              EasyLoading.dismiss();
+              update(context, '', 'Address Updated Successfully', callback: () {
                 Navigator.pop(context);
                 setState(() {
                   back1 = true;
@@ -938,6 +948,7 @@ class _editshippingadressState extends State<editshippingadress> {
   }
 
   userselectaddap() async {
+
     final Map<String, String> data = {};
     data['shipping_address_id'] = widget.addid.toString();
     print(data);
@@ -1002,17 +1013,17 @@ class _editshippingadressState extends State<editshippingadress> {
 
             setState(() {
               stateap(countryValue ?? '');
-              isLoading = false;
+              // isLoading = false;
             });
           } else {
             setState(() {
-              isLoading = false;
+              // isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
+          // isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }

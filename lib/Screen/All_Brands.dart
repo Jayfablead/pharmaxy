@@ -49,7 +49,7 @@ class _All_BrandsState extends State<All_Brands> {
         key: _scaffoldKeybrand,
         drawer: drawer1(),
         backgroundColor: bgcolor,
-        bottomNavigationBar: bottombar(),
+        bottomNavigationBar: bottombar(selected: 0,),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
