@@ -424,7 +424,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                     children: [
                                                                       Text(
                                                                         maxLines: 1,
-                                                                      "Order Number :- ",
+                                                                      "Order Number:- ",
                                                                         style: TextStyle(
                                                                             overflow:
                                                                             TextOverflow
@@ -447,14 +447,14 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                 myorderlistmodal?.data?[index].orderNumber ==
                                                                                     null
                                                                             ? 'N/A'
-                                                                            : "# " +(myorderlistmodal?.data?[index].orderNumber).toString(),
+                                                                            : "# "+(myorderlistmodal?.data?[index].orderNumber).toString(),
                                                                         style: TextStyle(
                                                                             overflow:
                                                                                 TextOverflow
                                                                                     .ellipsis,
                                                                             color: Colors
                                                                                 .black,
-                                                                            fontSize: 11
+                                                                            fontSize: 10
                                                                                 .sp,
                                                                             fontWeight:
                                                                                 FontWeight
@@ -811,7 +811,7 @@ class _MyOrderListState extends State<MyOrderList> {
 
                                                                                 Text(
                                                                                   maxLines: 1,
-                                                                                  "Order Number :- ",
+                                                                                  "Order Number:- ",
                                                                                   style: TextStyle(
                                                                                       overflow:
                                                                                       TextOverflow
@@ -827,17 +827,17 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                       "task"),
                                                                                 ),
                                                                                 Text(
-                                                                                                                                                          maxLines:
+                                                                                  maxLines:
                                                                                   1,
                                                                                   paidorderModel?.data?[index].orderNumber == '' || paidorderModel?.data?[index].orderNumber == null
                                                                                   ? 'N/A'
                                                                                   : paidorderModel?.data?[index].orderNumber ??
                                                                                       '',
-                                                                                                                                                          style: TextStyle(
+                                                                                  style: TextStyle(
                                                                                   overflow:
                                                                                       TextOverflow.ellipsis,
                                                                                   color: Colors.black,
-                                                                                  fontSize: 11.sp,
+                                                                                  fontSize: 10.sp,
                                                                                   fontWeight: FontWeight.w600,
                                                                                   fontFamily: "task"),
                                                                                                                                                         ),
@@ -1175,7 +1175,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                   children: [
                                                                                     Text(
                                                                                       maxLines: 1,
-                                                                                      "Order Number :- ",
+                                                                                      "Order Number:- ",
                                                                                       style: TextStyle(
                                                                                           overflow:
                                                                                           TextOverflow
@@ -1199,7 +1199,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                                                                                                                   style: TextStyle(
                                                                                       overflow: TextOverflow.ellipsis,
                                                                                       color: Colors.black,
-                                                                                      fontSize: 11.sp,
+                                                                                      fontSize: 10.sp,
                                                                                       fontWeight: FontWeight.w600,
                                                                                       fontFamily: "task"),
                                                                                                                                                                 ),
@@ -1511,7 +1511,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                             children: [
                                                               Text(
                                                                 maxLines: 1,
-                                                                "Order Number :- ",
+                                                                "Order Number:- ",
                                                                 style: TextStyle(
                                                                     overflow:
                                                                     TextOverflow
@@ -1535,7 +1535,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                 style: TextStyle(
                                                                     overflow: TextOverflow.ellipsis,
                                                                     color: Colors.black,
-                                                                    fontSize: 11.sp,
+                                                                    fontSize: 10.sp,
                                                                     fontWeight: FontWeight.w600,
                                                                     fontFamily: "task"),
                                                               ),
@@ -1847,7 +1847,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                             children: [
                                                               Text(
                                                                 maxLines: 1,
-                                                                "Order Number :- ",
+                                                                "Order Number:- ",
                                                                 style: TextStyle(
                                                                     overflow:
                                                                     TextOverflow
@@ -1871,7 +1871,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                 style: TextStyle(
                                                                     overflow: TextOverflow.ellipsis,
                                                                     color: Colors.black,
-                                                                    fontSize: 11.sp,
+                                                                    fontSize: 10.sp,
                                                                     fontWeight: FontWeight.w600,
                                                                     fontFamily: "task"),
                                                               ),
@@ -2196,7 +2196,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                             children: [
                                                               Text(
                                                                 maxLines: 1,
-                                                                "Order Number :- ",
+                                                                "Order Number:- ",
                                                                 style: TextStyle(
                                                                     overflow:
                                                                     TextOverflow
@@ -2220,7 +2220,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                 style: TextStyle(
                                                                     overflow: TextOverflow.ellipsis,
                                                                     color: Colors.black,
-                                                                    fontSize: 11.sp,
+                                                                    fontSize: 10.sp,
                                                                     fontWeight: FontWeight.w600,
                                                                     fontFamily: "task"),
                                                               ),
@@ -2544,7 +2544,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                             children: [
                                                               Text(
                                                                 maxLines: 1,
-                                                                "Order Number :- ",
+                                                                "Order Number:- ",
                                                                 style: TextStyle(
                                                                     overflow:
                                                                     TextOverflow
@@ -2568,7 +2568,7 @@ class _MyOrderListState extends State<MyOrderList> {
                                                                 style: TextStyle(
                                                                     overflow: TextOverflow.ellipsis,
                                                                     color: Colors.black,
-                                                                    fontSize: 11.sp,
+                                                                    fontSize: 10.sp,
                                                                     fontWeight: FontWeight.w600,
                                                                     fontFamily: "task"),
                                                               ),

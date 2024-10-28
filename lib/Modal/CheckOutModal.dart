@@ -174,7 +174,7 @@ class CartDetails {
   String? prescription;
   String? notPrescription;
   String? orderDate;
-  int? orderNumber;
+  String? orderNumber;
   String? totalAmount;
   String? payment;
   String? orderStatus;
