@@ -1790,7 +1790,7 @@ class _CartPageState extends State<CartPage> {
                                                                                     child: Text(
                                                                                       '₹' + (viewwithoutuserModel?.cartDetails?[index].saleProductPrice).toString(),
                                                                                       style: TextStyle(
-                                                                                        fontSize: 11.sp,
+                                                                                        fontSize: 10.sp,
                                                                                         fontFamily: 'task',
                                                                                         fontWeight: FontWeight.normal,
                                                                                         letterSpacing: 1,
@@ -1807,7 +1807,7 @@ class _CartPageState extends State<CartPage> {
                                                                                     '₹' + (viewwithoutuserModel?.cartDetails?[index].productPrice).toString(),
                                                                                     style: TextStyle(
                                                                                       decoration: viewwithoutuserModel?.cartDetails?[index].saleProductPrice != viewwithoutuserModel?.cartDetails?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                                      fontSize: 11.sp,
+                                                                                      fontSize: 10.sp,
                                                                                       fontFamily: 'task',
                                                                                       fontWeight: FontWeight.normal,
                                                                                       letterSpacing: 1,
@@ -2751,7 +2751,8 @@ class _CartPageState extends State<CartPage> {
                           ],
                         )
                       /// Login
-                      : Column(
+                      :
+                  Column(
                           children: [
                             SizedBox(
                               height: 2.h,
@@ -3092,7 +3093,7 @@ class _CartPageState extends State<CartPage> {
                                                                                     child: Text(
                                                                                       '₹' + (viewcartmodal?.cartDetails?[index].saleProductPrice).toString(),
                                                                                       style: TextStyle(
-                                                                                        fontSize: 11.sp,
+                                                                                        fontSize: 10.sp,
                                                                                         fontFamily: 'task',
                                                                                         fontWeight: FontWeight.normal,
                                                                                         letterSpacing: 1,
@@ -3109,7 +3110,7 @@ class _CartPageState extends State<CartPage> {
                                                                                     '₹' + (viewcartmodal?.cartDetails?[index].productPrice).toString(),
                                                                                     style: TextStyle(
                                                                                       decoration: viewcartmodal?.cartDetails?[index].saleProductPrice != viewcartmodal?.cartDetails?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                                      fontSize: 11.sp,
+                                                                                      fontSize: 10.sp,
                                                                                       fontFamily: 'task',
                                                                                       fontWeight: FontWeight.normal,
                                                                                       letterSpacing: 1,
@@ -4133,7 +4134,7 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
-
+  /// logout
   ViewCartwithoutloginAp() async {
     final Map<String, String> data = {};
     data['device_id'] = deviceName.toString();
@@ -4237,7 +4238,7 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
-
+  /// logout
   removecartwithoutlogin(String value) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -4360,7 +4361,7 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
-
+  /// logout
   incrementwithoutlogin(String value) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -4421,7 +4422,7 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
-
+  /// logout
   decrementwithoutlogin(String value) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -4662,7 +4663,7 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
-
+  /// logout
   applycoupon1( value, final Function() IsSuccess, final Function() IsFail) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -4689,6 +4690,7 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
+  /// logout
   applycoupon1noloader(  value, final Function() IsSuccess, final Function() IsFail) async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -4776,7 +4778,7 @@ class _CartPageState extends State<CartPage> {
       }
     });
   }
-
+/// logout
   chekoutsenddetail1() async {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};

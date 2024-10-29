@@ -675,8 +675,12 @@ class _Refill_AlertState extends State<Refill_Alert> {
                                     ),
                                     TextFormField(
                                       validator: (value) {
-                                        if (value!.isEmpty) {
+                                        int? days = int.tryParse(value!);
+                                        if (value.isEmpty) {
                                           return "Please Enter Days";
+                                        }
+                                       else if (days == 1) {
+                                          return "Minimum 2 days are required";
                                         }
                                         return null;
                                       },
