@@ -4873,19 +4873,19 @@ class _CartPageState extends State<CartPage> {
 
             setState(() {
               // wait = false;
-              // isLoading = false;
+               isLoading = false;
             });
           } else {
             setState(() {
               // wait = false;
-              // isLoading = false;
+               isLoading = false;
             });
           }
         });
       } else {
         setState(() {
           //wait = false;
-          // isLoading = false;
+           isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
