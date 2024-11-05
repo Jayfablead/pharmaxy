@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -195,15 +196,14 @@ class _ProductList4State extends State<ProductList4> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    allproductap();
-    scrollController.addListener(_scrollListener);
-
     setState(() {
       _serch2.text = '';
-      setState(() {
-        isLoading = true;
-      });
+
+      isLoading = true;
+      _isLoading = true;
     });
+    allproductap();
+    scrollController.addListener(_scrollListener);
   }
 
   @override
@@ -2290,376 +2290,348 @@ class _ProductList4State extends State<ProductList4> {
                                             ),
                                           )
                                         : _serch2.text == ''
-                                            ? allproductmodal?.allProducts
-                                                            ?.length ==
-                                                        0 ||
-                                                    allproductmodal?.allProducts
-                                                            ?.length ==
-                                                        null
+                                            ? _isLoading
                                                 ? SliverToBoxAdapter(
                                                     child: Container(
-                                                      height: 70.h,
+                                                      height: 65.h,
                                                       child: Center(
-                                                          child: Text(
-                                                        'No Products Available',
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontFamily: 'task',
-                                                          fontSize: 15.sp,
-                                                        ),
-                                                      )),
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      ),
                                                     ),
                                                   )
-                                                : SliverGrid(
-                                                    gridDelegate:
-                                                        SliverGridDelegateWithMaxCrossAxisExtent(
-                                                      maxCrossAxisExtent: 200,
-                                                      mainAxisSpacing: 0.0,
-                                                      crossAxisSpacing: 0.0,
-                                                      childAspectRatio:
-                                                          6.5 / 8.5,
-                                                    ),
-                                                    delegate:
-                                                        SliverChildBuilderDelegate(
-                                                      (BuildContext context,
-                                                          int index) {
-                                                        double
-                                                            percentageOffValue =
-                                                            calculatePercentageOff(
-                                                                index);
-                                                        if (index % 5 == 0 &&
-                                                            index != 0) {
-                                                          if (isloadingMore &&
-                                                              index ==
-                                                                  posts
-                                                                      .length) {
-                                                            return Center(
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                color:
-                                                                    Colors.blue,
-                                                              ),
-                                                            );
-                                                          }
-                                                        }
-
-                                                        if (index <
-                                                            posts.length) {
-                                                          final post =
-                                                              posts[index];
-                                                          return Stack(
-                                                            children: [
-                                                              GestureDetector(
-                                                                onTap: () {
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .push(
-                                                                          MaterialPageRoute(
-                                                                    builder: (context) =>
-                                                                        productdetailnovartion(
-                                                                            productid:
-                                                                                ("${post['ProductID']}")),
-                                                                  ));
-                                                                },
-                                                                child: Card(
-                                                                  color: Colors
-                                                                      .white,
+                                                : allproductmodal?.allProducts
+                                                                ?.length ==
+                                                            0 ||
+                                                        allproductmodal
+                                                                ?.allProducts
+                                                                ?.length ==
+                                                            null
+                                                    ? SliverToBoxAdapter(
+                                                        child: Container(
+                                                          height: 70.h,
+                                                          child: Center(
+                                                              child: Text(
+                                                            'No Products Available',
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                              fontFamily:
+                                                                  'task',
+                                                              fontSize: 15.sp,
+                                                            ),
+                                                          )),
+                                                        ),
+                                                      )
+                                                    : SliverGrid(
+                                                        gridDelegate:
+                                                            SliverGridDelegateWithMaxCrossAxisExtent(
+                                                          maxCrossAxisExtent:
+                                                              200,
+                                                          mainAxisSpacing: 0.0,
+                                                          crossAxisSpacing: 0.0,
+                                                          childAspectRatio:
+                                                              6.5 / 8.5,
+                                                        ),
+                                                        delegate:
+                                                            SliverChildBuilderDelegate(
+                                                          (BuildContext context,
+                                                              int index) {
+                                                            double
+                                                                percentageOffValue =
+                                                                calculatePercentageOff(
+                                                                    index);
+                                                            if (index % 5 ==
+                                                                    0 &&
+                                                                index != 0) {
+                                                              if (isloadingMore &&
+                                                                  index ==
+                                                                      posts
+                                                                          .length) {
+                                                                return Center(
                                                                   child:
-                                                                      Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
+                                                                      CircularProgressIndicator(
+                                                                    color: Colors
+                                                                        .blue,
+                                                                  ),
+                                                                );
+                                                              }
+                                                            }
+
+                                                            if (index <
+                                                                posts.length) {
+                                                              final post =
+                                                                  posts[index];
+                                                              return Stack(
+                                                                children: [
+                                                                  GestureDetector(
+                                                                    onTap: () {
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .push(
+                                                                              MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                productdetailnovartion(productid: ("${post['ProductID']}")),
+                                                                      ));
+                                                                    },
+                                                                    child: Card(
                                                                       color: Colors
                                                                           .white,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                    ),
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        SizedBox(
-                                                                            height:
-                                                                                2.h),
-                                                                        Container(
-                                                                          child:
-                                                                              CachedNetworkImage(
-                                                                            imageUrl:
-                                                                                allproductmodal?.allProducts?[index].allImages?[0] ?? '',
-                                                                            height:
-                                                                                9.5.h,
-                                                                            width:
-                                                                                25.w,
-                                                                            imageBuilder: (context, imageProvider) =>
-                                                                                Container(
-                                                                              decoration: BoxDecoration(
-                                                                                image: DecorationImage(
-                                                                                  filterQuality: FilterQuality.high,
-                                                                                  image: imageProvider,
-                                                                                  fit: BoxFit.cover,
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            placeholder: (context, url) =>
-                                                                                Center(child: CircularProgressIndicator()),
-                                                                            errorWidget: (context, url, error) =>
-                                                                                Icon(Icons.error),
-                                                                          ),
+                                                                      child:
+                                                                          Container(
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              Colors.white,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(10),
                                                                         ),
-                                                                        SizedBox(
-                                                                            height:
-                                                                                1.h),
-                                                                        Padding(
-                                                                          padding:
-                                                                              EdgeInsets.symmetric(horizontal: 1.w),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.center,
-                                                                            children: [
-                                                                              Column(
-                                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                children: [
-                                                                                  SizedBox(
-                                                                                    width: 30.w,
-                                                                                    child: Text(
-                                                                                      textAlign: TextAlign.center,
-                                                                                      overflow: TextOverflow.ellipsis,
-                                                                                      maxLines: 1,
-                                                                                      allproductmodal?.allProducts?[index].productName ?? '',
-                                                                                      style: TextStyle(fontSize: 11.sp, fontFamily: 'task', fontWeight: FontWeight.bold, letterSpacing: 1, color: Colors.black),
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                        Row(
+                                                                        child:
+                                                                            Column(
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.center,
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.center,
                                                                           children: [
+                                                                            SizedBox(height: 2.h),
+                                                                            Container(
+                                                                              child: CachedNetworkImage(
+                                                                                imageUrl: allproductmodal?.allProducts?[index].allImages?[0] ?? '',
+                                                                                height: 9.5.h,
+                                                                                width: 25.w,
+                                                                                imageBuilder: (context, imageProvider) => Container(
+                                                                                  decoration: BoxDecoration(
+                                                                                    image: DecorationImage(
+                                                                                      filterQuality: FilterQuality.high,
+                                                                                      image: imageProvider,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                                                                                errorWidget: (context, url, error) => Icon(Icons.error),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(height: 1.h),
+                                                                            Padding(
+                                                                              padding: EdgeInsets.symmetric(horizontal: 1.w),
+                                                                              child: Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                children: [
+                                                                                  Column(
+                                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                                    children: [
+                                                                                      SizedBox(
+                                                                                        width: 30.w,
+                                                                                        child: Text(
+                                                                                          textAlign: TextAlign.center,
+                                                                                          overflow: TextOverflow.ellipsis,
+                                                                                          maxLines: 1,
+                                                                                          allproductmodal?.allProducts?[index].productName ?? '',
+                                                                                          style: TextStyle(fontSize: 11.sp, fontFamily: 'task', fontWeight: FontWeight.bold, letterSpacing: 1, color: Colors.black),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
                                                                             Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                                              crossAxisAlignment: CrossAxisAlignment.center,
                                                                               children: [
-                                                                                if (allproductmodal?.allProducts?[index].saleProductPrice != allproductmodal?.allProducts?[index].productPrice)
-                                                                                  Padding(
-                                                                                    padding: EdgeInsets.only(top: 0.4.h),
-                                                                                    child: Text(
-                                                                                      '₹' + (allproductmodal?.allProducts?[index].saleProductPrice).toString(),
-                                                                                      style: TextStyle(
-                                                                                        fontSize: 11.sp,
-                                                                                        fontFamily: 'task',
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                        letterSpacing: 1,
-                                                                                        color: Colors.black,
+                                                                                Row(
+                                                                                  children: [
+                                                                                    if (allproductmodal?.allProducts?[index].saleProductPrice != allproductmodal?.allProducts?[index].productPrice)
+                                                                                      Padding(
+                                                                                        padding: EdgeInsets.only(top: 0.4.h),
+                                                                                        child: Text(
+                                                                                          '₹' + (allproductmodal?.allProducts?[index].saleProductPrice).toString(),
+                                                                                          style: TextStyle(
+                                                                                            fontSize: 11.sp,
+                                                                                            fontFamily: 'task',
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            letterSpacing: 1,
+                                                                                            color: Colors.black,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    SizedBox(
+                                                                                      width: 1.w,
+                                                                                    ),
+                                                                                    Padding(
+                                                                                      padding: EdgeInsets.only(top: 0.4.h),
+                                                                                      child: Text(
+                                                                                        '₹' + (allproductmodal?.allProducts?[index].productPrice).toString(),
+                                                                                        style: TextStyle(
+                                                                                          decoration: allproductmodal?.allProducts?[index].saleProductPrice != allproductmodal?.allProducts?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
+                                                                                          fontSize: 11.sp,
+                                                                                          fontFamily: 'task',
+                                                                                          fontWeight: FontWeight.normal,
+                                                                                          letterSpacing: 1,
+                                                                                          color: Colors.black,
+                                                                                        ),
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                SizedBox(
-                                                                                  width: 1.w,
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsets.only(top: 0.4.h),
-                                                                                  child: Text(
-                                                                                    '₹' + (allproductmodal?.allProducts?[index].productPrice).toString(),
-                                                                                    style: TextStyle(
-                                                                                      decoration: allproductmodal?.allProducts?[index].saleProductPrice != allproductmodal?.allProducts?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                                      fontSize: 11.sp,
-                                                                                      fontFamily: 'task',
-                                                                                      fontWeight: FontWeight.normal,
-                                                                                      letterSpacing: 1,
-                                                                                      color: Colors.black,
+                                                                                    SizedBox(
+                                                                                      width: 1.w,
                                                                                     ),
-                                                                                  ),
+                                                                                    // percentageOffValue == null || percentageOffValue == 0
+                                                                                    //     ? Container()
+                                                                                    //     : Padding(
+                                                                                    //         padding:  EdgeInsets.only(top: 0.4.h),
+                                                                                    //         child: Container(
+                                                                                    //           padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
+                                                                                    //           decoration: BoxDecoration(
+                                                                                    //             borderRadius: BorderRadius.circular(5),
+                                                                                    //             color: Colors.red.shade400,
+                                                                                    //           ),
+                                                                                    //           child: Text(
+                                                                                    //             '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                                                    //             style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
+                                                                                    //           ),
+                                                                                    //         ),
+                                                                                    //       ),
+                                                                                  ],
                                                                                 ),
-                                                                                SizedBox(
-                                                                                  width: 1.w,
-                                                                                ),
-                                                                                // percentageOffValue == null || percentageOffValue == 0
-                                                                                //     ? Container()
-                                                                                //     : Padding(
-                                                                                //         padding:  EdgeInsets.only(top: 0.4.h),
-                                                                                //         child: Container(
-                                                                                //           padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                                //           decoration: BoxDecoration(
-                                                                                //             borderRadius: BorderRadius.circular(5),
-                                                                                //             color: Colors.red.shade400,
-                                                                                //           ),
-                                                                                //           child: Text(
-                                                                                //             '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                                //             style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                                //           ),
-                                                                                //         ),
-                                                                                //       ),
                                                                               ],
                                                                             ),
+                                                                            SizedBox(height: 0.5.h),
+                                                                            GestureDetector(
+                                                                              onTap: () {
+                                                                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => productdetailnovartion(productid: ("${post['ProductID']}"))));
+                                                                              },
+                                                                              child: Container(
+                                                                                alignment: Alignment.center,
+                                                                                height: 4.h,
+                                                                                width: 32.w,
+                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Color(0xff0061b0)),
+                                                                                child: Text(
+                                                                                  "View Product",
+                                                                                  style: TextStyle(fontSize: 11.sp, color: Colors.white),
+                                                                                ),
+                                                                              ),
+                                                                            ),
                                                                           ],
                                                                         ),
-                                                                        SizedBox(
-                                                                            height:
-                                                                                0.5.h),
-                                                                        GestureDetector(
-                                                                          onTap:
-                                                                              () {
-                                                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => productdetailnovartion(productid: ("${post['ProductID']}"))));
-                                                                          },
-                                                                          child:
-                                                                              Container(
-                                                                            alignment:
-                                                                                Alignment.center,
-                                                                            height:
-                                                                                4.h,
-                                                                            width:
-                                                                                32.w,
-                                                                            decoration:
-                                                                                BoxDecoration(borderRadius: BorderRadius.circular(10), color: Color(0xff0061b0)),
-                                                                            child:
-                                                                                Text(
-                                                                              "View Product",
-                                                                              style: TextStyle(fontSize: 11.sp, color: Colors.white),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              ),
-                                                              Positioned(
-                                                                left: 37.w,
-                                                                top: 1.h,
-                                                                child:
-                                                                    GestureDetector(
-                                                                  onTap: () {
-                                                                    usermodal?.userId ==
-                                                                                "" ||
-                                                                            usermodal?.userId ==
-                                                                                null
-                                                                        ? Navigator.of(context).push(MaterialPageRoute(
-                                                                            builder: (context) =>
-                                                                                LoginPage2()))
-                                                                        : allproductmodal?.allProducts?[index].wishlist ==
-                                                                                1
-                                                                            ? removewishlistap((allproductmodal?.allProducts?[index].productID).toString())
-                                                                            : addwishlistap((allproductmodal?.allProducts?[index].productID).toString());
-                                                                  },
-                                                                  child: Icon(
-                                                                    allproductmodal?.allProducts?[index].wishlist ==
-                                                                            1
-                                                                        ? Icons
-                                                                            .favorite
-                                                                        : Icons
-                                                                            .favorite_outline,
-                                                                    size: 20.sp,
-                                                                    color: allproductmodal?.allProducts?[index].wishlist ==
-                                                                            1
-                                                                        ? Colors
-                                                                            .red
-                                                                        : Colors
-                                                                            .black,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              percentageOffValue ==
-                                                                          null ||
-                                                                      percentageOffValue ==
-                                                                          0
-                                                                  ? Container()
-                                                                  : Positioned(
-                                                                      right:
-                                                                          27.w,
-                                                                      top:
-                                                                          0.7.h,
+                                                                  Positioned(
+                                                                    left: 37.w,
+                                                                    top: 1.h,
+                                                                    child:
+                                                                        GestureDetector(
+                                                                      onTap:
+                                                                          () {
+                                                                        usermodal?.userId == "" ||
+                                                                                usermodal?.userId == null
+                                                                            ? Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage2()))
+                                                                            : allproductmodal?.allProducts?[index].wishlist == 1
+                                                                                ? removewishlistap((allproductmodal?.allProducts?[index].productID).toString())
+                                                                                : addwishlistap((allproductmodal?.allProducts?[index].productID).toString());
+                                                                      },
                                                                       child:
-                                                                          Container(
-                                                                        padding: EdgeInsets.symmetric(
-                                                                            horizontal:
-                                                                                1.w,
-                                                                            vertical: 1.h),
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              Colors.red,
-                                                                          borderRadius:
-                                                                              BorderRadius.only(
-                                                                            topLeft:
-                                                                                Radius.circular(0),
-                                                                            topRight:
-                                                                                Radius.circular(0),
-                                                                            bottomLeft:
-                                                                                Radius.circular(15),
-                                                                            bottomRight:
-                                                                                Radius.circular(15),
-                                                                          ),
-                                                                        ),
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.min,
-                                                                          children: [
-                                                                            Text(
-                                                                              '${percentageOffValue.toStringAsFixed(2)}%',
-                                                                              style: TextStyle(
-                                                                                  color: Colors.white,
-                                                                                  // Text color
-                                                                                  fontSize: 7.sp,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  fontFamily: "task"),
+                                                                          Icon(
+                                                                        allproductmodal?.allProducts?[index].wishlist ==
+                                                                                1
+                                                                            ? Icons.favorite
+                                                                            : Icons.favorite_outline,
+                                                                        size: 20
+                                                                            .sp,
+                                                                        color: allproductmodal?.allProducts?[index].wishlist ==
+                                                                                1
+                                                                            ? Colors.red
+                                                                            : Colors.black,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  percentageOffValue ==
+                                                                              null ||
+                                                                          percentageOffValue ==
+                                                                              0
+                                                                      ? Container()
+                                                                      : Positioned(
+                                                                          right: 27
+                                                                              .w,
+                                                                          top: 0.7
+                                                                              .h,
+                                                                          child:
+                                                                              Container(
+                                                                            padding:
+                                                                                EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Colors.red,
+                                                                              borderRadius: BorderRadius.only(
+                                                                                topLeft: Radius.circular(0),
+                                                                                topRight: Radius.circular(0),
+                                                                                bottomLeft: Radius.circular(15),
+                                                                                bottomRight: Radius.circular(15),
+                                                                              ),
                                                                             ),
-                                                                            Text(
-                                                                              'OFF',
-                                                                              style: TextStyle(
-                                                                                  color: Colors.white,
-                                                                                  // Text color
-                                                                                  fontSize: 7.sp,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  fontFamily: "task"),
+                                                                            child:
+                                                                                Column(
+                                                                              mainAxisSize: MainAxisSize.min,
+                                                                              children: [
+                                                                                Text(
+                                                                                  '${percentageOffValue.toStringAsFixed(2)}%',
+                                                                                  style: TextStyle(
+                                                                                      color: Colors.white,
+                                                                                      // Text color
+                                                                                      fontSize: 7.sp,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontFamily: "task"),
+                                                                                ),
+                                                                                Text(
+                                                                                  'OFF',
+                                                                                  style: TextStyle(
+                                                                                      color: Colors.white,
+                                                                                      // Text color
+                                                                                      fontSize: 7.sp,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      fontFamily: "task"),
+                                                                                ),
+                                                                              ],
                                                                             ),
-                                                                          ],
-                                                                        ),
-                                                                      )),
-                                                            ],
-                                                          );
-                                                        }
-                                                        //     if (index % 5 == 0 && isloadingMore) {
-                                                        //       return Center(
-                                                        //         child: CircularProgressIndicator(
-                                                        //           color: Colors.blue,
-                                                        //         ),
-                                                        //       );
-                                                        //     }
-                                                        // return null;
-                                                      },
-                                                      // Set childCount to posts.length + 1 to account for the loader
-                                                      childCount: posts.length +
-                                                          (isloadingMore
-                                                              ? (posts.length ~/
-                                                                  5)
-                                                              : 0),
-                                                      //posts.length + (isloadingMore ? (posts.length ~/ 6) : 0),
-                                                      //posts.length + (isloadingMore ? 1 : 0),
+                                                                          )),
+                                                                ],
+                                                              );
+                                                            }
+                                                            //     if (index % 5 == 0 && isloadingMore) {
+                                                            //       return Center(
+                                                            //         child: CircularProgressIndicator(
+                                                            //           color: Colors.blue,
+                                                            //         ),
+                                                            //       );
+                                                            //     }
+                                                            // return null;
+                                                          },
+                                                          // Set childCount to posts.length + 1 to account for the loader
+                                                          childCount: posts
+                                                                  .length +
+                                                              (isloadingMore
+                                                                  ? (posts.length ~/
+                                                                      5)
+                                                                  : 0),
+                                                          //posts.length + (isloadingMore ? (posts.length ~/ 6) : 0),
+                                                          //posts.length + (isloadingMore ? 1 : 0),
+                                                        ),
+                                                      )
+                                            : _issearch
+                                                ? SliverToBoxAdapter(
+                                                    child: Container(
+                                                      height: 65.h,
+                                                      child: Center(
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      ),
                                                     ),
                                                   )
-                                            : _issearch
-                            ? SliverToBoxAdapter(
-                          child: Container(
-                            height: 65.h,
-                            child: Center(
-                              child:
-                              CircularProgressIndicator(),
-                            ),
-                          ),
-                        )
-                            : allProductserachModel
+                                                : allProductserachModel
                                                                 ?.searchResults
                                                                 ?.length ==
                                                             0 ||
@@ -2769,8 +2741,9 @@ class _ProductList4State extends State<ProductList4> {
                                                                       Container(
                                                                         height:
                                                                             40,
-                                                                        width: 43
-                                                                            .w, // Height of the button
+                                                                        width:
+                                                                            43.w,
+                                                                        // Height of the button
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           color:
@@ -3192,7 +3165,9 @@ class _ProductList4State extends State<ProductList4> {
   allproductap() async {
     final Map<String, String> data = {};
     data['user_id'] = (usermodal?.userId).toString();
-
+    setState(() {
+      _isLoading = true;
+    });
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().allproductapi(data).then((response) async {
@@ -3203,17 +3178,27 @@ class _ProductList4State extends State<ProductList4> {
               allproductmodal?.status == "success") {
             print('EE Thay Gyu ');
             print('banga');
-            print('banga length : ${allproductmodal?.allProducts
-                ?.length}');
+            print('banga length : ${allproductmodal?.allProducts?.length}');
             paginationapi();
             setState(() {
               isLoading = false;
+
+              Timer(Duration(seconds: 1), () {
+                setState(() {
+                  _isLoading = false;
+                });
+              });
               type1 = "";
               short = "";
             });
           } else {
             setState(() {
               isLoading = false;
+              Timer(Duration(seconds: 1), () {
+                setState(() {
+                  _isLoading = false;
+                });
+              });
               type1 = "";
               short = "";
             });
@@ -3222,6 +3207,11 @@ class _ProductList4State extends State<ProductList4> {
       } else {
         setState(() {
           isLoading = false;
+          Timer(Duration(seconds: 1), () {
+            setState(() {
+              _isLoading = false;
+            });
+          });
           type1 = "";
           short = "";
         });
@@ -3542,11 +3532,11 @@ class _ProductList4State extends State<ProductList4> {
           }
         }).catchError((error) {
           print('API Error: $error');
-          if(mounted)
-          setState(() {
-            isLoading = false;
-            _issearch = false;
-          });
+          if (mounted)
+            setState(() {
+              isLoading = false;
+              _issearch = false;
+            });
         });
       } else {
         setState(() {
