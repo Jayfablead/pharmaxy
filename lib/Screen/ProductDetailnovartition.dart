@@ -18,7 +18,6 @@ import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
-import 'package:ecommerce/Screen/Ofline_Cart.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
@@ -34,7 +33,6 @@ import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../Provider/cartProvider.dart';
-import '../Widget/bottombar.dart';
 
 class productdetailnovartion extends StatefulWidget {
   String? productid;
@@ -48,10 +46,7 @@ class productdetailnovartion extends StatefulWidget {
   State<productdetailnovartion> createState() => _productdetailnovartionState();
 }
 
-
-
 class _productdetailnovartionState extends State<productdetailnovartion> {
-
   final GlobalKey<ScaffoldState> _scaffoldKeynovar = GlobalKey<ScaffoldState>();
 
   int sel = 1;
@@ -76,40 +71,10 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
   String? deviceName;
   String? deviceOS;
 
-  final List<Map<String, String>> items1 = [
-    {
-      "imageUrl":
-      "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
-      "title": "Cipla",
-      "price": "Besides these, it can also be used to treat",
-      "saleprice": "Besides these, it can also be used to treat",
-    },
-    {
-      "imageUrl":
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ZcLFjbUN5p8163Gz60m-y5I5Z9ad_1wfRg&s",
-      "title": "Paracetamol",
-      "price": "Besides these, it can also be used to treat",
-      "saleprice": "Besides these, it can also be used to treat",
-    },
-    {
-      "imageUrl":
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCBLPbWLCWusF0c8oNM88u5SmUPxc1sRmcA&s",
-      "title": "Codine Syp",
-      "price": "Besides these, it can also be used to treat",
-      "saleprice": "Besides these, it can also be used to treat",
-    },
-    {
-      "imageUrl":
-      "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
-      "title": "Antibiotic",
-      "price": "Besides these, it can also be used to treat",
-      "saleprice": "Besides these, it can also be used to treat",
-    },
-  ];
   double calculatePercentageOffProductDetail() {
     // Access the first product price
-    double? productPrice = double.tryParse(
-        productdetail2modal?.productData?.productPrice ?? '0');
+    double? productPrice =
+        double.tryParse(productdetail2modal?.productData?.productPrice ?? '0');
 
     // Debugging: Print the product price
     print('Product Price: $productPrice');
@@ -135,46 +100,24 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     return ((productPrice - saleProductPrice) / productPrice) * 100;
   }
 
-
-
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
     quantity = 1;
-    productdetail2ap();
     getDeviceInfoandStore();
+
     setState(() {
       isLoading = true;
     });
 
-    // setState(() {
-    //   isLoading = true;
-    // });
-    //
-    // setState(() {
-    //   isLoading = true;
-    // });
-    // if (colorshowmodal?.variationData?.length != 0 &&
-    //     sizeshowmodal?.variationData?.length != 0) {
-    //   setState(() {
-    //     isLoading = true;
-    //   });
-    // } else {
-    //   setState(() {
-    //     isLoading = true;
-    //   });
-    // }
     viewreviewap();
   }
 
   @override
   Widget build(BuildContext context) {
-    double
-    percentageOffValue =
-    calculatePercentageOffProductDetail();
+    double percentageOffValue = calculatePercentageOffProductDetail();
     final cartitm = Provider.of<CartProvider>(context);
 
     addoff() async {
@@ -554,21 +497,32 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                       children: [
                                         Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                              CrossAxisAlignment.center,
                                           children: [
                                             Row(
                                               children: [
-                                                if (productdetail2modal?.productData?.saleProductPrice != productdetail2modal?.productData?.productPrice)
+                                                if (productdetail2modal
+                                                        ?.productData
+                                                        ?.saleProductPrice !=
+                                                    productdetail2modal
+                                                        ?.productData
+                                                        ?.productPrice)
                                                   Padding(
-                                                    padding: EdgeInsets.only(top: 0.4.h),
+                                                    padding: EdgeInsets.only(
+                                                        top: 0.4.h),
                                                     child: Text(
-                                                      '₹' + (productdetail2modal?.productData?.saleProductPrice).toString(),
+                                                      '₹' +
+                                                          (productdetail2modal
+                                                                  ?.productData
+                                                                  ?.saleProductPrice)
+                                                              .toString(),
                                                       style: TextStyle(
                                                         fontSize: 14.sp,
                                                         fontFamily: 'task',
-                                                        fontWeight: FontWeight.normal,
+                                                        fontWeight:
+                                                            FontWeight.normal,
                                                         letterSpacing: 1,
                                                         color: Colors.black,
                                                       ),
@@ -578,14 +532,28 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   width: 1.w,
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsets.only(top: 0.4.h),
+                                                  padding: EdgeInsets.only(
+                                                      top: 0.4.h),
                                                   child: Text(
-                                                    '₹' + (productdetail2modal?.productData?.productPrice).toString(),
+                                                    '₹' +
+                                                        (productdetail2modal
+                                                                ?.productData
+                                                                ?.productPrice)
+                                                            .toString(),
                                                     style: TextStyle(
-                                                      decoration: productdetail2modal?.productData?.saleProductPrice != productdetail2modal?.productData?.productPrice ? TextDecoration.lineThrough : TextDecoration.none,
+                                                      decoration: productdetail2modal
+                                                                  ?.productData
+                                                                  ?.saleProductPrice !=
+                                                              productdetail2modal
+                                                                  ?.productData
+                                                                  ?.productPrice
+                                                          ? TextDecoration
+                                                              .lineThrough
+                                                          : TextDecoration.none,
                                                       fontSize: 14.sp,
                                                       fontFamily: 'task',
-                                                      fontWeight: FontWeight.normal,
+                                                      fontWeight:
+                                                          FontWeight.normal,
                                                       letterSpacing: 1,
                                                       color: Colors.black,
                                                     ),
@@ -594,22 +562,40 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                 SizedBox(
                                                   width: 1.w,
                                                 ),
-                                                percentageOffValue == null || percentageOffValue == 0
+                                                percentageOffValue == null ||
+                                                        percentageOffValue == 0
                                                     ? Container()
                                                     : Padding(
-                                                  padding:  EdgeInsets.only(top: 0.4.h),
-                                                  child: Container(
-                                                    padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(5),
-                                                      color: Colors.red.shade400,
-                                                    ),
-                                                    child: Text(
-                                                      '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                      style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                    ),
-                                                  ),
-                                                ),
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 0.4.h),
+                                                        child: Container(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      1.w,
+                                                                  vertical:
+                                                                      0.2.h),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            color: Colors
+                                                                .red.shade400,
+                                                          ),
+                                                          child: Text(
+                                                            '${percentageOffValue.toStringAsFixed(2)}% Off',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontFamily:
+                                                                    "task",
+                                                                fontSize: 7.sp),
+                                                          ),
+                                                        ),
+                                                      ),
                                               ],
                                             ),
                                           ],
@@ -617,7 +603,6 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-
                                       ],
                                     ),
                                     SizedBox(
@@ -688,7 +673,6 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   ),
                                                 ),
                                               ),
-
                                         SizedBox(
                                           width: 2.w,
                                         ),
@@ -697,14 +681,12 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                 1
                                             ? GestureDetector(
                                                 onTap: () {
-                                                 Navigator.of(context)
-                                                          .push(
-                                                          MaterialPageRoute(
-                                                            builder:
-                                                                (context) =>
-                                                                    CartPage(),
-                                                          ),
-                                                        );
+                                                  Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          CartPage(),
+                                                    ),
+                                                  );
                                                 },
                                                 child: Container(
                                                   alignment: Alignment.center,
@@ -784,32 +766,39 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   GestureDetector(
                                                     onTap: () {
                                                       setState(() {
-                                                        if (quantity <10) {
+                                                        if (quantity < 10) {
                                                           quantity++;
-                                                        }else{
-                                                          buildErrorDialog(context, 'Alert', 'Maximum allowed quantity is 10');
+                                                        } else {
+                                                          buildErrorDialog(
+                                                              context,
+                                                              'Alert',
+                                                              'Maximum allowed quantity is 10');
                                                         }
                                                       });
                                                     },
                                                     child: Container(
-                                                      alignment: Alignment.center,
+                                                      alignment:
+                                                          Alignment.center,
                                                       height: 9.5.w,
                                                       width: 9.5.w,
                                                       decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(100),
-                                                        color: AppColors.primary,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100),
+                                                        color:
+                                                            AppColors.primary,
                                                       ),
                                                       child: Text(
                                                         "+",
                                                         style: TextStyle(
                                                           fontSize: 16.sp,
                                                           color: Colors.white,
-                                                          fontWeight: FontWeight.bold,
+                                                          fontWeight:
+                                                              FontWeight.bold,
                                                         ),
                                                       ),
                                                     ),
                                                   )
-
                                                 ],
                                               ),
                                       ],
@@ -1694,6 +1683,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     data['user_id'] = usermodal?.userId == "" || usermodal?.userId == null
         ? deviceName.toString()
         : (usermodal?.userId).toString();
+    print('Kaa Beta le Deta : ${data}');
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().productdetail2api(data).then((response) async {
@@ -1702,7 +1692,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
           print(productdetail2modal?.status);
           if (response.statusCode == 200 &&
               productdetail2modal?.status == "success") {
-            pages = List.generate((productdetail2modal?.productData?.allimage?.length ?? 0),
+            pages = List.generate(
+                (productdetail2modal?.productData?.allimage?.length ?? 0),
                 (index) => Container(
                       width: 90.w,
                       decoration: BoxDecoration(
@@ -2484,12 +2475,15 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       setState(() {
         deviceName = androidInfo.model; // Device name
         deviceOS = 'Android ${androidInfo.version.release}';
+        print(' Aa Joto Device Nu Naam Aache ? ${deviceName}');
+        productdetail2ap();
       });
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       setState(() {
         deviceName = iosInfo.name; // Device name
         deviceOS = 'iOS ${iosInfo.systemVersion}';
+        productdetail2ap();
       });
     }
     print('Device Name: $deviceName');
