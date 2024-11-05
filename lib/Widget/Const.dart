@@ -92,6 +92,7 @@ import 'package:sizer/sizer.dart';
 import '../Modal/ProductDetail2Modal.dart';
 import '../Modal/StripeModal.dart';
 import '../Modal/addReviewModal.dart';
+import '../Modal/sendOrderMailModal.dart';
 
 Color bgcolor = Colors.grey.shade100;
 
@@ -187,7 +188,7 @@ BannerModel? bannermodel;
 CateWisePageViewModel? catewisePageViewModel;
 BrandwicePageViewModel? brandwicePageviewmodel;
 RemoveCouponModel? removecouponModel;
-
+SendOrderMailModal? sendOrderMail;
 //Prit Api
 RequestformModel? requestformModel;
 PrescriptionformModel? prescriptionformModel;

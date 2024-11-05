@@ -1346,7 +1346,7 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   SizedBox(
                                     child: Text(
-                                      "Shop By Category",
+                                      "Shop by Category",
                                       style: TextStyle(
                                           fontSize: 11.sp,
                                           fontWeight: FontWeight.bold,
@@ -1895,7 +1895,7 @@ class _HomePageState extends State<HomePage> {
                                                     InkWell(
                                                       onTap: () {
                                                         Navigator.of(context)
-                                                            .pushReplacement(
+                                                            .push(
                                                                 MaterialPageRoute(
                                                           builder: (context) =>
                                                               Request_Medicine(),

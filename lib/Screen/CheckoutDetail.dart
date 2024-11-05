@@ -2070,6 +2070,12 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                 builder: (context) => ThankyouPage(
                       uid: (checkoutmodal?.cartDetails?.orderNumber).toString(),
                       url: checkoutmodal?.invoicePdf.toString(),
+                      orderId:
+                          (checkoutmodal?.cartDetails?.orderNumber).toString(),
+                      userId:
+                          usermodal?.userId == "" || usermodal?.userId == null
+                              ? deviceName.toString()
+                              : usermodal?.userId ?? "",
                     )));
             print('Copun last data : ${storeData?.getString(cpnname)}');
             storeData?.remove(cpnname);

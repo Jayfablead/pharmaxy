@@ -52,7 +52,7 @@ class authprovider with ChangeNotifier {
       body: bodyData,
     )
         .timeout(
-      const Duration(seconds: 30),
+      const Duration(seconds: 250),
       onTimeout: () {
         throw const SocketException('Something went wrong');
       },
@@ -1381,6 +1381,22 @@ class authprovider with ChangeNotifier {
     var responseJson;
     final response = await http.get(Uri.parse(url)).timeout(
       const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
+  Future<http.Response> sendOrderMailapi(
+    Map<String, String> bodyData,
+  ) async {
+    String url = "${baseUrl}/sendOrderConfirmationEmail";
+    print(url);
+    var responseJson;
+    final response = await http.post(Uri.parse(url), body: bodyData).timeout(
+      const Duration(seconds: 250),
       onTimeout: () {
         throw const SocketException('Something went wrong');
       },

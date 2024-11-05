@@ -270,12 +270,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
                                 children: [
                                   IconButton(
                                       onPressed: () {
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  HomePage(sel: 1),
-                                            ));
+                                        Navigator.pop(context);
                                       },
                                       icon: Icon(
                                         Icons.arrow_back_ios_new_outlined,

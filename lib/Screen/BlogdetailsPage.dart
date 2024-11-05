@@ -62,13 +62,7 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                                 children: [
                                   IconButton(
                                     onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              HomePage(sel: 1),
-                                        ),
-                                      );
+                                      Navigator.pop(context);
                                     },
                                     icon: Icon(
                                       Icons.arrow_back_ios_new_outlined,
@@ -242,7 +236,7 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-                                Navigator.pop(context);
+
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => Blogdetailspage(
                                       iteamid:
