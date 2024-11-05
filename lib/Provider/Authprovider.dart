@@ -213,11 +213,12 @@ class authprovider with ChangeNotifier {
 
   Future<http.Response>allproductapi(Map<String, String> bodyData) async {
     const url = "$baseUrl/allProducts";
+    print('Ka ba : $url');
     var responseJson;
     final response = await http
         .get(Uri.parse(url),)
         .timeout(
-      const Duration(seconds: 30),
+      const Duration(seconds: 250),
       onTimeout: () {
         throw const SocketException('Something went wrong');
       },
@@ -1649,7 +1650,7 @@ class authprovider with ChangeNotifier {
     final response = await http
         .post(Uri.parse(url), body: bodyData, headers: headers)
         .timeout(
-      const Duration(seconds: 30),
+      const Duration(seconds: 250),
       onTimeout: () {
         throw const SocketException('Something went wrong');
       },
