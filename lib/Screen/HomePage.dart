@@ -3341,6 +3341,7 @@ class _HomePageState extends State<HomePage> {
           if (response.statusCode == 200 &&
               catwiceproductmodal?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
+            if(mounted)
             setState(() {
               wait = false;
               isLoading = false;

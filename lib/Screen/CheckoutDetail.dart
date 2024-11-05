@@ -68,9 +68,10 @@ int selectedpayment = 0;
 
 String? deviceName;
 String? deviceOS;
-
+String cpnname = 'Couponname';
+String isCpn = 'isCpn';
 bool isLoading = true;
-
+SharedPreferences? storeData;
 var Options = "option1";
 
 void MakePayment(String fname, String lname) async {
@@ -90,6 +91,21 @@ void MakePayment(String fname, String lname) async {
 }
 
 class _CheckoutDetailState extends State<CheckoutDetail> {
+  Future<void> initializeSharedPreferences() async {
+    storeData = await SharedPreferences.getInstance();
+    print('kaho:');
+    setState(() {
+      cpn = storeData?.getString(cpnname);
+    });
+    print('Copan Deta : $cpn');
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    initializeSharedPreferences();
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -224,6 +240,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
           return alert;
         });
   }
+
   ImagePicker _picker = ImagePicker();
   File? _pickedFile = null;
 
@@ -240,8 +257,15 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
       scaffold: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey.shade50,
-        body: PopScope(
-          canPop: false,
+        body: WillPopScope(
+          onWillPop: () async {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CartPage(),
+                ));
+            return false;
+          },
           child: SingleChildScrollView(
             child: isLoading
                 ? Container()
@@ -2046,6 +2070,9 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
                       uid: (checkoutmodal?.cartDetails?.orderNumber).toString(),
                       url: checkoutmodal?.invoicePdf.toString(),
                     )));
+            print('Copun last data : ${storeData?.getString(cpnname)}');
+            storeData?.remove(cpnname);
+
             print(checkoutmodal?.status);
             setState(() {
               isLoading = false;
