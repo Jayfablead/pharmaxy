@@ -48,64 +48,64 @@ class productdetailnovartion extends StatefulWidget {
   State<productdetailnovartion> createState() => _productdetailnovartionState();
 }
 
-final GlobalKey<ScaffoldState> _scaffoldKeynovar = GlobalKey<ScaffoldState>();
 
-int sel = 1;
-int color = 0;
-final _formKey = GlobalKey<FormState>();
-bool isLoading = true;
-TextEditingController _comment = TextEditingController();
-TextEditingController _rating = TextEditingController();
-
-final controller = PageController(viewportFraction: 0.8, keepPage: true);
-List pages = [];
-bool h = false;
-int quantity = 1; // Initialize the quantity variable
-
-DatabaseHelper databaseHelper = DatabaseHelper();
-
-int selectedColorIndex = 0;
-
-int selcted = 0;
-String? price;
-String? price1;
-String? deviceName;
-String? deviceOS;
-
-final List<Map<String, String>> items1 = [
-  {
-    "imageUrl":
-        "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
-    "title": "Cipla",
-    "price": "Besides these, it can also be used to treat",
-    "saleprice": "Besides these, it can also be used to treat",
-  },
-  {
-    "imageUrl":
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ZcLFjbUN5p8163Gz60m-y5I5Z9ad_1wfRg&s",
-    "title": "Paracetamol",
-    "price": "Besides these, it can also be used to treat",
-    "saleprice": "Besides these, it can also be used to treat",
-  },
-  {
-    "imageUrl":
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCBLPbWLCWusF0c8oNM88u5SmUPxc1sRmcA&s",
-    "title": "Codine Syp",
-    "price": "Besides these, it can also be used to treat",
-    "saleprice": "Besides these, it can also be used to treat",
-  },
-  {
-    "imageUrl":
-        "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
-    "title": "Antibiotic",
-    "price": "Besides these, it can also be used to treat",
-    "saleprice": "Besides these, it can also be used to treat",
-  },
-];
 
 class _productdetailnovartionState extends State<productdetailnovartion> {
 
+  final GlobalKey<ScaffoldState> _scaffoldKeynovar = GlobalKey<ScaffoldState>();
 
+  int sel = 1;
+  int color = 0;
+  final _formKey = GlobalKey<FormState>();
+  bool isLoading = true;
+  TextEditingController _comment = TextEditingController();
+  TextEditingController _rating = TextEditingController();
+
+  final controller = PageController(viewportFraction: 0.8, keepPage: true);
+  List pages = [];
+  bool h = false;
+  int quantity = 1; // Initialize the quantity variable
+
+  DatabaseHelper databaseHelper = DatabaseHelper();
+
+  int selectedColorIndex = 0;
+
+  int selcted = 0;
+  String? price;
+  String? price1;
+  String? deviceName;
+  String? deviceOS;
+
+  final List<Map<String, String>> items1 = [
+    {
+      "imageUrl":
+      "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
+      "title": "Cipla",
+      "price": "Besides these, it can also be used to treat",
+      "saleprice": "Besides these, it can also be used to treat",
+    },
+    {
+      "imageUrl":
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ZcLFjbUN5p8163Gz60m-y5I5Z9ad_1wfRg&s",
+      "title": "Paracetamol",
+      "price": "Besides these, it can also be used to treat",
+      "saleprice": "Besides these, it can also be used to treat",
+    },
+    {
+      "imageUrl":
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCBLPbWLCWusF0c8oNM88u5SmUPxc1sRmcA&s",
+      "title": "Codine Syp",
+      "price": "Besides these, it can also be used to treat",
+      "saleprice": "Besides these, it can also be used to treat",
+    },
+    {
+      "imageUrl":
+      "https://5.imimg.com/data5/MO/AF/MY-10823160/trypsin-capsule-500x500.png",
+      "title": "Antibiotic",
+      "price": "Besides these, it can also be used to treat",
+      "saleprice": "Besides these, it can also be used to treat",
+    },
+  ];
   double calculatePercentageOffProductDetail() {
     // Access the first product price
     double? productPrice = double.tryParse(
@@ -150,23 +150,23 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
       isLoading = true;
     });
 
-    setState(() {
-      isLoading = true;
-    });
-
-    setState(() {
-      isLoading = true;
-    });
-    if (colorshowmodal?.variationData?.length != 0 &&
-        sizeshowmodal?.variationData?.length != 0) {
-      setState(() {
-        isLoading = true;
-      });
-    } else {
-      setState(() {
-        isLoading = true;
-      });
-    }
+    // setState(() {
+    //   isLoading = true;
+    // });
+    //
+    // setState(() {
+    //   isLoading = true;
+    // });
+    // if (colorshowmodal?.variationData?.length != 0 &&
+    //     sizeshowmodal?.variationData?.length != 0) {
+    //   setState(() {
+    //     isLoading = true;
+    //   });
+    // } else {
+    //   setState(() {
+    //     isLoading = true;
+    //   });
+    // }
     viewreviewap();
   }
 
@@ -242,7 +242,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 IconButton(
                                     onPressed: () {
                                       Navigator.of(context)
-                                          .push(MaterialPageRoute(
+                                          .pushReplacement(MaterialPageRoute(
                                               builder: (context) => HomePage(
                                                     sel: 1,
                                                   )));
@@ -1702,8 +1702,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
           print(productdetail2modal?.status);
           if (response.statusCode == 200 &&
               productdetail2modal?.status == "success") {
-            pages = List.generate(
-                (productdetail2modal?.productData?.allimage?.length ?? 0),
+            pages = List.generate((productdetail2modal?.productData?.allimage?.length ?? 0),
                 (index) => Container(
                       width: 90.w,
                       decoration: BoxDecoration(

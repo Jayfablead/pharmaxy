@@ -11,6 +11,7 @@ import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/ShortbyModel.dart';
 import 'package:ecommerce/Modal/SubCatSerchModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
 import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
@@ -256,7 +257,10 @@ class _ProductListPageState extends State<ProductListPage> {
                                   children: [
                                     IconButton(
                                         onPressed: () {
-                                          Navigator.pop(context);
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(builder: (context) => HomePage(sel: 1),)
+                                          );
+                                         //Navigator.pop(context);
                                         },
                                         icon: Icon(
                                           Icons.arrow_back_ios_new_rounded,
@@ -2473,37 +2477,51 @@ class _ProductListPageState extends State<ProductListPage> {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-                                            catwiceproductmodal
-                                                ?.categoriesWiseProduct?[
-                                            index]
-                                                .productType ==
-                                                '1'
-                                                ? Navigator.of(context)
+                                            Navigator.of(context)
                                                 .push(
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     productdetailnovartion(
                                                       productid: catwiceproductmodal
-                                                          ?.categoriesWiseProduct?[
-                                                      index]
-                                                          .productID ??
-                                                          '',
-                                                    ),
-                                              ),
-                                            )
-                                                : Navigator.of(context)
-                                                .push(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    productdetailnovartion(
-                                                      productid: catwiceproductmodal
-                                                          ?.categoriesWiseProduct?[
-                                                      index]
-                                                          .productID ??
-                                                          '',
+                                                                    ?.categoriesWiseProduct?[
+                                                                index]
+                                                                    .productID ??
+                                                                    '',
                                                     ),
                                               ),
                                             );
+
+                                            // catwiceproductmodal
+                                            //     ?.categoriesWiseProduct?[
+                                            // index]
+                                            //     .productType ==
+                                            //     '1'
+                                            //     ? Navigator.of(context)
+                                            //     .push(
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) =>
+                                            //         productdetailnovartion(
+                                            //           productid: catwiceproductmodal
+                                            //               ?.categoriesWiseProduct?[
+                                            //           index]
+                                            //               .productID ??
+                                            //               '',
+                                            //         ),
+                                            //   ),
+                                            // )
+                                            //     : Navigator.of(context)
+                                            //     .push(
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) =>
+                                            //         productdetailnovartion(
+                                            //           productid: catwiceproductmodal
+                                            //               ?.categoriesWiseProduct?[
+                                            //           index]
+                                            //               .productID ??
+                                            //               '',
+                                            //         ),
+                                            //   ),
+                                            // );
                                           },
                                           child: Card(
 

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -45,6 +44,7 @@ import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -193,9 +193,8 @@ bool _isLoading = false;
 
 class _HomePageState extends State<HomePage> {
 
-
-
-
+  bool noResultsFound = false;
+  bool isLoad = false;
 
 
   double calculatePercentageOffbestsellproduct(int index) {
@@ -1186,13 +1185,20 @@ class _HomePageState extends State<HomePage> {
                           : SliverToBoxAdapter(
                               child: Row(
                                 children: <Widget>[
-                                  Expanded(
-                                    child: Divider(
-                                      color: Colors.grey, // Divider color
-                                      thickness: 1,
-                                      indent: 10, // Divider thickness
-                                    ),
+                                  Container(
+                                    height: 0.1.h,
+                                    width: 23.w,
+                                    decoration: BoxDecoration(
+                                        // borderRadius: BorderRadius.circular(50),
+                                        color: Colors.grey),
                                   ),
+                                  // Container(
+                                  //   child: Divider(
+                                  //     color: Colors.grey, // Divider color
+                                  //     thickness: 1,
+                                  //     indent: 10, // Divider thickness
+                                  //   ),
+                                  // ),
                                   Padding(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 10),
@@ -1204,13 +1210,20 @@ class _HomePageState extends State<HomePage> {
                                           fontSize: 9.5.sp), // Text style
                                     ),
                                   ),
-                                  Expanded(
-                                    child: Divider(
-                                      color: Colors.grey, // Divider color
-                                      thickness: 1,
-                                      endIndent: 10, // Divider thickness
-                                    ),
+                                  Container(
+                                    height: 0.1.h,
+                                    width: 23.w,
+                                    decoration: BoxDecoration(
+                                      // borderRadius: BorderRadius.circular(50),
+                                        color: Colors.grey),
                                   ),
+                                  // Container(
+                                  //   child: Divider(
+                                  //     color: Colors.grey, // Divider color
+                                  //     thickness: 1,
+                                  //     endIndent: 10, // Divider thickness
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -1808,7 +1821,9 @@ class _HomePageState extends State<HomePage> {
                                           ?.searchResults?.length ==
                                       null
                               ? SliverToBoxAdapter(
-                                  child: Container(
+                                  child: isLoad == true ? Center(
+                                    child: CircularProgressIndicator(),
+                                  ):Container(
                                     alignment: Alignment.center,
                                     height: 50.h,
                                     child: Center(
@@ -2328,6 +2343,7 @@ class _HomePageState extends State<HomePage> {
                                             },
                                             child: Card(
                                               color: Colors.white,
+
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                     borderRadius:
@@ -2869,7 +2885,6 @@ class _HomePageState extends State<HomePage> {
   Widget searchBox() {
     return Container(
       width: 92.w,
-      // Container ni width jethi screen pranu responsive layout same aave
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.12),
         borderRadius: BorderRadius.circular(10),
@@ -2880,79 +2895,151 @@ class _HomePageState extends State<HomePage> {
         onChanged: (value) {
           setState(() {
             name = true;
+            isLoad = true; // Set loading to true when search begins
+            noResultsFound = false; // Reset no-results state
           });
+
           if (_serch.text.isEmpty) {
             setState(() {
               name = false;
               wait = false;
+              isLoad = false; // Stop loading when search is cleared
             });
           } else {
-            setState(() {
-              name = true;
-              wait = true;
+            allproductserchap(_serch.text).then((results) {
+              setState(() {
+                isLoad = false; // Stop loading once search completes
+                noResultsFound = results.isEmpty; // Show no-results if nothing is found
+              });
             });
           }
-          allproductserchap(_serch.text);
         },
         style: TextStyle(color: Colors.black, fontFamily: 'task'),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(0),
-          suffixIcon: _serch.text.isNotEmpty // Conditionally show the close icon
+          suffixIcon: _serch.text.isNotEmpty
               ? InkWell(
             onTap: () {
               setState(() {
                 _serch.text = '';
-                allproductserchap(_serch.text); // Call API with empty search
-                name = false;  // Reset name and wait state
+                allproductserchap(_serch.text); // Reset search
+                name = false;
                 wait = false;
+                isLoad = false;
+                noResultsFound = false;
               });
             },
             child: Icon(Icons.close, size: 20),
           )
               : null,
-          // suffixIcon: InkWell(
-          //   onTap: () {
-          //     setState(() {
-          //       _serch.text = '';
-          //       allproductserchap(_serch.text);
-          //     });
-          //   },
-          //     child: Icon(Icons.close,size: 20,)
-          // ),
-          prefixIcon: Icon(
-            Icons.search,
-            color: Colors.black,
-            size: 20,
-          ),
-          prefixIconConstraints: BoxConstraints(
-            maxHeight: 20,
-            minWidth: 40,
-          ),
+          prefixIcon: Icon(Icons.search, color: Colors.black, size: 20),
+          prefixIconConstraints: BoxConstraints(maxHeight: 20, minWidth: 40),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
-              color: Colors.grey.shade300,
-            ), // Outline border ni width same rakhavi
+            borderSide: BorderSide(color: Colors.grey.shade300),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
-              color: Colors.grey.shade400,
-            ), // Enabled state ni border width same
+            borderSide: BorderSide(color: Colors.grey.shade400),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
-              color: AppColors.primary,
-            ), // Focused state ni border width same rakhvi
+            borderSide: BorderSide(color: AppColors.primary),
           ),
-          hintText: 'Search  For Medicines',
-          hintStyle: TextStyle(
-              color: Colors.black, fontFamily: 'task', fontSize: 12.sp),
+          hintText: 'Search For Medicines',
+          hintStyle: TextStyle(color: Colors.black, fontFamily: 'task', fontSize: 12.sp),
         ),
       ),
     );
   }
+
+  // Widget searchBox() {
+  //   return Container(
+  //     width: 92.w,
+  //     // Container ni width jethi screen pranu responsive layout same aave
+  //     decoration: BoxDecoration(
+  //       color: Colors.grey.withOpacity(0.12),
+  //       borderRadius: BorderRadius.circular(10),
+  //     ),
+  //     child: TextField(
+  //       controller: _serch,
+  //       onTap: () {},
+  //       onChanged: (value) {
+  //         setState(() {
+  //           name = true;
+  //         });
+  //         if (_serch.text.isEmpty) {
+  //           setState(() {
+  //             name = false;
+  //             wait = false;
+  //           });
+  //         } else {
+  //           setState(() {
+  //             name = true;
+  //             wait = true;
+  //           });
+  //         }
+  //         allproductserchap(_serch.text);
+  //       },
+  //       style: TextStyle(color: Colors.black, fontFamily: 'task'),
+  //       decoration: InputDecoration(
+  //         contentPadding: EdgeInsets.all(0),
+  //         suffixIcon: _serch.text.isNotEmpty // Conditionally show the close icon
+  //             ? InkWell(
+  //           onTap: () {
+  //             setState(() {
+  //               _serch.text = '';
+  //               allproductserchap(_serch.text); // Call API with empty search
+  //               name = false;  // Reset name and wait state
+  //               wait = false;
+  //             });
+  //           },
+  //           child: Icon(Icons.close, size: 20),
+  //         )
+  //             : null,
+  //         // suffixIcon: InkWell(
+  //         //   onTap: () {
+  //         //     setState(() {
+  //         //       _serch.text = '';
+  //         //       allproductserchap(_serch.text);
+  //         //     });
+  //         //   },
+  //         //     child: Icon(Icons.close,size: 20,)
+  //         // ),
+  //         prefixIcon: Icon(
+  //           Icons.search,
+  //           color: Colors.black,
+  //           size: 20,
+  //         ),
+  //         prefixIconConstraints: BoxConstraints(
+  //           maxHeight: 20,
+  //           minWidth: 40,
+  //         ),
+  //         border: OutlineInputBorder(
+  //           borderRadius: BorderRadius.circular(10),
+  //           borderSide: BorderSide(
+  //             color: Colors.grey.shade300,
+  //           ), // Outline border ni width same rakhavi
+  //         ),
+  //         enabledBorder: OutlineInputBorder(
+  //           borderRadius: BorderRadius.circular(10),
+  //           borderSide: BorderSide(
+  //             color: Colors.grey.shade400,
+  //           ), // Enabled state ni border width same
+  //         ),
+  //         focusedBorder: OutlineInputBorder(
+  //           borderRadius: BorderRadius.circular(10),
+  //           borderSide: BorderSide(
+  //             color: AppColors.primary,
+  //           ), // Focused state ni border width same rakhvi
+  //         ),
+  //         hintText: 'Search  For Medicines',
+  //         hintStyle: TextStyle(
+  //             color: Colors.black, fontFamily: 'task', fontSize: 12.sp),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   allcatap() async {
     final Map<String, String> data = {};

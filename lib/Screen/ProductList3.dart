@@ -9,6 +9,7 @@ import 'package:ecommerce/Modal/RemoveWishListModal.dart';
 import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Modal/ShortbyModel.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
+import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
@@ -257,7 +258,10 @@ class _ProductList3State extends State<ProductList3> {
                                   children: [
                                     IconButton(
                                         onPressed: () {
-                                          Navigator.pop(context);
+                                          Navigator.of(context).pushReplacement(
+                                              MaterialPageRoute(builder: (context) => HomePage(sel: 1),)
+                                          );
+                                          //Navigator.pop(context);
                                         },
                                         icon: Icon(
                                           Icons.arrow_back_ios,

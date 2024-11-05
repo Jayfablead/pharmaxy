@@ -241,7 +241,7 @@ class _ProductList4State extends State<ProductList4> {
                                   children: [
                                     IconButton(
                                         onPressed: () {
-                                            Navigator.of(context).push(
+                                            Navigator.of(context).pushReplacement(
                                               MaterialPageRoute(builder: (context) => HomePage(sel: 3),)
                                             );
                                           // Navigator.pop(context);

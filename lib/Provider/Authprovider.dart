@@ -48,7 +48,7 @@ class authprovider with ChangeNotifier {
     const url = "$baseUrl/simple_product_details";
     var responseJson;
     final response = await http
-        .post(Uri.parse(url), body: bodyData, headers: headers)
+        .post(Uri.parse(url), body: bodyData,)
         .timeout(
       const Duration(seconds: 30),
       onTimeout: () {
