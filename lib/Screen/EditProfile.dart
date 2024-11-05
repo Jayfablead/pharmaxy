@@ -8,6 +8,7 @@ import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 
@@ -546,7 +547,7 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  editap() {
+  editap() { EasyLoading.show(status: 'Please Wait');
     final Map<String, String> data = {};
     data['userId'] = usermodal?.userId ?? '';
     data['firstName'] = firstname.text.toString();
@@ -570,6 +571,7 @@ class _EditProfileState extends State<EditProfile> {
           print(editprofilemodal?.status);
           if (response.statusCode == 200 &&
               editprofilemodal?.status == "success") {
+            EasyLoading.dismiss();
             update(context, 'Profile', 'Profile Updated Successfully',
                 callback: () {
               Navigator.pop(context);

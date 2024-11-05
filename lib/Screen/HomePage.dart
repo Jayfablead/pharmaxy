@@ -3583,6 +3583,7 @@ class _HomePageState extends State<HomePage> {
           print(blogmodel?.status);
           if (response.statusCode == 200 && blogmodel?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
+            if(mounted)
             setState(() {
               wait = false;
               isLoading = false;

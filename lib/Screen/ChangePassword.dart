@@ -7,6 +7,7 @@ import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -353,7 +354,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     );
   }
 
-  changepasswordap() {
+  changepasswordap() { EasyLoading.show(status: 'Please Wait');
     if (_formKey.currentState!.validate()) {
       final Map<String, String> data = {};
       data['user_id'] = (usermodal?.userId).toString();
@@ -373,6 +374,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               _newpassword.clear();
               _confirmpassword.clear();
               print('Password Change  Thay Gyo Hooooo ! ^_^');
+              EasyLoading.dismiss();
               update(context, 'Success', 'Password Changed Successfully',
                   callback: () {
                 Navigator.of(context).push(

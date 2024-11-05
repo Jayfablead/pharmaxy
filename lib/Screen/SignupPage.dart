@@ -7,6 +7,7 @@ import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 class SignupPage extends StatefulWidget {
@@ -531,6 +532,7 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   sinap() async {
+    EasyLoading.show(status: 'Please Wait');
     if (_formKey.currentState!.validate()) {
       final Map<String, String> data = {};
       data['firstName'] = firstname.text.trim().toString();
@@ -547,6 +549,7 @@ class _SignupPageState extends State<SignupPage> {
               signupmodal = SignupModal.fromJson(json.decode(response.body));
               if (response.statusCode == 200 &&
                   signupmodal?.status == "success") {
+                EasyLoading.dismiss();
                 buildErrorDialog(
                     context, 'success', signupmodal?.message ?? "");
                 Timer(Duration(seconds: 3), () {
