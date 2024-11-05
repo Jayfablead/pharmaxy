@@ -190,7 +190,6 @@ class _CartPageState extends State<CartPage> {
     getDeviceInfoandStore().then((value) {
       setState(() {
         isLoading = true;
-        isLoading = true;
         _CartLoaded = true;
       });
       (usermodal?.userId != null && usermodal?.userId != "")
@@ -2904,7 +2903,6 @@ class _CartPageState extends State<CartPage> {
           print(viewcartmodal?.status);
           if (response.statusCode == 200 &&
               viewcartmodal?.status == "success") {
-            // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
             print('aa lenth ${viewcartmodal?.cartDetails?.length}');
 
@@ -2954,9 +2952,11 @@ class _CartPageState extends State<CartPage> {
         authprovider().viewcartwithoutloginapi(data).then((response) async {
           viewwithoutuserModel =
               View_withoutuser_Model.fromJson(json.decode(response.body));
+          print('You Are Here');
           if (viewwithoutuserModel?.cartDetails?.length == 0 ||
               viewwithoutuserModel?.cartDetails?.length == null) {
             storeData?.remove(cpnname);
+            print('Jo hu kadhu');
             setState(() {
               cpn = null;
             });
@@ -3027,7 +3027,6 @@ class _CartPageState extends State<CartPage> {
                   });
                   EasyLoading.dismiss();
                   ViewCartApi();
-                  ViewCartwithoutloginAp();
                   print('ADD');
                   setState(() {
                     isLoading = false;
@@ -3151,7 +3150,6 @@ class _CartPageState extends State<CartPage> {
                   });
                   EasyLoading.dismiss();
                   ViewCartApi();
-                  ViewCartwithoutloginAp();
                   print('ADD');
                   setState(() {
                     isLoading = false;
@@ -3200,7 +3198,6 @@ class _CartPageState extends State<CartPage> {
           if (response.statusCode == 200 &&
               Incrementwithoutloginmodel?.status == "success") {
             EasyLoading.showSuccess('Update quantity');
-            ViewCartApi();
             ViewCartwithoutloginAp();
             setState(() {
               applycoupon1(
@@ -3261,7 +3258,7 @@ class _CartPageState extends State<CartPage> {
           if (response.statusCode == 200 &&
               Decrementwithoutlogin?.status == "success") {
             EasyLoading.showSuccess('Update quantity');
-            ViewCartApi();
+            ViewCartwithoutloginAp();
             setState(() {
               applycoupon1(
                 cpn.toString(),
@@ -3337,7 +3334,6 @@ class _CartPageState extends State<CartPage> {
                   });
                   EasyLoading.dismiss();
                   ViewCartApi();
-                  ViewCartwithoutloginAp();
                   print('ADD');
                   setState(() {
                     isLoading = false;
@@ -3590,7 +3586,6 @@ class _CartPageState extends State<CartPage> {
                           alluseraddmodal?.allShippingAddress?[0].lastName,
                       address: alluseraddmodal?.allShippingAddress?[0].address,
                     )));
-            // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
             _searchController.clear();
             setState(() {
@@ -3653,7 +3648,6 @@ class _CartPageState extends State<CartPage> {
                           alluseraddmodal?.allShippingAddress?[0].lastName,
                       address: alluseraddmodal?.allShippingAddress?[0].address,
                     )));
-            // applycoupon();
             print('EE Thay Gyu Hooooo ! ^_^');
             _searchController.clear();
             setState(() {
