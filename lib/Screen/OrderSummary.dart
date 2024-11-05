@@ -5,7 +5,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/MyOederDetailModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
-import 'package:ecommerce/Screen/ChatScreen.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/MyOrderList.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';

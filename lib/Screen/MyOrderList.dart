@@ -10,7 +10,6 @@ import 'package:ecommerce/Modal/PlacedOrderModel.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/ShippedOrderModel.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
-import 'package:ecommerce/Screen/ChatScreen.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/OrderSummary.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';

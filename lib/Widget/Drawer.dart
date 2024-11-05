@@ -7,7 +7,6 @@ import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/ChangePassword.dart';
-import 'package:ecommerce/Screen/ChatScreen.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/MyOrderList.dart';
