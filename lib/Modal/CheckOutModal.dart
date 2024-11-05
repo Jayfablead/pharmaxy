@@ -126,12 +126,12 @@ class CheckOutModal {
 
   CheckOutModal(
       {this.message,
-        this.status,
-        this.cartDetails,
-        this.invoicePdf,
-        this.finalTotal,
-        this.totalTax,
-        this.finalTotalWithTax});
+      this.status,
+      this.cartDetails,
+      this.invoicePdf,
+      this.finalTotal,
+      this.totalTax,
+      this.finalTotalWithTax});
 
   CheckOutModal.fromJson(Map<String, dynamic> json) {
     message = json['message'];
@@ -181,22 +181,22 @@ class CartDetails {
 
   CartDetails(
       {this.userID,
-        this.fname,
-        this.lname,
-        this.email,
-        this.phoneno,
-        this.country,
-        this.state,
-        this.city,
-        this.address1,
-        this.zipcode,
-        this.prescription,
-        this.notPrescription,
-        this.orderDate,
-        this.orderNumber,
-        this.totalAmount,
-        this.payment,
-        this.orderStatus});
+      this.fname,
+      this.lname,
+      this.email,
+      this.phoneno,
+      this.country,
+      this.state,
+      this.city,
+      this.address1,
+      this.zipcode,
+      this.prescription,
+      this.notPrescription,
+      this.orderDate,
+      this.orderNumber,
+      this.totalAmount,
+      this.payment,
+      this.orderStatus});
 
   CartDetails.fromJson(Map<String, dynamic> json) {
     userID = json['UserID'];
@@ -240,5 +240,3 @@ class CartDetails {
     return data;
   }
 }
-
-

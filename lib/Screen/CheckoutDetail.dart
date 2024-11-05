@@ -106,6 +106,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     super.didChangeDependencies();
     initializeSharedPreferences();
   }
+
   @override
   void initState() {
     // TODO: implement initState

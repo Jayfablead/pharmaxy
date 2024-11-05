@@ -2258,7 +2258,8 @@ class _ProductList3State extends State<ProductList3> {
                                                                     Text(
                                                                       '${percentageOffValue.toStringAsFixed(2)}%',
                                                                       style: TextStyle(
-                                                                          color: Colors.white, // Text color
+                                                                          color: Colors.white,
+                                                                          // Text color
                                                                           fontSize: 7.sp,
                                                                           fontWeight: FontWeight.bold,
                                                                           fontFamily: "task"),
@@ -2266,7 +2267,8 @@ class _ProductList3State extends State<ProductList3> {
                                                                     Text(
                                                                       'OFF',
                                                                       style: TextStyle(
-                                                                          color: Colors.white, // Text color
+                                                                          color: Colors.white,
+                                                                          // Text color
                                                                           fontSize: 7.sp,
                                                                           fontWeight: FontWeight.bold,
                                                                           fontFamily: "task"),
@@ -2583,7 +2585,8 @@ class _ProductList3State extends State<ProductList3> {
                                                                             Text(
                                                                               '${percentageOffValue.toStringAsFixed(2)}%',
                                                                               style: TextStyle(
-                                                                                  color: Colors.white, // Text color
+                                                                                  color: Colors.white,
+                                                                                  // Text color
                                                                                   fontSize: 7.sp,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   fontFamily: "task"),
@@ -2591,7 +2594,8 @@ class _ProductList3State extends State<ProductList3> {
                                                                             Text(
                                                                               'OFF',
                                                                               style: TextStyle(
-                                                                                  color: Colors.white, // Text color
+                                                                                  color: Colors.white,
+                                                                                  // Text color
                                                                                   fontSize: 7.sp,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   fontFamily: "task"),
@@ -2927,7 +2931,8 @@ class _ProductList3State extends State<ProductList3> {
                                                                             Text(
                                                                               '${percentageOffValue.toStringAsFixed(2)}%',
                                                                               style: TextStyle(
-                                                                                  color: Colors.white, // Text color
+                                                                                  color: Colors.white,
+                                                                                  // Text color
                                                                                   fontSize: 7.sp,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   fontFamily: "task"),
@@ -2935,7 +2940,8 @@ class _ProductList3State extends State<ProductList3> {
                                                                             Text(
                                                                               'OFF',
                                                                               style: TextStyle(
-                                                                                  color: Colors.white, // Text color
+                                                                                  color: Colors.white,
+                                                                                  // Text color
                                                                                   fontSize: 7.sp,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   fontFamily: "task"),

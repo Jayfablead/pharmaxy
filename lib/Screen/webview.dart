@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-
-
 import 'package:sizer/sizer.dart';
 
 class Privacy_Policy extends StatefulWidget {
@@ -59,35 +57,36 @@ class _Privacy_PolicyState extends State<Privacy_Policy> {
             ),
             Stack(
               children: [
-              Container(
-              height: 80.h,
-              child: InAppWebView(
-                initialOptions: InAppWebViewGroupOptions(
-                  crossPlatform: InAppWebViewOptions(
-                    transparentBackground: true,
+                Container(
+                  height: 80.h,
+                  child: InAppWebView(
+                    initialOptions: InAppWebViewGroupOptions(
+                      crossPlatform: InAppWebViewOptions(
+                        transparentBackground: true,
+                      ),
+                    ),
+                    initialUrlRequest: URLRequest(
+                      url: Uri.parse(
+                          'https://pharmato.fableadtechnolabs.com/admin/invoice/79'),
+                    ),
+                    onWebViewCreated: (InAppWebViewController controller) {
+                      _webViewController = controller;
+                    },
+                    onLoadStart: (InAppWebViewController controller, Uri? url) {
+                      setState(() {
+                        _load =
+                            true; // You might want to set _load to true here to indicate loading.
+                      });
+                    },
+                    onLoadStop: (InAppWebViewController controller, Uri? url) {
+                      setState(() {
+                        _load = false;
+                        print('loading : $_load');
+                      });
+                    },
                   ),
                 ),
-                initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://pharmato.fableadtechnolabs.com/admin/invoice/79'),
-                ),
-                onWebViewCreated: (InAppWebViewController controller) {
-                  _webViewController = controller;
-                },
-                onLoadStart: (InAppWebViewController controller, Uri? url) {
-                  setState(() {
-                    _load = true; // You might want to set _load to true here to indicate loading.
-                  });
-                },
-                onLoadStop: (InAppWebViewController controller, Uri? url) {
-                  setState(() {
-                    _load = false;
-                    print('loading : $_load');
-                  });
-                },
-              ),
-            ),
-
-          if (_load)
+                if (_load)
                   Positioned(
                       top: 37.h,
                       left: 45.w,

@@ -35,9 +35,9 @@ class Categories {
 
   Categories(
       {this.categoryID,
-        this.catagoryimage,
-        this.categoryName,
-        this.categoryDesc});
+      this.catagoryimage,
+      this.categoryName,
+      this.categoryDesc});
 
   Categories.fromJson(Map<String, dynamic> json) {
     categoryID = json['CategoryID'];

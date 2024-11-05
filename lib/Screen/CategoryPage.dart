@@ -2,13 +2,11 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Modal/AllCatModal.dart';
-import 'package:ecommerce/Modal/MainCatModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProductListPage.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
-import 'package:ecommerce/Screen/SubCateGoryPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/bottombar.dart';
@@ -97,7 +95,9 @@ class _CategoryPageState extends State<CategoryPage> {
         key: _scaffoldKeycate,
         drawer: drawer1(),
         backgroundColor: bgcolor,
-        bottomNavigationBar: bottombar(selected: 0,),
+        bottomNavigationBar: bottombar(
+          selected: 0,
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
@@ -146,12 +146,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                   },
                                   child: usermodal?.userId == "" ||
                                           usermodal?.userId == null
-                                      ?  Icon(
-                                      CupertinoIcons.person_add,
-                                      size: 21.sp,
-                                      color:  AppColors.primary
-
-                                  )
+                                      ? Icon(CupertinoIcons.person_add,
+                                          size: 21.sp, color: AppColors.primary)
                                       : Container(
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 1.w),
@@ -186,7 +182,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         height: 2.h,
                       ),
                       allcatmodal?.categories?.length == 0 ||
-                          allcatmodal?.categories?.length == null
+                              allcatmodal?.categories?.length == null
                           ? Container(
                               height: 80.h,
                               child: Center(
@@ -213,232 +209,247 @@ class _CategoryPageState extends State<CategoryPage> {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   ProductListPage(
-                                                    catid: allcatmodal?.categories?[index].categoryID ?? '',
-                                                    name:allcatmodal?.categories?[index].categoryName ?? '',
-                                                    subcatid: allcatmodal?.categories?[index].categoryID ?? "",
-                                                    allcatid: allcatmodal?.categories?[index].categoryID ?? "",
+                                                    catid: allcatmodal
+                                                            ?.categories?[index]
+                                                            .categoryID ??
+                                                        '',
+                                                    name: allcatmodal
+                                                            ?.categories?[index]
+                                                            .categoryName ??
+                                                        '',
+                                                    subcatid: allcatmodal
+                                                            ?.categories?[index]
+                                                            .categoryID ??
+                                                        "",
+                                                    allcatid: allcatmodal
+                                                            ?.categories?[index]
+                                                            .categoryID ??
+                                                        "",
                                                   )));
                                     },
                                     child: Card(
                                         // color: Colors.white,
                                         child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
-                                            color: Colors.white,
-                                          ),
-
-                                          child: Column(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white,
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                                MainAxisAlignment.start,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
-                                              Row(
+                                              SizedBox(
+                                                width: 2.w,
+                                              ),
+                                              Container(
+                                                // decoration: BoxDecoration(
+                                                //   borderRadius: BorderRadius.all(Radius.circular(20)
+                                                //    ),
+                                                //   color: Colors.grey.shade200
+                                                // ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 1.w),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: allcatmodal
+                                                            ?.categories?[index]
+                                                            .catagoryimage ??
+                                                        '',
+                                                    fit: BoxFit.cover,
+                                                    height: 25.w,
+                                                    width: 25.w,
+                                                    imageBuilder: (context,
+                                                            imageProvider) =>
+                                                        Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                        image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    placeholder: (context,
+                                                            url) =>
+                                                        Center(
+                                                            child:
+                                                                CircularProgressIndicator()),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            Icon(Icons.error),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 5.w,
+                                              ),
+                                              Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   SizedBox(
-                                                    width: 2.w,
+                                                    height: 2.h,
                                                   ),
-                                                  Container(
-                                                    // decoration: BoxDecoration(
-                                                    //   borderRadius: BorderRadius.all(Radius.circular(20)
-                                                    //    ),
-                                                    //   color: Colors.grey.shade200
-                                                    // ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(horizontal: 1.w),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: allcatmodal
-                                                                ?.categories?[
-                                                                    index]
-                                                                .catagoryimage ??
-                                                            '',
-                                                        fit: BoxFit.cover,
-                                                        height: 25.w,
-                                                        width: 25.w,
-                                                        imageBuilder: (context,
-                                                                imageProvider) =>
-                                                            Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(25),
-                                                            image:
-                                                                DecorationImage(
-                                                              image:
-                                                                  imageProvider,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            Center(
-                                                                child:
-                                                                    CircularProgressIndicator()),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Icon(Icons.error),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 5.w,),
                                                   Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
                                                     children: [
-                                                      SizedBox(
-                                                        height: 2.h,
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 1.w),
+                                                        child: SizedBox(
+                                                          width: 45.w,
+                                                          child: Text(
+                                                            allcatmodal?.categories?[index].categoryName ==
+                                                                        "" ||
+                                                                    allcatmodal
+                                                                            ?.categories?[
+                                                                                index]
+                                                                            .categoryName ==
+                                                                        null
+                                                                ? "N/A"
+                                                                : allcatmodal
+                                                                        ?.categories?[
+                                                                            index]
+                                                                        .categoryName ??
+                                                                    '',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 11.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontFamily:
+                                                                    "task"),
+                                                          ),
+                                                        ),
                                                       ),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
+                                                      SizedBox(
+                                                        height: 0.8.h,
+                                                      ),
+                                                      // SizedBox(
+                                                      //   width: 50.w,
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Container(
+                                                      //         padding: EdgeInsets
+                                                      //             .only(
+                                                      //                 left:
+                                                      //                     1.w),
+                                                      //         child:
+                                                      //             Container(
+                                                      //           width: 47.w,
+                                                      //           child: Text(
+                                                      //             overflow:
+                                                      //                 TextOverflow
+                                                      //                     .ellipsis,
+                                                      //             maxLines:
+                                                      //                 1,
+                                                      //             allcatmodal?.categories?[index].categoryDesc == "" ||
+                                                      //                 allcatmodal?.categories?[index].categoryDesc ==
+                                                      //                         null
+                                                      //                 ? "N/A"
+                                                      //                 : allcatmodal?.categories?[index].categoryDesc ??
+                                                      //                     '',
+                                                      //             style: TextStyle(
+                                                      //                 color: Colors
+                                                      //                     .black,
+                                                      //                 fontSize: 11
+                                                      //                     .sp,
+                                                      //                 fontWeight: FontWeight
+                                                      //                     .normal,
+                                                      //                 fontFamily:
+                                                      //                     "task"),
+                                                      //           ),
+                                                      //         ),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // SizedBox(height: 1.h),
+                                                      Row(
                                                         children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 1.w),
-                                                            child: SizedBox(
-                                                              width: 45.w,
+                                                          SizedBox(
+                                                            width: 3.w,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          ProductListPage(
+                                                                            catid:
+                                                                                allcatmodal?.categories?[index].categoryID ?? '',
+                                                                            name:
+                                                                                allcatmodal?.categories?[index].categoryName ?? '',
+                                                                            subcatid:
+                                                                                allcatmodal?.categories?[index].categoryID,
+                                                                            allcatid:
+                                                                                allcatmodal?.categories?[index].categoryID,
+                                                                            // selid: selected.toString(),
+                                                                          )));
+                                                            },
+                                                            child: Container(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              height: 4.5.h,
+                                                              width: 43.w,
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
+                                                                  color: Color(
+                                                                      0xff0061b0)),
                                                               child: Text(
-                                                                allcatmodal?.categories?[index].categoryName ==
-                                                                            "" ||
-                                                                    allcatmodal?.categories?[index].categoryName ==
-                                                                            null
-                                                                    ? "N/A"
-                                                                    : allcatmodal
-                                                                            ?.categories?[index]
-                                                                            .categoryName ??
-                                                                        '',
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontSize:
-                                                                        11.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontFamily:
-                                                                        "task"),
+                                                                "View Products",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize:
+                                                                      10.sp,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontFamily:
+                                                                      "task",
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
-                                                          SizedBox(
-                                                            height: 0.8.h,
-                                                          ),
-                                                          // SizedBox(
-                                                          //   width: 50.w,
-                                                          //   child: Row(
-                                                          //     mainAxisAlignment:
-                                                          //         MainAxisAlignment
-                                                          //             .spaceBetween,
-                                                          //     children: [
-                                                          //       Container(
-                                                          //         padding: EdgeInsets
-                                                          //             .only(
-                                                          //                 left:
-                                                          //                     1.w),
-                                                          //         child:
-                                                          //             Container(
-                                                          //           width: 47.w,
-                                                          //           child: Text(
-                                                          //             overflow:
-                                                          //                 TextOverflow
-                                                          //                     .ellipsis,
-                                                          //             maxLines:
-                                                          //                 1,
-                                                          //             allcatmodal?.categories?[index].categoryDesc == "" ||
-                                                          //                 allcatmodal?.categories?[index].categoryDesc ==
-                                                          //                         null
-                                                          //                 ? "N/A"
-                                                          //                 : allcatmodal?.categories?[index].categoryDesc ??
-                                                          //                     '',
-                                                          //             style: TextStyle(
-                                                          //                 color: Colors
-                                                          //                     .black,
-                                                          //                 fontSize: 11
-                                                          //                     .sp,
-                                                          //                 fontWeight: FontWeight
-                                                          //                     .normal,
-                                                          //                 fontFamily:
-                                                          //                     "task"),
-                                                          //           ),
-                                                          //         ),
-                                                          //       ),
-                                                          //     ],
-                                                          //   ),
-                                                          // ),
-                                                          // SizedBox(height: 1.h),
-                                                          Row(
-                                                            children: [
-                                                              SizedBox(
-                                                                width: 3.w,
-                                                              ),
-                                                              GestureDetector(
-                                                                onTap: () {
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .push(MaterialPageRoute(
-                                                                          builder: (context) => ProductListPage(
-                                                                            catid: allcatmodal?.categories?[index].categoryID ?? '',
-                                                                            name:allcatmodal?.categories?[index].categoryName ?? '',
-                                                                            subcatid: allcatmodal?.categories?[index].categoryID,
-                                                                            allcatid: allcatmodal?.categories?[index].categoryID,
-                                                                            // selid: selected.toString(),
-                                                                              )));
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  height: 4.5.h,
-                                                                  width: 43.w,
-                                                                  decoration: BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                      color: Color(0xff0061b0)),
-                                                                  child: Text(
-                                                                    "View Products",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          10.sp,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontFamily:
-                                                                          "task",
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
                                                         ],
                                                       ),
-                                                      SizedBox(
-                                                        height: 3.h,
-                                                      ),
                                                     ],
-                                                  )
+                                                  ),
+                                                  SizedBox(
+                                                    height: 3.h,
+                                                  ),
                                                 ],
-                                              ),
+                                              )
                                             ],
                                           ),
-                                        )),
+                                        ],
+                                      ),
+                                    )),
                                   );
                                 },
                               ),

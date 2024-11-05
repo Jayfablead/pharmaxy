@@ -33,10 +33,10 @@ class Data {
 
   Data(
       {this.orderId,
-        this.orderNumber,
-        this.orderStatus,
-        this.totalAmount,
-        this.firstImage});
+      this.orderNumber,
+      this.orderStatus,
+      this.totalAmount,
+      this.firstImage});
 
   Data.fromJson(Map<String, dynamic> json) {
     orderId = json['order_id'];

@@ -52,14 +52,14 @@ class UserDetails {
 
   UserDetails(
       {this.id,
-        this.userId,
-        this.productId,
-        this.quantity,
-        this.variationTblId,
-        this.productColor,
-        this.productSize,
-        this.productPrice,
-        this.createdDate});
+      this.userId,
+      this.productId,
+      this.quantity,
+      this.variationTblId,
+      this.productColor,
+      this.productSize,
+      this.productPrice,
+      this.createdDate});
 
   UserDetails.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -106,19 +106,19 @@ class CheckoutData {
 
   CheckoutData(
       {this.id,
-        this.userId,
-        this.deviceId,
-        this.finalTotal,
-        this.totalTax,
-        this.finalTotalWithTax,
-        this.coupon,
-        this.discount,
-        this.referral,
-        this.createdAt,
-        this.updatedAt,
-        this.shippingTax,
-        this.totalwithoutshipping,
-        this.total});
+      this.userId,
+      this.deviceId,
+      this.finalTotal,
+      this.totalTax,
+      this.finalTotalWithTax,
+      this.coupon,
+      this.discount,
+      this.referral,
+      this.createdAt,
+      this.updatedAt,
+      this.shippingTax,
+      this.totalwithoutshipping,
+      this.total});
 
   CheckoutData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

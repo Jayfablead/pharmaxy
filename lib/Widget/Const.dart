@@ -15,14 +15,12 @@ import 'package:ecommerce/Modal/BrandModel.dart';
 import 'package:ecommerce/Modal/BrandWiceProductModel.dart';
 import 'package:ecommerce/Modal/BrandWiceProductsearchModel.dart';
 import 'package:ecommerce/Modal/CancelOrderModel.dart';
-
 import 'package:ecommerce/Modal/CartcountModel.dart';
 import 'package:ecommerce/Modal/CatWiceProductModal.dart';
 import 'package:ecommerce/Modal/CateWisePageViewModel.dart';
 import 'package:ecommerce/Modal/ChangePasswordModal.dart';
 import 'package:ecommerce/Modal/ChatModel.dart';
 import 'package:ecommerce/Modal/CheckOutModal.dart';
-import 'package:ecommerce/Modal/CheckOutSendModel.dart';
 import 'package:ecommerce/Modal/CheckOutSendModel.dart';
 import 'package:ecommerce/Modal/ChekOutDetailModal.dart';
 import 'package:ecommerce/Modal/CityModal.dart';
@@ -64,7 +62,6 @@ import 'package:ecommerce/Modal/RequestMedicineModel.dart';
 import 'package:ecommerce/Modal/RequestformModel.dart';
 import 'package:ecommerce/Modal/SaleListSerachModal.dart';
 import 'package:ecommerce/Modal/SalesProductListModal.dart';
-import 'package:ecommerce/Modal/SalesProductModal.dart';
 import 'package:ecommerce/Modal/SearchBestSaleModal.dart';
 import 'package:ecommerce/Modal/SearchModal.dart';
 import 'package:ecommerce/Modal/SelectColorModal.dart';
@@ -89,7 +86,6 @@ import 'package:ecommerce/Modal/cateModel.dart';
 import 'package:ecommerce/Modal/increment_without_login_model.dart';
 import 'package:ecommerce/Screen/BlocdetailModel.dart';
 import 'package:ecommerce/Screen/decrement_without_login.dart';
-
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -98,8 +94,6 @@ import '../Modal/StripeModal.dart';
 import '../Modal/addReviewModal.dart';
 
 Color bgcolor = Colors.grey.shade100;
-
-
 
 class AppColors {
   static const Color primary = Color(0xff0061b0);
@@ -166,52 +160,51 @@ ViewReviewModal? viewReviewmodal;
 DeleteReviewModal? deletereviewmodal;
 StripeModal? strpiepay;
 ProductDetail2Modal? productdetail2modal;
-cateModel?catemodel;
-bestsellerModel?bestselllermodel;
+cateModel? catemodel;
+bestsellerModel? bestselllermodel;
 ChatModel? chatviewmodal;
-SendMessage?sendmessagesmodal;
+SendMessage? sendmessagesmodal;
 AllCouponModal? allcouponmodal;
 CatSerchModal? catSerchModal;
 
 // Ram Api
-BlogModel?blogmodel;
-BrandModel?brandmodel;
-BrandWiceProductModel?brandWiceProductmodel;
-BrandWiceProductsearchModel?brandWiceProductsearchmodel;
-CouponModel?couponmodel;
-CheckOutSendModel?checkOutsendModel;
-BlocdetailsModal?blocdetailsModal;
-PlacedOrderModel?placedorderModel;
-PaidOrderModel?paidorderModel;
-ShippedOrderModel?shippedorderModel;
-RecentBlogModel?recentblogModel;
-CartcountModel?cartcountmodel;
-FilterbyModel?filterbymodel;
-ShortbyModel?shortbymodel;
-AllProductSerachModel?allProductserachModel;
-BannerModel?bannermodel;
-CateWisePageViewModel?catewisePageViewModel;
-BrandwicePageViewModel?brandwicePageviewmodel;
-RemoveCouponModel?removecouponModel;
+BlogModel? blogmodel;
+BrandModel? brandmodel;
+BrandWiceProductModel? brandWiceProductmodel;
+BrandWiceProductsearchModel? brandWiceProductsearchmodel;
+CouponModel? couponmodel;
+CheckOutSendModel? checkOutsendModel;
+BlocdetailsModal? blocdetailsModal;
+PlacedOrderModel? placedorderModel;
+PaidOrderModel? paidorderModel;
+ShippedOrderModel? shippedorderModel;
+RecentBlogModel? recentblogModel;
+CartcountModel? cartcountmodel;
+FilterbyModel? filterbymodel;
+ShortbyModel? shortbymodel;
+AllProductSerachModel? allProductserachModel;
+BannerModel? bannermodel;
+CateWisePageViewModel? catewisePageViewModel;
+BrandwicePageViewModel? brandwicePageviewmodel;
+RemoveCouponModel? removecouponModel;
 
 //Prit Api
 RequestformModel? requestformModel;
-PrescriptionformModel?prescriptionformModel;
-RequestMedicineModel?requestMedicineModel;
+PrescriptionformModel? prescriptionformModel;
+RequestMedicineModel? requestMedicineModel;
 RefillModel? refillModel;
-DeleteUserModel?deleteuserModel;
-CancelOrderModel?cancelOrderModel;
-LogoutCardCount?logoutCardCount;
+DeleteUserModel? deleteuserModel;
+CancelOrderModel? cancelOrderModel;
+LogoutCardCount? logoutCardCount;
 PaginationModel? paginationModel;
 
 // without user Apis
 
-Addtocart_withoutuser_Model?addtocartwithoutuserModel;
-View_withoutuser_Model?viewwithoutuserModel;
-Remove_cart_withoutlogin_Model?removecartwithoutloginModel;
+Addtocart_withoutuser_Model? addtocartwithoutuserModel;
+View_withoutuser_Model? viewwithoutuserModel;
+Remove_cart_withoutlogin_Model? removecartwithoutloginModel;
 increment_without_login_model1? Incrementwithoutloginmodel;
-decrement_without_login1?Decrementwithoutlogin;
-
+decrement_without_login1? Decrementwithoutlogin;
 
 Future<bool> checkInternet() async {
   var connectivityResult = await (Connectivity().checkConnectivity());
@@ -222,7 +215,6 @@ Future<bool> checkInternet() async {
   }
   return false;
 }
-
 
 InputDecoration inputDecoration({
   required String hintText,
@@ -244,7 +236,7 @@ InputDecoration inputDecoration({
     ),
     hintStyle: TextStyle(
         fontFamily: 'task',
-        color:cr,
+        color: cr,
         fontWeight: FontWeight.normal,
         fontSize: 15.sp,
         letterSpacing: 1),
@@ -290,7 +282,7 @@ TextField searchfield({
     onChanged: onChanged,
     controller: controller,
     style: TextStyle(
-        fontFamily:'task',
+        fontFamily: 'task',
         color: clrs,
         fontWeight: FontWeight.bold,
         fontSize: 12.5.sp,

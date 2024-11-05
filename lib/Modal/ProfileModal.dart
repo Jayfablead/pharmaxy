@@ -40,17 +40,17 @@ class ProfileDetails {
 
   ProfileDetails(
       {this.profileimage,
-        this.userFirstName,
-        this.userLastName,
-        this.userGander,
-        this.userEmail,
-        this.userPhone,
-        this.userCity,
-        this.userState,
-        this.userAddress,
-        this.userAddress2,
-        this.referCode,
-        this.referType});
+      this.userFirstName,
+      this.userLastName,
+      this.userGander,
+      this.userEmail,
+      this.userPhone,
+      this.userCity,
+      this.userState,
+      this.userAddress,
+      this.userAddress2,
+      this.referCode,
+      this.referType});
 
   ProfileDetails.fromJson(Map<String, dynamic> json) {
     profileimage = json['Profileimage'];

@@ -195,41 +195,41 @@ class _CartPageState extends State<CartPage> {
       });
       (usermodal?.userId != null && usermodal?.userId != "")
           ? applycouponnoloader(cpn, () {
-        setState(() {
-          cpupon = true;
-          cpn = cpn.toString();
-        });
-        EasyLoading.dismiss();
-        ViewCartApi();
-        print('ADD');
-        setState(() {
-          isLoading = false;
-        });
-      }, () {
-        setState(() {
-          cpupon = false;
-          isLoading = false;
-        });
-        EasyLoading.dismiss();
-      })
+              setState(() {
+                cpupon = true;
+                cpn = cpn.toString();
+              });
+              EasyLoading.dismiss();
+              ViewCartApi();
+              print('ADD');
+              setState(() {
+                isLoading = false;
+              });
+            }, () {
+              setState(() {
+                cpupon = false;
+                isLoading = false;
+              });
+              EasyLoading.dismiss();
+            })
           : applycoupon1noloader(cpn, () {
-        setState(() {
-          cpupon = true;
-          cpn = cpn.toString();
-        });
-        EasyLoading.dismiss();
-        ViewCartwithoutloginAp();
-        print('ADD OFFLINE');
-        setState(() {
-          isLoading = false;
-        });
-      }, () {
-        setState(() {
-          cpupon = false;
-          isLoading = false;
-        });
-        EasyLoading.dismiss();
-      });
+              setState(() {
+                cpupon = true;
+                cpn = cpn.toString();
+              });
+              EasyLoading.dismiss();
+              ViewCartwithoutloginAp();
+              print('ADD OFFLINE');
+              setState(() {
+                isLoading = false;
+              });
+            }, () {
+              setState(() {
+                cpupon = false;
+                isLoading = false;
+              });
+              EasyLoading.dismiss();
+            });
 
       _searchController = TextEditingController();
       allcoupon();
@@ -2954,9 +2954,7 @@ class _CartPageState extends State<CartPage> {
         authprovider().viewcartwithoutloginapi(data).then((response) async {
           viewwithoutuserModel =
               View_withoutuser_Model.fromJson(json.decode(response.body));
-          if (usermodal?.userId == "" ||
-              usermodal?.userId == null &&
-                  viewwithoutuserModel?.cartDetails?.length == 0 ||
+          if (viewwithoutuserModel?.cartDetails?.length == 0 ||
               viewwithoutuserModel?.cartDetails?.length == null) {
             storeData?.remove(cpnname);
             setState(() {

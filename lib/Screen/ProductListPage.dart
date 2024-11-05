@@ -2236,7 +2236,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                     Text(
                                                                       '${percentageOffValue.toStringAsFixed(2)}%',
                                                                       style: TextStyle(
-                                                                          color: Colors.white, // Text color
+                                                                          color: Colors.white,
+                                                                          // Text color
                                                                           fontSize: 7.sp,
                                                                           fontWeight: FontWeight.bold,
                                                                           fontFamily: "task"),
@@ -2244,7 +2245,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                     Text(
                                                                       'OFF',
                                                                       style: TextStyle(
-                                                                          color: Colors.white, // Text color
+                                                                          color: Colors.white,
+                                                                          // Text color
                                                                           fontSize: 7.sp,
                                                                           fontWeight: FontWeight.bold,
                                                                           fontFamily: "task"),
@@ -2582,7 +2584,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                             Text(
                                                                               '${percentageOffValue.toStringAsFixed(2)}%',
                                                                               style: TextStyle(
-                                                                                  color: Colors.white, // Text color
+                                                                                  color: Colors.white,
+                                                                                  // Text color
                                                                                   fontSize: 7.sp,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   fontFamily: "task"),
@@ -2590,7 +2593,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                             Text(
                                                                               'OFF',
                                                                               style: TextStyle(
-                                                                                  color: Colors.white, // Text color
+                                                                                  color: Colors.white,
+                                                                                  // Text color
                                                                                   fontSize: 7.sp,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   fontFamily: "task"),
@@ -2639,11 +2643,14 @@ class _ProductListPageState extends State<ProductListPage> {
                                                           gridDelegate:
                                                               SliverGridDelegateWithMaxCrossAxisExtent(
                                                                   maxCrossAxisExtent:
-                                                                      200, // Adjust as needed
+                                                                      200,
+                                                                  // Adjust as needed
                                                                   mainAxisSpacing:
-                                                                      0.0, // Adjust as needed
+                                                                      0.0,
+                                                                  // Adjust as needed
                                                                   crossAxisSpacing:
-                                                                      0.0, // Adjust as needed
+                                                                      0.0,
+                                                                  // Adjust as needed
                                                                   childAspectRatio:
                                                                       6.5 /
                                                                           8.5 // Adjust as needed

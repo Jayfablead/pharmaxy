@@ -40,14 +40,14 @@ class ProductData {
 
   ProductData(
       {this.productID,
-        this.productType,
-        this.productName,
-        this.productPrice,
-        this.saleProductPrice,
-        this.productShortDesc,
-        this.productLongDesc,
-        this.imgData,
-        this.wishlist});
+      this.productType,
+      this.productName,
+      this.productPrice,
+      this.saleProductPrice,
+      this.productShortDesc,
+      this.productLongDesc,
+      this.imgData,
+      this.wishlist});
 
   ProductData.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];

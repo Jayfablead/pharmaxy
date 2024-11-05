@@ -592,7 +592,6 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
                       fontFamily: "task"),
                 ),
               ),
-
             ],
           ),
         ),

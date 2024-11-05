@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
-
 import 'package:ecommerce/Modal/SignupModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
 
 class SignupPage extends StatefulWidget {
@@ -233,8 +231,7 @@ class _SignupPageState extends State<SignupPage> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Please Enter The Phone";
-                              }
-                              else if (value.length != 10){
+                              } else if (value.length != 10) {
                                 return "Please enter Valid Phone Number";
                               }
                               return null;
@@ -453,8 +450,6 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(
                     height: 2.h,
                   ),
-
-
                   SizedBox(
                     height: 3.h,
                   ),
@@ -520,9 +515,10 @@ class _SignupPageState extends State<SignupPage> {
                               size: 15.sp, color: Color(0xff0061b0)),
                         ),
                         onTap: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (context) => LoginPage2(),)
-                          );
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) => LoginPage2(),
+                          ));
                         },
                       ),
                     ],
@@ -549,9 +545,11 @@ class _SignupPageState extends State<SignupPage> {
           if (internet) {
             authprovider().signupapi(data).then((response) async {
               signupmodal = SignupModal.fromJson(json.decode(response.body));
-              if (response.statusCode == 200 && signupmodal?.status == "success") {
-                buildErrorDialog(context, 'success', signupmodal?.message ?? "");
-                Timer(Duration(seconds: 3),(){
+              if (response.statusCode == 200 &&
+                  signupmodal?.status == "success") {
+                buildErrorDialog(
+                    context, 'success', signupmodal?.message ?? "");
+                Timer(Duration(seconds: 3), () {
                   Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => LoginPage2()));
                 });

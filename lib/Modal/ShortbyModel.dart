@@ -39,12 +39,12 @@ class SearchResults {
 
   SearchResults(
       {this.productID,
-        this.productName,
-        this.productShortDesc,
-        this.productPrice,
-        this.saleProductPrice,
-        this.allImages,
-        this.wishlist});
+      this.productName,
+      this.productShortDesc,
+      this.productPrice,
+      this.saleProductPrice,
+      this.allImages,
+      this.wishlist});
 
   SearchResults.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];
@@ -52,10 +52,10 @@ class SearchResults {
     productShortDesc = json['ProductShortDesc'];
     productPrice = json['ProductPrice'];
     saleProductPrice = json['Sale_ProductPrice'];
-    allImages = json['allImages'] != null ? List<String>.from(json['allImages']) : [];
+    allImages =
+        json['allImages'] != null ? List<String>.from(json['allImages']) : [];
     wishlist = json['wishlist'];
   }
-
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

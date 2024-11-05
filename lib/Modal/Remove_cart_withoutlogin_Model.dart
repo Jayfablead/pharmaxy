@@ -16,4 +16,3 @@ class Remove_cart_withoutlogin_Model {
     return data;
   }
 }
-

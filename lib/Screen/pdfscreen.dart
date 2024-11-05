@@ -1,24 +1,14 @@
-
 import 'dart:async';
 import 'dart:io';
 
-
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:fl_downloader/fl_downloader.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path/path.dart' as path;
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:dio/dio.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
-
+import 'package:path_provider/path_provider.dart';
 import 'package:sizer/sizer.dart';
 
 class OpenPDF extends StatefulWidget {
@@ -26,7 +16,8 @@ class OpenPDF extends StatefulWidget {
   final String url;
   final provider;
 
-  const OpenPDF({Key? key, required this.file, required this.url, this.provider})
+  const OpenPDF(
+      {Key? key, required this.file, required this.url, this.provider})
       : super(key: key);
 
   @override
@@ -36,13 +27,15 @@ class OpenPDF extends StatefulWidget {
 class _OpenPDFState extends State<OpenPDF> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool downloading = false;
-  int Progress =0 ;
+  int Progress = 0;
+
   late StreamSubscription progressStream;
   var filePath = "No Data";
   var platformVersion = "Unknown";
   Directory? externalDir;
   dynamic downloadId;
   String? status;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -53,24 +46,24 @@ class _OpenPDFState extends State<OpenPDF> {
         debugPrint('event.progress: ${event.progress}');
         setState(() {
           Progress = event.progress;
-          downloading =false;
+          downloading = false;
           downloadId = event.downloadId;
           status = event.status.name;
         });
         // This is a way of auto-opening downloaded file right after a download is completed
         FlDownloader.openFile(filePath: event.filePath);
-      }else if (event.status == DownloadStatus.running) {
+      } else if (event.status == DownloadStatus.running) {
         debugPrint('event.progress: ${event.progress}');
         setState(() {
-          downloading=true;
+          downloading = true;
           Progress = event.progress;
           downloadId = event.downloadId;
           status = event.status.name;
         });
-      }else if (event.status == DownloadStatus.failed) {
+      } else if (event.status == DownloadStatus.failed) {
         debugPrint('event: $event');
         setState(() {
-          downloading=false;
+          downloading = false;
           Progress = event.progress;
           downloadId = event.downloadId;
           status = event.status.name;
@@ -87,14 +80,13 @@ class _OpenPDFState extends State<OpenPDF> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final name = path.basename(widget.file.path);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor:AppColors.primary,
+          backgroundColor: AppColors.primary,
           leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
@@ -103,16 +95,14 @@ class _OpenPDFState extends State<OpenPDF> {
           ),
           title: Text(
             "PDF view",
-            style: TextStyle(color: Colors.white,fontSize: 12.sp),
+            style: TextStyle(color: Colors.white, fontSize: 12.sp),
           ),
           actions: [
             IconButton(
-              onPressed: ()async {
-
+              onPressed: () async {
                 var Permission = await FlDownloader.requestPermission();
 
-                if(Permission == StoragePermissionStatus.granted)
-                {
+                if (Permission == StoragePermissionStatus.granted) {
                   await FlDownloader.download(widget.url);
                 }
               },
@@ -123,25 +113,25 @@ class _OpenPDFState extends State<OpenPDF> {
         key: _scaffoldKey,
         body: downloading
             ? Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircularProgressIndicator(),
-              SizedBox(height: 20),
-              Text('Downloading: ${Progress} '),
-            ],
-          ),
-        )
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(height: 20),
+                    Text('Downloading: ${Progress} '),
+                  ],
+                ),
+              )
             : Column(
-          children: [
-            SizedBox(
-              height: 70.h,
-              child: PDFView(
-                filePath: widget.file.path,
+                children: [
+                  SizedBox(
+                    height: 70.h,
+                    child: PDFView(
+                      filePath: widget.file.path,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

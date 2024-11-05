@@ -248,41 +248,41 @@ class CategoriesWiseProduct {
 
   CategoriesWiseProduct(
       {this.productID,
-        this.productSKU,
-        this.productType,
-        this.categoryID,
-        this.subCategoryID,
-        this.variationTypeID,
-        this.variationID,
-        this.brandID,
-        this.tagID,
-        this.shippingID,
-        this.productName,
-        this.productPrice,
-        this.saleProductPrice,
-        this.productCartDesc,
-        this.productShortDesc,
-        this.productLongDesc,
-        this.productImage,
-        this.productStock,
-        this.productLowStock,
-        this.stockStatus,
-        this.productLive,
-        this.productWeight,
-        this.productDimensions,
-        this.productQuantity,
-        this.priceProduct,
-        this.isTaxable,
-        this.taxClassId,
-        this.slug,
-        this.batch,
-        this.package,
-        //this.expriceDate,
-        this.createdAt,
-        this.updatedAt,
-        this.productImage1,
-        this.wishlist,
-        this.incart});
+      this.productSKU,
+      this.productType,
+      this.categoryID,
+      this.subCategoryID,
+      this.variationTypeID,
+      this.variationID,
+      this.brandID,
+      this.tagID,
+      this.shippingID,
+      this.productName,
+      this.productPrice,
+      this.saleProductPrice,
+      this.productCartDesc,
+      this.productShortDesc,
+      this.productLongDesc,
+      this.productImage,
+      this.productStock,
+      this.productLowStock,
+      this.stockStatus,
+      this.productLive,
+      this.productWeight,
+      this.productDimensions,
+      this.productQuantity,
+      this.priceProduct,
+      this.isTaxable,
+      this.taxClassId,
+      this.slug,
+      this.batch,
+      this.package,
+      //this.expriceDate,
+      this.createdAt,
+      this.updatedAt,
+      this.productImage1,
+      this.wishlist,
+      this.incart});
 
   CategoriesWiseProduct.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];
@@ -315,7 +315,7 @@ class CategoriesWiseProduct {
     slug = json['slug'];
     batch = json['batch'];
     package = json['package'];
-   // expriceDate = json['exprice_date'];
+    // expriceDate = json['exprice_date'];
     createdAt = json['Created_at'];
     updatedAt = json['Updated_at'];
     productImage1 = json['product_image1'];
@@ -355,7 +355,7 @@ class CategoriesWiseProduct {
     data['slug'] = this.slug;
     data['batch'] = this.batch;
     data['package'] = this.package;
-   // data['exprice_date'] = this.expriceDate;
+    // data['exprice_date'] = this.expriceDate;
     data['Created_at'] = this.createdAt;
     data['Updated_at'] = this.updatedAt;
     data['product_image1'] = this.productImage1;

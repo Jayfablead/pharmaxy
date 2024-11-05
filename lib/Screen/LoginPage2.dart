@@ -1,11 +1,10 @@
-import 'dart:async';
 import 'dart:convert';
+
 import 'package:ecommerce/Modal/AddCartModal.dart';
 import 'package:ecommerce/Modal/UserModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/ForgotPassword.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
-import 'package:ecommerce/Screen/SignupPage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/sharedpreferance.dart';
@@ -17,6 +16,7 @@ import 'package:sizer/sizer.dart';
 import '../Databasehandler.dart';
 import '../Modal/Cartmodal.dart';
 import '../Provider/cartProvider.dart';
+import 'SignupPage.dart';
 
 class LoginPage2 extends StatefulWidget {
   const LoginPage2({super.key});
@@ -288,8 +288,7 @@ class _LoginPage2State extends State<LoginPage2> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SignupPage(),
-                                  ));
+                                      builder: (context) => SignupPage()));
                             },
                             child: Text(
                               "Create",
@@ -319,20 +318,21 @@ class _LoginPage2State extends State<LoginPage2> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Container(
-                               width: 15.w,
+                                width: 15.w,
                                 height: 15.w,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100), // Fully rounded container
+                                  borderRadius: BorderRadius.circular(100),
+                                  // Fully rounded container
                                   color: Color(0xff0061b0),
                                 ),
                                 child: Icon(
-                                  Icons.arrow_forward, // Arrow icon instead of text
+                                  Icons.arrow_forward,
+                                  // Arrow icon instead of text
                                   size: 23.sp,
                                   color: Colors.white,
                                 ),
                               ),
-
                             ],
                           ),
                         ),
@@ -385,8 +385,10 @@ class _LoginPage2State extends State<LoginPage2> {
               _password.clear();
               print(carti.length);
               EasyLoading.showSuccess("Login Success");
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => HomePage(sel: 1,)));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => HomePage(
+                        sel: 1,
+                      )));
               if (carti.length != 0) {
                 print('batli Bhareli');
                 for (int index = 0; index < carti.length; index++) {
@@ -403,7 +405,6 @@ class _LoginPage2State extends State<LoginPage2> {
               setState(() {});
             } else {
               EasyLoading.showError("Email Or Password Is Wrong");
-
             }
           });
         } else {
@@ -438,12 +439,9 @@ class _LoginPage2State extends State<LoginPage2> {
               int.parse(carti[ind].id.toString()),
             );
             print('itemdeleted');
-          } else {
-
-          }
+          } else {}
         });
       } else {
-
         buildErrorDialog(context, 'Error', "Internet Required");
       }
     });

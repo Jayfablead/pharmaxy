@@ -18,6 +18,7 @@ class ProfilePage extends StatefulWidget {
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
+
 bool isLoading = true;
 
 class _ProfilePageState extends State<ProfilePage> {
@@ -31,7 +32,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: bottombar(selected: 4,),
+      bottomNavigationBar: bottombar(
+        selected: 4,
+      ),
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -40,9 +43,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 Container(
                   alignment: Alignment.bottomRight,
                   decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(50),),
-                    color:Color(0xff0061b0),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                    ),
+                    color: Color(0xff0061b0),
                   ),
                   height: 30.h,
                   width: double.infinity,
@@ -197,61 +201,61 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
-
                 SizedBox(
                   height: 3.h,
                 ),
                 profilemodal?.profileDetails?.referCode == '' ||
-                    profilemodal
-                        ?.profileDetails?.referCode ==
-                        null
-                    ? Container():   SizedBox(
-                  width: 90.w,
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.qr_code_scanner,
-                        size: 24,
-                        color: Colors.black.withOpacity(0.4),
-                      ),
-                      SizedBox(
-                        width: 3.w,
-                      ),
-                   Container(
-                        width: 75.w,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        profilemodal?.profileDetails?.referCode == null
+                    ? Container()
+                    : SizedBox(
+                        width: 90.w,
+                        child: Row(
                           children: [
-                            Text(
-                              "Referred Code",
-                              style: TextStyle(
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontSize: 18,
-                                  fontFamily: "task"),
+                            Icon(
+                              Icons.qr_code_scanner,
+                              size: 24,
+                              color: Colors.black.withOpacity(0.4),
                             ),
-                            Text(
-                              profilemodal?.profileDetails?.referCode == '' ||
-                                  profilemodal
-                                      ?.profileDetails?.referCode ==
-                                      null
-                                  ? 'N/A'
-                                  : profilemodal?.profileDetails?.referCode ??
-                                  '',
-                              style: TextStyle(
-                                  color: Colors.black87,
-                                  fontFamily: "task",
-                                  fontSize: 16),
+                            SizedBox(
+                              width: 3.w,
                             ),
-                            Divider(
-                              endIndent: 10,
-                              indent: 1,
+                            Container(
+                              width: 75.w,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Referred Code",
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.6),
+                                        fontSize: 18,
+                                        fontFamily: "task"),
+                                  ),
+                                  Text(
+                                    profilemodal?.profileDetails?.referCode ==
+                                                '' ||
+                                            profilemodal?.profileDetails
+                                                    ?.referCode ==
+                                                null
+                                        ? 'N/A'
+                                        : profilemodal
+                                                ?.profileDetails?.referCode ??
+                                            '',
+                                    style: TextStyle(
+                                        color: Colors.black87,
+                                        fontFamily: "task",
+                                        fontSize: 16),
+                                  ),
+                                  Divider(
+                                    endIndent: 10,
+                                    indent: 1,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 3.h,
                 ),
@@ -328,7 +332,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 1.h,
                           ),
                           Padding(
-                            padding:  EdgeInsets.only(left: 2.w),
+                            padding: EdgeInsets.only(left: 2.w),
                             child: Row(
                               children: [
                                 Text(
@@ -370,13 +374,14 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           Padding(
-                            padding:  EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.0),
                             child: Text(
                               profilemodal?.profileDetails?.userEmail == '' ||
                                       profilemodal?.profileDetails?.userEmail ==
                                           null
                                   ? 'N/A'
-                                  : profilemodal?.profileDetails?.userEmail ?? '',
+                                  : profilemodal?.profileDetails?.userEmail ??
+                                      '',
                               style: TextStyle(
                                 fontSize: 13.sp,
                                 fontWeight: FontWeight.w500,
@@ -400,15 +405,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => HomePage(sel: 1)));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => HomePage(sel: 1)));
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_new_outlined,
                         color: Colors.white,
                         size: 20.sp,
-                      )
-                  ),
+                      )),
                 ],
               ),
             ),
@@ -425,26 +429,28 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-            profilemodal?.profileDetails?.referType =="1"?Positioned(
-              top: 25.h,
-              right: 4.w,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 0.5.h,horizontal: 2.w),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white
-                ),
-                child: Text(
-                  "Referred User",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'task',
-                    fontSize: 11.sp,
-                    color: AppColors.primary,
-                  ),
-                ),
-              ),
-            ):Container(),
+            profilemodal?.profileDetails?.referType == "1"
+                ? Positioned(
+                    top: 25.h,
+                    right: 4.w,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 0.5.h, horizontal: 2.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white),
+                      child: Text(
+                        "Referred User",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'task',
+                          fontSize: 11.sp,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),

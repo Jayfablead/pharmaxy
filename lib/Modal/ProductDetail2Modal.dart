@@ -7,10 +7,10 @@ class ProductDetail2Modal {
 
   ProductDetail2Modal(
       {this.status,
-        this.message,
-        this.productData,
-        this.shipping,
-        this.relatedProducts});
+      this.message,
+      this.productData,
+      this.shipping,
+      this.relatedProducts});
 
   ProductDetail2Modal.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -68,22 +68,22 @@ class ProductData {
 
   ProductData(
       {this.productID,
-        this.productType,
-        this.categoryID,
-        this.subCategoryID,
-        this.productName,
-        this.productShortDesc,
-        this.productLongDesc,
-        this.productImage,
-        this.productLive,
-        this.productPrice,
-        this.saleProductPrice,
-        this.productStock,
-        this.productWeight,
-        this.wishlist,
-        this.cartlist,
-        this.allimage,
-        this.singleProductPrice});
+      this.productType,
+      this.categoryID,
+      this.subCategoryID,
+      this.productName,
+      this.productShortDesc,
+      this.productLongDesc,
+      this.productImage,
+      this.productLive,
+      this.productPrice,
+      this.saleProductPrice,
+      this.productStock,
+      this.productWeight,
+      this.wishlist,
+      this.cartlist,
+      this.allimage,
+      this.singleProductPrice});
 
   ProductData.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];
@@ -138,11 +138,11 @@ class Shipping {
 
   Shipping(
       {this.id,
-        this.shippingName,
-        this.amount,
-        this.shippingRate,
-        this.createdAt,
-        this.updatedAt});
+      this.shippingName,
+      this.amount,
+      this.shippingRate,
+      this.createdAt,
+      this.updatedAt});
 
   Shipping.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -178,14 +178,14 @@ class RelatedProducts {
 
   RelatedProducts(
       {this.productID,
-        this.productName,
-        this.productImage,
-        this.productPrice,
-        this.saleProductPrice,
-        this.productStock,
-        this.wishlist,
-        this.image,
-        this.sellingPrice});
+      this.productName,
+      this.productImage,
+      this.productPrice,
+      this.saleProductPrice,
+      this.productStock,
+      this.wishlist,
+      this.image,
+      this.sellingPrice});
 
   RelatedProducts.fromJson(Map<String, dynamic> json) {
     productID = json['ProductID'];

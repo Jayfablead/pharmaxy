@@ -7,7 +7,6 @@ import 'package:ecommerce/Modal/UserWishLIstModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/ProductDetailnovartition.dart';
-import 'package:ecommerce/Screen/Productdetai2lWebview.dart';
 import 'package:ecommerce/Screen/ProfilePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
@@ -169,7 +168,6 @@ class _WishListPageState extends State<WishListPage> {
                                 itemBuilder: (BuildContext context, int index) {
                                   // Build each item in the grid
                                   return Card(
-
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -192,44 +190,59 @@ class _WishListPageState extends State<WishListPage> {
                                               ),
                                               InkWell(
                                                 onTap: () {
-                                              Navigator.of(context)
-                                                          .push(MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  productdetailnovartion(
-                                                                    productid: userwishlIstmodal
-                                                                            ?.wishList?[
-                                                                                index]
-                                                                            .productID ??
-                                                                        '',
-                                                                  )));
-
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              productdetailnovartion(
+                                                                productid: userwishlIstmodal
+                                                                        ?.wishList?[
+                                                                            index]
+                                                                        .productID ??
+                                                                    '',
+                                                              )));
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  20)),
-                                                      ),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                20)),
+                                                  ),
                                                   child: Padding(
-                                                    padding: EdgeInsets.all(2.0),
+                                                    padding:
+                                                        EdgeInsets.all(2.0),
                                                     child: CachedNetworkImage(
-                                                      imageUrl: userwishlIstmodal?.wishList?.length==0||userwishlIstmodal?.wishList?.length==[]||userwishlIstmodal?.wishList?.length==null?"":userwishlIstmodal
-                                                              ?.wishList?[index]
-                                                              .allImages?[0] ??
-                                                          "",
+                                                      imageUrl: userwishlIstmodal?.wishList?.length ==
+                                                                  0 ||
+                                                              userwishlIstmodal
+                                                                      ?.wishList
+                                                                      ?.length ==
+                                                                  [] ||
+                                                              userwishlIstmodal
+                                                                      ?.wishList
+                                                                      ?.length ==
+                                                                  null
+                                                          ? ""
+                                                          : userwishlIstmodal
+                                                                  ?.wishList?[
+                                                                      index]
+                                                                  .allImages?[0] ??
+                                                              "",
                                                       fit: BoxFit.cover,
                                                       height: 29.w,
                                                       width: 29.w,
                                                       imageBuilder: (context,
                                                               imageProvider) =>
                                                           Container(
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(25),
-                                                          image: DecorationImage(
-                                                            image: imageProvider,
+                                                          image:
+                                                              DecorationImage(
+                                                            image:
+                                                                imageProvider,
                                                             // fit: BoxFit.cover,
                                                           ),
                                                         ),
@@ -239,9 +252,9 @@ class _WishListPageState extends State<WishListPage> {
                                                           Center(
                                                               child:
                                                                   CircularProgressIndicator()),
-                                                      errorWidget:
-                                                          (context, url, error) =>
-                                                              Icon(Icons.error),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Icon(Icons.error),
                                                     ),
                                                   ),
                                                 ),
@@ -292,11 +305,13 @@ class _WishListPageState extends State<WishListPage> {
                                                                           ?.wishList?[
                                                                               index]
                                                                           .productName ??
-                                                                      "",maxLines: 2,
+                                                                      "",
+                                                              maxLines: 2,
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .black,
-                                                                  fontSize: 11.sp,
+                                                                  fontSize:
+                                                                      11.sp,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
@@ -428,21 +443,21 @@ class _WishListPageState extends State<WishListPage> {
                                                                 alignment:
                                                                     Alignment
                                                                         .center,
-                                                                decoration: BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
                                                                                 5),
-                                                                    color: Colors
-                                                                        .white70,
-                                                                    border: Border.all(
-                                                                        width:
-                                                                            0.5,
-                                                                        color: AppColors.primary
-                                                                        // color: Colors
-                                                                        //     .grey
-                                                                    )
-                                                                ),
+                                                                        color: Colors
+                                                                            .white70,
+                                                                        border: Border.all(
+                                                                            width:
+                                                                                0.5,
+                                                                            color:
+                                                                                AppColors.primary
+                                                                            // color: Colors
+                                                                            //     .grey
+                                                                            )),
                                                                 child:
                                                                     GestureDetector(
                                                                   onTap: () {
@@ -454,15 +469,11 @@ class _WishListPageState extends State<WishListPage> {
                                                                         return Stack(
                                                                           children: [
                                                                             Container(
-                                                                              decoration:
-                                                                                  BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white),
-                                                                              height:
-                                                                                  23.h,
-                                                                              width:
-                                                                                  double.infinity,
+                                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white),
+                                                                              height: 23.h,
+                                                                              width: double.infinity,
                                                                               // Customize the bottom sheet content here
-                                                                              child:
-                                                                                  Padding(
+                                                                              child: Padding(
                                                                                 padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
                                                                                 child: Column(
                                                                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -524,8 +535,7 @@ class _WishListPageState extends State<WishListPage> {
                                                                               ),
                                                                             ),
                                                                             Positioned(
-                                                                              right:
-                                                                                  1.w,
+                                                                              right: 1.w,
                                                                               child: IconButton(
                                                                                   icon: Icon(
                                                                                     Icons.highlight_remove,
@@ -546,7 +556,9 @@ class _WishListPageState extends State<WishListPage> {
                                                                   child: Icon(
                                                                     CupertinoIcons
                                                                         .delete,
-                                                                    size: 18.sp,color: Colors.red,
+                                                                    size: 18.sp,
+                                                                    color: Colors
+                                                                        .red,
                                                                   ),
                                                                 ),
                                                               ),
@@ -555,14 +567,15 @@ class _WishListPageState extends State<WishListPage> {
                                                               ),
                                                               GestureDetector(
                                                                 onTap: () {
-                                                                 Navigator.of(
-                                                                              context)
-                                                                          .push(MaterialPageRoute(
-                                                                              builder: (context) => productdetailnovartion(
-                                                                                    productid: userwishlIstmodal?.wishList?[index].productID ?? '',
-                                                                                  )));
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .push(MaterialPageRoute(
+                                                                          builder: (context) => productdetailnovartion(
+                                                                                productid: userwishlIstmodal?.wishList?[index].productID ?? '',
+                                                                              )));
                                                                 },
-                                                                child: Container(
+                                                                child:
+                                                                    Container(
                                                                   alignment:
                                                                       Alignment
                                                                           .center,
@@ -572,12 +585,13 @@ class _WishListPageState extends State<WishListPage> {
                                                                       borderRadius:
                                                                           BorderRadius.circular(
                                                                               10),
-                                                                      color: Color(0xff0061b0)),
+                                                                      color: Color(
+                                                                          0xff0061b0)),
                                                                   child: Text(
                                                                     "View Detail",
                                                                     style: TextStyle(
-                                                                        fontSize:
-                                                                            11.sp,
+                                                                        fontSize: 11
+                                                                            .sp,
                                                                         color: Colors
                                                                             .white,
                                                                         fontFamily:

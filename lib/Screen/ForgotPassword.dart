@@ -174,9 +174,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               size: 15.sp, color: Color(0xff0061b0)),
                         ),
                         onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (context) => LoginPage2(),)
-                          );
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) => LoginPage2(),
+                          ));
                         },
                       ),
                     ],
@@ -199,11 +200,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         if (internet) {
           authprovider().forgotapi(data).then((response) async {
             forgotmodal = ForgotModal.fromJson(json.decode(response.body));
-            if (response.statusCode == 200 && forgotmodal?.status == "success") {
+            if (response.statusCode == 200 &&
+                forgotmodal?.status == "success") {
               _email.clear();
               print(forgotmodal?.status);
 
-              EasyLoading.showSuccess(' Please Check Your Email For Reset Password.!');
+              EasyLoading.showSuccess(
+                  ' Please Check Your Email For Reset Password.!');
               Timer(Duration(seconds: 2), () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => LoginPage2()));

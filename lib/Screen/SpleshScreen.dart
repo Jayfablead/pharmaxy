@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:ecommerce/Screen/HomePage.dart';
-import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/sharedpreferance.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 
 class SpleshScreen extends StatefulWidget {
@@ -23,11 +21,11 @@ class _SpleshScreenState extends State<SpleshScreen> {
     getdata();
     Timer(
         Duration(seconds: 2),
-        () =>  Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>  HomePage(sel: 0),
-                )));
+        () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(sel: 0),
+            )));
   }
 
   getdata() async {
@@ -43,9 +41,10 @@ class _SpleshScreenState extends State<SpleshScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-          Image.asset(
-                "assets/mylogo.png",color: Colors.white,
-              ),
+            Image.asset(
+              "assets/mylogo.png",
+              color: Colors.white,
+            ),
             SizedBox(
               height: 5.h,
             ),
@@ -58,7 +57,6 @@ class _SpleshScreenState extends State<SpleshScreen> {
                     fit: BoxFit.cover,
                   ),
                 ),
-
                 Column(
                   children: [
                     RichText(
@@ -70,7 +68,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
                             style: TextStyle(
                                 fontFamily: "task",
                                 letterSpacing: 1,
-                                color:Colors.white,
+                                color: Colors.white,
                                 fontSize: 15.sp,
                                 fontWeight: FontWeight.normal),
                           ),
@@ -79,7 +77,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
                             style: TextStyle(
                               fontFamily: "task",
                               letterSpacing: 1,
-                              color:Colors.white,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 15.sp,
                             ),
@@ -96,7 +94,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
                       style: TextStyle(
                           fontFamily: "task",
                           letterSpacing: 1,
-                          color:Colors.white,
+                          color: Colors.white,
                           fontSize: 13.sp,
                           fontWeight: FontWeight.normal),
                     ),

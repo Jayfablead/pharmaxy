@@ -948,7 +948,6 @@ class _editshippingadressState extends State<editshippingadress> {
   }
 
   userselectaddap() async {
-
     final Map<String, String> data = {};
     data['shipping_address_id'] = widget.addid.toString();
     print(data);

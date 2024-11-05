@@ -190,49 +190,48 @@ class _drawer1State extends State<drawer1> {
                           // setState(() async {
                           //
                           // });
-
                         },
-                          child: Container(
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 6.w,
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 64.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.category_rounded,
+                                          size: 14.sp,
+                                          color: AppColors.primary,
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text("Request Prescription",
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                              fontFamily: 'task',
+                                              color: Colors.black,
+                                            )),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.black,
+                                    )
+                                  ],
                                 ),
-                                Container(
-                                  width: 64.w,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.category_rounded,
-                                            size: 14.sp,
-                                            color: AppColors.primary,
-                                          ),
-                                          SizedBox(
-                                            width: 2.w,
-                                          ),
-                                          Text("Request Prescription",
-                                              style: TextStyle(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: 'task',
-                                                color: Colors.black,
-                                              )),
-                                        ],
-                                      ),
-                                      Icon(
-                                        Icons.chevron_right_rounded,
-                                        color: Colors.black,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
+                        ),
                       ),
                       SizedBox(
                         height: 2.h,
@@ -248,7 +247,6 @@ class _drawer1State extends State<drawer1> {
                           // setState(() async {
                           //
                           // });
-
                         },
                         child: Container(
                           child: Row(
@@ -260,7 +258,7 @@ class _drawer1State extends State<drawer1> {
                                 width: 64.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
@@ -306,7 +304,6 @@ class _drawer1State extends State<drawer1> {
                           // setState(() async {
                           //
                           // });
-
                         },
                         child: Container(
                           child: Row(
@@ -318,7 +315,7 @@ class _drawer1State extends State<drawer1> {
                                 width: 64.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
@@ -364,7 +361,6 @@ class _drawer1State extends State<drawer1> {
                           // setState(() async {
                           //
                           // });
-
                         },
                         child: Container(
                           child: Row(
@@ -376,7 +372,7 @@ class _drawer1State extends State<drawer1> {
                                 width: 64.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
@@ -422,7 +418,6 @@ class _drawer1State extends State<drawer1> {
                           // setState(() async {
                           //
                           // });
-
                         },
                         child: Container(
                           child: Row(
@@ -434,11 +429,11 @@ class _drawer1State extends State<drawer1> {
                                 width: 32.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     Row(
                                       children: [
-                                         Icon(
+                                        Icon(
                                           Icons.logout,
                                           color: AppColors.primary,
                                           size: 20.sp,
@@ -452,7 +447,7 @@ class _drawer1State extends State<drawer1> {
                                             fontSize: 13.sp,
                                             fontWeight: FontWeight.w500,
                                             fontFamily: 'task',
-                                            color:  AppColors.primary,
+                                            color: AppColors.primary,
                                           ),
                                         ),
                                       ],
@@ -565,14 +560,19 @@ class _drawer1State extends State<drawer1> {
                                 height: 0.5.h,
                               ),
                               Padding(
-                                padding:  EdgeInsets.only(left: 2.w),
+                                padding: EdgeInsets.only(left: 2.w),
                                 child: Row(
                                   children: [
                                     Text(
-                                      profilemodal?.profileDetails?.userFirstName == '' || profilemodal?.profileDetails?.userFirstName == null
+                                      profilemodal?.profileDetails
+                                                      ?.userFirstName ==
+                                                  '' ||
+                                              profilemodal?.profileDetails
+                                                      ?.userFirstName ==
+                                                  null
                                           ? 'N/A'
-                                          : profilemodal
-                                                  ?.profileDetails?.userFirstName ??
+                                          : profilemodal?.profileDetails
+                                                  ?.userFirstName ??
                                               '',
                                       style: TextStyle(
                                           color: Colors.black,
@@ -585,11 +585,16 @@ class _drawer1State extends State<drawer1> {
                                       width: 1.w,
                                     ),
                                     Text(
-                                      profilemodal?.profileDetails?.userLastName == '' || profilemodal?.profileDetails?.userLastName == null
+                                      profilemodal?.profileDetails
+                                                      ?.userLastName ==
+                                                  '' ||
+                                              profilemodal?.profileDetails
+                                                      ?.userLastName ==
+                                                  null
                                           ? 'N/A'
-                                          : profilemodal
-                                          ?.profileDetails?.userLastName ??
-                                          '',
+                                          : profilemodal?.profileDetails
+                                                  ?.userLastName ??
+                                              '',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 11.sp,
@@ -766,7 +771,7 @@ class _drawer1State extends State<drawer1> {
                                 width: 64.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
@@ -1141,7 +1146,7 @@ class _drawer1State extends State<drawer1> {
                                 width: 64.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
@@ -1195,7 +1200,7 @@ class _drawer1State extends State<drawer1> {
                                 width: 64.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
@@ -1247,7 +1252,7 @@ class _drawer1State extends State<drawer1> {
                                 width: 64.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
@@ -1382,6 +1387,7 @@ class _drawer1State extends State<drawer1> {
       }
     });
   }
+
   Deleteuser() {
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -1390,8 +1396,10 @@ class _drawer1State extends State<drawer1> {
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().deleteuserap(data).then((response) async {
-          deleteuserModel = DeleteUserModel.fromJson(json.decode(response.body));
-          if (response.statusCode == 200 && deleteuserModel?.status == "success") {
+          deleteuserModel =
+              DeleteUserModel.fromJson(json.decode(response.body));
+          if (response.statusCode == 200 &&
+              deleteuserModel?.status == "success") {
             await EasyLoading.showSuccess(deleteuserModel!.message.toString());
             setState(() {
               // isLoading = false;

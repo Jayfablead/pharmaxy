@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:ecommerce/Modal/CancelOrderModel.dart';
-import 'package:ecommerce/Modal/OrderCancelModal.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce/Modal/CancelOrderModel.dart';
 import 'package:ecommerce/Modal/MyOederDetailModal.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
@@ -13,7 +13,6 @@ import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/Drawer.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sizer/sizer.dart';
@@ -22,7 +21,7 @@ class OrderSummary extends StatefulWidget {
   String? iteamid;
   String? stuts;
 
-  OrderSummary({super.key, this.iteamid,this.stuts});
+  OrderSummary({super.key, this.iteamid, this.stuts});
 
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
@@ -35,8 +34,13 @@ class order {
   String? price;
   String? url;
 
-
-  order( this.url,this.image, this.name, this.price, this.dec,);
+  order(
+    this.url,
+    this.image,
+    this.name,
+    this.price,
+    this.dec,
+  );
 }
 
 bool isLoading = true;
@@ -81,9 +85,10 @@ class _OrderSummaryState extends State<OrderSummary> {
                               children: [
                                 IconButton(
                                     onPressed: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) =>MyOrderList(),)
-                                      );
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) => MyOrderList(),
+                                      ));
                                       //Navigator.of(context).pop();
                                     },
                                     icon: Icon(
@@ -139,9 +144,10 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                             ?.profileDetails
                                                             ?.profileimage ??
                                                         '',
-                                                    progressIndicatorBuilder: (context,
-                                                            url, progress) =>
-                                                        CircularProgressIndicator(),
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                progress) =>
+                                                            CircularProgressIndicator(),
                                                     errorWidget: (context, url,
                                                             error) =>
                                                         Icon(Icons
@@ -176,8 +182,18 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                 fontSize: 12.sp,
                                                 color: Colors.black45),
                                           ),
-                                          Text(myoederdetailmodal?.userDetail?.orderID == '' || myoederdetailmodal?.userDetail?.orderID == null ? 'N/A'
-                                                : myoederdetailmodal?.userDetail?.orderID ?? '',
+                                          Text(
+                                            myoederdetailmodal?.userDetail
+                                                            ?.orderID ==
+                                                        '' ||
+                                                    myoederdetailmodal
+                                                            ?.userDetail
+                                                            ?.orderID ==
+                                                        null
+                                                ? 'N/A'
+                                                : myoederdetailmodal
+                                                        ?.userDetail?.orderID ??
+                                                    '',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.normal,
                                                 fontFamily: 'task',
@@ -192,19 +208,20 @@ class _OrderSummaryState extends State<OrderSummary> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 2.h,),
+                          SizedBox(
+                            height: 2.h,
+                          ),
                           Container(
-                            height: myoederdetailmodal
-                                ?.orderDetails?.length==1?20.h:30.h,
+                            height:
+                                myoederdetailmodal?.orderDetails?.length == 1
+                                    ? 20.h
+                                    : 30.h,
                             child: ListView.builder(
-                              padding:
-                              EdgeInsets.only(top: 1.h),
-                              itemCount: myoederdetailmodal
-                                  ?.orderDetails?.length,
+                              padding: EdgeInsets.only(top: 1.h),
+                              itemCount:
+                                  myoederdetailmodal?.orderDetails?.length,
                               // The number of items in the grid
-                              itemBuilder:
-                                  (BuildContext context,
-                                  int index) {
+                              itemBuilder: (BuildContext context, int index) {
                                 // Build each item in the grid
                                 return Container(
                                   child: Card(
@@ -212,47 +229,58 @@ class _OrderSummaryState extends State<OrderSummary> {
                                       color: Colors.white,
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
                                             children: [
                                               SizedBox(
                                                 width: 2.w,
                                               ),
                                               Container(
                                                 decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.circular(20)),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(20)),
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(3.0),
                                                   child: CachedNetworkImage(
                                                     imageUrl: myoederdetailmodal
-                                                        ?.orderDetails?[index].imgData ??
+                                                            ?.orderDetails?[
+                                                                index]
+                                                            .imgData ??
                                                         '',
                                                     fit: BoxFit.cover,
                                                     height: 23.w,
                                                     width: 23.w,
-                                                    imageBuilder:
-                                                        (context, imageProvider) =>
+                                                    imageBuilder: (context,
+                                                            imageProvider) =>
                                                         Container(
-                                                          decoration: BoxDecoration(
-                                                            borderRadius:
-                                                            BorderRadius.circular(25),
-                                                            image: DecorationImage(
-                                                              image: imageProvider,
-                                                              // fit: BoxFit.cover,
-                                                            ),
-                                                          ),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                        image: DecorationImage(
+                                                          image: imageProvider,
+                                                          // fit: BoxFit.cover,
                                                         ),
-                                                    placeholder: (context, url) => Center(
-                                                        child:
-                                                        CircularProgressIndicator()),
-                                                    errorWidget: (context, url, error) =>
-                                                        Icon(Icons.error),
+                                                      ),
+                                                    ),
+                                                    placeholder: (context,
+                                                            url) =>
+                                                        Center(
+                                                            child:
+                                                                CircularProgressIndicator()),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            Icon(Icons.error),
                                                   ),
                                                 ),
                                               ),
@@ -261,47 +289,58 @@ class _OrderSummaryState extends State<OrderSummary> {
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                    vertical: 0.h, horizontal: 1.w),
+                                                    vertical: 0.h,
+                                                    horizontal: 1.w),
                                                 child: Column(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                                      MainAxisAlignment.start,
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     SizedBox(
                                                       height: 2.h,
                                                     ),
                                                     Column(
                                                       crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                          EdgeInsets.only(left: 1.w),
+                                                              EdgeInsets.only(
+                                                                  left: 1.w),
                                                           child: SizedBox(
                                                             width: 50.w,
                                                             child: Text(
                                                               myoederdetailmodal
-                                                                  ?.orderDetails
-                                                                  ?[index].productName ==
-                                                                  '' ||
-                                                                  myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                  ?[index].productName ==
-                                                                      null
+                                                                              ?.orderDetails?[
+                                                                                  index]
+                                                                              .productName ==
+                                                                          '' ||
+                                                                      myoederdetailmodal
+                                                                              ?.orderDetails?[
+                                                                                  index]
+                                                                              .productName ==
+                                                                          null
                                                                   ? 'N/A'
                                                                   : myoederdetailmodal
-                                                                  ?.orderDetails
-                                                              ?[index].productName ??
-                                                                  '',
+                                                                          ?.orderDetails?[
+                                                                              index]
+                                                                          .productName ??
+                                                                      '',
                                                               style: TextStyle(
-                                                                  color: Colors.black,
-                                                                  fontSize: 10.sp,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize:
+                                                                      10.sp,
                                                                   fontWeight:
-                                                                  FontWeight.w600,
-                                                                  fontFamily: "task"),
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      "task"),
                                                             ),
                                                           ),
                                                         ),
@@ -310,43 +349,50 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                          EdgeInsets.only(left: 1.w),
+                                                              EdgeInsets.only(
+                                                                  left: 1.w),
                                                           child: Row(
                                                             children: [
                                                               Text(
                                                                 'Price : ',
-                                                                style: TextStyle(
-                                                                  fontSize: 12.sp,
-                                                                  fontFamily: 'task',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize:
+                                                                      12.sp,
+                                                                  fontFamily:
+                                                                      'task',
                                                                   fontWeight:
-                                                                  FontWeight.bold,
-                                                                  letterSpacing: 1,
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  letterSpacing:
+                                                                      1,
                                                                   color: Colors
-                                                                      .grey.shade800,
+                                                                      .grey
+                                                                      .shade800,
                                                                 ),
                                                               ),
                                                               Text(
-                                                                myoederdetailmodal
-                                                                    ?.orderDetails
-                                                                ?[index].price ==
-                                                                    "" ||
-                                                                    myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                    ?[index].price ==
-                                                                        null
+                                                                myoederdetailmodal?.orderDetails?[index].price ==
+                                                                            "" ||
+                                                                        myoederdetailmodal?.orderDetails?[index].price ==
+                                                                            null
                                                                     ? "N/A"
                                                                     : '₹' +
-                                                                    (myoederdetailmodal
-                                                                        ?.orderDetails
-                                                                    ?[index].price)
-                                                                        .toString(),
-                                                                style: TextStyle(
-                                                                  fontSize: 11.sp,
-                                                                  fontFamily: 'task',
+                                                                        (myoederdetailmodal?.orderDetails?[index].price)
+                                                                            .toString(),
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize:
+                                                                      11.sp,
+                                                                  fontFamily:
+                                                                      'task',
                                                                   fontWeight:
-                                                                  FontWeight.bold,
-                                                                  letterSpacing: 1,
-                                                                  color: Colors.black,
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  letterSpacing:
+                                                                      1,
+                                                                  color: Colors
+                                                                      .black,
                                                                 ),
                                                               ),
                                                             ],
@@ -357,62 +403,57 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                          EdgeInsets.only(left: 1.w),
+                                                              EdgeInsets.only(
+                                                                  left: 1.w),
                                                           child: Row(
                                                             children: [
                                                               Text(
                                                                 'Status : ',
-                                                                style: TextStyle(
-                                                                  fontSize: 11.sp,
-                                                                  fontFamily: 'task',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize:
+                                                                      11.sp,
+                                                                  fontFamily:
+                                                                      'task',
                                                                   fontWeight:
-                                                                  FontWeight.bold,
-                                                                  letterSpacing: 1,
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  letterSpacing:
+                                                                      1,
                                                                   color: Colors
-                                                                      .grey.shade800,
+                                                                      .grey
+                                                                      .shade800,
                                                                 ),
                                                               ),
-                                                           Text(
-                                                             myoederdetailmodal
-                                                                 ?.orderDetails
-                                                             ?[index].orderStatus ==
-                                                                    '' ||
-                                                                 myoederdetailmodal
-                                                                     ?.orderDetails
-                                                                 ?[index].orderStatus ==
-                                                                        null
+                                                              Text(
+                                                                myoederdetailmodal?.orderDetails?[index].orderStatus ==
+                                                                            '' ||
+                                                                        myoederdetailmodal?.orderDetails?[index].orderStatus ==
+                                                                            null
                                                                     ? 'N/A'
                                                                     : myoederdetailmodal
-                                                                 ?.orderDetails
-                                                             ?[index].orderStatus ?? '',
+                                                                            ?.orderDetails?[index]
+                                                                            .orderStatus ??
+                                                                        '',
                                                                 maxLines: 1,
-                                                                overflow: TextOverflow.ellipsis,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                                 style: TextStyle(
-                                                                  fontSize: 11.sp,
-                                                                  fontFamily: 'task',
-                                                                  fontWeight:
-                                                                  FontWeight.bold,
-                                                                  color: myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                  ?[index].orderStatus =='Pending'
-                                                                      ? Colors.orange
-                                                                      : myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                  ?[index].orderStatus == "Cancelled"
-                                                                      ? Colors.red
-                                                                      : myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                  ?[index].orderStatus == "Completed"
-                                                                      ? Colors.green :
-                                                                  myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                  ?[index].orderStatus == "Placed"
-                                                                      ?Colors.green
-                                                                      :  myoederdetailmodal
-                                                                      ?.orderDetails
-                                                                  ?[index].orderStatus == "Paid"
-                                                                      ?Colors.green:AppColors.primary
-                                                                ),
+                                                                    fontSize: 11.sp,
+                                                                    fontFamily: 'task',
+                                                                    fontWeight: FontWeight.bold,
+                                                                    color: myoederdetailmodal?.orderDetails?[index].orderStatus == 'Pending'
+                                                                        ? Colors.orange
+                                                                        : myoederdetailmodal?.orderDetails?[index].orderStatus == "Cancelled"
+                                                                            ? Colors.red
+                                                                            : myoederdetailmodal?.orderDetails?[index].orderStatus == "Completed"
+                                                                                ? Colors.green
+                                                                                : myoederdetailmodal?.orderDetails?[index].orderStatus == "Placed"
+                                                                                    ? Colors.green
+                                                                                    : myoederdetailmodal?.orderDetails?[index].orderStatus == "Paid"
+                                                                                        ? Colors.green
+                                                                                        : AppColors.primary),
                                                               ),
                                                             ],
                                                           ),
@@ -433,7 +474,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                               },
                             ),
                           ),
-                      
+
                           SizedBox(
                             height: 1.h,
                           ),
@@ -475,14 +516,17 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                 horizontal: 3.w, vertical: 2.h),
                                             child: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 SizedBox(
                                                   width: 72.w,
                                                   child: Column(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
-                                                    mainAxisSize: MainAxisSize.min,
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
                                                     children: [
                                                       Row(
                                                         children: [
@@ -491,43 +535,47 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                             ?.userDetail
                                                                             ?.fname ==
                                                                         '' ||
-                                                                myoederdetailmodal
-                                                                    ?.userDetail
-                                                                    ?.fname ==
+                                                                    myoederdetailmodal
+                                                                            ?.userDetail
+                                                                            ?.fname ==
                                                                         null
                                                                 ? 'N/A'
                                                                 : myoederdetailmodal
-                                                                ?.userDetail
-                                                                ?.fname??
+                                                                        ?.userDetail
+                                                                        ?.fname ??
                                                                     '',
                                                             style: TextStyle(
                                                                 fontSize: 12.sp,
                                                                 fontWeight:
-                                                                    FontWeight.bold,
-                                                                fontFamily: "task"),
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontFamily:
+                                                                    "task"),
                                                           ),
                                                           SizedBox(
                                                             width: 1.w,
                                                           ),
                                                           Text(
                                                             myoederdetailmodal
-                                                                ?.userDetail
-                                                                ?.lname ==
-                                                                '' ||
-                                                                myoederdetailmodal
-                                                                    ?.userDetail
-                                                                    ?.lname ==
-                                                                    null
+                                                                            ?.userDetail
+                                                                            ?.lname ==
+                                                                        '' ||
+                                                                    myoederdetailmodal
+                                                                            ?.userDetail
+                                                                            ?.lname ==
+                                                                        null
                                                                 ? 'N/A'
                                                                 : myoederdetailmodal
-                                                                ?.userDetail
-                                                                ?.lname??
-                                                                '',
+                                                                        ?.userDetail
+                                                                        ?.lname ??
+                                                                    '',
                                                             style: TextStyle(
                                                                 fontSize: 12.sp,
                                                                 fontWeight:
-                                                                    FontWeight.bold,
-                                                                fontFamily: "task"),
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontFamily:
+                                                                    "task"),
                                                           ),
                                                         ],
                                                       ),
@@ -536,29 +584,33 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                       ),
                                                       Text(
                                                         myoederdetailmodal
-                                                            ?.userDetail
-                                                            ?.address1 ==
-                                                            '' ||
-                                                            myoederdetailmodal
-                                                                ?.userDetail
-                                                                ?.address1 ==
-                                                                null
+                                                                        ?.userDetail
+                                                                        ?.address1 ==
+                                                                    '' ||
+                                                                myoederdetailmodal
+                                                                        ?.userDetail
+                                                                        ?.address1 ==
+                                                                    null
                                                             ? 'N/A'
                                                             : myoederdetailmodal
-                                                            ?.userDetail
-                                                            ?.address1??
-                                                            '',
+                                                                    ?.userDetail
+                                                                    ?.address1 ??
+                                                                '',
                                                         style: TextStyle(
                                                             fontSize: 13.5.sp,
                                                             color: Colors.black,
                                                             fontWeight:
-                                                                FontWeight.normal,
+                                                                FontWeight
+                                                                    .normal,
                                                             fontFamily: "task"),
                                                       ),
                                                     ],
                                                   ),
                                                 ),
-                                                Icon(Icons.arrow_forward_ios,size: 14.sp,)
+                                                Icon(
+                                                  Icons.arrow_forward_ios,
+                                                  size: 14.sp,
+                                                )
                                               ],
                                             ),
                                           ),
@@ -566,11 +618,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                                         SizedBox(
                                           height: 2.h,
                                         ),
-
-
-
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
                                             Text(
                                               "Amount",
@@ -589,7 +639,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                           width: 95.w,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                             color: Color(0xffffffff),
                                           ),
                                           child: Padding(
@@ -599,37 +650,47 @@ class _OrderSummaryState extends State<OrderSummary> {
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Row(
-                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Text(
                                                       'Sub Total : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 12.sp,
-                                                        color: Colors.grey.shade800,
-                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors
+                                                            .grey.shade800,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                     Text(
                                                       // "\$50",
-                                                      myoederdetailmodal?.orderDetails?[0].subtotal ==
-                                                          null ||
-                                                          myoederdetailmodal
-                                                              ?.orderDetails?[0]
-                                                              .subtotal ==
-                                                              ""
+                                                      myoederdetailmodal
+                                                                      ?.orderDetails?[
+                                                                          0]
+                                                                      .subtotal ==
+                                                                  null ||
+                                                              myoederdetailmodal
+                                                                      ?.orderDetails?[
+                                                                          0]
+                                                                      .subtotal ==
+                                                                  ""
                                                           ? "N/A"
                                                           : '₹' +
-                                                          (myoederdetailmodal
-                                                              ?.orderDetails?[0]
-                                                              .subtotal)
-                                                              .toString(),
+                                                              (myoederdetailmodal
+                                                                      ?.orderDetails?[
+                                                                          0]
+                                                                      .subtotal)
+                                                                  .toString(),
                                                       style: TextStyle(
                                                           fontFamily: 'task',
                                                           fontSize: 12.sp,
-                                                          fontWeight: FontWeight.normal,
+                                                          fontWeight:
+                                                              FontWeight.normal,
                                                           color: Colors.black),
                                                     ),
                                                   ],
@@ -638,33 +699,43 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   height: 1.h,
                                                 ),
                                                 Row(
-                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Text(
                                                       'Handling Charge : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 12.sp,
-                                                        color: Colors.grey.shade800,
-                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors
+                                                            .grey.shade800,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                     Text(
-                                                      myoederdetailmodal?.userDetail?.totalTax
-                                                           ==
-                                                          null ||
-                                                          myoederdetailmodal?.userDetail?.totalTax ==
-                                                              ""
+                                                      myoederdetailmodal
+                                                                      ?.userDetail
+                                                                      ?.totalTax ==
+                                                                  null ||
+                                                              myoederdetailmodal
+                                                                      ?.userDetail
+                                                                      ?.totalTax ==
+                                                                  ""
                                                           ? "N/A"
                                                           : '₹' +
-                                                          (myoederdetailmodal?.userDetail?.totalTax)
-                                                              .toString(),
+                                                              (myoederdetailmodal
+                                                                      ?.userDetail
+                                                                      ?.totalTax)
+                                                                  .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 12.sp,
-                                                        fontWeight: FontWeight.normal,
+                                                        fontWeight:
+                                                            FontWeight.normal,
                                                       ),
                                                     )
                                                     // Text(
@@ -684,33 +755,47 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   height: 1.h,
                                                 ),
                                                 Row(
-                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Text(
                                                       'Shipping Fees : ',
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 12.sp,
-                                                        color: Colors.grey.shade800,
-                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors
+                                                            .grey.shade800,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                     Text(
-                                                      myoederdetailmodal?.userDetail?.totalShipingCost
-                                                          ==
-                                                          null||
-                                                          myoederdetailmodal?.userDetail?.totalShipingCost=="" ||  myoederdetailmodal?.userDetail?.totalShipingCost== "0.00"
+                                                      myoederdetailmodal
+                                                                      ?.userDetail
+                                                                      ?.totalShipingCost ==
+                                                                  null ||
+                                                              myoederdetailmodal
+                                                                      ?.userDetail
+                                                                      ?.totalShipingCost ==
+                                                                  "" ||
+                                                              myoederdetailmodal
+                                                                      ?.userDetail
+                                                                      ?.totalShipingCost ==
+                                                                  "0.00"
                                                           ? "Free"
                                                           : '₹' +
-                                                          (myoederdetailmodal
-                                                              ?.userDetail?.totalShipingCost)
-                                                              .toString(),
+                                                              (myoederdetailmodal
+                                                                      ?.userDetail
+                                                                      ?.totalShipingCost)
+                                                                  .toString(),
                                                       style: TextStyle(
                                                         fontFamily: 'task',
                                                         fontSize: 12.sp,
-                                                        fontWeight: FontWeight.normal,
+                                                        fontWeight:
+                                                            FontWeight.normal,
                                                       ),
                                                     ),
                                                   ],
@@ -718,76 +803,109 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                 SizedBox(
                                                   height: 1.h,
                                                 ),
-                                                  myoederdetailmodal?.userDetail?.totalDiscount == "0" ?SizedBox()
-                                                      :Row(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      'Discount Applied: ',
-                                                      style: TextStyle(
-                                                        fontFamily: 'task',
-                                                        fontSize: 12.sp,
-                                                        color: Colors.grey.shade800,
-                                                        fontWeight: FontWeight.bold,
+                                                myoederdetailmodal?.userDetail
+                                                            ?.totalDiscount ==
+                                                        "0"
+                                                    ? SizedBox()
+                                                    : Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            'Discount Applied: ',
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  'task',
+                                                              fontSize: 12.sp,
+                                                              color: Colors.grey
+                                                                  .shade800,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            myoederdetailmodal
+                                                                            ?.userDetail
+                                                                            ?.totalDiscount ==
+                                                                        null ||
+                                                                    myoederdetailmodal
+                                                                            ?.userDetail
+                                                                            ?.totalDiscount ==
+                                                                        ""
+                                                                ? "\₹ 0"
+                                                                : '₹' +
+                                                                    (myoederdetailmodal
+                                                                            ?.userDetail
+                                                                            ?.totalDiscount)
+                                                                        .toString(),
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  'task',
+                                                              fontSize: 12.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
-                                                    Text(
-                                                      myoederdetailmodal?.userDetail?.totalDiscount
-                                                          ==
-                                                          null||
-                                                          myoederdetailmodal?.userDetail?.totalDiscount ==
-                                                              ""
-                                                          ? "\₹ 0"
-                                                          : '₹' +
-                                                          ( myoederdetailmodal?.userDetail?.totalDiscount)
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                        fontFamily: 'task',
-                                                        fontSize: 12.sp,
-                                                        fontWeight: FontWeight.normal,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
                                                 SizedBox(
                                                   height: 1.h,
                                                 ),
                                                 usermodal?.userId == "" ||
-                                                    usermodal?.userId == null
+                                                        usermodal?.userId ==
+                                                            null
                                                     ? Container()
                                                     : Row(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      'Referral Discount: ',
-                                                      style: TextStyle(
-                                                        fontFamily: 'task',
-                                                        fontSize: 12.sp,
-                                                        color: Colors.grey.shade800,
-                                                        fontWeight: FontWeight.bold,
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            'Referral Discount: ',
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  'task',
+                                                              fontSize: 12.sp,
+                                                              color: Colors.grey
+                                                                  .shade800,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            myoederdetailmodal
+                                                                            ?.userDetail
+                                                                            ?.referDis ==
+                                                                        null ||
+                                                                    myoederdetailmodal
+                                                                            ?.userDetail
+                                                                            ?.referDis ==
+                                                                        ""
+                                                                ? "\₹ 0 "
+                                                                : '₹' +
+                                                                    (myoederdetailmodal
+                                                                            ?.userDetail
+                                                                            ?.referDis)
+                                                                        .toString(),
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  'task',
+                                                              fontSize: 12.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
-                                                    Text(
-                                                      myoederdetailmodal?.userDetail?.referDis
-                                                          ==
-                                                          null||
-                                                          myoederdetailmodal?.userDetail?.referDis==""
-                                                          ? "\₹ 0 "
-                                                          : '₹' +
-                                                          (myoederdetailmodal
-                                                              ?.userDetail?.referDis)
-                                                              .toString(), style: TextStyle(
-                                                        fontFamily: 'task',
-                                                        fontSize: 12.sp,
-                                                        fontWeight: FontWeight.normal,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
                                               ],
                                             ),
                                           ),
@@ -800,7 +918,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                           height: 8.h,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                             color: Color(0xffffffff),
                                           ),
                                           child: Padding(
@@ -809,7 +928,8 @@ class _OrderSummaryState extends State<OrderSummary> {
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text(
                                                   'Total Amount : ',
@@ -821,15 +941,19 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  myoederdetailmodal ?.userDetail?.totalAmount
-                                                      ==
-                                                      null ||
-                                                      myoederdetailmodal ?.userDetail?.totalAmount ==
-                                                          ""
+                                                  myoederdetailmodal?.userDetail
+                                                                  ?.totalAmount ==
+                                                              null ||
+                                                          myoederdetailmodal
+                                                                  ?.userDetail
+                                                                  ?.totalAmount ==
+                                                              ""
                                                       ? "N/A"
                                                       : '₹' +
-                                                      (myoederdetailmodal ?.userDetail?.totalAmount)
-                                                          .toString(),
+                                                          (myoederdetailmodal
+                                                                  ?.userDetail
+                                                                  ?.totalAmount)
+                                                              .toString(),
                                                   style: TextStyle(
                                                     fontFamily: 'task',
                                                     fontSize: 12.sp,
@@ -842,89 +966,127 @@ class _OrderSummaryState extends State<OrderSummary> {
                                         SizedBox(
                                           height: 2.h,
                                         ),
-
-
-
-                                        if (myoederdetailmodal?.userDetail?.orderStatus =='Completed'||myoederdetailmodal?.userDetail?.orderStatus =='Cancelled') SizedBox() else
+                                        if (myoederdetailmodal
+                                                    ?.userDetail?.orderStatus ==
+                                                'Completed' ||
+                                            myoederdetailmodal
+                                                    ?.userDetail?.orderStatus ==
+                                                'Cancelled')
+                                          SizedBox()
+                                        else
                                           InkWell(
-                                          onTap: () {
-                                            AlertDialog alertDialog = AlertDialog(
-                                              title: Text("Cancel Order",style: TextStyle(
-                                                  fontFamily: "task",
-                                                fontSize: 13.sp,
-
-                                              ),),
-                                              content: Text("Are you sure want cancel this order?",style: TextStyle(
-                                                  fontFamily: "task",
-                                                fontSize: 12.sp,
-                                              ),),
-                                              backgroundColor: Colors.grey.shade100,
-                                              // contentPadding: EdgeInsets.all(10.0),
-                                              actions: [
-                                               ElevatedButton(
-                                                   onPressed: ()async{
-                                                    await Ordercancelledap();
-                                                    Navigator.of(context).pop();
-                                                    setState(() {
-                                                      myorderdetailap();
-                                                    });
-                                                    // myorderdetailap();
-
-                                                   },
-                                                   child: Text("Yes",style: TextStyle(
-                                                     fontSize: 10.sp,
-                                                     fontFamily: 'task',
-                                                   ),),
-                                                 style: ElevatedButton.styleFrom(
-                                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                                   backgroundColor: Color(0xff0061b0),
-                                                   foregroundColor: Colors.white
-                                                 ),
-                                               ),
-                                                ElevatedButton(
-                                                  onPressed: (){
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Text("No",style: TextStyle(
-                                                    fontSize: 10.sp,
-                                                    fontFamily: 'task',
-                                                  ),),
-                                                  style: ElevatedButton.styleFrom(
-                                                      backgroundColor: Color(0xff0061b0),
-                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                                      foregroundColor: Colors.white
+                                            onTap: () {
+                                              AlertDialog alertDialog =
+                                                  AlertDialog(
+                                                title: Text(
+                                                  "Cancel Order",
+                                                  style: TextStyle(
+                                                    fontFamily: "task",
+                                                    fontSize: 13.sp,
                                                   ),
                                                 ),
-                                              ],
-                                            );
-                                            showDialog(context: context, builder: (context){
-                                              return alertDialog;
-                                            });
-                                          },
-                                          child: Card(
-                                            elevation: 2.0,
-                                            child: Container(
-                                              width: MediaQuery.of(context).size.width,
-                                              decoration: BoxDecoration(
-                                                  color: Color(0xff0061b0),
-                                                  borderRadius: BorderRadius.circular(10.0)
+                                                content: Text(
+                                                  "Are you sure want cancel this order?",
+                                                  style: TextStyle(
+                                                    fontFamily: "task",
+                                                    fontSize: 12.sp,
+                                                  ),
+                                                ),
+                                                backgroundColor:
+                                                    Colors.grey.shade100,
+                                                // contentPadding: EdgeInsets.all(10.0),
+                                                actions: [
+                                                  ElevatedButton(
+                                                    onPressed: () async {
+                                                      await Ordercancelledap();
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      setState(() {
+                                                        myorderdetailap();
+                                                      });
+                                                      // myorderdetailap();
+                                                    },
+                                                    child: Text(
+                                                      "Yes",
+                                                      style: TextStyle(
+                                                        fontSize: 10.sp,
+                                                        fontFamily: 'task',
+                                                      ),
+                                                    ),
+                                                    style: ElevatedButton.styleFrom(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                        backgroundColor:
+                                                            Color(0xff0061b0),
+                                                        foregroundColor:
+                                                            Colors.white),
+                                                  ),
+                                                  ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: Text(
+                                                      "No",
+                                                      style: TextStyle(
+                                                        fontSize: 10.sp,
+                                                        fontFamily: 'task',
+                                                      ),
+                                                    ),
+                                                    style: ElevatedButton.styleFrom(
+                                                        backgroundColor:
+                                                            Color(0xff0061b0),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                        foregroundColor:
+                                                            Colors.white),
+                                                  ),
+                                                ],
+                                              );
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return alertDialog;
+                                                  });
+                                            },
+                                            child: Card(
+                                              elevation: 2.0,
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xff0061b0),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                height: 50,
+                                                child: Center(
+                                                    child: Text(
+                                                  "Cancel",
+                                                  style: TextStyle(
+                                                      fontSize: 12.sp,
+                                                      color: Colors.white,
+                                                      //color: Colors.red,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )),
                                               ),
-                                              height: 50,
-                                              child: Center(child: Text("Cancel",style: TextStyle(
-                                                  fontSize: 12.sp,
-                                                  color: Colors.white,
-                                                  //color: Colors.red,
-                                                  fontWeight: FontWeight.bold
-                                              ),)),
                                             ),
-                                          ),
-                                        )
+                                          )
                                       ],
                                     ),
                                     SizedBox(
                                       height: 2.h,
                                     ),
-                                    myoederdetailmodal?.userDetail?.orderStatus ==
+                                    myoederdetailmodal
+                                                ?.userDetail?.orderStatus ==
                                             'Cancelled'
                                         ? Container()
                                         : Padding(
@@ -945,13 +1107,16 @@ class _OrderSummaryState extends State<OrderSummary> {
                                     //         'cod'
                                     //     ?
 
-                                    myoederdetailmodal?.userDetail
-                                        ?.orderStatus ==
-                                        'Cancelled'?SizedBox():Container(
-                                      alignment: Alignment.center,
-                                      height: 12.5.h,
+                                    myoederdetailmodal
+                                                ?.userDetail?.orderStatus ==
+                                            'Cancelled'
+                                        ? SizedBox()
+                                        : Container(
+                                            alignment: Alignment.center,
+                                            height: 12.5.h,
                                             decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(10),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
                                                 color: Colors.white),
                                             child:
                                                 myoederdetailmodal?.userDetail
@@ -959,11 +1124,11 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                         'Cancelled'
                                                     ? Container()
                                                     : Padding(
-                                                        padding:
-                                                            EdgeInsets.symmetric(
-                                                                horizontal: 5.w,
-                                                                vertical: 1.h,
-                                                               ),
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                          horizontal: 5.w,
+                                                          vertical: 1.h,
+                                                        ),
                                                         child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
@@ -977,62 +1142,55 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                   CrossAxisAlignment
                                                                       .start,
                                                               mainAxisSize:
-                                                                  MainAxisSize.min,
+                                                                  MainAxisSize
+                                                                      .min,
                                                               children: [
                                                                 Column(
                                                                   children: [
                                                                     GestureDetector(
-                                                                      onTap: () {},
+                                                                      onTap:
+                                                                          () {},
                                                                       child:
                                                                           Container(
-                                                                        padding: EdgeInsets
-                                                                            .all(2
-                                                                                .w),
-                                                                        width: 80.w,
-                                                                        height: 7.h,
+                                                                        padding:
+                                                                            EdgeInsets.all(2.w),
+                                                                        width:
+                                                                            80.w,
+                                                                        height:
+                                                                            7.h,
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           color: Colors
                                                                               .white
-                                                                              .withOpacity(
-                                                                                  0.04),
+                                                                              .withOpacity(0.04),
                                                                           borderRadius:
-                                                                              BorderRadius.circular(
-                                                                                  15.sp),
+                                                                              BorderRadius.circular(15.sp),
                                                                           border:
-                                                                              Border
-                                                                                  .all(
-                                                                            color: Colors
-                                                                                .black12,
+                                                                              Border.all(
+                                                                            color:
+                                                                                Colors.black12,
                                                                             // Border color
                                                                             width:
                                                                                 2.0, // Border width
                                                                           ),
                                                                         ),
-                                                                        child: Row(
+                                                                        child:
+                                                                            Row(
                                                                           mainAxisAlignment:
-                                                                              MainAxisAlignment
-                                                                                  .start,
+                                                                              MainAxisAlignment.start,
                                                                           crossAxisAlignment:
-                                                                              CrossAxisAlignment
-                                                                                  .center,
+                                                                              CrossAxisAlignment.center,
                                                                           children: [
-                                                                            Image
-                                                                                .asset(
+                                                                            Image.asset(
                                                                               "assets/paybill.png",
-                                                                              height:
-                                                                                  5.h,
-                                                                              width:
-                                                                                  20.w,
+                                                                              height: 5.h,
+                                                                              width: 20.w,
                                                                             ),
                                                                             SizedBox(
-                                                                              width:
-                                                                                  1.w,
+                                                                              width: 1.w,
                                                                             ),
-                                                                            Text(
-                                                                                "Pay after bill generation ",
-                                                                                style:
-                                                                                    TextStyle(
+                                                                            Text("Pay after bill generation ",
+                                                                                style: TextStyle(
                                                                                   color: Colors.black,
                                                                                   fontSize: 14.sp,
                                                                                   fontFamily: 'match',
@@ -1042,129 +1200,129 @@ class _OrderSummaryState extends State<OrderSummary> {
                                                                       ),
                                                                     ),
                                                                     SizedBox(
-                                                                      height: 2.h,
+                                                                      height:
+                                                                          2.h,
                                                                     ),
                                                                   ],
                                                                 ),
-                      
                                                               ],
                                                             ),
                                                           ],
                                                         ),
                                                       ),
-                                                    ),
+                                          ),
 
-                                            // : Padding(
-                                            //     padding: EdgeInsets.symmetric(
-                                            //         horizontal: 2.w),
-                                            //     child: Column(
-                                            //       crossAxisAlignment:
-                                            //           CrossAxisAlignment.center,
-                                            //       mainAxisAlignment:
-                                            //           MainAxisAlignment.center,
-                                            //       children: [
-                                            //         GestureDetector(
-                                            //           onTap: () {
-                                            //             setState(() {});
-                                            //           },
-                                            //           child: Container(
-                                            //             width: 80.w,
-                                            //             padding:
-                                            //                 EdgeInsets.all(2.w),
-                                            //             decoration: BoxDecoration(
-                                            //               color: Colors.white
-                                            //                   .withOpacity(0.04),
-                                            //               borderRadius:
-                                            //                   BorderRadius.circular(
-                                            //                       15.sp),
-                                            //               border: Border.all(
-                                            //                 color: Colors.black12,
-                                            //                 // Border color
-                                            //                 width:
-                                            //                     2.0, // Border width
-                                            //               ),
-                                            //             ),
-                                            //             child: Center(
-                                            //               child: Row(
-                                            //                 mainAxisAlignment:
-                                            //                     MainAxisAlignment
-                                            //                         .start,
-                                            //                 crossAxisAlignment:
-                                            //                     CrossAxisAlignment
-                                            //                         .center,
-                                            //                 children: [
-                                            //                   Image.asset(
-                                            //                     "assets/paypal.png",
-                                            //                     height: 5.h,
-                                            //                     width: 20.w,
-                                            //                   ),
-                                            //                   SizedBox(
-                                            //                     width: 5.w,
-                                            //                   ),
-                                            //                   Text("Pay PayPal",
-                                            //                       style: TextStyle(
-                                            //                         color: Colors
-                                            //                             .black,
-                                            //                         fontSize: 17.sp,
-                                            //                         fontFamily:
-                                            //                             'match',
-                                            //                       )),
-                                            //                 ],
-                                            //               ),
-                                            //             ),
-                                            //           ),
-                                            //         ),
-                                            //
-                                            //         // Column(
-                                            //         //   children: [
-                                            //         //     GestureDetector(
-                                            //         //       onTap: () {},
-                                            //         //       child: Container(
-                                            //         //         padding: EdgeInsets.all(2.w),
-                                            //         //         width: 80.w,
-                                            //         //         decoration: BoxDecoration(
-                                            //         //           color: Colors.white
-                                            //         //               .withOpacity(0.04),
-                                            //         //           borderRadius:
-                                            //         //               BorderRadius.circular(15.sp),
-                                            //         //           border: Border.all(
-                                            //         //             color: Colors.black12,
-                                            //         //             // Border color
-                                            //         //             width: 2.0, // Border width
-                                            //         //           ),
-                                            //         //         ),
-                                            //         //         child: Row(
-                                            //         //           mainAxisAlignment:
-                                            //         //               MainAxisAlignment.start,
-                                            //         //           crossAxisAlignment:
-                                            //         //               CrossAxisAlignment.center,
-                                            //         //           children: [
-                                            //         //             Image.asset(
-                                            //         //               "assets/cod1.png",
-                                            //         //               height: 5.h,
-                                            //         //               width: 20.w,
-                                            //         //             ),
-                                            //         //             SizedBox(
-                                            //         //               width: 5.w,
-                                            //         //             ),
-                                            //         //             Text("Cash On Delivery",
-                                            //         //                 style: TextStyle(
-                                            //         //                   color: Colors.black,
-                                            //         //                   fontSize: 17.sp,
-                                            //         //                   fontFamily: 'match',
-                                            //         //                 )),
-                                            //         //           ],
-                                            //         //         ),
-                                            //         //       ),
-                                            //         //     ),
-                                            //         //     SizedBox(
-                                            //         //       height: 2.h,
-                                            //         //     ),
-                                            //         //   ],
-                                            //         // ),
-                                            //       ],
-                                            //     ),
-                                            //   ),
+                                    // : Padding(
+                                    //     padding: EdgeInsets.symmetric(
+                                    //         horizontal: 2.w),
+                                    //     child: Column(
+                                    //       crossAxisAlignment:
+                                    //           CrossAxisAlignment.center,
+                                    //       mainAxisAlignment:
+                                    //           MainAxisAlignment.center,
+                                    //       children: [
+                                    //         GestureDetector(
+                                    //           onTap: () {
+                                    //             setState(() {});
+                                    //           },
+                                    //           child: Container(
+                                    //             width: 80.w,
+                                    //             padding:
+                                    //                 EdgeInsets.all(2.w),
+                                    //             decoration: BoxDecoration(
+                                    //               color: Colors.white
+                                    //                   .withOpacity(0.04),
+                                    //               borderRadius:
+                                    //                   BorderRadius.circular(
+                                    //                       15.sp),
+                                    //               border: Border.all(
+                                    //                 color: Colors.black12,
+                                    //                 // Border color
+                                    //                 width:
+                                    //                     2.0, // Border width
+                                    //               ),
+                                    //             ),
+                                    //             child: Center(
+                                    //               child: Row(
+                                    //                 mainAxisAlignment:
+                                    //                     MainAxisAlignment
+                                    //                         .start,
+                                    //                 crossAxisAlignment:
+                                    //                     CrossAxisAlignment
+                                    //                         .center,
+                                    //                 children: [
+                                    //                   Image.asset(
+                                    //                     "assets/paypal.png",
+                                    //                     height: 5.h,
+                                    //                     width: 20.w,
+                                    //                   ),
+                                    //                   SizedBox(
+                                    //                     width: 5.w,
+                                    //                   ),
+                                    //                   Text("Pay PayPal",
+                                    //                       style: TextStyle(
+                                    //                         color: Colors
+                                    //                             .black,
+                                    //                         fontSize: 17.sp,
+                                    //                         fontFamily:
+                                    //                             'match',
+                                    //                       )),
+                                    //                 ],
+                                    //               ),
+                                    //             ),
+                                    //           ),
+                                    //         ),
+                                    //
+                                    //         // Column(
+                                    //         //   children: [
+                                    //         //     GestureDetector(
+                                    //         //       onTap: () {},
+                                    //         //       child: Container(
+                                    //         //         padding: EdgeInsets.all(2.w),
+                                    //         //         width: 80.w,
+                                    //         //         decoration: BoxDecoration(
+                                    //         //           color: Colors.white
+                                    //         //               .withOpacity(0.04),
+                                    //         //           borderRadius:
+                                    //         //               BorderRadius.circular(15.sp),
+                                    //         //           border: Border.all(
+                                    //         //             color: Colors.black12,
+                                    //         //             // Border color
+                                    //         //             width: 2.0, // Border width
+                                    //         //           ),
+                                    //         //         ),
+                                    //         //         child: Row(
+                                    //         //           mainAxisAlignment:
+                                    //         //               MainAxisAlignment.start,
+                                    //         //           crossAxisAlignment:
+                                    //         //               CrossAxisAlignment.center,
+                                    //         //           children: [
+                                    //         //             Image.asset(
+                                    //         //               "assets/cod1.png",
+                                    //         //               height: 5.h,
+                                    //         //               width: 20.w,
+                                    //         //             ),
+                                    //         //             SizedBox(
+                                    //         //               width: 5.w,
+                                    //         //             ),
+                                    //         //             Text("Cash On Delivery",
+                                    //         //                 style: TextStyle(
+                                    //         //                   color: Colors.black,
+                                    //         //                   fontSize: 17.sp,
+                                    //         //                   fontFamily: 'match',
+                                    //         //                 )),
+                                    //         //           ],
+                                    //         //         ),
+                                    //         //       ),
+                                    //         //     ),
+                                    //         //     SizedBox(
+                                    //         //       height: 2.h,
+                                    //         //     ),
+                                    //         //   ],
+                                    //         // ),
+                                    //       ],
+                                    //     ),
+                                    //   ),
                                   ],
                                 ),
                               ),
@@ -1215,33 +1373,42 @@ class _OrderSummaryState extends State<OrderSummary> {
                               // ),
                             ],
                           ),
-                          
                         ],
                       ),
-                      myoederdetailmodal
-                          ?.userDetail?.invoicePdf ==null||myoederdetailmodal
-                          ?.userDetail?.invoicePdf ==""?Container():Positioned(
-                        bottom: 5.h,
-                        right: 0,
-                        child:   FloatingActionButton(
-                        onPressed: () async{
-                          var file = await OpenPdfUtil().loadPdfFromNetwork(myoederdetailmodal
-                              ?.userDetail?.invoicePdf ?? "");
-                          String url1 = myoederdetailmodal ?.userDetail?.invoicePdf ?? "" ;
-                          print("55555555${url1}");
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => OpenPDF(
-                                file: file,
-                                url: url1,
+                      myoederdetailmodal?.userDetail?.invoicePdf == null ||
+                              myoederdetailmodal?.userDetail?.invoicePdf == ""
+                          ? Container()
+                          : Positioned(
+                              bottom: 5.h,
+                              right: 0,
+                              child: FloatingActionButton(
+                                onPressed: () async {
+                                  var file = await OpenPdfUtil()
+                                      .loadPdfFromNetwork(myoederdetailmodal
+                                              ?.userDetail?.invoicePdf ??
+                                          "");
+                                  String url1 = myoederdetailmodal
+                                          ?.userDetail?.invoicePdf ??
+                                      "";
+                                  print("55555555${url1}");
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => OpenPDF(
+                                        file: file,
+                                        url: url1,
+                                      ),
+                                    ),
+                                  );
+                                  print("PDF icon pressed");
+                                },
+                                backgroundColor: AppColors.primary,
+                                // Customize button color
+                                child: Icon(
+                                  Icons.picture_as_pdf,
+                                  color: Colors.white,
+                                ), // Use an icon for PDF, e.g., a PDF icon
                               ),
-                            ),
-                          );
-                          print("PDF icon pressed");
-                        },
-                        backgroundColor:AppColors.primary, // Customize button color
-                        child: Icon(Icons.picture_as_pdf,color: Colors.white,), // Use an icon for PDF, e.g., a PDF icon
-                      ),)
+                            )
                     ],
                   ),
                 ),
@@ -1293,7 +1460,8 @@ class _OrderSummaryState extends State<OrderSummary> {
           cancelOrderModel =
               CancelOrderModel.fromJson(json.decode(response.body));
           print(ordercancelmodal?.status);
-          if (response.statusCode == 200 && cancelOrderModel?.status == "success") {
+          if (response.statusCode == 200 &&
+              cancelOrderModel?.status == "success") {
             EasyLoading.showSuccess(cancelOrderModel!.status.toString());
             print('EE Thay Gyu Hooooo !^_^! ');
             setState(() {
@@ -1342,5 +1510,4 @@ class _OrderSummaryState extends State<OrderSummary> {
       }
     });
   }
-
 }

@@ -1,12 +1,9 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:ecommerce/Modal/CheckOutModal.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/pdfscreen.dart';
-import 'package:ecommerce/Screen/webview.dart';
-
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +29,7 @@ class _ThankyouPageState extends State<ThankyouPage> {
     );
     await launchUrl(launchUri);
   }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -177,16 +175,13 @@ class _ThankyouPageState extends State<ThankyouPage> {
               height: 40,
               width: 43.w, // Height of the button
               decoration: BoxDecoration(
-                color:  AppColors.primary, // Button background color
-                borderRadius: BorderRadius.circular(
-                    10), // Rounded corners
+                color: AppColors.primary, // Button background color
+                borderRadius: BorderRadius.circular(10), // Rounded corners
               ),
               child: Row(
-                mainAxisAlignment:
-                MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.call,
-                      color: Colors.white, size: 20.sp),
+                  Icon(Icons.call, color: Colors.white, size: 20.sp),
                   SizedBox(width: 8),
                   GestureDetector(
                     onTap: () {

@@ -4,16 +4,13 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Modal/ProfileModal.dart';
 import 'package:ecommerce/Modal/RefillModel.dart';
-import 'package:ecommerce/Modal/RequestformModel.dart';
 import 'package:ecommerce/Provider/Authprovider.dart';
-import 'package:ecommerce/Screen/EditProfile.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:ecommerce/Widget/loder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 class Refill_Alert extends StatefulWidget {
@@ -26,6 +23,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
   TextEditingController _phone = TextEditingController();
   TextEditingController _medicine = TextEditingController();
   TextEditingController _quantity = TextEditingController();
+
   // TextEditingController _date = TextEditingController();
   TextEditingController _days = TextEditingController();
 
@@ -79,7 +77,9 @@ class _Refill_AlertState extends State<Refill_Alert> {
           // }
         },
         child: Padding(
-          padding: Setbutton ? EdgeInsets.only(top: 3.h) : EdgeInsets.only(bottom: 0.h),
+          padding: Setbutton
+              ? EdgeInsets.only(top: 3.h)
+              : EdgeInsets.only(bottom: 0.h),
           child: Container(
             //margin: EdgeInsets.only(top: 2.5.h),
             alignment: Alignment.center,
@@ -96,12 +96,14 @@ class _Refill_AlertState extends State<Refill_Alert> {
           ),
         ));
   }
+
   void initState() {
     // TODO: implement initState
     super.initState();
     viewap();
     getDeviceInfoandStore();
   }
+
   Widget _buildAddedMedicinesList() {
     return Column(
       children: List.generate(medicines.length, (index) {
@@ -256,528 +258,508 @@ class _Refill_AlertState extends State<Refill_Alert> {
                   child: isLoading
                       ? Container()
                       : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 3.h,
-                        ),
-                        // app bar
-                        Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            HomePage(sel: 1),
-                                      ));
-                                },
-                                icon: Icon(
-                                  Icons.arrow_back_ios_new_outlined,
-                                  size: 18.sp,
-                                )),
-                            Text(
-                              "Refill Alert",
-                              style: TextStyle(
-                                fontSize: 13.sp,
-                                fontFamily: "task",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () {}, icon: Icon(null)),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Container(
-                          width: 87.w,
-                          height: 23.h,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(
-                                  "assets/refill.jpg",
-                                ),
-                                fit: BoxFit.cover),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 2.5.h,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 85.w,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Name",
-                                          style: TextStyle(
-                                              color: Colors.black87,
-                                              fontFamily: "task",
-                                              fontSize: 12.sp,
-                                              fontWeight:
-                                              FontWeight.bold,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 0.5.h,
-                                        ),
-                                        TextFormField(
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return "Please Enter Your Name";
-                                            }
-                                            return null;
-                                          },
-                                          onChanged: (value) {
-                                            setState(() {
-                                              _firstname.text = value;
-                                            });
-                                          },
-                                          keyboardType: TextInputType.text,
-                                          style: TextStyle(height: 1),
-                                          controller: _firstname,
-                                          decoration: InputDecoration(
-                                            enabledBorder:
-                                            OutlineInputBorder(
-                                                borderRadius:
-                                                BorderRadius
-                                                    .circular(10),
-                                                borderSide:
-                                                BorderSide(
-                                                    color: Colors
-                                                        .grey)),
-                                            disabledBorder:
-                                            OutlineInputBorder(
-                                                borderRadius:
-                                                BorderRadius
-                                                    .circular(10),
-                                                borderSide:
-                                                BorderSide(
-                                                    color: Colors
-                                                        .grey)),
-                                            focusedBorder:
-                                            OutlineInputBorder(
-                                                borderRadius:
-                                                BorderRadius
-                                                    .circular(10),
-                                                borderSide:
-                                                BorderSide(
-                                                    color: Colors
-                                                        .grey)),
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                BorderRadius.circular(
-                                                    10),
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey)
-                                            ),
-                                            hintText: 'Enter Your  Name',
-                                            hintStyle: TextStyle(
-                                                color: Colors.black
-                                                    .withOpacity(0.4),
-                                                fontSize: 11.sp,
-                                                fontFamily: "task"),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 2.5.h,
-                              ),
-                              Container(
-                                width: 85.w,
-                                child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Mobile Number",
-                                      style: TextStyle(
-                                          color: Colors.black87,
-                                          fontFamily: "task",
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: 0.5.h,
-                                    ),
-                                    TextFormField(
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Please Enter Your Phone";
-                                        }
-                                        else if(value.length != 10){
-                                          return "Please Enter valid Phone number";
-                                        }
-                                        return null;
-                                      },
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _phone.text = value;
-                                        });
-                                      },
-                                      keyboardType: TextInputType.phone,
-                                      controller: _phone,
-                                      style: TextStyle(height: 1),
-                                      decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey)),
-                                        disabledBorder:
-                                        OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(
-                                                10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey)
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey)
-                                        ),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey)
-                                        ),
-                                        hintText:
-                                        'Enter Your Phone Number',
-                                        hintStyle: TextStyle(
-                                            color: Colors.black
-                                                .withOpacity(0.4),
-                                            fontSize: 11.sp,
-                                            fontFamily: "task"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 2.5.h,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 3.5.h),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 47.w,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Medicine name",
-                                            style: TextStyle(
-                                                color: Colors.black87,
-                                                fontFamily: "task",
-                                                fontSize: 11.sp,
-                                                fontWeight:
-                                                FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 0.5.h,
-                                          ),
-                                          TextFormField(
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return "Please Enter Medicine";
-                                              }
-                                              return null;
-                                            },
-                                            keyboardType:
-                                            TextInputType.text,
-                                            controller: _medicine,
-                                            style: TextStyle(height: 1),
-                                            decoration: InputDecoration(
-                                              enabledBorder:
-                                              OutlineInputBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(
-                                                      10),
-                                                  borderSide:
-                                                  BorderSide(
-                                                      color: Colors
-                                                          .grey)),
-                                              disabledBorder:
-                                              OutlineInputBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(
-                                                      10),
-                                                  borderSide:
-                                                  BorderSide(
-                                                      color: Colors
-                                                          .grey)),
-                                              focusedBorder:
-                                              OutlineInputBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(
-                                                      10),
-                                                  borderSide:
-                                                  BorderSide(
-                                                      color: Colors
-                                                          .grey)),
-                                              border: OutlineInputBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(10),
-                                                  borderSide: BorderSide(
-                                                      color:
-                                                      Colors.grey)),
-                                              hintText: 'Medicine Name',
-                                              hintStyle: TextStyle(
-                                                  color: Colors.black
-                                                      .withOpacity(0.4),
-                                                  fontSize: 11.sp,
-                                                  fontFamily: "task"),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 2.w,
-                                    ),
-                                    Container(
-                                      width: 19.w,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Quantity",
-                                            style: TextStyle(
-                                                color: Colors.black87,
-                                                fontSize: 11.sp,
-                                                fontWeight:
-                                                FontWeight.w500),
-                                          ),
-                                          SizedBox(
-                                            height: 0.5.h,
-                                          ),
-                                          TextFormField(
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return "Enter Number of Quantity";
-                                              }
-                                              return null;
-                                            },
-                                            keyboardType:
-                                            TextInputType.number,
-                                            controller: _quantity,
-                                            style: TextStyle(height: 1),
-                                            decoration: InputDecoration(
-                                              enabledBorder:
-                                              OutlineInputBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(
-                                                      10),
-                                                  borderSide:
-                                                  BorderSide(
-                                                      color: Colors
-                                                          .grey)),
-                                              disabledBorder:
-                                              OutlineInputBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(
-                                                      10),
-                                                  borderSide:
-                                                  BorderSide(
-                                                      color: Colors
-                                                          .grey)),
-                                              focusedBorder:
-                                              OutlineInputBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(
-                                                      10),
-                                                  borderSide:
-                                                  BorderSide(
-                                                      color: Colors
-                                                          .grey)),
-                                              border: OutlineInputBorder(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(10),
-                                                  borderSide: BorderSide(
-                                                      color:
-                                                      Colors.grey)),
-                                              hintText: 'Qty',
-                                              hintStyle: TextStyle(
-                                                  color: Colors.black
-                                                      .withOpacity(0.4),
-                                                  fontSize: 11.sp,
-                                                  fontFamily: "task"),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 1.5.w,
-                                    ),
-                                    _buildAddButton(),
-                                  ],
-                                ),
-                              ),
-                              _buildAddedMedicinesList(),
-                              SizedBox(
-                                height: 2.5.h,
-                              ),
-                              // DATE
-                              Container(
-                                width: 85.w,
-                                child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Refill Day",
-                                      style: TextStyle(
-                                          color: Colors.black87,
-                                          fontFamily: "task",
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: 0.5.h,
-                                    ),
-                                    TextFormField(
-                                      validator: (value) {
-                                        int? days = int.tryParse(value!);
-                                        if (value.isEmpty) {
-                                          return "Please Enter Days";
-                                        }
-                                       else if (days == 1) {
-                                          return "Minimum 2 days are required";
-                                        }
-                                        return null;
-                                      },
-                                      keyboardType:
-                                      TextInputType.number,
-                                      style: TextStyle(height: 1),
-                                      controller: _days,
-                                      decoration: InputDecoration(
-                                        enabledBorder:
-                                        OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius
-                                                .circular(10),
-                                            borderSide:
-                                            BorderSide(
-                                                color: Colors
-                                                    .grey)),
-                                        disabledBorder:
-                                        OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius
-                                                .circular(10),
-                                            borderSide:
-                                            BorderSide(
-                                                color: Colors
-                                                    .grey)),
-                                        focusedBorder:
-                                        OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius
-                                                .circular(10),
-                                            borderSide:
-                                            BorderSide(
-                                                color: Colors
-                                                    .grey)),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(
-                                                10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey)),
-                                        hintText: 'Select Days',
-                                        hintStyle: TextStyle(
-                                            color: Colors.black
-                                                .withOpacity(0.4),
-                                            fontSize: 11.sp,
-                                            fontFamily: "task"),
-                                      ),
-                                    ),
-
-                                  ],
-                                ),
-                              ),
                               SizedBox(
                                 height: 3.h,
                               ),
-                              GestureDetector(
-                                onTap: () async {
-                                  setState(() {
-                                    Setbutton= false;
-                                  });
-                                  if (_formKey.currentState!.validate()) {
-                                    setState(() {
-                                      Setbutton= true;
-                                    });
-                                    await Refillformap();
-
-                                  }
-                                },
-                                child: Row(
-                                  children: [
-                                    Container(
-                                        margin: EdgeInsets.only(
-                                            right: 7.w, left: 7.w),
-                                        alignment: Alignment.center,
-                                        height: 6.h,
-                                        width: 85.w,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(10),
-                                            color: Color(0xff0061b0)),
-                                        child: Text(
-                                          "Refill Alert",
-                                          style: TextStyle(
-                                              fontSize: 13.sp,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: "task"),
-                                        )),
-                                  ],
+                              // app bar
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HomePage(sel: 1),
+                                            ));
+                                      },
+                                      icon: Icon(
+                                        Icons.arrow_back_ios_new_outlined,
+                                        size: 18.sp,
+                                      )),
+                                  Text(
+                                    "Refill Alert",
+                                    style: TextStyle(
+                                      fontSize: 13.sp,
+                                      fontFamily: "task",
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {}, icon: Icon(null)),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 2.h,
+                              ),
+                              Container(
+                                width: 87.w,
+                                height: 23.h,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/refill.jpg",
+                                      ),
+                                      fit: BoxFit.cover),
+                                  borderRadius: BorderRadius.circular(15.0),
                                 ),
                               ),
                               SizedBox(
                                 height: 2.h,
                               ),
+                              Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      height: 2.5.h,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          width: 85.w,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Name",
+                                                style: TextStyle(
+                                                  color: Colors.black87,
+                                                  fontFamily: "task",
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 0.5.h,
+                                              ),
+                                              TextFormField(
+                                                validator: (value) {
+                                                  if (value!.isEmpty) {
+                                                    return "Please Enter Your Name";
+                                                  }
+                                                  return null;
+                                                },
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    _firstname.text = value;
+                                                  });
+                                                },
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                style: TextStyle(height: 1),
+                                                controller: _firstname,
+                                                decoration: InputDecoration(
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  color: Colors
+                                                                      .grey)),
+                                                  disabledBorder:
+                                                      OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  color: Colors
+                                                                      .grey)),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  color: Colors
+                                                                      .grey)),
+                                                  border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      borderSide: BorderSide(
+                                                          color: Colors.grey)),
+                                                  hintText: 'Enter Your  Name',
+                                                  hintStyle: TextStyle(
+                                                      color: Colors.black
+                                                          .withOpacity(0.4),
+                                                      fontSize: 11.sp,
+                                                      fontFamily: "task"),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.5.h,
+                                    ),
+                                    Container(
+                                      width: 85.w,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Mobile Number",
+                                            style: TextStyle(
+                                                color: Colors.black87,
+                                                fontFamily: "task",
+                                                fontSize: 11.sp,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 0.5.h,
+                                          ),
+                                          TextFormField(
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return "Please Enter Your Phone";
+                                              } else if (value.length != 10) {
+                                                return "Please Enter valid Phone number";
+                                              }
+                                              return null;
+                                            },
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _phone.text = value;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.phone,
+                                            controller: _phone,
+                                            style: TextStyle(height: 1),
+                                            decoration: InputDecoration(
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
+                                              disabledBorder:
+                                                  OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      borderSide: BorderSide(
+                                                          color: Colors.grey)),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
+                                              hintText:
+                                                  'Enter Your Phone Number',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.black
+                                                      .withOpacity(0.4),
+                                                  fontSize: 11.sp,
+                                                  fontFamily: "task"),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 2.5.h,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 3.5.h),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: 47.w,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Medicine name",
+                                                  style: TextStyle(
+                                                      color: Colors.black87,
+                                                      fontFamily: "task",
+                                                      fontSize: 11.sp,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                SizedBox(
+                                                  height: 0.5.h,
+                                                ),
+                                                TextFormField(
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return "Please Enter Medicine";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  keyboardType:
+                                                      TextInputType.text,
+                                                  controller: _medicine,
+                                                  style: TextStyle(height: 1),
+                                                  decoration: InputDecoration(
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .grey)),
+                                                    disabledBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .grey)),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .grey)),
+                                                    border: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                Colors.grey)),
+                                                    hintText: 'Medicine Name',
+                                                    hintStyle: TextStyle(
+                                                        color: Colors.black
+                                                            .withOpacity(0.4),
+                                                        fontSize: 11.sp,
+                                                        fontFamily: "task"),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 2.w,
+                                          ),
+                                          Container(
+                                            width: 19.w,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Quantity",
+                                                  style: TextStyle(
+                                                      color: Colors.black87,
+                                                      fontSize: 11.sp,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                                SizedBox(
+                                                  height: 0.5.h,
+                                                ),
+                                                TextFormField(
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return "Enter Number of Quantity";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  controller: _quantity,
+                                                  style: TextStyle(height: 1),
+                                                  decoration: InputDecoration(
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .grey)),
+                                                    disabledBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .grey)),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .grey)),
+                                                    border: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                Colors.grey)),
+                                                    hintText: 'Qty',
+                                                    hintStyle: TextStyle(
+                                                        color: Colors.black
+                                                            .withOpacity(0.4),
+                                                        fontSize: 11.sp,
+                                                        fontFamily: "task"),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 1.5.w,
+                                          ),
+                                          _buildAddButton(),
+                                        ],
+                                      ),
+                                    ),
+                                    _buildAddedMedicinesList(),
+                                    SizedBox(
+                                      height: 2.5.h,
+                                    ),
+                                    // DATE
+                                    Container(
+                                      width: 85.w,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Refill Day",
+                                            style: TextStyle(
+                                                color: Colors.black87,
+                                                fontFamily: "task",
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 0.5.h,
+                                          ),
+                                          TextFormField(
+                                            validator: (value) {
+                                              int? days = int.tryParse(value!);
+                                              if (value.isEmpty) {
+                                                return "Please Enter Days";
+                                              } else if (days == 1) {
+                                                return "Minimum 2 days are required";
+                                              }
+                                              return null;
+                                            },
+                                            keyboardType: TextInputType.number,
+                                            style: TextStyle(height: 1),
+                                            controller: _days,
+                                            decoration: InputDecoration(
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
+                                              disabledBorder:
+                                                  OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      borderSide: BorderSide(
+                                                          color: Colors.grey)),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
+                                              hintText: 'Select Days',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.black
+                                                      .withOpacity(0.4),
+                                                  fontSize: 11.sp,
+                                                  fontFamily: "task"),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 3.h,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        setState(() {
+                                          Setbutton = false;
+                                        });
+                                        if (_formKey.currentState!.validate()) {
+                                          setState(() {
+                                            Setbutton = true;
+                                          });
+                                          await Refillformap();
+                                        }
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                              margin: EdgeInsets.only(
+                                                  right: 7.w, left: 7.w),
+                                              alignment: Alignment.center,
+                                              height: 6.h,
+                                              width: 85.w,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color: Color(0xff0061b0)),
+                                              child: Text(
+                                                "Refill Alert",
+                                                style: TextStyle(
+                                                    fontSize: 13.sp,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: "task"),
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                  ]),
                             ]),
-                      ]),
                 ),
               ),
             )));
@@ -916,8 +898,6 @@ class _Refill_AlertState extends State<Refill_Alert> {
   //   }
   // }
 
-
-
   Refillformap() async {
     if (_formKey.currentState!.validate()) {
       Setbutton = true;
@@ -930,16 +910,20 @@ class _Refill_AlertState extends State<Refill_Alert> {
 
       final List<int> allQuantities = [
         int.parse(_quantity.text.toString()),
-        ..._quantityControllers.map((controller) => int.parse(controller.text.toString()))
+        ..._quantityControllers
+            .map((controller) => int.parse(controller.text.toString()))
       ];
 
       final Map<String, dynamic> data = {
         "user_id": usermodal?.userId == "" || usermodal?.userId == null
-            ? deviceName.toString():usermodal?.userId ?? "",
-        "name":  usermodal?.userId == "" || usermodal?.userId == null?_firstname.text.toString()
-          :profilemodal?.profileDetails?.userFirstName,
-        "mobile_number": usermodal?.userId == "" || usermodal?.userId == null?_phone.text.toString()
-          :profilemodal?.profileDetails?.userPhone,
+            ? deviceName.toString()
+            : usermodal?.userId ?? "",
+        "name": usermodal?.userId == "" || usermodal?.userId == null
+            ? _firstname.text.toString()
+            : profilemodal?.profileDetails?.userFirstName,
+        "mobile_number": usermodal?.userId == "" || usermodal?.userId == null
+            ? _phone.text.toString()
+            : profilemodal?.profileDetails?.userPhone,
         "date": _days.text.toString(),
       };
 
@@ -953,24 +937,25 @@ class _Refill_AlertState extends State<Refill_Alert> {
       }
 
       // Store the medicines list directly in the data map
-      data['medicines'] = medicinesList;  // No need to convert to JSON string
+      data['medicines'] = medicinesList; // No need to convert to JSON string
 
       print('form $data');
 
       checkInternet().then((internet) async {
-
         if (internet) {
           Map<String, String> headers = {
-            "Content-Type": "application/json",  // Set Content-Type to JSON
+            "Content-Type": "application/json", // Set Content-Type to JSON
           };
 
           try {
             // Convert the entire data map to a JSON string
             String jsonBody = jsonEncode(data);
             // Sending JSON-encoded data in the request
-            final response = await authprovider().refillformap(jsonBody, headers);
+            final response =
+                await authprovider().refillformap(jsonBody, headers);
             refillModel = RefillModel.fromJson(json.decode(response.body));
-            if (response.statusCode == 200 && refillModel?.status == "success") {
+            if (response.statusCode == 200 &&
+                refillModel?.status == "success") {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => HomePage(sel: 1),
               ));
@@ -1011,11 +996,9 @@ class _Refill_AlertState extends State<Refill_Alert> {
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
       setState(() {
-        deviceName =
-            androidInfo.model; // Device name
+        deviceName = androidInfo.model; // Device name
         deviceOS = 'Android ${androidInfo.version.release}';
       });
-
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       setState(() {
@@ -1026,6 +1009,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
     print('Device Name: $deviceName');
     print('Device OS: $deviceOS');
   }
+
   viewap() {
     final Map<String, String> data = {};
     data['userId'] = (usermodal?.userId).toString();
@@ -1035,12 +1019,13 @@ class _Refill_AlertState extends State<Refill_Alert> {
         authprovider().ViewProfile(data).then((response) async {
           profilemodal = ProfileModal.fromJson(json.decode(response.body));
           if (response.statusCode == 200 && profilemodal?.status == "success") {
-            print("my name is back") ;
+            print("my name is back");
             print(profilemodal?.status);
             setState(() {
               // Assign values to controllers
               _phone.text = profilemodal?.profileDetails?.userPhone ?? "";
-              _firstname.text = profilemodal?.profileDetails?.userFirstName ?? "";
+              _firstname.text =
+                  profilemodal?.profileDetails?.userFirstName ?? "";
               // Add more fields as needed
               isLoading = false;
             });
@@ -1058,5 +1043,4 @@ class _Refill_AlertState extends State<Refill_Alert> {
       }
     });
   }
-
 }

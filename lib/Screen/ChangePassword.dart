@@ -62,7 +62,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'task',
-                            fontSize:20.sp,
+                            fontSize: 20.sp,
                             color: Colors.white),
                       ),
                     ),
@@ -336,9 +336,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                               size: 15.sp, color: Color(0xff0061b0)),
                         ),
                         onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (context) => HomePage(sel: 1,),)
-                          );
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) => HomePage(
+                              sel: 1,
+                            ),
+                          ));
                         },
                       ),
                     ],

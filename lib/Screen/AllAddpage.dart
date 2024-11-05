@@ -45,7 +45,9 @@ class _AllAddpageState extends State<AllAddpage> {
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: Colors.grey.shade100,
-        bottomNavigationBar: bottombar(selected: 0,),
+        bottomNavigationBar: bottombar(
+          selected: 0,
+        ),
         body: isLoading
             ? Container()
             : SingleChildScrollView(

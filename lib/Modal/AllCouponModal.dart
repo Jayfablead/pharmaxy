@@ -50,24 +50,24 @@ class Data {
 
   Data(
       {this.couponID,
-        this.productCoupon,
-        this.categoryID,
-        this.productID,
-        this.userID,
-        this.couponName,
-        this.couponDesc,
-        this.productSpecification,
-        this.couponCode,
-        this.couponType,
-        this.couponValue,
-        this.minimunPrice,
-        this.maximunPrice,
-        this.userStatus,
-        this.startDate,
-        this.endDate,
-        this.couponLive,
-        this.createdAt,
-        this.updatedAt});
+      this.productCoupon,
+      this.categoryID,
+      this.productID,
+      this.userID,
+      this.couponName,
+      this.couponDesc,
+      this.productSpecification,
+      this.couponCode,
+      this.couponType,
+      this.couponValue,
+      this.minimunPrice,
+      this.maximunPrice,
+      this.userStatus,
+      this.startDate,
+      this.endDate,
+      this.couponLive,
+      this.createdAt,
+      this.updatedAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     couponID = json['CouponID'];

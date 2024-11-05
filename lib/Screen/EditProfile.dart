@@ -179,8 +179,7 @@ class _EditProfileState extends State<EditProfile> {
                         ),
                         SizedBox(
                           height: 0.5.h,
-                        )
-                        ,
+                        ),
                         TextFormField(
                           controller: firstname,
                           validator: (value) {
@@ -190,8 +189,8 @@ class _EditProfileState extends State<EditProfile> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                             horizontal: 2.w),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 2.w),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(color: Colors.grey)),
@@ -265,8 +264,8 @@ class _EditProfileState extends State<EditProfile> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 3.w),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 3.w),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(color: Colors.grey)),
@@ -346,7 +345,7 @@ class _EditProfileState extends State<EditProfile> {
                               borderSide: BorderSide(color: Colors.grey)),
                           // filled: true,
                           hintStyle: TextStyle(
-                            fontSize: 11.sp,
+                              fontSize: 11.sp,
                               fontFamily: 'task',
                               color: Colors.black
                               // color: Colors.grey[800]
@@ -463,7 +462,9 @@ class _EditProfileState extends State<EditProfile> {
                                     fontSize: 11.sp,
                                     fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(height: 0.5.h,),
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
                               TextFormField(
                                 controller: add,
                                 validator: (value) {

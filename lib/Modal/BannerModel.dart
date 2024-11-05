@@ -37,14 +37,14 @@ class Data {
 
   Data(
       {this.bannerID,
-        this.bannerTitle,
-        this.bannerPosition,
-        this.bannerText,
-        this.bannerImg,
-        this.bannerUrl,
-        this.bannerLive,
-        this.createdAt,
-        this.updatedAt});
+      this.bannerTitle,
+      this.bannerPosition,
+      this.bannerText,
+      this.bannerImg,
+      this.bannerUrl,
+      this.bannerLive,
+      this.createdAt,
+      this.updatedAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     bannerID = json['BannerID'];

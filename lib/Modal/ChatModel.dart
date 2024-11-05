@@ -93,13 +93,13 @@ class Livechat {
 
   Livechat(
       {this.chatId,
-        this.orderId,
-        this.senderId,
-        this.receiverId,
-        this.msgType,
-        this.message,
-        this.readStatus,
-        this.createdAt});
+      this.orderId,
+      this.senderId,
+      this.receiverId,
+      this.msgType,
+      this.message,
+      this.readStatus,
+      this.createdAt});
 
   Livechat.fromJson(Map<String, dynamic> json) {
     chatId = json['chat_id'];
