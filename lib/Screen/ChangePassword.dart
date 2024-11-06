@@ -354,7 +354,8 @@ class _ChangePasswordState extends State<ChangePassword> {
     );
   }
 
-  changepasswordap() { EasyLoading.show(status: 'Please Wait');
+  changepasswordap() {
+    EasyLoading.show(status: 'Please Wait');
     if (_formKey.currentState!.validate()) {
       final Map<String, String> data = {};
       data['user_id'] = (usermodal?.userId).toString();

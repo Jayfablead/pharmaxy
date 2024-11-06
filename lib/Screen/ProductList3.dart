@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -39,11 +40,14 @@ TextEditingController _serch2 = TextEditingController();
 
 final GlobalKey<ScaffoldState> _scaffoldKeylist3 = GlobalKey<ScaffoldState>();
 bool _isLoading = false;
+bool _isDataLoading = false;
 bool _issearch = false;
 
 bool isLoading = true;
-String? type1;
-String? short;
+
+bool filterandnsort = false;
+bool type = false;
+bool sort = false;
 
 class _ProductList3State extends State<ProductList3> {
   double calculatePercentageOfffilter(int index) {
@@ -182,13 +186,15 @@ class _ProductList3State extends State<ProductList3> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    bestsellerproductap();
     setState(() {
       _serch2.text = '';
-      setState(() {
-        isLoading = true;
-      });
+      type = false;
+      sort = false;
+      isLoading = true;
+      filterandnsort = false;
+      _isDataLoading = true;
     });
+    bestsellerproductap();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
               _scrollController.position.maxScrollExtent &&
@@ -374,8 +380,9 @@ class _ProductList3State extends State<ProductList3> {
                                                 value: "A to Z",
                                                 onTap: () {
                                                   setState(() {
-                                                    shortbyap("A to Z");
-                                                    short = "2";
+                                                    shortbyap("1");
+                                                    sort = true;
+                                                    type = false;
                                                   });
                                                 },
                                                 child: Text(
@@ -392,8 +399,9 @@ class _ProductList3State extends State<ProductList3> {
                                                 value: "Z to A",
                                                 onTap: () {
                                                   setState(() {
-                                                    shortbyap("Z to A");
-                                                    short = "1";
+                                                    shortbyap("2");
+                                                    sort = true;
+                                                    type = false;
                                                   });
                                                 },
                                                 child: Text(
@@ -411,6 +419,15 @@ class _ProductList3State extends State<ProductList3> {
                                         ),
                                         SizedBox(width: 10.0),
                                         PopupMenuButton<String>(
+                                          child: Text(
+                                            "Sort By",
+                                            style: TextStyle(
+                                              fontFamily: "task",
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w600,
+                                              color: Color(0xff0061b0),
+                                            ),
+                                          ),
                                           onSelected: (value) {
                                             // Select action based on the value chosen
                                             if (value == "A to Z") {
@@ -422,8 +439,9 @@ class _ProductList3State extends State<ProductList3> {
                                               value: "A to Z",
                                               onTap: () {
                                                 setState(() {
-                                                  shortbyap("A to Z");
-                                                  short = "2";
+                                                  shortbyap("1");
+                                                  sort = true;
+                                                  type = false;
                                                 });
                                               },
                                               child: Text(
@@ -439,8 +457,9 @@ class _ProductList3State extends State<ProductList3> {
                                               value: "Z to A",
                                               onTap: () {
                                                 setState(() {
-                                                  shortbyap("Z to A");
-                                                  short = "1";
+                                                  shortbyap("2");
+                                                  sort = true;
+                                                  type = false;
                                                 });
                                               },
                                               child: Text(
@@ -454,15 +473,6 @@ class _ProductList3State extends State<ProductList3> {
                                             ),
                                           ],
                                           color: AppColors.primary,
-                                          child: Text(
-                                            "Sort By",
-                                            style: TextStyle(
-                                              fontFamily: "task",
-                                              fontSize: 15.0,
-                                              fontWeight: FontWeight.w600,
-                                              color: Color(0xff0061b0),
-                                            ),
-                                          ),
                                         ),
                                         SizedBox(width: 20.0),
                                         VerticalDivider(
@@ -498,9 +508,9 @@ class _ProductList3State extends State<ProductList3> {
                                                 value: "Price High to Low",
                                                 onTap: () {
                                                   setState(() {
-                                                    filterbysearch(
-                                                        "Price High to Low");
-                                                    type1 = "2";
+                                                    filterbysearch("2");
+                                                    type = true;
+                                                    sort = false;
                                                   });
                                                 },
                                                 child: Text(
@@ -517,9 +527,9 @@ class _ProductList3State extends State<ProductList3> {
                                                 value: "Price Low to High",
                                                 onTap: () {
                                                   setState(() {
-                                                    filterbysearch(
-                                                        "Price Low to High");
-                                                    type1 = "1";
+                                                    filterbysearch("1");
+                                                    type = true;
+                                                    sort = false;
                                                   });
                                                 },
                                                 child: Text(
@@ -548,9 +558,9 @@ class _ProductList3State extends State<ProductList3> {
                                               value: "Price High to Low",
                                               onTap: () {
                                                 setState(() {
-                                                  filterbysearch(
-                                                      "Price High to Low");
-                                                  type1 = "2";
+                                                  filterbysearch("2");
+                                                  type = true;
+                                                  sort = false;
                                                 });
                                               },
                                               child: Text(
@@ -566,9 +576,9 @@ class _ProductList3State extends State<ProductList3> {
                                               value: "Price Low to High",
                                               onTap: () {
                                                 setState(() {
-                                                  filterbysearch(
-                                                      "Price Low to High");
-                                                  type1 = "1";
+                                                  filterbysearch("1");
+                                                  type = true;
+                                                  sort = false;
                                                 });
                                               },
                                               child: Text(
@@ -620,435 +630,9 @@ class _ProductList3State extends State<ProductList3> {
                               height: 2.h,
                             ),
                           ),
-                          short == "1"
-                              ? SliverGrid(
-                                  gridDelegate:
-                                      SliverGridDelegateWithMaxCrossAxisExtent(
-                                          maxCrossAxisExtent:
-                                              200, // Adjust as needed
-                                          mainAxisSpacing:
-                                              0.0, // Adjust as needed
-                                          crossAxisSpacing:
-                                              0.0, // Adjust as needed
-                                          childAspectRatio:
-                                              6.5 / 8.5 // Adjust as needed
-                                          ),
-                                  delegate: SliverChildBuilderDelegate(
-                                    (BuildContext context, int index) {
-                                      double percentageOffValue =
-                                          calculatePercentageOffshortby(index);
-                                      // Check if we reached the end of the list and need to load more data
-                                      if (index ==
-                                          shortbymodel?.searchResults?.length) {
-                                        // Show the loader
-                                        return isLoadingMore
-                                            ? Center(
-                                                child:
-                                                    CircularProgressIndicator())
-                                            : SizedBox(); // No loader if not loading more
-                                      }
-
-                                      return Stack(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          productdetailnovartion(
-                                                            productid: shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .productID ??
-                                                                '',
-                                                          )));
-                                            },
-                                            child: Card(
-                                              color: Colors.white,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: 2.h,
-                                                    ),
-                                                    Container(
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .allImages
-                                                                    ?.length ==
-                                                                0
-                                                            ? ''
-                                                            : shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .allImages?[0] ??
-                                                                '',
-                                                        fit: BoxFit.cover,
-                                                        height: 9.5.h,
-                                                        width: 25.w,
-                                                        imageBuilder: (context,
-                                                                imageProvider) =>
-                                                            Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            // borderRadius: BorderRadius.circular(10),
-                                                            image:
-                                                                DecorationImage(
-                                                              filterQuality:
-                                                                  FilterQuality
-                                                                      .high,
-                                                              image:
-                                                                  imageProvider,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            Center(
-                                                                child:
-                                                                    CircularProgressIndicator()),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Icon(Icons.error),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 1.h,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 1.w),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              SizedBox(
-                                                                width: 30.w,
-                                                                child: Text(
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  maxLines: 1,
-                                                                  shortbymodel
-                                                                          ?.searchResults?[
-                                                                              index]
-                                                                          .productName ??
-                                                                      '',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          11.sp,
-                                                                      fontFamily:
-                                                                          'task',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      letterSpacing:
-                                                                          1,
-                                                                      color: Colors
-                                                                          .black),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            if (shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .saleProductPrice !=
-                                                                shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .productPrice)
-                                                              Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        top: 0.4
-                                                                            .h),
-                                                                child: Text(
-                                                                  '₹' +
-                                                                      (shortbymodel
-                                                                              ?.searchResults?[index]
-                                                                              .saleProductPrice)
-                                                                          .toString(),
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.sp,
-                                                                    fontFamily:
-                                                                        'task',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    letterSpacing:
-                                                                        1,
-                                                                    color: Colors
-                                                                        .black,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            SizedBox(
-                                                              width: 1.w,
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      top: 0.4
-                                                                          .h),
-                                                              child: Text(
-                                                                '₹' +
-                                                                    (shortbymodel
-                                                                            ?.searchResults?[index]
-                                                                            .productPrice)
-                                                                        .toString(),
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration: shortbymodel
-                                                                              ?.searchResults?[
-                                                                                  index]
-                                                                              .saleProductPrice !=
-                                                                          shortbymodel
-                                                                              ?.searchResults?[
-                                                                                  index]
-                                                                              .productPrice
-                                                                      ? TextDecoration
-                                                                          .lineThrough
-                                                                      : TextDecoration
-                                                                          .none,
-                                                                  fontSize:
-                                                                      11.sp,
-                                                                  fontFamily:
-                                                                      'task',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  letterSpacing:
-                                                                      1,
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 1.w,
-                                                            ),
-                                                            // percentageOffValue == null || percentageOffValue == 0
-                                                            //     ? Container()
-                                                            //     : Padding(
-                                                            //   padding:  EdgeInsets.only(top: 0.4.h),
-                                                            //   child: Container(
-                                                            //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                            //     decoration: BoxDecoration(
-                                                            //       borderRadius: BorderRadius.circular(5),
-                                                            //       color: Colors.red.shade400,
-                                                            //     ),
-                                                            //     child: Text(
-                                                            //       '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                            //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                            //     ),
-                                                            //   ),
-                                                            // ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(height: 0.5.h),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.of(context).push(
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        productdetailnovartion(
-                                                                          productid:
-                                                                              shortbymodel?.searchResults?[index].productID ?? '',
-                                                                        )));
-
-                                                        //ADD CART API
-                                                        // addtocartapi((allsubcatwiceproduct
-                                                        //     ?.subcategoriesWiseProduct?[
-                                                        // index]
-                                                        //     .productID ??
-                                                        //     ''));
-                                                      },
-                                                      child: Container(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        height: 4.h,
-                                                        width: 32.w,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            color: Color(
-                                                                0xff0061b0)),
-                                                        child: Text(
-                                                          "View Product",
-                                                          style: TextStyle(
-                                                              fontSize: 11.sp,
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                              left: 37.w,
-                                              top: 1.h,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  usermodal?.userId == "" ||
-                                                          usermodal?.userId ==
-                                                              null
-                                                      ? Navigator.of(context)
-                                                          .push(MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  LoginPage2()))
-                                                      : shortbymodel
-                                                                  ?.searchResults?[
-                                                                      index]
-                                                                  .wishlist ==
-                                                              1
-                                                          ? removewishlistap(
-                                                              (shortbymodel
-                                                                      ?.searchResults?[
-                                                                          index]
-                                                                      .productID)
-                                                                  .toString())
-                                                          : addwishlistap(
-                                                              (shortbymodel
-                                                                      ?.searchResults?[
-                                                                          index]
-                                                                      .productID)
-                                                                  .toString());
-                                                },
-                                                child: Icon(
-                                                  shortbymodel
-                                                              ?.searchResults?[
-                                                                  index]
-                                                              .wishlist ==
-                                                          1
-                                                      ? Icons.favorite
-                                                      : Icons.favorite_outline,
-                                                  size: 20.sp,
-                                                  color: shortbymodel
-                                                              ?.searchResults?[
-                                                                  index]
-                                                              .wishlist ==
-                                                          1
-                                                      ? Colors.red
-                                                      : Colors.black,
-                                                ),
-                                              )),
-                                          percentageOffValue == null ||
-                                                  percentageOffValue == 0
-                                              ? Container()
-                                              : Positioned(
-                                                  right: 29.w,
-                                                  top: 0.7.h,
-                                                  child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 1.w,
-                                                            vertical: 1.h),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.red,
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                        topLeft:
-                                                            Radius.circular(0),
-                                                        topRight:
-                                                            Radius.circular(0),
-                                                        bottomLeft:
-                                                            Radius.circular(15),
-                                                        bottomRight:
-                                                            Radius.circular(15),
-                                                      ),
-                                                    ),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Text(
-                                                          '${percentageOffValue.toStringAsFixed(2)}%',
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white, // Text color
-                                                              fontSize: 7.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontFamily:
-                                                                  "task"),
-                                                        ),
-                                                        Text(
-                                                          'OFF',
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white, // Text color
-                                                              fontSize: 7.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontFamily:
-                                                                  "task"),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  )),
-                                        ],
-                                      );
-                                    },
-                                    childCount: (shortbymodel
-                                                ?.searchResults?.length ??
-                                            0) +
-                                        1, // Adding 1 to show loader at the end
-                                    // childCount: shortbymodel
-                                    //     ?.searchResults?.length,
-                                  ),
-                                )
-                              : short == "2"
+                          filterandnsort
+                              ? SliverToBoxAdapter(child: Container())
+                              : sort
                                   ? SliverGrid(
                                       gridDelegate:
                                           SliverGridDelegateWithMaxCrossAxisExtent(
@@ -1454,7 +1038,7 @@ class _ProductList3State extends State<ProductList3> {
                                                               MainAxisSize.min,
                                                           children: [
                                                             Text(
-                                                              'percentageOffValue.toStringAsFixed(2)}% Off',
+                                                              '${percentageOffValue.toStringAsFixed(2)}%',
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .white, // Text color
@@ -1493,7 +1077,7 @@ class _ProductList3State extends State<ProductList3> {
                                         //     ?.searchResults?.length,
                                       ),
                                     )
-                                  : type1 == "1"
+                                  : type
                                       ? SliverGrid(
                                           gridDelegate:
                                               SliverGridDelegateWithMaxCrossAxisExtent(
@@ -1504,24 +1088,13 @@ class _ProductList3State extends State<ProductList3> {
                                                   crossAxisSpacing:
                                                       0.0, // Adjust as needed
                                                   childAspectRatio: 6.5 /
-                                                      7.5 // Adjust as needed
+                                                      8.5 // Adjust as needed
                                                   ),
                                           delegate: SliverChildBuilderDelegate(
                                             (BuildContext context, int index) {
                                               double percentageOffValue =
                                                   calculatePercentageOfffilter(
                                                       index);
-                                              // Check if we reached the end of the list and need to load more data
-                                              if (index ==
-                                                  shortbymodel
-                                                      ?.searchResults?.length) {
-                                                // Show the loader
-                                                return isLoadingMore
-                                                    ? Center(
-                                                        child:
-                                                            CircularProgressIndicator())
-                                                    : SizedBox(); // No loader if not loading more
-                                              }
                                               return Stack(
                                                 children: [
                                                   GestureDetector(
@@ -1721,35 +1294,47 @@ class _ProductList3State extends State<ProductList3> {
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                    SizedBox(
-                                                                      width:
-                                                                          1.w,
-                                                                    ),
-                                                                    percentageOffValue ==
-                                                                                null ||
-                                                                            percentageOffValue ==
-                                                                                0
-                                                                        ? Container()
-                                                                        : Padding(
-                                                                            padding:
-                                                                                EdgeInsets.only(top: 0.4.h),
-                                                                            child:
-                                                                                Container(
-                                                                              padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.circular(5),
-                                                                                color: Colors.red.shade400,
-                                                                              ),
-                                                                              child: Text(
-                                                                                '${percentageOffValue.toStringAsFixed(2)}%',
-                                                                                style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                              ),
-                                                                            ),
-                                                                          ),
                                                                   ],
                                                                 ),
                                                               ],
                                                             ),
+                                                            percentageOffValue ==
+                                                                        null ||
+                                                                    percentageOffValue ==
+                                                                        0
+                                                                ? Container()
+                                                                : Padding(
+                                                                    padding: EdgeInsets.only(
+                                                                        top: 0.4
+                                                                            .h),
+                                                                    child:
+                                                                        Container(
+                                                                      padding: EdgeInsets.symmetric(
+                                                                          horizontal: 1
+                                                                              .w,
+                                                                          vertical:
+                                                                              0.2.h),
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(5),
+                                                                        color: Colors
+                                                                            .red
+                                                                            .shade400,
+                                                                      ),
+                                                                      child:
+                                                                          Text(
+                                                                        '${percentageOffValue.toStringAsFixed(2)}%',
+                                                                        style: TextStyle(
+                                                                            color: Colors
+                                                                                .white,
+                                                                            fontFamily:
+                                                                                "task",
+                                                                            fontSize:
+                                                                                7.sp),
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                             SizedBox(
                                                                 height: 0.5.h),
                                                             GestureDetector(
@@ -1888,7 +1473,8 @@ class _ProductList3State extends State<ProductList3> {
                                                                 Text(
                                                                   '${percentageOffValue.toStringAsFixed(2)}%',
                                                                   style: TextStyle(
-                                                                      color: Colors.white, // Text color
+                                                                      color: Colors.white,
+                                                                      // Text color
                                                                       fontSize: 7.sp,
                                                                       fontWeight: FontWeight.bold,
                                                                       fontFamily: "task"),
@@ -1896,7 +1482,8 @@ class _ProductList3State extends State<ProductList3> {
                                                                 Text(
                                                                   'OFF',
                                                                   style: TextStyle(
-                                                                      color: Colors.white, // Text color
+                                                                      color: Colors.white,
+                                                                      // Text color
                                                                       fontSize: 7.sp,
                                                                       fontWeight: FontWeight.bold,
                                                                       fontFamily: "task"),
@@ -1904,8 +1491,6 @@ class _ProductList3State extends State<ProductList3> {
                                                               ],
                                                             ),
                                                           )),
-
-                                                  //${percentageOffValue.toStringAsFixed(2)}% Off
                                                 ],
                                               );
                                             },
@@ -1913,378 +1498,18 @@ class _ProductList3State extends State<ProductList3> {
                                                 ?.searchResults?.length,
                                           ),
                                         )
-                                      : type1 == "2"
-                                          ? SliverGrid(
-                                              gridDelegate:
-                                                  SliverGridDelegateWithMaxCrossAxisExtent(
-                                                      maxCrossAxisExtent:
-                                                          200, // Adjust as needed
-                                                      mainAxisSpacing:
-                                                          0.0, // Adjust as needed
-                                                      crossAxisSpacing:
-                                                          0.0, // Adjust as needed
-                                                      childAspectRatio: 6.5 /
-                                                          8.5 // Adjust as needed
-                                                      ),
-                                              delegate:
-                                                  SliverChildBuilderDelegate(
-                                                (BuildContext context,
-                                                    int index) {
-                                                  double percentageOffValue =
-                                                      calculatePercentageOfffilter(
-                                                          index);
-                                                  return Stack(
-                                                    children: [
-                                                      GestureDetector(
-                                                        onTap: () {
-                                                          Navigator.of(context).push(
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          productdetailnovartion(
-                                                                            productid:
-                                                                                filterbymodel?.searchResults?[index].productID ?? '',
-                                                                          )));
-                                                        },
-                                                        child: Card(
-                                                          color: Colors.white,
-                                                          child: Container(
-                                                            decoration: BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10)),
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                SizedBox(
-                                                                  height: 2.h,
-                                                                ),
-                                                                Container(
-                                                                  child:
-                                                                      CachedNetworkImage(
-                                                                    imageUrl: filterbymodel?.searchResults?[index].allImages?.length ==
-                                                                            0
-                                                                        ? ''
-                                                                        : filterbymodel?.searchResults?[index].allImages?[0] ??
-                                                                            '',
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                    height:
-                                                                        9.5.h,
-                                                                    width: 25.w,
-                                                                    imageBuilder:
-                                                                        (context,
-                                                                                imageProvider) =>
-                                                                            Container(
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        // borderRadius: BorderRadius.circular(10),
-                                                                        image:
-                                                                            DecorationImage(
-                                                                          filterQuality:
-                                                                              FilterQuality.high,
-                                                                          image:
-                                                                              imageProvider,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    placeholder: (context,
-                                                                            url) =>
-                                                                        Center(
-                                                                            child:
-                                                                                CircularProgressIndicator()),
-                                                                    errorWidget: (context,
-                                                                            url,
-                                                                            error) =>
-                                                                        Icon(Icons
-                                                                            .error),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 1.h,
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets
-                                                                      .symmetric(
-                                                                          horizontal:
-                                                                              1.w),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Column(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.center,
-                                                                        children: [
-                                                                          SizedBox(
-                                                                            width:
-                                                                                30.w,
-                                                                            child:
-                                                                                Text(
-                                                                              textAlign: TextAlign.center,
-                                                                              overflow: TextOverflow.ellipsis,
-                                                                              maxLines: 1,
-                                                                              filterbymodel?.searchResults?[index].productName ?? '',
-                                                                              style: TextStyle(fontSize: 11.sp, fontFamily: 'task', fontWeight: FontWeight.bold, letterSpacing: 1, color: Colors.black),
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Row(
-                                                                      children: [
-                                                                        if (filterbymodel?.searchResults?[index].saleProductPrice !=
-                                                                            filterbymodel?.searchResults?[index].productPrice)
-                                                                          Padding(
-                                                                            padding:
-                                                                                EdgeInsets.only(top: 0.4.h),
-                                                                            child:
-                                                                                Text(
-                                                                              '₹' + (filterbymodel?.searchResults?[index].saleProductPrice).toString(),
-                                                                              style: TextStyle(
-                                                                                fontSize: 11.sp,
-                                                                                fontFamily: 'task',
-                                                                                fontWeight: FontWeight.normal,
-                                                                                letterSpacing: 1,
-                                                                                color: Colors.black,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              1.w,
-                                                                        ),
-                                                                        Padding(
-                                                                          padding:
-                                                                              EdgeInsets.only(top: 0.4.h),
-                                                                          child:
-                                                                              Text(
-                                                                            '₹' +
-                                                                                (filterbymodel?.searchResults?[index].productPrice).toString(),
-                                                                            style:
-                                                                                TextStyle(
-                                                                              decoration: filterbymodel?.searchResults?[index].saleProductPrice != filterbymodel?.searchResults?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                              fontSize: 11.sp,
-                                                                              fontFamily: 'task',
-                                                                              fontWeight: FontWeight.normal,
-                                                                              letterSpacing: 1,
-                                                                              color: Colors.black,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              1.w,
-                                                                        ),
-                                                                        percentageOffValue == null ||
-                                                                                percentageOffValue == 0
-                                                                            ? Container()
-                                                                            : Padding(
-                                                                                padding: EdgeInsets.only(top: 0.4.h),
-                                                                                child: Container(
-                                                                                  padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(5),
-                                                                                    color: Colors.red.shade400,
-                                                                                  ),
-                                                                                  child: Text(
-                                                                                    '${percentageOffValue.toStringAsFixed(2)}%',
-                                                                                    style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                      ],
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        0.5.h),
-                                                                GestureDetector(
-                                                                  onTap: () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .push(MaterialPageRoute(
-                                                                            builder: (context) => productdetailnovartion(
-                                                                                  productid: filterbymodel?.searchResults?[index].productID ?? '',
-                                                                                )));
-
-                                                                    //ADD CART API
-                                                                    // addtocartapi((allsubcatwiceproduct
-                                                                    //     ?.subcategoriesWiseProduct?[
-                                                                    // index]
-                                                                    //     .productID ??
-                                                                    //     ''));
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    height: 4.h,
-                                                                    width: 32.w,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                10),
-                                                                        color: Color(
-                                                                            0xff0061b0)),
-                                                                    child: Text(
-                                                                      "View Product",
-                                                                      style: TextStyle(
-                                                                          fontSize: 11
-                                                                              .sp,
-                                                                          color:
-                                                                              Colors.white),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Positioned(
-                                                          left: 37.w,
-                                                          top: 1.h,
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () {
-                                                              usermodal?.userId ==
-                                                                          "" ||
-                                                                      usermodal
-                                                                              ?.userId ==
-                                                                          null
-                                                                  ? Navigator.of(
-                                                                          context)
-                                                                      .push(MaterialPageRoute(
-                                                                          builder: (context) =>
-                                                                              LoginPage2()))
-                                                                  : filterbymodel?.searchResults?[index].wishlist ==
-                                                                          1
-                                                                      ? removewishlistap(
-                                                                          (filterbymodel?.searchResults?[index].productID)
-                                                                              .toString())
-                                                                      : addwishlistap((filterbymodel
-                                                                              ?.searchResults?[index]
-                                                                              .productID)
-                                                                          .toString());
-                                                            },
-                                                            child: Icon(
-                                                              filterbymodel
-                                                                          ?.searchResults?[
-                                                                              index]
-                                                                          .wishlist ==
-                                                                      1
-                                                                  ? Icons
-                                                                      .favorite
-                                                                  : Icons
-                                                                      .favorite_outline,
-                                                              size: 20.sp,
-                                                              color: filterbymodel
-                                                                          ?.searchResults?[
-                                                                              index]
-                                                                          .wishlist ==
-                                                                      1
-                                                                  ? Colors.red
-                                                                  : Colors
-                                                                      .black,
-                                                            ),
-                                                          )),
-                                                      percentageOffValue ==
-                                                                  null ||
-                                                              percentageOffValue ==
-                                                                  0
-                                                          ? Container()
-                                                          : Positioned(
-                                                              right: 27.w,
-                                                              top: 0.7.h,
-                                                              child: Container(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            1.w,
-                                                                        vertical:
-                                                                            1.h),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: Colors
-                                                                      .red,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            0),
-                                                                    bottomLeft:
-                                                                        Radius.circular(
-                                                                            15),
-                                                                    bottomRight:
-                                                                        Radius.circular(
-                                                                            15),
-                                                                  ),
-                                                                ),
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  children: [
-                                                                    Text(
-                                                                      '${percentageOffValue.toStringAsFixed(2)}%',
-                                                                      style: TextStyle(
-                                                                          color: Colors.white,
-                                                                          // Text color
-                                                                          fontSize: 7.sp,
-                                                                          fontWeight: FontWeight.bold,
-                                                                          fontFamily: "task"),
-                                                                    ),
-                                                                    Text(
-                                                                      'OFF',
-                                                                      style: TextStyle(
-                                                                          color: Colors.white,
-                                                                          // Text color
-                                                                          fontSize: 7.sp,
-                                                                          fontWeight: FontWeight.bold,
-                                                                          fontFamily: "task"),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              )),
-                                                    ],
-                                                  );
-                                                },
-                                                childCount: filterbymodel
-                                                    ?.searchResults?.length,
-                                              ),
-                                            )
-                                          : _serch2.text == ''
-                                              ? bestsellerproductmodal
+                                      : _serch2.text == ''
+                                          ? _isDataLoading
+                                              ? SliverToBoxAdapter(
+                                                  child: Container(
+                                                    height: 65.h,
+                                                    child: Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    ),
+                                                  ),
+                                                )
+                                              : bestsellerproductmodal
                                                               ?.productData
                                                               ?.length ==
                                                           0 ||
@@ -2621,6 +1846,16 @@ class _ProductList3State extends State<ProductList3> {
                                                                 : 4, // Replace with the number of grid items you want
                                                       ),
                                                     )
+                                          : _issearch
+                                              ? SliverToBoxAdapter(
+                                                  child: Container(
+                                                    height: 65.h,
+                                                    child: Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    ),
+                                                  ),
+                                                )
                                               : searchbestsaleModal?.productData
                                                               ?.length ==
                                                           0 ||
@@ -2981,23 +2216,28 @@ class _ProductList3State extends State<ProductList3> {
                                                       0) <
                                                   5
                                               ? Container()
-                                              : Container(
-                                                  alignment: Alignment.center,
-                                                  height: 4.h,
-                                                  width: 30.w,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              30),
-                                                      color: Color(0xff0061b0)),
-                                                  child: Text(
-                                                    _isLoading
-                                                        ? "View Less.."
-                                                        : "View More..",
-                                                    style: TextStyle(
-                                                        fontSize: 12.sp,
-                                                        color: Colors.white),
-                                                  )),
+                                              : filterandnsort
+                                                  ? Container()
+                                                  : Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      height: 4.h,
+                                                      width: 30.w,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(30),
+                                                          color: Color(
+                                                              0xff0061b0)),
+                                                      child: Text(
+                                                        _isLoading
+                                                            ? "View Less.."
+                                                            : "View More..",
+                                                        style: TextStyle(
+                                                            fontSize: 12.sp,
+                                                            color:
+                                                                Colors.white),
+                                                      )),
                                         )
                                       ],
                                     )
@@ -3036,27 +2276,38 @@ class _ProductList3State extends State<ProductList3> {
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
               isLoading = false;
-              type1 = "";
-              short = "";
+              Timer(Duration(seconds: 1), () {
+                setState(() {
+                  _isDataLoading = false;
+                });
+              });
             });
           } else {
             setState(() {
               isLoading = false;
-              type1 = "";
-              short = "";
+              Timer(Duration(seconds: 1), () {
+                setState(() {
+                  _isDataLoading = false;
+                });
+              });
             });
           }
         });
       } else {
         setState(() {
           isLoading = false;
-          type1 = "";
-          short = "";
+          Timer(Duration(seconds: 1), () {
+            setState(() {
+              _isDataLoading = false;
+            });
+          });
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
     });
   }
+
+  Timer? _debounce; // Declare a debounce timer
 
   Widget searchBox() {
     return Container(
@@ -3072,10 +2323,22 @@ class _ProductList3State extends State<ProductList3> {
         onChanged: (value) {
           setState(() {
             _issearch = true;
+            sort = false;
+            type = false;
           });
-          bestsalesserchap(_serch2.text);
+
+          // Cancel the previous debounce timer if it's still active
+          if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+          // Start a new debounce timer
+          _debounce = Timer(Duration(seconds: 2), () {
+            if (_serch2.text.isNotEmpty) {
+              bestsalesserchap(_serch2.text); // Call the API with current text
+            }
+          });
         },
-        style: TextStyle(color: Colors.black, fontFamily: 'task'),
+        style:
+            TextStyle(color: Colors.black, fontFamily: 'task', fontSize: 12.sp),
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.symmetric(vertical: 10),
@@ -3096,19 +2359,26 @@ class _ProductList3State extends State<ProductList3> {
                     size: 13.sp,
                   ),
                   onPressed: () {
+                    FocusScope.of(context).unfocus(); // Hide the keyboard
                     setState(() {
-                      _serch2.clear(); // Clear the text in the TextField
-                      _issearch = false; // Reset the search state if needed
+                      _serch2.clear(); // Clear the search field
+                      _issearch = false;
+                      sort = false;
+                      type = false;
                     });
-                    bestsalesserchap(
-                        _serch2.text); // Call the API with empty search
+                    Timer(Duration(seconds: 2), () {
+                      bestsalesserchap(''); // Refresh or reset search
+                    });
                   },
                 )
               : null,
           border: InputBorder.none,
           hintText: 'Search Products',
           hintStyle: TextStyle(
-              color: Colors.black, fontFamily: 'task', fontSize: 12.sp),
+            color: Colors.black,
+            fontFamily: 'task',
+            fontSize: 12.sp,
+          ),
         ),
       ),
     );
@@ -3227,24 +2497,21 @@ class _ProductList3State extends State<ProductList3> {
           if (response.statusCode == 200 &&
               searchbestsaleModal?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
+            FocusScope.of(context).unfocus();
             setState(() {
               isLoading = false;
-              type1 = "";
-              short = "";
             });
           } else {
+            FocusScope.of(context).unfocus();
             setState(() {
               isLoading = false;
-              type1 = "";
-              short = "";
             });
           }
         });
       } else {
+        FocusScope.of(context).unfocus();
         setState(() {
           isLoading = false;
-          type1 = "";
-          short = "";
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -3252,10 +2519,15 @@ class _ProductList3State extends State<ProductList3> {
   }
 
   filterbysearch(String value) async {
+    setState(() {
+      FocusScope.of(context).unfocus();
+      filterandnsort = true;
+      _serch2.clear();
+    });
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
-    data['priceSort'] = type1.toString();
+    data['priceSort'] = value;
     print('AA dada : ${data}');
     checkInternet().then((internet) async {
       if (internet) {
@@ -3266,21 +2538,18 @@ class _ProductList3State extends State<ProductList3> {
               filterbymodel?.status == "success") {
             EasyLoading.showSuccess('success');
             setState(() {
-              isLoading = false;
-              short = "";
+              filterandnsort = false;
             });
           } else {
             setState(() {
               EasyLoading.showError('No Data Found');
-              isLoading = false;
-              short = "";
+              filterandnsort = false;
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
-          short = "";
+          filterandnsort = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -3288,10 +2557,15 @@ class _ProductList3State extends State<ProductList3> {
   }
 
   shortbyap(String value) async {
+    setState(() {
+      FocusScope.of(context).unfocus();
+      filterandnsort = true;
+      _serch2.clear();
+    });
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
-    data['sortOrder'] = short.toString();
+    data['sortOrder'] = value;
     print('AA dada : ${data}');
     checkInternet().then((internet) async {
       if (internet) {
@@ -3299,23 +2573,21 @@ class _ProductList3State extends State<ProductList3> {
           shortbymodel = ShortbyModel.fromJson(json.decode(response.body));
           print(shortbymodel?.status);
           if (response.statusCode == 200 && shortbymodel?.status == "success") {
-            EasyLoading.showSuccess('success');
             setState(() {
-              isLoading = false;
-              type1 = "";
+              EasyLoading.showSuccess('success');
+              filterandnsort = false;
             });
           } else {
             setState(() {
+              filterandnsort = false;
+
               EasyLoading.showError('No Data Found');
-              isLoading = false;
-              type1 = "";
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
-          type1 = "";
+          filterandnsort = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }

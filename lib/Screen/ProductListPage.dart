@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -44,14 +45,15 @@ class ProductListPage extends StatefulWidget {
 }
 
 bool name = false;
-String? type1;
-String? short;
 
+bool filterandnsort = false;
+bool type = false;
+bool sort = false;
 TextEditingController _serch = TextEditingController();
 
 final GlobalKey<ScaffoldState> _scaffoldKeylist1 = GlobalKey<ScaffoldState>();
 bool _isLoading = false;
-
+bool _issearch = false;
 bool isLoading = true;
 
 class book {
@@ -206,17 +208,18 @@ class _ProductListPageState extends State<ProductListPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    setState(() {
+      _serch.text = '';
+      type = false;
+      sort = false;
+      isLoading = true;
+      filterandnsort = false;
+      _isLoading = true;
+    });
     scrollController.addListener(_scrollListener);
     caateeicepageapi();
     catwiceproductap();
     //subcatwiceallproductap();
-
-    setState(() {
-      _serch.text = '';
-      setState(() {
-        isLoading = true;
-      });
-    });
   }
 
   Widget build(BuildContext context) {
@@ -383,8 +386,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                 value: "A to Z",
                                                 onTap: () {
                                                   setState(() {
-                                                    shortbyap("A to Z");
-                                                    short = "2";
+                                                    shortbyap("1");
+                                                    sort = true;
+                                                    type = false;
                                                   });
                                                 },
                                                 child: Text(
@@ -401,8 +405,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                 value: "Z to A",
                                                 onTap: () {
                                                   setState(() {
-                                                    shortbyap("Z to A");
-                                                    short = "1";
+                                                    shortbyap("2");
+                                                    sort = true;
+                                                    type = false;
                                                   });
                                                 },
                                                 child: Text(
@@ -420,6 +425,15 @@ class _ProductListPageState extends State<ProductListPage> {
                                         ),
                                         SizedBox(width: 10.0),
                                         PopupMenuButton<String>(
+                                          child: Text(
+                                            "Sort By",
+                                            style: TextStyle(
+                                              fontFamily: "task",
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w600,
+                                              color: Color(0xff0061b0),
+                                            ),
+                                          ),
                                           onSelected: (value) {
                                             // Select action based on the value chosen
                                             if (value == "A to Z") {
@@ -431,8 +445,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                               value: "A to Z",
                                               onTap: () {
                                                 setState(() {
-                                                  shortbyap("A to Z");
-                                                  short = "2";
+                                                  shortbyap("1");
+                                                  sort = true;
+                                                  type = false;
                                                 });
                                               },
                                               child: Text(
@@ -448,8 +463,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                               value: "Z to A",
                                               onTap: () {
                                                 setState(() {
-                                                  shortbyap("Z to A");
-                                                  short = "1";
+                                                  shortbyap("2");
+                                                  sort = true;
+                                                  type = false;
                                                 });
                                               },
                                               child: Text(
@@ -463,15 +479,6 @@ class _ProductListPageState extends State<ProductListPage> {
                                             ),
                                           ],
                                           color: AppColors.primary,
-                                          child: Text(
-                                            "Sort By",
-                                            style: TextStyle(
-                                              fontFamily: "task",
-                                              fontSize: 15.0,
-                                              fontWeight: FontWeight.w600,
-                                              color: Color(0xff0061b0),
-                                            ),
-                                          ),
                                         ),
                                         SizedBox(width: 20.0),
                                         VerticalDivider(
@@ -507,9 +514,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                 value: "Price High to Low",
                                                 onTap: () {
                                                   setState(() {
-                                                    filterbysearch(
-                                                        "Price High to Low");
-                                                    type1 = "2";
+                                                    filterbysearch("2");
+                                                    type = true;
+                                                    sort = false;
                                                   });
                                                 },
                                                 child: Text(
@@ -526,9 +533,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                                 value: "Price Low to High",
                                                 onTap: () {
                                                   setState(() {
-                                                    filterbysearch(
-                                                        "Price Low to High");
-                                                    type1 = "1";
+                                                    filterbysearch("1");
+                                                    type = true;
+                                                    sort = false;
                                                   });
                                                 },
                                                 child: Text(
@@ -557,9 +564,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                               value: "Price High to Low",
                                               onTap: () {
                                                 setState(() {
-                                                  filterbysearch(
-                                                      "Price High to Low");
-                                                  type1 = "2";
+                                                  filterbysearch("2");
+                                                  type = true;
+                                                  sort = false;
                                                 });
                                               },
                                               child: Text(
@@ -575,9 +582,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                               value: "Price Low to High",
                                               onTap: () {
                                                 setState(() {
-                                                  filterbysearch(
-                                                      "Price Low to High");
-                                                  type1 = "1";
+                                                  filterbysearch("1");
+                                                  type = true;
+                                                  sort = false;
                                                 });
                                               },
                                               child: Text(
@@ -631,450 +638,9 @@ class _ProductListPageState extends State<ProductListPage> {
                               height: 2.h,
                             ),
                           ),
-                          short == "1"
-                              ? SliverGrid(
-                                  gridDelegate:
-                                      SliverGridDelegateWithMaxCrossAxisExtent(
-                                          maxCrossAxisExtent:
-                                              200, // Adjust as needed
-                                          mainAxisSpacing:
-                                              0.0, // Adjust as needed
-                                          crossAxisSpacing:
-                                              0.0, // Adjust as needed
-                                          childAspectRatio:
-                                              6.5 / 7.9 // Adjust as needed
-                                          ),
-                                  delegate: SliverChildBuilderDelegate(
-                                    (BuildContext context, int index) {
-                                      double percentageOffValue =
-                                          calculatePercentageOffshortby(index);
-                                      return Stack(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          productdetailnovartion(
-                                                            productid: shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .productID ??
-                                                                '',
-                                                          )));
-                                            },
-                                            child: Card(
-                                              color: Colors.white,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: 2.h,
-                                                    ),
-                                                    Container(
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .allImages
-                                                                    ?.length ==
-                                                                0
-                                                            ? ''
-                                                            : shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .allImages?[0] ??
-                                                                '',
-                                                        fit: BoxFit.cover,
-                                                        height: 9.5.h,
-                                                        width: 25.w,
-                                                        imageBuilder: (context,
-                                                                imageProvider) =>
-                                                            Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            // borderRadius: BorderRadius.circular(10),
-                                                            image:
-                                                                DecorationImage(
-                                                              filterQuality:
-                                                                  FilterQuality
-                                                                      .high,
-                                                              image:
-                                                                  imageProvider,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            Center(
-                                                                child:
-                                                                    CircularProgressIndicator()),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Icon(Icons.error),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 1.h,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 1.w),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              SizedBox(
-                                                                width: 30.w,
-                                                                child: Text(
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  maxLines: 1,
-                                                                  shortbymodel
-                                                                          ?.searchResults?[
-                                                                              index]
-                                                                          .productName ??
-                                                                      '',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          11.sp,
-                                                                      fontFamily:
-                                                                          'task',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      letterSpacing:
-                                                                          1,
-                                                                      color: Colors
-                                                                          .black),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    // Padding(
-                                                    //   padding:
-                                                    //       EdgeInsets.symmetric(
-                                                    //     horizontal: 1.5.w,
-                                                    //   ),
-                                                    //   child: SizedBox(
-                                                    //     width: 35.w,
-                                                    //     child: Text(
-                                                    //       textAlign:
-                                                    //           TextAlign.center,
-                                                    //       overflow: TextOverflow
-                                                    //           .ellipsis,
-                                                    //       maxLines: 2,
-                                                    //       brandWiceProductsearchmodel
-                                                    //               ?.data?[
-                                                    //                   index]
-                                                    //               .productShortDesc ??
-                                                    //           '',
-                                                    //       style: TextStyle(
-                                                    //         fontSize: 11.sp,
-                                                    //         fontFamily: 'task',
-                                                    //         fontWeight:
-                                                    //             FontWeight
-                                                    //                 .normal,
-                                                    //         letterSpacing: 1,
-                                                    //         color: Colors.black,
-                                                    //       ),
-                                                    //     ),
-                                                    //   ),
-                                                    // ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            if (shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .saleProductPrice !=
-                                                                shortbymodel
-                                                                    ?.searchResults?[
-                                                                        index]
-                                                                    .productPrice)
-                                                              Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        top: 0.4
-                                                                            .h),
-                                                                child: Text(
-                                                                  '₹' +
-                                                                      (shortbymodel
-                                                                              ?.searchResults?[index]
-                                                                              .saleProductPrice)
-                                                                          .toString(),
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.sp,
-                                                                    fontFamily:
-                                                                        'task',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    letterSpacing:
-                                                                        1,
-                                                                    color: Colors
-                                                                        .black,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            SizedBox(
-                                                              width: 1.w,
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      top: 0.4
-                                                                          .h),
-                                                              child: Text(
-                                                                '₹' +
-                                                                    (shortbymodel
-                                                                            ?.searchResults?[index]
-                                                                            .productPrice)
-                                                                        .toString(),
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration: shortbymodel
-                                                                              ?.searchResults?[
-                                                                                  index]
-                                                                              .saleProductPrice !=
-                                                                          shortbymodel
-                                                                              ?.searchResults?[
-                                                                                  index]
-                                                                              .productPrice
-                                                                      ? TextDecoration
-                                                                          .lineThrough
-                                                                      : TextDecoration
-                                                                          .none,
-                                                                  fontSize:
-                                                                      11.sp,
-                                                                  fontFamily:
-                                                                      'task',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  letterSpacing:
-                                                                      1,
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 1.w,
-                                                            ),
-                                                            // percentageOffValue == null || percentageOffValue == 0
-                                                            //     ? Container()
-                                                            //     : Padding(
-                                                            //   padding:  EdgeInsets.only(top: 0.4.h),
-                                                            //   child: Container(
-                                                            //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                            //     decoration: BoxDecoration(
-                                                            //       borderRadius: BorderRadius.circular(5),
-                                                            //       color: Colors.red.shade400,
-                                                            //     ),
-                                                            //     child: Text(
-                                                            //       '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                            //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                            //     ),
-                                                            //   ),
-                                                            // ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(height: 0.5.h),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.of(context).push(
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        productdetailnovartion(
-                                                                          productid:
-                                                                              shortbymodel?.searchResults?[index].productID ?? '',
-                                                                        )));
-
-                                                        //ADD CART API
-                                                        // addtocartapi((allsubcatwiceproduct
-                                                        //     ?.subcategoriesWiseProduct?[
-                                                        // index]
-                                                        //     .productID ??
-                                                        //     ''));
-                                                      },
-                                                      child: Container(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        height: 4.h,
-                                                        width: 32.w,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            color: Color(
-                                                                0xff0061b0)),
-                                                        child: Text(
-                                                          "View Product",
-                                                          style: TextStyle(
-                                                              fontSize: 11.sp,
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                              left: 37.w,
-                                              top: 1.h,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  usermodal?.userId == "" ||
-                                                          usermodal?.userId ==
-                                                              null
-                                                      ? Navigator.of(context)
-                                                          .push(MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  LoginPage2()))
-                                                      : shortbymodel
-                                                                  ?.searchResults?[
-                                                                      index]
-                                                                  .wishlist ==
-                                                              1
-                                                          ? removewishlistap(
-                                                              (shortbymodel
-                                                                      ?.searchResults?[
-                                                                          index]
-                                                                      .productID)
-                                                                  .toString())
-                                                          : addwishlistap(
-                                                              (shortbymodel
-                                                                      ?.searchResults?[
-                                                                          index]
-                                                                      .productID)
-                                                                  .toString());
-                                                },
-                                                child: Icon(
-                                                  shortbymodel
-                                                              ?.searchResults?[
-                                                                  index]
-                                                              .wishlist ==
-                                                          1
-                                                      ? Icons.favorite
-                                                      : Icons.favorite_outline,
-                                                  size: 20.sp,
-                                                  color: shortbymodel
-                                                              ?.searchResults?[
-                                                                  index]
-                                                              .wishlist ==
-                                                          1
-                                                      ? Colors.red
-                                                      : Colors.black,
-                                                ),
-                                              )),
-                                          percentageOffValue == null ||
-                                                  percentageOffValue == 0
-                                              ? Container()
-                                              : Positioned(
-                                                  right: 27.w,
-                                                  top: 0.7.h,
-                                                  child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 1.w,
-                                                            vertical: 1.h),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.red,
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                        topLeft:
-                                                            Radius.circular(0),
-                                                        topRight:
-                                                            Radius.circular(0),
-                                                        bottomLeft:
-                                                            Radius.circular(15),
-                                                        bottomRight:
-                                                            Radius.circular(15),
-                                                      ),
-                                                    ),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Text(
-                                                          '${percentageOffValue.toStringAsFixed(2)}%',
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white, // Text color
-                                                              fontSize: 7.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontFamily:
-                                                                  "task"),
-                                                        ),
-                                                        Text(
-                                                          'OFF',
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white, // Text color
-                                                              fontSize: 7.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontFamily:
-                                                                  "task"),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  )),
-                                        ],
-                                      );
-                                    },
-                                    childCount:
-                                        shortbymodel?.searchResults?.length,
-                                  ),
-                                )
-                              : short == "2"
+                          filterandnsort
+                              ? SliverToBoxAdapter(child: Container())
+                              : sort
                                   ? SliverGrid(
                                       gridDelegate:
                                           SliverGridDelegateWithMaxCrossAxisExtent(
@@ -1490,7 +1056,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                             shortbymodel?.searchResults?.length,
                                       ),
                                     )
-                                  : type1 == "1"
+                                  : type
                                       ? SliverGrid(
                                           gridDelegate:
                                               SliverGridDelegateWithMaxCrossAxisExtent(
@@ -1638,6 +1204,36 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                 ],
                                                               ),
                                                             ),
+                                                            // Padding(
+                                                            //   padding:
+                                                            //       EdgeInsets.symmetric(
+                                                            //     horizontal: 1.5.w,
+                                                            //   ),
+                                                            //   child: SizedBox(
+                                                            //     width: 35.w,
+                                                            //     child: Text(
+                                                            //       textAlign:
+                                                            //           TextAlign.center,
+                                                            //       overflow: TextOverflow
+                                                            //           .ellipsis,
+                                                            //       maxLines: 2,
+                                                            //       brandWiceProductsearchmodel
+                                                            //               ?.data?[
+                                                            //                   index]
+                                                            //               .productShortDesc ??
+                                                            //           '',
+                                                            //       style: TextStyle(
+                                                            //         fontSize: 11.sp,
+                                                            //         fontFamily: 'task',
+                                                            //         fontWeight:
+                                                            //             FontWeight
+                                                            //                 .normal,
+                                                            //         letterSpacing: 1,
+                                                            //         color: Colors.black,
+                                                            //       ),
+                                                            //     ),
+                                                            //   ),
+                                                            // ),
                                                             Row(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
@@ -1831,7 +1427,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                               0
                                                       ? Container()
                                                       : Positioned(
-                                                          right: 27.w,
+                                                          right: 29.w,
                                                           top: 0.7.h,
                                                           child: Container(
                                                             padding: EdgeInsets
@@ -1869,7 +1465,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                 Text(
                                                                   '${percentageOffValue.toStringAsFixed(2)}%',
                                                                   style: TextStyle(
-                                                                      color: Colors.white, // Text color
+                                                                      color: Colors.white,
+                                                                      // Text color
                                                                       fontSize: 7.sp,
                                                                       fontWeight: FontWeight.bold,
                                                                       fontFamily: "task"),
@@ -1877,7 +1474,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                 Text(
                                                                   'OFF',
                                                                   style: TextStyle(
-                                                                      color: Colors.white, // Text color
+                                                                      color: Colors.white,
+                                                                      // Text color
                                                                       fontSize: 7.sp,
                                                                       fontWeight: FontWeight.bold,
                                                                       fontFamily: "task"),
@@ -1892,377 +1490,18 @@ class _ProductListPageState extends State<ProductListPage> {
                                                 ?.searchResults?.length,
                                           ),
                                         )
-                                      : type1 == "2"
-                                          ? SliverGrid(
-                                              gridDelegate:
-                                                  SliverGridDelegateWithMaxCrossAxisExtent(
-                                                      maxCrossAxisExtent:
-                                                          200, // Adjust as needed
-                                                      mainAxisSpacing:
-                                                          0.0, // Adjust as needed
-                                                      crossAxisSpacing:
-                                                          0.0, // Adjust as needed
-                                                      childAspectRatio: 6.5 /
-                                                          7.9 // Adjust as needed
-                                                      ),
-                                              delegate:
-                                                  SliverChildBuilderDelegate(
-                                                (BuildContext context,
-                                                    int index) {
-                                                  double percentageOffValue =
-                                                      calculatePercentageOfffilter(
-                                                          index);
-                                                  return Stack(
-                                                    children: [
-                                                      GestureDetector(
-                                                        onTap: () {
-                                                          Navigator.of(context).push(
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          productdetailnovartion(
-                                                                            productid:
-                                                                                filterbymodel?.searchResults?[index].productID ?? '',
-                                                                          )));
-                                                        },
-                                                        child: Card(
-                                                          color: Colors.white,
-                                                          child: Container(
-                                                            decoration: BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10)),
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                SizedBox(
-                                                                  height: 2.h,
-                                                                ),
-                                                                Container(
-                                                                  child:
-                                                                      CachedNetworkImage(
-                                                                    imageUrl: filterbymodel?.searchResults?[index].allImages?.length ==
-                                                                            0
-                                                                        ? ''
-                                                                        : filterbymodel?.searchResults?[index].allImages?[0] ??
-                                                                            '',
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                    height:
-                                                                        9.5.h,
-                                                                    width: 25.w,
-                                                                    imageBuilder:
-                                                                        (context,
-                                                                                imageProvider) =>
-                                                                            Container(
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        // borderRadius: BorderRadius.circular(10),
-                                                                        image:
-                                                                            DecorationImage(
-                                                                          filterQuality:
-                                                                              FilterQuality.high,
-                                                                          image:
-                                                                              imageProvider,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    placeholder: (context,
-                                                                            url) =>
-                                                                        Center(
-                                                                            child:
-                                                                                CircularProgressIndicator()),
-                                                                    errorWidget: (context,
-                                                                            url,
-                                                                            error) =>
-                                                                        Icon(Icons
-                                                                            .error),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 1.h,
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets
-                                                                      .symmetric(
-                                                                          horizontal:
-                                                                              1.w),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Column(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.center,
-                                                                        children: [
-                                                                          SizedBox(
-                                                                            width:
-                                                                                30.w,
-                                                                            child:
-                                                                                Text(
-                                                                              textAlign: TextAlign.center,
-                                                                              overflow: TextOverflow.ellipsis,
-                                                                              maxLines: 1,
-                                                                              filterbymodel?.searchResults?[index].productName ?? '',
-                                                                              style: TextStyle(fontSize: 11.sp, fontFamily: 'task', fontWeight: FontWeight.bold, letterSpacing: 1, color: Colors.black),
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Row(
-                                                                      children: [
-                                                                        if (filterbymodel?.searchResults?[index].saleProductPrice !=
-                                                                            filterbymodel?.searchResults?[index].productPrice)
-                                                                          Padding(
-                                                                            padding:
-                                                                                EdgeInsets.only(top: 0.4.h),
-                                                                            child:
-                                                                                Text(
-                                                                              '₹' + (filterbymodel?.searchResults?[index].saleProductPrice).toString(),
-                                                                              style: TextStyle(
-                                                                                fontSize: 11.sp,
-                                                                                fontFamily: 'task',
-                                                                                fontWeight: FontWeight.normal,
-                                                                                letterSpacing: 1,
-                                                                                color: Colors.black,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              1.w,
-                                                                        ),
-                                                                        Padding(
-                                                                          padding:
-                                                                              EdgeInsets.only(top: 0.4.h),
-                                                                          child:
-                                                                              Text(
-                                                                            '₹' +
-                                                                                (filterbymodel?.searchResults?[index].productPrice).toString(),
-                                                                            style:
-                                                                                TextStyle(
-                                                                              decoration: filterbymodel?.searchResults?[index].saleProductPrice != filterbymodel?.searchResults?[index].productPrice ? TextDecoration.lineThrough : TextDecoration.none,
-                                                                              fontSize: 11.sp,
-                                                                              fontFamily: 'task',
-                                                                              fontWeight: FontWeight.normal,
-                                                                              letterSpacing: 1,
-                                                                              color: Colors.black,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              1.w,
-                                                                        ),
-                                                                        // percentageOffValue == null || percentageOffValue == 0
-                                                                        //     ? Container()
-                                                                        //     : Padding(
-                                                                        //   padding:  EdgeInsets.only(top: 0.4.h),
-                                                                        //   child: Container(
-                                                                        //     padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 0.2.h),
-                                                                        //     decoration: BoxDecoration(
-                                                                        //       borderRadius: BorderRadius.circular(5),
-                                                                        //       color: Colors.red.shade400,
-                                                                        //     ),
-                                                                        //     child: Text(
-                                                                        //       '${percentageOffValue.toStringAsFixed(2)}% Off',
-                                                                        //       style: TextStyle(color: Colors.white, fontFamily: "task", fontSize: 7.sp),
-                                                                        //     ),
-                                                                        //   ),
-                                                                        // ),
-                                                                      ],
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        0.5.h),
-                                                                GestureDetector(
-                                                                  onTap: () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .push(MaterialPageRoute(
-                                                                            builder: (context) => productdetailnovartion(
-                                                                                  productid: filterbymodel?.searchResults?[index].productID ?? '',
-                                                                                )));
-
-                                                                    //ADD CART API
-                                                                    // addtocartapi((allsubcatwiceproduct
-                                                                    //     ?.subcategoriesWiseProduct?[
-                                                                    // index]
-                                                                    //     .productID ??
-                                                                    //     ''));
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    height: 4.h,
-                                                                    width: 32.w,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                10),
-                                                                        color: Color(
-                                                                            0xff0061b0)),
-                                                                    child: Text(
-                                                                      "View Product",
-                                                                      style: TextStyle(
-                                                                          fontSize: 11
-                                                                              .sp,
-                                                                          color:
-                                                                              Colors.white),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Positioned(
-                                                          left: 37.w,
-                                                          top: 1.h,
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () {
-                                                              usermodal?.userId ==
-                                                                          "" ||
-                                                                      usermodal
-                                                                              ?.userId ==
-                                                                          null
-                                                                  ? Navigator.of(
-                                                                          context)
-                                                                      .push(MaterialPageRoute(
-                                                                          builder: (context) =>
-                                                                              LoginPage2()))
-                                                                  : filterbymodel?.searchResults?[index].wishlist ==
-                                                                          1
-                                                                      ? removewishlistap(
-                                                                          (filterbymodel?.searchResults?[index].productID)
-                                                                              .toString())
-                                                                      : addwishlistap((filterbymodel
-                                                                              ?.searchResults?[index]
-                                                                              .productID)
-                                                                          .toString());
-                                                            },
-                                                            child: Icon(
-                                                              filterbymodel
-                                                                          ?.searchResults?[
-                                                                              index]
-                                                                          .wishlist ==
-                                                                      1
-                                                                  ? Icons
-                                                                      .favorite
-                                                                  : Icons
-                                                                      .favorite_outline,
-                                                              size: 20.sp,
-                                                              color: filterbymodel
-                                                                          ?.searchResults?[
-                                                                              index]
-                                                                          .wishlist ==
-                                                                      1
-                                                                  ? Colors.red
-                                                                  : Colors
-                                                                      .black,
-                                                            ),
-                                                          )),
-                                                      percentageOffValue ==
-                                                                  null ||
-                                                              percentageOffValue ==
-                                                                  0
-                                                          ? Container()
-                                                          : Positioned(
-                                                              right: 27.w,
-                                                              top: 0.7.h,
-                                                              child: Container(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            1.w,
-                                                                        vertical:
-                                                                            1.h),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: Colors
-                                                                      .red,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            0),
-                                                                    bottomLeft:
-                                                                        Radius.circular(
-                                                                            15),
-                                                                    bottomRight:
-                                                                        Radius.circular(
-                                                                            15),
-                                                                  ),
-                                                                ),
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  children: [
-                                                                    Text(
-                                                                      '${percentageOffValue.toStringAsFixed(2)}%',
-                                                                      style: TextStyle(
-                                                                          color: Colors.white,
-                                                                          // Text color
-                                                                          fontSize: 7.sp,
-                                                                          fontWeight: FontWeight.bold,
-                                                                          fontFamily: "task"),
-                                                                    ),
-                                                                    Text(
-                                                                      'OFF',
-                                                                      style: TextStyle(
-                                                                          color: Colors.white,
-                                                                          // Text color
-                                                                          fontSize: 7.sp,
-                                                                          fontWeight: FontWeight.bold,
-                                                                          fontFamily: "task"),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              )),
-                                                    ],
-                                                  );
-                                                },
-                                                childCount: filterbymodel
-                                                    ?.searchResults?.length,
-                                              ),
-                                            )
-                                          : _serch.text != ''
-                                              ? catSerchModal?.categoriesWiseProduct
+                                      : _serch.text != ''
+                                          ? _issearch
+                                              ? SliverToBoxAdapter(
+                                                  child: Container(
+                                                    height: 65.h,
+                                                    child: Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    ),
+                                                  ),
+                                                )
+                                              : catSerchModal?.categoriesWiseProduct
                                                               ?.length ==
                                                           0 ||
                                                       catSerchModal
@@ -2610,6 +1849,16 @@ class _ProductListPageState extends State<ProductListPage> {
                                                             ?.length,
                                                       ),
                                                     )
+                                          : _isLoading
+                                              ? SliverToBoxAdapter(
+                                                  child: Container(
+                                                    height: 65.h,
+                                                    child: Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    ),
+                                                  ),
+                                                )
                                               : catwiceproductmodal
                                                               ?.categoriesWiseProduct
                                                               ?.length ==
@@ -2991,6 +2240,8 @@ class _ProductListPageState extends State<ProductListPage> {
     );
   }
 
+  Timer? _debounce; // Define a debounce timer
+
   Widget searchBox() {
     return Container(
       width: 90.w,
@@ -3005,7 +2256,12 @@ class _ProductListPageState extends State<ProductListPage> {
         onChanged: (value) {
           setState(() {
             name = true;
+            _issearch = true;
+            sort = false;
+            type = false;
           });
+
+          // If search text is empty, reset states
           if (_serch.text.isEmpty) {
             setState(() {
               name = false;
@@ -3017,43 +2273,41 @@ class _ProductListPageState extends State<ProductListPage> {
               wait = true;
             });
           }
-          catserchap(_serch.text);
+
+          // Cancel the previous debounce timer if it's still active
+          if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+          // Start a new debounce timer
+          _debounce = Timer(Duration(seconds: 2), () {
+            if (_serch.text.isNotEmpty) {
+              catserchap(_serch.text); // Call the API if there's text
+            }
+          });
         },
         style:
             TextStyle(color: Colors.black, fontFamily: 'task', fontSize: 12.sp),
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.symmetric(vertical: 10),
-          //contentPadding: EdgeInsets.all(0),
-          suffixIcon:
-              _serch.text.isNotEmpty // Conditionally show the close icon
-                  ? InkWell(
-                      onTap: () {
-                        setState(() {
-                          _serch.text = '';
-                          catserchap(_serch.text); // Call API with empty search
-                          name = false; // Reset name and wait state
-                          wait = false;
-                        });
-                      },
-                      child: Icon(Icons.close, size: 20),
-                    )
-                  : null,
-          // suffixIcon: _serch.text.isNotEmpty
-          //     ? IconButton(
-          //   icon: Icon(
-          //     Icons.close,
-          //     color: Colors.black,
-          //     size: 20,
-          //   ),
-          //   onPressed: () {
-          //     setState(() {
-          //       _serch.clear(); // Clear the text in the TextField
-          //       // _issearch = false; // Reset the search state if needed
-          //     });
-          //     subcatserchap(_serch.text); // Call the API with empty search
-          //   },
-          // ) : null,
+          suffixIcon: _serch.text.isNotEmpty
+              ? InkWell(
+                  onTap: () {
+                    FocusScope.of(context).unfocus(); // Dismiss the keyboard
+                    setState(() {
+                      _serch.clear();
+                      name = false;
+                      wait = false;
+                      sort = false;
+                      type = false;
+                    });
+                    // Optionally, call the API after clearing
+                    Timer(Duration(seconds: 2), () {
+                      catserchap(''); // Pass empty search to refresh results
+                    });
+                  },
+                  child: Icon(Icons.close, size: 20),
+                )
+              : null,
           prefixIcon: Icon(
             Icons.search,
             color: Colors.black,
@@ -3063,11 +2317,13 @@ class _ProductListPageState extends State<ProductListPage> {
             maxHeight: 25,
             minWidth: 40,
           ),
-
           border: InputBorder.none,
           hintText: 'Search Products',
           hintStyle: TextStyle(
-              color: Colors.black, fontFamily: 'task', fontSize: 12.0),
+            color: Colors.black,
+            fontFamily: 'task',
+            fontSize: 12.0,
+          ),
         ),
       ),
     );
@@ -3128,11 +2384,21 @@ class _ProductListPageState extends State<ProductListPage> {
             setState(() {
               //wait = false;
               isLoading = false;
+              Timer(Duration(seconds: 1), () {
+                setState(() {
+                  _isLoading = false;
+                });
+              });
             });
           } else {
             setState(() {
               //wait = false;
               isLoading = false;
+              Timer(Duration(seconds: 1), () {
+                setState(() {
+                  _isLoading = false;
+                });
+              });
             });
           }
         });
@@ -3140,6 +2406,11 @@ class _ProductListPageState extends State<ProductListPage> {
         setState(() {
           // wait = false;
           isLoading = false;
+          Timer(Duration(seconds: 1), () {
+            setState(() {
+              _isLoading = false;
+            });
+          });
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -3152,6 +2423,9 @@ class _ProductListPageState extends State<ProductListPage> {
     data['category_id'] = widget.catid.toString();
     data['User_id'] = (usermodal?.userId).toString();
     print("aaavi gaya${data}");
+    setState(() {
+      _issearch = true;
+    });
     checkInternet().then((internet) async {
       if (internet) {
         authprovider().catserchapi(data).then((response) async {
@@ -3161,71 +2435,29 @@ class _ProductListPageState extends State<ProductListPage> {
               catSerchModal?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
             print('EE Thay ${response.body.toString()}');
-
+            FocusScope.of(context).unfocus();
             setState(() {
               isLoading = false;
-              type1 = "";
-              short = "";
+              _issearch = false;
             });
           } else {
+            FocusScope.of(context).unfocus();
             setState(() {
               isLoading = false;
-              type1 = "";
-              short = "";
+              _issearch = false;
             });
           }
         });
       } else {
+        FocusScope.of(context).unfocus();
         setState(() {
           isLoading = false;
-          type1 = "";
-          short = "";
+          _issearch = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
     });
   }
-
-  // subcatserchap(String value) async {
-  //   final Map<String, String> data = {};
-  //   data['search_term'] = value.toString();
-  //   data['category_id'] = widget.catid.toString();
-  //   data['User_id'] = (usermodal?.userId).toString();
-  //   print("aaavi gaya${data}");
-  //   checkInternet().then((internet) async {
-  //     if (internet) {
-  //       authprovider().subcatserchapi(data).then((response) async {
-  //         subcatserchmodal =
-  //             SubCatSerchModal.fromJson(json.decode(response.body));
-  //         print(subcatserchmodal?.status);
-  //         if (response.statusCode == 200 &&
-  //             subcatserchmodal?.status == "success") {
-  //           print('EE Thay Gyu Hooooo ! ^_^');
-  //           print('EE Thay ${response.body.toString()}');
-  //
-  //           setState(() {
-  //             isLoading = false;
-  //             type1= "";
-  //             short= "";
-  //           });
-  //         } else {
-  //           setState(() {
-  //             isLoading = false;
-  //             type1= "";
-  //             short= "";
-  //           });
-  //         }
-  //       });
-  //     } else {
-  //       setState(() {
-  //         isLoading = false;
-  //         type1= "";
-  //         short= "";
-  //       });
-  //       buildErrorDialog(context, 'Error', "Internet Required");
-  //     }
-  //   });
-  // }
 
   addwishlistap(String value) async {
     final Map<String, String> data = {};
@@ -3328,10 +2560,16 @@ class _ProductListPageState extends State<ProductListPage> {
   }
 
   filterbysearch(String value) async {
+    setState(() {
+      FocusScope.of(context).unfocus();
+      filterandnsort = true;
+      _serch.clear();
+    });
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
-    data['priceSort'] = type1.toString();
+    data['priceSort'] = value;
+    data['cate_id'] = widget.catid.toString();
     print('AA dada : ${data}');
     checkInternet().then((internet) async {
       if (internet) {
@@ -3342,21 +2580,18 @@ class _ProductListPageState extends State<ProductListPage> {
               filterbymodel?.status == "success") {
             EasyLoading.showSuccess('success');
             setState(() {
-              isLoading = false;
-              short = "";
+              filterandnsort = false;
             });
           } else {
             setState(() {
               EasyLoading.showError('No Data Found');
-              isLoading = false;
-              short = "";
+              filterandnsort = false;
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
-          short = "";
+          filterandnsort = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -3364,10 +2599,16 @@ class _ProductListPageState extends State<ProductListPage> {
   }
 
   shortbyap(String value) async {
+    setState(() {
+      FocusScope.of(context).unfocus();
+      filterandnsort = true;
+      _serch.clear();
+    });
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
     data['User_id'] = (usermodal?.userId).toString();
-    data['sortOrder'] = short.toString();
+    data['sortOrder'] = value;
+    data['cate_id'] = widget.catid.toString();
     print('AA dada : ${data}');
     checkInternet().then((internet) async {
       if (internet) {
@@ -3375,23 +2616,21 @@ class _ProductListPageState extends State<ProductListPage> {
           shortbymodel = ShortbyModel.fromJson(json.decode(response.body));
           print(shortbymodel?.status);
           if (response.statusCode == 200 && shortbymodel?.status == "success") {
-            EasyLoading.showSuccess('success');
             setState(() {
-              isLoading = false;
-              type1 = "";
+              EasyLoading.showSuccess('success');
+              filterandnsort = false;
             });
           } else {
             setState(() {
+              filterandnsort = false;
+
               EasyLoading.showError('No Data Found');
-              isLoading = false;
-              type1 = "";
             });
           }
         });
       } else {
         setState(() {
-          isLoading = false;
-          type1 = "";
+          filterandnsort = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -3438,16 +2677,12 @@ class _ProductListPageState extends State<ProductListPage> {
           } else {
             setState(() {
               isLoading = false;
-              type1 = "";
-              short = "";
             });
           }
         });
       } else {
         setState(() {
           isLoading = false;
-          type1 = "";
-          short = "";
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }

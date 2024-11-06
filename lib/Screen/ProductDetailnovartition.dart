@@ -179,8 +179,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                           ),
                           Container(
                             child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 IconButton(
                                     onPressed: () {
@@ -239,8 +238,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                             Center(
                                                                 child:
                                                                     CircularProgressIndicator()),
-                                                    errorWidget: (context,
-                                                            url, error) =>
+                                                    errorWidget: (context, url,
+                                                            error) =>
                                                         Image.asset(
                                                             'assets/deim.png')),
                                               ),
@@ -256,8 +255,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                               SingleChildScrollView(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
@@ -296,11 +294,10 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                     Container(
                                       alignment: Alignment.center,
                                       height: 34.h,
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: 1.w),
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 1.w),
                                       decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10),
+                                        borderRadius: BorderRadius.circular(10),
                                         color: Colors.white,
                                       ),
                                       child: Column(
@@ -320,8 +317,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .center,
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     SizedBox(
                                                       width: 80.w,
@@ -352,7 +348,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                       onTap: () {
                                                         usermodal?.userId ==
                                                                     "" ||
-                                                                usermodal?.userId ==
+                                                                usermodal
+                                                                        ?.userId ==
                                                                     null
                                                             ? Navigator.of(
                                                                     context)
@@ -452,15 +449,13 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontFamily: 'task',
-                                                      color:
-                                                          Color(0xff0061b0),
+                                                      color: Color(0xff0061b0),
                                                       fontSize: 10.sp),
                                                   moreStyle: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontFamily: 'task',
-                                                      color:
-                                                          Color(0xff0061b0),
+                                                      color: Color(0xff0061b0),
                                                       fontSize: 10.sp),
                                                 ),
                                                 SizedBox(
@@ -471,8 +466,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   style: TextStyle(
                                                     fontSize: 10.sp,
                                                     color: Colors.red,
-                                                    fontWeight:
-                                                        FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                     fontFamily: "task",
                                                   ),
                                                 ),
@@ -492,8 +486,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 left: 3.w,
                                 bottom: 3.h,
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
                                       children: [
@@ -551,8 +544,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                                   ?.productPrice
                                                           ? TextDecoration
                                                               .lineThrough
-                                                          : TextDecoration
-                                                              .none,
+                                                          : TextDecoration.none,
                                                       fontSize: 14.sp,
                                                       fontFamily: 'task',
                                                       fontWeight:
@@ -566,8 +558,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   width: 1.w,
                                                 ),
                                                 percentageOffValue == null ||
-                                                        percentageOffValue ==
-                                                            0
+                                                        percentageOffValue == 0
                                                     ? Container()
                                                     : Padding(
                                                         padding:
@@ -596,8 +587,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                                     .white,
                                                                 fontFamily:
                                                                     "task",
-                                                                fontSize:
-                                                                    7.sp),
+                                                                fontSize: 7.sp),
                                                           ),
                                                         ),
                                                       ),
@@ -753,8 +743,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   SizedBox(width: 1.5.w),
                                                   // Quantity display
                                                   Container(
-                                                    alignment:
-                                                        Alignment.center,
+                                                    alignment: Alignment.center,
                                                     height: 7.w,
                                                     width: 7.w,
                                                     child: Text(
@@ -787,12 +776,10 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                           Alignment.center,
                                                       height: 9.5.w,
                                                       width: 9.5.w,
-                                                      decoration:
-                                                          BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(
-                                                                    100),
+                                                                .circular(100),
                                                         color:
                                                             AppColors.primary,
                                                       ),
@@ -829,8 +816,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                             child: Row(
                               children: [
                                 Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
                                       height: 1.h,
@@ -882,8 +868,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                           fontFamily: 'task',
                                           fontWeight: FontWeight.bold,
                                           letterSpacing: 1,
-                                          color:
-                                              Colors.black.withOpacity(0.7),
+                                          color: Colors.black.withOpacity(0.7),
                                         ),
                                       ),
                                       InkWell(
@@ -896,10 +881,8 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   toastLength:
                                                       Toast.LENGTH_SHORT,
                                                   timeInSecForIosWeb: 1,
-                                                  backgroundColor:
-                                                      Colors.white,
-                                                  textColor:
-                                                      Color(0xff0061b0),
+                                                  backgroundColor: Colors.white,
+                                                  textColor: Color(0xff0061b0),
                                                   fontSize: 11.sp)
                                               : addreviewdialog();
                                         },
@@ -941,8 +924,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                 ),
                               )
                             : SliverList.builder(
-                                itemCount:
-                                    viewReviewmodal?.reviewData?.length,
+                                itemCount: viewReviewmodal?.reviewData?.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                     margin: EdgeInsets.symmetric(
@@ -964,13 +946,11 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                             Row(
                                               children: [
                                                 Container(
-                                                  margin:
-                                                      EdgeInsets.symmetric(
-                                                          horizontal: 1.w),
+                                                  margin: EdgeInsets.symmetric(
+                                                      horizontal: 1.w),
                                                   height: 14.w,
                                                   width: 14.w,
-                                                  padding:
-                                                      EdgeInsets.all(1.w),
+                                                  padding: EdgeInsets.all(1.w),
                                                   child: ClipRRect(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -998,8 +978,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Row(
                                                       mainAxisAlignment:
@@ -1024,8 +1003,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
-                                                              letterSpacing:
-                                                                  1,
+                                                              letterSpacing: 1,
                                                               color: Colors
                                                                   .black
                                                                   .withOpacity(
@@ -1041,7 +1019,9 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                             ? InkWell(
                                                                 onTap: () {
                                                                   removeratingsheet(
-                                                                      viewReviewmodal?.reviewData?[index].reviewId ??
+                                                                      viewReviewmodal
+                                                                              ?.reviewData?[index]
+                                                                              .reviewId ??
                                                                           '');
                                                                 },
                                                                 child: Icon(
@@ -1070,10 +1050,14 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                             children: [
                                                               Row(
                                                                 children: [
-                                                                  viewReviewmodal?.reviewData?[index].rating ==
+                                                                  viewReviewmodal
+                                                                              ?.reviewData?[
+                                                                                  index]
+                                                                              .rating ==
                                                                           '1'
                                                                       ? Icon(
-                                                                          Icons.star,
+                                                                          Icons
+                                                                              .star,
                                                                           color:
                                                                               Colors.amber,
                                                                           size:
@@ -1313,8 +1297,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                       height: 1.h,
                     )),
                     productdetail2modal?.relatedProducts?.length == 0 ||
-                            productdetail2modal?.relatedProducts?.length ==
-                                null
+                            productdetail2modal?.relatedProducts?.length == null
                         ? SliverToBoxAdapter(
                             child: Container(
                               height: 30.h,
@@ -1442,13 +1425,20 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                                   TextOverflow
                                                                       .ellipsis,
                                                               maxLines: 1,
-                                                              productdetail2modal?.relatedProducts?[index].productName ==
+                                                              productdetail2modal
+                                                                              ?.relatedProducts?[
+                                                                                  index]
+                                                                              .productName ==
                                                                           "" ||
-                                                                      productdetail2modal?.relatedProducts?[index].productName ==
+                                                                      productdetail2modal
+                                                                              ?.relatedProducts?[
+                                                                                  index]
+                                                                              .productName ==
                                                                           null
                                                                   ? "N/A"
                                                                   : productdetail2modal
-                                                                          ?.relatedProducts?[index]
+                                                                          ?.relatedProducts?[
+                                                                              index]
                                                                           .productName ??
                                                                       '',
 
@@ -1539,36 +1529,40 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
-                                                              letterSpacing:
-                                                                  1,
-                                                              color: Colors
-                                                                  .black,
+                                                              letterSpacing: 1,
+                                                              color:
+                                                                  Colors.black,
                                                             ),
                                                           ),
                                                           SizedBox(
                                                             width: 0.5.w,
                                                           ),
                                                           Padding(
-                                                            padding: EdgeInsets
-                                                                .only(
-                                                                    top: 0.4
-                                                                        .h),
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 0.4.h),
                                                             child: Text(
-                                                              productdetail2modal?.relatedProducts?[index].productPrice ==
+                                                              productdetail2modal
+                                                                              ?.relatedProducts?[
+                                                                                  index]
+                                                                              .productPrice ==
                                                                           "" ||
-                                                                      productdetail2modal?.relatedProducts?[index].productPrice ==
+                                                                      productdetail2modal
+                                                                              ?.relatedProducts?[
+                                                                                  index]
+                                                                              .productPrice ==
                                                                           null
                                                                   ? "N/A"
                                                                   : '₹' +
-                                                                      (productdetail2modal?.relatedProducts?[index].productPrice)
+                                                                      (productdetail2modal
+                                                                              ?.relatedProducts?[index]
+                                                                              .productPrice)
                                                                           .toString(),
-                                                              style:
-                                                                  TextStyle(
+                                                              style: TextStyle(
                                                                 decoration:
                                                                     TextDecoration
                                                                         .lineThrough,
-                                                                fontSize:
-                                                                    11.sp,
+                                                                fontSize: 11.sp,
                                                                 fontFamily:
                                                                     'task',
                                                                 fontWeight:
@@ -1592,12 +1586,13 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                     onTap: () {
                                                       Navigator.of(context).push(
                                                           MaterialPageRoute(
-                                                              builder:
-                                                                  (context) =>
-                                                                      productdetailnovartion(
-                                                                        productid:
-                                                                            productdetail2modal?.relatedProducts?[index].productID ?? '',
-                                                                      )));
+                                                              builder: (context) =>
+                                                                  productdetailnovartion(
+                                                                    productid: productdetail2modal
+                                                                            ?.relatedProducts?[index]
+                                                                            .productID ??
+                                                                        '',
+                                                                  )));
                                                     },
                                                     child: Container(
                                                       alignment:
@@ -1607,8 +1602,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(
-                                                                      10),
+                                                                  .circular(10),
                                                           color: AppColors
                                                               .primary),
                                                       child: Text(

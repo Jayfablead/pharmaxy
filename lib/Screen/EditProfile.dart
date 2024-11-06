@@ -547,7 +547,8 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  editap() { EasyLoading.show(status: 'Please Wait');
+  editap() {
+    EasyLoading.show(status: 'Please Wait');
     final Map<String, String> data = {};
     data['userId'] = usermodal?.userId ?? '';
     data['firstName'] = firstname.text.toString();

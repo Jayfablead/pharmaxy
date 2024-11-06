@@ -3068,6 +3068,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Timer? _debounce; // Define a debounce timer
+
   Widget searchBox() {
     return Container(
       width: 92.w,
@@ -3078,21 +3080,28 @@ class _HomePageState extends State<HomePage> {
       child: TextField(
         controller: _serch,
         onChanged: (value) {
+          // Start by showing loading
           setState(() {
             name = true;
             isLoad = true; // Set loading to true when search begins
             noResultsFound = false; // Reset no-results state
           });
 
-          if (_serch.text.isEmpty) {
-            setState(() {
-              name = false;
-              wait = false;
-              isLoad = false; // Stop loading when search is cleared
-            });
-          } else {
-            allproductserchap();
-          }
+          // Cancel the previous timer if it's still running
+          if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+          // Start a new timer
+          _debounce = Timer(Duration(seconds: 2), () {
+            if (_serch.text.isNotEmpty) {
+              allproductserchap(); // Call the API
+            } else {
+              setState(() {
+                name = false;
+                wait = false;
+                isLoad = false; // Stop loading when search is cleared
+              });
+            }
+          });
         },
         style: TextStyle(color: Colors.black, fontFamily: 'task'),
         decoration: InputDecoration(
@@ -3419,14 +3428,17 @@ class _HomePageState extends State<HomePage> {
               isLoad = false;
               noResultsFound =
                   allProductserachModel?.searchResults?.isEmpty ?? true;
+              FocusScope.of(context).unfocus();
             });
           } else {
             setState(() {
+              FocusScope.of(context).unfocus();
               isLoading = false;
               isLoad = false;
             });
           }
         }).catchError((error) {
+          FocusScope.of(context).unfocus();
           print('API Error: $error');
           setState(() {
             isLoading = false;
@@ -3435,6 +3447,7 @@ class _HomePageState extends State<HomePage> {
         });
       } else {
         setState(() {
+          FocusScope.of(context).unfocus();
           isLoading = false;
           isLoad = false;
         });
@@ -3583,11 +3596,11 @@ class _HomePageState extends State<HomePage> {
           print(blogmodel?.status);
           if (response.statusCode == 200 && blogmodel?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
-            if(mounted)
-            setState(() {
-              wait = false;
-              isLoading = false;
-            });
+            if (mounted)
+              setState(() {
+                wait = false;
+                isLoading = false;
+              });
           } else {
             setState(() {
               wait = false;

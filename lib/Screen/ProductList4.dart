@@ -42,14 +42,15 @@ String? type1;
 String? short;
 
 TextEditingController _serch2 = TextEditingController();
-bool type = false;
-bool sort = false;
+
 final GlobalKey<ScaffoldState> _scaffoldKeylist3 = GlobalKey<ScaffoldState>();
 bool _isLoading = false;
 bool _issearch = false;
 
 bool isLoading = true;
 bool filterandnsort = false;
+bool type = false;
+bool sort = false;
 
 class _ProductList4State extends State<ProductList4> {
   final scrollController = ScrollController();
@@ -2432,6 +2433,8 @@ class _ProductList4State extends State<ProductList4> {
     });
   }
 
+  Timer? _debounce; // Define a debounce timer
+
   Widget searchBox() {
     return Container(
       width: 90.w,
@@ -2444,10 +2447,27 @@ class _ProductList4State extends State<ProductList4> {
         controller: _serch2,
         onTap: () {},
         onChanged: (value) {
+          // Update state to reflect that search is active
           setState(() {
             _issearch = true;
+            sort = false;
+            type = false;
           });
-          allproductserchap();
+
+          // Cancel the previous debounce timer if it exists
+          if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+          // Start a new debounce timer
+          _debounce = Timer(Duration(seconds: 2), () {
+            if (_serch2.text.isNotEmpty) {
+              allproductserchap(); // Call the API
+            } else {
+              setState(() {
+                sort = false;
+                type = false; // Reset state when search is cleared
+              });
+            }
+          });
         },
         style: TextStyle(color: Colors.black, fontFamily: 'task'),
         decoration: InputDecoration(
@@ -2462,18 +2482,26 @@ class _ProductList4State extends State<ProductList4> {
             maxHeight: 20,
             minWidth: 25,
           ),
-          suffixIcon:
-              _serch2.text.isNotEmpty // Conditionally show the close icon
-                  ? InkWell(
-                      onTap: () {
-                        setState(() {
-                          _serch2.clear();
-                          allproductserchap();
-                        });
-                      },
-                      child: Icon(Icons.close, size: 20),
-                    )
-                  : null,
+          suffixIcon: _serch2.text.isNotEmpty
+              ? InkWell(
+                  onTap: () {
+                    // Clear the search text and reset states
+                    setState(() {
+                      FocusScope.of(context).unfocus();
+                      _serch2.clear();
+                      sort = false;
+                      type = false;
+                      _issearch = false;
+                    });
+
+                    // Optionally, call the API again after clearing
+                    Timer(Duration(seconds: 2), () {
+                      allproductserchap();
+                    });
+                  },
+                  child: Icon(Icons.close, size: 20),
+                )
+              : null,
           border: InputBorder.none,
           hintText: 'Search Products',
           hintStyle: TextStyle(
@@ -2585,7 +2613,9 @@ class _ProductList4State extends State<ProductList4> {
 
   filterbysearch(String value) async {
     setState(() {
+      FocusScope.of(context).unfocus();
       filterandnsort = true;
+      _serch2.clear();
     });
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -2624,7 +2654,9 @@ class _ProductList4State extends State<ProductList4> {
 
   shortbyap(String value) async {
     setState(() {
+      FocusScope.of(context).unfocus();
       filterandnsort = true;
+      _serch2.clear();
     });
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -2736,11 +2768,13 @@ class _ProductList4State extends State<ProductList4> {
           if (response.statusCode == 200 &&
               allProductserachModel?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
+            FocusScope.of(context).unfocus();
             setState(() {
               isLoading = false;
               _issearch = false;
             });
           } else {
+            FocusScope.of(context).unfocus();
             setState(() {
               isLoading = false;
               _issearch = false;
@@ -2750,12 +2784,14 @@ class _ProductList4State extends State<ProductList4> {
           print('API Error: $error');
           if (mounted)
             setState(() {
+              FocusScope.of(context).unfocus();
               isLoading = false;
               _issearch = false;
             });
         });
       } else {
         setState(() {
+          FocusScope.of(context).unfocus();
           isLoading = false;
           _issearch = false;
         });
