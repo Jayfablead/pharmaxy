@@ -2500,11 +2500,13 @@ class _ProductList3State extends State<ProductList3> {
             FocusScope.of(context).unfocus();
             setState(() {
               isLoading = false;
+              _issearch = false;
             });
           } else {
             FocusScope.of(context).unfocus();
             setState(() {
               isLoading = false;
+              _issearch = false;
             });
           }
         });
@@ -2512,6 +2514,7 @@ class _ProductList3State extends State<ProductList3> {
         FocusScope.of(context).unfocus();
         setState(() {
           isLoading = false;
+          _issearch = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
@@ -2520,9 +2523,8 @@ class _ProductList3State extends State<ProductList3> {
 
   filterbysearch(String value) async {
     setState(() {
-      FocusScope.of(context).unfocus();
       filterandnsort = true;
-      _serch2.clear();
+      _serch2.text = '';
     });
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
@@ -2558,7 +2560,6 @@ class _ProductList3State extends State<ProductList3> {
 
   shortbyap(String value) async {
     setState(() {
-      FocusScope.of(context).unfocus();
       filterandnsort = true;
       _serch2.clear();
     });

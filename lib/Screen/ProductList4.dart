@@ -2613,9 +2613,8 @@ class _ProductList4State extends State<ProductList4> {
 
   filterbysearch(String value) async {
     setState(() {
-      FocusScope.of(context).unfocus();
       filterandnsort = true;
-      _serch2.clear();
+      _serch2.text = '';
     });
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};

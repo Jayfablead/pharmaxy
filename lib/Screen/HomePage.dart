@@ -3079,29 +3079,55 @@ class _HomePageState extends State<HomePage> {
       ),
       child: TextField(
         controller: _serch,
+        // onChanged: (value) {
+        //
+        //   setState(() {
+        //     name = true;
+        //     isLoad = true; // Set loading to true when search begins
+        //     noResultsFound = false; // Reset no-results state
+        //   });
+        //
+        //   // Cancel the previous timer if it's still running
+        //   if (_debounce?.isActive ?? false) _debounce!.cancel();
+        //
+        //   // Start a new timer
+        //   _debounce = Timer(Duration(seconds: 2), () {
+        //     if (_serch.text.isNotEmpty) {
+        //       allproductserchap(); // Call the API
+        //     } else {
+        //       setState(() {
+        //         name = false;
+        //         wait = false;
+        //         isLoad = false; // Stop loading when search is cleared
+        //       });
+        //     }
+        //   });
+        // },
         onChanged: (value) {
-          // Start by showing loading
           setState(() {
             name = true;
-            isLoad = true; // Set loading to true when search begins
+            isLoad = true; // Start loading
             noResultsFound = false; // Reset no-results state
           });
 
-          // Cancel the previous timer if it's still running
+          // Cancel any active debounce timer before starting a new one
           if (_debounce?.isActive ?? false) _debounce!.cancel();
 
-          // Start a new timer
-          _debounce = Timer(Duration(seconds: 2), () {
-            if (_serch.text.isNotEmpty) {
-              allproductserchap(); // Call the API
-            } else {
-              setState(() {
-                name = false;
-                wait = false;
-                isLoad = false; // Stop loading when search is cleared
-              });
-            }
-          });
+          if (_serch.text.isNotEmpty) {
+            _debounce = Timer(Duration(seconds: 2), () {
+              allproductserchap();
+            }); // Call API if search text is not empty
+          } else {
+            // Clear the state and reset loading when search is empty
+            FocusScope.of(context).unfocus(); // Dismiss the keyboard
+            setState(() {
+              _serch.text = '';
+              name = false;
+              wait = false;
+              isLoad = false;
+              noResultsFound = false;
+            });
+          }
         },
         style: TextStyle(color: Colors.black, fontFamily: 'task'),
         decoration: InputDecoration(
@@ -3535,10 +3561,10 @@ class _HomePageState extends State<HomePage> {
           if (response.statusCode == 200 &&
               bestsellerproductmodal?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
-
-            setState(() {
-              isLoading = false;
-            });
+            if (mounted)
+              setState(() {
+                isLoading = false;
+              });
           } else {
             setState(() {
               isLoading = false;

@@ -2561,9 +2561,8 @@ class _ProductListPageState extends State<ProductListPage> {
 
   filterbysearch(String value) async {
     setState(() {
-      FocusScope.of(context).unfocus();
       filterandnsort = true;
-      _serch.clear();
+      _serch.text = '';
     });
     EasyLoading.show(status: 'Please Wait ...');
     final Map<String, String> data = {};
