@@ -231,20 +231,26 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                         child: ListView.builder(
                           padding: EdgeInsets.zero,
                           scrollDirection: Axis.horizontal,
-                          itemCount: blogmodel?.data?.length,
-                          // Change to use dynamic list length
+                          itemCount: recentblogModel?.data?.length ?? 0,
                           itemBuilder: (context, index) {
+                            // Check if the ID matches widget.id; if it does, return an empty SizedBox
+                            if (recentblogModel?.data?[index].id == widget.id) {
+                              return SizedBox.shrink();
+                            }
+
                             return GestureDetector(
                               onTap: () {
-
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Blogdetailspage(
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => Blogdetailspage(
                                       iteamid:
                                           recentblogModel?.data?[index].id ??
                                               '',
                                       id: recentblogModel?.data?[index].id ??
-                                          ''),
-                                ));
+                                          '',
+                                    ),
+                                  ),
+                                );
                               },
                               child: Card(
                                 color: Colors.blue.shade50,
@@ -316,7 +322,7 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
                           },
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -336,20 +342,20 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
               blocdetailsModal?.status == "success") {
             print('EE Thay Gyu Hooooo ! ^_^');
             setState(() {
-              wait = false;
-              isLoading = false;
+              // wait = false;
+              // isLoading = false;
             });
           } else {
             setState(() {
-              wait = false;
-              isLoading = false;
+              // wait = false;
+              // isLoading = false;
             });
           }
         });
       } else {
         setState(() {
-          wait = false;
-          isLoading = false;
+          // wait = false;
+          // isLoading = false;
         });
         buildErrorDialog(context, 'Error', "Internet Required");
       }
