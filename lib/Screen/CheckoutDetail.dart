@@ -114,48 +114,49 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     setState(() {
       isLoading = true;
     });
-    getDeviceInfoandStore();
-    void _handlePaymentSuccess(PaymentSuccessResponse response) {
-      Fluttertoast.showToast(
-          msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
-      checkoutpaypalap(response.paymentId ?? '');
-    }
+    getDeviceInfoandStore().then((value) {
+      void _handlePaymentSuccess(PaymentSuccessResponse response) {
+        Fluttertoast.showToast(
+            msg: "SUCCESS PAYMENT:${response.paymentId}",
+            timeInSecForIosWeb: 4);
+        checkoutpaypalap(response.paymentId ?? '');
+      }
 
-    void _handlePaymentError(PaymentFailureResponse response) {
-      Fluttertoast.showToast(
-          msg: "ERROR HERE:${response.code} - ${response.message}",
-          timeInSecForIosWeb: 4);
-    }
+      void _handlePaymentError(PaymentFailureResponse response) {
+        Fluttertoast.showToast(
+            msg: "ERROR HERE:${response.code} - ${response.message}",
+            timeInSecForIosWeb: 4);
+      }
 
-    void _handlePaymentWallet(ExternalWalletResponse response) {
-      Fluttertoast.showToast(
-          msg: "EXTERNAL_WALLET IS:${response.walletName}",
-          timeInSecForIosWeb: 4);
-    }
+      void _handlePaymentWallet(ExternalWalletResponse response) {
+        Fluttertoast.showToast(
+            msg: "EXTERNAL_WALLET IS:${response.walletName}",
+            timeInSecForIosWeb: 4);
+      }
 
-    _razorpay = Razorpay();
-    _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handlePaymentWallet);
+      _razorpay = Razorpay();
+      _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+      _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+      _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handlePaymentWallet);
 
-    setState(() {
-      selectedpayment = 0;
-      name = widget.page == "1"
-          ? (userselectaddmodal?.selectShippingAddress?.firstName).toString()
-          : widget.firstname.toString();
-      name1 = widget.page == "1"
-          ? (userselectaddmodal?.selectShippingAddress?.lastName).toString()
-          : widget.lastname.toString();
+      setState(() {
+        selectedpayment = 0;
+        name = widget.page == "1"
+            ? (userselectaddmodal?.selectShippingAddress?.firstName).toString()
+            : widget.firstname.toString();
+        name1 = widget.page == "1"
+            ? (userselectaddmodal?.selectShippingAddress?.lastName).toString()
+            : widget.lastname.toString();
+      });
+
+      print('Page : ${widget.page}');
+      print('Add Id : ${widget.addid}');
+      print('Add name : ${widget.firstname}');
+      print('Add name2 : ${widget.lastname}');
+      print('Address : ${widget.address}');
+      Paymethod();
+      userselectaddap();
     });
-
-    print('Page : ${widget.page}');
-    print('Add Id : ${widget.addid}');
-    print('Add name : ${widget.firstname}');
-    print('Add name2 : ${widget.lastname}');
-    print('Address : ${widget.address}');
-    Paymethod();
-    userselectaddap();
-    checkoutap();
   }
 
   selectfile() {
@@ -251,9 +252,13 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
     });
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKeycheckout =
+      GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeycheckout,
       isLoading: isLoading,
       scaffold: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -2263,6 +2268,7 @@ class _CheckoutDetailState extends State<CheckoutDetail> {
         deviceName = iosInfo.name; // Device name
         deviceOS = 'iOS ${iosInfo.systemVersion}';
       });
+      checkoutap();
     }
     print('Device Name: $deviceName');
     print('Device OS: $deviceOS');

@@ -41,6 +41,7 @@ String? short;
 TextEditingController _serch2 = TextEditingController();
 
 final GlobalKey<ScaffoldState> _scaffoldKeylist2 = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeylist21 = GlobalKey<ScaffoldState>();
 bool _isLoading = false;
 
 bool isLoading = true;
@@ -70,6 +71,7 @@ class _ProductListPageState extends State<ProductListPage2> {
 
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeylist21,
       isLoading: isLoading,
       scaffold: Scaffold(
         resizeToAvoidBottomInset: false,

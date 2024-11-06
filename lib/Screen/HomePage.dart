@@ -180,6 +180,7 @@ void _makePhoneCall(String phoneNumber) async {
 }
 
 final GlobalKey<ScaffoldState> _scaffoldKeyhome = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeyhome1 = GlobalKey<ScaffoldState>();
 
 int sel = -1;
 
@@ -280,6 +281,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeyhome1,
       isLoading: isLoading,
       scaffold: Scaffold(
         extendBody: true,

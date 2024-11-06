@@ -45,6 +45,7 @@ class order {
 
 bool isLoading = true;
 final GlobalKey<ScaffoldState> _scaffoldKeyodsum = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeyodsum1 = GlobalKey<ScaffoldState>();
 
 class _OrderSummaryState extends State<OrderSummary> {
   @override
@@ -60,6 +61,7 @@ class _OrderSummaryState extends State<OrderSummary> {
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeyodsum1,
       isLoading: isLoading,
       scaffold: Scaffold(
         key: _scaffoldKeyodsum,

@@ -88,11 +88,15 @@ class _AdressformState extends State<Adressform> {
     contryap();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKeyaddress =
+      GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: commanScreen(
+        key: _scaffoldKeyaddress,
         isLoading: isLoading,
         scaffold: Scaffold(
           backgroundColor: Colors.white,

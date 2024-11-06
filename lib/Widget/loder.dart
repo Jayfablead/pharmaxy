@@ -39,13 +39,14 @@ Widget spinKit = Container(
   ),
 );
 
-Widget commanScreen({required Scaffold scaffold, required bool isLoading}) {
-  final GlobalKey<ScaffoldState> _scaffoldKeyCommanScreen =
-      GlobalKey<ScaffoldState>();
+Widget commanScreen(
+    {required Scaffold scaffold,
+    required GlobalKey key,
+    required bool isLoading}) {
   return KeyboardDismisser(
       gestures: const [GestureType.onTap, GestureType.onPanUpdateDownDirection],
       child: ModalProgressHUD(
-        key: _scaffoldKeyCommanScreen,
+        key: key,
         inAsyncCall: isLoading,
         progressIndicator: spinKit,
         child: scaffold,

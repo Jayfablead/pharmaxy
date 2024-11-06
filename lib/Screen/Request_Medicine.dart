@@ -242,6 +242,8 @@ class _Request_MedicineState extends State<Request_Medicine> {
 
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
+  final GlobalKey<ScaffoldState> _scaffoldKeymedicine =
+      GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -250,6 +252,7 @@ class _Request_MedicineState extends State<Request_Medicine> {
         body: Form(
             key: _formKey,
             child: commanScreen(
+              key: _scaffoldKeymedicine,
               isLoading: isLoading,
               scaffold: Scaffold(
                 backgroundColor: Colors.white,

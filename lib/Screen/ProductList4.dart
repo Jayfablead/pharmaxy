@@ -43,7 +43,8 @@ String? short;
 
 TextEditingController _serch2 = TextEditingController();
 
-final GlobalKey<ScaffoldState> _scaffoldKeylist3 = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeylist4 = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeylist41 = GlobalKey<ScaffoldState>();
 bool _isLoading = false;
 bool _issearch = false;
 
@@ -214,10 +215,11 @@ class _ProductList4State extends State<ProductList4> {
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeylist41,
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: bgcolor,
-        key: _scaffoldKeylist3,
+        key: _scaffoldKeylist4,
         drawer: drawer1(),
         bottomNavigationBar: bottombar(
           selected: 3,

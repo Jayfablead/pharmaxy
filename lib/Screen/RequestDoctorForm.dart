@@ -73,11 +73,15 @@ class _RequestdoctorformState extends State<Requestdoctorform> {
     viewap();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKeydoctor =
+      GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
         child: commanScreen(
+          key: _scaffoldKeydoctor,
           isLoading: isLoading,
           scaffold: Scaffold(
             backgroundColor: Colors.white,

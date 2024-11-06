@@ -24,6 +24,7 @@ class CategoryPage extends StatefulWidget {
 }
 
 final GlobalKey<ScaffoldState> _scaffoldKeycate = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeycate1 = GlobalKey<ScaffoldState>();
 
 class book {
   String? image;
@@ -90,6 +91,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeycate1,
       isLoading: isLoading,
       scaffold: Scaffold(
         key: _scaffoldKeycate,

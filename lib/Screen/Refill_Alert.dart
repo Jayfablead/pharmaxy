@@ -243,6 +243,8 @@ class _Refill_AlertState extends State<Refill_Alert> {
   }
 
   bool isLoading = false;
+  final GlobalKey<ScaffoldState> _scaffoldKeyrefiel =
+      GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -251,6 +253,7 @@ class _Refill_AlertState extends State<Refill_Alert> {
         body: Form(
             key: _formKey,
             child: commanScreen(
+              key: _scaffoldKeyrefiel,
               isLoading: isLoading,
               scaffold: Scaffold(
                 backgroundColor: Colors.white,

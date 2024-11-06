@@ -10,10 +10,12 @@ class TermCondition extends StatefulWidget {
 
 class _TermConditionState extends State<TermCondition> {
   bool isLoading = false;
+  final GlobalKey<ScaffoldState> _scaffoldKeyterms = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeyterms,
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: Colors.white,

@@ -87,11 +87,15 @@ class _editshippingadressState extends State<editshippingadress> {
     userselectaddap();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKeyshipedit =
+      GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: commanScreen(
+        key: _scaffoldKeyshipedit,
         isLoading: isLoading,
         scaffold: Scaffold(
           backgroundColor: Colors.white,

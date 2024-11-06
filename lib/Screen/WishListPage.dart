@@ -25,6 +25,8 @@ class WishListPage extends StatefulWidget {
 
 final GlobalKey<ScaffoldState> _scaffoldKeywishlist =
     GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeywishlist1 =
+    GlobalKey<ScaffoldState>();
 bool _isLoading = false;
 
 class wish {
@@ -53,6 +55,7 @@ class _WishListPageState extends State<WishListPage> {
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeywishlist1,
       isLoading: isLoading,
       scaffold: Scaffold(
         key: _scaffoldKeywishlist,

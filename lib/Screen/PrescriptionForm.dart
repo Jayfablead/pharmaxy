@@ -54,11 +54,15 @@ class _PrescriptionformState extends State<Prescriptionform> {
     getDeviceInfoandStore();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKeyprescription =
+      GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
         child: commanScreen(
+          key: _scaffoldKeyprescription,
           isLoading: isLoading,
           scaffold: Scaffold(
             backgroundColor: Colors.white,

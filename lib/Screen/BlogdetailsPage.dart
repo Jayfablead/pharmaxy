@@ -33,9 +33,13 @@ class _BlogdetailspageState extends State<Blogdetailspage> {
     recentblog();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKeyblogdetail =
+      GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeyblogdetail,
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: Colors.grey.shade50,

@@ -39,9 +39,13 @@ class _AllAddpageState extends State<AllAddpage> {
     alluseraddapi();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKeyalladdress =
+      GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeyalladdress,
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: Colors.grey.shade100,

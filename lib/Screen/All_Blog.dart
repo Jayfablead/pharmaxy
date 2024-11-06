@@ -23,6 +23,7 @@ class All_blogs extends StatefulWidget {
 }
 
 final GlobalKey<ScaffoldState> _scaffoldKeyblog = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeyblog1 = GlobalKey<ScaffoldState>();
 
 bool isLoading = true;
 
@@ -37,6 +38,7 @@ class _All_blogsState extends State<All_blogs> {
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeyblog1,
       isLoading: isLoading,
       scaffold: Scaffold(
         key: _scaffoldKeyblog,

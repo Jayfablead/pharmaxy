@@ -3,6 +3,7 @@ import 'package:ecommerce/Provider/cartProvider.dart';
 import 'package:ecommerce/Screen/SpleshScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
             create: (context) => CartProvider(),
           ),
         ],
-        child: MaterialApp(
+        child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             // primaryColor: AppColors.primary,

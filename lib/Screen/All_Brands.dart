@@ -24,6 +24,7 @@ class All_Brands extends StatefulWidget {
 }
 
 final GlobalKey<ScaffoldState> _scaffoldKeybrand = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeybrand1 = GlobalKey<ScaffoldState>();
 bool isLoading = true;
 
 class _All_BrandsState extends State<All_Brands> {
@@ -39,6 +40,7 @@ class _All_BrandsState extends State<All_Brands> {
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeybrand1,
       isLoading: isLoading,
       scaffold: Scaffold(
         key: _scaffoldKeybrand,

@@ -47,6 +47,8 @@ class productdetailnovartion extends StatefulWidget {
 
 class _productdetailnovartionState extends State<productdetailnovartion> {
   final GlobalKey<ScaffoldState> _scaffoldKeynovar = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKeynovar1 =
+      GlobalKey<ScaffoldState>();
 
   int sel = 1;
   int color = 0;
@@ -158,6 +160,7 @@ class _productdetailnovartionState extends State<productdetailnovartion> {
     }
 
     return commanScreen(
+      key: _scaffoldKeynovar1,
       isLoading: isLoading,
       scaffold: Scaffold(
         extendBody: true,

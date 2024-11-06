@@ -12,10 +12,13 @@ class ReturnPolicy extends StatefulWidget {
 
 class _ReturnPolicyState extends State<ReturnPolicy> {
   bool isLoading = false;
+  final GlobalKey<ScaffoldState> _scaffoldKeypolicy =
+      GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeypolicy,
       isLoading: isLoading,
       scaffold: Scaffold(
         backgroundColor: Colors.white,

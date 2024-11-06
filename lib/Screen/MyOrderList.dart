@@ -30,6 +30,7 @@ class MyOrderList extends StatefulWidget {
 bool isLoading = true;
 
 final GlobalKey<ScaffoldState> _scaffoldKeyodlt = GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> _scaffoldKeyodlt1 = GlobalKey<ScaffoldState>();
 
 class wish {
   String? image;
@@ -124,6 +125,7 @@ class _MyOrderListState extends State<MyOrderList> {
   @override
   Widget build(BuildContext context) {
     return commanScreen(
+      key: _scaffoldKeyodlt1,
       isLoading: isLoading,
       scaffold: Scaffold(
         key: _scaffoldKeyodlt,

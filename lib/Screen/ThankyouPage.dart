@@ -8,6 +8,7 @@ import 'package:ecommerce/Screen/pdfscreen.dart';
 import 'package:ecommerce/Widget/Const.dart';
 import 'package:ecommerce/Widget/buildErrorDialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -148,10 +149,7 @@ class _ThankyouPageState extends State<ThankyouPage> {
               isMailSent
                   ? GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => HomePage(
-                                  sel: 0,
-                                )));
+                        Get.offAll(HomePage(sel: 1));
                       },
                       child: Container(
                           margin: EdgeInsets.only(right: 7.w, left: 7.w),
