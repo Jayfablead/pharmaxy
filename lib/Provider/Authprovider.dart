@@ -1686,6 +1686,24 @@ class authprovider with ChangeNotifier {
     return responseJson;
   }
 
+
+  Future<http.Response> companyinfoap(Map<String, String> bodyData) async {
+    const url = "$baseUrl/company_info";
+    var responseJson;
+    final response = await http
+        .get(
+      Uri.parse(url),
+    )
+        .timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw const SocketException('Something went wrong');
+      },
+    );
+    responseJson = responses(response);
+    return responseJson;
+  }
+
 // Future<http.Response> paginationap(Map<String, String> bodyData) async {
 //   const url = "$baseUrl/getPaginatedProducts";
 //   print(url);

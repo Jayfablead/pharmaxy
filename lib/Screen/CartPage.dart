@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ecommerce/Modal/AllCouponModal.dart';
@@ -31,6 +30,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:readmore/readmore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -940,20 +940,46 @@ class _CartPageState extends State<CartPage> {
                                                                                                 ),
                                                                                               ),
                                                                                             ),
-                                                                                            allcouponmodal?.data?[index].couponDesc == ""
+                                                                                            allcouponmodal?.data?[index].couponDesc == ""|| allcouponmodal?.data?[index].couponDesc==null
                                                                                                 ? Container()
                                                                                                 : SizedBox(
                                                                                                     width: 60.w,
-                                                                                                    child: Text(
-                                                                                                      // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
-                                                                                                      "${allcouponmodal?.data?[index].couponDesc ?? ""} (Minimum cart or order value should be ₹${allcouponmodal?.data?[index].minimunPrice})",
-                                                                                                      style: TextStyle(
-                                                                                                        fontSize: 10.5.sp,
-                                                                                                        fontWeight: FontWeight.normal,
-                                                                                                        fontFamily: "task",
-                                                                                                        // color: Colors.white,
+                                                                                                    child: ReadMoreText(
+                                                                                                        // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
+                                                                                                        "${allcouponmodal?.data?[index].couponDesc ?? "N/A"} (Minimum cart or order value should be ₹${allcouponmodal?.data?[index].minimunPrice})",
+                                                                                                        style: TextStyle(
+                                                                                                          fontSize: 10.5.sp,
+                                                                                                          fontWeight: FontWeight.normal,
+                                                                                                          fontFamily: "task",
+                                                                                                          // color: Colors.white,
+                                                                                                        ),
+                                                                                                      trimLines: 2,
+                                                                                                      trimMode: TrimMode.Line,
+                                                                                                      trimCollapsedText: 'Read more',
+                                                                                                      trimExpandedText: 'Read less',
+                                                                                                      lessStyle: TextStyle(
+                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                        fontFamily: 'task',
+                                                                                                        color:Colors.black,
+                                                                                                        fontSize: 10.sp,
                                                                                                       ),
-                                                                                                    ),
+                                                                                                      moreStyle: TextStyle(
+                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                        fontFamily: 'task',
+                                                                                                        color: Colors.black,
+                                                                                                        fontSize: 10.sp,
+                                                                                                      ),
+                                                                                                    )
+                                                                                                    // Text(
+                                                                                                    //   // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
+                                                                                                    //   "${allcouponmodal?.data?[index].couponDesc ?? ""} (Minimum cart or order value should be ₹${allcouponmodal?.data?[index].minimunPrice})",
+                                                                                                    //   style: TextStyle(
+                                                                                                    //     fontSize: 10.5.sp,
+                                                                                                    //     fontWeight: FontWeight.normal,
+                                                                                                    //     fontFamily: "task",
+                                                                                                    //     // color: Colors.white,
+                                                                                                    //   ),
+                                                                                                    // ),
                                                                                                   ),
                                                                                             SizedBox(height: 1.h),
                                                                                             Row(
@@ -2268,7 +2294,7 @@ class _CartPageState extends State<CartPage> {
                                                                                                 ? Container()
                                                                                                 : SizedBox(
                                                                                                     width: 60.w,
-                                                                                                    child: Text(
+                                                                                                    child: ReadMoreText(
                                                                                                       // "${allcouponmodal?.data?[index].couponName} ${allcouponmodal?.data?[index].couponType == "1" ? "" : "₹"} ${allcouponmodal?.data?[index].couponValue ?? ""} ${allcouponmodal?.data?[index].couponType == "1" ? "%" : "Fixed"} ",
                                                                                                       "${allcouponmodal?.data?[index].couponDesc ?? ""} (Minimum cart or order value should be ₹${allcouponmodal?.data?[index].minimunPrice})",
                                                                                                       style: TextStyle(
@@ -2276,6 +2302,22 @@ class _CartPageState extends State<CartPage> {
                                                                                                         fontWeight: FontWeight.normal,
                                                                                                         fontFamily: "task",
                                                                                                         // color: Colors.white,
+                                                                                                      ),
+                                                                                                      trimLines: 2,
+                                                                                                      trimMode: TrimMode.Line,
+                                                                                                      trimCollapsedText: 'Read more',
+                                                                                                      trimExpandedText: 'Read less',
+                                                                                                      lessStyle: TextStyle(
+                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                        fontFamily: 'task',
+                                                                                                        color:Colors.black,
+                                                                                                        fontSize: 10.sp,
+                                                                                                      ),
+                                                                                                      moreStyle: TextStyle(
+                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                        fontFamily: 'task',
+                                                                                                        color: Colors.black,
+                                                                                                        fontSize: 10.sp,
                                                                                                       ),
                                                                                                     ),
                                                                                                   ),

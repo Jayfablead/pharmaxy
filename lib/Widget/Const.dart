@@ -26,6 +26,7 @@ import 'package:ecommerce/Modal/ChekOutDetailModal.dart';
 import 'package:ecommerce/Modal/CityModal.dart';
 import 'package:ecommerce/Modal/ColorMatchModal.dart';
 import 'package:ecommerce/Modal/ColorShowModal.dart';
+import 'package:ecommerce/Modal/CompanyModel.dart';
 import 'package:ecommerce/Modal/CountryModal.dart';
 import 'package:ecommerce/Modal/CouponModel.dart';
 import 'package:ecommerce/Modal/DeleteReviewModal.dart';
@@ -167,7 +168,7 @@ ChatModel? chatviewmodal;
 SendMessage? sendmessagesmodal;
 AllCouponModal? allcouponmodal;
 CatSerchModal? catSerchModal;
-
+CompanyModel?companyModel;
 // Ram Api
 BlogModel? blogmodel;
 BrandModel? brandmodel;

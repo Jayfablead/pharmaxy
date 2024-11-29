@@ -42,7 +42,8 @@ class _ReturnPolicyState extends State<ReturnPolicy> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => HomePage(sel: 1),
-                                    ));
+                                    )
+                                );
                               },
                               icon: Icon(
                                 Icons.arrow_back_ios_new_outlined,

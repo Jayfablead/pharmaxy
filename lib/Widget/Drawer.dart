@@ -7,6 +7,7 @@ import 'package:ecommerce/Provider/Authprovider.dart';
 import 'package:ecommerce/Screen/CartPage.dart';
 import 'package:ecommerce/Screen/CategoryPage.dart';
 import 'package:ecommerce/Screen/ChangePassword.dart';
+import 'package:ecommerce/Screen/CompanyInfo.dart';
 import 'package:ecommerce/Screen/HomePage.dart';
 import 'package:ecommerce/Screen/LoginPage2.dart';
 import 'package:ecommerce/Screen/MyOrderList.dart';
@@ -1240,6 +1241,61 @@ class _drawer1State extends State<drawer1> {
                       ),
                       InkWell(
                         onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Companyinfo(),
+                          ));
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 64.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.co_present_outlined,
+                                          size: 16.sp,
+                                          color: AppColors.primary,
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Company Info",
+                                          style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'task',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      // Logout
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      InkWell(
+                        onTap: () {
                           Deleteuser();
                         },
                         child: Container(
@@ -1252,7 +1308,7 @@ class _drawer1State extends State<drawer1> {
                                 width: 64.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
@@ -1285,10 +1341,6 @@ class _drawer1State extends State<drawer1> {
                             ],
                           ),
                         ),
-                      ),
-                      // Logout
-                      SizedBox(
-                        height: 2.h,
                       ),
                       SizedBox(
                         height: 3.h,
