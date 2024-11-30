@@ -351,6 +351,7 @@ class _drawer1State extends State<drawer1> {
                       SizedBox(
                         height: 2.h,
                       ),
+                      // request medicine
                       InkWell(
                         onTap: () {
                           Navigator.of(context).pop();
@@ -410,6 +411,167 @@ class _drawer1State extends State<drawer1> {
                       ),
                       InkWell(
                         onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Companyinfo(),
+                          ));
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 64.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.co_present_outlined,
+                                          size: 16.sp,
+                                          color: AppColors.primary,
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Company Info",
+                                          style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'task',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => TermCondition(),
+                          ));
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 64.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.description,
+                                          size: 16.sp,
+                                          color: AppColors.primary,
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Term & Condition",
+                                          style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'task',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ReturnPolicy(),
+                          ));
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 64.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.return_icon,
+                                          size: 16.sp,
+                                          color: AppColors.primary,
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Refund Policy",
+                                          style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'task',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      InkWell(
+                        onTap: () {
                           Navigator.of(context).pop();
                           Navigator.push(
                               context,
@@ -430,7 +592,7 @@ class _drawer1State extends State<drawer1> {
                                 width: 32.w,
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  MainAxisAlignment.spaceAround,
                                   children: [
                                     Row(
                                       children: [
@@ -698,10 +860,11 @@ class _drawer1State extends State<drawer1> {
                           ),
                         ),
                       ),
-                      // ORDER
+
                       SizedBox(
                         height: 2.h,
                       ),
+                      // Order
                       InkWell(
                         onTap: () {
                           Navigator.of(context).pop();
@@ -1134,6 +1297,59 @@ class _drawer1State extends State<drawer1> {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Companyinfo(),
+                          ));
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Container(
+                                width: 64.w,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.co_present_outlined,
+                                          size: 16.sp,
+                                          color: AppColors.primary,
+                                        ),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        Text(
+                                          "Company Info",
+                                          style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'task',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.chevron_right_rounded,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => TermCondition(),
                           ));
                         },
@@ -1239,61 +1455,7 @@ class _drawer1State extends State<drawer1> {
                       SizedBox(
                         height: 2.h,
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Companyinfo(),
-                          ));
-                        },
-                        child: Container(
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 6.w,
-                              ),
-                              Container(
-                                width: 64.w,
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.co_present_outlined,
-                                          size: 16.sp,
-                                          color: AppColors.primary,
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        Text(
-                                          "Company Info",
-                                          style: TextStyle(
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.w500,
-                                            fontFamily: 'task',
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Icon(
-                                      Icons.chevron_right_rounded,
-                                      color: Colors.black,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      // Logout
-                      SizedBox(
-                        height: 2.h,
-                      ),
+                      // delete user
                       InkWell(
                         onTap: () {
                           Deleteuser();
